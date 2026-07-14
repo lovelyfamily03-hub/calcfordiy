@@ -1,0 +1,537 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Shower Tile Calculator — Estimate Tiles for Walls & Floor | CalcForDIY"
+  description="Calculate exactly how much tile you need for your shower. Enter wall and floor dimensions, choose your tile pattern, and get total square footage and box count instantly. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Shower Tile Calculator",
+    "description": "Free shower tile calculator that estimates how much tile you need for shower walls and floor, including waste factor for your tile pattern.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Shower Tile Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Shower Tile Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your shower dimensions to get an accurate tile estimate — waste factor included automatically based on your pattern.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Wall Measurements
+    </h2>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+      <p class="text-sm font-medium text-gray-700 mb-3">Back Wall <span class="text-xs text-gray-400 font-normal">(required)</span></p>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Height</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="w1h_ft" placeholder="7" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="w1h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="w1w_ft" placeholder="4" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="w1w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+      <p class="text-sm font-medium text-gray-700 mb-3">Left Side Wall <span class="text-xs text-gray-400 font-normal">(required)</span></p>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Height</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="w2h_ft" placeholder="7" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="w2h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Width (Depth)</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="w2w_ft" placeholder="3" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="w2w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="wall3Toggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('wall3Section', this.checked)" />
+        <span class="text-sm text-gray-700">+ Add right side wall</span>
+      </label>
+      <div id="wall3Section" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm font-medium text-gray-700 mb-3">Right Side Wall</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w3h_ft" placeholder="7" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w3h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Width (Depth)</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w3w_ft" placeholder="3" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w3w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="wall4Toggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('wall4Section', this.checked)" />
+        <span class="text-sm text-gray-700">+ Add fourth wall (fully enclosed showers)</span>
+      </label>
+      <div id="wall4Section" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm font-medium text-gray-700 mb-3">Fourth Wall</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w4h_ft" placeholder="7" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w4h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w4w_ft" placeholder="4" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w4w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Shower Floor (Optional)
+    </h2>
+
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="floorToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('floorSection', this.checked)" />
+        <span class="text-sm text-gray-700">Include shower floor in estimate</span>
+      </label>
+      <div id="floorSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-xs text-gray-500 mb-3">Only include if using the same tile on the floor. Many showers use a different mosaic tile for grip.</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Floor Length</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="fl_ft" placeholder="4" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="fl_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Floor Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="fw_ft" placeholder="3" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="fw_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+      Subtract Openings (Optional)
+    </h2>
+
+    <div class="mb-3">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="doorToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('doorSection', this.checked)" />
+        <span class="text-sm text-gray-700">Subtract door opening</span>
+      </label>
+      <div id="doorSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Door Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="dh_ft" placeholder="6" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="dh_in" placeholder="8" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Door Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="dw_ft" placeholder="2" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="dw_in" placeholder="6" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="windowToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('windowSection', this.checked)" />
+        <span class="text-sm text-gray-700">Subtract window</span>
+      </label>
+      <div id="windowSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Window Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="wh_ft" placeholder="1" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="wh_in" placeholder="6" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Window Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="ww_ft" placeholder="2" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="ww_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="nicheToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('nicheSection', this.checked)" />
+        <span class="text-sm text-gray-700">Subtract shower niche / shelf</span>
+      </label>
+      <div id="nicheSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Niche Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="nh_ft" placeholder="0" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="nh_in" placeholder="12" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Niche Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="nw_ft" placeholder="1" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="nw_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">4</span>
+      Tile Settings
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Installation Pattern</label>
+        <select id="pattern" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="straight">Straight / Brick (10% waste)</option>
+          <option value="diagonal">Diagonal / Offset (15% waste)</option>
+          <option value="herringbone">Herringbone (20% waste)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Box Coverage <span class="text-gray-400 font-normal text-xs">(from your tile box)</span></label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="boxCoverage" placeholder="e.g. 15.6" min="0.1" step="0.1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">sq ft/box</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">Leave blank to skip box count</p>
+      </div>
+    </div>
+
+    <button onclick="calculate()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Tile Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter at least one wall measurement to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Tile Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_totalArea">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_waste">—</div>
+        <div class="text-xs text-gray-500 mt-1">Waste Factor</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_totalWithWaste">—</div>
+        <div class="text-xs text-gray-500 mt-1">With Waste</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm" id="r_boxRow">
+        <div class="text-2xl font-bold text-green-700" id="r_boxes">—</div>
+        <div class="text-xs text-gray-500 mt-1">Boxes Needed</div>
+      </div>
+    </div>
+    <p class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Always buy at least one extra box. Tile is made in batches — reordering later may result in a color mismatch.
+    </p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure each wall</strong> you plan to tile. Measure height from the floor pan to where tiling ends, and width from corner to corner. Enter feet and inches separately for accuracy.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Add the floor</strong> only if using the same tile throughout. Most showers use a smaller mosaic tile on the floor for grip — if so, calculate the floor separately.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Subtract any openings</strong> — door, window, or niche. This removes untiled areas and gives a more accurate total.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Select your pattern.</strong> Straight layouts waste 10%. Diagonal and offset patterns waste 15%. Herringbone wastes 20% due to the number of angled cuts required.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Enter box coverage</strong> from the label on your tile box. The calculator then shows exactly how many boxes to purchase.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This calculator uses waste factors from Tile Council of North America (TCNA) installation guidelines:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
+      <p>Total area = sum of all wall areas + floor area</p>
+      <p>Net area = total area − door − window − niche</p>
+      <p>With waste = net area x (1 + waste factor)</p>
+      <p>Boxes = ceiling( with waste / box coverage )</p>
+    </div>
+    <table class="w-full text-sm border-collapse">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="text-left px-4 py-2 border border-gray-200">Pattern</th>
+          <th class="text-left px-4 py-2 border border-gray-200">Waste Factor</th>
+          <th class="text-left px-4 py-2 border border-gray-200">Reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-4 py-2 border border-gray-200">Straight / Brick</td>
+          <td class="px-4 py-2 border border-gray-200 font-semibold text-blue-700">10%</td>
+          <td class="px-4 py-2 border border-gray-200 text-gray-600">Minimal cuts required</td>
+        </tr>
+        <tr class="bg-gray-50">
+          <td class="px-4 py-2 border border-gray-200">Diagonal / Offset</td>
+          <td class="px-4 py-2 border border-gray-200 font-semibold text-orange-600">15%</td>
+          <td class="px-4 py-2 border border-gray-200 text-gray-600">Corner cuts create more offcuts</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 border border-gray-200">Herringbone</td>
+          <td class="px-4 py-2 border border-gray-200 font-semibold text-red-600">20%</td>
+          <td class="px-4 py-2 border border-gray-200 text-gray-600">Complex angles produce high cut waste</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How much tile does a typical shower need?</h3>
+        <p class="text-gray-600 text-sm">A standard 3x3 foot shower with 7-foot walls tiled on three sides needs roughly 60-70 square feet of wall tile. Including the floor brings the total to about 70-80 square feet. Larger showers with a fourth tiled wall can need 90-120 square feet or more.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I use the same tile on the shower floor and walls?</h3>
+        <p class="text-gray-600 text-sm">Not always. Shower floors benefit from smaller tiles — like 1x1 or 2x2 mosaic sheets — because more grout lines provide better grip and slip resistance. If you are using different tiles, calculate each separately.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Why do I need extra tile for waste?</h3>
+        <p class="text-gray-600 text-sm">Every shower has corners, edges, and fixtures that require cutting tiles to fit. Cut pieces that are too small to reuse become waste. Pattern complexity increases waste — herringbone requires 20% extra because angled cuts leave large unusable offcuts.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Where do I find the box coverage number?</h3>
+        <p class="text-gray-600 text-sm">Look on the side or back of your tile box. It is usually labeled coverage or area per box and shown in square feet. This number varies significantly by tile size and brand, so always use the number from your specific box.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I buy extra tiles beyond what the calculator says?</h3>
+        <p class="text-gray-600 text-sm">Yes — always buy at least one extra box. Tile is manufactured in batches called dye lots. If you reorder later, the new batch may have a slightly different shade even with the same product code.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What if my shower is not a standard rectangular shape?</h3>
+        <p class="text-gray-600 text-sm">For L-shaped or non-rectangular showers, break each surface into simple rectangles. Calculate each rectangle using this tool and add the results together.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/grout" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Grout Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">How many bags of grout you need</div>
+      </a>
+      <a href="/calculators/bathroom-wall-tile" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Bathroom Wall Tile Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Tile estimate for bathroom walls</div>
+      </a>
+      <a href="/calculators/thinset" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Thinset Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Bags of thinset mortar needed</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function rectArea(hFtId, hInId, wFtId, wInId) {
+    return toFt(hFtId, hInId) * toFt(wFtId, wInId);
+  }
+
+  function isChecked(id) {
+    return document.getElementById(id).checked;
+  }
+
+  function toggleSection(sectionId, show) {
+    document.getElementById(sectionId).classList.toggle('hidden', !show);
+    calculate();
+  }
+
+  function calculate() {
+    var totalArea = 0;
+    var hasInput = false;
+
+    var a1 = rectArea('w1h_ft', 'w1h_in', 'w1w_ft', 'w1w_in');
+    totalArea += a1;
+    if (a1 > 0) hasInput = true;
+
+    var a2 = rectArea('w2h_ft', 'w2h_in', 'w2w_ft', 'w2w_in');
+    totalArea += a2;
+    if (a2 > 0) hasInput = true;
+
+    if (isChecked('wall3Toggle')) totalArea += rectArea('w3h_ft', 'w3h_in', 'w3w_ft', 'w3w_in');
+    if (isChecked('wall4Toggle')) totalArea += rectArea('w4h_ft', 'w4h_in', 'w4w_ft', 'w4w_in');
+
+    if (isChecked('floorToggle')) {
+      var floorA = rectArea('fl_ft', 'fl_in', 'fw_ft', 'fw_in');
+      totalArea += floorA;
+      if (floorA > 0) hasInput = true;
+    }
+
+    if (isChecked('doorToggle')) totalArea -= rectArea('dh_ft', 'dh_in', 'dw_ft', 'dw_in');
+    if (isChecked('windowToggle')) totalArea -= rectArea('wh_ft', 'wh_in', 'ww_ft', 'ww_in');
+    if (isChecked('nicheToggle')) totalArea -= rectArea('nh_ft', 'nh_in', 'nw_ft', 'nw_in');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (!hasInput || totalArea <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (hasInput && totalArea <= 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var pattern = document.getElementById('pattern').value;
+    var wasteMap = { straight: 0.10, diagonal: 0.15, herringbone: 0.20 };
+    var waste = wasteMap[pattern] || 0.10;
+    var totalWithWaste = totalArea * (1 + waste);
+
+    var boxCoverage = getNum('boxCoverage');
+    var boxesNeeded = boxCoverage > 0 ? Math.ceil(totalWithWaste / boxCoverage) : null;
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_totalArea').textContent = totalArea.toFixed(1) + ' sq ft';
+    document.getElementById('r_waste').textContent = (waste * 100) + '%';
+    document.getElementById('r_totalWithWaste').textContent = totalWithWaste.toFixed(1) + ' sq ft';
+
+    if (boxesNeeded !== null) {
+      document.getElementById('r_boxes').textContent = boxesNeeded + ' boxes';
+      document.getElementById('r_boxRow').classList.remove('hidden');
+    } else {
+      document.getElementById('r_boxRow').classList.add('hidden');
+    }
+
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('pattern').addEventListener('change', calculate);
+  });
+</script>
