@@ -1,11 +1,106 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const calculators = [
+  {
+    title: "Shower Tile Calculator",
+    description: "Calculate exactly how much tile you need for shower walls and floor.",
+    href: "/calculators/shower-tile",
+    category: "Tile"
+  },
+  {
+    title: "Bathroom Wall Tile Calculator",
+    description: "Estimate tile needed for bathroom walls with waste factor included.",
+    href: "/calculators/bathroom-wall-tile",
+    category: "Tile"
+  },
+  {
+    title: "Grout Calculator",
+    description: "Find out how many bags of grout you need for any tile project.",
+    href: "/calculators/grout",
+    category: "Tile"
+  },
+  {
+    title: "Laminate Flooring Calculator",
+    description: "Calculate boxes of laminate flooring needed including waste.",
+    href: "/calculators/laminate-flooring",
+    category: "Flooring"
+  },
+  {
+    title: "Hardwood Flooring Calculator",
+    description: "Estimate hardwood flooring by box coverage with waste factor.",
+    href: "/calculators/hardwood-flooring",
+    category: "Flooring"
+  },
+  {
+    title: "Underlayment Calculator",
+    description: "Calculate how many rolls of underlayment your floor project needs.",
+    href: "/calculators/underlayment",
+    category: "Flooring"
+  },
+  {
+    title: "Carpet Calculator",
+    description: "Estimate carpet and padding in square yards for any room.",
+    href: "/calculators/carpet",
+    category: "Flooring"
+  },
+  {
+    title: "Recessed Lighting Calculator — Garage",
+    description: "How many recessed lights do you need for your garage?",
+    href: "/calculators/recessed-lights-garage",
+    category: "Lighting"
+  },
+  {
+    title: "Recessed Lighting Calculator — Bedroom",
+    description: "Calculate the perfect number of can lights for a bedroom.",
+    href: "/calculators/recessed-lights-bedroom",
+    category: "Lighting"
+  },
+  {
+    title: "Lumens Calculator",
+    description: "Find out how many lumens you need for any room size.",
+    href: "/calculators/lumens",
+    category: "Lighting"
+  },
+];
+
+const categories = [...new Set(calculators.map(c => c.category))];
 ---
 
 <Layout
   title="Free DIY Calculators — CalcForDIY"
-  description="Free calculators for home improvement projects. Tile, flooring, paint, lighting and more."
+  description="Free calculators for home improvement projects. Tile, flooring, lighting, and more. No signup, no uploads, instant results."
 >
-  <h1 class="text-3xl font-bold text-gray-900 mb-4">Free DIY Calculators</h1>
-  <p class="text-gray-600 text-lg">Calculators for tile, flooring, paint, lighting, and more.</p>
+  <div class="mb-10">
+    <h1 class="text-4xl font-bold text-gray-900 mb-3">Free DIY Calculators</h1>
+    <p class="text-lg text-gray-600">
+      Instant, accurate calculators for home improvement projects. 
+      No account needed. Everything runs in your browser.
+    </p>
+  </div>
+
+  {categories.map(category => (
+    <div class="mb-10">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">
+        {category} Calculators
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {calculators
+          .filter(c => c.category === category)
+          .map(calc => (
+            <a
+              href={calc.href}
+              class="block p-5 bg-white rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all"
+            >
+              <h3 class="font-semibold text-gray-900 mb-1">{calc.title}</h3>
+              <p class="text-sm text-gray-500">{calc.description}</p>
+              <span class="inline-block mt-3 text-sm text-blue-600 font-medium">
+                Use calculator →
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  ))}
 </Layout>
