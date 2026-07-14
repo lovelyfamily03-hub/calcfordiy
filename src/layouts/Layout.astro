@@ -1,23 +1,34 @@
-<!doctype html>
+---
+import '../styles/global.css';
+const { title, description } = Astro.props;
+---
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="canonical" href={Astro.url} />
+  </head>
+  <body class="bg-gray-50 text-gray-900">
+    <header class="bg-white border-b border-gray-200 px-4 py-3">
+      <div class="max-w-5xl mx-auto flex items-center justify-between">
+        <a href="/" class="text-xl font-bold text-blue-600">CalcForDIY</a>
+        <nav class="text-sm text-gray-600">
+          <a href="/calculators" class="hover:text-blue-600">All Calculators</a>
+        </nav>
+      </div>
+    </header>
+    <main class="max-w-5xl mx-auto px-4 py-8">
+      <slot />
+    </main>
+    <footer class="border-t border-gray-200 mt-16 px-4 py-8 text-center text-sm text-gray-500">
+      <p>© 2026 CalcForDIY — Free calculators for home improvement projects.</p>
+      <p class="mt-2">
+        <a href="/privacy" class="hover:text-blue-600 mr-4">Privacy Policy</a>
+        <a href="/about" class="hover:text-blue-600">About</a>
+      </p>
+    </footer>
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
