@@ -1,0 +1,292 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Grout Calculator — How Many Bags Do I Need? | CalcForDIY"
+  description="Calculate exactly how many bags of grout you need for any tile project. Enter tile size, joint width, and square footage for an instant estimate. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Grout Calculator",
+    "description": "Free grout calculator that estimates how many pounds and bags of grout you need based on tile size, joint width, and square footage.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Grout Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Grout Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your tile size, joint width, and total area to find out exactly how many bags of grout your project needs.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Tile Dimensions (inches)
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <p class="text-xs text-gray-500 mb-3">Enter all measurements in inches. For example: a 12x24 tile is 12 and 24.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Tile Length</label>
+          <div class="flex items-center gap-1">
+            <input type="number" id="tile_len" placeholder="12" min="0.5" max="96" step="0.25"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Tile Width</label>
+          <div class="flex items-center gap-1">
+            <input type="number" id="tile_wid" placeholder="12" min="0.5" max="96" step="0.25"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Tile Thickness</label>
+          <div class="flex items-center gap-1">
+            <input type="number" id="tile_thick" placeholder="0.375" min="0.1" max="2" step="0.125"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">Common: 3/8" = 0.375</p>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Grout Joint Width</label>
+          <div class="flex items-center gap-1">
+            <input type="number" id="joint_wid" placeholder="0.125" min="0.0625" max="1" step="0.0625"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">1/16"=0.0625, 1/8"=0.125, 3/16"=0.1875</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Project Settings
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Total Tile Area</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="total_area" placeholder="60" min="1" max="10000"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">sq ft</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">Use our <a href="/calculators/shower-tile" class="text-blue-500 hover:underline">shower tile calculator</a> to find this</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Grout Type</label>
+        <select id="grout_type"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="sanded">Sanded grout (joints wider than 1/8")</option>
+          <option value="unsanded">Unsanded grout (joints 1/8" or narrower)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Bag Size</label>
+        <select id="bag_size"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="25">25 lb bag</option>
+          <option value="10">10 lb bag</option>
+          <option value="50">50 lb bag</option>
+        </select>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Grout Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please fill in all tile dimensions and total area to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Grout Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_lbsPerSqFt">—</div>
+        <div class="text-xs text-gray-500 mt-1">Lbs per Sq Ft</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_totalLbs">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Pounds</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_lbsWithWaste">—</div>
+        <div class="text-xs text-gray-500 mt-1">With 10% Waste</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_bags">—</div>
+        <div class="text-xs text-gray-500 mt-1">Bags Needed</div>
+      </div>
+    </div>
+    <p class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Buy one extra bag. Leftover grout seals in a bucket for months and is useful for repairs.
+    </p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this grout calculator is straightforward. Follow these steps to find exactly how much material you need:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Enter tile dimensions.</strong> Input the length and width of a single tile in inches.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Enter tile thickness.</strong> Input the thickness of the tile in inches. A common thickness for standard wall and floor tile is 3/8 inch (enter 0.375).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Enter joint width.</strong> Enter the size of the gap between tiles. For most wall tiles, 1/8 inch (0.125) is standard.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Enter total area.</strong> Input the total square footage of the surface you are tiling.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Choose grout details.</strong> Select whether you are using sanded or unsanded grout, and select the bag size you plan to purchase (typically 10, 25, or 50 lbs).</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This grout calculator relies on the industry-standard formula found in technical documentation from major manufacturers like Mapei and LATICRETE. Here is how the math works:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
+      <p>Lbs per Sq Ft = ((Length + Width) / (Length × Width)) × Joint Width × Thickness × Density</p>
+      <p>Total Lbs = Lbs per Sq Ft × Total Area</p>
+      <p>With Waste = Total Lbs × 1.10</p>
+    </div>
+    <p class="text-gray-700">First, all measurements must be in inches. The formula adds the tile length and width, divides by the total tile area, and multiplies that by the joint width and tile thickness. This is then multiplied by a specific density factor: 12.5 for sanded grout or 10.8 for unsanded grout. Finally, we multiply that pounds-per-square-foot number by your total project area and add a standard 10% waste factor.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between sanded and unsanded grout?</h3>
+        <p class="text-gray-600 text-sm">Sanded grout contains fine sand to add strength and prevent shrinking. It is required for any grout joints 1/8 inch or wider. Unsanded grout has no sand and is used for joints smaller than 1/8 inch, or for highly polished tiles (like marble or glass) that easily scratch.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What joint width should I use for subway tile?</h3>
+        <p class="text-gray-600 text-sm">Standard 3x6 ceramic subway tiles generally look best with a tight 1/16 inch or 1/8 inch joint. A 1/16 inch joint will require unsanded grout, while a 1/8 inch joint usually takes sanded.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Can I grout the same day I set the tile?</h3>
+        <p class="text-gray-600 text-sm">No. You must wait a minimum of 24 hours before applying grout. The thinset mortar underneath the tiles needs time to fully cure and off-gas. Grouting too early traps moisture, which can cause the grout to discolor or fail.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How long does powder grout last in the bag?</h3>
+        <p class="text-gray-600 text-sm">An unopened bag of cement-based powder grout will typically last 1 to 2 years if kept in a dry, climate-controlled environment. Once opened, ambient humidity will cause the powder to degrade quickly. Do not use grout containing hard lumps.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does epoxy require a different grout calculator?</h3>
+        <p class="text-gray-600 text-sm">Epoxy has a slightly different density than standard cementitious formulas, but this general grout calculator will still provide a very close estimate. Always double-check the coverage chart on your specific epoxy product before purchasing.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What should I do with leftover grout?</h3>
+        <p class="text-gray-600 text-sm">If it is unmixed powder, seal the bag tightly inside a plastic bin and store it in a dry place for future touch-ups. If it is already mixed with water, let it harden in the bucket and throw it in the trash. Never wash leftover grout down your household drains.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/shower-tile" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Shower Tile Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate exact tile counts for walls and floors.</div>
+      </a>
+      <a href="/calculators/thinset" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Thinset Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Find out how many bags of mortar you need to set your tile.</div>
+      </a>
+      <a href="/calculators/bathroom-wall-tile" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Bathroom Wall Tile Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate square footage and waste for wall tile projects.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function calculate() {
+    var tileLen = getNum('tile_len');
+    var tileWid = getNum('tile_wid');
+    var tileThick = getNum('tile_thick');
+    var jointWid = getNum('joint_wid');
+    var totalArea = getNum('total_area');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (tileLen <= 0 || tileWid <= 0 || tileThick <= 0 || jointWid <= 0 || totalArea <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (tileLen > 0 || tileWid > 0 || totalArea > 0) {
+        document.getElementById('errorMsg').classList.remove('hidden');
+      }
+      return;
+    }
+
+    var groutType = document.getElementById('grout_type').value;
+    var densityFactor = groutType === 'sanded' ? 12.5 : 10.8;
+
+    // Industry formula from Mapei/LATICRETE technical documentation
+    // lbs per sq ft = ((L + W) / (L x W)) x J x T x densityFactor
+    // All measurements in inches
+    var lbsPerSqFt = ((tileLen + tileWid) / (tileLen * tileWid)) * jointWid * tileThick * densityFactor;
+
+    var totalLbs = lbsPerSqFt * totalArea;
+    var totalWithWaste = totalLbs * 1.10;
+
+    var bagSize = parseInt(document.getElementById('bag_size').value);
+    var bagsNeeded = Math.ceil(totalWithWaste / bagSize);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_lbsPerSqFt').textContent = lbsPerSqFt.toFixed(3) + ' lbs';
+    document.getElementById('r_totalLbs').textContent = totalLbs.toFixed(1) + ' lbs';
+    document.getElementById('r_lbsWithWaste').textContent = totalWithWaste.toFixed(1) + ' lbs';
+    document.getElementById('r_bags').textContent = bagsNeeded + ' bags';
+
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('grout_type').addEventListener('change', calculate);
+    document.getElementById('bag_size').addEventListener('change', calculate);
+  });
+</script>
