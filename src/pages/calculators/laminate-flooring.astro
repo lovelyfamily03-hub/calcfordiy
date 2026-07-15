@@ -172,7 +172,92 @@ import Layout from '../../layouts/Layout.astro';
     </p>
   </div>
 
-  <!-- CHUNK 2 GOES HERE — paste your LLM-generated content sections below this line -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this sq ft flooring calculator is straightforward. Follow these steps to get an accurate estimate:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure the room.</strong> Find the maximum length and maximum width of your space. Enter these dimensions to get the baseline square footage.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Multiply rooms (if needed).</strong> If you are installing identical flooring in multiple rooms of the exact same size, adjust the room count. Otherwise, leave it at 1.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Subtract non-floored areas.</strong> If the room has a large kitchen island, a built-in cabinet, or a utility closet that will not receive flooring, enter its dimensions to subtract it from the total.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Choose your installation direction.</strong> Select whether you are running the planks straight (parallel to the walls) or on a diagonal. This changes the waste factor.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Enter box coverage.</strong> Look at the label on your chosen flooring product and enter the exact square footage a single box covers to calculate the total boxes required.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This laminate flooring calculator runs on standard industry waste factors published in the National Wood Flooring Association (NWFA) installation guidelines. Here is the math happening behind the scenes:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
+      <p>Net Area = (Room Area − Subtracted Areas) × Number of Rooms</p>
+      <p>Total to Buy (Straight) = Net Area × 1.10</p>
+      <p>Total to Buy (Diagonal) = Net Area × 1.15</p>
+      <p>Boxes Needed = Math.ceil(Total to Buy / Box Coverage)</p>
+    </div>
+    <p class="text-gray-700">First, the net area is calculated by taking your total room footprint and removing any blocked spaces like islands. Next, we multiply that net area by either 1.10 (adding 10% waste for straight installations) or 1.15 (adding 15% waste for diagonal installations). Finally, the total is divided by your specific box coverage and rounded up to the nearest whole box.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How much waste should I add for laminate flooring?</h3>
+        <p class="text-gray-600 text-sm">Add 10% for standard straight installations. If you are installing the planks diagonally or have a room with many curved walls and obstacles, add 15% to account for complex cuts.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What does box coverage mean and where do I find it?</h3>
+        <p class="text-gray-600 text-sm">Box coverage is the exact amount of surface area a single carton of flooring will cover. It is always printed on the outside of the box packaging and listed in the product specifications online. Every brand and plank width has a different box coverage.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I install flooring under my appliances?</h3>
+        <p class="text-gray-600 text-sm">Yes. It is highly recommended to run flooring completely under refrigerators, dishwashers, and standard ranges. This maintains a level surface, makes the appliances easier to pull out for maintenance, and prevents them from being trapped behind the lip of the new floor.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I include closets in my measurements?</h3>
+        <p class="text-gray-600 text-sm">Yes, if you plan to run the same flooring seamlessly into the closet space. You can either measure the closet as part of the room's total width or treat it as a separate room in a calculator for flooring to ensure you have enough material.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What should I do with leftover planks?</h3>
+        <p class="text-gray-600 text-sm">Keep them. Store any leftover planks flat in a climate-controlled area (not a damp garage or hot attic). If a plank gets damaged by water or heavy impact in the future, you will have an exact color-matched replacement ready to swap in.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does the installation direction affect how much I need to buy?</h3>
+        <p class="text-gray-600 text-sm">Yes. A Floor calculator adjusts for direction because diagonal patterns require significantly more angled cuts at the walls. These offcuts are often unusable elsewhere, which increases your necessary waste factor from 10% to 15%.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/hardwood-flooring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Hardwood Flooring Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate solid or engineered hardwood by box coverage.</div>
+      </a>
+      <a href="/calculators/underlayment" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Underlayment Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many rolls of padding your floor project needs.</div>
+      </a>
+      <a href="/calculators/carpet" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Carpet Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate carpet and padding in square yards for any room.</div>
+      </a>
+    </div>
+  </div>
 
 </Layout>
 
