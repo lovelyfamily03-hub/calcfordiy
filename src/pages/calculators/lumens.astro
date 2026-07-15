@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Lumens Calculator — How Many Lumens Do I Need? | CalcForDIY"
+  description="Calculate how many lumens you need for any room. Enter room size and purpose to find the right light level instantly."
+>
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Lumens Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Lumens Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate how many lumens you need for any room. Enter room size and purpose to find the right light level instantly.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-8 text-center">
+    <p class="text-gray-500 text-lg mb-2">Calculator coming soon.</p>
+    <p class="text-gray-400 text-sm">In the meantime, try one of our related calculators below.</p>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mt-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/shower-tile" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Shower Tile Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate tiles for shower walls and floor</div>
+      </a>
+      <a href="/calculators/laminate-flooring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Laminate Flooring Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">How many boxes of laminate you need</div>
+      </a>
+      <a href="/calculators/grout" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Grout Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">How many bags of grout you need</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
