@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+input[type="number"],
+input[type="text"],
+select {
+  color: #111827;
+  background-color: #ffffff;
+}
