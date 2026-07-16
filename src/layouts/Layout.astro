@@ -12,7 +12,7 @@ const { title, description, noindex = false } = Astro.props;
   <title>{title}</title>
   <link rel="canonical" href={`https://calcfordiy.com${Astro.url.pathname}`} />
 </head>
-  <body class="bg-gray-50 text-gray-900">
+  <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
     <header class="bg-white border-b border-gray-200 px-4 py-3">
       <div class="max-w-5xl mx-auto flex items-center justify-between">
         <a href="/" class="text-xl font-bold text-blue-600">CalcForDIY</a>
@@ -31,5 +31,50 @@ const { title, description, noindex = false } = Astro.props;
         <a href="/about" class="hover:text-blue-600">About</a>
       </p>
     </footer>
+
+    <!-- Floating results button - shows when results exist but are off screen -->
+    <div id="floatBtn" class="hidden fixed bottom-6 inset-x-0 flex justify-center z-50 pointer-events-none">
+      <button
+        onclick="document.getElementById('results').scrollIntoView({behavior:'smooth'})"
+        class="pointer-events-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-xl font-semibold text-sm flex items-center gap-2 transition-all">
+        See your results ↓
+      </button>
+    </div>
+
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        var resultsEl = document.getElementById('results');
+        var floatBtn = document.getElementById('floatBtn');
+
+        if (!resultsEl || !floatBtn) return;
+
+        // Watch results div visibility in viewport
+        var intersectionObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (resultsEl.classList.contains('hidden')) {
+              floatBtn.classList.add('hidden');
+            } else if (entry.isIntersecting) {
+              floatBtn.classList.add('hidden');
+            } else {
+              floatBtn.classList.remove('hidden');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        intersectionObserver.observe(resultsEl);
+
+        // Watch for results div being shown or hidden by calculator JS
+        var mutationObserver = new MutationObserver(function () {
+          if (resultsEl.classList.contains('hidden')) {
+            floatBtn.classList.add('hidden');
+          }
+        });
+
+        mutationObserver.observe(resultsEl, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
+      });
+    </script>
   </body>
 </html>
