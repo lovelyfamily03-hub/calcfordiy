@@ -4,9 +4,32 @@ import Layout from '../../layouts/Layout.astro';
 
 <Layout
   title="Recessed Lighting Calculator for Bedroom — How Many Lights? | CalcForDIY"
-  description="Calculate how many recessed lights you need for a bedroom. Enter room dimensions and desired brightness for an instant estimate."
-noindex={true}
-  >
+  description="Calculate how many recessed lights you need for a bedroom. Enter room dimensions, ceiling height, and fixture lumens for an instant fixture count and spacing guide. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Recessed Lighting Calculator for Bedroom",
+    "description": "Free calculator that estimates how many recessed lights you need for a bedroom based on room size, ceiling height, and target brightness.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Recessed Lighting Calculator — Bedroom", "item": "https://calcfordiy.com/calculators/recessed-lights-bedroom" }
+    ]
+  }
+  </script>
+
   <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
     <a href="/" class="hover:text-blue-600">Home</a>
     <span>/</span>
@@ -15,30 +38,278 @@ noindex={true}
 
   <div class="mb-6">
     <h1 class="text-3xl font-bold text-gray-900 mb-3">Recessed Lighting Calculator — Bedroom</h1>
-    <p class="text-gray-600 text-lg">Calculate how many recessed lights you need for a bedroom. Enter room dimensions and desired brightness for an instant estimate.</p>
+    <p class="text-gray-600 text-lg">Enter your bedroom dimensions and lighting preference to get an accurate fixture count and spacing recommendation based on IES lighting standards.</p>
   </div>
 
-  <div class="bg-white border border-gray-200 rounded-xl p-8 text-center">
-    <p class="text-gray-500 text-lg mb-2">Calculator coming soon.</p>
-    <p class="text-gray-400 text-sm">In the meantime, try one of our related calculators below.</p>
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Room Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Room Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="r_len_ft" placeholder="14" min="0" max="100"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="r_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Room Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="r_wid_ft" placeholder="12" min="0" max="100"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="r_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="r_ceil_ft" placeholder="8" min="6" max="20"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+          <input type="number" id="r_ceil_in" placeholder="0" min="0" max="11"
+            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">in</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Lighting Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Lighting Mood</label>
+        <select id="purpose"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="20">Relaxed / ambient (20 foot-candles)</option>
+          <option value="30" selected>General bedroom use (30 foot-candles)</option>
+          <option value="50">Bright / reading or dressing area (50 foot-candles)</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">IES recommended levels for residential bedrooms</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Fixture Lumens</label>
+        <select id="lumens"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="450">450 lm — 4" LED, subtle</option>
+          <option value="650" selected>650 lm — 6" LED, standard</option>
+          <option value="750">750 lm — 6" LED, bright</option>
+          <option value="1000">1000 lm — 6" LED, high output</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Check your fixture packaging for exact lumens</p>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-5">
+      <p class="text-xs text-blue-800"><strong>Bedroom tip:</strong> Always pair recessed lights with a dimmer switch. A bedroom that feels great at 30 foot-candles for reading can feel harsh for winding down — dimmers let you use the same fixtures for both.</p>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Fixtures Needed →
+    </button>
+
   </div>
 
-  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mt-6">
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your room length and width to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Lighting Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Floor Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_target">—</div>
+        <div class="text-xs text-gray-500 mt-1">Target Foot-Candles</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_fixtures">—</div>
+        <div class="text-xs text-gray-500 mt-1">Fixtures Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_spacing">—</div>
+        <div class="text-xs text-gray-500 mt-1">Suggested Spacing</div>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Layout Suggestion</p>
+      <p class="text-sm text-gray-600" id="r_layout">—</p>
+    </div>
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Keep fixtures at least 2 feet from walls to avoid harsh shadows. Position the first row at half the fixture spacing distance from the wall.
+    </p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these simple steps to plan your layout. A recessed lighting calculator for bedroom spaces provides a highly accurate baseline for purchasing fixtures.</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Enter room dimensions.</strong> Measure the length and width of your bedroom in feet and inches to establish the total square footage.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Enter ceiling height.</strong> Input your ceiling height, which dictates the optimal distance between lights to prevent harsh overlapping shadows.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Select your lighting mood.</strong> Bedrooms need much lower foot-candle levels than kitchens or garages because they are used for relaxing and sleeping. Choose your preferred brightness.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Select fixture lumens.</strong> Choose the brightness of the specific LED fixtures you plan to install.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Review your layout.</strong> Check the output for your recommended fixture count. Remember that installing dimmers lets you get the most from whatever fixture count you install, adjusting from task lighting to ambient glow instantly.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This recessed lighting calculator for bedroom planning uses a standard architectural formula to estimate your fixture needs:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
+      <p>Fixtures Needed = (Floor Area × Target Foot-Candles) / (Lumens per Fixture × 0.75)</p>
+    </div>
+    <p class="text-gray-700">First, the floor area is multiplied by your target foot-candles (sourced directly from IES residential lighting guidelines) to find the total required light. Then, that number is divided by the lumens per fixture multiplied by a 0.75 coefficient of utilization. This 0.75 factor accounts for the light that gets absorbed by your walls, ceiling, and bedroom furnishings before reaching the floor. The spacing recommendation is simply your ceiling height multiplied by 0.75.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How many recessed lights do I need for a 12x12 bedroom?</h3>
+        <p class="text-gray-600 text-sm">As a quick reference, a standard 12x12 bedroom with an 8-foot ceiling typically requires 4 fixtures (producing roughly 600 to 750 lumens each) spaced evenly to achieve general ambient lighting.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Do 4-inch or 6-inch fixtures look better in a bedroom?</h3>
+        <p class="text-gray-600 text-sm">In bedrooms, 4-inch fixtures generally look better. They blend seamlessly into the ceiling and provide a more subtle, modern aesthetic compared to the wider 6-inch utility cans often used in kitchens or living rooms.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Do recessed lights need to be on a dimmer switch?</h3>
+        <p class="text-gray-600 text-sm">Yes, highly recommended. A bedroom serves multiple purposes—from getting dressed on a dark morning to winding down at night. Dimmers are essential for controlling the mood and adapting the brightness to your current activity.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I avoid the "fishbowl" institutional effect?</h3>
+        <p class="text-gray-600 text-sm">Avoid placing too many high-lumen fixtures in a tight grid. Use a recessed lighting calculator for bedroom layouts to prevent over-lighting, and pair your ceiling lights with bedside lamps or wall sconces to create layered, warm light.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Do recessed lights work with ceiling fans?</h3>
+        <p class="text-gray-600 text-sm">Yes, but placement is critical. Keep recessed lights at least 18 to 24 inches away from the edge of the fan blades. Placing them too close creates a rapid, highly distracting strobe effect when the fan is running.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Where should I position lights relative to the bed?</h3>
+        <p class="text-gray-600 text-sm">Never place a recessed light directly over the head of the bed, as it will shine directly into your eyes when you look up. Position fixtures toward the foot of the bed, or strictly around the room's perimeter.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-      <a href="/calculators/shower-tile" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
-        <div class="font-medium text-gray-900 text-sm">Shower Tile Calculator</div>
-        <div class="text-xs text-gray-500 mt-1">Estimate tiles for shower walls and floor</div>
+      <a href="/calculators/recessed-lights-garage" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Recessed Lighting Calculator — Garage</div>
+        <div class="text-xs text-gray-500 mt-1">Plan the perfect lighting layout for workspaces and vehicle storage.</div>
+      </a>
+      <a href="/calculators/lumens" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Lumens Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Determine exactly how much total light output any room requires.</div>
       </a>
       <a href="/calculators/laminate-flooring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
         <div class="font-medium text-gray-900 text-sm">Laminate Flooring Calculator</div>
-        <div class="text-xs text-gray-500 mt-1">How many boxes of laminate you need</div>
-      </a>
-      <a href="/calculators/grout" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
-        <div class="font-medium text-gray-900 text-sm">Grout Calculator</div>
-        <div class="text-xs text-gray-500 mt-1">How many bags of grout you need</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many boxes of laminate flooring you need.</div>
       </a>
     </div>
   </div>
 
 </Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function calculate() {
+    var len = toFt('r_len_ft', 'r_len_in');
+    var wid = toFt('r_wid_ft', 'r_wid_in');
+    var ceilHeight = toFt('r_ceil_ft', 'r_ceil_in');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (len <= 0 || wid <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var area = len * wid;
+    var targetFC = parseInt(document.getElementById('purpose').value) || 30;
+    var lumensPerFixture = parseInt(document.getElementById('lumens').value) || 650;
+
+    // IES formula: fixtures = (area x FC) / (lumens x CU)
+    // CU = 0.75 for typical bedroom with light walls and ceiling
+    var cu = 0.75;
+    var fixturesNeeded = Math.ceil((area * targetFC) / (lumensPerFixture * cu));
+
+    // Suggested spacing: ceiling height x 0.75 per IES guideline
+    var suggestedSpacing = ceilHeight > 0
+      ? Math.round(ceilHeight * 0.75 * 10) / 10
+      : Math.round(Math.sqrt(area / fixturesNeeded) * 10) / 10;
+
+    // Grid layout
+    var cols = Math.round(Math.sqrt(fixturesNeeded * (len / wid)));
+    var rows = Math.ceil(fixturesNeeded / cols);
+    cols = Math.ceil(fixturesNeeded / rows);
+
+    var layoutText = rows + ' row' + (rows > 1 ? 's' : '') +
+      ' × ' + cols + ' fixture' + (cols > 1 ? 's' : '') +
+      ' per row (' + (rows * cols) + ' total). ' +
+      'Space fixtures ' + suggestedSpacing + ' ft apart, starting ' +
+      (Math.round(suggestedSpacing / 2 * 10) / 10) + ' ft from each wall.';
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_area').textContent = area.toFixed(0) + ' sq ft';
+    document.getElementById('r_target').textContent = targetFC + ' FC';
+    document.getElementById('r_fixtures').textContent = fixturesNeeded + ' fixtures';
+    document.getElementById('r_spacing').textContent = suggestedSpacing + ' ft';
+    document.getElementById('r_layout').textContent = layoutText;
+
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('purpose').addEventListener('change', calculate);
+    document.getElementById('lumens').addEventListener('change', calculate);
+  });
+</script>
