@@ -7,7 +7,13 @@ const { title, description, noindex = false } = Astro.props;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="description" content={description} />
+  <meta name="description" content={description} /> <meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={`https://calcfordiy.com${Astro.url.pathname}`} />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
   {noindex && <meta name="robots" content="noindex, follow" />}
   <title>{title}</title>
   <link rel="canonical" href={`https://calcfordiy.com${Astro.url.pathname}`} />

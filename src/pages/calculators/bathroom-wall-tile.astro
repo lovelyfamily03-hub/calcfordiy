@@ -19,6 +19,27 @@ import Layout from '../../layouts/Layout.astro';
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://calcfordiy.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Bathroom Wall Tile Calculator",
+        "item": "https://calcfordiy.com/calculators/bathroom-wall-tile"
+      }
+    ]
+  }
+  </script>
+
   <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
     <a href="/" class="hover:text-blue-600">Home</a>
     <span>/</span>
@@ -423,9 +444,9 @@ import Layout from '../../layouts/Layout.astro';
         <div class="font-medium text-gray-900 text-sm">Grout Calculator</div>
         <div class="text-xs text-gray-500 mt-1">Find out exactly how many bags of grout your project requires.</div>
       </a>
-      <a href="/calculators/thinset" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
-        <div class="font-medium text-gray-900 text-sm">Thinset Calculator</div>
-        <div class="text-xs text-gray-500 mt-1">Calculate the pounds of mortar needed to set your wall tile.</div>
+      <a href="/calculators/underlayment" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Underlayment Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many rolls of underlayment your floor project needs.</div>
       </a>
     </div>
   </div>
@@ -500,8 +521,6 @@ import Layout from '../../layouts/Layout.astro';
     } else {
       document.getElementById('r_boxRow').classList.add('hidden');
     }
-
-    
   }
 
   document.addEventListener('DOMContentLoaded', function () {

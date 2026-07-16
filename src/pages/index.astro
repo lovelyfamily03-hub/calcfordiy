@@ -71,6 +71,20 @@ const categories = [...new Set(calculators.map(c => c.category))];
   title="Free DIY Calculators — CalcForDIY"
   description="Free calculators for home improvement projects. Tile, flooring, lighting, and more. No signup, no uploads, instant results."
 >
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "CalcForDIY",
+  "url": "https://calcfordiy.com",
+  "description": "Free calculators for home improvement projects including tile, flooring, and lighting.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://calcfordiy.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
   <div class="mb-10">
     <h1 class="text-4xl font-bold text-gray-900 mb-3">Free DIY Calculators</h1>
     <p class="text-lg text-gray-600">
@@ -103,4 +117,11 @@ const categories = [...new Set(calculators.map(c => c.category))];
       </div>
     </div>
   ))}
+
+  <div class="mt-12 bg-white border border-gray-200 rounded-xl p-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">About These Calculators</h2>
+    <p class="text-gray-600 mb-3">Every calculator on CalcForDIY runs entirely in your browser. Nothing is uploaded to a server. No account needed. Results are instant.</p>
+    <p class="text-gray-600 mb-3">All formulas are sourced from industry standards — the Tile Council of North America for tile waste factors, the National Wood Flooring Association for hardwood and laminate, and manufacturer technical documentation from Mapei and LATICRETE for grout calculations.</p>
+    <p class="text-gray-600">Whether you are a first-time DIYer or a contractor running quick estimates on a job site, these tools are built to give you accurate numbers fast.</p>
+  </div>
 </Layout>
