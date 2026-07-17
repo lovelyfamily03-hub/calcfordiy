@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="DIY Guides & Tutorials | CalcForDIY"
+  description="Read our step-by-step guides and tutorials for home improvement, landscaping, and DIY projects."
+>
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Guides</span>
+  </div>
+
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">DIY Guides & Tutorials</h1>
+    <p class="text-gray-600 text-lg">Step-by-step instructions to help you plan your materials perfectly.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <a href="/guides/how-much-mulch-for-garden-beds" class="block bg-white p-6 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+      <h2 class="text-xl font-semibold text-gray-900 mb-2">How Much Mulch Do I Need for Garden Beds?</h2>
+      <p class="text-gray-600 text-sm">Learn exactly how to calculate the amount of mulch you need for your garden beds, including measuring and depth recommendations.</p>
+    </a>
+    <!-- Future guides will go here -->
+  </div>
+</Layout>

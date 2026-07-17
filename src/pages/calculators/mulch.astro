@@ -1,0 +1,366 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Mulch Calculator — How Many Bags or Yards Do I Need? | CalcForDIY"
+  description="Calculate how much mulch you need for garden beds. Enter dimensions and desired depth to get cubic yards, cubic feet, and bag count instantly. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mulch Calculator",
+    "description": "Free mulch calculator that estimates cubic yards, cubic feet, and bag count needed for garden beds based on dimensions and desired depth.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Mulch Calculator", "item": "https://calcfordiy.com/calculators/mulch" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Mulch Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Mulch Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your garden bed dimensions and desired mulch depth to get cubic yards, cubic feet, and bag count instantly.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Bed Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Bed Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="b_len_ft" placeholder="10" min="0" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="b_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Bed Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="b_wid_ft" placeholder="4" min="0" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="b_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Number of identical beds</label>
+        <div class="flex items-center gap-3">
+          <input type="number" id="num_beds" value="1" min="1" max="50"
+            class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-400">Multiply if you have several same-size beds</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="subtractToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('subtractSection', this.checked)" />
+        <span class="text-sm text-gray-700">Subtract an area (tree trunk, statue, path)</span>
+      </label>
+      <div id="subtractSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-xs text-gray-500 mb-3">Area within the bed that will NOT be mulched.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Area Length</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="sub_len_ft" placeholder="0" min="0" max="100"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="sub_len_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Area Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="sub_wid_ft" placeholder="0" min="0" max="100"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="sub_wid_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Mulch Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Desired Depth</label>
+        <select id="depth"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="1">1 inch — light top-up</option>
+          <option value="2">2 inches — minimal new bed</option>
+          <option value="3" selected>3 inches — recommended standard depth</option>
+          <option value="4">4 inches — weed suppression focus</option>
+          <option value="6">6 inches — heavy weed barrier or paths</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">3 inches is the standard recommendation for weed suppression and moisture retention</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Buying in Bags or Bulk?</label>
+        <select id="buyType"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="bulk">Bulk by the cubic yard</option>
+          <option value="2">Bagged — 2 cu ft bags</option>
+          <option value="1.5">Bagged — 1.5 cu ft bags</option>
+          <option value="3">Bagged — 3 cu ft bags</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Bulk is cheaper for large areas. Bags are easier for small beds.</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-5">
+      <p class="text-xs text-amber-800"><strong>Depth tip:</strong> Do not mulch deeper than 4 inches around plants. Too much mulch causes root rot and prevents rainfall from reaching roots. Keep mulch 2–3 inches away from plant stems and tree trunks.</p>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Mulch Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your bed length and width to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Mulch Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_sqft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Sq Ft</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_cuft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Cubic Feet</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_cuyd">—</div>
+        <div class="text-xs text-gray-500 mt-1">Cubic Yards</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_bags">—</div>
+        <div class="text-xs text-gray-500 mt-1" id="r_bags_label">Bags Needed</div>
+      </div>
+    </div>
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Order 10% more than calculated to account for settling and uneven areas. Mulch compresses after rain and may need topping up after the first season.
+    </p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this mulch calculator is simple. Follow these steps to determine exactly how much material your garden beds require:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure bed dimensions.</strong> Enter the length and width of your garden bed in feet and inches.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Multiply identical beds.</strong> If you are working on several beds of the exact same size, adjust the number of beds to calculate everything at once.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Subtract obstacles.</strong> Enter the dimensions of any large tree trunks, statues, or stepping stone paths within the bed that will not be covered in mulch.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Select desired depth.</strong> Choose your mulch depth in inches. Note that 3 inches is the standard recommended depth for weed suppression and moisture retention per university extension guidelines. <em>Important:</em> Mulch should never be piled against plant stems or tree trunks.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Choose buying format.</strong> Select whether you are purchasing mulch in bulk cubic yards from a landscape supplier or in individual bags from a hardware store.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This mulch calculator handles all of the area and volume conversions for you. Here is the math happening behind the scenes:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
+      <p>Net Area = (Length × Width × Number of Beds) − Subtracted Areas</p>
+      <p>Cubic Feet = (Net Area × Depth in inches) / 12</p>
+      <p>Cubic Yards = Cubic Feet / 27</p>
+    </div>
+    <p class="text-gray-700">First, the total area is calculated in square feet by multiplying your bed dimensions and subtracting any unmulched obstacles. The volume in cubic feet equals that area multiplied by your chosen depth, divided by 12 to convert inches to feet. The cubic yards equal the cubic feet divided by 27. Finally, the formula automatically adds a 10% allowance for settling and uneven ground. If you select bagged mulch, the adjusted cubic feet is divided by the specific bag size you chose and rounded up to the nearest whole bag.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How deep should mulch be for weed control vs moisture retention?</h3>
+        <p class="text-gray-600 text-sm">A depth of 3 inches is the sweet spot for both. One inch is too thin to block light from reaching weed seeds, while anything over 4 inches can smother plant roots and prevent rainfall from reaching the soil.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I remove old mulch before adding new?</h3>
+        <p class="text-gray-600 text-sm">Generally, no. Old organic mulch breaks down over time and feeds the soil. However, if the old mulch has hardened into a crust, break it up with a hard rake before adding a fresh 1-to-2 inch topcoat so water can properly penetrate.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between hardwood and wood chip mulch?</h3>
+        <p class="text-gray-600 text-sm">Hardwood mulch consists of shredded bark that binds together well on slopes and breaks down relatively quickly to enrich the soil. Wood chips or nuggets are solid chunks of wood that take much longer to decompose, making them ideal for pathways and long-term decorative landscaping.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Is bulk or bagged mulch more economical?</h3>
+        <p class="text-gray-600 text-sm">Bulk mulch is significantly cheaper per cubic yard than bagged mulch. Bulk delivery becomes the most economical choice once your project requires more than 1 cubic yard (which is equivalent to about 13.5 bags of 2 cubic foot mulch).</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How often do I need to replenish my mulch?</h3>
+        <p class="text-gray-600 text-sm">Most organic mulches need a light top-up every 1 to 2 years as they naturally break down and fade in the sun. You won't need to apply the full depth again—just a 1-inch layer is enough to restore the fresh color and weed suppression.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should mulch touch plant stems or tree trunks?</h3>
+        <p class="text-gray-600 text-sm">No. Always keep mulch pulled back 2 to 3 inches away from the base of plant stems and tree trunks. Piling mulch directly against the bark traps moisture, causing root rot, inviting fungal diseases, and providing shelter for destructive pests.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/raised-bed-soil" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Raised Bed Soil Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Figure out exactly how much topsoil and compost you need to fill your planters.</div>
+      </a>
+      <a href="/calculators/topsoil" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Topsoil Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate the cubic yards of dirt required to level your lawn or fill a garden space.</div>
+      </a>
+      <a href="/calculators/fertilizer" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Fertilizer Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Determine the exact amount of granular or liquid fertilizer needed for your yard size.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function isChecked(id) {
+    return document.getElementById(id).checked;
+  }
+
+  function toggleSection(sectionId, show) {
+    document.getElementById(sectionId).classList.toggle('hidden', !show);
+    calculate();
+  }
+
+  function calculate() {
+    var len = toFt('b_len_ft', 'b_len_in');
+    var wid = toFt('b_wid_ft', 'b_wid_in');
+    var beds = Math.max(1, getNum('num_beds') || 1);
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (len <= 0 || wid <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var netSqFt = len * wid * beds;
+
+    if (isChecked('subtractToggle')) {
+      var subLen = toFt('sub_len_ft', 'sub_len_in');
+      var subWid = toFt('sub_wid_ft', 'sub_wid_in');
+      netSqFt -= subLen * subWid;
+    }
+
+    if (netSqFt <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var depthIn = parseInt(document.getElementById('depth').value) || 3;
+    var depthFt = depthIn / 12;
+
+    // Volume calculations
+    var cuFt = netSqFt * depthFt;
+    var cuYd = cuFt / 27;
+
+    // Add 10% for settling and uneven areas
+    var cuFtWithExtra = cuFt * 1.10;
+    var cuYdWithExtra = cuYd * 1.10;
+
+    var buyType = document.getElementById('buyType').value;
+    var bagsLabel = 'Cubic Yards';
+    var bagsValue = cuYdWithExtra.toFixed(2) + ' yd³';
+
+    if (buyType !== 'bulk') {
+      var bagSize = parseFloat(buyType);
+      var bagsNeeded = Math.ceil(cuFtWithExtra / bagSize);
+      bagsLabel = bagSize + ' cu ft Bags';
+      bagsValue = bagsNeeded + ' bags';
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_sqft').textContent = netSqFt.toFixed(1) + ' sq ft';
+    document.getElementById('r_cuft').textContent = cuFtWithExtra.toFixed(1) + ' cu ft';
+    document.getElementById('r_cuyd').textContent = cuYdWithExtra.toFixed(2) + ' yd³';
+    document.getElementById('r_bags').textContent = bagsValue;
+    document.getElementById('r_bags_label').textContent = bagsLabel;
+
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('depth').addEventListener('change', calculate);
+    document.getElementById('buyType').addEventListener('change', calculate);
+  });
+</script>
