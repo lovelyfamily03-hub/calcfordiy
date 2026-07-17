@@ -3,10 +3,33 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <Layout
-  title="Thinset Calculator"
-  description="Calculate how much thinset you need for your project."
-noindex={true}
-  >
+  title="Thinset Calculator — How Many Bags of Mortar Do I Need? | CalcForDIY"
+  description="Calculate how many bags of thinset mortar you need for any tile project. Enter tile size and square footage for an instant bag count with the right trowel size recommendation. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Thinset Calculator",
+    "description": "Free thinset calculator that estimates how many bags of mortar you need based on tile size and square footage, with trowel size recommendation.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Thinset Calculator", "item": "https://calcfordiy.com/calculators/thinset" }
+    ]
+  }
+  </script>
+
   <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
     <a href="/" class="hover:text-blue-600">Home</a>
     <span>/</span>
@@ -15,30 +38,270 @@ noindex={true}
 
   <div class="mb-6">
     <h1 class="text-3xl font-bold text-gray-900 mb-3">Thinset Calculator</h1>
-    <p class="text-gray-600 text-lg">Calculate how much thinset you need for your project.</p>
+    <p class="text-gray-600 text-lg">Enter your tile size and total area to find out how many bags of thinset mortar you need — trowel size recommendation included based on your tile.</p>
   </div>
 
-  <div class="bg-white border border-gray-200 rounded-xl p-8 text-center">
-    <p class="text-gray-500 text-lg mb-2">Calculator coming soon.</p>
-    <p class="text-gray-400 text-sm">In the meantime, try one of our related calculators below.</p>
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Tile Size
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Select Your Tile Size</label>
+      <select id="tileSize"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="small">Small tiles — under 8 inches (mosaic, 4x4, 3x6 subway)</option>
+        <option value="medium">Medium tiles — 8 to 15 inches (12x12, 8x10, 10x14)</option>
+        <option value="large">Large format — 15 to 24 inches (16x16, 18x18, 12x24)</option>
+        <option value="xlarge">Extra large — over 24 inches or heavy stone (24x24, 24x48)</option>
+      </select>
+      <p class="text-xs text-gray-400 mt-2">Tile size determines the correct trowel notch size, which affects how much thinset you use per square foot.</p>
+    </div>
+
+    <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg mb-5" id="trowelRecommendation">
+      <p class="text-sm font-medium text-blue-800 mb-1">Recommended Trowel</p>
+      <p class="text-sm text-blue-700" id="trowelText">Select a tile size above to see your trowel recommendation.</p>
+      <p class="text-xs text-blue-600 mt-2" id="coverageText"></p>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Project Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Total Tile Area</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="totalArea" placeholder="60" min="1" max="10000"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">sq ft</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">
+          Use our
+          <a href="/calculators/shower-tile" class="text-blue-500 hover:underline">shower tile calculator</a>
+          or
+          <a href="/calculators/bathroom-wall-tile" class="text-blue-500 hover:underline">bathroom wall tile calculator</a>
+          to find this number.
+        </p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Bag Size</label>
+        <select id="bagSize"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="50">50 lb bag (standard)</option>
+          <option value="25">25 lb bag</option>
+          <option value="10">10 lb bag (small jobs)</option>
+        </select>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Thinset Needed →
+    </button>
+
   </div>
 
-  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mt-6">
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your total tile area to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Thinset Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Tile Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_coverage">—</div>
+        <div class="text-xs text-gray-500 mt-1">Sq Ft Per Bag</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_bags">—</div>
+        <div class="text-xs text-gray-500 mt-1">Bags Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_bagsWaste">—</div>
+        <div class="text-xs text-gray-500 mt-1">With 10% Waste</div>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Trowel Reminder</p>
+      <p class="text-sm text-gray-600" id="r_trowel">—</p>
+    </div>
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Coverage rates assume back-buttering large format tiles. If your installer back-butters, buy an extra 15-20% on top of this estimate.
+    </p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this thinset calculator is straightforward. Follow these steps to get an accurate material estimate for your project:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select your tile size category.</strong> Choose whether you are installing small, medium, large, or extra-large tiles. This determines the necessary trowel recommendation for proper coverage.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Enter total tile area.</strong> Input the total square footage of your project. You can use our shower tile calculator or bathroom wall tile calculator to easily find this number.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Select bag size.</strong> Choose between standard 50 lb bags, 25 lb bags, or small 10 lb bags depending on what is available at your hardware store.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Read the trowel recommendation.</strong> Check the suggested trowel size provided below your tile selection before buying tools.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Buy the waste count.</strong> Always purchase the number of bags shown in the "With 10% Waste" section to ensure you do not run short mid-project.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">Behind the scenes, this thinset calculator uses coverage rates from major manufacturers like LATICRETE and Custom Building Products. The coverage rate per bag is dictated by the trowel notch size, which is directly determined by your tile size.</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
+      <p>Small tiles (V-notch): 45 sq ft per 50 lb bag</p>
+      <p>Medium tiles (3/8" square notch): 40 sq ft per 50 lb bag</p>
+      <p>Large format (1/2" square notch): 30 sq ft per 50 lb bag</p>
+      <p>Extra large (1/2" x 3/4" notch): 20 sq ft per 50 lb bag</p>
+    </div>
+    <p class="text-gray-700">Once the base coverage is calculated, a standard 10% waste factor is added to account for spills, mixing errors, and trowel variations. If your installer is back-buttering large format tiles, you should plan to add 20% waste instead.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What does back-buttering mean and when is it required?</h3>
+        <p class="text-gray-600 text-sm">Back-buttering is the process of spreading a thin layer of mortar directly onto the back of the tile before pressing it into the combed thinset on the floor or wall. It is strictly required for large format tiles (15 inches or larger) and natural stone to ensure 95% mortar coverage and prevent hollow spots.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does modified or unmodified thinset matter for coverage?</h3>
+        <p class="text-gray-600 text-sm">No. Whether your mortar is modified (contains polymers for extra adhesion) or unmodified does not significantly change the physical volume or coverage rate per bag. The choice between modified and unmodified depends entirely on your tile type and underlayment.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Can I use thinset for backsplash tile just like floor tile?</h3>
+        <p class="text-gray-600 text-sm">Yes, you can use thinset for backsplashes, but many DIYers prefer tile mastic (pre-mixed adhesive) for dry wall areas because it grabs instantly and prevents sagging. If using thinset on a wall, ensure it is specifically labeled as a non-sag formula.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How long does mixed thinset last before it goes off?</h3>
+        <p class="text-gray-600 text-sm">Once mixed with water, standard thinset mortar has a "pot life" of about 2 to 3 hours. This decreases rapidly in hot or dry environments. Never add more water to thinset that has started to harden in the bucket; it must be thrown away.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does tile size or tile weight matter more for trowel selection?</h3>
+        <p class="text-gray-600 text-sm">Tile size matters more. The footprint of the tile dictates how deep the trowel notches must be to collapse properly and push air out from under the tile. Tile weight dictates the type of thinset you buy (e.g., using a large-and-heavy-tile or LHT mortar) rather than the trowel size.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What happens if you use too little thinset?</h3>
+        <p class="text-gray-600 text-sm">Using a trowel that is too small leaves voids under the tile. When weight is applied to these hollow spots, the tile can easily crack. It also leads to poor adhesion, popping sounds when walked on, and failed grout joints over time. Always trust the trowel recommendation in your thinset calculator estimate.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-      <a href="/calculators/shower-tile" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
-        <div class="font-medium text-gray-900 text-sm">Shower Tile Calculator</div>
-        <div class="text-xs text-gray-500 mt-1">Estimate tiles for shower walls and floor</div>
-      </a>
-      <a href="/calculators/laminate-flooring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
-        <div class="font-medium text-gray-900 text-sm">Laminate Flooring Calculator</div>
-        <div class="text-xs text-gray-500 mt-1">How many boxes of laminate you need</div>
-      </a>
       <a href="/calculators/grout" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
         <div class="font-medium text-gray-900 text-sm">Grout Calculator</div>
-        <div class="text-xs text-gray-500 mt-1">How many bags of grout you need</div>
+        <div class="text-xs text-gray-500 mt-1">Find out exactly how many bags of grout your project requires.</div>
+      </a>
+      <a href="/calculators/shower-tile" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Shower Tile Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate exact tile counts specifically for shower enclosures.</div>
+      </a>
+      <a href="/calculators/bathroom-wall-tile" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Bathroom Wall Tile Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate square footage and waste for wall tile projects.</div>
       </a>
     </div>
   </div>
 
 </Layout>
+
+<script is:inline>
+  // Coverage rates per 50 lb bag — from LATICRETE and Custom Building Products specs
+  // Adjusted proportionally for 25 lb and 10 lb bags in calculate()
+  var tileData = {
+    small: {
+      trowel: '1/4" x 3/8" V-notch trowel',
+      coveragePer50lb: 45,
+      note: 'Standard for subway tile, mosaic sheets, and tiles under 8 inches.'
+    },
+    medium: {
+      trowel: '3/8" x 3/8" square notch trowel',
+      coveragePer50lb: 40,
+      note: 'Standard for 12x12 and similar mid-size floor and wall tiles.'
+    },
+    large: {
+      trowel: '1/2" x 1/2" square notch trowel',
+      coveragePer50lb: 30,
+      note: 'Required for large format tiles 15 inches and up. More mortar needed for full coverage.'
+    },
+    xlarge: {
+      trowel: '1/2" x 3/4" square notch trowel',
+      coveragePer50lb: 20,
+      note: 'For tiles over 24 inches or heavy stone. Back-buttering is required — buy 20% extra.'
+    }
+  };
+
+  function updateTrowelRecommendation() {
+    var size = document.getElementById('tileSize').value;
+    var data = tileData[size];
+    if (data) {
+      document.getElementById('trowelText').textContent = data.trowel;
+      document.getElementById('coverageText').textContent = data.note;
+    }
+    calculate();
+  }
+
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function calculate() {
+    var totalArea = getNum('totalArea');
+    var bagSize = parseInt(document.getElementById('bagSize').value) || 50;
+    var size = document.getElementById('tileSize').value;
+    var data = tileData[size];
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (totalArea <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      return;
+    }
+
+    // Scale coverage rate proportionally for bag size
+    var coveragePerBag = data.coveragePer50lb * (bagSize / 50);
+
+    var bagsNeeded = Math.ceil(totalArea / coveragePerBag);
+    var bagsWithWaste = Math.ceil((totalArea * 1.10) / coveragePerBag);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_area').textContent = totalArea.toFixed(0) + ' sq ft';
+    document.getElementById('r_coverage').textContent = coveragePerBag.toFixed(0) + ' sq ft';
+    document.getElementById('r_bags').textContent = bagsNeeded + ' bags';
+    document.getElementById('r_bagsWaste').textContent = bagsWithWaste + ' bags';
+    document.getElementById('r_trowel').textContent = 'Use a ' + data.trowel + '. ' + data.note;
+
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    updateTrowelRecommendation();
+    document.getElementById('tileSize').addEventListener('change', updateTrowelRecommendation);
+    document.getElementById('bagSize').addEventListener('change', calculate);
+    document.getElementById('totalArea').addEventListener('input', calculate);
+  });
+</script>
