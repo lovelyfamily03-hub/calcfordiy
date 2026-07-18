@@ -1,0 +1,414 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Seed Spacing Calculator — How Many Plants Fit in a Garden Bed? | CalcForDIY"
+  description="Calculate how many plants or seeds fit in your garden bed based on spacing requirements. Select a common vegetable or enter custom spacing. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Seed Spacing Calculator",
+    "description": "Free seed spacing calculator that estimates how many plants fit in a garden bed and how many seeds to buy including germination buffer.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Seed Spacing Calculator", "item": "https://calcfordiy.com/calculators/seed-spacing" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Seed Spacing Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Seed Spacing Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your bed dimensions and plant spacing to find out how many plants fit and how many seeds to buy — select a common vegetable to auto-fill spacing.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Bed Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Bed Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="b_len_ft" placeholder="8" min="0" max="200"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="b_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Bed Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="b_wid_ft" placeholder="4" min="0" max="200"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="b_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Number of identical beds</label>
+        <div class="flex items-center gap-3">
+          <input type="number" id="num_beds" value="1" min="1" max="50"
+            class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-400">Multiply for several same-size beds</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Plant Spacing
+    </h2>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">Quick Select a Common Vegetable</label>
+      <select id="plantPreset"
+        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        onchange="applyPreset()">
+        <option value="">— Enter spacing manually —</option>
+        <optgroup label="Large Plants">
+          <option value="24,36">Tomatoes (24" apart, 36" rows)</option>
+          <option value="24,36">Zucchini / Squash (24" apart, 36" rows)</option>
+          <option value="12,36">Cucumbers (12" apart, 36" rows)</option>
+          <option value="18,24">Peppers (18" apart, 24" rows)</option>
+          <option value="18,24">Broccoli (18" apart, 24" rows)</option>
+          <option value="12,24">Cabbage (12" apart, 24" rows)</option>
+        </optgroup>
+        <optgroup label="Medium Plants">
+          <option value="12,18">Kale (12" apart, 18" rows)</option>
+          <option value="12,18">Swiss Chard (12" apart, 18" rows)</option>
+          <option value="6,18">Bush Beans (6" apart, 18" rows)</option>
+          <option value="4,12">Beets (4" apart, 12" rows)</option>
+          <option value="12,12">Head Lettuce (12" apart, 12" rows)</option>
+          <option value="6,12">Herbs — Basil/Parsley (6" apart, 12" rows)</option>
+        </optgroup>
+        <optgroup label="Small / Dense Plants">
+          <option value="6,6">Leaf Lettuce (6" apart, 6" rows)</option>
+          <option value="6,6">Spinach (6" apart, 6" rows)</option>
+          <option value="4,6">Onions (4" apart, 6" rows)</option>
+          <option value="6,6">Garlic (6" apart, 6" rows)</option>
+          <option value="2,6">Peas (2" apart, 6" rows)</option>
+          <option value="3,6">Carrots (3" apart, 6" rows)</option>
+          <option value="2,4">Radishes (2" apart, 4" rows)</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Plant Spacing <span class="text-gray-400 font-normal text-xs">(within row)</span>
+        </label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="plant_spacing" placeholder="12" min="1" max="96" step="0.5"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">inches</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">Distance between plants in the same row</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Row Spacing <span class="text-gray-400 font-normal text-xs">(between rows)</span>
+        </label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="row_spacing" placeholder="18" min="1" max="96" step="0.5"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">inches</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">Distance between rows</p>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+      Planting Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Planting Pattern</label>
+        <select id="pattern"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="square">Square grid — standard rows</option>
+          <option value="triangular">Triangular offset — fits ~15% more plants</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Triangular offset staggers alternate rows for denser planting</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Germination Buffer</label>
+        <select id="germ_buffer"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="0">No buffer — transplants or high germination seeds</option>
+          <option value="0.10">10% extra — fresh quality seeds</option>
+          <option value="0.25" selected>25% extra — standard recommendation</option>
+          <option value="0.50">50% extra — older seeds or direct sow in variable conditions</option>
+        </select>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Plants & Seeds →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your bed dimensions and plant spacing to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Planting Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Bed Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_rows">—</div>
+        <div class="text-xs text-gray-500 mt-1">Number of Rows</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_plants_fit">—</div>
+        <div class="text-xs text-gray-500 mt-1">Plants That Fit</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_seeds_buy">—</div>
+        <div class="text-xs text-gray-500 mt-1">Seeds to Buy</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Layout Summary</p>
+      <p class="text-sm text-gray-600" id="r_layout">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Start seeds indoors 4-8 weeks before last frost for warm season crops. Direct sow cool season crops like carrots, radishes, and spinach 2-4 weeks before last frost.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this seed spacing calculator is straightforward. Follow these five steps to plan the perfect garden layout:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Enter bed dimensions.</strong> Input the length and width of your garden bed. If you have several identical beds, increase the bed multiplier to calculate your entire garden at once.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select spacing.</strong> Pick a common vegetable from the quick-select dropdown to automatically fill in the standard spacing, or manually enter the plant and row spacing recommended on your specific seed packet.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Choose a planting pattern.</strong> Select the square grid for traditional, straight rows. Alternatively, choose the triangular offset pattern; this pattern staggers the plants so they nest closer together, often fitting up to 15% more plants in the exact same space.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Select germination buffer.</strong> Because not every seed will successfully sprout, this seed spacing calculator allows you to buy a percentage of extra seeds. Buying extra guarantees you have enough viable plants to prevent empty gaps in your garden.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Read the layout summary.</strong> After calculating, read the summary below the results to learn exactly how many rows you need to dig and how many plants will fit in each row.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">Behind the scenes, this seed spacing calculator uses simple geometric formulas to maximize your garden yield. Here is the math in plain English:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-3">
+      <p><strong>Square Grid:</strong><br/>
+      Plants Per Row = Bed Length / Plant Spacing (rounded down)<br/>
+      Number of Rows = Bed Width / Row Spacing (rounded down)<br/>
+      Total Plants = Plants Per Row × Number of Rows</p>
+      
+      <p><strong>Triangular Offset:</strong><br/>
+      Row Spacing Multiplier = Row Spacing × 0.866 (sine of 60°)</p>
+    </div>
+    <p class="text-gray-700">For a standard square grid, the math is very straightforward. The calculator determines how many plants fit in a single row based on your bed length, and then calculates how many rows fit across the width. These two numbers are multiplied to find the total plant count.</p>
+    <p class="text-gray-700 mt-3">For a triangular offset pattern, the rows are pushed closer together. The row spacing is multiplied by 0.866, and alternating rows are staggered by half of the plant spacing distance. This creates a highly efficient hexagonal layout. Finally, to find how many seeds you actually need to buy, the total plant count is multiplied by 1 plus your chosen germination buffer percentage (e.g., 1.25 for a 25% buffer).</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What does germination rate mean, and why do I need more seeds than plants?</h3>
+        <p class="text-gray-600 text-sm">Germination rate is the percentage of seeds expected to successfully sprout under optimal conditions. Even high-quality, fresh seeds rarely achieve a 100% germination rate. Buying and planting extra seeds provides a necessary buffer, ensuring you won't be left with empty patches in your garden if a few seeds fail to wake up.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Is the spacing on the seed packet for rows or all directions?</h3>
+        <p class="text-gray-600 text-sm">Most commercial seed packets list two distinct numbers: "plant spacing" (the distance between individual plants within a single line) and "row spacing" (the distance between the lines themselves). If a packet only lists a single spacing number, you should assume that distance applies equally in all directions.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Can I plant seeds closer than recommended?</h3>
+        <p class="text-gray-600 text-sm">While it is tempting to cram more plants into a small space, planting closer than the recommended spacing is generally a bad idea. It crowds root systems, forces plants to compete for nutrients, limits sunlight penetration, and reduces airflow, which often leads to fungal diseases. For maximum yield and healthy plants, stick to the guidelines.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between thinning and transplanting, and how does it affect seed count?</h3>
+        <p class="text-gray-600 text-sm">When direct sowing tiny seeds like carrots or radishes, gardeners often plant seeds very close together and "thin" (pull out) the weaker seedlings later. If you plan to thin, use a 50% germination buffer to ensure you have plenty of seeds. If you are starting seeds indoors to transplant only the strongest, mature seedlings outside, you can select a 0% buffer for your garden bed calculation.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does triangular spacing work for all vegetables?</h3>
+        <p class="text-gray-600 text-sm">Triangular (or offset) spacing works beautifully for round, compact plants like cabbage, broccoli, lettuce, and onions. However, it is less effective for sprawling vining plants or tall, bushy crops like indeterminate tomatoes, which require wide, straight aisles for airflow and easy harvesting.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does raised bed spacing differ from in-ground spacing?</h3>
+        <p class="text-gray-600 text-sm">Yes. Raised beds feature deep, loose, nutrient-rich soil that encourages plant roots to grow straight down rather than spreading out horizontally to search for food. Because of this, you can often use closer, more intensive spacing in a raised bed than you would in traditional in-ground farm rows.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/raised-bed-soil" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Raised Bed Soil Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate the perfect blend of soil, compost, and peat for raised garden beds.</div>
+      </a>
+      <a href="/calculators/mulch" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Mulch Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Figure out exactly how much mulch your garden beds need for the season.</div>
+      </a>
+      <a href="/calculators/fertilizer" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Fertilizer Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Determine the exact amount of granular or liquid fertilizer needed for your yard.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function toIn(ftId, inId) {
+    return toFt(ftId, inId) * 12;
+  }
+
+  function applyPreset() {
+    var preset = document.getElementById('plantPreset').value;
+    if (!preset) return;
+    var parts = preset.split(',');
+    document.getElementById('plant_spacing').value = parts[0];
+    document.getElementById('row_spacing').value = parts[1];
+    calculate();
+  }
+
+  function calculate() {
+    var lenIn = toIn('b_len_ft', 'b_len_in');
+    var widIn = toIn('b_wid_ft', 'b_wid_in');
+    var beds = Math.max(1, getNum('num_beds') || 1);
+    var plantSpacing = getNum('plant_spacing');
+    var rowSpacing = getNum('row_spacing');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (lenIn <= 0 || widIn <= 0 || plantSpacing <= 0 || rowSpacing <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      if (lenIn > 0 || widIn > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var pattern = document.getElementById('pattern').value;
+    var germBuffer = parseFloat(document.getElementById('germ_buffer').value) || 0.25;
+
+    var plantsPerRow = Math.floor(lenIn / plantSpacing);
+    var numRows, totalPlants;
+
+    if (pattern === 'square') {
+      numRows = Math.floor(widIn / rowSpacing);
+      totalPlants = plantsPerRow * numRows * beds;
+    } else {
+      // Triangular offset: rows are closer together (factor of 0.866)
+      numRows = Math.floor(widIn / (rowSpacing * 0.866));
+      // Odd rows have plantsPerRow, even rows have plantsPerRow - 1 (offset)
+      var oddRows = Math.ceil(numRows / 2);
+      var evenRows = Math.floor(numRows / 2);
+      totalPlants = ((oddRows * plantsPerRow) + (evenRows * (plantsPerRow - 1))) * beds;
+    }
+
+    if (totalPlants <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var seedsToBuy = Math.ceil(totalPlants * (1 + germBuffer));
+    var sqFt = (lenIn / 12) * (widIn / 12) * beds;
+
+    var layoutText = plantsPerRow + ' plants per row × ' + numRows + ' rows'
+      + (beds > 1 ? ' × ' + beds + ' beds' : '')
+      + ' = ' + totalPlants + ' total plants. '
+      + 'Buy ' + seedsToBuy + ' seeds to account for a ' + Math.round(germBuffer * 100) + '% germination buffer.';
+
+    if (pattern === 'triangular') {
+      layoutText += ' Triangular offset: stagger alternate rows by half the plant spacing distance.';
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_area').textContent = sqFt.toFixed(1) + ' sq ft';
+    document.getElementById('r_rows').textContent = numRows + ' rows';
+    document.getElementById('r_plants_fit').textContent = totalPlants + ' plants';
+    document.getElementById('r_seeds_buy').textContent = seedsToBuy + ' seeds';
+    document.getElementById('r_layout').textContent = layoutText;
+    
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('pattern').addEventListener('change', calculate);
+    document.getElementById('germ_buffer').addEventListener('change', calculate);
+  });
+</script>
