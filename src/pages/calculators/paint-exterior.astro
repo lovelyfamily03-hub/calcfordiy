@@ -1,0 +1,540 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Exterior Paint Calculator — How Many Gallons to Paint a House? | CalcForDIY"
+  description="Calculate how many gallons of exterior paint you need for your house. Enter wall dimensions, siding type, and trim details for an accurate estimate. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Exterior Paint Calculator",
+    "description": "Free exterior paint calculator that estimates gallons needed for house siding, trim, doors, and shutters based on dimensions and siding type.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Exterior Paint Calculator", "item": "https://calcfordiy.com/calculators/paint-exterior" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Exterior Paint Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Exterior Paint Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your house dimensions and siding type to get an accurate exterior paint estimate — body, trim, doors, and shutters calculated separately.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      House Dimensions
+    </h2>
+
+    <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+      <p class="text-xs text-blue-800">Measure each wall of your house from outside corner to outside corner. You will enter each wall separately. For a simple rectangular house, you will have 4 walls.</p>
+    </div>
+
+    <!-- Wall inputs -->
+    <div class="space-y-4 mb-5">
+
+      <div class="p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm font-medium text-gray-700 mb-3">Wall 1 (Front)</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w1_wid_ft" placeholder="40" min="0" max="500"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w1_wid_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Height (eave to foundation)</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w1_hgt_ft" placeholder="10" min="0" max="60"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w1_hgt_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm font-medium text-gray-700 mb-3">Wall 2 (Back)</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w2_wid_ft" placeholder="40" min="0" max="500"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w2_wid_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w2_hgt_ft" placeholder="10" min="0" max="60"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w2_hgt_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm font-medium text-gray-700 mb-3">Wall 3 (Left Side)</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Width (depth of house)</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w3_wid_ft" placeholder="30" min="0" max="500"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w3_wid_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w3_hgt_ft" placeholder="10" min="0" max="60"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w3_hgt_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm font-medium text-gray-700 mb-3">Wall 4 (Right Side)</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Width (depth of house)</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w4_wid_ft" placeholder="30" min="0" max="500"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w4_wid_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w4_hgt_ft" placeholder="10" min="0" max="60"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w4_hgt_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Gable ends optional -->
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="gableToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('gableSection', this.checked)" />
+        <span class="text-sm text-gray-700">Include gable ends (triangular area under roof peaks)</span>
+      </label>
+      <div id="gableSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-xs text-gray-500 mb-3">For each gable: width is the wall width, height is from eave to peak. Area = 0.5 × width × height.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-3">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Gable Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="gab_wid_ft" placeholder="40" min="0" max="200"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Gable Height (eave to peak)</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="gab_hgt_ft" placeholder="6" min="0" max="30"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Number of Gable Ends</label>
+          <input type="number" id="num_gables" value="2" min="1" max="8"
+            class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Openings to Subtract
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <p class="text-xs text-gray-500 mb-3">Standard exterior door = 21 sq ft. Standard window = 15 sq ft. Garage door = 160 sq ft (16×10).</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Exterior Doors</label>
+          <input type="number" id="num_doors" placeholder="2" min="0" max="20"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Windows</label>
+          <input type="number" id="num_windows" placeholder="8" min="0" max="50"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Garage Doors</label>
+          <input type="number" id="num_garage_doors" placeholder="1" min="0" max="4"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+      Paint Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Siding Type</label>
+        <select id="siding"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="350">Smooth wood or fiber cement siding — 350 sq ft/gal</option>
+          <option value="300">Lap / horizontal wood siding — 300 sq ft/gal</option>
+          <option value="250">Rough wood / T1-11 / cedar shingles — 250 sq ft/gal</option>
+          <option value="350">Stucco (smooth) — 350 sq ft/gal</option>
+          <option value="200">Rough stucco or masonry — 200 sq ft/gal</option>
+          <option value="400">Previously painted smooth surface — 400 sq ft/gal</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Coverage rates from Sherwin-Williams exterior paint technical data</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Coats</label>
+        <select id="coats"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="1">1 coat — same color refresh</option>
+          <option value="2" selected>2 coats — standard new color</option>
+          <option value="3">3 coats — bare wood or drastic color change</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Include Trim Paint?</label>
+        <select id="trim"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="yes">Yes — estimate trim separately</option>
+          <option value="no">No — body paint only</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Trim typically uses 10-15% of body paint volume</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Shutters</label>
+        <input type="number" id="num_shutters" placeholder="0" min="0" max="30"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <p class="text-xs text-gray-400 mt-1">Each standard shutter ≈ 6 sq ft</p>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Paint Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter at least one wall dimension to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Exterior Paint Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_gross_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Gross Wall Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_net_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Net Paintable Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_body_gal">—</div>
+        <div class="text-xs text-gray-500 mt-1">Body Paint</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_total_gal">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Gallons</div>
+      </div>
+    </div>
+
+    <div id="trimRow" class="hidden bg-white rounded-lg p-4 shadow-sm mb-3">
+      <div class="flex justify-between items-center">
+        <span class="text-sm font-medium text-gray-700">Trim Paint (separate)</span>
+        <span class="text-lg font-bold text-purple-700" id="r_trim_gal">—</span>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-2">Buying Guide</p>
+      <p class="text-sm text-gray-600" id="r_buying">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Buy all body paint in the same batch. Color consistency across cans varies slightly — mixing everything from the same batch before painting prevents visible lap lines where cans meet.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this exterior paint calculator ensures you buy the exact amount of paint needed to protect your home. Follow these five steps:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure each wall.</strong> Use a tape measure to find the length from outside corner to outside corner, and the height from the foundation line up to the eave. Enter each of the four walls into the calculator.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Add gable ends.</strong> If your siding extends up into the triangular area under your roof peaks (the gables), check the box to include them. Measure the width of the base of the triangle and the height up to the tip of the peak.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Count all openings.</strong> Enter the total number of doors, windows, and garage doors. The calculator automatically subtracts these from your total wall area so you don't overbuy paint.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Select siding type.</strong> This is critical. Rough, porous surfaces like heavy stucco or unpainted cedar shingles absorb significantly more paint than smooth fiber cement boards. The calculator adjusts your coverage rate based on Sherwin-Williams exterior technical data.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Decide on trim paint.</strong> Trim, fascia boards, and shutters are usually painted a contrasting color and require a different paint formulation (like a semi-gloss) than the main body of the house. Include trim to get a separate gallon estimate just for those details.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This exterior paint calculator uses basic geometry and professional coverage rates to determine your material needs. Here is the math in plain English:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Gross Area = Sum of (Wall Width × Wall Height) + (0.5 × Gable Width × Gable Height)</p>
+      <p>Net Area = Gross Area − (21 × Doors) − (15 × Windows) − (160 × Garage Doors)</p>
+      <p>Body Gallons = (Net Area × Number of Coats) / Coverage Rate</p>
+      <p>Trim Gallons = ((Net Area × 0.10) + (Shutters × 6)) × Coats / 400</p>
+    </div>
+    <p class="text-gray-700">First, the gross wall area is calculated by multiplying the width and height of all four walls. If you have gable ends, their area is calculated using the standard triangle formula (0.5 times base times height) and added to the total. To get the exact net area to be painted, standard square footage is subtracted for every door, window, and large garage door you counted.</p>
+    <p class="text-gray-700 mt-3">The number of body paint gallons equals that net area multiplied by your coats, divided by the specific coverage rate of your siding type (pulled directly from Sherwin-Williams Duration Exterior technical data sheets). Because measuring every piece of window trim and fascia board is nearly impossible, trim paint gallons are calculated using the industry standard rule of thumb: trim accounts for roughly 10% of the body surface area.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">As a reference, how many gallons are needed to paint an average 1500 sq ft house?</h3>
+        <p class="text-gray-600 text-sm">A standard single-story 1,500 square foot home typically requires about 10 to 12 gallons of body paint and 2 to 3 gallons of trim paint to cover the exterior with two solid coats. If the house is two stories, the footprint is smaller, meaning the wall area is larger, so it will require more paint.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Do I need to prime before painting the exterior, and how does it affect gallon count?</h3>
+        <p class="text-gray-600 text-sm">If your existing paint is peeling down to bare wood, or if you are painting brand new, unpainted siding, you absolutely must apply a full coat of exterior primer first. Primer seals the porous surface. If you don't prime bare wood, it will act like a sponge and soak up your expensive topcoat, cutting your paint coverage rate in half.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I measure a house with bump-outs or additions?</h3>
+        <p class="text-gray-600 text-sm">Do not worry about measuring every tiny jog or bump-out separately. Simply measure the absolute maximum width and depth of the entire house footprint, just as if you were drawing a large rectangle around the entire building. The minor extra wall area created by a bump-out is usually canceled out by the windows located on it.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I paint my gutters and downspouts, and are they included in this estimate?</h3>
+        <p class="text-gray-600 text-sm">Most modern aluminum gutters have a baked-on factory enamel finish that lasts for decades and does not need to be painted. However, if they are severely faded and you choose to paint them, the 10% trim allowance in this exterior paint calculator provides enough extra paint to cover them.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How long does exterior paint last, and when should I repaint?</h3>
+        <p class="text-gray-600 text-sm">A high-quality 100% acrylic exterior paint job should last 7 to 10 years on wood siding and up to 15 years on stucco or fiber cement. You should plan to repaint when you see the color significantly fading or chalking, or immediately if you see the paint beginning to crack, blister, or peel away from the wood.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Can one person paint a house exterior, and how long does it take?</h3>
+        <p class="text-gray-600 text-sm">Yes, one determined homeowner can paint an average house, but it is a massive undertaking. Expect to spend a full weekend just pressure washing, scraping peeling paint, and caulking cracks. Applying two coats of paint by hand (brush and roller) to an average house will take a single person roughly 40 to 60 hours of labor.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/paint-room" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Paint Calculator for a Room</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many gallons of paint you need for standard, smooth interior walls.</div>
+      </a>
+      <a href="/calculators/paint-textured-walls" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Paint Calculator for Textured Walls</div>
+        <div class="text-xs text-gray-500 mt-1">Adjust coverage rates and calculate paint specifically for heavy interior wall textures.</div>
+      </a>
+      <a href="/calculators/subfloor" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Subfloor Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many sheets of plywood or OSB you need to floor a room.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function isChecked(id) {
+    return document.getElementById(id).checked;
+  }
+
+  function toggleSection(sectionId, show) {
+    document.getElementById(sectionId).classList.toggle('hidden', !show);
+    calculate();
+  }
+
+  function wallArea(widFtId, widInId, hgtFtId, hgtInId) {
+    return toFt(widFtId, widInId) * toFt(hgtFtId, hgtInId);
+  }
+
+  function calculate() {
+    var grossArea = 0;
+    var hasInput = false;
+
+    var a1 = wallArea('w1_wid_ft', 'w1_wid_in', 'w1_hgt_ft', 'w1_hgt_in');
+    var a2 = wallArea('w2_wid_ft', 'w2_wid_in', 'w2_hgt_ft', 'w2_hgt_in');
+    var a3 = wallArea('w3_wid_ft', 'w3_wid_in', 'w3_hgt_ft', 'w3_hgt_in');
+    var a4 = wallArea('w4_wid_ft', 'w4_wid_in', 'w4_hgt_ft', 'w4_hgt_in');
+
+    grossArea = a1 + a2 + a3 + a4;
+    if (grossArea > 0) hasInput = true;
+
+    // Gable ends
+    if (isChecked('gableToggle')) {
+      var gabWid = getNum('gab_wid_ft');
+      var gabHgt = getNum('gab_hgt_ft');
+      var numGables = Math.max(1, getNum('num_gables') || 2);
+      grossArea += 0.5 * gabWid * gabHgt * numGables;
+    }
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (!hasInput || grossArea <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      return;
+    }
+
+    // Subtract openings
+    var doors = getNum('num_doors');
+    var windows = getNum('num_windows');
+    var garageDoors = getNum('num_garage_doors');
+    var netArea = grossArea - (doors * 21) - (windows * 15) - (garageDoors * 160);
+    netArea = Math.max(netArea, 0);
+
+    var coverage = parseFloat(document.getElementById('siding').value) || 350;
+    var coats = parseInt(document.getElementById('coats').value) || 2;
+    var includeTrim = document.getElementById('trim').value === 'yes';
+    var shutters = getNum('num_shutters');
+
+    var bodyGallons = (netArea * coats) / coverage;
+
+    // Trim: 10% of body area at 400 sq ft/gal coverage (smooth trim)
+    var trimArea = netArea * 0.10;
+    // Add shutter area
+    trimArea += shutters * 6;
+    var trimGallons = includeTrim ? (trimArea * coats) / 400 : 0;
+
+    var totalGallons = bodyGallons + trimGallons;
+
+    function buyingGuide(gallons, label) {
+      var rounded = Math.ceil(gallons);
+      if (rounded <= 5) return label + ': ' + rounded + ' × 1-gallon cans';
+      var fiveGal = Math.floor(rounded / 5);
+      var oneGal = rounded % 5;
+      var guide = label + ': ' + fiveGal + ' × 5-gallon bucket' + (fiveGal > 1 ? 's' : '');
+      if (oneGal > 0) guide += ' + ' + oneGal + ' × 1-gallon can' + (oneGal > 1 ? 's' : '');
+      return guide;
+    }
+
+    var buyingText = buyingGuide(bodyGallons, 'Body paint');
+    if (includeTrim) buyingText += '. ' + buyingGuide(trimGallons, 'Trim paint');
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_gross_area').textContent = grossArea.toFixed(0) + ' sq ft';
+    document.getElementById('r_net_area').textContent = netArea.toFixed(0) + ' sq ft';
+    document.getElementById('r_body_gal').textContent = Math.ceil(bodyGallons) + ' gal';
+    document.getElementById('r_total_gal').textContent = Math.ceil(totalGallons) + ' gal';
+    document.getElementById('r_buying').textContent = buyingText;
+
+    var trimRow = document.getElementById('trimRow');
+    if (includeTrim) {
+      document.getElementById('r_trim_gal').textContent = Math.ceil(trimGallons) + ' gal';
+      trimRow.classList.remove('hidden');
+    } else {
+      trimRow.classList.add('hidden');
+    }
+    
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('siding').addEventListener('change', calculate);
+    document.getElementById('coats').addEventListener('change', calculate);
+    document.getElementById('trim').addEventListener('change', calculate);
+  });
+</script>
