@@ -138,6 +138,12 @@ import Layout from '../../layouts/Layout.astro';
     <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
       <strong>Tip:</strong> Coverage rates assume back-buttering large format tiles. If your installer back-butters, buy an extra 15-20% on top of this estimate.
     </p>
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+
+      🖨️ Print or Save as PDF
+
+    </button>
+
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
@@ -289,6 +295,7 @@ import Layout from '../../layouts/Layout.astro';
     var bagsWithWaste = Math.ceil((totalArea * 1.10) / coveragePerBag);
 
     document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
     document.getElementById('r_area').textContent = totalArea.toFixed(0) + ' sq ft';
     document.getElementById('r_coverage').textContent = coveragePerBag.toFixed(0) + ' sq ft';
     document.getElementById('r_bags').textContent = bagsNeeded + ' bags';

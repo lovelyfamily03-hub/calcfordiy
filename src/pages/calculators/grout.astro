@@ -168,6 +168,12 @@ import Layout from '../../layouts/Layout.astro';
     <p class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3">
       <strong>Tip:</strong> Buy one extra bag. Leftover grout seals in a bucket for months and is useful for repairs.
     </p>
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+
+      🖨️ Print or Save as PDF
+
+    </button>
+
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
@@ -295,6 +301,7 @@ import Layout from '../../layouts/Layout.astro';
     var bagsNeeded = Math.ceil(totalWithWaste / bagSize);
 
     document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
     document.getElementById('r_lbsPerSqFt').textContent = lbsPerSqFt.toFixed(3) + ' lbs';
     document.getElementById('r_totalLbs').textContent = totalLbs.toFixed(1) + ' lbs';
     document.getElementById('r_lbsWithWaste').textContent = totalWithWaste.toFixed(1) + ' lbs';

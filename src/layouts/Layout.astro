@@ -35,9 +35,16 @@ const { title, description, noindex = false } = Astro.props;
         </nav>
       </div>
     </header>
+    
     <main class="max-w-5xl mx-auto px-4 py-8">
+      <!-- Watermark that only shows when printed -->
+      <div class="print-only text-xs text-gray-400 text-center mb-6">
+        calcfordiy.com — Free DIY Calculators
+      </div>
+      
       <slot />
     </main>
+
     <footer class="border-t border-gray-200 mt-16 px-4 py-8 text-center text-sm text-gray-500">
       <p>© 2026 CalcForDIY — Free calculators for home improvement projects.</p>
       <p class="mt-2">
@@ -46,8 +53,8 @@ const { title, description, noindex = false } = Astro.props;
       </p>
     </footer>
 
-    <!-- Floating results button - shows when results exist but are off screen -->
-    <div id="floatBtn" class="hidden fixed bottom-6 inset-x-0 flex justify-center z-50 pointer-events-none">
+    <!-- Floating results button - added print:hidden so it doesn't print -->
+    <div id="floatBtn" class="hidden fixed bottom-6 inset-x-0 flex justify-center z-50 pointer-events-none print:hidden">
       <button
         onclick="document.getElementById('results').scrollIntoView({behavior:'smooth'})"
         class="pointer-events-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-xl font-semibold text-sm flex items-center gap-2 transition-all">

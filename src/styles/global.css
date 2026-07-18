@@ -9,10 +9,46 @@ select {
 
 input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield; /* Standard property for linters */
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  appearance: none; /* Standard property for linters */
   margin: 0;
+}
+
+@media print {
+  /* Added #results ~ div to hide everything after the results block */
+  header,
+  footer,
+  nav,
+  .no-print,
+  #results ~ div {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  /* Added a bit of margin tweaking for a cleaner print layout */
+  #results {
+    display: block !important;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    background: white !important;
+    margin-bottom: 0 !important; 
+    break-inside: avoid; /* Prevents the results box from splitting across two pages */
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}
+
+.print-only {
+  display: none;
 }

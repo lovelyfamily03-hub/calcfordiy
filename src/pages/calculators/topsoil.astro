@@ -199,6 +199,12 @@ import Layout from '../../layouts/Layout.astro';
     <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
       <strong>Tip:</strong> Order 10-15% more than calculated. Topsoil compacts after watering and settling, and delivery trucks may fall slightly short of the ordered amount.
     </p>
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+
+      🖨️ Print or Save as PDF
+
+    </button>
+
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
@@ -369,6 +375,7 @@ import Layout from '../../layouts/Layout.astro';
     }
 
     document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
     document.getElementById('r_sqft').textContent = sqFt.toFixed(0) + ' sq ft';
     document.getElementById('r_cuft').textContent = cuFtFinal.toFixed(1) + ' cu ft';
     document.getElementById('r_cuyd').textContent = cuYdFinal.toFixed(2) + ' yd³';
