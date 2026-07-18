@@ -1,0 +1,385 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Fertilizer Calculator — How Much Fertilizer for Your Lawn? | CalcForDIY"
+  description="Calculate how much fertilizer you need for any lawn size. Enter your area and fertilizer bag analysis to get exact pounds to apply and bags to buy. Brand-neutral, free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Fertilizer Calculator",
+    "description": "Free brand-neutral fertilizer calculator that estimates pounds to apply and bags needed based on lawn size and fertilizer NPK analysis.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Fertilizer Calculator", "item": "https://calcfordiy.com/calculators/fertilizer" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Fertilizer Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Fertilizer Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your lawn size and the nitrogen percentage from your fertilizer bag to get the exact pounds to apply and how many bags to buy — works with any brand.</p>
+  </div>
+
+  <!-- What is NPK explainer -->
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+    <p class="text-sm font-semibold text-blue-900 mb-2">How to Read Your Fertilizer Bag</p>
+    <p class="text-sm text-blue-800">Every fertilizer bag shows three numbers like <strong>28-0-6</strong> or <strong>32-0-8</strong>. These are the NPK values — Nitrogen, Phosphorus, Potassium. This calculator uses the <strong>first number (Nitrogen)</strong> because nitrogen is what makes grass green and grow. The number means that percentage of the bag is nitrogen by weight.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Lawn Area
+    </h2>
+
+    <div class="mb-4">
+      <div class="flex gap-3 mb-4">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="inputMode" id="modeDimensions" value="dimensions" checked
+            class="text-blue-600" onchange="switchMode('dimensions')" />
+          <span class="text-sm text-gray-700">Length × Width</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="inputMode" id="modeSqFt" value="sqft"
+            class="text-blue-600" onchange="switchMode('sqft')" />
+          <span class="text-sm text-gray-700">I know my square footage</span>
+        </label>
+      </div>
+
+      <div id="dimensionsMode" class="p-4 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Lawn Length</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="l_len_ft" placeholder="100" min="0" max="5000"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="l_len_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Lawn Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="l_wid_ft" placeholder="50" min="0" max="5000"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="l_wid_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sqftMode" class="hidden p-4 bg-gray-50 rounded-lg">
+        <label class="block text-xs text-gray-500 mb-1">Total Lawn Area</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="direct_sqft" placeholder="5000" min="1" max="1000000"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">sq ft</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Fertilizer Details
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Nitrogen Percentage (N)
+          <span class="text-gray-400 font-normal text-xs ml-1">— first number on bag</span>
+        </label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="nitrogen_pct" placeholder="28" min="1" max="50" step="0.5"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">%</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">e.g. for a 28-0-6 bag enter 28</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Bag Weight</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="bag_weight" placeholder="15" min="1" max="100"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">lbs</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">Printed on the bag — common sizes: 12, 15, 20, 25, 50 lbs</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Nitrogen Target</label>
+        <select id="nitrogen_target"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="0.5">0.5 lb N per 1000 sq ft — light feeding</option>
+          <option value="1" selected>1.0 lb N per 1000 sq ft — standard maintenance</option>
+          <option value="1.5">1.5 lb N per 1000 sq ft — heavy feeding / recovery</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Standard recommendation from university extension guidelines is 1 lb per 1000 sq ft per application</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Grass Type</label>
+        <select id="grass_type"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="coolseason">Cool season (Kentucky bluegrass, fescue, ryegrass)</option>
+          <option value="warmseason">Warm season (Bermuda, zoysia, St. Augustine, centipede)</option>
+        </select>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Fertilizer Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your lawn area, nitrogen percentage, and bag weight to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Fertilizer Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Lawn Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_lbs_to_apply">—</div>
+        <div class="text-xs text-gray-500 mt-1">Lbs of Fertilizer</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_bags">—</div>
+        <div class="text-xs text-gray-500 mt-1">Bags Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_coverage">—</div>
+        <div class="text-xs text-gray-500 mt-1">Sq Ft Per Bag</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-2">Application Details</p>
+      <p class="text-sm text-gray-600" id="r_appNote">—</p>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-2">Timing Recommendation</p>
+      <p class="text-sm text-gray-600" id="r_timing">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Important:</strong> Never apply more than 1 lb of nitrogen per 1000 sq ft in a single application. Split into multiple applications if needed. Water in after applying unless rain is expected within 24 hours.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this fertilizer calculator is simple. Follow these five steps to determine the exact amount of fertilizer your yard needs:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Enter lawn area.</strong> Choose whether to input the physical dimensions (length × width) of your yard or enter the total square footage directly.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Find the nitrogen percentage.</strong> Look for the three NPK numbers on your fertilizer bag (like 28-0-6) and enter the first number. This is the nitrogen percentage.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Enter bag weight.</strong> Input the total weight in pounds printed on the front of the bag.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Select nitrogen target.</strong> Choose how heavily you want to feed your grass. Applying 1 lb of nitrogen per 1,000 square feet is the standard university extension recommendation for most residential lawns.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Select grass type.</strong> Choose cool season or warm season grass to receive customized timing recommendations for your region.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">Behind the scenes, this fertilizer calculator relies on standard cooperative extension guidelines used by universities across the United States. Here is the math:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
+      <p>Pounds of Fertilizer = (Lawn Area in sq ft / 1000) × Target Nitrogen lbs × (100 / Nitrogen Percentage)</p>
+    </div>
+    <p class="text-gray-700">First, your total lawn area is divided by 1,000. That number is multiplied by your target nitrogen rate (usually 1 lb). Finally, it is multiplied by 100 divided by the nitrogen percentage on your bag to account for the fact that fertilizer is not pure nitrogen.</p>
+    <p class="text-gray-700 mt-3"><strong>Example:</strong> If you have a 5,000 square foot lawn and buy a 28-0-6 fertilizer aiming for the standard 1 lb nitrogen rate, the math is: 5 × 1 × (100 / 28) = 17.9 pounds of fertilizer required.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What does NPK mean, and why is nitrogen the most important number?</h3>
+        <p class="text-gray-600 text-sm">NPK stands for Nitrogen, Phosphorus, and Potassium. Nitrogen (the first number) promotes vigorous, leafy green growth. Phosphorus (the second number) supports root development, and Potassium (the third number) aids in overall disease resistance. Nitrogen is the most critical for established lawns because grasses deplete it rapidly to maintain their bright green color.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I water my lawn after applying fertilizer?</h3>
+        <p class="text-gray-600 text-sm">Yes. Unless you are expecting a steady rain within 24 hours, you should water your lawn lightly immediately after applying granular fertilizer. This washes the fertilizer granules off the grass blades and down into the soil, preventing chemical burn and kickstarting the absorption process.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What happens if I apply too much fertilizer?</h3>
+        <p class="text-gray-600 text-sm">Over-fertilizing causes "fertilizer burn." The high concentration of salts draws moisture out of the grass blades, turning them yellow or brown. It also leads to excessive, weak top growth at the expense of healthy roots. Never exceed 1.5 lbs of nitrogen per 1,000 square feet in a single application.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between slow-release and quick-release fertilizer?</h3>
+        <p class="text-gray-600 text-sm">Quick-release fertilizer breaks down immediately, providing a rapid green-up but carrying a higher risk of burning the lawn. Slow-release fertilizer contains coated granules that dissolve gradually over 6 to 8 weeks, providing a steady feed. The math in this fertilizer calculator does not change regardless of which type you use.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I fertilize before or after mowing?</h3>
+        <p class="text-gray-600 text-sm">It is best to fertilize immediately <em>after</em> mowing. Mowing first removes excess grass height, allowing the fertilizer granules to easily fall down to the soil surface. It also ensures you won't accidentally suck up the newly applied fertilizer granules with your lawnmower bagger a few days later.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How often should I fertilize my lawn?</h3>
+        <p class="text-gray-600 text-sm">Cool season grasses (like fescue and bluegrass) thrive with 2 to 3 applications per year, focused heavily in the fall and lightly in the spring. Warm season grasses (like Bermuda and zoysia) need 3 to 4 applications during their active growing season from late spring through late summer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/topsoil" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Topsoil Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Determine the cubic yards of topsoil needed for lawn grading or filling holes.</div>
+      </a>
+      <a href="/calculators/mulch" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Mulch Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many bags or cubic yards of mulch your garden requires.</div>
+      </a>
+      <a href="/calculators/raised-bed-soil" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Raised Bed Soil Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate the perfect blend of soil, compost, and peat for raised garden beds.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function switchMode(mode) {
+    document.getElementById('dimensionsMode').classList.toggle('hidden', mode !== 'dimensions');
+    document.getElementById('sqftMode').classList.toggle('hidden', mode !== 'sqft');
+    calculate();
+  }
+
+  function calculate() {
+    var mode = document.querySelector('input[name="inputMode"]:checked').value;
+    var sqFt = 0;
+
+    if (mode === 'dimensions') {
+      var len = toFt('l_len_ft', 'l_len_in');
+      var wid = toFt('l_wid_ft', 'l_wid_in');
+      sqFt = len * wid;
+    } else {
+      sqFt = getNum('direct_sqft');
+    }
+
+    var nitrogenPct = getNum('nitrogen_pct');
+    var bagWeight = getNum('bag_weight');
+    var nitrogenTarget = parseFloat(document.getElementById('nitrogen_target').value) || 1;
+    var grassType = document.getElementById('grass_type').value;
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (sqFt <= 0 || nitrogenPct <= 0 || bagWeight <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (sqFt > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    // Core formula from university extension guidelines:
+    // Lbs of fertilizer to apply = (sq ft / 1000) x target N lbs x (100 / nitrogen%)
+    var lbsToApply = (sqFt / 1000) * nitrogenTarget * (100 / nitrogenPct);
+    var bagsNeeded = Math.ceil(lbsToApply / bagWeight);
+    var sqFtPerBag = Math.floor((bagWeight * nitrogenPct / 100) / nitrogenTarget * 1000);
+
+    // Application rate note
+    var appNote = 'Apply ' + lbsToApply.toFixed(1) + ' lbs of fertilizer evenly across ' + sqFt.toFixed(0) + ' sq ft. That is ' + (lbsToApply / (sqFt / 1000)).toFixed(1) + ' lbs per 1,000 sq ft, delivering ' + nitrogenTarget + ' lb of nitrogen per 1,000 sq ft.';
+
+    // Check if more than 1 lb N per 1000 sq ft
+    if (nitrogenTarget > 1) {
+      appNote += ' This is a heavy feeding rate — consider splitting into two applications 4-6 weeks apart to avoid burning.';
+    }
+
+    // Timing by grass type
+    var timing = '';
+    if (grassType === 'coolseason') {
+      timing = 'Cool season grasses: Apply in early fall (September-October) for best results. A second application in late spring (May) is also effective. Avoid fertilizing in summer heat — cool season grasses go dormant and cannot use the nutrients.';
+    } else {
+      timing = 'Warm season grasses: Apply in late spring once grass is actively growing (May-June). A second application in midsummer (July-August) supports continued growth. Do not fertilize after September — late feeding prevents hardening before winter.';
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_area').textContent = sqFt.toFixed(0) + ' sq ft';
+    document.getElementById('r_lbs_to_apply').textContent = lbsToApply.toFixed(1) + ' lbs';
+    document.getElementById('r_bags').textContent = bagsNeeded + ' bags';
+    document.getElementById('r_coverage').textContent = sqFtPerBag.toLocaleString() + ' sq ft';
+    document.getElementById('r_appNote').textContent = appNote;
+    document.getElementById('r_timing').textContent = timing;
+
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('nitrogen_target').addEventListener('change', calculate);
+    document.getElementById('grass_type').addEventListener('change', calculate);
+    document.querySelectorAll('input[name="inputMode"]').forEach(function (el) {
+      el.addEventListener('change', function () {
+        switchMode(this.value);
+      });
+    });
+  });
+</script>
