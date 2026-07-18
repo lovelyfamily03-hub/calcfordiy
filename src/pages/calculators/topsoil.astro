@@ -1,0 +1,396 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Topsoil Calculator — Cubic Yards and Bags for Lawn or Yard | CalcForDIY"
+  description="Calculate how much topsoil you need for a lawn, yard, or garden. Enter area and depth to get cubic yards and bag count instantly. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Topsoil Calculator",
+    "description": "Free topsoil calculator that estimates cubic yards and bag count needed for lawn, yard, or garden coverage based on area and depth.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Topsoil Calculator", "item": "https://calcfordiy.com/calculators/topsoil" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Topsoil Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Topsoil Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your lawn or yard dimensions and desired depth to get cubic yards and bag count instantly — whether you are topdressing an existing lawn or starting fresh.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Area Measurement
+    </h2>
+
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 mb-2">How would you like to enter your area?</label>
+      <div class="flex gap-3 mb-4">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="inputMode" id="modeDimensions" value="dimensions" checked
+            class="text-blue-600" onchange="switchMode('dimensions')" />
+          <span class="text-sm text-gray-700">Length × Width</span>
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="radio" name="inputMode" id="modeSqFt" value="sqft"
+            class="text-blue-600" onchange="switchMode('sqft')" />
+          <span class="text-sm text-gray-700">I know my square footage</span>
+        </label>
+      </div>
+
+      <!-- Dimensions mode -->
+      <div id="dimensionsMode" class="p-4 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Length</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="a_len_ft" placeholder="50" min="0" max="2000"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="a_len_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="a_wid_ft" placeholder="30" min="0" max="2000"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="a_wid_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Number of identical areas</label>
+          <div class="flex items-center gap-3">
+            <input type="number" id="num_areas" value="1" min="1" max="50"
+              class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-400">For multiple same-size lawn sections</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Square footage mode -->
+      <div id="sqftMode" class="hidden p-4 bg-gray-50 rounded-lg">
+        <label class="block text-xs text-gray-500 mb-1">Total Area</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="direct_sqft" placeholder="1500" min="1" max="1000000"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">sq ft</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">Find this from your property survey, Google Maps, or a previous measurement.</p>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Topsoil Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Application Purpose</label>
+        <select id="purpose"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onchange="updateDepth()">
+          <option value="1">Topdressing existing lawn (1 inch)</option>
+          <option value="2">Overseeding thin lawn (2 inches)</option>
+          <option value="4" selected>New lawn establishment (4 inches)</option>
+          <option value="6">Deep lawn renovation (6 inches)</option>
+          <option value="custom">Custom depth</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Select your purpose to auto-fill the recommended depth</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Depth</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="depth_in" placeholder="4" min="0.5" max="24" step="0.5"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">inches</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">Auto-filled based on purpose — adjust if needed</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Buying Format</label>
+        <select id="buyType"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="bulk">Bulk delivery — cubic yards</option>
+          <option value="0.75">Bagged — 0.75 cu ft bags (standard 40 lb)</option>
+          <option value="1">Bagged — 1 cu ft bags</option>
+          <option value="1.5">Bagged — 1.5 cu ft bags</option>
+        </select>
+      </div>
+      <div class="flex items-end">
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 w-full">
+          <p class="text-xs text-amber-800"><strong>Bulk vs bags:</strong> Bulk becomes cheaper at roughly 3 cubic yards or more. Below that, bagged is often easier to handle.</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Topsoil Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your area dimensions and depth to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Topsoil Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_sqft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_cuft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Cubic Feet</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_cuyd">—</div>
+        <div class="text-xs text-gray-500 mt-1">Cubic Yards</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_bags">—</div>
+        <div class="text-xs text-gray-500 mt-1" id="r_bags_label">Bags / Yards</div>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Delivery Note</p>
+      <p class="text-sm text-gray-600" id="r_deliveryNote">—</p>
+    </div>
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Order 10-15% more than calculated. Topsoil compacts after watering and settling, and delivery trucks may fall slightly short of the ordered amount.
+    </p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this topsoil calculator ensures you buy the exact amount of material needed without wasting money. Follow these five simple steps:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Enter your area.</strong> Choose whether to input your yard's physical dimensions (length × width) or enter your total square footage directly if you already know it.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select your purpose.</strong> Choose the goal of your project (e.g., topdressing an existing lawn or establishing a brand new one). This topsoil calculator will automatically fill in the recommended depth for that specific job.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Adjust depth if needed.</strong> If your project requires a custom thickness, simply override the auto-filled depth in the input box.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Choose buying format.</strong> Select whether you are purchasing material in bags from a hardware store or in bulk by the cubic yard. As a rule of thumb, bulk delivery becomes more economical than bags when you are ordering roughly 3 cubic yards or more.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Read the delivery note.</strong> Check the practical ordering advice generated below your results to understand truck minimums, delivery loads, and total bagged weight.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">Behind the scenes, this topsoil calculator uses standard volume conversions to determine your needs. Here is the math in plain English:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
+      <p>Cubic Feet = Area in square feet × (Depth in inches / 12)</p>
+      <p>Cubic Yards = Cubic Feet / 27</p>
+    </div>
+    <p class="text-gray-700">First, your total area in square feet is multiplied by your depth in inches (which is divided by 12 to convert it to feet). This gives you the raw volume in cubic feet. To get cubic yards for bulk ordering, that number is divided by 27. For bagged purchases, the cubic feet are divided by your chosen bag size and rounded up to the nearest whole bag.</p>
+    <p class="text-gray-700 mt-3">Finally, the calculator automatically adds a <strong>12% buffer</strong>. This is critical because freshly laid topsoil holds air and is highly loose; it will compress and settle significantly after the first heavy rain or watering. Furthermore, bulk delivery trucks often run slightly short of an exact, leveled cubic yard measurement. The 12% buffer ensures you actually end up with your desired depth.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between topsoil and garden soil?</h3>
+        <p class="text-gray-600 text-sm">Topsoil is basic dirt scraped from the earth's surface. It is relatively heavy, holds moisture well, and is best used for bulk grading, filling holes, or establishing a lawn. Garden soil is topsoil that has been heavily amended with compost, peat moss, and organic matter to make it lighter and more nutritious, making it ideal for planting beds and vegetables.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How deep should topsoil be for a new lawn versus topdressing?</h3>
+        <p class="text-gray-600 text-sm">For a brand new lawn, you need 4 to 6 inches of quality topsoil to allow turfgrass roots to establish deeply. If you are simply topdressing an existing, thin lawn to improve the soil quality, you should only apply 1/4 to 1/2 inch of soil at a time to avoid smothering the existing grass blades.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I till existing soil before adding topsoil?</h3>
+        <p class="text-gray-600 text-sm">Yes. If you simply dump new topsoil over hard, compacted dirt, you create a sharp drainage barrier. Water will pool between the layers, and grass roots will refuse to grow into the hard native soil. Always rough up or lightly till the top 2 inches of existing soil before spreading new topsoil to blend the layers.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the minimum order for bulk topsoil delivery?</h3>
+        <p class="text-gray-600 text-sm">Most local landscape and gravel suppliers require a minimum order of 3 cubic yards to qualify for truck delivery, though some smaller companies may deliver as little as 1 or 2 yards for a premium fee. Always call your local supplier to confirm their minimums.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Is screened topsoil worth the extra cost?</h3>
+        <p class="text-gray-600 text-sm">Absolutely. Screened topsoil has been passed through a large sieve to remove rocks, sticks, thick roots, and hard clay clods. If you use cheaper, unscreened "fill dirt" for a lawn, your yard will be incredibly bumpy and difficult to mow.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How long does bagged topsoil stay good if stored?</h3>
+        <p class="text-gray-600 text-sm">Bagged topsoil technically lasts indefinitely since it is just dirt. However, if left outside in the rain, the bags will retain moisture and the soil will become severely compacted and heavy. It is best to store unused bags in a dry shed or garage.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/mulch" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Mulch Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Figure out exactly how much mulch your garden beds need for the season.</div>
+      </a>
+      <a href="/calculators/raised-bed-soil" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Raised Bed Soil Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate the perfect blend of soil, compost, and peat for raised garden beds.</div>
+      </a>
+      <a href="/calculators/fertilizer" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Fertilizer Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Determine the exact amount of granular or liquid fertilizer needed for your yard.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function switchMode(mode) {
+    document.getElementById('dimensionsMode').classList.toggle('hidden', mode !== 'dimensions');
+    document.getElementById('sqftMode').classList.toggle('hidden', mode !== 'sqft');
+    calculate();
+  }
+
+  function updateDepth() {
+    var purpose = document.getElementById('purpose').value;
+    if (purpose !== 'custom') {
+      document.getElementById('depth_in').value = purpose;
+    }
+    calculate();
+  }
+
+  function calculate() {
+    var mode = document.querySelector('input[name="inputMode"]:checked').value;
+    var sqFt = 0;
+
+    if (mode === 'dimensions') {
+      var len = toFt('a_len_ft', 'a_len_in');
+      var wid = toFt('a_wid_ft', 'a_wid_in');
+      var areas = Math.max(1, getNum('num_areas') || 1);
+      sqFt = len * wid * areas;
+    } else {
+      sqFt = getNum('direct_sqft');
+    }
+
+    var depthIn = getNum('depth_in');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (sqFt <= 0 || depthIn <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (sqFt > 0 || depthIn > 0) {
+        document.getElementById('errorMsg').classList.remove('hidden');
+      }
+      return;
+    }
+
+    var depthFt = depthIn / 12;
+    var cuFt = sqFt * depthFt;
+    var cuYd = cuFt / 27;
+
+    // Add 12% for compaction and settling
+    var cuFtFinal = cuFt * 1.12;
+    var cuYdFinal = cuYd * 1.12;
+
+    var buyType = document.getElementById('buyType').value;
+    var bagsText = '';
+    var bagsLabel = '';
+    var deliveryNote = '';
+
+    if (buyType === 'bulk') {
+      bagsText = cuYdFinal.toFixed(1) + ' yd³';
+      bagsLabel = 'Cubic Yards';
+      if (cuYdFinal < 3) {
+        deliveryNote = cuYdFinal.toFixed(1) + ' cubic yards is a small order. Many suppliers have a 3 yard minimum for delivery. Consider bagged topsoil or combining with another order.';
+      } else if (cuYdFinal < 10) {
+        deliveryNote = 'A standard dump truck holds 10-14 cubic yards. Your order of ' + cuYdFinal.toFixed(1) + ' yards will fit in one delivery.';
+      } else {
+        deliveryNote = 'Your order of ' + cuYdFinal.toFixed(1) + ' cubic yards may require more than one truck. Confirm with your supplier.';
+      }
+    } else {
+      var bagSizeNum = parseFloat(buyType);
+      var bagsNeeded = Math.ceil(cuFtFinal / bagSizeNum);
+      bagsText = bagsNeeded + ' bags';
+      bagsLabel = bagSizeNum + ' cu ft Bags';
+      deliveryNote = bagsNeeded + ' bags of ' + bagSizeNum + ' cu ft each. That is approximately ' + cuYdFinal.toFixed(1) + ' cubic yards total. At roughly ' + (bagSizeNum === 0.75 ? '40' : bagSizeNum === 1 ? '53' : '80') + ' lbs per bag, total weight is around ' + Math.round(bagsNeeded * (bagSizeNum === 0.75 ? 40 : bagSizeNum === 1 ? 53 : 80)) + ' lbs.';
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_sqft').textContent = sqFt.toFixed(0) + ' sq ft';
+    document.getElementById('r_cuft').textContent = cuFtFinal.toFixed(1) + ' cu ft';
+    document.getElementById('r_cuyd').textContent = cuYdFinal.toFixed(2) + ' yd³';
+    document.getElementById('r_bags').textContent = bagsText;
+    document.getElementById('r_bags_label').textContent = bagsLabel;
+    document.getElementById('r_deliveryNote').textContent = deliveryNote;
+
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('depth_in').value = '4';
+
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('buyType').addEventListener('change', calculate);
+    document.getElementById('purpose').addEventListener('change', updateDepth);
+    document.querySelectorAll('input[name="inputMode"]').forEach(function (el) {
+      el.addEventListener('change', function () {
+        switchMode(this.value);
+      });
+    });
+  });
+</script>
