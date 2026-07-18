@@ -1,0 +1,417 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Paint Calculator for Textured Walls — How Many Gallons? | CalcForDIY"
+  description="Calculate how much paint you need for textured walls. Texture type affects coverage significantly — orange peel, knockdown, skip trowel, and popcorn all use more paint than smooth walls. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Paint Calculator for Textured Walls",
+    "description": "Free paint calculator for textured walls that accounts for texture type affecting coverage rate — orange peel, knockdown, skip trowel, and popcorn textures.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Paint Calculator — Textured Walls", "item": "https://calcfordiy.com/calculators/paint-textured-walls" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Paint Calculator — Textured Walls</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Paint Calculator for Textured Walls</h1>
+    <p class="text-gray-600 text-lg">Textured walls use significantly more paint than smooth walls. Enter your room dimensions and texture type to get an accurate gallon estimate — not the generic number on the paint can.</p>
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
+    <p class="text-sm font-semibold text-amber-900 mb-1">Why Standard Paint Calculators Get This Wrong</p>
+    <p class="text-sm text-amber-800">Most paint calculators assume smooth walls at 400 sq ft per gallon. Textured surfaces have significantly more actual surface area — paint has to coat every peak and valley of the texture. A heavy knockdown texture can require 30-40% more paint than the can label suggests. This calculator accounts for that.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Room Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Room Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="r_len_ft" placeholder="14" min="0" max="200"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="r_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Room Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="r_wid_ft" placeholder="12" min="0" max="200"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="r_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="r_ceil_ft" placeholder="8" min="0" max="20"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+          <input type="number" id="r_ceil_in" placeholder="0" min="0" max="11"
+            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">in</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <p class="text-xs text-gray-500 mb-3">Standard door = 21 sq ft. Standard window = 15 sq ft. Subtracted automatically.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Number of Doors</label>
+          <input type="number" id="num_doors" placeholder="1" min="0" max="20"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Number of Windows</label>
+          <input type="number" id="num_windows" placeholder="2" min="0" max="20"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Texture Type
+    </h2>
+
+    <div class="mb-5">
+      <label class="block text-sm font-medium text-gray-700 mb-3">Select Your Wall Texture</label>
+      <div class="grid grid-cols-1 gap-3">
+
+        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
+          <input type="radio" name="texture" value="0.10" class="mt-0.5 text-blue-600" onchange="calculate()" />
+          <div>
+            <div class="text-sm font-medium text-gray-800">Light Orange Peel</div>
+            <div class="text-xs text-gray-500">Subtle bumpy texture like the skin of an orange. Very common in new construction. Uses ~10% more paint than smooth.</div>
+            <div class="text-xs text-blue-600 font-medium mt-0.5">Effective coverage: ~360 sq ft/gal</div>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
+          <input type="radio" name="texture" value="0.20" class="mt-0.5 text-blue-600" onchange="calculate()" checked />
+          <div>
+            <div class="text-sm font-medium text-gray-800">Medium Orange Peel / Knockdown</div>
+            <div class="text-xs text-gray-500">More pronounced texture, slightly flattened peaks. The most common texture in homes built after 1980. Uses ~20% more paint than smooth.</div>
+            <div class="text-xs text-blue-600 font-medium mt-0.5">Effective coverage: ~320 sq ft/gal</div>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
+          <input type="radio" name="texture" value="0.30" class="mt-0.5 text-blue-600" onchange="calculate()" />
+          <div>
+            <div class="text-sm font-medium text-gray-800">Heavy Knockdown / Skip Trowel</div>
+            <div class="text-xs text-gray-500">Thick, irregular flattened peaks applied by trowel. Mediterranean or Tuscan style homes. Uses ~30% more paint than smooth.</div>
+            <div class="text-xs text-blue-600 font-medium mt-0.5">Effective coverage: ~280 sq ft/gal</div>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
+          <input type="radio" name="texture" value="0.40" class="mt-0.5 text-blue-600" onchange="calculate()" />
+          <div>
+            <div class="text-sm font-medium text-gray-800">Popcorn / Acoustic (Ceilings)</div>
+            <div class="text-xs text-gray-500">The heavily bumpy ceiling texture common in homes built before 1990. Extremely porous — uses ~40% more paint. Spray application strongly recommended.</div>
+            <div class="text-xs text-blue-600 font-medium mt-0.5">Effective coverage: ~240 sq ft/gal</div>
+          </div>
+        </label>
+
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+      Paint Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Coats</label>
+        <select id="wall_coats"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="1">1 coat — same color touch-up</option>
+          <option value="2" selected>2 coats — standard</option>
+          <option value="3">3 coats — drastic color change</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Textured walls often need 3 coats for dark-to-light color changes</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Application Method</label>
+        <select id="method"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="1.0">Roller — standard thick-nap roller</option>
+          <option value="1.15">Roller — extra thick nap (3/4" or 1" nap)</option>
+          <option value="0.85">Sprayer — airless sprayer</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Sprayer uses less paint but requires more prep. Thick nap rollers reach into texture valleys better.</p>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Paint Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your room dimensions to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Paint Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_wall_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Net Wall Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_effective_coverage">—</div>
+        <div class="text-xs text-gray-500 mt-1">Effective Coverage</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_gallons_exact">—</div>
+        <div class="text-xs text-gray-500 mt-1">Gallons Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_gallons_buy">—</div>
+        <div class="text-xs text-gray-500 mt-1">Gallons to Buy</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">vs Standard Smooth Wall Estimate</p>
+      <p class="text-sm text-gray-600" id="r_comparison">—</p>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Buying Guide</p>
+      <p class="text-sm text-gray-600" id="r_buying">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> For heavily textured walls, use a roller with a 3/4" or 1" nap to get paint into the valleys. A 3/8" nap roller used on smooth walls will leave uncoated texture valleys that look patchy even after two coats.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this paint calculator for textured walls prevents you from running short halfway through a project. Follow these five steps:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure room dimensions.</strong> Use a tape measure to find the exact length, width, and ceiling height of your room in feet and inches.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Count doors and windows.</strong> Enter the number of doors and windows in the room. The calculator automatically subtracts standard sizes (21 sq ft per door, 15 sq ft per window) so you do not overbuy paint.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Identify your texture type.</strong> Read the descriptions provided to identify your specific wall texture. Orange peel and medium knockdown are the most common textures found in homes built after 1980.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Select number of coats.</strong> Two coats is standard. However, highly textured walls often require three coats for drastic color changes (like white over dark blue) because the deep valleys of the texture fill with shadows and allow the old color to bleed through.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Choose application method.</strong> Using a thick nap roller (3/4" or 1") reaches deep into texture valleys that a standard roller misses, providing better coverage with slightly higher paint usage.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This paint calculator for textured walls uses advanced coverage metrics adapted from professional painting contractors to estimate exactly how much paint you need. Here is the math:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Effective Coverage = 400 sq ft × (1 − Texture Factor)</p>
+      <p>Net Wall Area = (Perimeter × Ceiling Height) − Doors and Windows</p>
+      <p>Gallons Needed = (Net Wall Area × Number of Coats) / Effective Coverage</p>
+    </div>
+    <p class="text-gray-700">According to Sherwin-Williams and Benjamin Moore technical data, the base coverage for a perfectly smooth wall is 400 sq ft per gallon per coat. However, texture drastically increases the surface area.</p>
+    <p class="text-gray-700 mt-3">The calculator reduces this effective coverage rate based on the texture you select. Light orange peel reduces it by 10%, medium knockdown by 20%, heavy skip trowel by 30%, and popcorn ceiling by 40%. Once the true effective coverage rate is established, the calculator multiplies your net wall area by the number of coats, and divides it by that specific effective coverage number to determine your total gallons.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Why is the coverage rate on the paint can wrong for textured walls?</h3>
+        <p class="text-gray-600 text-sm">Paint manufacturers test and print coverage rates (usually 350-400 sq ft) based on painting a perfectly flat, non-porous, primed wall. Textured walls act like thousands of tiny sponges and mountains. The paint has to coat the sides, peaks, and deep valleys of every single bump, drastically increasing the actual physical surface area you are painting.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Which roller nap thickness should I use for each texture type?</h3>
+        <p class="text-gray-600 text-sm">For light orange peel, use a 1/2-inch nap roller. For medium knockdown or heavy skip trowel, you must use a 3/4-inch or 1-inch nap roller. A thick nap holds significantly more paint and is plush enough to squish the paint deep into the valleys of the texture without leaving dry, unpainted spots.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I use a sprayer on textured walls?</h3>
+        <p class="text-gray-600 text-sm">Spraying is the absolute best way to paint heavily textured walls or popcorn ceilings. An airless sprayer forces paint directly into every crevice evenly and uses slightly less paint than a thick nap roller. However, spraying requires extensive prep work to tape and mask off every window, door, and floor to protect against overspray.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Do I need primer before painting textured walls a new color?</h3>
+        <p class="text-gray-600 text-sm">If the textured wall has already been painted in the past and is clean, you do not need a separate primer; two coats of a high-quality "paint-and-primer-in-one" will suffice. However, if the wall is raw drywall mud or brand-new unpainted texture, you must use a dedicated drywall primer first, or the porous texture will immediately absorb your expensive topcoat.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How can I tell what texture type I have?</h3>
+        <p class="text-gray-600 text-sm">Orange peel looks exactly like the bumpy skin of an orange. Knockdown looks like orange peel that has been lightly scraped with a trowel, leaving the peaks flattened and widened. Skip trowel looks like thick, random, sweeping arches of plaster. Popcorn looks like thick cottage cheese and is usually only found on ceilings.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Will painting over a popcorn ceiling remove or damage the texture?</h3>
+        <p class="text-gray-600 text-sm">It can, if you do it wrong. Unpainted popcorn ceiling is extremely water-soluble. If you roll standard water-based latex paint heavily over an unpainted popcorn ceiling, the water in the paint can dissolve the texture and cause chunks to fall off. Always spray popcorn ceilings, or use a specialized oil-based ceiling primer to lock the texture in place before rolling.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/paint-room" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Standard Paint Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many gallons of paint you need for standard, smooth interior walls.</div>
+      </a>
+      <a href="/calculators/exterior-paint" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Exterior Paint Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate the gallons of paint needed for siding, exterior trim, and fascia boards.</div>
+      </a>
+      <a href="/calculators/drywall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Drywall Estimator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many sheets of drywall and buckets of joint compound you need for your room.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function calculate() {
+    var len = toFt('r_len_ft', 'r_len_in');
+    var wid = toFt('r_wid_ft', 'r_wid_in');
+    var ceil = toFt('r_ceil_ft', 'r_ceil_in');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (len <= 0 || wid <= 0 || ceil <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      if (len > 0 || wid > 0 || ceil > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var perimeter = 2 * (len + wid);
+    var grossWallArea = perimeter * ceil;
+    var doors = getNum('num_doors');
+    var windows = getNum('num_windows');
+    var netWallArea = Math.max(grossWallArea - (doors * 21) - (windows * 15), 0);
+
+    // Texture factor — how much more paint than smooth
+    var selectedTexture = document.querySelector('input[name="texture"]:checked');
+    var textureFactor = selectedTexture ? parseFloat(selectedTexture.value) : 0.20;
+
+    // Base coverage for smooth walls
+    var baseCoverage = 400;
+    // Effective coverage after texture reduction
+    var effectiveCoverage = baseCoverage * (1 - textureFactor);
+
+    // Application method multiplier
+    var methodMultiplier = parseFloat(document.getElementById('method').value) || 1.0;
+    effectiveCoverage = effectiveCoverage / methodMultiplier;
+
+    var coats = parseInt(document.getElementById('wall_coats').value) || 2;
+    var gallonsExact = (netWallArea * coats) / effectiveCoverage;
+    var gallonsBuy = Math.ceil(gallonsExact);
+
+    // Comparison vs smooth wall estimate
+    var smoothGallons = (netWallArea * coats) / baseCoverage;
+    var extraGallons = gallonsExact - smoothGallons;
+    var extraPercent = Math.round(textureFactor * 100);
+
+    var comparison = 'A smooth wall estimate would suggest ' + smoothGallons.toFixed(2) + ' gal. Your texture requires ' + gallonsExact.toFixed(2) + ' gal — that is ' + extraGallons.toFixed(2) + ' extra gallons (' + extraPercent + '% more) due to texture surface area.';
+
+    var buyingGuide = '';
+    if (gallonsBuy <= 1) {
+      buyingGuide = '1 gallon should cover this room. Check if a quart is enough for touch-ups only.';
+    } else if (gallonsBuy <= 5) {
+      buyingGuide = gallonsBuy + ' × 1-gallon cans.';
+    } else {
+      var fiveGal = Math.floor(gallonsBuy / 5);
+      var oneGal = gallonsBuy % 5;
+      buyingGuide = fiveGal + ' × 5-gallon bucket' + (fiveGal > 1 ? 's' : '');
+      if (oneGal > 0) buyingGuide += ' + ' + oneGal + ' × 1-gallon can' + (oneGal > 1 ? 's' : '');
+      buyingGuide += '. Buying in 5-gallon buckets ensures consistent batch color.';
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_wall_area').textContent = netWallArea.toFixed(0) + ' sq ft';
+    document.getElementById('r_effective_coverage').textContent = Math.round(effectiveCoverage) + ' sq ft/gal';
+    document.getElementById('r_gallons_exact').textContent = gallonsExact.toFixed(2) + ' gal';
+    document.getElementById('r_gallons_buy').textContent = gallonsBuy + ' gal';
+    document.getElementById('r_comparison').textContent = comparison;
+    document.getElementById('r_buying').textContent = buyingGuide;
+    
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('wall_coats').addEventListener('change', calculate);
+    document.getElementById('method').addEventListener('change', calculate);
+    calculate();
+  });
+</script>
