@@ -1,0 +1,393 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Subfloor Calculator — How Many Sheets of Plywood or OSB Do I Need? | CalcForDIY"
+  description="Calculate how many sheets of plywood or OSB subfloor you need. Enter room dimensions and get sheet count and waste factor instantly. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Subfloor Calculator",
+    "description": "Free subfloor calculator that estimates how many sheets of plywood or OSB you need based on room dimensions and waste factor.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Subfloor Calculator", "item": "https://calcfordiy.com/calculators/subfloor" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Subfloor Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Subfloor Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your room dimensions to find out how many sheets of plywood or OSB subfloor you need — waste factor and sheet size options included.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Room Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Room Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="r_len_ft" placeholder="12" min="0" max="200"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="r_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Room Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="r_wid_ft" placeholder="10" min="0" max="200"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="r_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Number of identical rooms</label>
+        <div class="flex items-center gap-3">
+          <input type="number" id="num_rooms" value="1" min="1" max="50"
+            class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-400">Multiply if doing several same-size rooms</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="subtractToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('subtractSection', this.checked)" />
+        <span class="text-sm text-gray-700">Subtract an area (closet, hearth, built-in)</span>
+      </label>
+      <div id="subtractSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-xs text-gray-500 mb-3">Area within the room that will NOT have subfloor installed.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Area Length</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="sub_len_ft" placeholder="0" min="0" max="100"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="sub_len_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Area Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="sub_wid_ft" placeholder="0" min="0" max="100"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="sub_wid_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Sheet Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Sheet Size</label>
+        <select id="sheetSize"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="32">4×8 ft sheet — 32 sq ft (standard)</option>
+          <option value="40">4×10 ft sheet — 40 sq ft</option>
+          <option value="48">4×12 ft sheet — 48 sq ft</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">4×8 is the standard size available at most lumber yards and home centers</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Material</label>
+        <select id="material"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="osb">OSB (Oriented Strand Board) — most common, less expensive</option>
+          <option value="plywood">Plywood — stronger, better moisture resistance</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Room Shape</label>
+        <select id="waste"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="0.10">Simple rectangular room (10% waste)</option>
+          <option value="0.15">L-shaped or room with angles (15% waste)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Thickness</label>
+        <select id="thickness"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value='5/8"'>5/8" — most common for 16" joist spacing</option>
+          <option value='3/4"'>3/4" — recommended for 19.2" or 24" joist spacing</option>
+          <option value='1/2"'>1/2" — light duty or second layer only</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Thickness is determined by your floor joist spacing</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-5">
+      <p class="text-xs text-amber-800"><strong>Installation note:</strong> Subfloor sheets must be staggered — never line up end joints in the same row. Leave a 1/8" gap between sheets for expansion. Fasten every 6 inches along joists with subfloor screws or ring-shank nails.</p>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Sheets Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your room length and width to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Subfloor Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Net Floor Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_waste">—</div>
+        <div class="text-xs text-gray-500 mt-1">Waste Factor</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_area_with_waste">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total With Waste</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_sheets">—</div>
+        <div class="text-xs text-gray-500 mt-1">Sheets Needed</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Material Summary</p>
+      <p class="text-sm text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Buy one extra sheet. Subfloor cuts around pipes, vents, and irregular walls often waste more than expected. An unused sheet can be returned to most lumber yards.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this subfloor calculator ensures you buy the exact amount of OSB or plywood for your flooring project. Follow these five simple steps:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure room dimensions.</strong> Use a tape measure to find the maximum length and width of your room in feet and inches. If measuring multiple identical rooms, increase the room multiplier.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Subtract unfloored areas.</strong> Toggle the subtract area option to deduct spaces that will not receive a subfloor, such as large hearths, concrete steps, or permanent built-ins.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Select sheet size.</strong> The standard sheet size is 4x8 feet (32 sq ft), which is available everywhere. Larger sizes like 4x10 or 4x12 may need to be special ordered but reduce the number of seams in your floor.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Choose OSB or plywood.</strong> OSB (Oriented Strand Board) is the industry standard due to its lower cost and excellent shear strength. Plywood is more expensive but slightly lighter and handles prolonged moisture exposure better during construction.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Select thickness based on joists.</strong> A 5/8-inch thickness is standard for traditional 16-inch joist spacing. If your floor joists are spaced wider at 19.2 inches or 24 inches on center, you must upgrade to a 3/4-inch subfloor to prevent the floor from sagging.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">Behind the scenes, this subfloor calculator uses standard construction math to figure out your materials:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Net Area = (Room Length × Room Width × Number of Rooms) − Subtracted Areas</p>
+      <p>Total With Waste = Net Area × 1.10 (for simple rooms) OR 1.15 (for complex rooms)</p>
+      <p>Sheets Needed = Total With Waste / Sheet Size (rounded up to the nearest whole sheet)</p>
+    </div>
+    <p class="text-gray-700">First, the net area is calculated by multiplying your room dimensions and subtracting any areas you chose to exclude. To account for off-cuts and trimming, a waste factor is added—multiplying the net area by 1.10 for standard rectangular rooms or 1.15 for L-shaped and angled rooms. Finally, the total area with waste is divided by the square footage of your chosen sheet size (e.g., 32 sq ft for a standard 4x8 sheet) and rounded up to determine the exact number of sheets you need to purchase.</p>
+    <p class="text-gray-700 mt-3">When installing these sheets, American Wood Council (AWC) guidelines mandate a 1/8-inch expansion gap between all panel edges. Wood naturally absorbs moisture and swells; without this gap, the panels will buckle and cause severe floor squeaks. Furthermore, sheets must be laid perpendicular to the floor joists with their end joints staggered row-by-row (like brickwork) to maximize structural strength.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between OSB and plywood for subfloors?</h3>
+        <p class="text-gray-600 text-sm">OSB (Oriented Strand Board) is made by compressing layers of wood strands with adhesives. It is denser, highly consistent with no internal voids, and generally less expensive. Plywood is made of thin wood veneers glued cross-grain. Plywood is lighter, holds screws slightly better, and dries out faster if it gets rained on, but it costs more. For most residential floors, OSB is the standard choice.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I know what thickness subfloor I need based on joist spacing?</h3>
+        <p class="text-gray-600 text-sm">Your floor joist spacing dictates the structural requirement for your subfloor. If your joists are 16 inches on center, a 5/8-inch thick panel is the minimum required. If your joists are 19.2 inches or 24 inches apart, you must use 3/4-inch or 7/8-inch panels. If you plan to lay heavy stone or tile later, thicker is always better to prevent deflection (bouncing) which can crack grout.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Can I lay new subfloor directly over old subfloor?</h3>
+        <p class="text-gray-600 text-sm">Yes, installing a second layer (often called underlayment board) over an existing, structurally sound subfloor is a common way to stiffen a floor or reach a desired height profile. When doing this, run the new panels perpendicular to the old seams, use 1/2-inch or 5/8-inch material, and ensure you do not line up the new seams with the old seams.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I use screws or nails for subfloor installation?</h3>
+        <p class="text-gray-600 text-sm">Screws are infinitely better. As lumber dries and shrinks over time, smooth-shank nails lose their grip and back out, causing the wood to rub against the metal shank and squeak. If you must use nails to speed up installation with a nail gun, ensure they are ring-shank nails which physically lock into the wood fibers.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does a squeaky floor mean my subfloor is bad or rotting?</h3>
+        <p class="text-gray-600 text-sm">Usually, no. A squeaky floor is almost always caused by a loose fastener. When a nail loosens from the joist, the subfloor panel flexes up and down as you walk on it. The squeaking sound is literally the wood rubbing against the loose nail. Screwing the panel tightly back down into the joist resolves the issue.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does subfloor need to be glued as well as screwed?</h3>
+        <p class="text-gray-600 text-sm">Yes. Modern building best practices require running a continuous bead of heavy-duty polyurethane construction adhesive along the top of every joist before dropping the subfloor panel into place. The combination of glue and screws creates a unified structural diaphragm that prevents future squeaks entirely.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/laminate-flooring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Laminate Flooring Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Figure out exactly how many boxes of laminate flooring you need to order.</div>
+      </a>
+      <a href="/calculators/hardwood-flooring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Hardwood Flooring Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate the square footage and waste factor for solid hardwood installations.</div>
+      </a>
+      <a href="/calculators/underlayment" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Underlayment Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Determine how many rolls of underlayment padding you need for floating floors.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function isChecked(id) {
+    return document.getElementById(id).checked;
+  }
+
+  function toggleSection(sectionId, show) {
+    document.getElementById(sectionId).classList.toggle('hidden', !show);
+    calculate();
+  }
+
+  function calculate() {
+    var len = toFt('r_len_ft', 'r_len_in');
+    var wid = toFt('r_wid_ft', 'r_wid_in');
+    var rooms = Math.max(1, getNum('num_rooms') || 1);
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (len <= 0 || wid <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var netArea = len * wid * rooms;
+
+    if (isChecked('subtractToggle')) {
+      var subLen = toFt('sub_len_ft', 'sub_len_in');
+      var subWid = toFt('sub_wid_ft', 'sub_wid_in');
+      netArea -= subLen * subWid;
+    }
+
+    if (netArea <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var sheetSize = parseFloat(document.getElementById('sheetSize').value) || 32;
+    var waste = parseFloat(document.getElementById('waste').value) || 0.10;
+    var material = document.getElementById('material').value;
+    var thickness = document.getElementById('thickness').value;
+
+    var totalWithWaste = netArea * (1 + waste);
+    var sheetsNeeded = Math.ceil(totalWithWaste / sheetSize);
+
+    var materialLabel = material === 'osb' ? 'OSB' : 'Plywood';
+    var sheetLabel = sheetSize === 32 ? '4×8' : sheetSize === 40 ? '4×10' : '4×12';
+
+    var summary = sheetsNeeded + ' sheets of ' + thickness + ' ' + materialLabel
+      + ' (' + sheetLabel + ' ft). Total coverage: '
+      + totalWithWaste.toFixed(1) + ' sq ft including '
+      + Math.round(waste * 100) + '% waste allowance.';
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_area').textContent = netArea.toFixed(1) + ' sq ft';
+    document.getElementById('r_waste').textContent = Math.round(waste * 100) + '%';
+    document.getElementById('r_area_with_waste').textContent = totalWithWaste.toFixed(1) + ' sq ft';
+    document.getElementById('r_sheets').textContent = sheetsNeeded + ' sheets';
+    document.getElementById('r_summary').textContent = summary;
+    
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('sheetSize').addEventListener('change', calculate);
+    document.getElementById('material').addEventListener('change', calculate);
+    document.getElementById('waste').addEventListener('change', calculate);
+    document.getElementById('thickness').addEventListener('change', calculate);
+  });
+</script>
