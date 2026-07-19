@@ -1,0 +1,539 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Water Heater Operating Cost Calculator — Monthly & Annual Cost | CalcForDIY"
+  description="Calculate how much your water heater costs to run per month and per year. Compare gas vs electric, old vs new efficiency ratings. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Water Heater Operating Cost Calculator",
+    "description": "Free calculator that estimates monthly and annual water heater operating costs based on usage, fuel type, efficiency rating, and local utility rates.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Water Heater Operating Cost Calculator", "item": "https://calcfordiy.com/calculators/water-heater-cost" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Water Heater Cost Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Water Heater Operating Cost Calculator</h1>
+    <p class="text-gray-600 text-lg">Find out exactly what your water heater costs to run — monthly, annually, and compared to a newer more efficient model.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Hot Water Usage
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Household Size (auto-fill daily usage)</label>
+        <select id="household_size"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onchange="applyHouseholdSize()">
+          <option value="">— Select or enter manually below —</option>
+          <option value="20">1 person — ~20 gallons/day</option>
+          <option value="35">2 people — ~35 gallons/day</option>
+          <option value="50">3 people — ~50 gallons/day</option>
+          <option value="65">4 people — ~65 gallons/day</option>
+          <option value="80">5 people — ~80 gallons/day</option>
+          <option value="95">6+ people — ~95 gallons/day</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Daily Hot Water Usage</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="daily_gallons" placeholder="50" min="1" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-sm text-gray-500 shrink-0">gallons/day</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">DOE uses 64 gallons/day for a family of four</p>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Cold Water Inlet Temperature</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="inlet_temp" placeholder="55" min="35" max="80"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-sm text-gray-500 shrink-0">°F</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">Typical: 45°F cold climates, 55°F moderate, 70°F warm</p>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <label class="block text-xs text-gray-500 mb-1">Target Water Temperature</label>
+        <div class="flex items-center gap-3">
+          <input type="number" id="target_temp" placeholder="120" min="100" max="160"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500">°F</span>
+          <span class="text-xs text-gray-400">DOE recommends 120°F to prevent scalding and reduce cost</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Current Water Heater
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Fuel Type</label>
+        <select id="fuel_type"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onchange="updateFuelLabels()">
+          <option value="gas">Natural Gas</option>
+          <option value="electric">Electric</option>
+          <option value="propane">Propane</option>
+          <option value="heatpump">Heat Pump Water Heater</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Efficiency Rating (UEF)
+          <span class="text-gray-400 font-normal text-xs ml-1">— from EnergyGuide label</span>
+        </label>
+        <input type="number" id="efficiency" placeholder="0.67" min="0.4" max="4.0" step="0.01"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <p class="text-xs text-gray-400 mt-1" id="efficiency_hint">Typical gas tank: 0.58-0.70. High efficiency: 0.80+</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2" id="rate_label">Natural Gas Rate</label>
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-gray-500 shrink-0">$</span>
+          <input type="number" id="utility_rate" placeholder="1.20" min="0.01" max="20" step="0.01"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0" id="rate_unit">per therm</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1" id="rate_hint">US average: $1.20/therm gas, $0.16/kWh electric, $2.50/gal propane</p>
+      </div>
+      <div class="flex items-end">
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 w-full">
+          <p class="text-xs text-blue-800">Find your rate on your monthly utility bill — look for the rate per therm (gas) or rate per kWh (electric) in the billing detail section.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+      Compare to a New Unit (Optional)
+    </h2>
+
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="compareToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('compareSection', this.checked)" />
+        <span class="text-sm text-gray-700">Show savings from upgrading to a more efficient unit</span>
+      </label>
+      <div id="compareSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-xs text-gray-500 mb-3">Enter the UEF rating of the new unit you are considering. Find it on the yellow EnergyGuide label or product spec sheet.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">New Unit Fuel Type</label>
+            <select id="new_fuel_type"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="gas">Natural Gas</option>
+              <option value="electric">Electric</option>
+              <option value="propane">Propane</option>
+              <option value="heatpump">Heat Pump Water Heater</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">New Unit UEF Rating</label>
+            <input type="number" id="new_efficiency" placeholder="0.95" min="0.4" max="4.0" step="0.01"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <p class="text-xs text-gray-400 mt-1">Tankless gas: 0.82-0.96. Heat pump: 2.0-4.0. Electric tankless: 0.99</p>
+          </div>
+        </div>
+        <div class="mt-3">
+          <label class="block text-xs text-gray-500 mb-1">New Unit Purchase + Installation Cost (optional)</label>
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-gray-500">$</span>
+            <input type="number" id="install_cost" placeholder="1200" min="0" max="20000"
+              class="w-40 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-400">Used to calculate payback period</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Operating Cost →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your daily hot water usage, temperatures, efficiency rating, and utility rate to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Water Heater Cost Estimate</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_btu">—</div>
+        <div class="text-xs text-gray-500 mt-1">BTUs Per Day</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_daily_energy">—</div>
+        <div class="text-xs text-gray-500 mt-1" id="r_daily_energy_label">Energy Per Day</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_monthly">—</div>
+        <div class="text-xs text-gray-500 mt-1">Monthly Cost</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_annual">—</div>
+        <div class="text-xs text-gray-500 mt-1">Annual Cost</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Cost Breakdown</p>
+      <p class="text-sm text-gray-600" id="r_breakdown">—</p>
+    </div>
+
+    <div id="comparisonResults" class="hidden">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-3">
+        <p class="text-sm font-semibold text-green-900 mb-3">Upgrade Comparison</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="bg-white rounded-lg p-3 text-center">
+            <div class="text-xl font-bold text-green-700" id="r_new_annual">—</div>
+            <div class="text-xs text-gray-500 mt-1">New Unit Annual Cost</div>
+          </div>
+          <div class="bg-white rounded-lg p-3 text-center">
+            <div class="text-xl font-bold text-blue-700" id="r_annual_savings">—</div>
+            <div class="text-xs text-gray-500 mt-1">Annual Savings</div>
+          </div>
+          <div class="bg-white rounded-lg p-3 text-center">
+            <div class="text-xl font-bold text-gray-900" id="r_payback">—</div>
+            <div class="text-xs text-gray-500 mt-1">Payback Period</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Lowering your water heater thermostat from 140°F to 120°F can reduce water heating costs by 6-10% per year. The DOE recommends 120°F as the standard setting.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this water heater operating cost calculator helps you understand your true monthly energy expense. Follow these five steps:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select household size.</strong> Use the dropdown to automatically estimate your daily hot water usage based on the number of people in your home, or manually enter your exact usage in gallons.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Enter inlet temperature.</strong> This is the temperature of the cold water entering the heater from the street. It varies heavily by region—from roughly 45°F in cold northern climates to 70°F in warm southern climates.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Enter target temperature.</strong> The Department of Energy (DOE) highly recommends setting your water heater thermostat to exactly 120°F to perfectly balance hot water comfort, prevent accidental scalding, and maximize energy savings.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Enter your UEF rating.</strong> Find the specific Uniform Energy Factor (UEF) rating printed on the yellow EnergyGuide label stuck to the side of your physical water heater tank.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Enter your utility rate.</strong> Look at a recent monthly utility bill to find your exact rate per therm (for gas) or rate per kWh (for electricity). If you want, toggle the comparison section to see if a newer, more efficient unit will save you enough money to justify the upgrade.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">Behind the scenes, this water heater operating cost calculator uses the exact same thermodynamics equations utilized by the Department of Energy for their EnergyGuide label calculations. Here is the math in plain English:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>BTUs Per Day = Daily Gallons × 8.34 lbs/gal × Temperature Rise</p>
+      <p>Gas Therms = (BTUs / 100,000) / Efficiency</p>
+      <p>Electric kWh = (BTUs / 3,412) / Efficiency</p>
+      <p>Annual Cost = (Energy Units × Utility Rate) × 365</p>
+    </div>
+    <p class="text-gray-700">First, the total BTUs needed per day is calculated. A BTU (British Thermal Unit) is the standard measurement of heat required to raise exactly 1 pound of water by 1 degree Fahrenheit. Therefore, the calculator multiplies your daily gallons by 8.34 (the physical weight of one gallon of water) and multiplies that by the total temperature rise (the difference between your cold inlet and hot target temps).</p>
+    <p class="text-gray-700 mt-3">Once the total raw BTUs are calculated, it converts that number into the energy unit you pay for on your bill. For gas, the BTUs are divided by 100,000 to get therms, and then divided by your unit's specific efficiency rating to account for heat lost up the exhaust flue. For electric, the BTUs are divided by 3,412 to get Kilowatt-hours (kWh), and for propane, divided by 91,500 to get gallons. Finally, the true energy requirement is multiplied by your utility rate for the daily cost, and then multiplied by 365 for the annual total.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I find the UEF rating on an existing water heater?</h3>
+        <p class="text-gray-600 text-sm">The UEF (Uniform Energy Factor) is prominently displayed on the large yellow EnergyGuide sticker attached to the front of almost all modern water heaters. If the sticker is missing, look for the manufacturer's data plate (a small white or silver sticker) containing the model number. Searching that specific model number online will quickly yield the exact UEF rating.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between EF and UEF ratings, and which is more accurate?</h3>
+        <p class="text-gray-600 text-sm">EF (Energy Factor) was the older, less accurate measurement standard used prior to 2017. UEF (Uniform Energy Factor) is the new, vastly more accurate Department of Energy standard. UEF forces manufacturers to test their heaters based on real-world simulated usage patterns (like showering and running the dishwasher) rather than just heating a static tank of water in a laboratory.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does a tankless water heater actually save money, and by how much?</h3>
+        <p class="text-gray-600 text-sm">Yes, tankless water heaters save money because they eliminate "standby heat loss"—the energy wasted keeping a 50-gallon tank of water hot 24/7 when no one is using it. Depending on usage, upgrading from a standard 0.60 UEF gas tank to a 0.95 UEF tankless gas unit can save an average family roughly $100 to $150 per year on their utility bills.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What inlet temperature should I use if I don't know mine?</h3>
+        <p class="text-gray-600 text-sm">If you live in a northern climate with cold winters (like Minnesota or Maine), use 45°F. If you live in a moderate, central climate (like Virginia or Kansas), use 55°F. If you live in the deep south with warm ground temperatures year-round (like Florida or Texas), use 65°F to 70°F.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How does lowering the thermostat from 140°F to 120°F affect annual cost?</h3>
+        <p class="text-gray-600 text-sm">Many water heaters are shipped from the factory set to 140°F. Dropping the thermostat back down to the DOE recommended 120°F can reduce your overall water heating costs by roughly 6% to 10% annually. It requires significantly less energy to reach the lower temperature and reduces standby heat loss radiating through the sides of the tank.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Is a heat pump water heater worth the higher upfront cost?</h3>
+        <p class="text-gray-600 text-sm">Almost always, yes. Heat pump water heaters pull ambient heat from the surrounding air rather than generating their own heat from scratch. Because of this, they carry staggering UEF ratings between 2.0 and 4.0. Using this water heater operating cost calculator, you will find they can save $300 to $400 a year compared to a standard electric tank, usually paying for themselves within 3 to 5 years.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/ac-operating-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">AC Operating Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how much your air conditioner costs to run based on SEER rating and local utility rates.</div>
+      </a>
+      <a href="/calculators/lumens" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Lumens Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Determine exactly how bright a room needs to be based on its size and purpose.</div>
+      </a>
+      <a href="/calculators/recessed-lights-garage" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Recessed Lighting for Garage</div>
+        <div class="text-xs text-gray-500 mt-1">Plan the perfect recessed lighting grid layout for an active garage workspace.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function isChecked(id) {
+    return document.getElementById(id).checked;
+  }
+
+  function toggleSection(sectionId, show) {
+    document.getElementById(sectionId).classList.toggle('hidden', !show);
+    calculate();
+  }
+
+  function applyHouseholdSize() {
+    var val = document.getElementById('household_size').value;
+    if (val) {
+      document.getElementById('daily_gallons').value = val;
+      calculate();
+    }
+  }
+
+  function updateFuelLabels() {
+    var fuel = document.getElementById('fuel_type').value;
+    var rateLabel = document.getElementById('rate_label');
+    var rateUnit = document.getElementById('rate_unit');
+    var rateHint = document.getElementById('rate_hint');
+    var effHint = document.getElementById('efficiency_hint');
+
+    if (fuel === 'gas') {
+      rateLabel.textContent = 'Natural Gas Rate';
+      rateUnit.textContent = 'per therm';
+      rateHint.textContent = 'US average: ~$1.20 per therm. Check your gas bill.';
+      effHint.textContent = 'Typical tank: 0.58-0.70 UEF. High efficiency: 0.80+';
+      document.getElementById('utility_rate').placeholder = '1.20';
+    } else if (fuel === 'electric') {
+      rateLabel.textContent = 'Electric Rate';
+      rateUnit.textContent = 'per kWh';
+      rateHint.textContent = 'US average: ~$0.16 per kWh. Check your electric bill.';
+      effHint.textContent = 'Standard electric tank: 0.90-0.95 UEF';
+      document.getElementById('utility_rate').placeholder = '0.16';
+    } else if (fuel === 'propane') {
+      rateLabel.textContent = 'Propane Rate';
+      rateUnit.textContent = 'per gallon';
+      rateHint.textContent = 'US average: ~$2.50 per gallon. Varies significantly by region.';
+      effHint.textContent = 'Propane tank: 0.58-0.70 UEF. Tankless: 0.82-0.96';
+      document.getElementById('utility_rate').placeholder = '2.50';
+    } else if (fuel === 'heatpump') {
+      rateLabel.textContent = 'Electric Rate';
+      rateUnit.textContent = 'per kWh';
+      rateHint.textContent = 'US average: ~$0.16 per kWh. Check your electric bill.';
+      effHint.textContent = 'Heat pump water heaters: 2.0-4.0 UEF (very high efficiency)';
+      document.getElementById('utility_rate').placeholder = '0.16';
+    }
+
+    calculate();
+  }
+
+  function calcAnnualCost(gallons, inletTemp, targetTemp, efficiency, fuel, rate) {
+    // BTUs per day = gallons × 8.34 lbs/gal × temperature rise × 1 BTU/lb°F
+    var tempRise = targetTemp - inletTemp;
+    if (tempRise <= 0) return null;
+    var btuPerDay = gallons * 8.34 * tempRise;
+
+    // Energy per day
+    var energyPerDay, costPerDay;
+
+    if (fuel === 'gas') {
+      // 1 therm = 100,000 BTU
+      energyPerDay = (btuPerDay / 100000) / efficiency;
+      costPerDay = energyPerDay * rate;
+    } else if (fuel === 'electric' || fuel === 'heatpump') {
+      // 1 kWh = 3,412 BTU
+      energyPerDay = (btuPerDay / 3412) / efficiency;
+      costPerDay = energyPerDay * rate;
+    } else if (fuel === 'propane') {
+      // 1 gallon propane = 91,500 BTU
+      energyPerDay = (btuPerDay / 91500) / efficiency;
+      costPerDay = energyPerDay * rate;
+    }
+
+    return {
+      btuPerDay: btuPerDay,
+      energyPerDay: energyPerDay,
+      costPerDay: costPerDay,
+      monthly: costPerDay * 30.4,
+      annual: costPerDay * 365
+    };
+  }
+
+  function calculate() {
+    var gallons = getNum('daily_gallons');
+    var inletTemp = getNum('inlet_temp');
+    var targetTemp = getNum('target_temp');
+    var efficiency = getNum('efficiency');
+    var rate = getNum('utility_rate');
+    var fuel = document.getElementById('fuel_type').value;
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (gallons <= 0 || inletTemp <= 0 || targetTemp <= 0 || efficiency <= 0 || rate <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      if (gallons > 0 || inletTemp > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    if (targetTemp <= inletTemp) {
+      document.getElementById('errorMsg').classList.remove('hidden');
+      document.getElementById('errorMsg').textContent = 'Target temperature must be higher than inlet temperature.';
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      return;
+    }
+
+    var result = calcAnnualCost(gallons, inletTemp, targetTemp, efficiency, fuel, rate);
+    if (!result) return;
+
+    // Format energy unit label
+    var energyLabel = 'therms/day';
+    if (fuel === 'electric' || fuel === 'heatpump') energyLabel = 'kWh/day';
+    if (fuel === 'propane') energyLabel = 'gal propane/day';
+
+    var breakdown = 'Your water heater heats ' + gallons + ' gallons per day by ' +
+      (targetTemp - inletTemp).toFixed(0) + '°F (' + inletTemp + '°F → ' + targetTemp + '°F), ' +
+      'requiring ' + result.btuPerDay.toLocaleString(undefined, {maximumFractionDigits: 0}) + ' BTUs/day. ' +
+      'At ' + (efficiency * 100).toFixed(0) + '% efficiency that is ' +
+      result.energyPerDay.toFixed(3) + ' ' + energyLabel + ' at $' + rate + ' = $' +
+      result.costPerDay.toFixed(2) + '/day.';
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_btu').textContent = result.btuPerDay.toLocaleString(undefined, {maximumFractionDigits: 0});
+    document.getElementById('r_daily_energy').textContent = result.energyPerDay.toFixed(3);
+    document.getElementById('r_daily_energy_label').textContent = energyLabel;
+    document.getElementById('r_monthly').textContent = '$' + result.monthly.toFixed(2);
+    document.getElementById('r_annual').textContent = '$' + result.annual.toFixed(2) + '/yr';
+    document.getElementById('r_breakdown').textContent = breakdown;
+
+    // Comparison results
+    var compResults = document.getElementById('comparisonResults');
+    if (isChecked('compareToggle')) {
+      var newEfficiency = getNum('new_efficiency');
+      var newFuel = document.getElementById('new_fuel_type').value;
+      var installCost = getNum('install_cost');
+
+      // Use same rate for same fuel, otherwise need separate rate input
+      // For simplicity use same rate if same fuel type
+      var newRate = rate;
+
+      if (newEfficiency > 0) {
+        var newResult = calcAnnualCost(gallons, inletTemp, targetTemp, newEfficiency, newFuel, newRate);
+        if (newResult) {
+          var annualSavings = result.annual - newResult.annual;
+          var paybackText = '—';
+          if (installCost > 0 && annualSavings > 0) {
+            var paybackYears = installCost / annualSavings;
+            paybackText = paybackYears.toFixed(1) + ' years';
+          } else if (annualSavings <= 0) {
+            paybackText = 'No savings — current unit is more efficient';
+          }
+
+          compResults.classList.remove('hidden');
+          document.getElementById('r_new_annual').textContent = '$' + newResult.annual.toFixed(2) + '/yr';
+          document.getElementById('r_annual_savings').textContent = annualSavings > 0
+            ? '$' + annualSavings.toFixed(2) + '/yr saved'
+            : '$' + Math.abs(annualSavings).toFixed(2) + '/yr more';
+          document.getElementById('r_payback').textContent = paybackText;
+        }
+      } else {
+        compResults.classList.add('hidden');
+      }
+    } else {
+      compResults.classList.add('hidden');
+    }
+    
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('fuel_type').addEventListener('change', updateFuelLabels);
+    document.getElementById('new_fuel_type') && document.getElementById('new_fuel_type').addEventListener('change', calculate);
+    document.getElementById('inlet_temp').value = '55';
+    document.getElementById('target_temp').value = '120';
+    document.getElementById('efficiency').value = '0.67';
+    document.getElementById('utility_rate').value = '1.20';
+  });
+</script>
