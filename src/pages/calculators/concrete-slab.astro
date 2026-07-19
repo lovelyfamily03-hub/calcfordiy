@@ -1,0 +1,420 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Concrete Slab Calculator — Cubic Yards and Bags | CalcForDIY"
+  description="Calculate how much concrete you need for a slab. Enter dimensions and thickness to get cubic yards for ready-mix delivery or bag count for bagged concrete. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Concrete Slab Calculator",
+    "description": "Free concrete slab calculator that estimates cubic yards for ready-mix delivery or bag count for bagged concrete based on slab dimensions and thickness.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Concrete Slab Calculator", "item": "https://calcfordiy.com/calculators/concrete-slab" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Concrete Slab Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Concrete Slab Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your slab dimensions and thickness to get cubic yards for ready-mix delivery or bag count for smaller projects — with a 10% waste factor included.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Slab Dimensions
+    </h2>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4">
+      <p class="text-xs text-amber-800"><strong>Standard thicknesses:</strong> 4 inches for patios and walkways. 6 inches for driveways and areas supporting vehicle weight. 4-6 inches for shed floors. Always check local building codes for your specific project.</p>
+    </div>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Slab Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="s_len_ft" placeholder="12" min="0" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="s_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Slab Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="s_wid_ft" placeholder="10" min="0" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="s_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-xs text-gray-500 mb-1">Slab Thickness</label>
+        <div class="flex items-center gap-3">
+          <select id="thickness_preset"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onchange="applyThickness()">
+            <option value="">— Select common thickness —</option>
+            <option value="4">4 inches — patio, walkway, shed floor</option>
+            <option value="6">6 inches — driveway, heavy load areas</option>
+            <option value="3.5">3.5 inches — lightweight patio</option>
+            <option value="8">8 inches — structural or frost wall</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2 mt-2">
+          <input type="number" id="s_thick_in" placeholder="4" min="1" max="24" step="0.5"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500">inches thick</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Number of identical slabs</label>
+        <div class="flex items-center gap-3">
+          <input type="number" id="num_slabs" value="1" min="1" max="50"
+            class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-400">Multiply for several same-size pads</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional slab section -->
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="extraSlabToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('extraSlabSection', this.checked)" />
+        <span class="text-sm text-gray-700">Add a second slab area (for L-shaped or irregular slabs)</span>
+      </label>
+      <div id="extraSlabSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-xs text-gray-500 mb-3">Enter the additional area. Same thickness as above is assumed.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Length</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="s2_len_ft" placeholder="6" min="0" max="500"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="s2_len_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="s2_wid_ft" placeholder="4" min="0" max="500"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="s2_wid_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Concrete Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Buying Method</label>
+        <select id="buy_method"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="both">Show both — bags and cubic yards</option>
+          <option value="bags">Bagged concrete only</option>
+          <option value="readymix">Ready-mix delivery only</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Ready-mix is more economical above roughly 1 cubic yard</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Bag Size</label>
+        <select id="bag_size"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="0.45">60 lb bag — 0.45 cu ft</option>
+          <option value="0.60" selected>80 lb bag — 0.60 cu ft (most common)</option>
+          <option value="0.375">50 lb bag — 0.375 cu ft</option>
+        </select>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Concrete Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your slab length, width, and thickness to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Concrete Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_sqft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Slab Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_cuft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Cubic Feet</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_cuyd">—</div>
+        <div class="text-xs text-gray-500 mt-1">Cubic Yards</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_bags">—</div>
+        <div class="text-xs text-gray-500 mt-1" id="r_bags_label">Bags Needed</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Buying Recommendation</p>
+      <p class="text-sm text-gray-600" id="r_recommendation">—</p>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Ready-Mix Note</p>
+      <p class="text-sm text-gray-600" id="r_readymix_note">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Always add 10% to your concrete order. Running short mid-pour forces a cold joint — a visible seam where fresh concrete meets partially set concrete — which weakens the slab. It is already included in this estimate.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this concrete slab calculator ensures you buy the exact right amount of material to pour a solid, crack-free surface. Follow these five steps:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure slab dimensions.</strong> Measure the planned length and width of your concrete pour in feet and inches.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select slab thickness.</strong> Use the presets to select thickness. According to American Concrete Institute (ACI) guidelines, 4 inches is the standard thickness for patios and walkways, while 6 inches is required for driveways that must support vehicle weight.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Add a second area (optional).</strong> If you are pouring an L-shaped patio, simply toggle this option on and enter the dimensions of the second rectangular section into the concrete slab calculator.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Select buying method.</strong> Choose whether you want to see the estimate in bags or cubic yards. As a general rule, paying for a ready-mix truck delivery becomes much more economical than buying and mixing individual bags when your project exceeds roughly 1 cubic yard.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Select bag size.</strong> If you are mixing by hand, select your bag size. The heavy 80 lb bags are the most efficient and cost-effective choice for larger pours.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This concrete slab calculator uses standard volume geometry. Here is the math in plain English:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Volume in Cubic Feet = Length × Width × (Thickness in inches / 12)</p>
+      <p>Cubic Yards = Cubic Feet / 27</p>
+      <p>Bags Needed = Total Cubic Feet / Bag Yield (rounded up)</p>
+    </div>
+    <p class="text-gray-700">First, the volume in cubic feet is calculated by multiplying the length by the width, and then multiplying that by the thickness in feet (which is the thickness in inches divided by 12). To convert cubic feet into cubic yards for a ready-mix truck order, divide the cubic feet by 27.</p>
+    <p class="text-gray-700 mt-3">Crucially, the calculator automatically adds 10% to the total volume. This 10% waste buffer accounts for spillage, material left in the mixer, and inevitable subgrade irregularities (because the bottom of your excavated hole is never perfectly flat). Finally, the total cubic feet is divided by the specific yield of your chosen bag size. According to Quikrete product data, an 80 lb bag yields 0.60 cubic feet, a 60 lb bag yields 0.45 cubic feet, and a 50 lb bag yields 0.375 cubic feet.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How thick does a concrete slab need to be?</h3>
+        <p class="text-gray-600 text-sm">For foot traffic applications like patios and standard walkways, 4 inches is the industry standard thickness. For residential driveways, you must pour a 6-inch slab to safely support the heavy, concentrated weight of a vehicle. For a standard backyard storage shed, 4 to 6 inches is sufficient depending on the size of the shed.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I use rebar or wire mesh in a concrete slab?</h3>
+        <p class="text-gray-600 text-sm">Yes, you should always use reinforcement. Welded wire mesh helps prevent the concrete from cracking as it shrinks during the curing process. Rebar (steel reinforcing bar) adds massive tensile strength to the slab, allowing it to bridge minor soil settling without snapping. For driveways, a grid of half-inch rebar is highly recommended.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How long does concrete take to cure before I can walk or drive on it?</h3>
+        <p class="text-gray-600 text-sm">You can typically walk gently on a new concrete slab after 24 to 48 hours. However, you should not drive a vehicle onto a new driveway for at least 7 to 10 days. Concrete takes a full 28 days to reach its maximum compressive strength.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between ready-mix and bagged concrete?</h3>
+        <p class="text-gray-600 text-sm">Bagged concrete is a dry powder you buy at a hardware store and mix with water yourself; it is ideal for small walkways or fence posts. Ready-mix concrete is pre-mixed with water at a commercial plant and delivered wet in a spinning mixer truck. Using this concrete slab calculator, you will quickly see that ready-mix is the only viable option for large patios or driveways, as mixing 100 individual bags by hand is too slow and physically exhausting.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I prevent cracks in a concrete slab?</h3>
+        <p class="text-gray-600 text-sm">All concrete cracks eventually. The key is controlling where it cracks. You must cut or tool "control joints" into the wet concrete every 8 to 10 feet. These straight grooves create a deliberate weak point, forcing the concrete to crack neatly down the invisible bottom of the groove rather than spiderwebbing across the surface of your patio.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Do I need a permit for a concrete patio or driveway?</h3>
+        <p class="text-gray-600 text-sm">Most local municipalities require a building permit for any structural driveway or any patio that sits higher than 30 inches off the ground. Small, ground-level backyard patios often do not require a permit, but you should always call your local building department to verify before pouring.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/concrete-fence-post" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Fence Post Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many bags of concrete you need to set your fence posts securely.</div>
+      </a>
+      <a href="/calculators/rebar" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Rebar Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Figure out exactly how much steel rebar your concrete slab requires.</div>
+      </a>
+      <a href="/calculators/subfloor" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Subfloor Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many sheets of plywood or OSB you need to floor a room.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function isChecked(id) {
+    return document.getElementById(id).checked;
+  }
+
+  function toggleSection(sectionId, show) {
+    document.getElementById(sectionId).classList.toggle('hidden', !show);
+    calculate();
+  }
+
+  function applyThickness() {
+    var val = document.getElementById('thickness_preset').value;
+    if (val) {
+      document.getElementById('s_thick_in').value = val;
+      calculate();
+    }
+  }
+
+  function calculate() {
+    var len = toFt('s_len_ft', 's_len_in');
+    var wid = toFt('s_wid_ft', 's_wid_in');
+    var thickIn = getNum('s_thick_in');
+    var numSlabs = Math.max(1, getNum('num_slabs') || 1);
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (len <= 0 || wid <= 0 || thickIn <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var thickFt = thickIn / 12;
+    var sqFt = len * wid * numSlabs;
+    var cuFt = sqFt * thickFt;
+
+    // Add second slab area if selected
+    if (isChecked('extraSlabToggle')) {
+      var len2 = toFt('s2_len_ft', 's2_len_in');
+      var wid2 = toFt('s2_wid_ft', 's2_wid_in');
+      if (len2 > 0 && wid2 > 0) {
+        sqFt += len2 * wid2;
+        cuFt += len2 * wid2 * thickFt;
+      }
+    }
+
+    // Add 10% waste factor
+    var cuFtWithWaste = cuFt * 1.10;
+    var cuYdWithWaste = cuFtWithWaste / 27;
+
+    var bagYield = parseFloat(document.getElementById('bag_size').value) || 0.60;
+    var bagsNeeded = Math.ceil(cuFtWithWaste / bagYield);
+
+    // Buying recommendation
+    var recommendation = '';
+    if (cuYdWithWaste < 0.5) {
+      recommendation = 'Small project — bagged concrete is your best option. No minimum order, no delivery needed.';
+    } else if (cuYdWithWaste < 1) {
+      recommendation = 'Under 1 cubic yard — bagged concrete is still practical. ' + bagsNeeded + ' bags of ' + (bagYield === 0.60 ? '80 lb' : bagYield === 0.45 ? '60 lb' : '50 lb') + ' bags.';
+    } else if (cuYdWithWaste < 3) {
+      recommendation = cuYdWithWaste.toFixed(2) + ' cubic yards. Either ' + bagsNeeded + ' bags or a small ready-mix delivery. Compare costs — many suppliers have a 1-2 yard minimum for delivery.';
+    } else {
+      recommendation = cuYdWithWaste.toFixed(2) + ' cubic yards. Ready-mix delivery is strongly recommended at this volume. Bagged concrete would require ' + bagsNeeded + ' bags — significant labor and cost.';
+    }
+
+    // Ready-mix note
+    var readyMixNote = 'Order ' + cuYdWithWaste.toFixed(2) + ' cubic yards. Standard ready-mix trucks hold 8-10 cubic yards. ';
+    if (cuYdWithWaste < 1) {
+      readyMixNote += 'Most suppliers have a minimum order of 1 cubic yard. Short-load fees often apply under 3 yards.';
+    } else if (cuYdWithWaste <= 10) {
+      readyMixNote += 'Your order fits in one standard truck. Confirm minimum order and short-load fees with your local supplier.';
+    } else {
+      readyMixNote += 'Your project requires more than one truck load. Coordinate delivery timing carefully to avoid cold joints.';
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_sqft').textContent = sqFt.toFixed(1) + ' sq ft';
+    document.getElementById('r_cuft').textContent = cuFtWithWaste.toFixed(2) + ' cu ft';
+    document.getElementById('r_cuyd').textContent = cuYdWithWaste.toFixed(2) + ' yd³';
+    document.getElementById('r_bags').textContent = bagsNeeded + ' bags';
+    document.getElementById('r_recommendation').textContent = recommendation;
+    document.getElementById('r_readymix_note').textContent = readyMixNote;
+    
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('bag_size').addEventListener('change', calculate);
+    document.getElementById('buy_method').addEventListener('change', calculate);
+    document.getElementById('thickness_preset').addEventListener('change', applyThickness);
+  });
+</script>
