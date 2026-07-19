@@ -1,0 +1,365 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Rebar Calculator — How Much Rebar for a Concrete Slab? | CalcForDIY"
+  description="Calculate how many rebar bars you need for a concrete slab. Enter slab dimensions, rebar spacing, and bar size for an instant count and total linear feet. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Rebar Calculator",
+    "description": "Free rebar calculator that estimates how many bars and total linear feet of rebar you need for a concrete slab based on dimensions, spacing, and bar size.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Rebar Calculator", "item": "https://calcfordiy.com/calculators/rebar" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Rebar Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Rebar Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your slab dimensions, rebar spacing, and bar size to get an instant bar count, linear feet, and weight estimate for your concrete project.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Slab Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Slab Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="s_len_ft" placeholder="12" min="0" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="s_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Slab Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="s_wid_ft" placeholder="10" min="0" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="s_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Rebar Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Rebar Spacing</label>
+        <select id="spacing"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="12" selected>12 inches on center — standard patio or walkway</option>
+          <option value="18">18 inches on center — lightly loaded slab</option>
+          <option value="24">24 inches on center — minimal reinforcement</option>
+          <option value="8">8 inches on center — heavy load or driveway</option>
+          <option value="6">6 inches on center — structural or high-load</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">ACI 318 recommends 12-18" for residential slabs</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Rebar Size</label>
+        <select id="rebar_size"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="0.376">#3 rebar — 3/8" diameter — 0.376 lbs/ft</option>
+          <option value="0.668" selected>#4 rebar — 1/2" diameter — 0.668 lbs/ft (most common)</option>
+          <option value="1.043">#5 rebar — 5/8" diameter — 1.043 lbs/ft</option>
+          <option value="1.502">#6 rebar — 3/4" diameter — 1.502 lbs/ft</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">#4 rebar is standard for most residential concrete slabs</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Standard Bar Length</label>
+        <select id="bar_length"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="20" selected>20 ft bars (standard)</option>
+          <option value="40">40 ft bars (long — reduces splices)</option>
+          <option value="10">10 ft bars (easier to transport)</option>
+          <option value="60">60 ft bars (coiled)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Grid Pattern</label>
+        <select id="grid_pattern"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="both" selected>Two-way grid — bars in both directions (standard)</option>
+          <option value="one">One-way — bars in one direction only</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Two-way grid is standard for slabs exposed to freezing or heavy loads</p>
+      </div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-5">
+      <p class="text-xs text-amber-800"><strong>Overlap note:</strong> Where bars need to be spliced, overlap them by at least 40 bar diameters. For #4 rebar that is 20 inches. This calculator adds 10% to account for overlaps and edge setback.</p>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Rebar Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your slab length and width to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Rebar Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_linear_ft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Linear Feet</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_bars">—</div>
+        <div class="text-xs text-gray-500 mt-1">Bars to Buy</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_weight">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Weight</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_spacing_actual">—</div>
+        <div class="text-xs text-gray-500 mt-1">Spacing Selected</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-2">Grid Layout</p>
+      <p class="text-sm text-gray-600" id="r_layout">—</p>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-2">Buying Summary</p>
+      <p class="text-sm text-gray-600" id="r_buying">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Set rebar at least 1.5 inches from the bottom of the slab — use rebar chairs or dobies to hold it off the ground. Rebar resting on dirt provides almost no reinforcement benefit.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this rebar calculator ensures you purchase the exact amount of steel reinforcement needed to strengthen your concrete slab. Follow these five steps:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Enter slab dimensions.</strong> Use a tape measure to determine the length and width of your concrete pour in feet and inches.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select rebar spacing.</strong> Also known as "on center" spacing, this determines how tight the grid is. ACI 318 (American Concrete Institute) guidelines recommend 12 to 18 inches on center for standard residential slabs. Shrink that to 8 inches for driveways or areas supporting heavy loads.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Select rebar size.</strong> Number 4 (#4) rebar, which is a half-inch thick, is the absolute most common and universally recommended size for residential concrete slabs.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Select bar length.</strong> To correctly calculate how many physical bars you need to purchase, select the length available at your supplier. A 20-foot bar is standard from lumber yards and large big-box stores.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Select grid pattern.</strong> Choosing a two-way grid (running bars in both directions) is the professional standard and provides significantly better multi-directional crack control than a one-way layout.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This rebar calculator maps out your grid mathematically to determine your material needs. Here is the math in plain English:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Bars Running Lengthwise = (Slab Width / Spacing) + 1</p>
+      <p>Bars Running Widthwise = (Slab Length / Spacing) + 1</p>
+      <p>Total Linear Feet = (Lengthwise Bars × Slab Length) + (Widthwise Bars × Slab Width)</p>
+      <p>Bars to Buy = (Total Linear Feet × 1.10) / Bar Length (rounded up)</p>
+    </div>
+    <p class="text-gray-700">First, the calculator divides the slab's width by your chosen spacing to find out how many bars need to run lengthwise down the slab. It repeats this process for the widthwise bars. To find the linear feet required in each direction, the bar count is multiplied by the slab dimension in that specific direction. If you chose a two-way grid, both numbers are added together.</p>
+    <p class="text-gray-700 mt-3">Because a 40-foot slab requires splicing two 20-foot bars together, the calculator automatically adds a 10% material buffer. This ensures you have plenty of extra steel to accommodate lap splices (where two bars overlap each other and are tied together) and edge setbacks. Finally, the total linear feet is multiplied by the specific weight per foot—drawn directly from CRSI (Concrete Reinforcing Steel Institute) standard bar weights—to provide the total weight of your steel order.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does a concrete patio always need rebar, or is wire mesh an alternative?</h3>
+        <p class="text-gray-600 text-sm">For light foot-traffic patios, wire mesh (welded wire reinforcement) is often an acceptable alternative to rebar. Wire mesh sits closer to the surface and is excellent at preventing shrinkage cracks from widening. However, if the patio will hold a heavy hot tub, or if it is a driveway supporting vehicles, thick steel rebar is mandatory for structural integrity.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between rebar and wire mesh, and when should I use each?</h3>
+        <p class="text-gray-600 text-sm">Wire mesh controls temperature and shrinkage cracking near the top of the slab. It prevents the concrete from spiderwebbing but provides minimal heavy load support. Rebar (reinforcing bar) provides immense tensile strength near the middle-bottom of the slab. It allows the concrete to bend slightly under heavy loads and bridge over settling soil without snapping cleanly in half.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I support rebar off the ground during the pour?</h3>
+        <p class="text-gray-600 text-sm">Rebar sitting directly on the dirt is useless. You must suspend it roughly in the middle of the slab thickness (or about 1.5 inches to 2 inches off the ground for a standard 4-inch slab). The best way to do this is by tying the rebar grid together with wire and resting the grid on cheap plastic "rebar chairs" or small concrete blocks called "dobies."</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What does "on center" spacing mean for rebar placement?</h3>
+        <p class="text-gray-600 text-sm">"On center" (OC) spacing refers to the distance measured from the absolute center of one rebar pole to the absolute center of the parallel rebar pole next to it. It does not measure the empty gap between the edges of the steel bars.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Do I need different rebar for a 4-inch slab versus a 6-inch slab?</h3>
+        <p class="text-gray-600 text-sm">Generally, no. A #4 (half-inch) rebar is the universally accepted standard for both 4-inch patios and 6-inch residential driveways. What changes is the spacing. For a 4-inch patio, you might space the #4 rebar 18 inches apart. For a 6-inch driveway carrying heavy trucks, you tighten that spacing grid to 12 inches or even 8 inches apart.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I cut rebar on a job site?</h3>
+        <p class="text-gray-600 text-sm">Do not use a hacksaw; it is far too slow and physically demanding. For standard #4 rebar, the best tool is a handheld angle grinder fitted with a metal-cutting cutoff wheel. If you have to cut dozens of bars, renting a manual heavy-duty bolt cutter or an electric rebar cutter is the most efficient option.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate the cubic yards and bags needed for patios, walkways, or driveways.</div>
+      </a>
+      <a href="/calculators/concrete-fence-post" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Fence Post Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many bags of concrete you need to set your fence posts securely.</div>
+      </a>
+      <a href="/calculators/subfloor" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Subfloor Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many sheets of plywood or OSB you need to floor a room.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function calculate() {
+    var len = toFt('s_len_ft', 's_len_in');
+    var wid = toFt('s_wid_ft', 's_wid_in');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (len <= 0 || wid <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var spacingIn = parseFloat(document.getElementById('spacing').value) || 12;
+    var spacingFt = spacingIn / 12;
+    var rebarWeightPerFt = parseFloat(document.getElementById('rebar_size').value) || 0.668;
+    var barLengthFt = parseFloat(document.getElementById('bar_length').value) || 20;
+    var gridPattern = document.getElementById('grid_pattern').value;
+
+    // Number of bars running in each direction
+    // Bars start at half spacing from edge and continue at spacing intervals
+    var barsAlongWidth = Math.floor(wid / spacingFt) + 1;
+    var barsAlongLength = Math.floor(len / spacingFt) + 1;
+
+    // Linear feet in each direction
+    var linearFtLengthDir = barsAlongWidth * len;
+    var linearFtWidthDir = barsAlongLength * wid;
+
+    var totalLinearFt = 0;
+    var layoutText = '';
+
+    if (gridPattern === 'both') {
+      totalLinearFt = linearFtLengthDir + linearFtWidthDir;
+      layoutText = barsAlongWidth + ' bars running the ' + len.toFixed(1) + ' ft length + ' +
+        barsAlongLength + ' bars running the ' + wid.toFixed(1) + ' ft width = ' +
+        (barsAlongWidth + barsAlongLength) + ' bars total before accounting for bar length.';
+    } else {
+      totalLinearFt = linearFtLengthDir;
+      layoutText = barsAlongWidth + ' bars running the ' + len.toFixed(1) + ' ft length.';
+    }
+
+    // Add 10% for overlaps and waste
+    var totalWithOverlap = totalLinearFt * 1.10;
+
+    // Number of standard-length bars to buy
+    var barsNeeded = Math.ceil(totalWithOverlap / barLengthFt);
+
+    // Weight
+    var totalWeight = totalWithOverlap * rebarWeightPerFt;
+
+    // Buying summary
+    var barLengthLabel = barLengthFt + ' ft';
+    var buying = barsNeeded + ' × ' + barLengthLabel + ' bars (' +
+      totalWithOverlap.toFixed(0) + ' linear ft including 10% for overlaps and edge setback). ' +
+      'Total weight: ' + totalWeight.toFixed(0) + ' lbs.';
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_linear_ft').textContent = totalWithOverlap.toFixed(0) + ' ft';
+    document.getElementById('r_bars').textContent = barsNeeded + ' bars';
+    document.getElementById('r_weight').textContent = totalWeight.toFixed(0) + ' lbs';
+    document.getElementById('r_spacing_actual').textContent = spacingIn + '" spacing';
+    document.getElementById('r_layout').textContent = layoutText;
+    document.getElementById('r_buying').textContent = buying;
+    
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('spacing').addEventListener('change', calculate);
+    document.getElementById('rebar_size').addEventListener('change', calculate);
+    document.getElementById('bar_length').addEventListener('change', calculate);
+    document.getElementById('grid_pattern').addEventListener('change', calculate);
+  });
+</script>
