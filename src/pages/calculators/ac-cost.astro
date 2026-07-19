@@ -1,0 +1,521 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="AC Operating Cost Calculator — How Much Does AC Cost Per Month? | CalcForDIY"
+  description="Calculate how much your air conditioner costs to run per month and per year. Enter SEER rating, cooling hours, and electric rate for an instant estimate. Free, no signup."
+>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AC Operating Cost Calculator",
+    "description": "Free air conditioner operating cost calculator that estimates monthly and annual AC costs based on BTU capacity, SEER rating, usage hours, and local electric rate.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "AC Operating Cost Calculator", "item": "https://calcfordiy.com/calculators/ac-cost" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>AC Operating Cost Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">AC Operating Cost Calculator</h1>
+    <p class="text-gray-600 text-lg">Find out exactly what your air conditioner costs to run — per hour, per month, and per cooling season — and whether upgrading to a higher SEER unit makes financial sense.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Your AC Unit
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Unit Type</label>
+        <select id="unit_type"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onchange="applyUnitType()">
+          <option value="central">Central AC — whole house system</option>
+          <option value="window">Window unit — single room</option>
+          <option value="mini">Mini-split — ductless system</option>
+          <option value="portable">Portable AC unit</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Cooling Capacity
+          </label>
+          <div class="flex gap-2">
+            <select id="btu_preset"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onchange="applyBtuPreset()">
+              <option value="">— Select common size —</option>
+              <optgroup label="Window / Portable Units">
+                <option value="5000">5,000 BTU — small room up to 150 sq ft</option>
+                <option value="8000">8,000 BTU — medium room up to 350 sq ft</option>
+                <option value="10000">10,000 BTU — large room up to 450 sq ft</option>
+                <option value="12000">12,000 BTU (1 ton) — up to 550 sq ft</option>
+              </optgroup>
+              <optgroup label="Central AC / Mini-Split">
+                <option value="18000">18,000 BTU (1.5 ton)</option>
+                <option value="24000">24,000 BTU (2 ton)</option>
+                <option value="30000">30,000 BTU (2.5 ton)</option>
+                <option value="36000">36,000 BTU (3 ton)</option>
+                <option value="42000">42,000 BTU (3.5 ton)</option>
+                <option value="48000">48,000 BTU (4 ton)</option>
+                <option value="60000">60,000 BTU (5 ton)</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="flex items-center gap-2 mt-2">
+            <input type="number" id="btu" placeholder="24000" min="1000" max="200000" step="1000"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-sm text-gray-500 shrink-0">BTU/hr</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">Found on the nameplate sticker on your unit</p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            SEER Rating
+            <span class="text-gray-400 font-normal text-xs ml-1">— from EnergyGuide label</span>
+          </label>
+          <input type="number" id="seer" placeholder="14" min="8" max="35" step="0.5"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <p class="text-xs text-gray-400 mt-1" id="seer_hint">Older units: 8-10 SEER. Federal minimum 2023: 14 SEER. High efficiency: 18-25 SEER.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Usage and Rates
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Hours Run Per Day</label>
+        <select id="hours_preset"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onchange="applyHoursPreset()">
+          <option value="">— Select typical usage —</option>
+          <option value="4">4 hours — mild climate, evenings only</option>
+          <option value="8">8 hours — moderate, daytime use</option>
+          <option value="12">12 hours — hot climate, most of day</option>
+          <option value="16">16 hours — very hot climate</option>
+          <option value="24">24 hours — continuous (commercial)</option>
+        </select>
+        <div class="flex items-center gap-2 mt-2">
+          <input type="number" id="hours_per_day" placeholder="8" min="0.5" max="24" step="0.5"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">hours/day</span>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Cooling Season Length</label>
+        <select id="season_preset"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onchange="applySeasonPreset()">
+          <option value="">— Select your climate —</option>
+          <option value="3">3 months — northern US (June-Aug)</option>
+          <option value="5">5 months — mid-Atlantic, Midwest</option>
+          <option value="7">7 months — southern US, Texas</option>
+          <option value="10">10 months — Florida, Arizona, Gulf Coast</option>
+          <option value="12">12 months — year-round cooling</option>
+        </select>
+        <div class="flex items-center gap-2 mt-2">
+          <input type="number" id="season_months" placeholder="5" min="1" max="12" step="0.5"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">months/year</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Electric Rate</label>
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-gray-500 shrink-0">$</span>
+          <input type="number" id="rate" placeholder="0.16" min="0.01" max="1.00" step="0.001"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">per kWh</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1">US average: $0.16/kWh. Find exact rate on your electric bill.</p>
+      </div>
+      <div class="flex items-end">
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 w-full">
+          <p class="text-xs text-blue-800">Your electric rate is on your monthly bill — look for "rate per kWh" or "energy charge" in the billing detail section. Rates vary from $0.09 in Louisiana to $0.35+ in Hawaii and California.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+      Compare to a New Unit (Optional)
+    </h2>
+
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="compareToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('compareSection', this.checked)" />
+        <span class="text-sm text-gray-700">Show savings from upgrading to a higher SEER unit</span>
+      </label>
+      <div id="compareSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">New Unit SEER Rating</label>
+            <input type="number" id="new_seer" placeholder="18" min="14" max="35" step="0.5"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <p class="text-xs text-gray-400 mt-1">High efficiency central AC: 18-25 SEER. Mini-splits: up to 30+ SEER.</p>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">New Unit Purchase + Installation Cost</label>
+            <div class="flex items-center gap-2">
+              <span class="text-sm text-gray-500">$</span>
+              <input type="number" id="install_cost" placeholder="4500" min="0" max="50000"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            </div>
+            <p class="text-xs text-gray-400 mt-1">Used to calculate payback period</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate AC Cost →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your AC capacity, SEER rating, usage hours, and electric rate to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your AC Cost Estimate</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_kw">—</div>
+        <div class="text-xs text-gray-500 mt-1">Power Draw (kW)</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_hourly">—</div>
+        <div class="text-xs text-gray-500 mt-1">Cost Per Hour</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_monthly">—</div>
+        <div class="text-xs text-gray-500 mt-1">Monthly Cost</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_seasonal">—</div>
+        <div class="text-xs text-gray-500 mt-1">Seasonal Cost</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Cost Breakdown</p>
+      <p class="text-sm text-gray-600" id="r_breakdown">—</p>
+    </div>
+
+    <div id="comparisonResults" class="hidden">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-3">
+        <p class="text-sm font-semibold text-green-900 mb-3">Upgrade to Higher SEER — Savings Analysis</p>
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+          <div class="bg-white rounded-lg p-3 text-center">
+            <div class="text-lg font-bold text-gray-700" id="r_current_seasonal">—</div>
+            <div class="text-xs text-gray-500 mt-1">Current Annual Cost</div>
+          </div>
+          <div class="bg-white rounded-lg p-3 text-center">
+            <div class="text-lg font-bold text-green-700" id="r_new_seasonal">—</div>
+            <div class="text-xs text-gray-500 mt-1">New Unit Annual Cost</div>
+          </div>
+          <div class="bg-white rounded-lg p-3 text-center">
+            <div class="text-lg font-bold text-blue-700" id="r_savings">—</div>
+            <div class="text-xs text-gray-500 mt-1">Annual Savings</div>
+          </div>
+          <div class="bg-white rounded-lg p-3 text-center">
+            <div class="text-lg font-bold text-gray-900" id="r_payback">—</div>
+            <div class="text-xs text-gray-500 mt-1">Payback Period</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Each degree you raise your thermostat saves about 3% on cooling costs. Setting it to 78°F when home and 85°F when away can cut seasonal AC costs by 15-20%.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this AC operating cost calculator helps you understand your cooling bills and make smart upgrade decisions. Follow these five steps:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select unit type and capacity.</strong> Choose your unit type and enter its BTU capacity. You can find the exact BTUs printed on the manufacturer's nameplate sticker on the side of your physical unit, or use the dropdown to select a common pre-set size.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Enter SEER rating.</strong> Find the Seasonal Energy Efficiency Ratio (SEER) on the yellow EnergyGuide label. Older units installed before 2006 are often highly inefficient at 8 to 10 SEER. Since 2023, the federal minimum standard for new central units is 14 SEER.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Set usage hours.</strong> Use the climate presets to estimate how many hours per day the compressor actually runs, and how many months your cooling season lasts. You can also manually enter your exact usage.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Find your electric rate.</strong> Look at a recent monthly power bill to find your exact electric rate. It will be listed as a "rate per kWh" or "energy charge" in the line-item breakdown section.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Compare upgrades.</strong> If your current AC is old and you are considering a replacement, check the comparison box. Enter the SEER rating of a new unit and the total installation cost into the AC operating cost calculator to instantly see if the annual energy savings justify the upgrade expense.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This AC operating cost calculator relies on standard energy physics. Here is the math in plain English:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Power Draw (kW) = BTU Capacity / SEER / 1,000</p>
+      <p>Cost Per Hour = Power Draw × Rate per kWh</p>
+      <p>Monthly Cost = Cost Per Hour × Hours Per Day × 30.4 Days</p>
+      <p>Seasonal Cost = Cost Per Day × (Months × 30.4)</p>
+      <p>Payback Period = Installation Cost / Annual Savings</p>
+    </div>
+    <p class="text-gray-700">First, the calculator determines how much electricity your unit draws. This comes directly from the technical definition of SEER: the total BTU cooling output divided by the total watt-hours of electricity consumed. Therefore, the BTU capacity is divided by the SEER rating to find the wattage, and then divided by 1,000 to convert that into kilowatts (kW).</p>
+    <p class="text-gray-700 mt-3">Once the exact kilowatt draw is established, it is multiplied by your utility rate to find the cost to run the unit for one single hour. That hourly cost is multiplied by your daily usage hours, and then multiplied by 30.4 (the average number of days in a month) to find your monthly bill. For the comparison tool, the exact same formula is applied using the new unit's SEER rating. The annual savings equals your current cost minus the new unit's cost. Finally, the payback period is calculated by dividing your total installation cost by those annual savings.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What does SEER mean, and where do I find it?</h3>
+        <p class="text-gray-600 text-sm">SEER stands for Seasonal Energy Efficiency Ratio. It is the ratio of cooling output divided by energy consumed over an entire typical cooling season. A higher SEER means the unit produces more cold air while using less electricity. You can find your SEER rating printed prominently on the yellow EnergyGuide sticker attached to the outdoor condenser unit.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">As a reference, how much does a central AC cost to run on average?</h3>
+        <p class="text-gray-600 text-sm">A modern, standard-efficiency (14 SEER) 3-ton central AC unit running for 8 hours a day at the national average electric rate of $0.16 per kWh costs roughly $100 to $120 per month to operate. In extremely hot climates where units run 12 to 16 hours a day, that monthly cost can easily exceed $200.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Is a higher SEER unit always worth the extra cost?</h3>
+        <p class="text-gray-600 text-sm">Not always. Using this AC operating cost calculator, you will see that upgrading from an ancient 8 SEER unit to a standard 14 SEER unit yields massive savings. However, upgrading from a 14 SEER to an ultra-premium 20 SEER unit usually costs thousands of dollars extra upfront. If you live in a northern climate with short, 3-month summers, the minimal annual savings will likely never pay back that massive upfront premium. High SEER units make the most financial sense in hot, long-summer climates.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between SEER and EER, and which applies to window units?</h3>
+        <p class="text-gray-600 text-sm">SEER measures efficiency over an entire season of varying outdoor temperatures. EER (Energy Efficiency Ratio) measures efficiency at one specific, static temperature (usually 95°F). Because window units are not tested over full seasonal curves, they are rated using EER or CEER (Combined Energy Efficiency Ratio). Window units generally hover around 10 to 12 CEER, making them far less efficient than modern central air.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How many degrees does raising the thermostat save in cooling costs?</h3>
+        <p class="text-gray-600 text-sm">As a general rule, for every degree you raise your thermostat above 72°F, you save roughly 3% to 4% on your overall cooling costs. The compressor does not have to turn on as frequently, and the temperature difference between the hot outdoors and the indoor air is reduced, which slows the rate that heat pushes its way back into the house.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Is a smart thermostat worth buying to reduce AC costs?</h3>
+        <p class="text-gray-600 text-sm">Yes, absolutely. A smart thermostat (like a Nest or Ecobee) can cut your seasonal cooling costs by 10% to 15%. They achieve this primarily through geofencing and scheduling—automatically letting the house warm up to 85°F when it senses your phone has left for work, and cooling it back down right before you return home, ensuring you never pay to air condition an empty house.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/water-heater-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Water Heater Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how much your water heater costs to run per month and per year.</div>
+      </a>
+      <a href="/calculators/lumens" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Lumens Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Determine exactly how bright a room needs to be based on its size and purpose.</div>
+      </a>
+      <a href="/calculators/recessed-lights-garage" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Recessed Lighting for Garage</div>
+        <div class="text-xs text-gray-500 mt-1">Plan the perfect recessed lighting grid layout for an active garage workspace.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function isChecked(id) {
+    return document.getElementById(id).checked;
+  }
+
+  function toggleSection(sectionId, show) {
+    document.getElementById(sectionId).classList.toggle('hidden', !show);
+    calculate();
+  }
+
+  function applyBtuPreset() {
+    var val = document.getElementById('btu_preset').value;
+    if (val) {
+      document.getElementById('btu').value = val;
+      calculate();
+    }
+  }
+
+  function applyHoursPreset() {
+    var val = document.getElementById('hours_preset').value;
+    if (val) {
+      document.getElementById('hours_per_day').value = val;
+      calculate();
+    }
+  }
+
+  function applySeasonPreset() {
+    var val = document.getElementById('season_preset').value;
+    if (val) {
+      document.getElementById('season_months').value = val;
+      calculate();
+    }
+  }
+
+  function applyUnitType() {
+    var type = document.getElementById('unit_type').value;
+    var hint = document.getElementById('seer_hint');
+    if (type === 'central') {
+      hint.textContent = 'Older units: 8-10 SEER. Federal minimum 2023: 14 SEER. High efficiency: 18-25 SEER.';
+    } else if (type === 'window') {
+      hint.textContent = 'Window units use EER not SEER. Enter EER rating from label. Typical: 8-12 EER.';
+    } else if (type === 'mini') {
+      hint.textContent = 'Mini-splits are very efficient. Typical: 18-30+ SEER. Check EnergyGuide label.';
+    } else if (type === 'portable') {
+      hint.textContent = 'Portable units are least efficient. Typical: 8-10 SEER equivalent (CEER rating).';
+    }
+    calculate();
+  }
+
+  function calcCost(btu, seer, hoursPerDay, months, rate) {
+    // Power in kW = BTU / (SEER × 1000)
+    // This is the standard formula: SEER = BTU cooling output / watt-hours input
+    var kw = btu / (seer * 1000);
+    var costPerHour = kw * rate;
+    var costPerDay = costPerHour * hoursPerDay;
+    var costPerMonth = costPerDay * 30.4;
+    var costPerSeason = costPerDay * (months * 30.4);
+
+    return {
+      kw: kw,
+      costPerHour: costPerHour,
+      costPerMonth: costPerMonth,
+      costPerSeason: costPerSeason
+    };
+  }
+
+  function calculate() {
+    var btu = getNum('btu');
+    var seer = getNum('seer');
+    var hoursPerDay = getNum('hours_per_day');
+    var months = getNum('season_months');
+    var rate = getNum('rate');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (btu <= 0 || seer <= 0 || hoursPerDay <= 0 || months <= 0 || rate <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      if (btu > 0 || seer > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var result = calcCost(btu, seer, hoursPerDay, months, rate);
+
+    var tons = (btu / 12000).toFixed(1);
+    var breakdown = (btu / 1000).toFixed(1) + ' BTU (' + tons + ' ton) at SEER ' + seer +
+      ' draws ' + (result.kw * 1000).toFixed(0) + ' watts (' + result.kw.toFixed(3) + ' kW). ' +
+      'At $' + rate + '/kWh running ' + hoursPerDay + ' hours/day: $' +
+      result.costPerHour.toFixed(3) + '/hour × ' + hoursPerDay + ' hrs = $' +
+      (result.costPerHour * hoursPerDay).toFixed(2) + '/day.';
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_kw').textContent = result.kw.toFixed(3) + ' kW';
+    document.getElementById('r_hourly').textContent = '$' + result.costPerHour.toFixed(3);
+    document.getElementById('r_monthly').textContent = '$' + result.costPerMonth.toFixed(2);
+    document.getElementById('r_seasonal').textContent = '$' + result.costPerSeason.toFixed(2) + '/yr';
+    document.getElementById('r_breakdown').textContent = breakdown;
+
+    var compResults = document.getElementById('comparisonResults');
+    if (isChecked('compareToggle')) {
+      var newSeer = getNum('new_seer');
+      var installCost = getNum('install_cost');
+
+      if (newSeer > 0) {
+        var newResult = calcCost(btu, newSeer, hoursPerDay, months, rate);
+        var annualSavings = result.costPerSeason - newResult.costPerSeason;
+        var paybackText = '—';
+
+        if (installCost > 0 && annualSavings > 0) {
+          var paybackYears = installCost / annualSavings;
+          paybackText = paybackYears.toFixed(1) + ' years';
+        } else if (annualSavings <= 0) {
+          paybackText = 'No savings at this SEER';
+        } else {
+          paybackText = 'Enter cost for payback';
+        }
+
+        compResults.classList.remove('hidden');
+        document.getElementById('r_current_seasonal').textContent = '$' + result.costPerSeason.toFixed(2);
+        document.getElementById('r_new_seasonal').textContent = '$' + newResult.costPerSeason.toFixed(2);
+        document.getElementById('r_savings').textContent = annualSavings > 0
+          ? '$' + annualSavings.toFixed(2) + ' saved'
+          : '$' + Math.abs(annualSavings).toFixed(2) + ' more';
+        document.getElementById('r_payback').textContent = paybackText;
+      } else {
+        compResults.classList.add('hidden');
+      }
+    } else {
+      compResults.classList.add('hidden');
+    }
+    
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('unit_type').addEventListener('change', applyUnitType);
+    document.getElementById('rate').value = '0.16';
+    document.getElementById('hours_per_day').value = '8';
+    document.getElementById('season_months').value = '5';
+    document.getElementById('seer').value = '14';
+  });
+</script>
