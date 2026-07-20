@@ -1,0 +1,410 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Quikrete Bags Calculator — How Many Bags Per Fence Post? | CalcForDIY"
+  description="Calculate exactly how many bags of Quikrete you need per fence post by hole diameter, depth, and bag size. Works with 50 lb, 60 lb, and 80 lb bags. Free, no signup."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Quikrete Bags Calculator",
+    "description": "Free calculator that estimates how many bags of Quikrete concrete mix you need per fence post based on hole diameter, depth, post size, and bag weight.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Quikrete Bags Calculator", "item": "https://calcfordiy.com/calculators/quikrete-bags" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Quikrete Bags Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Quikrete Bags Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your post hole dimensions and post size to get an exact bag count per post and for your entire fence project — 50 lb, 60 lb, and 80 lb bags all supported.</p>
+  </div>
+
+  <!-- Quick reference table -->
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 print:bg-white print:border-gray-300">
+    <p class="text-sm font-semibold text-blue-900 mb-3 print:text-gray-900">Quick Reference — 80 lb Bags Per Post</p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-xs border-collapse">
+        <thead>
+          <tr class="bg-blue-100 print:bg-gray-100">
+            <th class="text-left px-3 py-2 border border-blue-200 print:border-gray-300">Hole Diameter</th>
+            <th class="text-center px-3 py-2 border border-blue-200 print:border-gray-300">24" Deep</th>
+            <th class="text-center px-3 py-2 border border-blue-200 print:border-gray-300">30" Deep</th>
+            <th class="text-center px-3 py-2 border border-blue-200 print:border-gray-300">36" Deep</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white">
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 font-medium">8" diameter</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">1 bag</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">2 bags</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">2 bags</td>
+          </tr>
+          <tr class="bg-blue-50 print:bg-gray-50">
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 font-medium">10" diameter</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">2 bags</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">2 bags</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">3 bags</td>
+          </tr>
+          <tr class="bg-white">
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 font-medium">12" diameter</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">2 bags</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">3 bags</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">4 bags</td>
+          </tr>
+          <tr class="bg-blue-50 print:bg-gray-50">
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 font-medium">14" diameter</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">3 bags</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">4 bags</td>
+            <td class="px-3 py-2 border border-blue-200 print:border-gray-300 text-center">5 bags</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-blue-700 mt-2 print:text-gray-600">Use the calculator below for exact numbers based on your specific dimensions.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6 print:border-none print:shadow-none print:p-0">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Post and Hole Dimensions
+    </h2>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-4 print:hidden">
+      <p class="text-xs text-amber-800"><strong>Rule of thumb:</strong> Dig holes 3 times the post width in diameter. For a 4×4 post (3.5" actual) dig a 10-12" diameter hole. For a 6×6 post (5.5" actual) dig a 14-16" hole. Depth should be 1/3 to 1/2 the above-ground post height.</p>
+    </div>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5 print:bg-white print:border print:border-gray-200">
+
+      <div class="mb-4 print:hidden">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Post Size (quick select)</label>
+        <select id="post_preset"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onchange="applyPostPreset()">
+          <option value="">— Select post size —</option>
+          <option value="3.5,10">4×4 post (3.5" actual) — recommended 10" hole</option>
+          <option value="3.5,12">4×4 post (3.5" actual) — recommended 12" hole</option>
+          <option value="5.5,14">6×6 post (5.5" actual) — recommended 14" hole</option>
+          <option value="5.5,16">6×6 post (5.5" actual) — recommended 16" hole</option>
+          <option value="3.5,8">4×4 post — minimum 8" hole</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Hole Diameter</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="hole_dia" placeholder="10" min="4" max="36" step="0.5"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-sm text-gray-500 shrink-0">inches</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1 print:hidden">Diameter of the dug hole — not the post</p>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Hole Depth</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="hole_depth_ft" placeholder="2" min="0" max="10"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="hole_depth_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-xs text-gray-500 mb-1">Post Width (actual size)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="post_size" placeholder="3.5" min="1" max="12" step="0.25"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500">inches actual</span>
+          <span class="text-xs text-gray-400 print:hidden">(4×4 = 3.5", 6×6 = 5.5")</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Number of Posts</label>
+        <div class="flex items-center gap-3">
+          <input type="number" id="num_posts" placeholder="12" min="1" max="500"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-400">Total posts in your project</span>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Bag Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Bag Size</label>
+        <select id="bag_size"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="0.375">50 lb — 0.375 cu ft (Fast-Setting Concrete)</option>
+          <option value="0.45">60 lb — 0.45 cu ft</option>
+          <option value="0.60" selected>80 lb — 0.60 cu ft (standard, best value)</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1 print:hidden">Yield per bag from Quikrete product data sheets</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Concrete Type</label>
+        <select id="concrete_type"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="standard">Standard Concrete Mix — mix and pour</option>
+          <option value="fastsetting">Fast-Setting Concrete — pour dry, no mixing</option>
+        </select>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Quikrete Bags →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
+    Please enter hole diameter, hole depth, and number of posts to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Quikrete Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_vol_per_post">—</div>
+        <div class="text-xs text-gray-500 mt-1">Cu Ft Per Post</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-blue-700 print:text-3xl print:text-gray-900" id="r_bags_per_post">—</div>
+        <div class="text-xs text-gray-500 mt-1">Bags Per Post</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_total_bags">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Bags</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_total_weight">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Weight</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+      <div class="bg-white rounded-lg p-4 shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <p class="text-sm font-medium text-gray-700 mb-1 print:font-semibold">All Three Bag Sizes Compared</p>
+        <div class="space-y-1 text-sm text-gray-600" id="r_comparison">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <p class="text-sm font-medium text-gray-700 mb-1 print:font-semibold">Installation Method</p>
+        <p class="text-sm text-gray-600" id="r_method">—</p>
+      </div>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
+      <strong>Tip:</strong> Buy one extra bag per 10 posts. Holes are never perfectly cylindrical — rocky soil or loose walls mean you consistently need slightly more than calculated.
+    </p>
+  </div>
+
+  <div class="prose prose-gray max-w-none text-gray-700 print:prose-sm">
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">How to Use This Quikrete Bags Calculator</h2>
+    <p>Follow these five steps to get an accurate material estimate for your fencing project.</p>
+    <ol class="space-y-3 list-decimal list-inside">
+      <li><strong>Use the Post Size Quick-Select:</strong> Start by selecting your post type (e.g., 4x4 or 6x6). This will auto-fill the "Post Width" (actual size) and input a "Hole Diameter" based on industry-standard recommendations. You can adjust the hole diameter manually if necessary.</li>
+      <li><strong>Set the Hole Depth:</strong> Adjust the hole depth based on your planned fence height and local frost lines. The standard rule of thumb is that fence post holes should be dug to a depth equal to one-third ($1/3$) to one-half ($1/2$) of the above-ground height of the post. Regardless of fence height, 24 inches is generally considered the absolute minimum depth for stability.</li>
+      <li><strong>Enter Total Number of Posts:</strong> Input how many posts are in your fence run.</li>
+      <li><strong>Select Bag Size:</strong> Choose which specific product you intend to buy. Note that while 80 lb bags generally provide the best financial value for larger projects, 50 lb Fast-Setting bags are significantly easier to handle if you are working solo.</li>
+      <li><strong>Select Concrete Type:</strong> Choose between "Standard Mix" or "Fast-Setting." After clicking calculate, scroll down to the results to find specific installation instructions tailored to that concrete type.</li>
+    </ol>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">The Formula</h2>
+    <p>This calculator determines the net volume of concrete required by calculating the volume of the dug hole (cylinder) and subtracting the volume of the post being inserted (rectangular prism). All dimensional inputs (inches) are converted to feet for the final calculation.</p>
+    
+    <p class="font-mono text-sm bg-gray-100 p-4 rounded-lg print:bg-white print:border print:border-gray-200">
+      Hole Volume = $\pi \times radius^2 \times depth$ (in feet)<br>
+      Post Volume = $actualWidth^2 \times depth$ (in feet)<br>
+      Bags Per Post = Net Volume / Bag Yield (rounded up to next whole bag)
+    </p>
+
+    <p>We use specific product yield data provided by Quikrete for high-strength concrete mixes to ensure accuracy:</p>
+    <ul>
+      <li><strong>50 lb bag:</strong> Yields 0.375 cubic feet.</li>
+      <li><strong>60 lb bag:</strong> Yields 0.45 cubic feet.</li>
+      <li><strong>80 lb bag:</strong> Yields 0.60 cubic feet.</li>
+    </ul>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">Frequently Asked Questions</h2>
+    
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How many 80 lb bags of Quikrete for a standard 4x4 fence post in a 10 inch hole at 24 inches deep?</h3>
+        <p class="text-gray-600">You need **2 bags** (80 lb) for this specific scenario. While the raw net volume is roughly 0.925 cubic feet, one 80 lb bag only yields 0.6 cubic feet. You must purchase two bags, even though you won't use the full second bag.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Should I use Fast-Setting or standard Quikrete for fence posts?</h3>
+        <p class="text-gray-600">For most homeowners, Fast-Setting Quikrete is superior for setting fence posts because it requires no mixing in a wheelbarrow. You set the post, pour the dry concrete from the bag into the hole, and add water on top. Standard concrete is slightly stronger and often cheaper, but requires labor-intensive pre-mixing before pouring.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How long to wait before attaching fence panels to Fast-Setting versus standard concrete?</h3>
+        <p class="text-gray-600">If using Fast-Setting Quikrete, you can generally begin attaching fence panels or loading the post in **4 hours**. For standard concrete mixes, you should wait at least **24 to 48 hours** for the concrete to properly cure before subjecting the post to any load.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How much water to add per bag of Quikrete?</h3>
+        <p class="text-gray-600">If using standard mix (mixed beforehand), you need approximately 3 quarts of water per 80 lb bag. If using Fast-Setting concrete (dry pour method), you don't use a specific measured amount; you pour water onto the dry mix until the mix is completely saturated.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Do Sakrete and other brands use the same bag yields as Quikrete?</h3>
+        <p class="text-gray-600">Yes, generally. Pre-mix concrete is sold based on standard weights and industry-standard yields. An 80 lb bag of standard high-strength concrete mix will yield approximately 0.6 cubic feet, whether it is branded as Quikrete, Sakrete, or a generic store brand.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Do I need to mix Quikrete Fast-Setting or just pour it dry?</h3>
+        <p class="text-gray-600">Just pour it dry. This is the intended "no-mix" method for setting fence posts or mailbox posts. You level the post, fill the hole with the dry Fast-Setting mix, then saturate it thoroughly with water. The water percolates through the dry mix, initiating the curing process without manual mixing.</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 not-prose mb-12 print:hidden">
+      <a href="/calculators/concrete-fence-post" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Concrete Fence Post Calculator</h4>
+        <p class="text-gray-600 text-xs">If you are hiring a truck and just need the raw cubic yards of concrete, use this version.</p>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Concrete Slab Calculator</h4>
+        <p class="text-gray-600 text-xs">Calculate how many bags you need for patios, footings, or walkways, or estimate yards for a concrete truck.</p>
+      </a>
+      <a href="/calculators/rebar" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Rebar Calculator</h4>
+        <p class="text-gray-600 text-xs">Calculate lengths, pieces, weight, and tie wire needed for structural concrete reinforcement.</p>
+      </a>
+    </div>
+
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function applyPostPreset() {
+    var val = document.getElementById('post_preset').value;
+    if (!val) return;
+    var parts = val.split(',');
+    document.getElementById('post_size').value = parts[0];
+    document.getElementById('hole_dia').value = parts[1];
+    calculate();
+  }
+
+  function calcBagsForSize(netVolCuFt, bagYield) {
+    return Math.ceil(netVolCuFt / bagYield);
+  }
+
+  function calculate() {
+    var holeDiaIn = getNum('hole_dia');
+    var holeDepthFt = toFt('hole_depth_ft', 'hole_depth_in');
+    var postSizeIn = getNum('post_size') || 3.5;
+    var numPosts = getNum('num_posts');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (holeDiaIn <= 0 || holeDepthFt <= 0 || numPosts <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (holeDiaIn > 0 || holeDepthFt > 0) {
+        document.getElementById('errorMsg').classList.remove('hidden');
+      }
+      return;
+    }
+
+    // Hole volume — cylinder
+    var holeRadFt = (holeDiaIn / 2) / 12;
+    var holeVolCuFt = Math.PI * holeRadFt * holeRadFt * holeDepthFt;
+
+    // Post volume — square post
+    var postSizeFt = postSizeIn / 12;
+    var postVolCuFt = postSizeFt * postSizeFt * holeDepthFt;
+
+    // Net concrete volume per post
+    var netVolPerPost = Math.max(holeVolCuFt - postVolCuFt, 0);
+    var totalNetVol = netVolPerPost * numPosts;
+
+    // Selected bag
+    var bagYield = parseFloat(document.getElementById('bag_size').value) || 0.60;
+    var bagSizeLabel = bagYield === 0.375 ? '50 lb' : bagYield === 0.45 ? '60 lb' : '80 lb';
+    var bagWeightLb = bagYield === 0.375 ? 50 : bagYield === 0.45 ? 60 : 80;
+
+    var bagsPerPost = calcBagsForSize(netVolPerPost, bagYield);
+    var totalBags = Math.ceil(totalNetVol / bagYield);
+    var totalWeightLb = totalBags * bagWeightLb;
+
+    // Comparison all three sizes
+    var bags50 = Math.ceil(totalNetVol / 0.375);
+    var bags60 = Math.ceil(totalNetVol / 0.45);
+    var bags80 = Math.ceil(totalNetVol / 0.60);
+
+    var comparisonHTML =
+      '50 lb bags: ' + bags50 + ' bags (' + (bags50 * 50).toLocaleString() + ' lbs total)<br>' +
+      '60 lb bags: ' + bags60 + ' bags (' + (bags60 * 60).toLocaleString() + ' lbs total)<br>' +
+      '80 lb bags: ' + bags80 + ' bags (' + (bags80 * 80).toLocaleString() + ' lbs total)';
+
+    var concreteType = document.getElementById('concrete_type').value;
+    var methodText = concreteType === 'fastsetting'
+      ? 'Fast-Setting (50 lb): Set post, pour dry mix into hole, add water slowly. Do NOT pre-mix. Sets in 20-40 minutes — brace and level post immediately. Can attach fence panels in 4 hours.'
+      : 'Standard Mix: Mix per bag instructions in bucket or wheelbarrow. Pour in 6-inch layers, rod each layer to remove air pockets. Crown top slightly above grade so water drains away. Wait 24-48 hours before loading.';
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_vol_per_post').textContent = netVolPerPost.toFixed(3) + ' cu ft';
+    document.getElementById('r_bags_per_post').textContent = bagsPerPost + ' × ' + bagSizeLabel;
+    document.getElementById('r_total_bags').textContent = totalBags + ' bags';
+    document.getElementById('r_total_weight').textContent = totalWeightLb.toLocaleString() + ' lbs';
+    document.getElementById('r_comparison').innerHTML = comparisonHTML;
+    document.getElementById('r_method').textContent = methodText;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('bag_size').addEventListener('change', calculate);
+    document.getElementById('concrete_type').addEventListener('change', calculate);
+  });
+</script>
