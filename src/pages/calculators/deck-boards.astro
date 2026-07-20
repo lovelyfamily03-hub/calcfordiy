@@ -1,0 +1,495 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Deck Boards Calculator — How Many Deck Boards Do I Need? | CalcForDIY"
+  description="Calculate how many deck boards you need for any deck size. Enter dimensions, board width, spacing, and pattern for an accurate board count and linear footage. Free, no signup."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Deck Boards Calculator",
+    "description": "Free deck boards calculator that estimates board count and linear footage based on deck dimensions, board size, gap spacing, and installation pattern.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should I use 5/4x6 or 2x6 decking?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The 5/4x6 board (actual thickness 1 inch) is the industry standard. It is lighter, cheaper, and features rounded radius edges for a finished look. A standard 2x6 board (actual thickness 1.5 inches) is significantly stronger, holds up better against cupping, and can span 24-inch joist spacing, but it is heavier, more expensive, and usually has square edges."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What gap should I leave between deck boards for pressure treated versus composite?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If installing green or wet pressure-treated lumber, install the boards tight against each other with zero gap. As the wet wood dries, it will naturally shrink and create a perfect 1/4 inch gap. If the wood is kiln-dried, manually leave a 1/8 to 1/4 inch gap. For composite decking, always follow the manufacturer's exact specifications, though many require hidden fasteners that automatically dictate a 3/16 inch gap."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does diagonal decking require more boards?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Installing deck boards on a 45-degree diagonal requires roughly 15% more material than a standard straight layout. Every board that hits the edge of the deck must be cut at an angle, creating significantly more cutoff waste. You will see this difference instantly when toggling the pattern setting in the deck boards calculator."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I handle splices where a board is not long enough to span the full deck?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Whenever possible, buy boards long enough to span the entire deck to eliminate splices. If your deck spans 20 feet and you must use shorter boards, ensure every single splice lands perfectly centered over a joist. You must also stagger your joints so they do not line up on the same joist in adjacent rows."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I pre-drill deck boards to prevent splitting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, it is highly recommended to pre-drill your screw holes, especially when driving fasteners within 2 inches of the end of a board. Pre-drilling significantly reduces the risk of the wood splitting and cracking over time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many deck screws do I need per board?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You will need two screws at every joist intersection. For a standard deck with joists spaced 16 inches on center, you can estimate roughly 3.5 screws per square foot of decking. For a 16-foot board, you will use approximately 26 screws."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Deck Boards Calculator", "item": "https://calcfordiy.com/calculators/deck-boards" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Deck Boards Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Deck Boards Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your deck dimensions, board size, and installation pattern to get an accurate board count, linear footage, and square footage — waste factor included.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Deck Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Deck Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="d_len_ft" placeholder="20" min="0" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="d_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">Direction boards run across</p>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Deck Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="d_wid_ft" placeholder="12" min="0" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="d_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">Direction boards span</p>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Number of identical deck sections</label>
+        <div class="flex items-center gap-3">
+          <input type="number" id="num_sections" value="1" min="1" max="20"
+            class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-400">For multi-level or detached decks</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Board Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Board Size</label>
+        <select id="board_size"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onchange="applyBoardSize()">
+          <option value="5.5">5/4×6 — actual 5.5" wide (most common)</option>
+          <option value="5.5">2×6 — actual 5.5" wide</option>
+          <option value="3.5">2×4 — actual 3.5" wide</option>
+          <option value="5.5">Composite 6" — actual 5.5" wide</option>
+          <option value="3.5">Composite 4" — actual 3.5" wide</option>
+          <option value="custom">Custom width</option>
+        </select>
+      </div>
+      <div id="customWidthDiv" class="hidden">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Custom Board Width</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="custom_width" placeholder="5.5" min="1" max="12" step="0.25"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">inches (actual)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Board Length</label>
+        <select id="board_length"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="8">8 ft boards</option>
+          <option value="10">10 ft boards</option>
+          <option value="12">12 ft boards</option>
+          <option value="16" selected>16 ft boards (most common)</option>
+          <option value="20">20 ft boards</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Choose the longest board that minimizes splices</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Gap Between Boards</label>
+        <select id="gap"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="0.25" selected>1/4" gap — standard for pressure treated</option>
+          <option value="0.125">1/8" gap — green/wet lumber (will expand)</option>
+          <option value="0.375">3/8" gap — wide gap for drainage</option>
+          <option value="0">No gap — composite tongue and groove</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Wet/green lumber should be installed tight — it will shrink to 1/4" as it dries</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Installation Pattern</label>
+        <select id="pattern"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="0.10">Straight — parallel to house (10% waste)</option>
+          <option value="0.15">Diagonal 45° (15% waste)</option>
+          <option value="0.10">Chevron / V-pattern (10% waste + more cuts)</option>
+          <option value="0.05">Picture frame only — border boards</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Include Picture Frame Border?</label>
+        <select id="picture_frame"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="no">No border</option>
+          <option value="single">Single board border</option>
+          <option value="double">Double board border</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Picture frame border runs perpendicular to field boards</p>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Deck Boards Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your deck length and width to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Deck Board Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_sqft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Deck Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_linear_ft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Linear Feet</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_boards">—</div>
+        <div class="text-xs text-gray-500 mt-1">Field Boards</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_total_boards">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Boards to Buy</div>
+      </div>
+    </div>
+
+    <div id="pictureFrameRow" class="hidden bg-white rounded-lg p-4 shadow-sm mb-3">
+      <div class="flex justify-between items-center">
+        <span class="text-sm font-medium text-gray-700">Picture Frame Border Boards</span>
+        <span class="text-lg font-bold text-purple-700" id="r_border_boards">—</span>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Layout Summary</p>
+      <p class="text-sm text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Buy boards in the longest length available that works for your deck span. Fewer splices means a cleaner look and stronger deck. A 20 ft deck should use 20 ft boards not two 10 ft boards spliced mid-span.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">To ensure you buy the exact amount of lumber needed without excessive waste, follow these five steps using our deck boards calculator:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure your deck dimensions.</strong> The "length" is the direction the decking boards will physically run across, while the "width" is the total span each board covers from edge to edge. Determine these in feet and inches.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select the board size.</strong> The 5/4x6 board is the most common decking material used in residential construction. Remember that "nominal" lumber sizes are not exact; a 6-inch board actually measures exactly 5.5 inches wide.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Select the board length.</strong> Buying the longest board that can span your entire deck structure without needing to splice two pieces together provides a much cleaner, more professional look.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Choose your gap spacing.</strong> Wet, heavy pressure-treated lumber should be installed completely tight with no gap; as the moisture bakes out in the sun, the wood will shrink and naturally create a perfect 1/4 inch gap. Dry lumber requires manual spacing.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Choose your pattern.</strong> Select whether you are running the boards straight or diagonal, and choose whether to frame the perimeter with a decorative picture frame border.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This deck boards calculator utilizes standard construction geometry to determine your exact material needs. Here is the math behind the scenes in plain English:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Effective Width = (Actual Board Width + Gap Width) / 12</p>
+      <p>Total Rows = Deck Length / Effective Width (Rounded Up)</p>
+      <p>Linear Feet = Rows × Deck Width × Number of Sections</p>
+      <p>Total With Waste = Linear Feet × 1.10 (or 1.15 for diagonal)</p>
+      <p>Boards Needed = Total With Waste / Board Length (Rounded Up)</p>
+    </div>
+    <p class="text-gray-700">First, the calculator must determine the "effective width" of a single board. It does this by adding the actual physical width of the board in inches to the gap size in inches, and then converting that number into feet. Next, it divides your deck's overall length by that effective width to find exactly how many horizontal rows of decking you need.</p>
+    <p class="text-gray-700 mt-3">To find the total linear feet of lumber required, the number of rows is multiplied by the deck's width and the total number of identical deck sections. Because construction always yields cutoffs and scraps, a strict waste factor is applied: 10% for straight patterns and 15% for diagonal layouts. The final linear footage is divided by your selected board length to give you the exact number of boards to purchase. If a picture frame border is selected, the outer perimeter is calculated, multiplied by the number of border layers, multiplied by a 1.10 corner waste factor, and converted into extra boards.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I use 5/4x6 or 2x6 decking?</h3>
+        <p class="text-gray-600 text-sm">The 5/4x6 board (actual thickness 1 inch) is the industry standard. It is lighter, cheaper, and features rounded radius edges for a finished look. A standard 2x6 board (actual thickness 1.5 inches) is significantly stronger, holds up better against cupping, and can span 24-inch joist spacing, but it is heavier, more expensive, and usually has square edges.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What gap should I leave between deck boards for pressure treated versus composite?</h3>
+        <p class="text-gray-600 text-sm">If installing green or wet pressure-treated lumber, install the boards tight against each other with zero gap. As the wet wood dries, it will naturally shrink and create a perfect 1/4 inch gap. If the wood is kiln-dried, manually leave a 1/8 to 1/4 inch gap. For composite decking, always follow the manufacturer's exact specifications, though many require hidden fasteners that automatically dictate a 3/16 inch gap.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Does diagonal decking require more boards?</h3>
+        <p class="text-gray-600 text-sm">Yes. Installing deck boards on a 45-degree diagonal requires roughly 15% more material than a standard straight layout. Every board that hits the edge of the deck must be cut at an angle, creating significantly more cutoff waste. You will see this difference instantly when toggling the pattern setting in the deck boards calculator.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I handle splices where a board is not long enough to span the full deck?</h3>
+        <p class="text-gray-600 text-sm">Whenever possible, buy boards long enough to span the entire deck to eliminate splices. If your deck spans 20 feet and you must use shorter boards, ensure every single splice lands perfectly centered over a joist. You must also stagger your joints so they do not line up on the same joist in adjacent rows.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I pre-drill deck boards to prevent splitting?</h3>
+        <p class="text-gray-600 text-sm">Yes, it is highly recommended to pre-drill your screw holes, especially when driving fasteners within 2 inches of the end of a board. Pre-drilling significantly reduces the risk of the wood splitting and cracking over time.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How many deck screws do I need per board?</h3>
+        <p class="text-gray-600 text-sm">You will need two screws at every joist intersection. For a standard deck with joists spaced 16 inches on center, you can estimate roughly 3.5 screws per square foot of decking. For a 16-foot board, you will use approximately 26 screws.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/subfloor" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Subfloor Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many sheets of OSB or plywood you need to properly sheath your floor joists.</div>
+      </a>
+      <a href="/calculators/concrete-fence-post" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete for Fence Posts</div>
+        <div class="text-xs text-gray-500 mt-1">Determine exactly how many bags of concrete mix are required to set your structural posts.</div>
+      </a>
+      <a href="/calculators/paint-exterior" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Exterior Paint Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate how many gallons of exterior paint you need to cover your siding, trim, and doors.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function toIn(ftId, inId) {
+    return toFt(ftId, inId) * 12;
+  }
+
+  function applyBoardSize() {
+    var val = document.getElementById('board_size').value;
+    var customDiv = document.getElementById('customWidthDiv');
+    if (val === 'custom') {
+      customDiv.classList.remove('hidden');
+    } else {
+      customDiv.classList.add('hidden');
+    }
+    calculate();
+  }
+
+  function getBoardWidthIn() {
+    var val = document.getElementById('board_size').value;
+    if (val === 'custom') {
+      return getNum('custom_width') || 5.5;
+    }
+    return parseFloat(val) || 5.5;
+  }
+
+  function calculate() {
+    var lenFt = toFt('d_len_ft', 'd_len_in');
+    var widFt = toFt('d_wid_ft', 'd_wid_in');
+    var sections = Math.max(1, getNum('num_sections') || 1);
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (lenFt <= 0 || widFt <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      if (lenFt > 0 || widFt > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var deckAreaSqFt = lenFt * widFt * sections;
+
+    var boardWidthIn = getBoardWidthIn();
+    var gapIn = parseFloat(document.getElementById('gap').value) || 0.25;
+    var boardLengthFt = parseFloat(document.getElementById('board_length').value) || 16;
+    var waste = parseFloat(document.getElementById('pattern').value) || 0.10;
+    var pictureFrame = document.getElementById('picture_frame').value;
+
+    // Effective width per board including gap
+    var effectiveWidthIn = boardWidthIn + gapIn;
+    var effectiveWidthFt = effectiveWidthIn / 12;
+
+    // Number of rows of boards across the deck length
+    var numRows = Math.ceil((lenFt * sections) / effectiveWidthFt);
+
+    // Linear feet of field boards
+    var linearFtPerRow = widFt;
+    var totalLinearFt = numRows * linearFtPerRow;
+
+    // Add waste
+    var totalWithWaste = totalLinearFt * (1 + waste);
+
+    // Number of boards
+    var boardsNeeded = Math.ceil(totalWithWaste / boardLengthFt);
+
+    // Picture frame border
+    var borderBoards = 0;
+    var borderLinearFt = 0;
+    if (pictureFrame !== 'no') {
+      var perimeterFt = 2 * (lenFt + widFt) * sections;
+      var layers = pictureFrame === 'double' ? 2 : 1;
+      borderLinearFt = perimeterFt * layers * 1.10; // 10% waste for corners
+      borderBoards = Math.ceil(borderLinearFt / boardLengthFt);
+    }
+
+    var totalBoardsToBuy = boardsNeeded + borderBoards;
+
+    var boardWidthLabel = boardWidthIn + '" actual';
+    var summary = numRows + ' rows of ' + boardWidthLabel + ' boards spanning ' +
+      widFt.toFixed(1) + ' ft. ' +
+      totalWithWaste.toFixed(0) + ' linear ft total including ' +
+      Math.round(waste * 100) + '% waste. ' +
+      boardsNeeded + ' × ' + boardLengthFt + ' ft boards for the field.';
+
+    if (pictureFrame !== 'no') {
+      summary += ' Plus ' + borderBoards + ' boards for the ' +
+        (pictureFrame === 'double' ? 'double ' : '') + 'picture frame border.';
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_sqft').textContent = deckAreaSqFt.toFixed(0) + ' sq ft';
+    document.getElementById('r_linear_ft').textContent = totalWithWaste.toFixed(0) + ' lin ft';
+    document.getElementById('r_boards').textContent = boardsNeeded + ' boards';
+    document.getElementById('r_total_boards').textContent = totalBoardsToBuy + ' boards';
+    document.getElementById('r_summary').textContent = summary;
+
+    var pfRow = document.getElementById('pictureFrameRow');
+    if (pictureFrame !== 'no') {
+      document.getElementById('r_border_boards').textContent = borderBoards + ' boards';
+      pfRow.classList.remove('hidden');
+    } else {
+      pfRow.classList.add('hidden');
+    }
+    
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('board_length').addEventListener('change', calculate);
+    document.getElementById('gap').addEventListener('change', calculate);
+    document.getElementById('pattern').addEventListener('change', calculate);
+    document.getElementById('picture_frame').addEventListener('change', calculate);
+    document.getElementById('board_size').addEventListener('change', applyBoardSize);
+  });
+</script>

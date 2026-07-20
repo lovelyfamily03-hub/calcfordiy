@@ -1,0 +1,470 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Drywall Calculator — How Many Sheets Do I Need? | CalcForDIY"
+  description="Calculate how many sheets of drywall you need for walls and ceiling. Enter room dimensions, sheet size, and get an accurate count with waste factor. Free, no signup."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Drywall Calculator",
+    "description": "Free drywall calculator that estimates sheets needed for walls and ceiling based on room dimensions, sheet size, and waste factor.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should I drywall the ceiling or walls first?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You should always install ceiling drywall first. This allows the wall pieces to butt up tightly against the ceiling sheets, helping to support their edges and creating a much tighter, easier-to-tape corner joint."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate drywall for a vaulted or cathedral ceiling?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a vaulted ceiling, measure the actual sloped length of the ceiling using a ladder or laser measure, and multiply that by the room width. For the triangular gable end walls, measure the width at the base and the maximum height of the triangle, multiply them together, and divide by two."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is 1/2 inch or 5/8 inch drywall required for garage walls?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most local building codes require 5/8 inch Type X fire-rated drywall for any garage walls and ceilings that are attached to or share a boundary with the main living space. This provides a crucial fire barrier. Standard 1/2 inch drywall is usually acceptable for unattached, exterior-facing garage walls."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much joint compound is needed for a three-coat finish versus a skim coat?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Industry guidelines suggest one 4.5-gallon bucket of joint compound covers roughly 100 square feet for a standard taped and three-coat finish. If you are doing a Level 5 finish (a full skim coat over the entire wall surface), you will need to double that estimate to roughly two buckets per 100 square feet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use mesh tape or paper tape for drywall seams?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Paper tape is stronger and highly recommended for all inside corners and standard flat seams. Fiberglass mesh tape is self-adhesive and easier to apply, but it is weaker and should only be used on flat seams in combination with a quick-setting \"hot mud\" powder compound, not standard pre-mixed mud."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How should I store drywall sheets on a job site to prevent warping?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Always store drywall sheets perfectly flat on the floor in a dry, climate-controlled room. Leaning them up against a wall for extended periods will cause them to permanently bow or warp, making them incredibly difficult to install flat against your studs."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Drywall Calculator", "item": "https://calcfordiy.com/calculators/drywall" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>Drywall Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Drywall Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your room dimensions to find out how many sheets of drywall you need for walls and ceiling — doors and windows subtracted automatically.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Room Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Room Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="r_len_ft" placeholder="14" min="0" max="200"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="r_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Room Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="r_wid_ft" placeholder="12" min="0" max="200"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="r_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="r_ceil_ft" placeholder="8" min="0" max="20"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+          <input type="number" id="r_ceil_in" placeholder="0" min="0" max="11"
+            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">in</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <p class="text-xs text-gray-500 mb-3">Standard door = 21 sq ft. Standard window = 15 sq ft. Subtracted automatically.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Number of Doors</label>
+          <input type="number" id="num_doors" placeholder="1" min="0" max="20"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Number of Windows</label>
+          <input type="number" id="num_windows" placeholder="2" min="0" max="20"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Drywall Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Sheet Size</label>
+        <select id="sheet_size"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="32">4×8 ft — 32 sq ft (standard)</option>
+          <option value="48">4×12 ft — 48 sq ft (fewer seams)</option>
+          <option value="40">4×10 ft — 40 sq ft</option>
+          <option value="64">4×16 ft — 64 sq ft (large rooms)</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1">4×12 sheets reduce seams on 8 ft ceilings — one sheet floor to ceiling</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Thickness</label>
+        <select id="thickness"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value='1/2"' selected>1/2" — standard walls and ceilings</option>
+          <option value='5/8"'>5/8" — fire rated, commercial, garage</option>
+          <option value='3/8"'>3/8" — repair, second layer, curved walls</option>
+          <option value='1/4"'>1/4" — thin overlay or curved applications</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Include Ceiling?</label>
+        <select id="include_ceiling"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="yes">Yes — walls and ceiling</option>
+          <option value="no">No — walls only</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Room Shape</label>
+        <select id="waste"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="0.10">Simple rectangular room (10% waste)</option>
+          <option value="0.15">L-shaped or room with angles (15% waste)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="multiRoomToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('multiRoomSection', this.checked)" />
+        <span class="text-sm text-gray-700">Add more rooms (basement, addition, etc.)</span>
+      </label>
+      <div id="multiRoomSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-xs text-gray-500 mb-3">Enter total additional wall and ceiling square footage for other areas.</p>
+        <div class="flex items-center gap-2">
+          <input type="number" id="extra_sqft" placeholder="0" min="0" max="10000"
+            class="w-40 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500">additional sq ft</span>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Drywall Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter your room length, width, and ceiling height to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Drywall Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_wall_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Net Wall Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-700" id="r_total_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total With Ceiling</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_with_waste">—</div>
+        <div class="text-xs text-gray-500 mt-1">With Waste</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-700" id="r_sheets">—</div>
+        <div class="text-xs text-gray-500 mt-1">Sheets Needed</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-1">Material Summary</p>
+      <p class="text-sm text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
+      <p class="text-sm font-medium text-gray-700 mb-2">Joint Compound & Tape Estimate</p>
+      <p class="text-sm text-gray-600" id="r_finishing">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Tip:</strong> Order sheets delivered if buying more than 10. A 4×8 sheet of 1/2" drywall weighs 57 lbs — hauling large quantities yourself is impractical and risks damaging sheets.
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Using this drywall calculator is the best way to accurately map out your material needs and budget. Follow these five steps to get your sheet count:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure room dimensions.</strong> Grab a tape measure and determine the exact length, width, and ceiling height of your room in feet and inches.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Count doors and windows.</strong> Enter the total number of doors and windows in the space. The drywall calculator automatically subtracts 21 sq ft for every standard door and 15 sq ft for every standard window to keep your sheet count precise.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Select sheet size.</strong> Standard 4x8 sheets are the easiest to carry. However, 4x12 sheets are incredibly popular for rooms with 8 ft ceilings because you can stand them vertically, meaning one sheet covers the full wall height with zero horizontal seams to tape.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Choose thickness.</strong> Standard 1/2 inch drywall is universally used for typical interior walls and ceilings. You must select 5/8 inch (Type X) if you are covering fire-rated assemblies like garage walls attached to living spaces.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Include ceiling and extras.</strong> Choose whether to include the ceiling in your final count. If you are drywalling a whole basement or addition, use the toggle to input the extra square footage of those adjoining rooms.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
+    <p class="text-gray-700 mb-4">This drywall calculator utilizes standard construction geometry to output your final material list. Here is the math in plain English:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Perimeter = 2 × (Length + Width)</p>
+      <p>Gross Wall Area = Perimeter × Ceiling Height</p>
+      <p>Net Wall Area = Gross Area - (Doors × 21) - (Windows × 15)</p>
+      <p>Total Area = Net Wall Area + Ceiling Area (L × W)</p>
+      <p>Total With Waste = Total Area × 1.10 (or 1.15 for complex rooms)</p>
+      <p>Sheets Needed = Total With Waste / Sheet Sq Ft</p>
+    </div>
+    <p class="text-gray-700">First, the calculator determines the linear perimeter of your room and multiplies it by the ceiling height to get the total wall surface area. It then subtracts standard allowances for your doors and windows so you don't overbuy materials. If selected, it calculates the ceiling area (Length times Width) and adds it to the wall total, along with any extra room square footage you inputted.</p>
+    <p class="text-gray-700 mt-3">Because you will always have cutoffs and unusable scraps, the tool applies a mandatory 10% waste factor (or 15% for complex, heavily-angled rooms). This final number is divided by the square footage of your chosen sheet size (e.g., 32 sq ft for a 4x8 sheet) and rounded up to give you the physical sheet count. Finally, based on USG installation guidelines for a standard three-coat finish, the calculator estimates your mud by allocating one 4.5-gallon bucket of joint compound for every 100 square feet.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I drywall the ceiling or walls first?</h3>
+        <p class="text-gray-600 text-sm">You should always install ceiling drywall first. This allows the wall pieces to butt up tightly against the ceiling sheets, helping to support their edges and creating a much tighter, easier-to-tape corner joint.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I calculate drywall for a vaulted or cathedral ceiling?</h3>
+        <p class="text-gray-600 text-sm">For a vaulted ceiling, measure the actual sloped length of the ceiling using a ladder or laser measure, and multiply that by the room width. For the triangular gable end walls, measure the width at the base and the maximum height of the triangle, multiply them together, and divide by two.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Is 1/2 inch or 5/8 inch drywall required for garage walls?</h3>
+        <p class="text-gray-600 text-sm">Most local building codes require 5/8 inch Type X fire-rated drywall for any garage walls and ceilings that are attached to or share a boundary with the main living space. This provides a crucial fire barrier. Standard 1/2 inch drywall is usually acceptable for unattached, exterior-facing garage walls.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How much joint compound is needed for a three-coat finish versus a skim coat?</h3>
+        <p class="text-gray-600 text-sm">Industry guidelines suggest one 4.5-gallon bucket of joint compound covers roughly 100 square feet for a standard taped and three-coat finish. If you are doing a Level 5 finish (a full skim coat over the entire wall surface), you will need to double that estimate to roughly two buckets per 100 square feet.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I use mesh tape or paper tape for drywall seams?</h3>
+        <p class="text-gray-600 text-sm">Paper tape is stronger and highly recommended for all inside corners and standard flat seams. Fiberglass mesh tape is self-adhesive and easier to apply, but it is weaker and should only be used on flat seams in combination with a quick-setting "hot mud" powder compound, not standard pre-mixed mud.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How should I store drywall sheets on a job site to prevent warping?</h3>
+        <p class="text-gray-600 text-sm">Always store drywall sheets perfectly flat on the floor in a dry, climate-controlled room. Leaning them up against a wall for extended periods will cause them to permanently bow or warp, making them incredibly difficult to install flat against your studs.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/paint-room" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Paint Calculator for a Room</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate exactly how many gallons of paint you need to cover your newly finished walls.</div>
+      </a>
+      <a href="/calculators/subfloor" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Subfloor Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many sheets of OSB or plywood you need for your room's subfloor.</div>
+      </a>
+      <a href="/calculators/paint-textured-walls" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Textured Wall Paint Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Find out how much extra paint is required to properly cover heavy drywall textures.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function isChecked(id) {
+    return document.getElementById(id).checked;
+  }
+
+  function toggleSection(sectionId, show) {
+    document.getElementById(sectionId).classList.toggle('hidden', !show);
+    calculate();
+  }
+
+  function calculate() {
+    var len = toFt('r_len_ft', 'r_len_in');
+    var wid = toFt('r_wid_ft', 'r_wid_in');
+    var ceil = toFt('r_ceil_ft', 'r_ceil_in');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (len <= 0 || wid <= 0 || ceil <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      document.getElementById('printBtn').classList.add('hidden');
+      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    // Wall area
+    var perimeter = 2 * (len + wid);
+    var grossWallArea = perimeter * ceil;
+    var doors = getNum('num_doors');
+    var windows = getNum('num_windows');
+    var netWallArea = Math.max(grossWallArea - (doors * 21) - (windows * 15), 0);
+
+    // Ceiling area
+    var includeCeiling = document.getElementById('include_ceiling').value === 'yes';
+    var ceilArea = includeCeiling ? len * wid : 0;
+
+    // Extra rooms
+    var extraSqFt = isChecked('multiRoomToggle') ? getNum('extra_sqft') : 0;
+
+    var totalArea = netWallArea + ceilArea + extraSqFt;
+
+    var waste = parseFloat(document.getElementById('waste').value) || 0.10;
+    var totalWithWaste = totalArea * (1 + waste);
+
+    var sheetSize = parseFloat(document.getElementById('sheet_size').value) || 32;
+    var sheetsNeeded = Math.ceil(totalWithWaste / sheetSize);
+    var thickness = document.getElementById('thickness').value;
+
+    // Sheet size label
+    var sheetLabel = sheetSize === 32 ? '4×8' : sheetSize === 48 ? '4×12' :
+      sheetSize === 40 ? '4×10' : '4×16';
+
+    var summary = sheetsNeeded + ' sheets of ' + thickness + ' drywall (' + sheetLabel + ' ft). ' +
+      'Total coverage: ' + totalWithWaste.toFixed(1) + ' sq ft including ' +
+      Math.round(waste * 100) + '% waste.';
+
+    if (includeCeiling) {
+      summary += ' Ceiling: ' + ceilArea.toFixed(0) + ' sq ft. Walls: ' + netWallArea.toFixed(0) + ' sq ft.';
+    }
+
+    // Joint compound and tape estimate
+    // Industry standard: 1 bucket (4.5 gal) joint compound per 100 sq ft
+    // Tape: 1 roll (500 ft) per 20 sheets approximately
+    var compoundBuckets = Math.ceil(totalWithWaste / 100);
+    var tapeRolls = Math.ceil(sheetsNeeded / 20);
+    var finishing = compoundBuckets + ' × 4.5-gallon bucket' + (compoundBuckets > 1 ? 's' : '') +
+      ' of joint compound. ' + tapeRolls + ' roll' + (tapeRolls > 1 ? 's' : '') +
+      ' of drywall tape (500 ft each). ' +
+      'Corner bead: measure your total corner linear feet and buy one piece per 8-10 ft section.';
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    
+    document.getElementById('r_wall_area').textContent = netWallArea.toFixed(0) + ' sq ft';
+    document.getElementById('r_total_area').textContent = totalArea.toFixed(0) + ' sq ft';
+    document.getElementById('r_with_waste').textContent = totalWithWaste.toFixed(0) + ' sq ft';
+    document.getElementById('r_sheets').textContent = sheetsNeeded + ' sheets';
+    document.getElementById('r_summary').textContent = summary;
+    document.getElementById('r_finishing').textContent = finishing;
+    
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('sheet_size').addEventListener('change', calculate);
+    document.getElementById('thickness').addEventListener('change', calculate);
+    document.getElementById('include_ceiling').addEventListener('change', calculate);
+    document.getElementById('waste').addEventListener('change', calculate);
+  });
+</script>
