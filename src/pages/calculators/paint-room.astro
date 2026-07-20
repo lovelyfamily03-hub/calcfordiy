@@ -18,6 +18,63 @@ import Layout from '../../layouts/Layout.astro';
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should I buy a quart or a gallon for small rooms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard quart of paint covers roughly 100 square feet (one coat). Even in a small bathroom, applying two coats usually pushes your requirement near or slightly over the 200 square foot mark. Because a gallon is often heavily discounted compared to buying three individual quarts, it is almost always more economical and safer to buy the full gallon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are two coats almost always necessary even when painting the same color?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A single coat of paint rarely provides an even sheen. Two coats ensure full, even coverage, hide roller marks (lap lines), and provide true color depth and durability, even when you are simply refreshing the exact same color."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does primer count as a coat of paint?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Primer is formulated specifically to bind to bare drywall, seal stains, and create a uniform surface. It does not contain the protective resins and pigments of topcoat paint. You still need your standard 1 to 2 coats of actual paint on top of your primer layer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate paint for an accent wall only?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To calculate a single accent wall, simply measure that specific wall's length and height. Multiply them together for the square footage, subtract any doors or windows on that wall, and multiply by 2 coats. Divide that number by your coverage rate. Usually, 1 quart or 1 gallon is plenty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I buy extra paint, and how much?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You should always aim to have about 10% to 15% leftover paint. You will inevitably need this leftover paint for future touch-ups from wall scuffs, moving furniture, or patching small nail holes. Storing leftover paint in a sealed, airtight container is a best practice for homeowners."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between paint coverage on the can versus real-world coverage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The coverage rate printed on the paint can (usually 400 sq ft) assumes you are painting over a perfectly smooth, fully primed surface. In the real world, heavily textured walls, highly porous builder-grade flat paint, and thick roller naps will soak up significantly more paint, dropping your actual coverage rate closer to 300 or 350 sq ft per gallon."
+      }
+    }
+    ]
+  }
+  </script>
+  
 
   <script type="application/ld+json">
   {

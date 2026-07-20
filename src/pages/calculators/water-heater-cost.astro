@@ -22,6 +22,63 @@ import Layout from '../../layouts/Layout.astro';
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I find the UEF rating on an existing water heater?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The UEF (Uniform Energy Factor) is prominently displayed on the large yellow EnergyGuide sticker attached to the front of almost all modern water heaters. If the sticker is missing, look for the manufacturer's data plate (a small white or silver sticker) containing the model number. Searching that specific model number online will quickly yield the exact UEF rating."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between EF and UEF ratings, and which is more accurate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EF (Energy Factor) was the older, less accurate measurement standard used prior to 2017. UEF (Uniform Energy Factor) is the new, vastly more accurate Department of Energy standard. UEF forces manufacturers to test their heaters based on real-world simulated usage patterns (like showering and running the dishwasher) rather than just heating a static tank of water in a laboratory."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a tankless water heater actually save money, and by how much?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, tankless water heaters save money because they eliminate \"standby heat loss\"—the energy wasted keeping a 50-gallon tank of water hot 24/7 when no one is using it. Depending on usage, upgrading from a standard 0.60 UEF gas tank to a 0.95 UEF tankless gas unit can save an average family roughly $100 to $150 per year on their utility bills."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What inlet temperature should I use if I don't know mine?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you live in a northern climate with cold winters (like Minnesota or Maine), use 45°F. If you live in a moderate, central climate (like Virginia or Kansas), use 55°F. If you live in the deep south with warm ground temperatures year-round (like Florida or Texas), use 65°F to 70°F."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does lowering the thermostat from 140°F to 120°F affect annual cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many water heaters are shipped from the factory set to 140°F. Dropping the thermostat back down to the DOE recommended 120°F can reduce your overall water heating costs by roughly 6% to 10% annually. It requires significantly less energy to reach the lower temperature and reduces standby heat loss radiating through the sides of the tank."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a heat pump water heater worth the higher upfront cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Almost always, yes. Heat pump water heaters pull ambient heat from the surrounding air rather than generating their own heat from scratch. Because of this, they carry staggering UEF ratings between 2.0 and 4.0. Using this water heater operating cost calculator, you will find they can save $300 to $400 a year compared to a standard electric tank, usually paying for themselves within 3 to 5 years."
+      }
+    }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },

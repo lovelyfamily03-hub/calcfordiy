@@ -22,6 +22,63 @@ import Layout from '../../layouts/Layout.astro';
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does SEER mean, and where do I find it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SEER stands for Seasonal Energy Efficiency Ratio. It is the ratio of cooling output divided by energy consumed over an entire typical cooling season. A higher SEER means the unit produces more cold air while using less electricity. You can find your SEER rating printed prominently on the yellow EnergyGuide sticker attached to the outdoor condenser unit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "As a reference, how much does a central AC cost to run on average?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A modern, standard-efficiency (14 SEER) 3-ton central AC unit running for 8 hours a day at the national average electric rate of $0.16 per kWh costs roughly $100 to $120 per month to operate. In extremely hot climates where units run 12 to 16 hours a day, that monthly cost can easily exceed $200."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a higher SEER unit always worth the extra cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always. Using this AC operating cost calculator, you will see that upgrading from an ancient 8 SEER unit to a standard 14 SEER unit yields massive savings. However, upgrading from a 14 SEER to an ultra-premium 20 SEER unit usually costs thousands of dollars extra upfront. If you live in a northern climate with short, 3-month summers, the minimal annual savings will likely never pay back that massive upfront premium. High SEER units make the most financial sense in hot, long-summer climates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between SEER and EER, and which applies to window units?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SEER measures efficiency over an entire season of varying outdoor temperatures. EER (Energy Efficiency Ratio) measures efficiency at one specific, static temperature (usually 95°F). Because window units are not tested over full seasonal curves, they are rated using EER or CEER (Combined Energy Efficiency Ratio). Window units generally hover around 10 to 12 CEER, making them far less efficient than modern central air."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many degrees does raising the thermostat save in cooling costs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As a general rule, for every degree you raise your thermostat above 72°F, you save roughly 3% to 4% on your overall cooling costs. The compressor does not have to turn on as frequently, and the temperature difference between the hot outdoors and the indoor air is reduced, which slows the rate that heat pushes its way back into the house."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a smart thermostat worth buying to reduce AC costs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, absolutely. A smart thermostat (like a Nest or Ecobee) can cut your seasonal cooling costs by 10% to 15%. They achieve this primarily through geofencing and scheduling—automatically letting the house warm up to 85°F when it senses your phone has left for work, and cooling it back down right before you return home, ensuring you never pay to air condition an empty house."
+      }
+    }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },

@@ -18,6 +18,63 @@ import Layout from '../../layouts/Layout.astro';
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does germination rate mean, and why do I need more seeds than plants?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Germination rate is the percentage of seeds expected to successfully sprout under optimal conditions. Even high-quality, fresh seeds rarely achieve a 100% germination rate. Buying and planting extra seeds provides a necessary buffer, ensuring you won't be left with empty patches in your garden if a few seeds fail to wake up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the spacing on the seed packet for rows or all directions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most commercial seed packets list two distinct numbers: \"plant spacing\" (the distance between individual plants within a single line) and \"row spacing\" (the distance between the lines themselves). If a packet only lists a single spacing number, you should assume that distance applies equally in all directions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I plant seeds closer than recommended?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "While it is tempting to cram more plants into a small space, planting closer than the recommended spacing is generally a bad idea. It crowds root systems, forces plants to compete for nutrients, limits sunlight penetration, and reduces airflow, which often leads to fungal diseases. For maximum yield and healthy plants, stick to the guidelines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between thinning and transplanting, and how does it affect seed count?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When direct sowing tiny seeds like carrots or radishes, gardeners often plant seeds very close together and \"thin\" (pull out) the weaker seedlings later. If you plan to thin, use a 50% germination buffer to ensure you have plenty of seeds. If you are starting seeds indoors to transplant only the strongest, mature seedlings outside, you can select a 0% buffer for your garden bed calculation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does triangular spacing work for all vegetables?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Triangular (or offset) spacing works beautifully for round, compact plants like cabbage, broccoli, lettuce, and onions. However, it is less effective for sprawling vining plants or tall, bushy crops like indeterminate tomatoes, which require wide, straight aisles for airflow and easy harvesting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does raised bed spacing differ from in-ground spacing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Raised beds feature deep, loose, nutrient-rich soil that encourages plant roots to grow straight down rather than spreading out horizontally to search for food. Because of this, you can often use closer, more intensive spacing in a raised bed than you would in traditional in-ground farm rows."
+      }
+    }
+    ]
+  }
+  </script>
+  
 
   <script type="application/ld+json">
   {

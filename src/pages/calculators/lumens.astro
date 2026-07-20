@@ -18,6 +18,63 @@ import Layout from '../../layouts/Layout.astro';
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between lumens and watts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Watts measure how much energy a bulb consumes, while lumens measure how much actual light it produces. Because modern LED bulbs use incredibly low wattage, using a lumens calculator is the only accurate way to plan your lighting layout today."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do foot-candles mean in plain English?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One foot-candle equals the amount of light cast by a single candle onto a one-square-foot surface from one foot away. It measures how much light physically arrives at your floor or countertop, whereas lumens measure how much light leaves the fixture."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do dark walls need more light?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dark paint colors, brick, and wood paneling absorb light rather than bouncing it around the room. You must inject more lumens into the space to achieve the same perceived brightness as a room with white walls."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I add extra lumens for task areas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. General room estimates provide overall ambient light. For areas like kitchen counters, bathroom vanities, or reading chairs, you should install dedicated task lighting (like under-cabinet lights or wall sconces) on top of your general room total."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What color temperature should I choose for different rooms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use Warm White (2700K-3000K) for relaxing spaces like bedrooms and living rooms. Choose Bright White or Cool White (4000K) for active task areas like kitchens, bathrooms, and home offices. Reserve Daylight (5000K+) strictly for garages and workshops."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many lumens does a typical living room need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A standard 12x15 foot living room with 8-foot ceilings and light-colored walls requires roughly 7,700 total lumens for general use. This is typically achieved with four to six recessed lights or a bright central fixture paired with floor and table lamps."
+      }
+    }
+    ]
+  }
+  </script>
+  
 
   <script type="application/ld+json">
   {
