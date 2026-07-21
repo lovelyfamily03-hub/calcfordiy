@@ -1,0 +1,394 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Outdoor Flood Light Calculator — How Many Lights for Your Yard? | CalcForDIY"
+  description="Calculate how many outdoor flood lights you need for a driveway, backyard, or security lighting. Enter area, mounting height, and target brightness for an instant fixture count. Free, no signup."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Outdoor Flood Light Calculator",
+    "description": "Free outdoor flood light calculator that estimates fixture count for driveways, backyards, pathways, and security lighting based on area size and target brightness.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Outdoor Flood Light Calculator", "item": "https://calcfordiy.com/calculators/outdoor-flood-lights" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Outdoor Flood Light Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Outdoor Flood Light Calculator</h1>
+    <p class="text-gray-600 text-lg">Enter your outdoor area dimensions, mounting height, and lighting purpose to get an accurate flood light count based on IES outdoor lighting standards.</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 print:bg-white print:border-gray-300">
+    <p class="text-sm font-semibold text-blue-900 mb-2 print:text-gray-900">Outdoor Lighting Is Different From Indoor</p>
+    <p class="text-sm text-blue-800 print:text-gray-700">Indoor lighting reflects off walls and ceilings, boosting efficiency. Outdoor lighting has no reflective surfaces — light goes straight down and stops. This means outdoor fixtures need significantly more lumens per square foot than indoor fixtures to achieve the same brightness. This calculator uses IES RP-8 outdoor lighting standards to account for this.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6 print:border-none print:shadow-none print:p-0">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Area to Light
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5 print:bg-white print:border print:border-gray-200">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Area Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="a_len_ft" placeholder="40" min="0" max="1000"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="a_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Area Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="a_wid_ft" placeholder="30" min="0" max="1000"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="a_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Mounting Height</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="mount_height" placeholder="10" min="4" max="40"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">ft</span>
+          <span class="text-xs text-gray-400 print:hidden">Height of fixture from ground. Higher = wider spread but less intensity.</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-1 print:hidden">Typical: eave mount 8-12 ft, pole mount 12-20 ft, wall mount 8-10 ft</p>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Lighting Purpose
+    </h2>
+
+    <div class="mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
+      <label class="block text-sm font-medium text-gray-700 mb-3">Select Your Primary Use</label>
+      <div class="grid grid-cols-1 gap-3">
+
+        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+          <input type="radio" name="purpose" value="0.5" class="mt-0.5 text-blue-600" onchange="calculate()" />
+          <div>
+            <div class="text-sm font-medium text-gray-800">Security / Perimeter Lighting</div>
+            <div class="text-xs text-gray-500">Minimum deterrent lighting along fence lines, property edges. Target: 0.5 FC.</div>
+            <div class="text-xs text-blue-600 font-medium mt-0.5 print:hidden">IES RP-8 minimum for security zones</div>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+          <input type="radio" name="purpose" value="2" class="mt-0.5 text-blue-600" onchange="calculate()" checked />
+          <div>
+            <div class="text-sm font-medium text-gray-800">Driveway / Pathway</div>
+            <div class="text-xs text-gray-500">Safe navigation lighting for driveways, walkways, and entry areas. Target: 2 FC.</div>
+            <div class="text-xs text-blue-600 font-medium mt-0.5 print:hidden">IES standard for residential driveways</div>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+          <input type="radio" name="purpose" value="5" class="mt-0.5 text-blue-600" onchange="calculate()" />
+          <div>
+            <div class="text-sm font-medium text-gray-800">Backyard / Patio General</div>
+            <div class="text-xs text-gray-500">Comfortable outdoor living, entertaining, and general backyard use. Target: 5 FC.</div>
+            <div class="text-xs text-blue-600 font-medium mt-0.5 print:hidden">IES recommendation for outdoor activity areas</div>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+          <input type="radio" name="purpose" value="10" class="mt-0.5 text-blue-600" onchange="calculate()" />
+          <div>
+            <div class="text-sm font-medium text-gray-800">Outdoor Work Area / Shop</div>
+            <div class="text-xs text-gray-500">Detailed outdoor work, garages, workshops, and sports areas. Target: 10 FC.</div>
+            <div class="text-xs text-blue-600 font-medium mt-0.5 print:hidden">IES standard for outdoor task and work areas</div>
+          </div>
+        </label>
+
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">3</span>
+      Fixture Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Fixture Lumens</label>
+        <select id="lumens"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="1500">1,500 lm — small flood light</option>
+          <option value="2500">2,500 lm — standard flood light</option>
+          <option value="5000" selected>5,000 lm — large flood light (most common)</option>
+          <option value="10000">10,000 lm — high output / commercial</option>
+          <option value="20000">20,000 lm — stadium / large area</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1 print:hidden">Find on fixture packaging. Most residential flood lights: 2,500-5,000 lm.</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Beam Angle</label>
+        <select id="beam_angle"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="0.15">Narrow — 15-30° (spotlighting, long-range)</option>
+          <option value="0.25" selected>Medium — 45-60° (standard flood light)</option>
+          <option value="0.35">Wide — 90-120° (area flood, broad coverage)</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1 print:hidden">Wider beam covers more area but lower intensity. Check fixture spec sheet.</p>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Flood Lights Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
+    Please enter your area dimensions to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Outdoor Lighting Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-blue-700 print:text-3xl print:text-gray-900" id="r_target">—</div>
+        <div class="text-xs text-gray-500 mt-1">Target FC</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_fixtures">—</div>
+        <div class="text-xs text-gray-500 mt-1">Fixtures Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_coverage">—</div>
+        <div class="text-xs text-gray-500 mt-1">Coverage Per Fixture</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3 print:border print:border-gray-200 print:shadow-none">
+      <p class="text-sm font-medium text-gray-700 mb-1 print:font-semibold">Placement Recommendation</p>
+      <p class="text-sm text-gray-600" id="r_placement">—</p>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3 print:border print:border-gray-200 print:shadow-none">
+      <p class="text-sm font-medium text-gray-700 mb-1 print:font-semibold">Motion Sensor Note</p>
+      <p class="text-sm text-gray-600" id="r_motion">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
+      <strong>Tip:</strong> Position flood lights at the perimeter of the area you want to illuminate, angling inward — not in the center pointing down. Perimeter placement eliminates shadows behind objects and provides more even coverage.
+    </p>
+  </div>
+
+  <div class="prose prose-gray max-w-none text-gray-700 print:prose-sm">
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">How to Use This Calculator</h2>
+    <p>Follow these five steps to get an accurate fixture count using our <strong>outdoor flood light calculator</strong>:</p>
+    <ol class="space-y-3 list-decimal list-inside">
+      <li><strong>Measure the Area:</strong> Determine the length and width of the outdoor zone you want to illuminate. It is best to include a small buffer beyond the hard edges (like extending past the concrete of a driveway) for a softer light transition.</li>
+      <li><strong>Enter Mounting Height:</strong> Note that mounting height dramatically affects performance. A higher mounting point provides a wider spread of light but lowers the intensity on the ground. Typical residential eave or wall mounts sit between 8 and 12 feet high.</li>
+      <li><strong>Select Lighting Purpose:</strong> Each outdoor activity requires a specific IES RP-8 foot-candle (FC) target. Security lighting requires very little light, while outdoor work areas require bright, intense illumination.</li>
+      <li><strong>Enter Fixture Lumens:</strong> Check the packaging of the fixture you intend to buy. The most common modern LED residential flood lights range between 2,500 and 5,000 lumens.</li>
+      <li><strong>Select Beam Angle:</strong> A wider beam angle covers more square footage but disperses the light, reducing intensity. A narrow beam is ideal for spotlighting specific zones from a distance.</li>
+    </ol>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">The Formula Explained</h2>
+    <p>Outdoor lighting uses a much lower Coefficient of Utilization (CU) than indoor lighting. Because there are no walls or ceilings to reflect light back into the space, light essentially goes straight down and stops. This <strong>outdoor flood light calculator</strong> uses the IES RP-8 Roadway Lighting methodology adapted for residential outdoor areas.</p>
+    
+    <div class="font-mono text-sm bg-gray-100 p-4 rounded-lg print:bg-white print:border print:border-gray-200 space-y-2">
+      <p>Total Lumens Needed = Area &times; Target Foot-Candles</p>
+      <p>Effective Lumens = Fixture Lumens &times; CU &times; Light Loss Factor (0.85)</p>
+      <p>Fixtures Needed = Total Lumens Needed / Effective Lumens (rounded up)</p>
+    </div>
+
+    <p>We apply a specific CU based on your selected beam angle (0.15 for narrow, 0.25 for medium, and 0.35 for wide) alongside an LED Light Loss Factor of 0.85 to account for outdoor dirt accumulation and natural diode degradation over time.</p>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">Frequently Asked Questions</h2>
+    
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How many lumens do I need for a backyard flood light?</h3>
+        <p class="text-gray-600">For a standard residential backyard patio (around 400 square feet), you will generally need a total of 2,500 to 5,000 lumens to achieve comfortable, general-use lighting. You can accomplish this with a single high-output fixture or two smaller fixtures.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Should flood lights point straight down or angle outward?</h3>
+        <p class="text-gray-600">Never point a flood light completely horizontally outward, as this blinds neighbors and wastes light into the sky. Aim the fixture downward at roughly a 45-degree angle toward the center of your target area to maximize ground coverage while preventing glare.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">What is the difference between a flood light and a spot light?</h3>
+        <p class="text-gray-600">The difference lies entirely in the beam angle. Flood lights have wide beams (usually 45 to 120 degrees) designed to wash a broad area like a driveway. Spot lights have narrow beams (15 to 30 degrees) designed to highlight specific architectural features, trees, or flagpoles from a distance.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Are motion sensor flood lights as bright as always-on lights?</h3>
+        <p class="text-gray-600">Yes. The brightness is determined entirely by the lumen output of the bulb or LED array, not the switch mechanism. A 5,000-lumen motion sensor light is exactly as bright as a 5,000-lumen switch-operated light.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How can I avoid light pollution with outdoor flood lights?</h3>
+        <p class="text-gray-600">To prevent light pollution, aim your lights sharply downward, use fixtures with integrated glare shields, utilize motion sensors so lights are only on when necessary, and choose a warmer color temperature (3000K or lower) to reduce harsh blue-light scattering in the night sky.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Do LED flood lights use less electricity than halogen flood lights?</h3>
+        <p class="text-gray-600">Significantly less. A modern LED flood light uses approximately 80% to 90% less electricity than an older halogen bulb while producing the exact same brightness. A standard 50-watt LED fixture can easily replace a blazing-hot 500-watt halogen fixture.</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 not-prose mb-12 print:hidden">
+      <a href="/calculators/outdoor-string-lights" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Outdoor String Lights Calculator</h4>
+        <p class="text-gray-600 text-xs">Calculate exactly how many feet of bistro string lights you need for your patio layout.</p>
+      </a>
+      <a href="/calculators/recessed-lights-garage" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Garage Lighting Calculator</h4>
+        <p class="text-gray-600 text-xs">Design a bright, shadow-free overhead lighting layout for your workshop or garage.</p>
+      </a>
+      <a href="/calculators/lumens" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Lumens Calculator</h4>
+        <p class="text-gray-600 text-xs">Convert watts to lumens and figure out the exact brightness you need for any room.</p>
+      </a>
+    </div>
+
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function calculate() {
+    var len = toFt('a_len_ft', 'a_len_in');
+    var wid = toFt('a_wid_ft', 'a_wid_in');
+    var mountHeight = getNum('mount_height');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (len <= 0 || wid <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var area = len * wid;
+    var selectedPurpose = document.querySelector('input[name="purpose"]:checked');
+    var targetFC = selectedPurpose ? parseFloat(selectedPurpose.value) : 2;
+    var lumens = parseInt(document.getElementById('lumens').value) || 5000;
+    var beamCU = parseFloat(document.getElementById('beam_angle').value) || 0.25;
+
+    // Outdoor lighting formula using IES RP-8 method
+    // CU for outdoor floodlights is much lower than indoor (0.15-0.35)
+    // LLF (light loss factor) for LED outdoor: 0.85
+    var llf = 0.85;
+    var effectiveLumens = lumens * beamCU * llf;
+
+    // Total lumens needed
+    var totalLumensNeeded = area * targetFC;
+
+    // Number of fixtures
+    var fixturesNeeded = Math.ceil(totalLumensNeeded / effectiveLumens);
+
+    // Coverage area per fixture
+    var coveragePerFixture = Math.round(area / fixturesNeeded);
+
+    // Coverage radius based on mounting height and beam
+    var beamRadiusFt = mountHeight > 0 ? Math.round(mountHeight * 1.2) : '—';
+
+    // Placement recommendation
+    var cols = Math.round(Math.sqrt(fixturesNeeded * (len / wid)));
+    var rows = Math.ceil(fixturesNeeded / cols);
+    cols = Math.ceil(fixturesNeeded / rows);
+
+    var placement = fixturesNeeded + ' fixture' + (fixturesNeeded > 1 ? 's' : '') + ' covering ' +
+      area.toFixed(0) + ' sq ft. ';
+
+    if (fixturesNeeded === 1) {
+      placement += 'Mount at the center-rear of the area at ' + (mountHeight || 10) + ' ft height, angled to cover the full area.';
+    } else if (fixturesNeeded <= 4) {
+      placement += 'Mount at corners or perimeter edges at ' + (mountHeight || 10) + ' ft, angling each fixture toward the center of its coverage zone.';
+    } else {
+      placement += rows + ' rows × ' + cols + ' fixtures. Space evenly across the perimeter at ' +
+        (mountHeight || 10) + ' ft mounting height, angling each inward.';
+    }
+
+    // Motion sensor note
+    var motionNote = '';
+    var purposeVal = targetFC;
+    if (purposeVal <= 1) {
+      motionNote = 'Security lighting is most effective with motion sensors — stationary lights become background and lose deterrent effect. Motion-activated lights catch attention and save energy.';
+    } else if (purposeVal <= 5) {
+      motionNote = 'Motion sensors work well for driveways and pathways. Consider a dual-mode fixture: dim continuous light for navigation with full brightness triggered by motion for activity.';
+    } else {
+      motionNote = 'Work area and patio lighting is typically left on continuously while in use. Dusk-to-dawn sensors or smart timers are more practical than motion sensors for these applications.';
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_area').textContent = area.toFixed(0) + ' sq ft';
+    document.getElementById('r_target').textContent = targetFC + ' FC';
+    document.getElementById('r_fixtures').textContent = fixturesNeeded + ' fixtures';
+    document.getElementById('r_coverage').textContent = coveragePerFixture + ' sq ft';
+    document.getElementById('r_placement').textContent = placement;
+    document.getElementById('r_motion').textContent = motionNote;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('lumens').addEventListener('change', calculate);
+    document.getElementById('beam_angle').addEventListener('change', calculate);
+    calculate();
+  });
+</script>
