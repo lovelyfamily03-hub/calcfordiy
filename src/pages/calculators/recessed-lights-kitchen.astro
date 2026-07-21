@@ -1,0 +1,445 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Recessed Lighting Calculator for Kitchen — How Many Lights? | CalcForDIY"
+  description="Calculate how many recessed lights you need for a kitchen. Includes general ambient lighting plus task lighting over counters and island. Free, no signup."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Recessed Lighting Calculator for Kitchen",
+    "description": "Free kitchen lighting calculator that estimates fixture count for both general ambient lighting and task lighting over countertops and kitchen island.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Recessed Lighting Calculator — Kitchen", "item": "https://calcfordiy.com/calculators/recessed-lights-kitchen" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Recessed Lighting — Kitchen</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Recessed Lighting Calculator — Kitchen</h1>
+    <p class="text-gray-600 text-lg">Kitchens need two layers of lighting — general ambient light for the whole room and brighter task lighting over counters and islands. This calculator handles both separately.</p>
+  </div>
+
+  <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 print:bg-white print:border-gray-300">
+    <p class="text-sm font-semibold text-amber-900 mb-1 print:text-gray-900">Kitchen Lighting Needs Two Calculations</p>
+    <p class="text-sm text-amber-800 print:text-gray-700">General ambient lighting targets 30-50 foot-candles for the whole kitchen. Task areas like countertops and islands need 70-100 foot-candles to safely prepare food. Trying to handle both with one set of fixtures leads to either a dim kitchen or an overlit one. This calculator keeps them separate so you can plan zone-controlled lighting.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6 print:border-none print:shadow-none print:p-0">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Kitchen Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5 print:bg-white print:border print:border-gray-200">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Kitchen Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="k_len_ft" placeholder="14" min="0" max="100"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="k_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Kitchen Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="k_wid_ft" placeholder="12" min="0" max="100"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="k_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="k_ceil_ft" placeholder="9" min="6" max="20"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+          <input type="number" id="k_ceil_in" placeholder="0" min="0" max="11"
+            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">in</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      General Ambient Lighting
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Ambient Target</label>
+        <select id="ambient_fc"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="30">30 FC — moderate, task lights handle the rest</option>
+          <option value="50" selected>50 FC — standard kitchen ambient</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1 print:hidden">IES recommendation for kitchen general lighting</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Ambient Fixture Lumens</label>
+        <select id="ambient_lumens"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="650">650 lm — 6" LED standard</option>
+          <option value="750" selected>750 lm — 6" LED bright</option>
+          <option value="1000">1000 lm — 6" LED high output</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">3</span>
+      Task Lighting (Optional)
+    </h2>
+
+    <div class="mb-4 print:hidden">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="counterToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('counterSection', this.checked)" />
+        <span class="text-sm text-gray-700">Include counter / perimeter task lighting</span>
+      </label>
+      <div id="counterSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-xs text-gray-500 mb-3">Position task lights 24 inches from the wall and centered over the counter, not along the perimeter wall itself.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Total Counter Length</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="counter_len_ft" placeholder="12" min="0" max="100"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-1">Add all counter sections together</p>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Task Fixture Lumens</label>
+            <select id="task_lumens"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="650">650 lm — standard</option>
+              <option value="750" selected>750 lm — bright</option>
+              <option value="1000">1000 lm — high output</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5 print:hidden">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="islandToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('islandSection', this.checked)" />
+        <span class="text-sm text-gray-700">Include kitchen island task lighting</span>
+      </label>
+      <div id="islandSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-xs text-gray-500 mb-3">Island lights are typically spaced every 24-36 inches along the island length, centered over the work surface.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Island Length</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="island_len_ft" placeholder="4" min="0" max="20"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="island_len_in" placeholder="0" min="0" max="11"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Island Fixture Spacing</label>
+            <select id="island_spacing"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="2">Every 24" — maximum coverage</option>
+              <option value="2.5" selected>Every 30" — standard</option>
+              <option value="3">Every 36" — minimal</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Kitchen Lighting →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
+    Please enter your kitchen length and width to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Kitchen Lighting Estimate</h2>
+
+    <p class="text-sm font-semibold text-blue-800 mb-2 print:text-gray-900">General Ambient Lighting</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_area">—</div>
+        <div class="text-xs text-gray-500 mt-1">Kitchen Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-blue-700 print:text-3xl print:text-gray-900" id="r_target">—</div>
+        <div class="text-xs text-gray-500 mt-1">Ambient Target</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_ambient_fixtures">—</div>
+        <div class="text-xs text-gray-500 mt-1">Ambient Fixtures</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_spacing">—</div>
+        <div class="text-xs text-gray-500 mt-1">Suggested Spacing</div>
+      </div>
+    </div>
+
+    <div id="taskResults" class="hidden">
+      <p class="text-sm font-semibold text-blue-800 mb-2 mt-4 print:text-gray-900">Task Lighting</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+        <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none" id="counterRow">
+          <div class="text-2xl font-bold text-purple-700 print:text-3xl print:text-gray-900" id="r_counter_fixtures">—</div>
+          <div class="text-xs text-gray-500 mt-1">Counter Fixtures</div>
+        </div>
+        <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none" id="islandRow">
+          <div class="text-2xl font-bold text-purple-700 print:text-3xl print:text-gray-900" id="r_island_fixtures">—</div>
+          <div class="text-xs text-gray-500 mt-1">Island Fixtures</div>
+        </div>
+        <div class="bg-white rounded-lg p-4 text-center shadow-sm col-span-2 print:border print:border-gray-200 print:shadow-none">
+          <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_total">—</div>
+          <div class="text-xs text-gray-500 mt-1">Total Fixtures All Zones</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3 print:border print:border-gray-200 print:shadow-none">
+      <p class="text-sm font-medium text-gray-700 mb-1 print:font-semibold">Layout and Circuit Recommendation</p>
+      <p class="text-sm text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
+      <strong>Tip:</strong> Put ambient and task lights on separate dimmer switches. Bright task lighting while cooking, dim ambient for dining — one switch for each zone gives you full control without adding fixtures.
+    </p>
+  </div>
+
+  <div class="prose prose-gray max-w-none text-gray-700 print:prose-sm">
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">How to Use This Calculator</h2>
+    <p>Follow these five steps to design a professional dual-layer layout using our <strong>recessed lighting calculator for kitchen</strong> remodels:</p>
+    <ol class="space-y-3 list-decimal list-inside">
+      <li><strong>Enter Kitchen Dimensions:</strong> Start by entering the overall length, width, and ceiling height of your kitchen space.</li>
+      <li><strong>Select Ambient Target:</strong> The standard ambient light level for kitchens is 50 foot-candles (FC), which is significantly higher than a living room. This is because a kitchen is primarily a workspace that requires excellent visibility for safety.</li>
+      <li><strong>Add Counter Task Lighting:</strong> If you want dedicated lighting over your countertops, check the box and enter the total linear feet of your counters (add all the sections together). These are typically placed 24 inches from the wall to align over the front edge of the counter.</li>
+      <li><strong>Add Island Task Lighting:</strong> If your kitchen features an island, select the checkbox and input its length. You can choose how tightly to space the fixtures (24, 30, or 36 inches apart) depending on how bright you want the island surface.</li>
+      <li><strong>Read Circuit Recommendations:</strong> Review the final summary. It is highly recommended to wire your ambient general lights and your task lights on separate dimmer switches, giving you maximum control over the room's mood and functionality.</li>
+    </ol>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">The Formula Explained</h2>
+    <p>This <strong>recessed lighting calculator for kitchen</strong> design handles three separate calculations simultaneously. We avoid complex math by breaking it down in plain English:</p>
+
+    <div class="font-mono text-sm bg-gray-100 p-4 rounded-lg print:bg-white print:border print:border-gray-200 space-y-2">
+      <p>Ambient Fixtures = (Floor Area &times; Target FC) / (Lumens per Fixture &times; 0.75 CU)</p>
+      <p>Counter Task Fixtures = Counter Length (in feet) / 2 (rounded up for 24-inch spacing)</p>
+      <p>Island Fixtures = Island Length / Chosen Spacing (rounded up)</p>
+      <p>Total Fixtures = Ambient + Counter + Island</p>
+    </div>
+
+    <p>Our foot-candle targets are derived directly from the IES RP-11 Recommended Practice for Lighting of Educational Facilities and standard residential guidelines, which dictate 30-50 FC for general kitchen ambient lighting and a much brighter 70-100 FC for active task areas like sinks, stoves, and islands.</p>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">Frequently Asked Questions</h2>
+    
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How many recessed lights do I need for a 12x14 kitchen?</h3>
+        <p class="text-gray-600">For a standard 12x14 kitchen (168 square feet), targeting 50 foot-candles with standard 750-lumen fixtures requires roughly <strong>15 ambient fixtures</strong>. If you add counter and island task lighting on top of that, your total fixture count will increase depending on your specific layout.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Does under-cabinet lighting replace counter recessed lights?</h3>
+        <p class="text-gray-600">No, they supplement each other. Recessed counter lights illuminate the front edge of the counter and the person working, while under-cabinet lights illuminate the back edge of the counter and kill any shadows cast by your upper cabinets. Using both creates perfectly shadow-free task lighting.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How far from the wall should I place counter task lights?</h3>
+        <p class="text-gray-600">Place them roughly 24 inches away from the perimeter wall. Standard lower cabinets are 24 inches deep, with a 25.5-inch countertop depth. Placing the light at 24 inches centers the beam directly over the edge of the workspace so your head and body do not block the light while you are standing there.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Do kitchen recessed lights need to be rated for damp locations?</h3>
+        <p class="text-gray-600">Yes, it is highly recommended to use "damp-rated" or "wet-rated" recessed fixtures in a kitchen, especially for the lights positioned directly above the sink, stove, or dishwasher, where they will be exposed to rising steam and moisture.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How do I handle a kitchen that opens directly into a dining room?</h3>
+        <p class="text-gray-600">Always use separate circuits (zones) and dimmers. You can use the same style of recessed fixture in both rooms for visual continuity, but design the dining room for a lower target (like 20-30 FC) and the kitchen for a higher target (50 FC), allowing you to dim the kitchen lights while eating.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Do recessed lights work over a kitchen island, or are pendants better?</h3>
+        <p class="text-gray-600">Both work perfectly well, and it simply depends on your aesthetic preference. Recessed lights provide a clean, modern look that doesn't obstruct sightlines across the kitchen. Pendants act as decorative centerpieces. You can also mix them—using pendants over the island and recessed lights everywhere else.</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 not-prose mb-12 print:hidden">
+      <a href="/calculators/recessed-lights-living-room" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Living Room Lighting Calculator</h4>
+        <p class="text-gray-600 text-xs">Design relaxing, low-glare grid layouts perfectly suited for entertaining and TV watching.</p>
+      </a>
+      <a href="/calculators/recessed-lights-hallway" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Hallway Lighting Calculator</h4>
+        <p class="text-gray-600 text-xs">Calculate perfectly even spacing for a single-file row of lights in narrow hallways.</p>
+      </a>
+      <a href="/calculators/lumens" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Lumens Calculator</h4>
+        <p class="text-gray-600 text-xs">Convert watts to lumens and figure out the exact brightness you need for any space.</p>
+      </a>
+    </div>
+
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function isChecked(id) {
+    return document.getElementById(id).checked;
+  }
+
+  function toggleSection(sectionId, show) {
+    document.getElementById(sectionId).classList.toggle('hidden', !show);
+    calculate();
+  }
+
+  function calculate() {
+    var len = toFt('k_len_ft', 'k_len_in');
+    var wid = toFt('k_wid_ft', 'k_wid_in');
+    var ceilFt = toFt('k_ceil_ft', 'k_ceil_in');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (len <= 0 || wid <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var area = len * wid;
+    var ambientFC = parseInt(document.getElementById('ambient_fc').value) || 50;
+    var ambientLumens = parseInt(document.getElementById('ambient_lumens').value) || 750;
+    var cu = 0.75;
+
+    // Ambient fixtures
+    var ambientFixtures = Math.ceil((area * ambientFC) / (ambientLumens * cu));
+
+    // Spacing
+    var spacingFt = ceilFt > 0
+      ? Math.round(ceilFt * 0.75 * 10) / 10
+      : Math.round(Math.sqrt(area / ambientFixtures) * 10) / 10;
+
+    // Grid layout
+    var cols = Math.round(Math.sqrt(ambientFixtures * (len / wid)));
+    var rows = Math.ceil(ambientFixtures / cols);
+    cols = Math.ceil(ambientFixtures / rows);
+
+    // Task lighting
+    var counterFixtures = 0;
+    var islandFixtures = 0;
+
+    if (isChecked('counterToggle')) {
+      var counterLen = getNum('counter_len_ft');
+      var taskLumens = parseInt(document.getElementById('task_lumens').value) || 750;
+      // Task lights every 18-24 inches over counter (use 2 ft spacing standard)
+      counterFixtures = Math.ceil(counterLen / 2);
+    }
+
+    if (isChecked('islandToggle')) {
+      var islandLen = toFt('island_len_ft', 'island_len_in');
+      var islandSpacing = parseFloat(document.getElementById('island_spacing').value) || 2.5;
+      islandFixtures = Math.ceil(islandLen / islandSpacing);
+    }
+
+    var totalFixtures = ambientFixtures + counterFixtures + islandFixtures;
+    var hasTask = counterFixtures > 0 || islandFixtures > 0;
+
+    var summary = 'Ambient: ' + rows + ' rows × ' + cols + ' fixtures per row, spaced ' +
+      spacingFt + ' ft apart. ';
+
+    if (hasTask) {
+      summary += 'Task lighting on a separate circuit and dimmer. ';
+      if (counterFixtures > 0) summary += counterFixtures + ' counter fixtures spaced 24" apart. ';
+      if (islandFixtures > 0) summary += islandFixtures + ' island fixtures. ';
+    }
+
+    summary += 'Total: ' + totalFixtures + ' fixtures across ' +
+      (hasTask ? 'two' : 'one') + ' circuit' + (hasTask ? 's' : '') + '.';
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_area').textContent = area.toFixed(0) + ' sq ft';
+    document.getElementById('r_target').textContent = ambientFC + ' FC';
+    document.getElementById('r_ambient_fixtures').textContent = ambientFixtures + ' fixtures';
+    document.getElementById('r_spacing').textContent = spacingFt + ' ft';
+    document.getElementById('r_summary').textContent = summary;
+
+    var taskResultsEl = document.getElementById('taskResults');
+    if (hasTask) {
+      taskResultsEl.classList.remove('hidden');
+      document.getElementById('r_counter_fixtures').textContent = counterFixtures + ' fixtures';
+      document.getElementById('r_island_fixtures').textContent = islandFixtures + ' fixtures';
+      document.getElementById('r_total').textContent = totalFixtures + ' total fixtures';
+      document.getElementById('counterRow').classList.toggle('hidden', counterFixtures === 0);
+      document.getElementById('islandRow').classList.toggle('hidden', islandFixtures === 0);
+    } else {
+      taskResultsEl.classList.add('hidden');
+      document.getElementById('r_total') && (document.getElementById('r_total').textContent = ambientFixtures + ' total fixtures');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('ambient_fc').addEventListener('change', calculate);
+    document.getElementById('ambient_lumens').addEventListener('change', calculate);
+    document.getElementById('island_spacing') && document.getElementById('island_spacing').addEventListener('change', calculate);
+    document.getElementById('task_lumens') && document.getElementById('task_lumens').addEventListener('change', calculate);
+  });
+</script>
