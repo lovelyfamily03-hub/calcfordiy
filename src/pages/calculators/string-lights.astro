@@ -1,0 +1,463 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="String Lights Calculator for Deck & Patio — How Many Strands? | CalcForDIY"
+  description="Calculate how many strands of string lights you need for a deck or patio. Enter dimensions, layout pattern, and strand length for an instant count plus outlet requirements. Free, no signup."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "String Lights Calculator for Deck and Patio",
+    "description": "Free string lights calculator that estimates strand count, total linear footage, and outlet requirements for deck and patio lighting layouts.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "String Lights Calculator", "item": "https://calcfordiy.com/calculators/string-lights" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>String Lights Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">String Lights Calculator — Deck & Patio</h1>
+    <p class="text-gray-600 text-lg">Enter your deck or patio dimensions and choose your layout pattern to get an exact strand count, linear footage, and how many outlets you need.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6 print:border-none print:shadow-none print:p-0">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Deck / Patio Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5 print:bg-white print:border print:border-gray-200">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="d_len_ft" placeholder="20" min="0" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="d_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="d_wid_ft" placeholder="14" min="0" max="500"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="d_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Layout Pattern
+    </h2>
+
+    <div class="space-y-3 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
+
+      <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+        <input type="radio" name="layout" value="crisscross" class="mt-0.5 text-blue-600" onchange="updateLayout()" checked />
+        <div class="flex-1">
+          <div class="text-sm font-medium text-gray-800">Crisscross / Grid</div>
+          <div class="text-xs text-gray-500 mt-0.5">Strands run back and forth across the full space in both directions creating a grid overhead. The most popular patio look. Requires mounting points on all four sides.</div>
+        </div>
+      </label>
+
+      <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+        <input type="radio" name="layout" value="straight" class="mt-0.5 text-blue-600" onchange="updateLayout()" />
+        <div class="flex-1">
+          <div class="text-sm font-medium text-gray-800">Straight Runs (Pergola Style)</div>
+          <div class="text-xs text-gray-500 mt-0.5">Parallel strands running in one direction only, like a pergola roof. Cleaner look than crisscross. Only needs mounting points on two sides.</div>
+        </div>
+      </label>
+
+      <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+        <input type="radio" name="layout" value="perimeter" class="mt-0.5 text-blue-600" onchange="updateLayout()" />
+        <div class="flex-1">
+          <div class="text-sm font-medium text-gray-800">Perimeter Border</div>
+          <div class="text-xs text-gray-500 mt-0.5">Lights run along the edges only — fence, railing, or eave line. Defines the space without overhead coverage. Less light overall but very easy to install.</div>
+        </div>
+      </label>
+
+      <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+        <input type="radio" name="layout" value="starburst" class="mt-0.5 text-blue-600" onchange="updateLayout()" />
+        <div class="flex-1">
+          <div class="text-sm font-medium text-gray-800">Starburst / Canopy (from center point)</div>
+          <div class="text-xs text-gray-500 mt-0.5">Strands radiate from a central mounting point outward to the perimeter. Dramatic canopy effect. Requires a strong center anchor like a post or tree.</div>
+        </div>
+      </label>
+
+    </div>
+
+    <div id="spacingSection" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2" id="spacingLabel">Spacing Between Runs</label>
+        <select id="run_spacing"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="1">1 ft apart — dense, very bright</option>
+          <option value="2" selected>2 ft apart — standard coverage</option>
+          <option value="3">3 ft apart — light coverage</option>
+          <option value="4">4 ft apart — minimal / accent</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Sag / Drape Allowance</label>
+        <select id="sag"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="1.05">Tight / taut (5% extra)</option>
+          <option value="1.10" selected>Slight drape (10% extra)</option>
+          <option value="1.20">Relaxed drape (20% extra)</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1 print:hidden">String lights look best with a slight drape rather than pulled tight</p>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">3</span>
+      Strand Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Strand Length</label>
+        <select id="strand_length"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="25" selected>25 ft strand (most common)</option>
+          <option value="48">48 ft strand</option>
+          <option value="50">50 ft strand</option>
+          <option value="100">100 ft strand</option>
+          <option value="custom">Custom length</option>
+        </select>
+      </div>
+      <div id="customStrandDiv" class="hidden">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Custom Strand Length</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="custom_strand" placeholder="30" min="5" max="300"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">ft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Bulb Type / Watts Per Strand</label>
+        <select id="strand_watts"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="5">LED G40 / G50 — ~5 watts per 25 ft strand</option>
+          <option value="10">LED large globe — ~10 watts per 25 ft strand</option>
+          <option value="25" selected>Incandescent G40 — ~25 watts per 25 ft strand</option>
+          <option value="40">Incandescent large globe — ~40 watts per 25 ft strand</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1 print:hidden">Used to calculate how many strands per outlet. Check your strand packaging.</p>
+      </div>
+      <div class="flex items-end print:hidden">
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 w-full">
+          <p class="text-xs text-amber-800"><strong>LED vs incandescent:</strong> LED string lights use 80% less power and run cooler, making it safe to connect more strands per outlet. For large patios, LED is strongly recommended.</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate String Lights Needed →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
+    Please enter your deck or patio dimensions to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your String Lights Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_linear_ft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Linear Feet</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-blue-700 print:text-3xl print:text-gray-900" id="r_strands">—</div>
+        <div class="text-xs text-gray-500 mt-1">Strands to Buy</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_outlets">—</div>
+        <div class="text-xs text-gray-500 mt-1">Outlets Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_total_watts">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Watts</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3 print:border print:border-gray-200 print:shadow-none">
+      <p class="text-sm font-medium text-gray-700 mb-1 print:font-semibold">Layout Summary</p>
+      <p class="text-sm text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3 print:border print:border-gray-200 print:shadow-none">
+      <p class="text-sm font-medium text-gray-700 mb-1 print:font-semibold">Outlet & Extension Cord Guide</p>
+      <p class="text-sm text-gray-600" id="r_outlet_guide">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
+      <strong>Tip:</strong> Always use a GFCI-protected outdoor outlet for string lights. Never connect more than 3 incandescent strands end-to-end — check your strand packaging for the manufacturer's maximum daisy-chain limit.
+    </p>
+  </div>
+
+  <div class="prose prose-gray max-w-none text-gray-700 print:prose-sm">
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">How to Use This Calculator</h2>
+    <p>Follow these five steps to design your layout using our <strong>string lights calculator</strong>:</p>
+    <ol class="space-y-3 list-decimal list-inside">
+      <li><strong>Measure Your Space:</strong> Determine your deck or patio's exact length and width in feet.</li>
+      <li><strong>Choose Your Layout Pattern:</strong> Select how you want the lights arranged. A crisscross grid provides a classic overhead canopy, straight parallel runs offer a clean pergola-style look, a perimeter layout borders the space, and a starburst radiates dramatically from a single center point.</li>
+      <li><strong>Select Spacing Between Runs:</strong> Choosing a 2-foot spacing provides standard, even coverage. Closer spacing (like 1 foot) creates a much denser, brighter look, while wider spacing is better for subtle accent lighting.</li>
+      <li><strong>Select Strand Length:</strong> Note that 25-foot strands are the most widely available and easiest to replace. Choose the length you plan to purchase.</li>
+      <li><strong>Select Bulb Type:</strong> LED strands allow you to safely connect many more strands per outlet than traditional incandescent bulbs. This <strong>string lights calculator</strong> automatically calculates your power load to ensure you don't trip a breaker.</li>
+    </ol>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">The Formula Explained</h2>
+    <p>Our layout math accounts for the geometry of your space, natural wire droop, and electrical safety standards.</p>
+    
+    <div class="font-mono text-sm bg-gray-100 p-4 rounded-lg print:bg-white print:border print:border-gray-200 space-y-2">
+      <p><strong>Crisscross:</strong> (Width / Spacing + 1) = Length Runs. (Length / Spacing + 1) = Width Runs.</p>
+      <p><strong>Straight Runs:</strong> (Length / Spacing + 1) = Total Runs. Each run equals the Width.</p>
+      <p><strong>Perimeter:</strong> 2 &times; (Length + Width) &times; 1.10 (accounts for corners)</p>
+      <p><strong>Strands Needed:</strong> (Total Linear Feet &times; Sag Allowance &times; 1.05 Connection Buffer) / Strand Length</p>
+      <p><strong>Outlets Needed:</strong> Strands Needed / Strands per Outlet</p>
+      <p><strong>Strands per Outlet:</strong> Floor(1440 Watts / Watts per Strand)</p>
+    </div>
+
+    <p>The electrical calculation is based on the safe 80% continuous load limit of a standard 15-amp GFCI outdoor circuit (15A &times; 120V &times; 0.80 = 1440 safe watts).</p>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">Frequently Asked Questions</h2>
+    
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How many strands of string lights for a 20x14 patio?</h3>
+        <p class="text-gray-600">For a standard 20x14 patio using a classic crisscross layout with 2-foot spacing and a slight drape, you will need approximately <strong>13 strands</strong> (assuming 25-foot strands). This provides a beautifully dense overhead canopy.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Do I need special outdoor-rated lights for a covered deck?</h3>
+        <p class="text-gray-600">Yes. Even if your deck is covered by a roof or awning, the lights are still exposed to high humidity, temperature fluctuations, and blowing moisture. Always use commercial-grade, wet-rated (IP65) outdoor string lights.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How do I hang string lights without a pergola or existing structure?</h3>
+        <p class="text-gray-600">You can install heavy-duty wooden posts (4x4s) in planters filled with concrete, or sink metal poles directly into the ground just outside the patio border. Always run a steel guide wire (cable kit) between the poles to support the weight of the lights and prevent sagging over time.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Do LED string lights look as warm and inviting as incandescent?</h3>
+        <p class="text-gray-600">Modern LEDs absolutely can, provided you buy the right ones. Look for LED bulbs with a color temperature of <strong>2200K to 2700K</strong> (often labeled "warm white" or "amber"). These perfectly mimic the cozy, vintage glow of traditional incandescent bulbs while using a fraction of the electricity.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">What is the maximum number of strands I can connect end-to-end?</h3>
+        <p class="text-gray-600">This strictly depends on the bulb type and the wire gauge. Traditional incandescent strands often limit you to 3 or 4 connected strands before risking blown fuses. LED strands, which draw very little power, often allow you to connect 20 to 40 strands end-to-end. Always check the manufacturer's specific limit on the box.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Do I need an electrician to add an outdoor outlet for string lights?</h3>
+        <p class="text-gray-600">If you are using this <strong>string lights calculator</strong> and discover you need more outlets than your patio currently has, you should hire a licensed electrician. Running permanent outdoor extension cords is a major fire and tripping hazard. An electrician can safely install a dedicated GFCI weatherproof receptacle exactly where you need it.</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 not-prose mb-12 print:hidden">
+      <a href="/calculators/outdoor-flood-lights" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Outdoor Flood Lights Calculator</h4>
+        <p class="text-gray-600 text-xs">Calculate how many flood lights you need for driveways, backyards, and security.</p>
+      </a>
+      <a href="/calculators/christmas-tree-lights" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Christmas Tree Lights Calculator</h4>
+        <p class="text-gray-600 text-xs">Find out exactly how many strands you need to perfectly wrap any size tree.</p>
+      </a>
+      <a href="/calculators/recessed-lights-living-room" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Living Room Lighting Calculator</h4>
+        <p class="text-gray-600 text-xs">Calculate layered ambient grid layouts based on room dimensions and ceiling height.</p>
+      </a>
+    </div>
+
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  function getStrandLength() {
+    var val = document.getElementById('strand_length').value;
+    if (val === 'custom') return getNum('custom_strand') || 25;
+    return parseFloat(val) || 25;
+  }
+
+  function updateLayout() {
+    var layout = document.querySelector('input[name="layout"]:checked').value;
+    var spacingLabel = document.getElementById('spacingLabel');
+    var spacingSection = document.getElementById('spacingSection');
+
+    if (layout === 'perimeter') {
+      spacingSection.classList.add('hidden');
+    } else {
+      spacingSection.classList.remove('hidden');
+    }
+
+    if (layout === 'straight') {
+      spacingLabel.textContent = 'Spacing Between Parallel Runs';
+    } else if (layout === 'crisscross') {
+      spacingLabel.textContent = 'Spacing Between Runs (both directions)';
+    } else if (layout === 'starburst') {
+      spacingLabel.textContent = 'Spacing Between Radiating Strands (at perimeter)';
+    }
+
+    calculate();
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('strand_length').addEventListener('change', function () {
+      var isCustom = this.value === 'custom';
+      document.getElementById('customStrandDiv').classList.toggle('hidden', !isCustom);
+      calculate();
+    });
+
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('run_spacing').addEventListener('change', calculate);
+    document.getElementById('sag').addEventListener('change', calculate);
+    document.getElementById('strand_watts').addEventListener('change', calculate);
+  });
+
+  function calculate() {
+    var len = toFt('d_len_ft', 'd_len_in');
+    var wid = toFt('d_wid_ft', 'd_wid_in');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (len <= 0 || wid <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    var layout = document.querySelector('input[name="layout"]:checked').value;
+    var runSpacing = parseFloat(document.getElementById('run_spacing').value) || 2;
+    var sag = parseFloat(document.getElementById('sag').value) || 1.10;
+    var strandLength = getStrandLength();
+    var strandWatts = parseFloat(document.getElementById('strand_watts').value) || 25;
+
+    var totalLinearFt = 0;
+    var summaryText = '';
+    var numRuns = 0;
+
+    if (layout === 'crisscross') {
+      var runsAcrossLen = Math.ceil(wid / runSpacing) + 1;
+      var runsAcrossWid = Math.ceil(len / runSpacing) + 1;
+      var linearInLenDir = runsAcrossLen * len * sag;
+      var linearInWidDir = runsAcrossWid * wid * sag;
+      totalLinearFt = linearInLenDir + linearInWidDir;
+      numRuns = runsAcrossLen + runsAcrossWid;
+      summaryText = runsAcrossLen + ' runs × ' + len.toFixed(0) + ' ft + ' +
+        runsAcrossWid + ' runs × ' + wid.toFixed(0) + ' ft = ' +
+        numRuns + ' total runs. Spaced ' + runSpacing + ' ft apart in both directions.';
+
+    } else if (layout === 'straight') {
+      numRuns = Math.ceil(len / runSpacing) + 1;
+      totalLinearFt = numRuns * wid * sag;
+      summaryText = numRuns + ' parallel runs × ' + wid.toFixed(0) + ' ft each, spaced ' +
+        runSpacing + ' ft apart running the ' + len.toFixed(0) + ' ft dimension.';
+
+    } else if (layout === 'perimeter') {
+      totalLinearFt = 2 * (len + wid) * 1.10;
+      numRuns = 4;
+      summaryText = 'Single border run along all four edges of the ' + len.toFixed(0) + ' × ' +
+        wid.toFixed(0) + ' ft space. 10% added for corners and connections.';
+
+    } else if (layout === 'starburst') {
+      var perimeter = 2 * (len + wid);
+      var numStrands = Math.ceil(perimeter / runSpacing);
+      var avgRadius = (Math.sqrt(len * len + wid * wid) / 2);
+      totalLinearFt = numStrands * avgRadius * sag;
+      numRuns = numStrands;
+      summaryText = numStrands + ' strands radiating from center point to perimeter, ' +
+        runSpacing + ' ft apart at the outer edge. Average strand length: ' +
+        avgRadius.toFixed(1) + ' ft.';
+    }
+
+    // Add 10% extra for connections and slack at attachment points
+    totalLinearFt = totalLinearFt * 1.05;
+
+    var strandsNeeded = Math.ceil(totalLinearFt / strandLength);
+
+    // Outlet calculation
+    // Safe load per 15A GFCI outdoor outlet = 15A × 120V × 0.80 = 1440 watts
+    var safeWattsPerOutlet = 1440;
+    var strandsPerOutlet = Math.floor(safeWattsPerOutlet / strandWatts);
+    strandsPerOutlet = Math.max(strandsPerOutlet, 1);
+    var outletsNeeded = Math.ceil(strandsNeeded / strandsPerOutlet);
+    var totalWatts = strandsNeeded * strandWatts;
+
+    // Outlet guide
+    var outletGuide = strandsNeeded + ' strands × ' + strandWatts + ' watts = ' +
+      totalWatts + ' total watts. At 80% safe load on a 15A GFCI outlet (1,440 watts): ' +
+      strandsPerOutlet + ' strand' + (strandsPerOutlet > 1 ? 's' : '') + ' per outlet. ' +
+      'You need ' + outletsNeeded + ' outdoor GFCI outlet' + (outletsNeeded > 1 ? 's' : '') + '. ';
+
+    if (outletsNeeded > 1) {
+      outletGuide += 'Plan outlet locations before installing. Do not use extension cords as permanent wiring — have an electrician add outlets if needed.';
+    } else {
+      outletGuide += 'One outdoor GFCI outlet is sufficient. Use a heavy-duty outdoor extension cord (14 AWG or thicker) if the outlet is not close to your anchor point.';
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_linear_ft').textContent = totalLinearFt.toFixed(0) + ' ft';
+    document.getElementById('r_strands').textContent = strandsNeeded + ' strands';
+    document.getElementById('r_outlets').textContent = outletsNeeded + ' outlet' + (outletsNeeded > 1 ? 's' : '');
+    document.getElementById('r_total_watts').textContent = totalWatts + ' W';
+    document.getElementById('r_summary').textContent = summaryText;
+    document.getElementById('r_outlet_guide').textContent = outletGuide;
+  }
+</script>
