@@ -1,0 +1,406 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Recessed Lighting Calculator for Hallway — Spacing & How Many Lights? | CalcForDIY"
+  description="Calculate how many recessed lights you need for a hallway and exactly how far apart to space them. Enter hallway length, width, and ceiling height for an instant layout. Free, no signup."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Recessed Lighting Calculator for Hallway",
+    "description": "Free hallway lighting calculator that estimates fixture count and even spacing based on hallway length, width, and ceiling height.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Recessed Lighting Calculator — Hallway", "item": "https://calcfordiy.com/calculators/recessed-lights-hallway" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Recessed Lighting — Hallway</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Recessed Lighting Calculator — Hallway</h1>
+    <p class="text-gray-600 text-lg">Hallways need evenly spaced lights in a single row — not a grid. Enter your hallway dimensions to get an exact fixture count and spacing so every light lands in the same place.</p>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 print:bg-white print:border-gray-300">
+    <p class="text-sm font-semibold text-blue-900 mb-1 print:text-gray-900">Hallways Are Different From Rooms</p>
+    <p class="text-sm text-blue-800 print:text-gray-700">Most rooms use a grid of lights spaced evenly in both directions. Hallways are too narrow for a grid — they need a single centered row running the length of the hallway. The critical calculation is even spacing between lights so the last light lands a comfortable distance from the end wall, not jammed in a corner.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6 print:border-none print:shadow-none print:p-0">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Hallway Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5 print:bg-white print:border print:border-gray-200">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Hallway Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="h_len_ft" placeholder="24" min="0" max="200"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="h_len_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1 print:hidden">Total length from wall to wall</p>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Hallway Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="h_wid_ft" placeholder="4" min="0" max="20"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="h_wid_in" placeholder="0" min="0" max="11"
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1 print:hidden">Typical hallway: 3-5 ft wide</p>
+        </div>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="h_ceil_ft" placeholder="8" min="6" max="20"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+          <input type="number" id="h_ceil_in" placeholder="0" min="0" max="11"
+            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">in</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Lighting Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Spacing Method</label>
+        <select id="spacing_method"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="ceiling">Based on ceiling height (IES standard)</option>
+          <option value="manual">Enter maximum spacing manually</option>
+        </select>
+      </div>
+      <div id="manualSpacingDiv" class="hidden">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Maximum Spacing Between Lights</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="manual_spacing" placeholder="8" min="2" max="20" step="0.5"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm text-gray-500 shrink-0">ft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Fixture Lumens</label>
+        <select id="lumens"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="450">450 lm — 4" LED, subtle</option>
+          <option value="650" selected>650 lm — 6" LED, standard</option>
+          <option value="750">750 lm — 6" LED, bright</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">End Wall Buffer</label>
+        <select id="end_buffer"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="half">Half spacing from end walls (standard)</option>
+          <option value="full">Full spacing from end walls</option>
+          <option value="custom">Custom buffer</option>
+        </select>
+        <p class="text-xs text-gray-400 mt-1 print:hidden">Half spacing from end walls prevents lights crowding doorways</p>
+      </div>
+    </div>
+
+    <div id="customBufferDiv" class="hidden p-4 bg-gray-50 rounded-lg mb-5 print:hidden">
+      <label class="block text-xs text-gray-500 mb-1">Custom Distance from End Walls</label>
+      <div class="flex items-center gap-2">
+        <input type="number" id="custom_buffer" placeholder="3" min="1" max="10" step="0.5"
+          class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="text-sm text-gray-500">ft</span>
+      </div>
+    </div>
+
+    <button onclick="calculate()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Hallway Lighting →
+    </button>
+
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
+    Please enter your hallway length and ceiling height to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Hallway Lighting Plan</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_fixtures">—</div>
+        <div class="text-xs text-gray-500 mt-1">Fixtures Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-blue-700 print:text-3xl print:text-gray-900" id="r_spacing">—</div>
+        <div class="text-xs text-gray-500 mt-1">Spacing Between</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_first">—</div>
+        <div class="text-xs text-gray-500 mt-1">First Light From Wall</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_fc">—</div>
+        <div class="text-xs text-gray-500 mt-1">Approx Foot-Candles</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3 print:border print:border-gray-200 print:shadow-none">
+      <p class="text-sm font-medium text-gray-700 mb-2 print:font-semibold">Exact Fixture Positions</p>
+      <p class="text-sm text-gray-600 font-mono" id="r_positions">—</p>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3 print:border print:border-gray-200 print:shadow-none">
+      <p class="text-sm font-medium text-gray-700 mb-1 print:font-semibold">Layout Summary</p>
+      <p class="text-sm text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
+      <strong>Tip:</strong> Center lights in the hallway width — measure to find the midpoint of the ceiling. For a 4 ft wide hallway, lights go 2 ft from each side wall, running in a straight line down the length.
+    </p>
+  </div>
+
+  <div class="prose prose-gray max-w-none text-gray-700 print:prose-sm">
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">How to Use This Calculator</h2>
+    <p>Follow these five steps to get a perfectly spaced layout using our <strong>recessed lighting calculator for hallway</strong> design:</p>
+    <ol class="space-y-3 list-decimal list-inside">
+      <li><strong>Measure Hallway Length:</strong> Measure the total distance from one end wall to the other.</li>
+      <li><strong>Measure Hallway Width:</strong> Measure the width. Your lights will be centered along this measurement to create a single straight row.</li>
+      <li><strong>Enter Ceiling Height:</strong> The standard IES spacing formula uses your ceiling height multiplied by 0.75 to set the maximum allowed spacing between fixtures.</li>
+      <li><strong>Select End Wall Buffer:</strong> Starting the first light at half the regular spacing distance from the wall is the standard approach. This prevents the light cones from crowding doorways or creating bright hot-spots in corners.</li>
+      <li><strong>Read the Exact Positions Output:</strong> Use the generated measurements to mark your ceiling directly from your starting wall, eliminating all the complex layout math.</li>
+    </ol>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">The Formula</h2>
+    <p>This <strong>recessed lighting calculator for hallway</strong> projects calculates perfectly even spacing rather than relying on a standard grid. Here is how the layout math works in plain English:</p>
+
+    <div class="font-mono text-sm bg-gray-100 p-4 rounded-lg print:bg-white print:border print:border-gray-200 space-y-2">
+      <p>Maximum Spacing = Ceiling Height &times; 0.75</p>
+      <p>End Wall Buffer = Maximum Spacing / 2</p>
+      <p>Available Length = Total Length - (2 &times; End Wall Buffer)</p>
+      <p>Number of Gaps = Available Length / Maximum Spacing (rounded up)</p>
+      <p>Actual Spacing = Available Length / Number of Gaps</p>
+      <p>Fixture Position = End Wall Buffer + ((Fixture Number - 1) &times; Actual Spacing)</p>
+    </div>
+
+    <p>All fixtures are then centered within the hallway's width for a clean, single-file row.</p>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">Frequently Asked Questions</h2>
+    
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How many recessed lights for a standard 20-foot hallway?</h3>
+        <p class="text-gray-600">For a standard 20-foot hallway with an 8-foot ceiling, you generally need <strong>4 fixtures</strong>. The maximum spacing is 6 feet ($8 \times 0.75$). With a 3-foot buffer on each end, the remaining 14 feet requires 3 gaps, spacing the 4 lights evenly at 4.6 feet apart.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Should hallway lights be on a dimmer?</h3>
+        <p class="text-gray-600">Absolutely. Hallways often serve as transitional spaces at night. Having a dimmer allows you to turn the lights down low for late-night trips to the bathroom or kitchen without blinding yourself.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Should I use 4-inch or 6-inch fixtures in a narrow hallway?</h3>
+        <p class="text-gray-600">For most residential hallways (3 to 4 feet wide), 4-inch fixtures are highly recommended. Six-inch fixtures can look disproportionately large in a narrow ceiling space and may overpower the area, even with standard spacing.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">What do I do when a hallway has a turn or L-shape?</h3>
+        <p class="text-gray-600">Treat each leg of an L-shaped hallway as a separate calculation. Place a fixture at the intersection (the corner) first. Then, use this <strong>recessed lighting calculator for hallway</strong> layouts to calculate the remaining distance of each leg, using the corner fixture as your starting wall reference.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">Do motion sensors make sense for hallway lighting?</h3>
+        <p class="text-gray-600">Yes, motion sensors (occupancy sensors) are excellent for hallways, particularly those connecting bedrooms. Look for a switch that includes a built-in dimmer or low-light threshold so it doesn't trigger at full brightness in the middle of the night.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">How do I transition hallway lighting into an open plan living area?</h3>
+        <p class="text-gray-600">To avoid a jarring transition, match the color temperature (e.g., 3000K) of the hallway lights to the living area. Ensure the final hallway light ends at the standard "half-spacing" distance before the ceiling opens up into the larger room.</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 not-prose mb-12 print:hidden">
+      <a href="/calculators/recessed-lights-living-room" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Living Room Lighting Calculator</h4>
+        <p class="text-gray-600 text-xs">Calculate layered ambient layouts based on room dimensions and desired foot-candles.</p>
+      </a>
+      <a href="/calculators/recessed-lights-bedroom" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Bedroom Lighting Calculator</h4>
+        <p class="text-gray-600 text-xs">Design relaxing, low-glare grid layouts perfectly suited for sleeping spaces.</p>
+      </a>
+      <a href="/calculators/lumens" class="block bg-white p-5 rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all">
+        <h4 class="font-semibold text-gray-900 mb-1 text-base">Lumens Calculator</h4>
+        <p class="text-gray-600 text-xs">Determine exactly how much total light output your specific room requires.</p>
+      </a>
+    </div>
+
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function getNum(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function toFt(ftId, inId) {
+    return getNum(ftId) + getNum(inId) / 12;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('spacing_method').addEventListener('change', function () {
+      var isManual = this.value === 'manual';
+      document.getElementById('manualSpacingDiv').classList.toggle('hidden', !isManual);
+      calculate();
+    });
+
+    document.getElementById('end_buffer').addEventListener('change', function () {
+      var isCustom = this.value === 'custom';
+      document.getElementById('customBufferDiv').classList.toggle('hidden', !isCustom);
+      calculate();
+    });
+
+    document.querySelectorAll('input[type="number"]').forEach(function (el) {
+      el.addEventListener('input', calculate);
+    });
+    document.getElementById('lumens').addEventListener('change', calculate);
+  });
+
+  function calculate() {
+    var lenFt = toFt('h_len_ft', 'h_len_in');
+    var widFt = toFt('h_wid_ft', 'h_wid_in');
+    var ceilFt = toFt('h_ceil_ft', 'h_ceil_in');
+
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    if (lenFt <= 0 || ceilFt <= 0) {
+      document.getElementById('results').classList.add('hidden');
+      if (lenFt > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      return;
+    }
+
+    // Determine max spacing
+    var spacingMethod = document.getElementById('spacing_method').value;
+    var maxSpacingFt;
+
+    if (spacingMethod === 'manual') {
+      maxSpacingFt = getNum('manual_spacing') || 8;
+    } else {
+      // IES: spacing = ceiling height × 0.75
+      maxSpacingFt = ceilFt * 0.75;
+    }
+
+    // Determine end wall buffer
+    var endBufferMethod = document.getElementById('end_buffer').value;
+    var bufferFt;
+
+    if (endBufferMethod === 'half') {
+      bufferFt = maxSpacingFt / 2;
+    } else if (endBufferMethod === 'full') {
+      bufferFt = maxSpacingFt;
+    } else {
+      bufferFt = getNum('custom_buffer') || maxSpacingFt / 2;
+    }
+
+    // Available length after end buffers
+    var availableLenFt = lenFt - (2 * bufferFt);
+
+    if (availableLenFt <= 0) {
+      // Hallway too short for buffer — just put one light in the center
+      var positions = [(lenFt / 2).toFixed(1) + ' ft from start'];
+      showResults(1, lenFt, lenFt / 2, lenFt / 2, positions, widFt, ceilFt);
+      return;
+    }
+
+    // Number of gaps between fixtures in available length
+    var numGaps = Math.ceil(availableLenFt / maxSpacingFt);
+    var numFixtures = numGaps + 1;
+
+    // Actual spacing (evenly distributed)
+    var actualSpacingFt = availableLenFt / numGaps;
+
+    // Positions of each fixture from start wall
+    var positions = [];
+    for (var i = 0; i < numFixtures; i++) {
+      var pos = bufferFt + (i * actualSpacingFt);
+      positions.push((Math.round(pos * 10) / 10) + ' ft');
+    }
+
+    showResults(numFixtures, actualSpacingFt, bufferFt, maxSpacingFt, positions, widFt, ceilFt);
+  }
+
+  function showResults(numFixtures, actualSpacingFt, bufferFt, maxSpacingFt, positions, widFt, ceilFt) {
+    var lumens = parseInt(document.getElementById('lumens').value) || 650;
+
+    // Approximate FC for hallway (single row)
+    // Simplified: total lumens / area × CU
+    var hallwayArea = toFt('h_len_ft', 'h_len_in') * Math.max(widFt, 3);
+    var totalLumens = numFixtures * lumens;
+    var approxFC = Math.round((totalLumens * 0.75) / hallwayArea);
+
+    var positionText = positions.join(' → ');
+
+    var summary = numFixtures + ' fixture' + (numFixtures > 1 ? 's' : '') +
+      ' centered in hallway width, spaced ' +
+      (Math.round(actualSpacingFt * 10) / 10) + ' ft apart. ' +
+      'First and last light ' +
+      (Math.round(bufferFt * 10) / 10) + ' ft from each end wall. ' +
+      'Approximate illumination: ' + approxFC + ' foot-candles.';
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('r_fixtures').textContent = numFixtures + ' fixtures';
+    document.getElementById('r_spacing').textContent = (Math.round(actualSpacingFt * 10) / 10) + ' ft';
+    document.getElementById('r_first').textContent = (Math.round(bufferFt * 10) / 10) + ' ft';
+    document.getElementById('r_fc').textContent = approxFC + ' FC';
+    document.getElementById('r_positions').textContent = positionText;
+    document.getElementById('r_summary').textContent = summary;
+  }
+
+  function toFt(ftId, inId) {
+    var ft = parseFloat(document.getElementById(ftId).value) || 0;
+    var inches = parseFloat(document.getElementById(inId) ? document.getElementById(inId).value : 0) || 0;
+    return ft + inches / 12;
+  }
+</script>
