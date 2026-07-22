@@ -96,7 +96,7 @@ import Layout from '../../layouts/Layout.astro';
   <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
       <h2 class="text-base font-semibold text-gray-800 flex items-center gap-2">
-        <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+        <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
         Global Settings
       </h2>
       <div class="flex items-center gap-3">
@@ -108,19 +108,19 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
 
-    <hr class="my-5 border-gray-200" />
+    <hr class="my-5 border-gray-200 print:hidden" />
 
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
-      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
       Wall Dimensions
     </h2>
     
-    <div class="bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-lg p-3 mb-4">
+    <div class="bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-lg p-3 mb-4 print:hidden">
       <strong>Pro Tip:</strong> When framing multiple rooms, do not double-count shared walls! Enter long continuous walls as a single entry, then enter the interior partition walls that butt into them separately. Count every place a wall meets another wall as an Intersection below.
     </div>
 
     <div id="wallsContainer" class="space-y-4">
-      <div class="wall-entry p-4 bg-gray-50 rounded-lg border border-gray-200 relative">
+      <div class="wall-entry p-4 bg-gray-50 rounded-lg border border-gray-200 relative print:bg-white print:border-gray-300">
         <h3 class="font-semibold text-gray-800 mb-3 wall-title">Wall 1</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -136,19 +136,19 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
 
-    <button type="button" id="addWallBtn" class="mt-4 w-full border-2 border-dashed border-gray-300 hover:border-blue-400 text-gray-600 hover:text-blue-600 font-medium py-3 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm">
+    <button type="button" id="addWallBtn" class="mt-4 w-full border-2 border-dashed border-gray-300 hover:border-blue-400 text-gray-600 hover:text-blue-600 font-medium py-3 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm print:hidden">
       + Add Another Wall
     </button>
 
-    <hr class="my-5 border-gray-200" />
+    <hr class="my-5 border-gray-200 print:hidden" />
 
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
-      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">3</span>
       Project Openings & Intersections
     </h2>
 
-    <div class="p-4 bg-gray-50 rounded-lg mb-5">
-      <p class="text-xs text-gray-500 mb-3">Total count for your entire project. Extra framing is automatically calculated based on IRC standards (+3 studs per intersection, +4 per opening).</p>
+    <div class="p-4 bg-gray-50 rounded-lg mb-5 print:bg-white print:border print:border-gray-300">
+      <p class="text-xs text-gray-500 mb-3 print:hidden">Total count for your entire project. Extra framing is automatically calculated based on IRC standards (+3 studs per intersection, +4 per opening).</p>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
           <label class="block text-xs text-gray-500 mb-1">Corners & T-Intersections</label>
@@ -165,42 +165,36 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
 
-    <button type="button" id="addWallBtn" class="mt-4 w-full border-2 border-dashed border-gray-300 hover:border-blue-400 text-gray-600 hover:text-blue-600 font-medium py-3 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm">
-      + Add Another Wall
-    </button>
-
-    <hr class="my-5 border-gray-200" />
-
-    <button onclick="calculate()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+    <button onclick="calculate()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
       Calculate Materials Needed →
     </button>
   </div>
 
-  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
     Please enter a valid wall length to calculate.
   </div>
 
-  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
-    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Framing Estimate</h2>
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Framing Estimate</h2>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
-        <div class="text-2xl font-bold text-gray-900" id="r_field">—</div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_field">—</div>
         <div class="text-xs text-gray-500 mt-1">Field Studs</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
-        <div class="text-2xl font-bold text-gray-900" id="r_extras">—</div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_extras">—</div>
         <div class="text-xs text-gray-500 mt-1">Corner/Opening Studs</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400">
-        <div class="text-2xl font-bold text-blue-700" id="r_total">—</div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-400 print:shadow-none">
+        <div class="text-2xl font-bold text-blue-700 print:text-3xl print:text-gray-900" id="r_total">—</div>
         <div class="text-xs text-gray-700 font-medium mt-1">Total Studs (+10% Waste)</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-green-400">
-        <div class="text-2xl font-bold text-green-700"><span id="r_plates">—</span> ft</div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-green-400 print:border-gray-400 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900"><span id="r_plates">—</span> ft</div>
         <div class="text-xs text-gray-700 font-medium mt-1">Total Plate Lumber</div>
       </div>
     </div>
-    <p class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+    <p class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
       <strong>Note:</strong> Plate lumber assumes 1 bottom plate and 2 top plates (standard IRC requirement). Plate calculation includes a 5% waste factor for trimming. 
     </p>
     <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
@@ -208,7 +202,7 @@ import Layout from '../../layouts/Layout.astro';
     </button>
   </div>
 
-  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
     <p class="text-gray-700 mb-4">Using this wall framing calculator ensures you order the exact right amount of lumber without overpaying or running short. Here is how to use it:</p>
     <ol class="space-y-4 text-gray-700">
@@ -231,21 +225,21 @@ import Layout from '../../layouts/Layout.astro';
     </ol>
   </div>
 
-  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
     <p class="text-gray-700 mb-4">This framing calculator utilizes standard IRC residential building codes and professional estimating rules to output your final lumber list. Here is the math:</p>
     <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
-      <p>Field Studs = (Wall Length ÷ Stud Spacing) + 1</p>
-      <p>Corner Studs = Corners × 3</p>
-      <p>Opening Studs = (Doors + Windows) × 4</p>
-      <p>Total Studs = (Field + Corner + Opening) × 1.10 (Waste)</p>
-      <p>Total Plates = Wall Length × 3</p>
+      <p>Field Studs = (Wall Length &divide; Stud Spacing) + 1</p>
+      <p>Corner Studs = Corners &times; 3</p>
+      <p>Opening Studs = (Doors + Windows) &times; 4</p>
+      <p>Total Studs = (Field + Corner + Opening) &times; 1.10 (Waste)</p>
+      <p>Total Plates = Wall Length &times; 3</p>
     </div>
     <p class="text-gray-700">First, the calculator determines the base "field" studs by dividing the wall length by your selected spacing and adding one for the end stud. It then adds 3 extra studs for every corner to create standard U-channels (California corners). For openings, it adds 4 extra studs per door or window (2 kings and 2 jacks). The field studs that fall inside the openings are assumed to be cut and repurposed as cripple studs, so no additional lumber is required for those.</p>
     <p class="text-gray-700 mt-3">Finally, a professional 10% waste factor is applied to the total vertical stud count to account for off-cuts and warped boards. For the horizontal plates, the length of the wall is multiplied by 3 (assuming standard 1 bottom plate and 2 top plates) plus a 5% waste factor.</p>
   </div>
 
-  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
@@ -275,7 +269,7 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </div>
 
-  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
       <a href="/calculators/drywall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
@@ -301,10 +295,10 @@ import Layout from '../../layouts/Layout.astro';
     const wallCount = container.querySelectorAll('.wall-entry').length + 1;
     
     const wallHTML = `
-      <div class="wall-entry p-4 bg-gray-50 rounded-lg border border-gray-200 relative mt-4">
+      <div class="wall-entry p-4 bg-gray-50 rounded-lg border border-gray-200 relative mt-4 print:bg-white print:border-gray-300">
         <div class="flex justify-between items-center mb-3">
           <h3 class="font-semibold text-gray-800 wall-title">Wall ${wallCount}</h3>
-          <button type="button" class="text-red-500 hover:text-red-700 text-sm font-medium remove-wall-btn">Remove</button>
+          <button type="button" class="text-red-500 hover:text-red-700 text-sm font-medium remove-wall-btn print:hidden">Remove</button>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
