@@ -1,0 +1,496 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Shiplap & Tongue and Groove Calculator | CalcForDIY"
+  description="Calculate exactly how many shiplap or tongue and groove boards you need for an accent wall. Automatically accounts for exposed face overlap, nickel gaps, and waste."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Shiplap and Tongue and Groove Calculator",
+    "description": "Free calculator to estimate shiplap boards needed by calculating the true exposed face width, gap spacing, and exact wall square footage minus doors and windows.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the true exposed face of shiplap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard 1x6 shiplap board measures 5.5 inches wide at the store, but the actual exposed face (coverage) is only about 4 7/8 inches (often rounded to 5 inches) because the rabbet edges overlap when installed. If you calculate your wall using the 5.5-inch dimension, you will not buy enough wood."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What size is a nickel gap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A true nickel gap spacing is 1/8 of an inch. Many modern shiplap boards are milled so the face automatically leaves a 1/8-inch gap when the boards are stacked tight. If you are using raw boards, you can physically use nickels (or 1/8-inch tile spacers) to create this look."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I install shiplap horizontally or vertically?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Horizontal shiplap makes a room feel wider and is the traditional farmhouse look. Vertical shiplap draws the eye up, making ceilings feel taller, and leans toward a modern or mid-century aesthetic. Neither affects the square footage needed, but vertical installations may result in slightly more waste if the wall height doesn't divide evenly into the board length."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Shiplap Calculator", "item": "https://calcfordiy.com/calculators/shiplap" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Shiplap Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Shiplap & T&G Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exactly how many boards you need for your accent wall. We protect you from under-buying by calculating the true exposed face width minus the overlap!</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Board Specs
+    </h2>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Board Profile (Nominal)</label>
+          <select id="board_profile" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option value="3">1x4 (Exposed Face: ~3")</option>
+            <option value="4.875" selected>1x6 (Exposed Face: ~4 7/8")</option>
+            <option value="6.875">1x8 (Exposed Face: ~6 7/8")</option>
+            <option value="custom">Custom Exposed Face</option>
+          </select>
+        </div>
+        <div id="custom_face_div" class="hidden">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Custom Face (inches)</label>
+          <input type="number" id="custom_face" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="5.0" step="0.125" min="1" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Spacing Gap</label>
+          <select id="gap_size" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option value="0" selected>Flush / Built-in Gap (0")</option>
+            <option value="0.125">Nickel Gap (1/8")</option>
+            <option value="0.25">Quarter Inch (1/4")</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Purchase Board Length</label>
+          <select id="board_length" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option value="8" selected>8 ft boards</option>
+            <option value="10">10 ft boards</option>
+            <option value="12">12 ft boards</option>
+            <option value="16">16 ft boards</option>
+          </select>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mt-3 italic">Note: If buying pre-milled "nickel gap" shiplap from a big box store, choose "Flush" as the gap is already milled into the face.</p>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Wall Measurements
+    </h2>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+      <p class="text-sm font-medium text-gray-700 mb-3">Wall 1 <span class="text-xs text-gray-400 font-normal">(required)</span></p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Height</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="w1h_ft" placeholder="8" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="w1h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Width</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="w1w_ft" placeholder="10" min="0" max="100" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="w1w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="wall2Toggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('wall2Section', this.checked)" />
+        <span class="text-sm text-gray-700">+ Add Wall 2</span>
+      </label>
+      <div id="wall2Section" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm font-medium text-gray-700 mb-3">Wall 2</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w2h_ft" placeholder="8" min="0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w2h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w2w_ft" placeholder="10" min="0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w2w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="wall3Toggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('wall3Section', this.checked)" />
+        <span class="text-sm text-gray-700">+ Add Wall 3</span>
+      </label>
+      <div id="wall3Section" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm font-medium text-gray-700 mb-3">Wall 3</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w3h_ft" placeholder="8" min="0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w3h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="w3w_ft" placeholder="10" min="0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="w3w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">3</span>
+      Subtract Openings (Optional)
+    </h2>
+
+    <div class="mb-3">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="doorToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('doorSection', this.checked)" />
+        <span class="text-sm text-gray-700">Subtract door opening</span>
+      </label>
+      <div id="doorSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Door Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="dh_ft" placeholder="6" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="dh_in" placeholder="8" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Door Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="dw_ft" placeholder="2" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="dw_in" placeholder="8" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="windowToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('windowSection', this.checked)" />
+        <span class="text-sm text-gray-700">Subtract window opening</span>
+      </label>
+      <div id="windowSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Window Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="wh_ft" placeholder="4" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="wh_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Window Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="ww_ft" placeholder="3" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="ww_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="calculate()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Materials Needed →
+    </button>
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
+    Please enter at least one valid wall dimension to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Material Estimate</h2>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_sqft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Net Square Feet</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_linear">—</div>
+        <div class="text-xs text-gray-500 mt-1">Linear Feet Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-green-400 print:border-gray-400 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900"><span id="r_coverage">—</span></div>
+        <div class="text-xs text-gray-700 font-medium mt-1">True Coverage Face</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-400 print:shadow-none">
+        <div class="text-2xl font-bold text-blue-700 print:text-3xl print:text-gray-900" id="r_boards">—</div>
+        <div class="text-xs text-gray-700 font-medium mt-1">Total Boards to Buy</div>
+      </div>
+    </div>
+    
+    <p id="calc_note" class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
+      <!-- Injected by JS -->
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Buying shiplap by looking at the board's width at the hardware store is the most common mistake DIYers make. Follow these steps to get an accurate count.</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select your board profile.</strong> A 1x6 board is 5.5 inches wide, but about 1/2 inch is lost in the overlap (rabbet or tongue). The actual face that covers the wall is only 4 7/8". We calculate the math using the true exposed face so you do not run short.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select your gap.</strong> If you are installing raw boards and spacing them manually with a nickel, choose "Nickel Gap". This adds 1/8" to your coverage per board. If you bought pre-milled boards that auto-space themselves, leave it on "Flush" because the gap is already accounted for in the milling.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Measure your walls and subtract openings.</strong> Enter the height and width of your walls. If you have large doors or windows, toggle the subtract buttons and enter their dimensions so you do not over-buy lumber.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the true exposed face of shiplap?</h3>
+        <p class="text-gray-600 text-sm">A standard 1x6 shiplap board measures 5.5 inches wide at the store, but the actual exposed face (coverage) is only about 4 7/8 inches (often rounded to 5 inches) because the rabbet edges overlap when installed. If you calculate your wall using the 5.5-inch dimension, you will not buy enough wood.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What size is a nickel gap?</h3>
+        <p class="text-gray-600 text-sm">A true nickel gap spacing is 1/8 of an inch. Many modern shiplap boards are milled so the face automatically leaves a 1/8-inch gap when the boards are stacked tight. If you are using raw square-edge boards, you can physically use nickels (or 1/8-inch tile spacers) to create this look.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should I install shiplap horizontally or vertically?</h3>
+        <p class="text-gray-600 text-sm">Horizontal shiplap makes a room feel wider and is the traditional farmhouse look. Vertical shiplap draws the eye up, making ceilings feel taller, and leans toward a modern or mid-century aesthetic. Neither affects the square footage needed, but vertical installations may result in slightly more waste if the wall height doesn't divide evenly into the board length.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why is my board count multiplied by a waste factor?</h3>
+        <p class="text-gray-600 text-sm">We automatically add a standard 10% waste factor to your final board count. This accounts for inevitable off-cuts at the ends of walls, mistakes, and occasionally finding a board in your pile that is too warped or knotted to use.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/drywall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Drywall Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate sheetrock counts for your walls if you need a backer behind your shiplap.</div>
+      </a>
+      <a href="/calculators/trim-molding" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Trim & Molding Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate baseboard material needs, including miter corner waste logic.</div>
+      </a>
+      <a href="/calculators/paint-room" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Paint Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Painting your new accent wall? Calculate exactly how many gallons you need.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function toggleSection(id, show) {
+    const el = document.getElementById(id);
+    if (show) {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+      // Clear inputs when hiding
+      el.querySelectorAll('input').forEach(input => input.value = '');
+      calculate();
+    }
+  }
+
+  function getSqFt(prefix) {
+    const hFt = parseFloat(document.getElementById(`${prefix}h_ft`)?.value) || 0;
+    const hIn = parseFloat(document.getElementById(`${prefix}h_in`)?.value) || 0;
+    const wFt = parseFloat(document.getElementById(`${prefix}w_ft`)?.value) || 0;
+    const wIn = parseFloat(document.getElementById(`${prefix}w_in`)?.value) || 0;
+    
+    const h = hFt + (hIn / 12);
+    const w = wFt + (wIn / 12);
+    
+    return h * w;
+  }
+
+  function calculate() {
+    let totalSqFt = 0;
+    
+    // Sum walls
+    const w1 = getSqFt('w1');
+    const w2 = document.getElementById('wall2Toggle').checked ? getSqFt('w2') : 0;
+    const w3 = document.getElementById('wall3Toggle').checked ? getSqFt('w3') : 0;
+    
+    totalSqFt = w1 + w2 + w3;
+
+    if (totalSqFt <= 0) {
+      document.getElementById('errorMsg').classList.remove('hidden');
+      document.getElementById('results').classList.add('hidden');
+      return;
+    }
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    // Subtract openings
+    let openingSqFt = 0;
+    if (document.getElementById('doorToggle').checked) {
+      openingSqFt += getSqFt('d');
+    }
+    if (document.getElementById('windowToggle').checked) {
+      openingSqFt += getSqFt('w');
+    }
+
+    let netSqFt = totalSqFt - openingSqFt;
+    if (netSqFt < 0) netSqFt = 0;
+
+    // Board Profile Logic
+    let exposedFaceProfile = document.getElementById('board_profile').value;
+    let exposedFaceInches = 0;
+
+    if (exposedFaceProfile === 'custom') {
+      document.getElementById('custom_face_div').classList.remove('hidden');
+      exposedFaceInches = parseFloat(document.getElementById('custom_face').value) || 5;
+    } else {
+      document.getElementById('custom_face_div').classList.add('hidden');
+      exposedFaceInches = parseFloat(exposedFaceProfile);
+    }
+
+    const gapSize = parseFloat(document.getElementById('gap_size').value) || 0;
+    const effectiveWidthInches = exposedFaceInches + gapSize;
+    const effectiveWidthFeet = effectiveWidthInches / 12;
+
+    const boardLength = parseFloat(document.getElementById('board_length').value) || 8;
+    
+    // Coverage per board
+    const sqFtPerBoard = effectiveWidthFeet * boardLength;
+
+    // Linear Feet required
+    const totalLinearFeet = netSqFt / effectiveWidthFeet;
+    const linearFeetWithWaste = totalLinearFeet * 1.10; // 10% waste
+
+    // Total Boards required
+    const totalBoards = Math.ceil(linearFeetWithWaste / boardLength);
+
+    // Update UI
+    document.getElementById('r_sqft').innerText = netSqFt.toFixed(1);
+    document.getElementById('r_linear').innerText = Math.ceil(linearFeetWithWaste);
+    document.getElementById('r_coverage').innerText = effectiveWidthInches.toFixed(3) + '"';
+    document.getElementById('r_boards').innerText = totalBoards;
+
+    // Build dynamic note
+    let noteHtml = `<strong>Note:</strong> Calculated for ${netSqFt.toFixed(1)} net square feet (after subtracting ${openingSqFt.toFixed(1)} sqft for openings). `;
+    noteHtml += `Using a true coverage face of ${effectiveWidthInches.toFixed(3)} inches (including gap). `;
+    noteHtml += `A 10% waste factor was applied to ensure you have enough lumber.`;
+    
+    document.getElementById('calc_note').innerHTML = noteHtml;
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+  }
+
+  function attachListeners() {
+    document.querySelectorAll('input, select').forEach(el => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    
+    // Specific listener to handle custom face visibility immediately
+    document.getElementById('board_profile').addEventListener('change', function() {
+      if (this.value === 'custom') {
+        document.getElementById('custom_face_div').classList.remove('hidden');
+      } else {
+        document.getElementById('custom_face_div').classList.add('hidden');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', attachListeners);
+</script>
