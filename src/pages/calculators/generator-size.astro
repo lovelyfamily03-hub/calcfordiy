@@ -1,0 +1,466 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Generator Size Calculator | What Size Generator Do I Need? | CalcForDIY"
+  description="Calculate the exact size generator you need for your home. Select your essential appliances to instantly calculate your total running watts and starting surge wattage."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Generator Size Calculator",
+    "description": "Free generator sizing calculator that computes total running watts and maximum surge watts to recommend the perfect portable or standby generator size.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between Running Watts and Starting Watts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Running Watts (or Rated Watts) is the continuous power an appliance needs to stay on. Starting Watts (or Surge Watts) is the brief burst of extra power needed for a few seconds to start up an electric motor. Appliances with compressors or motors (like refrigerators, air conditioners, and well pumps) require surge watts. Appliances with heating elements (like space heaters or toasters) generally do not."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why don't I add all my starting watts together?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You do not need to add all your surge watts together because you will not start every single appliance in your house at the exact same millisecond. To properly size a generator, you add up the Running Watts of everything you want to power, and then add the single highest Starting Wattage among those items. This ensures the generator can handle the base load plus the biggest possible spike."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I run my whole house on a portable generator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can run most essential circuits on a large portable generator (7,500 to 10,000+ watts) if you have a manual transfer switch installed by an electrician. However, you likely will not be able to run high-draw appliances simultaneously—for example, you cannot run a Central AC and an Electric Oven at the same time on a portable generator. For true whole-house backup without load management, you need a large standby generator (18,000+ watts)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Generator Size Calculator", "item": "https://calcfordiy.com/calculators/generator-size" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Generator Size</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Generator Size Calculator</h1>
+    <p class="text-gray-600 text-lg">Select the appliances you want to run simultaneously during a power outage to calculate the exact generator size you need.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    
+    <div class="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4 print:hidden">
+      <h3 class="font-bold text-blue-900 mb-2">How this works:</h3>
+      <p class="text-sm text-blue-800">We automatically sum the <strong>Running Watts</strong> of all your selected items, but we only add the <em>single highest</em> <strong>Starting Wattage (Surge)</strong>. Why? Because you won't turn on your AC, well pump, and fridge at the exact same millisecond. This prevents you from over-buying a massive generator you don't need.</p>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Kitchen & Food
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="700" data-surge="2200" data-name="Refrigerator / Freezer" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Refrigerator / Freezer</div>
+          <div class="text-xs text-gray-500">700W Run | 2,200W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="500" data-surge="1500" data-name="Deep Freezer" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Deep Freezer</div>
+          <div class="text-xs text-gray-500">500W Run | 1,500W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="1000" data-surge="0" data-name="Microwave" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Microwave</div>
+          <div class="text-xs text-gray-500">1,000W Run | 0W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="1000" data-surge="0" data-name="Coffee Maker" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Coffee Maker</div>
+          <div class="text-xs text-gray-500">1,000W Run | 0W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="2100" data-surge="0" data-name="Electric Stove (1 Burner)" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Electric Stove (1 Burner)</div>
+          <div class="text-xs text-gray-500">2,100W Run | 0W Surge</div>
+        </div>
+      </label>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      HVAC & Water
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="800" data-surge="2350" data-name="Gas Furnace Blower" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Gas Furnace Blower</div>
+          <div class="text-xs text-gray-500">800W Run | 2,350W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="1500" data-surge="0" data-name="Space Heater" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Space Heater</div>
+          <div class="text-xs text-gray-500">1,500W Run | 0W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="1000" data-surge="3000" data-name="Window AC (10k BTU)" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Window AC (10k BTU)</div>
+          <div class="text-xs text-gray-500">1,000W Run | 3,000W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="3500" data-surge="10000" data-name="Central AC (3-Ton)" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Central AC (3-Ton)</div>
+          <div class="text-xs text-gray-500">3,500W Run | 10,000W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="1000" data-surge="2100" data-name="Well Pump (1/2 HP)" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Well Pump (1/2 HP)</div>
+          <div class="text-xs text-gray-500">1,000W Run | 2,100W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="4000" data-surge="0" data-name="Electric Water Heater" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Electric Water Heater</div>
+          <div class="text-xs text-gray-500">4,000W Run | 0W Surge</div>
+        </div>
+      </label>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">3</span>
+      Essentials & Entertainment
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="800" data-surge="1300" data-name="Sump Pump (1/3 HP)" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Sump Pump (1/3 HP)</div>
+          <div class="text-xs text-gray-500">800W Run | 1,300W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="480" data-surge="1000" data-name="Garage Door Opener" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Garage Door Opener</div>
+          <div class="text-xs text-gray-500">480W Run | 1,000W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="50" data-surge="0" data-name="House Lights (x5 LED)" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">House Lights (x5 LED)</div>
+          <div class="text-xs text-gray-500">50W Run | 0W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="50" data-surge="0" data-name="Wi-Fi Router & Modem" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Wi-Fi Router & Modem</div>
+          <div class="text-xs text-gray-500">50W Run | 0W Surge</div>
+        </div>
+      </label>
+      <!-- Item -->
+      <label class="flex items-start gap-3 p-3 rounded-lg border border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+        <input type="checkbox" class="w-5 h-5 rounded text-blue-600 mt-0.5 app-checkbox" data-run="200" data-surge="0" data-name="Television (55-inch)" />
+        <div>
+          <div class="text-sm font-semibold text-gray-900">Television (55-inch)</div>
+          <div class="text-xs text-gray-500">200W Run | 0W Surge</div>
+        </div>
+      </label>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">4</span>
+      Custom Items
+    </h2>
+
+    <div class="space-y-3 mb-6 p-4 bg-gray-50 rounded-lg">
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+        <div class="sm:col-span-1 flex justify-center pb-2">
+          <input type="checkbox" class="w-5 h-5 rounded text-blue-600 custom-checkbox" id="cbox_1" />
+        </div>
+        <div class="sm:col-span-5">
+          <label class="block text-xs text-gray-500 mb-1">Item Name</label>
+          <input type="text" id="cname_1" placeholder="e.g. Circular Saw" class="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        </div>
+        <div class="sm:col-span-3">
+          <label class="block text-xs text-gray-500 mb-1">Running Watts</label>
+          <input type="number" id="crun_1" placeholder="1400" min="0" class="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        </div>
+        <div class="sm:col-span-3">
+          <label class="block text-xs text-gray-500 mb-1">Surge Watts</label>
+          <input type="number" id="csurge_1" placeholder="2300" min="0" class="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+        <div class="sm:col-span-1 flex justify-center pb-2">
+          <input type="checkbox" class="w-5 h-5 rounded text-blue-600 custom-checkbox" id="cbox_2" />
+        </div>
+        <div class="sm:col-span-5">
+          <label class="block text-xs text-gray-500 mb-1">Item Name</label>
+          <input type="text" id="cname_2" placeholder="e.g. Second Fridge" class="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        </div>
+        <div class="sm:col-span-3">
+          <label class="block text-xs text-gray-500 mb-1">Running Watts</label>
+          <input type="number" id="crun_2" placeholder="0" min="0" class="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        </div>
+        <div class="sm:col-span-3">
+          <label class="block text-xs text-gray-500 mb-1">Surge Watts</label>
+          <input type="number" id="csurge_2" placeholder="0" min="0" class="w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" />
+        </div>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Generator Size →
+    </button>
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
+    Please select at least one item to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Required Generator Size</h2>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_run">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Running Watts</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_surge">—</div>
+        <div class="text-xs text-gray-500 mt-1">Highest Single Surge Wattage</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-green-400 print:border-gray-400 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900"><span id="r_total">—</span> <span class="text-sm">Watts</span></div>
+        <div class="text-xs text-gray-700 font-medium mt-1">Minimum Recommended Generator</div>
+      </div>
+    </div>
+
+    <p id="calc_note" class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
+      <!-- Injected by JS -->
+    </p>
+    
+    <button onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base justify-center items-center gap-2" id="printBtn">
+      🖨️ Print Checklist & Estimate
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to find your ideal generator size:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select Essentials:</strong> Check the boxes next to all the appliances you absolutely need to run simultaneously during a power outage. Our pre-programmed wattages represent industry averages.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Add Custom Items:</strong> If you have a specific tool, medical device, or unique appliance not listed, use the Custom Items section to enter its Running Watts and Surge Watts (found on the item's specification sticker).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Calculate:</strong> Click Calculate. The tool will sum all your running watts, isolate your single largest surge load, and automatically add a 20% safety margin.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Shop with Confidence:</strong> Look for a generator that meets or exceeds the "Minimum Recommended Generator" wattage provided in the results box.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the difference between Running Watts and Starting Watts?</h3>
+        <p class="text-gray-600 text-sm">Running Watts (or Rated Watts) is the continuous power an appliance needs to stay on. Starting Watts (or Surge Watts) is the brief burst of extra power needed for a few seconds to start up an electric motor. Appliances with compressors or motors (like refrigerators, air conditioners, and well pumps) require surge watts. Appliances with heating elements (like space heaters or toasters) generally do not.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why don't I add all my starting watts together?</h3>
+        <p class="text-gray-600 text-sm">You do not need to add all your surge watts together because you will not start every single appliance in your house at the exact same millisecond. To properly size a generator, you add up the Running Watts of everything you want to power, and then add the single highest Starting Wattage among those items. This ensures the generator can handle the base load plus the biggest possible spike.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can I run my whole house on a portable generator?</h3>
+        <p class="text-gray-600 text-sm">You can run most essential circuits on a large portable generator (7,500 to 10,000+ watts) if you have a manual transfer switch installed by an electrician. However, you likely will not be able to run high-draw appliances simultaneously—for example, you cannot run a Central AC and an Electric Oven at the same time on a portable generator. For true whole-house backup without load management, you need a large standby generator (18,000+ watts).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/furnace-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Furnace Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Find out exactly what your heating system costs to run per month.</div>
+      </a>
+      <a href="/calculators/ac-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">AC Operating Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how much your central air conditioning costs to run in the summer.</div>
+      </a>
+      <a href="/calculators/water-heater-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Water Heater Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate the annual cost of running your gas or electric water heater.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    let totalRunning = 0;
+    let highestSurge = 0;
+    let highestSurgeName = "None";
+    let selectedCount = 0;
+
+    // Standard items
+    const standardCheckboxes = document.querySelectorAll('.app-checkbox');
+    standardCheckboxes.forEach(cb => {
+      if (cb.checked) {
+        selectedCount++;
+        const run = parseInt(cb.dataset.run) || 0;
+        const surge = parseInt(cb.dataset.surge) || 0;
+        const name = cb.dataset.name;
+        
+        totalRunning += run;
+        if (surge > highestSurge) {
+          highestSurge = surge;
+          highestSurgeName = name;
+        }
+      }
+    });
+
+    // Custom items
+    for(let i=1; i<=2; i++) {
+      const cb = document.getElementById('cbox_' + i);
+      if (cb && cb.checked) {
+        selectedCount++;
+        const run = parseInt(document.getElementById('crun_' + i).value) || 0;
+        const surge = parseInt(document.getElementById('csurge_' + i).value) || 0;
+        let name = document.getElementById('cname_' + i).value;
+        if (!name || name.trim() === '') name = "Custom Item " + i;
+        
+        totalRunning += run;
+        if (surge > highestSurge) {
+          highestSurge = surge;
+          highestSurgeName = name;
+        }
+      }
+    }
+
+    if (selectedCount === 0) {
+      document.getElementById('errorMsg').classList.remove('hidden');
+      document.getElementById('results').classList.add('hidden');
+      return;
+    }
+    
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    // Math
+    const subtotal = totalRunning + highestSurge;
+    const recommendedGenerator = Math.ceil(subtotal * 1.20); // 20% safety margin
+
+    document.getElementById('r_run').innerText = totalRunning;
+    document.getElementById('r_surge').innerText = highestSurge;
+    document.getElementById('r_total').innerText = recommendedGenerator.toLocaleString();
+
+    let noteHtml = `<strong>Formula Breakdown:</strong> We summed your total running load (${totalRunning}W) and added ONLY your single highest surge requirement from the <strong>${highestSurgeName}</strong> (${highestSurge}W). `;
+    noteHtml += `Finally, we added a 20% safety margin to prevent your generator from continuously running at 100% capacity, which burns excess fuel and shortens engine life.`;
+    
+    document.getElementById('calc_note').innerHTML = noteHtml;
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    document.getElementById('printBtn').classList.add('flex');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+    
+    // Auto trigger calc if results are visible and a checkbox is toggled
+    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    allCheckboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        if (!document.getElementById('results').classList.contains('hidden')) {
+          calculate();
+        }
+      });
+    });
+  });
+</script>
