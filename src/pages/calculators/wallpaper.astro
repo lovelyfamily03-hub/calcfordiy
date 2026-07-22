@@ -1,0 +1,428 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Wallpaper Calculator | Calculate Rolls for Pattern Repeats | CalcForDIY"
+  description="Stop guessing. Calculate exactly how many wallpaper rolls you need based on wall size, roll dimensions, and complex pattern repeats (straight vs drop match)."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Wallpaper Calculator",
+    "description": "Calculate exact wallpaper rolls needed using the strip method, accounting for pattern repeats, half-drop matches, and door/window deductions.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a Straight Match vs Half Drop pattern?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 'Straight Match' means the wallpaper pattern aligns horizontally across every strip—each strip starts at the exact same point in the design. A 'Half Drop Match' staggers the pattern vertically by half the repeat length on every other strip. Both require cutting extra paper to force the seams to align."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why can't I just calculate wallpaper by square footage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If your wallpaper has a repeating pattern, square footage math will cause you to run short. You cannot piece together leftover scraps of patterned paper because the designs won't align. You must use the 'Strip Method'—calculating the number of full floor-to-ceiling strips needed, and cutting each strip long enough to ensure the pattern hits the right mark."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a single roll vs a double roll?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wallpaper is historically priced by the 'single roll' (usually 15-16.5 feet long), but packaged and sold physically as a 'double roll' (33 feet long) so you can get more continuous floor-to-ceiling strips without a seam. Always check your packaging to see the physical length of the roll you are buying."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Wallpaper Calculator", "item": "https://calcfordiy.com/calculators/wallpaper" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Wallpaper Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Wallpaper Calculator (Pattern Match)</h1>
+    <p class="text-gray-600 text-lg">Calculate exactly how many rolls of wallpaper you need using the professional "Strip Method"—automatically accounting for pattern repeat waste!</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Wallpaper Specifications
+    </h2>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Roll Width (inches)</label>
+          <input type="number" id="roll_w" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="20.5" value="20.5" step="0.1" />
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Roll Length (feet)</label>
+          <input type="number" id="roll_l" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="33" value="33" step="1" />
+          <p class="text-xs text-gray-500 mt-1">A standard US double roll is 33 ft.</p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Pattern Match</label>
+          <select id="match_type" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option value="free">Free Match / Solid (No repeat)</option>
+            <option value="straight" selected>Straight Match</option>
+            <option value="drop">Half-Drop Match</option>
+          </select>
+        </div>
+        <div id="repeat_div">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Pattern Repeat (inches)</label>
+          <input type="number" id="repeat_in" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="18" value="18" step="0.5" />
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Wall Measurements
+    </h2>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-xs font-medium text-gray-700 mb-1">Max Ceiling Height <span class="font-normal text-gray-500">(required)</span></label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="wh_ft" placeholder="8" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="wh_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-4">
+        <label class="block text-xs font-medium text-gray-700 mb-1">Total Wall Width <span class="font-normal text-gray-500">(Measure all walls continuously)</span></label>
+        <div class="flex items-center gap-2 max-w-sm">
+          <input type="number" id="ww_ft" placeholder="40" min="0" max="200" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+          <input type="number" id="ww_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">in</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">3</span>
+      Subtract Openings (Optional)
+    </h2>
+
+    <div class="mb-3">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="doorToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('doorSection', this.checked)" />
+        <span class="text-sm text-gray-700">Subtract doors</span>
+      </label>
+      <div id="doorSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Total Doors</label>
+            <input type="number" id="door_count" placeholder="1" min="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Avg. Door Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="dh_ft" placeholder="6" min="0" max="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Avg. Door Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="dw_ft" placeholder="3" min="0" max="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+        <input type="checkbox" id="winToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('winSection', this.checked)" />
+        <span class="text-sm text-gray-700">Subtract windows</span>
+      </label>
+      <div id="winSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Total Windows</label>
+            <input type="number" id="win_count" placeholder="2" min="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Avg. Window Height</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="winh_ft" placeholder="4" min="0" max="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-gray-500 mb-1">Avg. Window Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="winw_ft" placeholder="3" min="0" max="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="calculate()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Rolls Needed →
+    </button>
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
+    Please enter valid wall dimensions to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Material Estimate</h2>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_strips">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Vertical Strips</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_cut">—</div>
+        <div class="text-xs text-gray-500 mt-1">Required Cut Length</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-green-400 print:border-gray-400 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900"><span id="r_rolls">—</span></div>
+        <div class="text-xs text-gray-700 font-medium mt-1">Total Rolls Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-400 print:shadow-none">
+        <div class="text-2xl font-bold text-blue-700 print:text-3xl print:text-gray-900" id="r_waste">—</div>
+        <div class="text-xs text-gray-700 font-medium mt-1">Est. Waste Generated</div>
+      </div>
+    </div>
+    
+    <p id="calc_note" class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
+      <!-- Injected by JS -->
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Why Square Footage Fails for Wallpaper</h2>
+    <p class="text-gray-700 mb-4">If you use a basic square footage calculator to buy wallpaper, you will almost certainly run out of paper before finishing your room. Here is why we use the professional <strong>Strip Method</strong> instead:</p>
+    <ul class="list-disc pl-5 space-y-3 text-gray-700">
+      <li><strong>You can't use scraps:</strong> Wallpaper is hung in continuous vertical strips from ceiling to floor. If you have 4 feet of wall height left, and a 5-foot scrap piece of paper, you cannot use it unless the pattern perfectly aligns (which is incredibly rare). Square footage math assumes you can magically melt all your scraps together.</li>
+      <li><strong>Pattern Repeats force waste:</strong> If your paper has an 18-inch repeat, you might have to cut off and throw away up to 17 inches of paper at the top of <em>every single strip</em> just to make the flowers or geometric shapes align horizontally on the wall.</li>
+      <li><strong>The Trim Allowance:</strong> You must always cut your strips 4 inches longer than your actual wall height to allow for trimming at the ceiling and baseboard.</li>
+    </ul>
+    <p class="text-gray-700 mt-4">Our calculator finds the total number of full strips you need, calculates exactly how long each strip must be cut to accommodate your specific pattern match, and then divides that by your roll length. It's the only way to get a safe estimate.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is a Straight Match vs Half Drop pattern?</h3>
+        <p class="text-gray-600 text-sm">A 'Straight Match' means the wallpaper pattern aligns horizontally across every strip—each strip starts at the exact same point in the design. A 'Half Drop Match' staggers the pattern vertically by half the repeat length on every other strip. Both require cutting extra paper to force the seams to align.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is a single roll vs a double roll?</h3>
+        <p class="text-gray-600 text-sm">Wallpaper is historically priced by the 'single roll' (usually 15-16.5 feet long), but packaged and sold physically as a 'double roll' (33 feet long) so you can get more continuous floor-to-ceiling strips without a seam. Always check your packaging to see the physical length of the roll you are buying and enter that into the calculator.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How much waste should I account for?</h3>
+        <p class="text-gray-600 text-sm">Our calculator already calculates the exact waste generated by your pattern repeats. However, we also add a blanket 10% safety margin to the final roll count. This protects you in case you tear a sheet, make a bad cut, or need a spare roll later for a repair.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/paint-room" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Paint Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Painting the adjacent walls? Calculate exactly how many gallons you need.</div>
+      </a>
+      <a href="/calculators/trim-molding" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Trim & Molding Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Replacing the baseboards after you wallpaper? Calculate your trim.</div>
+      </a>
+      <a href="/calculators/drywall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Drywall Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Hanging new sheetrock before wallpapering? Get your material list here.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function toggleSection(id, show) {
+    const el = document.getElementById(id);
+    if (show) {
+      el.classList.remove('hidden');
+    } else {
+      el.classList.add('hidden');
+      el.querySelectorAll('input').forEach(input => input.value = '');
+      calculate();
+    }
+  }
+
+  function getInches(ftId, inId) {
+    const ft = parseFloat(document.getElementById(ftId)?.value) || 0;
+    const inches = parseFloat(document.getElementById(inId)?.value) || 0;
+    return (ft * 12) + inches;
+  }
+
+  function calculate() {
+    const wallHeight = getInches('wh_ft', 'wh_in');
+    const wallWidth = getInches('ww_ft', 'ww_in');
+
+    if (wallHeight <= 0 || wallWidth <= 0) {
+      document.getElementById('errorMsg').classList.remove('hidden');
+      document.getElementById('results').classList.add('hidden');
+      return;
+    }
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    const rollWidthIn = parseFloat(document.getElementById('roll_w').value) || 20.5;
+    const rollLengthFt = parseFloat(document.getElementById('roll_l').value) || 33;
+    const rollLengthIn = rollLengthFt * 12;
+    
+    const matchType = document.getElementById('match_type').value;
+    const repeatIn = parseFloat(document.getElementById('repeat_in').value) || 18;
+
+    // 1. Calculate Gross Strips
+    const grossStrips = Math.ceil(wallWidth / rollWidthIn);
+
+    // 2. Calculate Cut Length (Wall Height + 4" standard trim allowance + Pattern logic)
+    const trimmedHeight = wallHeight + 4;
+    let cutLength = trimmedHeight;
+
+    if (matchType === 'straight') {
+      cutLength = Math.ceil(trimmedHeight / repeatIn) * repeatIn;
+    } else if (matchType === 'drop') {
+      // Half drop staggers by half a repeat
+      const halfRepeat = repeatIn / 2;
+      cutLength = Math.ceil(trimmedHeight / halfRepeat) * halfRepeat;
+    }
+
+    // 3. Calculate Total Paper Length Required
+    const totalPaperLength = grossStrips * cutLength;
+
+    // 4. Subtract Openings
+    let openingSqFt = 0;
+    if (document.getElementById('doorToggle').checked) {
+      const dCount = parseInt(document.getElementById('door_count').value) || 0;
+      const dHeight = parseFloat(document.getElementById('dh_ft').value) || 0;
+      const dWidth = parseFloat(document.getElementById('dw_ft').value) || 0;
+      openingSqFt += (dCount * dHeight * dWidth);
+    }
+    
+    if (document.getElementById('winToggle').checked) {
+      const wCount = parseInt(document.getElementById('win_count').value) || 0;
+      const wHeight = parseFloat(document.getElementById('winh_ft').value) || 0;
+      const wWidth = parseFloat(document.getElementById('winw_ft').value) || 0;
+      openingSqFt += (wCount * wHeight * wWidth);
+    }
+
+    // Convert opening sqft to linear inches of wallpaper roll width
+    // Linear Ft = SqFt / (Roll Width in Ft)
+    const rollWidthFt = rollWidthIn / 12;
+    const openingLinearFt = openingSqFt / rollWidthFt;
+    const openingLinearIn = openingLinearFt * 12;
+
+    let netPaperLength = totalPaperLength - openingLinearIn;
+    if (netPaperLength < 0) netPaperLength = 0;
+
+    // 5. Calculate Final Rolls Needed
+    const netRolls = netPaperLength / rollLengthIn;
+    const rollsWithWaste = Math.ceil(netRolls * 1.10); // +10% safety margin
+
+    // Calculate Waste Stats for display
+    const sqFtNeeded = (netPaperLength / 12) * rollWidthFt;
+    const sqFtPurchased = rollsWithWaste * (rollLengthFt * rollWidthFt);
+    const wasteSqFt = sqFtPurchased - sqFtNeeded;
+    const wastePercent = ((wasteSqFt / sqFtPurchased) * 100) || 0;
+
+    // Update UI
+    document.getElementById('r_strips').innerText = grossStrips;
+    document.getElementById('r_cut').innerText = cutLength + '"';
+    document.getElementById('r_rolls').innerText = rollsWithWaste;
+    document.getElementById('r_waste').innerText = Math.round(wastePercent) + '%';
+
+    // Build dynamic note
+    let noteHtml = `<strong>Note:</strong> We determined you need ${grossStrips} vertical strips. `;
+    if (matchType !== 'free') {
+      noteHtml += `To match the ${repeatIn}" pattern, each strip must be cut to ${cutLength}" long. `;
+    } else {
+      noteHtml += `Each strip was cut to ${cutLength}" long (including a 4" trim allowance). `;
+    }
+    if (openingSqFt > 0) {
+      noteHtml += `We safely deducted ${openingSqFt.toFixed(1)} sqft for doors/windows. `;
+    }
+    noteHtml += `A 10% safety margin was added to your final roll count.`;
+    
+    document.getElementById('calc_note').innerHTML = noteHtml;
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+  }
+
+  function attachListeners() {
+    document.querySelectorAll('input, select').forEach(el => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+    
+    // Toggle repeat visibility
+    document.getElementById('match_type').addEventListener('change', function() {
+      if (this.value === 'free') {
+        document.getElementById('repeat_div').classList.add('hidden');
+      } else {
+        document.getElementById('repeat_div').classList.remove('hidden');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', attachListeners);
+</script>
