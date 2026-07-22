@@ -1,0 +1,319 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Wall Framing Calculator — Studs & Plates Estimate | CalcForDIY"
+  description="Calculate exactly how many studs and linear feet of plates you need for a partition wall. Automatically accounts for corners, doors, windows, and waste factor."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Wall Framing Calculator",
+    "description": "Free framing calculator that estimates studs and plates needed for walls based on length, spacing, corners, and openings.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many studs do I need for a 10 foot wall?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a standard 10-foot wall with 16-inch on-center spacing and no doors or windows, you need 9 field studs. When you add a 10% waste factor, you should purchase 10 studs. If the wall has corners, you must add 3 studs per corner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many studs per corner do I need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard framing practice requires 3 studs per corner (often built as a California corner or U-channel). This structural arrangement provides the necessary overlapping backing for drywall installation on interior corners."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many extra studs do I add for a door or window?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You should add 4 studs for every door or window opening. This accounts for the 2 full-length King studs and the 2 Jack (trimmer) studs that support the header. The standard 16-inch field studs that fall inside the opening are cut and reused as the short cripple studs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use 16-inch or 24-inch stud spacing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "16-inch on-center is the standard for most residential walls, providing maximum rigidity for drywall. 24-inch spacing is sometimes used for non-load-bearing interior partition walls to save lumber and increase insulation space, but requires thicker 5/8-inch drywall to prevent bowing between studs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need a double top plate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, standard framing practice and the IRC mandate a double top plate. The second plate allows you to overlap joints and firmly tie intersecting walls together, significantly increasing the structural integrity of the home."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Wall Framing Calculator", "item": "https://calcfordiy.com/calculators/wall-framing" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Wall Framing Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Wall Framing Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exactly how many studs and linear feet of plates you need for a partition wall, including accurate material counts for corners, doors, and windows.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Wall Dimensions
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Wall Length</label>
+          <div class="flex items-center gap-2">
+            <input type="number" id="len_ft" placeholder="10" min="0" max="200" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">ft</span>
+            <input type="number" id="len_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500 shrink-0">in</span>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Stud Spacing</label>
+          <select id="spacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="16" selected>16 inches on-center (Standard)</option>
+            <option value="24">24 inches on-center</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Corners & Openings
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <p class="text-xs text-gray-500 mb-3">Extra framing is automatically calculated based on IRC standards (+3 studs per corner, +4 per opening).</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Corners / Intersections</label>
+          <input type="number" id="corners" placeholder="0" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Number of Doors</label>
+          <input type="number" id="doors" placeholder="0" min="0" max="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Number of Windows</label>
+          <input type="number" id="windows" placeholder="0" min="0" max="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+    </div>
+
+    <button onclick="calculate()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      Calculate Materials Needed →
+    </button>
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
+    Please enter a valid wall length to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Framing Estimate</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_field">—</div>
+        <div class="text-xs text-gray-500 mt-1">Field Studs</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+        <div class="text-2xl font-bold text-gray-900" id="r_extras">—</div>
+        <div class="text-xs text-gray-500 mt-1">Corner/Opening Studs</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400">
+        <div class="text-2xl font-bold text-blue-700" id="r_total">—</div>
+        <div class="text-xs text-gray-700 font-medium mt-1">Total Studs (+10% Waste)</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-green-400">
+        <div class="text-2xl font-bold text-green-700"><span id="r_plates">—</span> ft</div>
+        <div class="text-xs text-gray-700 font-medium mt-1">Total Plate Lumber</div>
+      </div>
+    </div>
+    <p class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3">
+      <strong>Note:</strong> Plate lumber assumes 1 bottom plate and 2 top plates (standard IRC requirement). Plate calculation includes a 5% waste factor for trimming. 
+    </p>
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How This Calculator Works</h2>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Field Studs:</strong> The calculator divides your wall length by your spacing (16" or 24") and adds 1 for the end stud.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Corners:</strong> We add 3 extra studs for every corner or intersection to provide a solid drywall backing (California corner style).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Openings:</strong> Every door or window adds 4 structural studs (2 full-height King studs, and 2 Jack studs to support the header). Field studs within the opening are repurposed as cripples.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Waste:</strong> A professional 10% waste factor is added to the vertical studs to account for bowed lumber, splits, and off-cuts.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
+        <span><strong>Plates:</strong> Standard practice requires one bottom plate and two top plates, so we multiply the wall length by 3 and add a 5% waste factor.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="mb-10">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <details class="group bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer p-5 bg-white hover:bg-gray-50 transition-colors list-none [&::-webkit-details-marker]:hidden">
+          <h3 class="font-medium text-gray-900">How many studs do I need for a 10 foot wall?</h3>
+          <span class="text-blue-600 transition-transform group-open:rotate-180">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </span>
+        </summary>
+        <div class="p-5 pt-0 text-gray-600 border-t border-gray-100">
+          For a standard 10-foot wall with 16-inch on-center spacing and no doors or windows, you need 9 field studs. When you add a 10% waste factor, you should purchase 10 studs. If the wall has corners, you must add 3 studs per corner.
+        </div>
+      </details>
+
+      <details class="group bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer p-5 bg-white hover:bg-gray-50 transition-colors list-none [&::-webkit-details-marker]:hidden">
+          <h3 class="font-medium text-gray-900">How many studs per corner do I need?</h3>
+          <span class="text-blue-600 transition-transform group-open:rotate-180">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </span>
+        </summary>
+        <div class="p-5 pt-0 text-gray-600 border-t border-gray-100">
+          Standard framing practice requires 3 studs per corner (often built as a California corner or U-channel). This structural arrangement provides the necessary overlapping backing for drywall installation on interior corners.
+        </div>
+      </details>
+
+      <details class="group bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer p-5 bg-white hover:bg-gray-50 transition-colors list-none [&::-webkit-details-marker]:hidden">
+          <h3 class="font-medium text-gray-900">How many extra studs do I add for a door or window?</h3>
+          <span class="text-blue-600 transition-transform group-open:rotate-180">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </span>
+        </summary>
+        <div class="p-5 pt-0 text-gray-600 border-t border-gray-100">
+          You should add 4 studs for every door or window opening. This accounts for the 2 full-length King studs and the 2 Jack (trimmer) studs that support the header. The standard 16-inch field studs that fall inside the opening are cut and reused as the short cripple studs.
+        </div>
+      </details>
+
+      <details class="group bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+        <summary class="flex items-center justify-between cursor-pointer p-5 bg-white hover:bg-gray-50 transition-colors list-none [&::-webkit-details-marker]:hidden">
+          <h3 class="font-medium text-gray-900">Should I use 16-inch or 24-inch stud spacing?</h3>
+          <span class="text-blue-600 transition-transform group-open:rotate-180">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </span>
+        </summary>
+        <div class="p-5 pt-0 text-gray-600 border-t border-gray-100">
+          16-inch on-center is the standard for most residential walls, providing maximum rigidity for drywall. 24-inch spacing is sometimes used for non-load-bearing interior partition walls to save lumber and increase insulation space, but requires thicker 5/8-inch drywall to prevent bowing between studs.
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <script is:inline>
+    function calculate() {
+      const lenFt = parseFloat(document.getElementById('len_ft').value) || 0;
+      const lenIn = parseFloat(document.getElementById('len_in').value) || 0;
+      
+      if (lenFt === 0 && lenIn === 0) {
+        document.getElementById('errorMsg').classList.remove('hidden');
+        document.getElementById('results').classList.add('hidden');
+        return;
+      }
+      document.getElementById('errorMsg').classList.add('hidden');
+
+      const totalLenFt = lenFt + (lenIn / 12);
+      const totalLenIn = (lenFt * 12) + lenIn;
+      
+      const spacing = parseFloat(document.getElementById('spacing').value) || 16;
+      const corners = parseInt(document.getElementById('corners').value) || 0;
+      const doors = parseInt(document.getElementById('doors').value) || 0;
+      const windows = parseInt(document.getElementById('windows').value) || 0;
+
+      // 1. Field Studs
+      const fieldStuds = Math.ceil(totalLenIn / spacing) + 1;
+      
+      // 2. Extra Studs
+      const cornerStuds = corners * 3;
+      const doorStuds = doors * 4;
+      const windowStuds = windows * 4;
+      const totalExtras = cornerStuds + doorStuds + windowStuds;
+      
+      // 3. Total Studs + Waste
+      const totalRawStuds = fieldStuds + totalExtras;
+      const totalWithWaste = Math.ceil(totalRawStuds * 1.10); // 10% waste
+      
+      // 4. Plates
+      const platesLinearFt = totalLenFt * 3; // 1 bottom + 2 top
+      const platesWithWaste = platesLinearFt * 1.05; // 5% waste
+
+      // Update DOM
+      document.getElementById('r_field').innerText = fieldStuds;
+      document.getElementById('r_extras').innerText = totalExtras;
+      document.getElementById('r_total').innerText = totalWithWaste;
+      document.getElementById('r_plates').innerText = Math.ceil(platesWithWaste);
+
+      document.getElementById('results').classList.remove('hidden');
+      document.getElementById('printBtn').classList.remove('hidden');
+    }
+  </script>
+</Layout>
