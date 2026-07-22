@@ -1,0 +1,2 @@
+# Redirect /calculators to homepage to avoid duplicate content
+/calculators / 301
