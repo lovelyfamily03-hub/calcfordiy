@@ -20,3 +20,9 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## CalcForDIY Specific Rules
+- **New Calculators:** Whenever you create a new calculator page in `src/pages/calculators/`, you MUST ALWAYS add a link to it in BOTH of the following directory arrays:
+  1. `src/pages/index.astro` (The main homepage)
+  2. `src/pages/calculators/index.astro` (The calculators directory page)
+  Failure to update both files will result in the calculator being hidden from the user.
