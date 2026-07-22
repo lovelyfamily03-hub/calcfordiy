@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Inter', sans-serif;
+}
+
 input[type="number"],
 input[type="text"],
 select {
