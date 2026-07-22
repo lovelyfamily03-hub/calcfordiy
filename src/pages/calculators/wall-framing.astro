@@ -112,13 +112,17 @@ import Layout from '../../layouts/Layout.astro';
 
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
       <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
-      Wall Dimensions & Openings
+      Wall Dimensions
     </h2>
+    
+    <div class="bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-lg p-3 mb-4">
+      <strong>Pro Tip:</strong> When framing multiple rooms, do not double-count shared walls! Enter long continuous walls as a single entry, then enter the interior partition walls that butt into them separately. Count every place a wall meets another wall as an Intersection below.
+    </div>
 
     <div id="wallsContainer" class="space-y-4">
       <div class="wall-entry p-4 bg-gray-50 rounded-lg border border-gray-200 relative">
         <h3 class="font-semibold text-gray-800 mb-3 wall-title">Wall 1</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Wall Length</label>
             <div class="flex items-center gap-2">
@@ -129,19 +133,34 @@ import Layout from '../../layouts/Layout.astro';
             </div>
           </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-xs text-gray-500 mb-1">Corners</label>
-            <input type="number" class="corners w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0" min="0" max="20" />
-          </div>
-          <div>
-            <label class="block text-xs text-gray-500 mb-1">Doors</label>
-            <input type="number" class="doors w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0" min="0" max="10" />
-          </div>
-          <div>
-            <label class="block text-xs text-gray-500 mb-1">Windows</label>
-            <input type="number" class="windows w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0" min="0" max="10" />
-          </div>
+      </div>
+    </div>
+
+    <button type="button" id="addWallBtn" class="mt-4 w-full border-2 border-dashed border-gray-300 hover:border-blue-400 text-gray-600 hover:text-blue-600 font-medium py-3 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm">
+      + Add Another Wall
+    </button>
+
+    <hr class="my-5 border-gray-200" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">3</span>
+      Project Openings & Intersections
+    </h2>
+
+    <div class="p-4 bg-gray-50 rounded-lg mb-5">
+      <p class="text-xs text-gray-500 mb-3">Total count for your entire project. Extra framing is automatically calculated based on IRC standards (+3 studs per intersection, +4 per opening).</p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Corners & T-Intersections</label>
+          <input type="number" id="global_corners" placeholder="0" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Total Doors</label>
+          <input type="number" id="global_doors" placeholder="0" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div>
+          <label class="block text-xs text-gray-500 mb-1">Total Windows</label>
+          <input type="number" id="global_windows" placeholder="0" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
       </div>
     </div>
@@ -203,11 +222,11 @@ import Layout from '../../layouts/Layout.astro';
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
-        <span><strong>Add corners and openings.</strong> For this specific wall, enter any corners/intersections, doors, and windows. The calculator automatically allocates the correct structural studs for each.</span>
+        <span><strong>Add multiple walls.</strong> If you are framing an entire room or basement, click the <strong>+ Add Another Wall</strong> button. You can add as many individual walls as you need.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
-        <span><strong>Add multiple walls.</strong> If you are framing an entire room or basement, click the <strong>+ Add Another Wall</strong> button. You can add as many individual walls as you need, and the calculator will accurately sum the total lumber for your entire project!</span>
+        <span><strong>Enter total corners and openings.</strong> Instead of entering doors and windows for every single wall, simply tally up your project's total corners, T-intersections, doors, and windows at the bottom. The calculator will accurately sum the total lumber for your entire project!</span>
       </li>
     </ol>
   </div>
@@ -229,6 +248,10 @@ import Layout from '../../layouts/Layout.astro';
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I measure shared partition walls?</h3>
+        <p class="text-gray-600 text-sm">When framing multiple adjoining rooms, do not double-count a shared wall by measuring Room A's perimeter and then Room B's perimeter. Frame the long, continuous wall first and enter it as a single wall. Then, build the interior partition walls so they butt up against it. In the calculator, count every place a partition wall meets another wall as a "T-Intersection" (which uses 3 extra studs for backing, identical to a corner).</p>
+      </div>
       <div>
         <h3 class="font-semibold text-gray-900 mb-1">How many studs do I need for a 10 foot wall?</h3>
         <p class="text-gray-600 text-sm">For a standard 10-foot wall with 16-inch on-center spacing and no doors or windows, you need 9 field studs. When you add a 10% waste factor, you should purchase 10 studs. If the wall has corners, you must add 3 studs per corner.</p>
@@ -278,12 +301,12 @@ import Layout from '../../layouts/Layout.astro';
     const wallCount = container.querySelectorAll('.wall-entry').length + 1;
     
     const wallHTML = `
-      <div class="wall-entry p-4 bg-gray-50 rounded-lg border border-gray-200 relative">
+      <div class="wall-entry p-4 bg-gray-50 rounded-lg border border-gray-200 relative mt-4">
         <div class="flex justify-between items-center mb-3">
           <h3 class="font-semibold text-gray-800 wall-title">Wall ${wallCount}</h3>
           <button type="button" class="text-red-500 hover:text-red-700 text-sm font-medium remove-wall-btn">Remove</button>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Wall Length</label>
             <div class="flex items-center gap-2">
@@ -292,20 +315,6 @@ import Layout from '../../layouts/Layout.astro';
               <input type="number" class="len_in w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0" min="0" max="11" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-xs text-gray-500 mb-1">Corners</label>
-            <input type="number" class="corners w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0" min="0" max="20" />
-          </div>
-          <div>
-            <label class="block text-xs text-gray-500 mb-1">Doors</label>
-            <input type="number" class="doors w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0" min="0" max="10" />
-          </div>
-          <div>
-            <label class="block text-xs text-gray-500 mb-1">Windows</label>
-            <input type="number" class="windows w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0" min="0" max="10" />
           </div>
         </div>
       </div>
@@ -333,11 +342,13 @@ import Layout from '../../layouts/Layout.astro';
       btn.removeEventListener('click', function() { removeWall(this); });
       btn.addEventListener('click', function() { removeWall(this); });
     });
+    document.getElementById('global_corners')?.addEventListener('input', calculate);
+    document.getElementById('global_doors')?.addEventListener('input', calculate);
+    document.getElementById('global_windows')?.addEventListener('input', calculate);
   }
 
   function calculate() {
     let totalFieldStuds = 0;
-    let totalExtras = 0;
     let totalLenFtForPlates = 0;
     let hasValidLength = false;
     
@@ -355,15 +366,9 @@ import Layout from '../../layouts/Layout.astro';
       const totalLenIn = (lenFt * 12) + lenIn;
       totalLenFtForPlates += totalLenFt;
       
-      const corners = parseInt(wall.querySelector('.corners').value) || 0;
-      const doors = parseInt(wall.querySelector('.doors').value) || 0;
-      const windows = parseInt(wall.querySelector('.windows').value) || 0;
-
       if (totalLenIn > 0) {
         totalFieldStuds += Math.ceil(totalLenIn / spacing) + 1;
       }
-      
-      totalExtras += (corners * 3) + (doors * 4) + (windows * 4);
     });
     
     if (!hasValidLength) {
@@ -372,6 +377,11 @@ import Layout from '../../layouts/Layout.astro';
       return;
     }
     document.getElementById('errorMsg').classList.add('hidden');
+
+    const corners = parseInt(document.getElementById('global_corners').value) || 0;
+    const doors = parseInt(document.getElementById('global_doors').value) || 0;
+    const windows = parseInt(document.getElementById('global_windows').value) || 0;
+    const totalExtras = (corners * 3) + (doors * 4) + (windows * 4);
 
     const totalRawStuds = totalFieldStuds + totalExtras;
     const totalWithWaste = Math.ceil(totalRawStuds * 1.10); // 10% waste
