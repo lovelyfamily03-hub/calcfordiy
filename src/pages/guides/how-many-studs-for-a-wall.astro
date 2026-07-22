@@ -1,0 +1,130 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="How Many Studs Do I Need for a Wall? | CalcForDIY"
+  description="Learn exactly how to calculate the number of studs needed for a wall, including the math for corners, doors, windows, and standard waste factors."
+>
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>How Many Studs Do I Need for a Wall?</span>
+  </div>
+
+  <article class="max-w-3xl">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">How Many Studs Do I Need for a Wall?</h1>
+    
+    <div class="prose prose-blue max-w-none text-gray-700 space-y-5">
+      <p class="text-lg">
+        Whether you are finishing a basement or just building a simple partition wall, buying the right amount of framing lumber is critical. If you buy too few studs, your project halts while you make another trip to the lumber yard. If you buy too many, you are wasting money and dealing with heavy returns.
+      </p>
+      
+      <p>
+        Many DIYers make the mistake of simply dividing their wall length by 16 inches and assuming that is their total stud count. However, real-world framing requires significant extra lumber to handle corners, structural backing, and headers for doors and windows. To get an accurate count, you must calculate the "field" studs and then manually add the extras.
+      </p>
+
+      <!-- Calculator CTA -->
+      <div class="my-8 p-6 bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl shadow-sm">
+        <h2 class="text-xl font-bold text-blue-900 mb-2 mt-0">Skip the Math: Use Our Free Calculator</h2>
+        <p class="text-blue-800 mb-4">Don't want to calculate corner backing and rough opening extras by hand? Enter your wall lengths, corners, and doors into our free tool to instantly generate a highly accurate, printable lumber list.</p>
+        <a href="/calculators/wall-framing" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+          Go to the Wall Framing Calculator →
+        </a>
+      </div>
+
+      <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">Step-by-Step: How to Calculate Your Stud Count</h2>
+      
+      <p>If you want to understand the framing math and build your material list manually, follow these standard residential framing steps.</p>
+
+      <div class="space-y-6 mt-6">
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+            <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs shrink-0">1</span>
+            Calculate the "Field" Studs
+          </h3>
+          <p class="mt-2">First, you need to calculate the base studs required to span your wall at your chosen spacing (usually 16 inches on-center). Take the total length of your wall in inches and divide it by 16. Finally, <strong>add one extra stud</strong> to this number. You must always add one to account for the very end of the wall, as dividing only gives you the spaces <em>between</em> the studs, not the studs themselves.</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+            <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs shrink-0">2</span>
+            Add 3 Studs for Every Corner
+          </h3>
+          <p class="mt-2">A wall does not exist in a vacuum; it connects to other walls. Wherever two walls meet at a corner or a T-intersection, standard framing requires extra studs to give the drywall edges a solid surface to screw into. The standard rule is to add 3 studs for every single corner or intersection (often built as a "California corner" or U-channel).</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+            <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs shrink-0">3</span>
+            Add 4 Studs for Every Door or Window
+          </h3>
+          <p class="mt-2">Openings require heavy structural reinforcement to carry the load of the ceiling above them. For every door or window, you must add 4 extra full-length studs to your list. Two of these act as "King" studs (running full height on the outside) and two act as "Jack" or "Trimmer" studs (which are cut down to support the horizontal header). The standard field studs you calculated in Step 1 that fall inside the doorway will simply be cut down and reused as short "cripple" studs above the header.</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+            <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs shrink-0">4</span>
+            Calculate Your Top and Bottom Plates
+          </h3>
+          <p class="mt-2">Do not forget the horizontal boards that hold your vertical studs together! Modern building codes require a single bottom plate and a double top plate. To calculate this, simply take the total linear length of your wall and multiply it by 3. This gives you the total linear feet of plate lumber you need to buy.</p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+            <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs shrink-0">5</span>
+            Factor in a 10% Waste Margin
+          </h3>
+          <p class="mt-2">Lumber is a natural product. When you go to the store, you will inevitably find boards with heavy crowns (bowing), severe twists, or large bark-filled knots that make them unusable for critical framing. Furthermore, you will lose a few inches to off-cuts. Always multiply your final vertical stud count by 1.10 (adding 10%) to ensure you have enough clean, straight lumber to finish the job.</p>
+        </div>
+      </div>
+
+      <hr class="my-10 border-gray-200" />
+
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6">Frequently Asked Questions</h2>
+      
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-bold text-gray-900">How many studs do I need for a 10 foot wall?</h3>
+          <p class="mt-1 text-gray-600">For a standard 10-foot wall (120 inches) framed at 16 inches on-center, you will need 9 field studs (120 / 16 = 7.5, round up to 8, plus 1 for the end). Adding a 10% waste factor brings you to 10 studs. If this wall has corners or a door, you must add the extra backing lumber to that total.</p>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-gray-900">Should I frame 16-inch or 24-inch on-center?</h3>
+          <p class="mt-1 text-gray-600">16-inch on-center is the standard for almost all residential construction. It provides maximum rigidity for hanging drywall and cabinetry. You can use 24-inch spacing to save lumber, but only on interior, non-load-bearing partition walls. If you do, you must use thicker 5/8-inch drywall to prevent the walls from feeling wavy or bowing between the wide stud gaps.</p>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-gray-900">Are studs actually 2x4 inches?</h3>
+          <p class="mt-1 text-gray-600">No. The term "2x4" refers to the rough-sawn dimensions before the wood is dried and planed smooth at the mill. The actual, physical dimensions of a standard 2x4 stud are 1.5 inches by 3.5 inches.</p>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-gray-900">What is the difference between a pre-cut stud and a standard 8-foot board?</h3>
+          <p class="mt-1 text-gray-600">A standard 8-foot board is exactly 96 inches long. A "pre-cut stud" (often labeled 92-5/8 inches) is intentionally cut short at the mill. When you sandwich a 92-5/8 inch pre-cut stud between a single bottom plate (1.5" thick) and a double top plate (3" thick), the total wall height equals exactly 97-1/8 inches—leaving a perfect 1/2-inch gap at the floor to slide in an 8-foot sheet of drywall horizontally without scraping the ceiling.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mt-12 max-w-3xl">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/wall-framing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Wall Framing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Get an instant, printable material list for your partition walls.</div>
+      </a>
+      <a href="/calculators/drywall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Drywall Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many sheets of drywall you need to cover your newly framed walls.</div>
+      </a>
+      <a href="/calculators/trim-molding" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Trim & Molding Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate baseboard material needs, including miter corner waste logic.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
