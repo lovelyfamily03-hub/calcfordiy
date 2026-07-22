@@ -1,0 +1,336 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Trim & Molding Calculator — Estimate Baseboard & Crown | CalcForDIY"
+  description="Calculate exactly how much baseboard, crown molding, or trim you need. Our calculator accounts for miter cut corner waste and door deductions. Free, no signup."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Trim and Molding Calculator",
+    "description": "Free calculator to estimate baseboard and crown molding materials, including advanced miter cut corner waste and door deductions.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much extra trim should I buy for miter cuts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For standard baseboard, add 10% to your total length for waste, plus an extra 6 inches (0.5 ft) for every inside or outside corner. For crown molding, add 15% for waste, plus an extra 12 inches (1 ft) per corner to account for compound miters and pattern matching."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I cope or miter inside corners?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Professional carpenters highly recommend coping inside corners rather than mitering them. Houses settle, and walls are rarely perfectly 90 degrees. A coped joint overlaps the adjoining board, ensuring the corner won't open up and show a gap over time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does crown molding need a higher waste factor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Crown molding sits at an angle against the wall and ceiling, requiring complex compound miter cuts (cutting bevels and miters simultaneously). This makes it much easier to cut a board upside down or backward by mistake. Additionally, patterned crown molding requires cutting off sections to ensure the decorative pattern matches perfectly at the joints."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much do I subtract for a door opening?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As a rule of thumb, subtract 3 linear feet for every standard interior door or passageway. This accounts for the door itself plus the door casing trim that the baseboard will butt into."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Trim & Molding Calculator", "item": "https://calcfordiy.com/calculators/trim-molding" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Trim & Molding Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Trim & Molding Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exactly how many boards of baseboard or crown molding you need. This tool automatically accounts for door deductions and miter cut waste on your corners.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Project Details
+    </h2>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Trim Type</label>
+          <select id="trim_type" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option value="baseboard" selected>Baseboard / Chair Rail</option>
+            <option value="crown">Crown Molding</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Purchase Board Length</label>
+          <select id="board_length" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option value="8">8 ft boards</option>
+            <option value="10">10 ft boards</option>
+            <option value="12" selected>12 ft boards</option>
+            <option value="16">16 ft boards</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Room Measurements
+    </h2>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded-lg">
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Total Room Perimeter <span class="font-normal text-gray-500 text-xs">(Measure all walls continuously)</span></label>
+        <div class="flex items-center gap-2 max-w-sm">
+          <input type="number" id="len_ft" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="40" min="0" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+          <input type="number" id="len_in" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0" min="0" max="11" />
+          <span class="text-xs text-gray-500 shrink-0">in</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Total Doors & Openings</label>
+          <input type="number" id="doors" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="1" min="0" />
+          <p class="text-xs text-gray-500 mt-1">Subtracts 3ft per opening.</p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Total Corners</label>
+          <input type="number" id="corners" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="4" min="0" />
+          <p class="text-xs text-gray-500 mt-1">Inside + outside corners combined.</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="calculate()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Materials Needed →
+    </button>
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
+    Please enter a valid room perimeter length to calculate.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Material Estimate</h2>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_net">—</div>
+        <div class="text-xs text-gray-500 mt-1">Net Linear Feet</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_corners">—</div>
+        <div class="text-xs text-gray-500 mt-1">Corners to Cut</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-green-400 print:border-gray-400 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900"><span id="r_total_len">—</span></div>
+        <div class="text-xs text-gray-700 font-medium mt-1">Total Needed (w/ Waste)</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-400 print:shadow-none">
+        <div class="text-2xl font-bold text-blue-700 print:text-3xl print:text-gray-900" id="r_boards">—</div>
+        <div class="text-xs text-gray-700 font-medium mt-1">Total Boards to Buy</div>
+      </div>
+    </div>
+    
+    <p id="calc_note" class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
+      <!-- Injected by JS -->
+    </p>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print or Save as PDF
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Calculating trim involves more than just measuring your walls. Follow these steps to ensure you buy enough material to handle tricky corner cuts without ending up short.</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select your trim type.</strong> Choose whether you are installing baseboard or crown molding, as crown molding requires significantly more material for waste. Select the length of the boards you plan to buy at the store.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Measure the room.</strong> Take a tape measure and run it continuously along all the walls to get the total gross perimeter. Do not worry about stopping for doors yet.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Count the doors.</strong> Enter the total number of doors or open entryways on the walls. The calculator automatically subtracts 3 feet of trim per door so you don't over-buy.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Count the corners.</strong> Tally up every single inside and outside corner in the room. This is crucial—we calculate a "corner penalty" to account for the physical inches of wood you lose every time you cut a miter angle.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula: Why corners matter</h2>
+    <p class="text-gray-700 mb-4">Most people just take the perimeter of their room and add a flat 10% for waste. But if you have a small room with 8 corners, you will almost certainly run out of wood using that method. Here is the math we use to protect you:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Net Length = Total Perimeter - (Doors &times; 3ft)</p>
+      <p>Corner Penalty (Baseboard) = Corners &times; 0.5 ft</p>
+      <p>Corner Penalty (Crown) = Corners &times; 1.0 ft</p>
+      <p>Length with Corners = Net Length + Corner Penalty</p>
+      <p>Total Required = Length with Corners &times; Waste %</p>
+    </div>
+    <p class="text-gray-700">When you cut a 45-degree angle on a piece of trim, you are slicing off a triangle of wood. To make the opposing cut on the next piece, you often have to cut off an angled piece in the other direction. This means every corner physically wastes about 6 inches of material on baseboards, and up to 12 inches on crown molding (where cuts are compound). We calculate this exact physical waste first, and <em>then</em> apply the standard 10% (baseboard) or 15% (crown) multiplier for general cutting mistakes and scrap.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How much extra trim should I buy for miter cuts?</h3>
+        <p class="text-gray-600 text-sm">For standard baseboard, add 10% to your total length for waste, plus an extra 6 inches (0.5 ft) for every inside or outside corner. For crown molding, add 15% for waste, plus an extra 12 inches (1 ft) per corner to account for compound miters and pattern matching.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I cope or miter inside corners?</h3>
+        <p class="text-gray-600 text-sm">Professional carpenters highly recommend coping inside corners rather than mitering them. Houses settle, and walls are rarely perfectly 90 degrees. A coped joint overlaps the adjoining board, ensuring the corner won't open up and show a gap over time.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Why does crown molding need a higher waste factor?</h3>
+        <p class="text-gray-600 text-sm">Crown molding sits at an angle against the wall and ceiling, requiring complex compound miter cuts (cutting bevels and miters simultaneously). This makes it much easier to cut a board upside down or backward by mistake. Additionally, patterned crown molding requires cutting off sections to ensure the decorative pattern matches perfectly at the joints.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How much do I subtract for a door opening?</h3>
+        <p class="text-gray-600 text-sm">As a rule of thumb, subtract 3 linear feet for every standard interior door or passageway. This accounts for the door itself plus the door casing trim that the baseboard will butt into.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/laminate-flooring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Laminate Flooring Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how many boxes of laminate or LVP you need before installing your baseboards.</div>
+      </a>
+      <a href="/calculators/hardwood-flooring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Hardwood Flooring Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate exact square footage and waste factor for solid or engineered hardwood.</div>
+      </a>
+      <a href="/calculators/drywall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Drywall Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate sheetrock counts for your walls before hanging your crown molding.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    let hasValidLength = false;
+    
+    const lenFt = parseFloat(document.getElementById('len_ft').value) || 0;
+    const lenIn = parseFloat(document.getElementById('len_in').value) || 0;
+    
+    if (lenFt > 0 || lenIn > 0) {
+      hasValidLength = true;
+    }
+
+    if (!hasValidLength) {
+      document.getElementById('errorMsg').classList.remove('hidden');
+      document.getElementById('results').classList.add('hidden');
+      return;
+    }
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    const totalLenFt = lenFt + (lenIn / 12);
+    
+    const doors = parseInt(document.getElementById('doors').value) || 0;
+    const corners = parseInt(document.getElementById('corners').value) || 0;
+    
+    const trimType = document.getElementById('trim_type').value;
+    const boardLength = parseFloat(document.getElementById('board_length').value) || 8;
+
+    // Deduct doors (assume standard 3ft opening per door/passage)
+    const doorDeduction = doors * 3;
+    let netLenFt = totalLenFt - doorDeduction;
+    if (netLenFt < 0) netLenFt = 0;
+
+    // Corner penalty
+    let cornerPenalty = 0;
+    let wasteMultiplier = 1.10;
+    let wastePercent = 10;
+    
+    if (trimType === 'crown') {
+        cornerPenalty = corners * 1.0; // 1 ft per corner
+        wasteMultiplier = 1.15; // 15% standard waste
+        wastePercent = 15;
+    } else {
+        cornerPenalty = corners * 0.5; // 0.5 ft per corner
+        wasteMultiplier = 1.10;
+        wastePercent = 10;
+    }
+
+    const lengthWithCorners = netLenFt + cornerPenalty;
+    const finalLengthWithWaste = lengthWithCorners * wasteMultiplier;
+    const totalBoards = Math.ceil(finalLengthWithWaste / boardLength);
+
+    document.getElementById('r_net').innerText = netLenFt.toFixed(1) + ' ft';
+    document.getElementById('r_corners').innerText = corners;
+    document.getElementById('r_total_len').innerText = finalLengthWithWaste.toFixed(1) + ' ft';
+    document.getElementById('r_boards').innerText = totalBoards;
+
+    // Output dynamic note
+    document.getElementById('calc_note').innerHTML = `<strong>Note:</strong> We deducted ${doorDeduction} ft for doors, added ${cornerPenalty.toFixed(1)} ft of extra material for miter corner cuts, and applied a ${wastePercent}% overall waste factor.`;
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+  }
+
+  function attachListeners() {
+    document.querySelectorAll('input, select').forEach(el => {
+      el.addEventListener('input', calculate);
+      el.addEventListener('change', calculate);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', attachListeners);
+</script>
