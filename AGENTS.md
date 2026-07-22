@@ -26,3 +26,4 @@ Consult these guides before working on related tasks:
   1. `src/pages/index.astro` (The main homepage)
   2. `src/pages/calculators/index.astro` (The calculators directory page)
   Failure to update both files will result in the calculator being hidden from the user.
+- **Calculator Content Structure:** Every calculator page MUST include a "How to Use This Calculator" section containing an ordered list (`<ol>`) of instructions. This is critical for SEO and user experience.
