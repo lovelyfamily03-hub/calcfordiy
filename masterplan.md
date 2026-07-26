@@ -114,9 +114,9 @@ Path: `src/pages/guides/`
 - `[x]` "How Much Concrete for Fence Posts?" 
 - `[x]` "How Many Bags of Grout for a Tile Shower?" 
 - `[x]` "What Waste Factor Should I Use for Laminate Flooring?"
-- `[ ]` "How Many Recessed Lights for a 2-Car Garage?" 
-- `[ ]` "How Much Tile Do I Need for a Shower?" 
-- `[ ]` "How Many Boxes of Hardwood Flooring Do I Need?" 
+- `[x]` "How Many Recessed Lights for a 2-Car Garage?" 
+- `[x]` "How Much Tile Do I Need for a Shower?" 
+- `[x]` "How Many Boxes of Hardwood Flooring Do I Need?" 
 - `[x]` "How Many Studs for a Wall?"
 
 ---
