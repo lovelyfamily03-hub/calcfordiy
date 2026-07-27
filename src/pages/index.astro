@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AboutCalculators from '../components/AboutCalculators.astro';
 
 const calculators = [
   {
@@ -338,14 +339,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
     <p class="text-gray-400 text-sm mt-1">Try a different keyword like "paint", "tile", or "concrete".</p>
   </div>
 
-  <div class="mt-12 bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
-    <h2 class="text-2xl font-bold text-gray-900 mb-4">About These Calculators</h2>
-    <div class="space-y-4 text-gray-700">
-      <p>Every calculator on CalcForDIY runs entirely in your browser. Nothing is uploaded to a server. No account needed. Results are instant.</p>
-      <p>All formulas are sourced from industry standards — the Tile Council of North America for tile waste factors, the National Wood Flooring Association for hardwood and laminate, and manufacturer technical documentation from Mapei and LATICRETE for grout calculations.</p>
-      <p>Whether you are a first-time DIYer or a contractor running quick estimates on a job site, these tools are built to give you accurate numbers fast.</p>
-    </div>
-  </div>
+  <AboutCalculators />
 </Layout>
 
 <script is:inline>
