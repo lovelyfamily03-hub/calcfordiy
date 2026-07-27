@@ -153,7 +153,7 @@ Path: `src/pages/guides/`
 - `[ ]` Dark mode toggle
 - `[ ]` Unit switcher (metric/imperial)
 - `[x]` "Compare two options" mode (Implemented in AC and Furnace Cost calculators)
-- `[ ]` Calculator search bar on homepage (Required now that we have nearly 40 calculators)
+- `[x]` Calculator search bar on homepage (Added in audit fixes)
 
 ---
 
