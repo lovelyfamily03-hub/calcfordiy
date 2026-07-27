@@ -1,0 +1,287 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Board and Batten Spacing Calculator — Accent Wall Layout | CalcForDIY"
+  description="Calculate exact spacing gaps down to 1/16ths of an inch between vertical battens for accent walls. Includes lumber material counts and gap layout mode."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Board and Batten Spacing Calculator",
+    "description": "Free board and batten accent wall calculator estimating exact spacing gap, batten count, linear feet, and 1/16th inch fractions.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How far apart should board and batten be spaced?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard spacing between board and batten strips is typically between 10 inches and 16 inches on-center (or 8 to 12 inches clear gap). For wider accent walls, 12 to 14-inch gaps create a modern balanced proportion, while 8 to 10-inch gaps suit smaller accent walls or entryways."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What size boards are used for board and batten accent walls?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The most popular material for vertical battens is 1x4 MDF or pre-primed pine boards, which have an actual width of 3.5 inches and thickness of 0.75 inches. Top header rails often use 1x6 boards (5.5 inches wide) for visual weight."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I put battens in the corners of the wall?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, putting a vertical batten flush against both left and right corners creates a clean frame for the accent wall. In this layout, your total number of spacing gaps will equal your total number of battens minus 1."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Board & Batten Spacing", "item": "https://calcfordiy.com/calculators/board-and-batten" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Board &amp; Batten Spacing</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Board and Batten Spacing Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exact spacing gaps down to 1/16ths of an inch between vertical battens for a perfectly symmetrical accent wall.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Wall &amp; Board Dimensions
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Total Wall Width (Inches)</label>
+        <input type="number" id="wallWidth" placeholder="e.g. 144" value="144" min="12" step="0.25" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <p class="text-xs text-gray-400 mt-1">12 ft = 144 inches</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Wall Height (Feet)</label>
+        <input type="number" id="wallHeight" placeholder="e.g. 8" value="8" min="4" max="20" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Batten Width (Actual Inches)</label>
+        <select id="battenWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="3.5" selected>1x4 Board (3.5 inches actual)</option>
+          <option value="2.5">1x3 Board (2.5 inches actual)</option>
+          <option value="5.5">1x6 Board (5.5 inches actual)</option>
+          <option value="1.5">1x2 Board (1.5 inches actual)</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Layout Preference
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Vertical Battens</label>
+        <input type="number" id="battenCount" value="6" min="2" max="30" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <p class="text-xs text-gray-500 mt-1">Adjust count to get your ideal gap width (~10" - 14").</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">End Style Layout</label>
+        <select id="endStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="corner" selected>Battens Flush in Both Corners (Recommended)</option>
+          <option value="gap">Equal Gaps on Both End Walls</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Spacing &amp; Material →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Spacing &amp; Cut List</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none md:col-span-2">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_gapFraction">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Clear Gap Between Battens</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_gapDecimal">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_battens">—</div>
+        <div class="text-xs text-gray-500 mt-1">Vertical Battens Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_linearFeet">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Linear Feet (+10%)</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 print:border print:border-gray-200 print:shadow-none">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">On-Center Spacing (For Marking Tape)</h3>
+      <p class="text-xs text-gray-600" id="r_onCenter">—</p>
+    </div>
+
+    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print Spacing Guide
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to layout an accent wall with perfectly even spacing:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Total Wall Width:</strong> Measure wall width at the top, middle, and bottom in inches. Use the smallest measurement if walls are out of plumb.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Batten Width:</strong> Choose the actual width of your lumber (e.g., standard 1x4 boards are 3.5 inches wide).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Adjust Batten Count:</strong> Tweak the number of battens until the calculated gap width falls between 10" and 14" for a balanced visual look.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Calculate &amp; Cut:</strong> Use the exact 1/16th inch fraction result to cut a wooden spacer block for fast, error-free installation!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How far apart should board and batten be spaced?</h3>
+        <p class="text-gray-600 text-sm">Standard clear spacing between battens is typically 10 to 14 inches. For wider walls (over 12 feet), 12 to 14-inch gaps look modern and open. For smaller accent walls, 8 to 10-inch gaps provide a classic proportion.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the secret trick to installing battens fast?</h3>
+        <p class="text-gray-600 text-sm">Cut a wooden "spacer block" to the exact clear gap calculated above. Once you nail your first corner batten in place, butt the spacer block against it, press the second batten against the spacer, nail it, and repeat down the wall—no measuring tape needed for every single board!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/trim-molding" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Trim &amp; Molding Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate baseboard and crown molding needs with miter waste logic.</div>
+      </a>
+      <a href="/calculators/shiplap" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Shiplap Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate tongue and groove / shiplap wall board requirements.</div>
+      </a>
+      <a href="/calculators/wall-framing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Wall Framing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate studs and plate linear feet for wall framing.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function toFraction(decimal) {
+    const whole = Math.floor(decimal);
+    const remainder = decimal - whole;
+    const sixteenths = Math.round(remainder * 16);
+    
+    if (sixteenths === 0) return `${whole}"`;
+    if (sixteenths === 16) return `${whole + 1}"`;
+
+    let num = sixteenths;
+    let den = 16;
+
+    if (num % 8 === 0) { num /= 8; den /= 8; }
+    else if (num % 4 === 0) { num /= 4; den /= 4; }
+    else if (num % 2 === 0) { num /= 2; den /= 2; }
+
+    return whole > 0 ? `${whole} ${num}/${den}"` : `${num}/${den}"`;
+  }
+
+  function calculate() {
+    const wallWidth = parseFloat(document.getElementById('wallWidth').value);
+    const wallHeight = parseFloat(document.getElementById('wallHeight').value) || 8;
+    const battenWidth = parseFloat(document.getElementById('battenWidth').value);
+    const battenCount = parseInt(document.getElementById('battenCount').value);
+    const endStyle = document.getElementById('endStyle').value;
+
+    if (!wallWidth || wallWidth <= 0 || !battenCount || battenCount < 2) return;
+
+    // Math:
+    // Total batten width = count * battenWidth
+    // Total clear width = wallWidth - total batten width
+    // Gaps count: if corner battens, numGaps = battenCount - 1
+    //             if gap on ends, numGaps = battenCount + 1
+    const totalBattenWidth = battenCount * battenWidth;
+    const remainingWidth = wallWidth - totalBattenWidth;
+
+    if (remainingWidth <= 0) {
+      alert("Wall is too narrow for this many battens!");
+      return;
+    }
+
+    const numGaps = (endStyle === 'corner') ? (battenCount - 1) : (battenCount + 1);
+    const clearGapDecimal = remainingWidth / numGaps;
+    const clearGapFraction = toFraction(clearGapDecimal);
+
+    const onCenterDecimal = clearGapDecimal + battenWidth;
+    const onCenterFraction = toFraction(onCenterDecimal);
+
+    // Linear feet = (battenCount * wallHeight) + horizontal top/bottom rails (2 * wallWidth / 12)
+    const verticalLinearFt = battenCount * wallHeight;
+    const horizontalLinearFt = (2 * wallWidth) / 12;
+    const totalLinearFt = Math.ceil((verticalLinearFt + horizontalLinearFt) * 1.10); // +10% waste
+
+    document.getElementById('r_gapFraction').innerText = clearGapFraction;
+    document.getElementById('r_gapDecimal').innerText = `(${clearGapDecimal.toFixed(3)}" exact)`;
+    document.getElementById('r_battens').innerText = battenCount + " battens";
+    document.getElementById('r_linearFeet').innerText = totalLinearFt + " LF";
+
+    document.getElementById('r_onCenter').innerText = `Measure ${onCenterFraction} (${onCenterDecimal.toFixed(2)}" on-center) from center-of-batten to center-of-batten across your wall.`;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>

@@ -1,0 +1,264 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Coffered Ceiling Beam Layout Calculator — Box Grid | CalcForDIY"
+  description="Calculate exact recessed box dimensions, beam linear feet, and crown molding quantities for coffered ceiling beam grids."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Coffered Ceiling Beam Layout Calculator",
+    "description": "Free coffered ceiling beam calculator estimating box grid dimensions, beam linear feet, cross-beam counts, and crown molding needs.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How deep should coffered ceiling beams be?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard coffered ceiling beams are typically 4 to 8 inches deep and 5 to 8 inches wide. For standard 8 or 9-foot ceilings, keep beam depth around 4 to 6 inches so the ceiling does not feel heavy or low."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What size should coffered ceiling boxes be?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Coffered ceiling recessed boxes typically measure between 3 feet by 3 feet and 5 feet by 5 feet. Square boxes create the most pleasing classical proportion."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Coffered Ceiling Layout", "item": "https://calcfordiy.com/calculators/coffered-ceiling" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Coffered Ceiling Layout</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Coffered Ceiling Beam Layout Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exact recessed box grid dimensions, beam linear footage, cross-beam counts, and crown molding material.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Room Dimensions
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Room Length (Feet)</label>
+        <input type="number" id="roomLength" placeholder="e.g. 16" value="16" min="6" max="60" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Room Width (Feet)</label>
+        <input type="number" id="roomWidth" placeholder="e.g. 14" value="14" min="6" max="60" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Beam Width &amp; Grid Bays
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Beam Face Width (Inches)</label>
+        <select id="beamWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="5.5" selected>5.5 inches (Standard 1x6 beam face)</option>
+          <option value="3.5">3.5 inches (Narrow 1x4 beam face)</option>
+          <option value="7.25">7.25 inches (Wide 1x8 beam face)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Bays Along Length</label>
+        <input type="number" id="lengthBays" value="4" min="2" max="10" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Bays Along Width</label>
+        <input type="number" id="widthBays" value="3" min="2" max="10" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Ceiling Grid →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Coffered Ceiling Grid Dimensions</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none md:col-span-2">
+        <div class="text-2xl font-black text-blue-700 print:text-gray-900" id="r_boxSize">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Individual Recessed Box Size</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_totalBoxes">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_beamLinearFt">—</div>
+        <div class="text-xs text-gray-500 mt-1">Beam Linear Feet (+15%)</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_crownLinearFt">—</div>
+        <div class="text-xs text-gray-500 mt-1">Crown Molding LF (+10%)</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 print:border print:border-gray-200 print:shadow-none">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">Beam Layout Summary</h3>
+      <p class="text-xs text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print Coffered Ceiling Cut List
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to calculate a coffered ceiling beam grid:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Room Length &amp; Width:</strong> Measure room length and width in feet.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Beam Face Width:</strong> Standard 1x6 lumber creates a 5.5-inch wide bottom face.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Adjust Grid Bays:</strong> Tweak the number of length and width bays until your recessed coffered boxes are roughly square (e.g. 4x4 ft).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Calculate &amp; Print:</strong> Get total beam linear feet, cross-beam counts, and crown molding material requirements.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How deep should coffered ceiling beams be?</h3>
+        <p class="text-gray-600 text-sm">Standard coffered ceiling beams are typically 4 to 8 inches deep. For standard 8 or 9-foot ceilings, keep beam depth around 4 to 6 inches so the ceiling does not feel low.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What size should coffered ceiling boxes be?</h3>
+        <p class="text-gray-600 text-sm">Coffered ceiling recessed boxes typically measure between 3 feet by 3 feet and 5 feet by 5 feet. Square boxes create the most pleasing classical proportion.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/wainscoting-layout" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Wainscoting Layout Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate picture frame molding box dimensions.</div>
+      </a>
+      <a href="/calculators/board-and-batten" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Board and Batten Spacing</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate exact spacing gaps between vertical battens.</div>
+      </a>
+      <a href="/calculators/trim-molding" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Trim &amp; Molding Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate baseboard and crown molding needs.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    const roomLengthFt = parseFloat(document.getElementById('roomLength').value);
+    const roomWidthFt = parseFloat(document.getElementById('roomWidth').value);
+    const beamWidthInches = parseFloat(document.getElementById('beamWidth').value);
+    const lengthBays = parseInt(document.getElementById('lengthBays').value);
+    const widthBays = parseInt(document.getElementById('widthBays').value);
+
+    if (!roomLengthFt || roomLengthFt <= 0 || !roomWidthFt || roomWidthFt <= 0 || !lengthBays || lengthBays < 2 || !widthBays || widthBays < 2) return;
+
+    const lengthInches = roomLengthFt * 12;
+    const widthInches = roomWidthFt * 12;
+
+    // Beams along length = (lengthBays + 1) beams
+    // Beams along width = (widthBays + 1) beams
+    // Box clear length = (lengthInches - (lengthBays + 1) * beamWidthInches) / lengthBays
+    // Box clear width = (widthInches - (widthBays + 1) * beamWidthInches) / widthBays
+
+    const totalLengthBeamsWidth = (lengthBays + 1) * beamWidthInches;
+    const totalWidthBeamsWidth = (widthBays + 1) * beamWidthInches;
+
+    const boxLengthInches = (lengthInches - totalLengthBeamsWidth) / lengthBays;
+    const boxWidthInches = (widthInches - totalWidthBeamsWidth) / widthBays;
+
+    if (boxLengthInches <= 0 || boxWidthInches <= 0) {
+      alert("Room is too small or beam width is too wide for this number of bays!");
+      return;
+    }
+
+    const totalBoxes = lengthBays * widthBays;
+
+    // Linear feet of beams:
+    // Running beams along length: (widthBays + 1) beams of length `roomLengthFt`
+    // Running beams along width: (lengthBays + 1) beams of length `roomWidthFt`
+    const totalBeamLinearFt = Math.ceil(((widthBays + 1) * roomLengthFt + (lengthBays + 1) * roomWidthFt) * 1.15); // +15% waste
+
+    // Crown molding inside boxes: Each box perimeter = 2 * (boxLengthInches + boxWidthInches) / 12
+    const totalCrownLinearFt = Math.ceil(((totalBoxes * 2 * (boxLengthInches + boxWidthInches)) / 12) * 1.10);
+
+    const boxLenFt = Math.floor(boxLengthInches / 12);
+    const boxLenInRem = (boxLengthInches % 12).toFixed(1);
+    const boxWidFt = Math.floor(boxWidthInches / 12);
+    const boxWidInRem = (boxWidthInches % 12).toFixed(1);
+
+    document.getElementById('r_boxSize').innerText = `${boxLenFt}' ${boxLenInRem}"  ×  ${boxWidFt}' ${boxWidInRem}"`;
+    document.getElementById('r_totalBoxes').innerText = `${totalBoxes} recessed boxes (${lengthBays} × ${widthBays} grid)`;
+    document.getElementById('r_beamLinearFt').innerText = totalBeamLinearFt + " LF";
+    document.getElementById('r_crownLinearFt').innerText = totalCrownLinearFt + " LF";
+
+    document.getElementById('r_summary').innerText = `Your layout forms a grid of ${totalBoxes} coffered boxes. Main beams require ${widthBays + 1} runs along room length (${roomLengthFt} ft each) and ${lengthBays + 1} runs along room width (${roomWidthFt} ft each).`;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>
