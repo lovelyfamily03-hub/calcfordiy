@@ -22,6 +22,7 @@ Consult these guides before working on related tasks:
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
 
 ## CalcForDIY Specific Rules
+- **READ THE MASTERPLAN:** Before doing anything else, you MUST read the `/Users/romantaturevych/Documents/calcfordiy/masterplan.md` file. It contains the complete roadmap, SEO strategy, and current status of all 40+ calculators on this site.
 - **New Calculators:** Whenever you create a new calculator page in `src/pages/calculators/`, you MUST ALWAYS add a link to it in BOTH of the following directory arrays:
   1. `src/pages/index.astro` (The main homepage)
   2. `src/pages/calculators/index.astro` (The calculators directory page)
