@@ -21,7 +21,7 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Calculators live:** 46 calculators (Phase 2, Seasonal, and Millwork 1A complete!)
+- **Calculators live:** 48 calculators (Phase 2, Seasonal, Millwork 1A, and Hardscaping 1B complete!)
 - **Stub pages:** 0 remaining (all replaced)
 - **AdSense:** existing approved account, new site not yet added
 
@@ -166,8 +166,8 @@ When deciding what to build next, prioritize these high-value clusters:
 - `[x]` Coffered Ceiling Calculator
 
 **2. Advanced Hardscaping & Drainage**
-- French Drain Calculator
-- Retaining Wall Block & Geogrid Calculator
+- `[x]` French Drain Calculator
+- `[x]` Retaining Wall Block & Geogrid Calculator
 
 **3. Smart Home & Low Voltage**
 - Landscape Lighting Wire & Transformer Calculator
