@@ -1,0 +1,267 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Exterior House Christmas Lights Calculator — Roofline & Clips | CalcForDIY"
+  description="Calculate how many feet of Christmas lights, strand counts, mounting clips, and total power draw you need for your house roofline, gutters, and gables."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Exterior House Christmas Lights Calculator",
+    "description": "Free outdoor roofline Christmas light calculator that estimates total linear feet, strand count, mounting clip requirements, and power draw for rooflines and gutters.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I measure my roofline for Christmas lights?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The easiest way to measure your roofline without climbing a ladder is to measure the ground perimeter of your home directly beneath the roofline using a measuring tape or wheel, then add 10% to 15% extra to account for roof pitch, peaks, and gables."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many clips do I need per foot of Christmas lights?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard outdoor light clips (like Omni-Clips or All-in-One clips) should be spaced 6 to 12 inches apart along gutters and shingles. A safe rule of thumb is 1 clip per linear foot of lighting, plus 10% extra for accidental breakages."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I use C9 or C7 bulbs for house rooflines?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "C9 bulbs (1.25 inches wide) are the gold standard for rooflines and gables because their larger size makes them crisp and visible from the street. C7 bulbs (0.875 inches wide) are slightly smaller and better suited for smaller single-story homes, entryways, or window outlines."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Exterior Christmas Lights", "item": "https://calcfordiy.com/calculators/exterior-christmas-lights" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Exterior Christmas Lights</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Exterior House Christmas Lights Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate total linear feet, strand count, mounting clips, and power requirements for your roofline, gutters, and peaks.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Enter Your Measurements (Feet)
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Main Roofline &amp; Gutters (ft)</label>
+        <input type="number" id="roofline" placeholder="e.g. 80" value="80" min="0" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Peaks / Gables (ft)</label>
+        <input type="number" id="peaks" placeholder="e.g. 30" value="30" min="0" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Windows &amp; Door Outlines (ft)</label>
+        <input type="number" id="openings" placeholder="e.g. 40" value="0" min="0" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Bulb &amp; Strand Style
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Bulb Style &amp; Size</label>
+        <select id="bulbStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="c9-led" selected>C9 LED (Classic Roofline, ~0.6W / bulb)</option>
+          <option value="c7-led">C7 LED (Slightly Smaller, ~0.5W / bulb)</option>
+          <option value="icicle-led">Icicle LED Strands (~12W / 25ft strand)</option>
+          <option value="c9-inc">C9 Incandescent (Traditional, ~7W / bulb)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Bulb Spacing on Strand</label>
+        <select id="spacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="6">6 inches (Dense Roofline)</option>
+          <option value="8">8 inches (Standard Commercial)</option>
+          <option value="12" selected>12 inches (Standard Residential 1ft)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Outdoor Lighting →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Exterior Lighting Estimate</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_linear">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Linear Feet</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-blue-700 print:text-3xl print:text-gray-900" id="r_strands50">—</div>
+        <div class="text-xs text-gray-500 mt-1">50ft Strands Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_clips">—</div>
+        <div class="text-xs text-gray-500 mt-1">Shingle / Gutter Clips</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_amps">—</div>
+        <div class="text-xs text-gray-500 mt-1">Power Draw (Amps / Watts)</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 print:border print:border-gray-200 print:shadow-none">
+      <p class="text-sm font-semibold text-gray-900 mb-1">Outlet &amp; Safety Note</p>
+      <p class="text-xs text-gray-600" id="r_safetyNote">—</p>
+    </div>
+
+    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print Exterior Shopping List
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to calculate outdoor Christmas lights for your roofline and gutters:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Your Roofline:</strong> Measure the main horizontal gutter line, any diagonal peaks/gables, and door or window perimeters.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Bulb Size &amp; Spacing:</strong> C9 bulbs spaced 12 inches apart is the classic commercial look. Spacing 6 inches apart creates a very dense, modern outline.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Calculate Clips &amp; Strands:</strong> Hit calculate to determine total linear feet, 50ft strand counts, and total gutter/shingle clips (includes 10% waste buffer).</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How do I hang C9 lights on gutters vs shingles?</h3>
+        <p class="text-gray-600 text-sm">Use all-in-one universal light clips. On gutters, the clip snaps directly onto the front lip of the aluminum gutter. On shingles, flip the clip around and slide the flat tab underneath the bottom edge of the shingle.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can I plug my outdoor Christmas lights into a standard outlet?</h3>
+        <p class="text-gray-600 text-sm">Outdoor holiday lights MUST be plugged into a GFCI-protected (Ground Fault Circuit Interrupter) outdoor outlet to prevent electrical shock or fires caused by rain, melting ice, or dew.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/christmas-tree-lights" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Christmas Tree Lights Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate strand counts and power draw for indoor Christmas trees.</div>
+      </a>
+      <a href="/calculators/holiday-power-load" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Holiday &amp; Halloween Power Load</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate watts, breaker load, and extension cord gauge safety.</div>
+      </a>
+      <a href="/calculators/outdoor-flood-lights" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Outdoor Flood Light Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate flood light fixture requirements for yard and driveway security.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    const roofline = parseFloat(document.getElementById('roofline').value) || 0;
+    const peaks = parseFloat(document.getElementById('peaks').value) || 0;
+    const openings = parseFloat(document.getElementById('openings').value) || 0;
+    const bulbStyle = document.getElementById('bulbStyle').value;
+    const spacingInches = parseFloat(document.getElementById('spacing').value);
+
+    const totalLinearFeet = roofline + peaks + openings;
+    if (totalLinearFeet <= 0) return;
+
+    // Bulbs calculation: (linear feet * 12 inches) / spacingInches
+    const totalBulbs = Math.round((totalLinearFeet * 12) / spacingInches);
+
+    // Strands (50ft standard outdoor strands)
+    const strands50 = Math.ceil(totalLinearFeet / 50);
+
+    // Clips: 1 clip per linear foot + 10% extra
+    const clips = Math.ceil(totalLinearFeet * 1.10);
+
+    // Wattage calculation
+    let wattsPerBulb = 0.6; // C9 LED
+    if (bulbStyle === 'c7-led') wattsPerBulb = 0.5;
+    if (bulbStyle === 'icicle-led') wattsPerBulb = 0.48; // ~12W per 25ft
+    if (bulbStyle === 'c9-inc') wattsPerBulb = 7.0; // Incandescent C9
+
+    const totalWatts = Math.round(totalBulbs * wattsPerBulb);
+    const totalAmps = (totalWatts / 120).toFixed(1);
+
+    let safetyMsg = `Total power draw is ${totalWatts}W (${totalAmps} Amps at 120V). `;
+    if (totalAmps < 12) {
+      safetyMsg += `This easily runs on a standard 15-Amp outdoor GFCI circuit with plenty of room to spare.`;
+    } else {
+      safetyMsg += `⚠️ Note: This approaches or exceeds a standard 15-Amp circuit's 80% continuous limit (12 Amps / 1440W). Consider splitting strands across two outlets on separate circuits.`;
+    }
+
+    document.getElementById('r_linear').innerText = totalLinearFeet + " ft";
+    document.getElementById('r_strands50').innerText = strands50 + " strands";
+    document.getElementById('r_clips').innerText = clips + " clips";
+    document.getElementById('r_amps').innerText = totalAmps + "A (" + totalWatts + "W)";
+    document.getElementById('r_safetyNote').innerText = safetyMsg;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>
