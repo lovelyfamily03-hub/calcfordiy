@@ -21,7 +21,7 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Calculators live:** 40 calculators (All of Phase 2 complete!)
+- **Calculators live:** 46 calculators (Phase 2, Seasonal, and Millwork 1A complete!)
 - **Stub pages:** 0 remaining (all replaced)
 - **AdSense:** existing approved account, new site not yet added
 
@@ -161,9 +161,9 @@ Path: `src/pages/guides/`
 When deciding what to build next, prioritize these high-value clusters:
 
 **1. Custom Trim & Millwork (Aesthetics)**
-- Board and Batten Spacing Calculator
-- Wainscoting / Picture Frame Molding Layout
-- Coffered Ceiling Calculator
+- `[x]` Board and Batten Spacing Calculator
+- `[x]` Wainscoting / Picture Frame Molding Layout
+- `[x]` Coffered Ceiling Calculator
 
 **2. Advanced Hardscaping & Drainage**
 - French Drain Calculator
