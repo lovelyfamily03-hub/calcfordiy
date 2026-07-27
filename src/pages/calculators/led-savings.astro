@@ -1,0 +1,343 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="LED Bulb Savings Calculator & ROI Estimator | CalcForDIY"
+  description="Calculate exactly how much money you will save by upgrading to LED bulbs, and find out exactly how many months it will take for the bulbs to pay for themselves."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "LED Bulb Savings Calculator",
+    "description": "Free energy calculator that estimates the annual cost savings and break-even ROI period when upgrading incandescent or halogen bulbs to LED.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are LED bulbs really worth the cost to upgrade?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. LED bulbs use roughly 80% to 90% less electricity than traditional incandescent bulbs and last up to 25 times longer. Even if an LED bulb costs $3.00, the energy savings will typically pay for the bulb within 6 to 12 months, after which it produces pure profit on your electric bill for years."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the equivalent LED wattage for a 60W incandescent bulb?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard 60-watt incandescent bulb produces about 800 lumens of light. To produce that exact same amount of light, an LED bulb only needs to draw about 9 watts of power. Because LEDs are so efficient, you should always shop for them based on Lumens (brightness) rather than Watts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do LED bulbs produce less heat?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, significantly less. Traditional incandescent bulbs convert 90% of their energy into heat and only 10% into light, which is why they are hot to the touch. LEDs run much cooler, which not only prevents burns but also slightly reduces your air conditioning costs in the summer."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "LED Bulb Savings Calculator", "item": "https://calcfordiy.com/calculators/led-savings" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>LED Savings</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">LED Bulb Savings Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate your annual energy savings and find out exactly how many months it will take for new LED bulbs to pay for themselves.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Your Current Bulbs
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Bulbs to Replace</label>
+        <input type="number" id="qty" placeholder="10" value="10" min="1" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Wattage per Old Bulb</label>
+        <select id="old_watts" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="40">40W (Standard Incandescent)</option>
+          <option value="60" selected>60W (Standard Incandescent)</option>
+          <option value="75">75W (Standard Incandescent)</option>
+          <option value="100">100W (Standard Incandescent)</option>
+          <option value="50">50W (Halogen Spotlight)</option>
+          <option value="13">13W (Older CFL)</option>
+          <option value="custom">Custom Wattage...</option>
+        </select>
+        <div id="custom_old_div" class="hidden mt-2">
+          <input type="number" id="custom_old" placeholder="e.g. 60" min="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      The New LED Bulbs
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-blue-50 border border-blue-100 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Wattage per New LED Bulb</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="new_watts" placeholder="9" value="9" min="1" max="100" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">Watts</span>
+        </div>
+        <p class="text-xs text-blue-800 mt-1">A typical 60W equivalent LED uses about 9 Watts.</p>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Cost to Buy One LED Bulb</label>
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-gray-500 shrink-0">$</span>
+          <input type="number" id="bulb_cost" placeholder="2.50" value="2.50" min="0.50" step="0.10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        </div>
+        <p class="text-xs text-blue-800 mt-1">We'll use this to calculate your break-even point.</p>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">3</span>
+      Usage and Energy Rates
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Hours Used Per Day</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="hrs" placeholder="4" value="4" min="0.5" max="24" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-xs text-gray-500 shrink-0">hrs/day</span>
+        </div>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Electric Rate ($ per kWh)</label>
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-gray-500 shrink-0">$</span>
+          <input type="number" id="rate" placeholder="0.16" value="0.16" min="0.01" step="0.01" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <p class="text-xs text-gray-400 mt-1">US average is ~$0.16/kWh. Check your bill.</p>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate ROI & Savings →
+    </button>
+  </div>
+
+  <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm print:hidden">
+    Please ensure all fields have valid numbers greater than zero.
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Energy Savings Estimate</h2>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-500 line-through print:text-3xl" id="r_old_cost">—</div>
+        <div class="text-xs text-gray-500 mt-1">Old Annual Cost</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_new_cost">—</div>
+        <div class="text-xs text-gray-500 mt-1">New Annual Cost</div>
+      </div>
+      <div class="bg-green-50 rounded-lg p-4 text-center shadow-sm border-2 border-green-400 print:border-gray-400 print:shadow-none md:col-span-2">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_savings">—</div>
+        <div class="text-sm text-green-800 font-medium mt-1">Net Savings (Every Year)</div>
+      </div>
+    </div>
+
+    <div class="mt-4 pt-4 border-t border-blue-200 print:border-gray-300">
+      <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
+        <div>
+          <h3 class="text-sm font-semibold text-blue-900 mb-1 print:text-gray-900">Break-Even Point (ROI)</h3>
+          <p class="text-xs text-blue-800 print:text-gray-600">The total upfront cost of buying the new bulbs was <strong id="r_upfront">—</strong>. Here is how long it takes for the energy savings to completely pay you back.</p>
+        </div>
+        <div class="bg-white px-6 py-3 rounded-lg border-2 border-blue-400 shadow-sm text-center shrink-0 w-full sm:w-auto">
+          <div class="text-2xl font-black text-blue-600" id="r_months">—</div>
+          <div class="text-xs font-bold text-blue-800 uppercase tracking-wide mt-1">Months</div>
+        </div>
+      </div>
+    </div>
+    
+    <button onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base justify-center items-center gap-2" id="printBtn">
+      🖨️ Print Estimate
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to calculate your exact LED upgrade savings:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Count Your Bulbs:</strong> Enter how many old incandescent or halogen bulbs you plan to replace. Select the wattage of those old bulbs (most common are 60W).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Enter New Specs:</strong> Enter the wattage of the new LED bulbs you want to buy (typically 9W) and the price of a single bulb. This allows us to calculate the Return on Investment.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Estimate Usage:</strong> Enter how many hours per day these specific lights are usually turned on.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Calculate ROI:</strong> Hit calculate to see your annual dollar savings and the exact month where the bulbs finish paying for themselves.</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Are LED bulbs really worth the cost to upgrade?</h3>
+        <p class="text-gray-600 text-sm">Yes. LED bulbs use roughly 80% to 90% less electricity than traditional incandescent bulbs and last up to 25 times longer. Even if an LED bulb costs $3.00, the energy savings will typically pay for the bulb within 6 to 12 months, after which it produces pure profit on your electric bill for years.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the equivalent LED wattage for a 60W incandescent bulb?</h3>
+        <p class="text-gray-600 text-sm">A standard 60-watt incandescent bulb produces about 800 lumens of light. To produce that exact same amount of light, an LED bulb only needs to draw about 9 watts of power. Because LEDs are so efficient, you should always shop for them based on Lumens (brightness) rather than Watts.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Do LED bulbs produce less heat?</h3>
+        <p class="text-gray-600 text-sm">Yes, significantly less. Traditional incandescent bulbs convert 90% of their energy into heat and only 10% into light, which is why they are hot to the touch. LEDs run much cooler, which not only prevents burns but also slightly reduces your air conditioning costs in the summer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/ac-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">AC Operating Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate how much your central air conditioning costs to run in the summer.</div>
+      </a>
+      <a href="/calculators/furnace-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Furnace Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Find out exactly what your heating system costs to run per month.</div>
+      </a>
+      <a href="/calculators/lumens" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Lumens to Watts Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Convert between lumens and watts to make sure your new LEDs are bright enough.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+
+  document.getElementById('old_watts').addEventListener('change', function() {
+    if (this.value === 'custom') {
+      document.getElementById('custom_old_div').classList.remove('hidden');
+    } else {
+      document.getElementById('custom_old_div').classList.add('hidden');
+    }
+  });
+
+  function calculate() {
+    const qty = parseInt(document.getElementById('qty').value);
+    
+    const oldWattsSelect = document.getElementById('old_watts').value;
+    let oldWatts = 0;
+    if (oldWattsSelect === 'custom') {
+      oldWatts = parseFloat(document.getElementById('custom_old').value);
+    } else {
+      oldWatts = parseFloat(oldWattsSelect);
+    }
+    
+    const newWatts = parseFloat(document.getElementById('new_watts').value);
+    const bulbCost = parseFloat(document.getElementById('bulb_cost').value);
+    const hrs = parseFloat(document.getElementById('hrs').value);
+    const rate = parseFloat(document.getElementById('rate').value);
+
+    if (!qty || !oldWatts || !newWatts || !bulbCost || !hrs || !rate || qty <= 0 || oldWatts <= 0 || newWatts <= 0) {
+      document.getElementById('errorMsg').classList.remove('hidden');
+      document.getElementById('results').classList.add('hidden');
+      return;
+    }
+    document.getElementById('errorMsg').classList.add('hidden');
+
+    // 1. Math: Annual Costs
+    // kWh = (Watts * Hours / 1000)
+    // Daily Cost = kWh * rate * qty
+    // Annual Cost = Daily Cost * 365
+    
+    const oldDailyKwh = (oldWatts * hrs / 1000) * qty;
+    const oldAnnualCost = oldDailyKwh * rate * 365;
+
+    const newDailyKwh = (newWatts * hrs / 1000) * qty;
+    const newAnnualCost = newDailyKwh * rate * 365;
+
+    // 2. Math: Savings & ROI
+    const annualSavings = oldAnnualCost - newAnnualCost;
+    const totalUpfrontCost = qty * bulbCost;
+    
+    let paybackMonths = 0;
+    if (annualSavings > 0) {
+      const monthlySavings = annualSavings / 12;
+      paybackMonths = totalUpfrontCost / monthlySavings;
+    }
+
+    // Display
+    const f = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+    
+    document.getElementById('r_old_cost').innerText = f.format(oldAnnualCost);
+    document.getElementById('r_new_cost').innerText = f.format(newAnnualCost);
+    document.getElementById('r_upfront').innerText = f.format(totalUpfrontCost);
+    
+    if (annualSavings > 0) {
+      document.getElementById('r_savings').innerText = f.format(annualSavings);
+      document.getElementById('r_months').innerText = paybackMonths.toFixed(1);
+    } else {
+      document.getElementById('r_savings').innerText = "$0.00";
+      document.getElementById('r_months').innerText = "Never";
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('printBtn').classList.remove('hidden');
+    document.getElementById('printBtn').classList.add('flex');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>
