@@ -97,9 +97,9 @@
 - `[ ]` Pool heater operating cost (optional)
 
 **Seasonal Priority (Must be live by mid-September)**
-- `[ ]` Christmas tree lights calculator
-- `[ ]` House exterior Christmas lights calculator
-- `[ ]` Christmas lights outlet load calculator
+- `[x]` Christmas tree lights calculator
+- `[x]` House exterior Christmas lights calculator
+- `[x]` Christmas & Halloween lights/decor outlet load calculator
 
 ---
 
