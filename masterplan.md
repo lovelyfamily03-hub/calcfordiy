@@ -21,7 +21,7 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Calculators live:** 48 calculators (Phase 2, Seasonal, Millwork 1A, and Hardscaping 1B complete!)
+- **Calculators live:** 50 calculators (Phase 2, Seasonal, Millwork 1A, Hardscaping 1B, and HVAC/Plumbing 1C complete!)
 - **Stub pages:** 0 remaining (all replaced)
 - **AdSense:** existing approved account, new site not yet added
 
@@ -173,14 +173,14 @@ When deciding what to build next, prioritize these high-value clusters:
 - Landscape Lighting Wire & Transformer Calculator
 
 **4. HVAC & Energy Efficiency**
-- Mini-Split Sizing Calculator
+- `[x]` Mini-Split Sizing Calculator
 - Attic Insulation ROI Calculator
 
 **5. Major Structural Remodels**
 - Basement Finishing Material Estimator
 
 **6. Plumbing & Water**
-- Tankless Water Heater Sizing Calculator
+- `[x]` Tankless Water Heater Sizing Calculator
 
 ---
 
