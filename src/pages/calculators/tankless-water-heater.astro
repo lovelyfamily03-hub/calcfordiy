@@ -1,0 +1,292 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Tankless Water Heater Sizing Calculator — GPM & Temperature Rise | CalcForDIY"
+  description="Calculate required peak GPM flow rate, temperature rise, and unit size for tankless water heaters. Includes gas BTU and electric breaker requirements."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tankless Water Heater Sizing Calculator",
+    "description": "Free tankless water heater calculator estimating peak GPM flow rate, required temperature rise, gas BTU inputs, and electric breaker counts.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What size tankless water heater do I need for a 3 bathroom house?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a 3-bathroom house where 2 showers and a faucet might run simultaneously (approx. 6 to 7 GPM peak demand), you need a gas tankless unit rated for 199,000 BTU/hr in northern climates, or 160,000 BTU/hr in southern climates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is incoming groundwater temperature so important for tankless water heaters?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tankless water heaters heat water instantly on demand. In northern states, ground water enters the home at 37°F to 45°F, requiring a steep 75°F rise to reach 120°F. In southern states, ground water enters at 70°F, requiring only a 50°F rise—meaning the exact same unit produces far more hot GPM in Florida than in Michigan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I replace a tank water heater with an electric tankless?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, but whole-house electric tankless units draw immense electrical current (27kW to 36kW), requiring 3 to 4 dedicated 40-Amp 240-Volt double-pole breakers and a 200-Amp main breaker panel. Gas tankless units are often simpler if natural gas or propane is available."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Tankless Water Heater Sizing", "item": "https://calcfordiy.com/calculators/tankless-water-heater" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Tankless Water Heater Sizing</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Tankless Water Heater Sizing Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate required peak flow rate (GPM), temperature rise, gas BTU inputs, and electric circuit breaker requirements.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Location &amp; Groundwater Temperature
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Climate Region / Incoming Water Temp</label>
+        <select id="regionTemp" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="42" selected>Cold / Northern US &amp; Canada (~42°F ground water)</option>
+          <option value="52">Moderate / Central US (~52°F ground water)</option>
+          <option value="68">Warm / Southern US &amp; Sunbelt (~68°F ground water)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Fuel Type Preference</label>
+        <select id="fuelType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="gas" selected>Natural Gas / Liquid Propane (Recommended for whole house)</option>
+          <option value="electric">Electric Tankless</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Simultaneous Hot Water Fixtures
+    </h2>
+
+    <p class="text-xs text-gray-500 mb-3">Select how many of each fixture might run <strong>at the exact same time</strong> during peak morning or evening demand:</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Standard Showers (2.5 GPM)</label>
+        <input type="number" id="showers" value="2" min="0" max="6" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Kitchen Faucets (1.5 GPM)</label>
+        <input type="number" id="kitchenSinks" value="1" min="0" max="3" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Bathroom Sinks (1.0 GPM)</label>
+        <input type="number" id="bathSinks" value="1" min="0" max="6" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Washing Machine (2.0 GPM)</label>
+        <input type="number" id="washingMachine" value="0" min="0" max="2" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Dishwasher (1.5 GPM)</label>
+        <input type="number" id="dishwasher" value="0" min="0" max="2" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Tankless Sizing →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Tankless Sizing Results</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-2xl font-black text-blue-700 print:text-gray-900" id="r_gpm">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Required Peak Flow Rate</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-2xl font-black text-blue-700 print:text-gray-900" id="r_tempRise">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Temperature Rise Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none md:col-span-2">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_unitRating">—</div>
+        <div class="text-xs text-gray-500 mt-1">Recommended Tankless Unit Rating</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 print:border print:border-gray-200 print:shadow-none">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">Infrastructure &amp; Hookup Note</h3>
+      <p class="text-xs text-gray-600" id="r_hookupNote">—</p>
+    </div>
+
+    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print Tankless Spec Sheet
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to calculate the required size for a tankless water heater:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select Your Region:</strong> Ground water temperature varies drastically by region. Northern states require much higher temperature rise than southern states.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Count Peak Fixtures:</strong> Total the fixtures that might run simultaneously during morning or evening peak usage.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Calculate &amp; Size:</strong> Hit calculate to view required GPM, temperature rise (°F), and specific gas BTU or electric breaker hookup requirements!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What size tankless water heater do I need for a 3 bathroom house?</h3>
+        <p class="text-gray-600 text-sm">For a 3-bathroom house where 2 showers and a faucet might run simultaneously (approx. 6 to 7 GPM peak demand), you need a gas tankless unit rated for 199,000 BTU/hr in northern climates, or 160,000 BTU/hr in southern climates.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why is incoming groundwater temperature so important for tankless water heaters?</h3>
+        <p class="text-gray-600 text-sm">Tankless water heaters heat water instantly on demand. In northern states, ground water enters the home at 37°F to 45°F, requiring a steep 75°F rise to reach 120°F. In southern states, ground water enters at 70°F, requiring only a 50°F rise—meaning the exact same unit produces far more hot GPM in Florida than in Michigan.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can I replace a tank water heater with an electric tankless?</h3>
+        <p class="text-gray-600 text-sm">Yes, but whole-house electric tankless units draw immense electrical current (27kW to 36kW), requiring 3 to 4 dedicated 40-Amp 240-Volt double-pole breakers and a 200-Amp main breaker panel. Gas tankless units are often simpler if natural gas or propane is available.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/water-heater-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Water Heater Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Monthly and annual operating cost comparison gas vs electric.</div>
+      </a>
+      <a href="/calculators/mini-split-sizing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Mini-Split Sizing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate BTU cooling and heating tonnage for mini-split heat pumps.</div>
+      </a>
+      <a href="/calculators/furnace-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Furnace &amp; Heating Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate heating operating costs for gas, electric, or heat pump.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    const groundTemp = parseFloat(document.getElementById('regionTemp').value);
+    const fuelType = document.getElementById('fuelType').value;
+
+    const showers = (parseInt(document.getElementById('showers').value) || 0) * 2.5;
+    const kitchenSinks = (parseInt(document.getElementById('kitchenSinks').value) || 0) * 1.5;
+    const bathSinks = (parseInt(document.getElementById('bathSinks').value) || 0) * 1.0;
+    const washingMachine = (parseInt(document.getElementById('washingMachine').value) || 0) * 2.0;
+    const dishwasher = (parseInt(document.getElementById('dishwasher').value) || 0) * 1.5;
+
+    const totalGPM = showers + kitchenSinks + bathSinks + washingMachine + dishwasher;
+    if (totalGPM <= 0) return;
+
+    const tempRise = 120 - groundTemp; // Target 120°F domestic hot water
+
+    let unitRatingStr = "";
+    let hookupStr = "";
+
+    if (fuelType === 'gas') {
+      // BTU/hr = GPM * TempRise * 500 / 0.85
+      const requiredBTU = Math.round((totalGPM * tempRise * 500) / 0.85);
+      
+      if (requiredBTU <= 140000) {
+        unitRatingStr = "140,000 BTU/hr Gas Tankless (Up to 4.5 GPM @ " + tempRise + "°F rise)";
+      } else if (requiredBTU <= 175000) {
+        unitRatingStr = "160,000 to 180,000 BTU/hr Gas Tankless (Up to 5.5 GPM @ " + tempRise + "°F rise)";
+      } else if (requiredBTU <= 210000) {
+        unitRatingStr = "199,000 BTU/hr Gas Tankless (Standard Whole-House Max Unit)";
+      } else {
+        unitRatingStr = `Commercial Gas Unit or 2 Gas Tankless Units in Parallel (${requiredBTU.toLocaleString()} BTU/hr load)`;
+      }
+
+      hookupStr = `🔥 <strong>Gas Supply Note:</strong> A ${requiredBTU.toLocaleString()} BTU/hr gas tankless unit requires a dedicated <strong>3/4-inch gas line</strong> (standard 1/2-inch gas lines used for old tank heaters are insufficient and will starve the unit).`;
+
+    } else {
+      // Electric: kW = (GPM * TempRise) / 6.8
+      const requiredKW = Math.round((totalGPM * tempRise) / 6.8);
+
+      if (requiredKW <= 18) {
+        unitRatingStr = `18 kW Electric Tankless (${requiredKW} kW load @ ${tempRise}°F rise)`;
+        hookupStr = `⚡ <strong>Electrical Hookup:</strong> Requires 2x dedicated 40-Amp 240V double-pole breakers (80A total draw) and minimum 150A main breaker panel.`;
+      } else if (requiredKW <= 27) {
+        unitRatingStr = `27 kW Electric Tankless (${requiredKW} kW load @ ${tempRise}°F rise)`;
+        hookupStr = `⚡ <strong>Electrical Hookup:</strong> Requires 3x dedicated 40-Amp 240V double-pole breakers (112A total draw) and minimum 200A main breaker panel.`;
+      } else if (requiredKW <= 36) {
+        unitRatingStr = `36 kW Electric Tankless (${requiredKW} kW load @ ${tempRise}°F rise)`;
+        hookupStr = `⚡ <strong>Electrical Hookup:</strong> Heavy Load! Requires 4x dedicated 40-Amp 240V double-pole breakers (150A total draw) and 200A to 300A main electrical service.`;
+      } else {
+        unitRatingStr = `Multiple Electric Units Required (${requiredKW} kW total load)`;
+        hookupStr = `⚡ <strong>Warning:</strong> ${totalGPM} GPM at ${tempRise}°F rise exceeds single electric unit capacity. Consider gas or installing multiple smaller point-of-use units.`;
+      }
+    }
+
+    document.getElementById('r_gpm').innerText = totalGPM.toFixed(1) + " GPM";
+    document.getElementById('r_tempRise').innerText = tempRise + "°F Rise";
+    document.getElementById('r_unitRating').innerText = unitRatingStr;
+    document.getElementById('r_hookupNote').innerHTML = hookupStr;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>

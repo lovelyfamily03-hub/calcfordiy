@@ -1,0 +1,301 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Ductless Mini-Split Sizing Calculator — BTU Sizing & Tonnage | CalcForDIY"
+  description="Calculate exact BTU cooling and heating capacity, unit tonnage, and electrical requirements for ductless mini-split heat pumps by room size."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Ductless Mini-Split Sizing Calculator",
+    "description": "Free ductless mini-split BTU calculator estimating required cooling/heating capacity, unit tonnage, and electrical voltage for any room.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What size mini-split do I need for 500 square feet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a standard 500 sq ft room with 8-foot ceilings and average insulation, you need a 12,000 BTU (1.0 Ton) mini-split heat pump. If the room has high ceilings, poor insulation, or heavy afternoon sun, upgrade to an 18,000 BTU (1.5 Ton) unit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if I install a mini-split that is too large?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An oversized mini-split will 'short cycle'—cooling the room too quickly before removing humidity, leaving the air cold and clammy. Inverter mini-splits modulate their speed, but proper sizing is still crucial for efficiency and mold prevention."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a mini-split require 115V or 230V electricity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Smaller mini-splits (9,000 to 12,000 BTU) are available in 115V models that plug into standard dedicated circuits. Larger units (18,000 BTU and up) require 230V single-phase power with a double-pole breaker."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Mini-Split Sizing Calculator", "item": "https://calcfordiy.com/calculators/mini-split-sizing" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Mini-Split Sizing Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Ductless Mini-Split Sizing Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exact BTU cooling and heating capacity, unit tonnage, and electrical circuit specs for ductless mini-split units.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Room Dimensions &amp; Ceiling Height
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Room Length (Feet)</label>
+        <input type="number" id="roomLength" placeholder="e.g. 20" value="20" min="6" max="100" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Room Width (Feet)</label>
+        <input type="number" id="roomWidth" placeholder="e.g. 20" value="20" min="6" max="100" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Ceiling Height (Feet)</label>
+        <select id="ceilingHeight" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="8" selected>8 ft Ceiling (Standard)</option>
+          <option value="9">9 ft Ceiling</option>
+          <option value="10">10 ft Ceiling</option>
+          <option value="12">12 ft Vaulted / High Ceiling</option>
+          <option value="14">14+ ft Cathedral Ceiling</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Insulation &amp; Environment Factors
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Insulation Quality</label>
+        <select id="insulation" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.0" selected>Average Insulation</option>
+          <option value="0.85">Good / Well-Insulated Modern Build</option>
+          <option value="1.25">Poor / Uninsulated Older Home</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Sun Exposure &amp; Windows</label>
+        <select id="sunExposure" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0" selected>Moderate / Average Sunlight</option>
+          <option value="-1000">Heavy Shade / North Facing</option>
+          <option value="1500">Heavy Direct Afternoon Sun / South-West</option>
+          <option value="3000">Sunroom / Wall of Windows</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Room Function</label>
+        <select id="roomType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0" selected>Bedroom / Living Room</option>
+          <option value="4000">Kitchen (+4,000 BTU cooking heat)</option>
+          <option value="3000">Garage / Workshop</option>
+          <option value="2000">Attic / Bonus Room</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Mini-Split Size →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Mini-Split Sizing Results</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none md:col-span-2">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_unitSize">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Recommended Mini-Split Unit</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_btuExact">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_sqft">—</div>
+        <div class="text-xs text-gray-500 mt-1">Room Area</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_tonnage">—</div>
+        <div class="text-xs text-gray-500 mt-1">Tonnage Rating</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 print:border print:border-gray-200 print:shadow-none">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">Electrical &amp; Installation Requirements</h3>
+      <p class="text-xs text-gray-600" id="r_elecSpec">—</p>
+    </div>
+
+    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print Mini-Split Spec Sheet
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to calculate the right ductless mini-split size:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Room Dimensions:</strong> Enter length, width, and ceiling height in feet to calculate room air volume.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Set Environmental Factors:</strong> Select insulation quality, sun exposure, and room function (kitchens and garages require extra BTU buffer).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Calculate &amp; Size:</strong> Hit calculate to view recommended BTU unit size, tonnage rating, and electrical circuit requirements!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What size mini-split do I need for 500 square feet?</h3>
+        <p class="text-gray-600 text-sm">For a standard 500 sq ft room with 8-foot ceilings and average insulation, you need a 12,000 BTU (1.0 Ton) mini-split heat pump. If the room has high ceilings, poor insulation, or heavy afternoon sun, upgrade to an 18,000 BTU (1.5 Ton) unit.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What happens if I install a mini-split that is too large?</h3>
+        <p class="text-gray-600 text-sm">An oversized mini-split will 'short cycle'—cooling the room too quickly before removing humidity, leaving the air cold and clammy. Inverter mini-splits modulate their speed, but proper sizing is still crucial for efficiency and mold prevention.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Does a mini-split require 115V or 230V electricity?</h3>
+        <p class="text-gray-600 text-sm">Smaller mini-splits (9,000 to 12,000 BTU) are available in 115V models that plug into standard dedicated circuits. Larger units (18,000 BTU and up) require 230V single-phase power with a double-pole breaker.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/ac-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">AC Operating Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate monthly AC operating costs and SEER savings.</div>
+      </a>
+      <a href="/calculators/furnace-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Furnace &amp; Heating Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate heating operating costs for gas, electric, or heat pump.</div>
+      </a>
+      <a href="/calculators/water-heater-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Water Heater Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Monthly and annual water heater operating cost comparison.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    const length = parseFloat(document.getElementById('roomLength').value);
+    const width = parseFloat(document.getElementById('roomWidth').value);
+    const height = parseFloat(document.getElementById('ceilingHeight').value);
+    const insulationMult = parseFloat(document.getElementById('insulation').value);
+    const sunMod = parseFloat(document.getElementById('sunExposure').value);
+    const roomMod = parseFloat(document.getElementById('roomType').value);
+
+    if (!length || length <= 0 || !width || width <= 0) return;
+
+    const sqft = length * width;
+    const baseBTU = sqft * 25; // standard 25 BTU per sq ft
+    const heightFactor = height / 8.0;
+
+    const totalBTU = Math.round((baseBTU * heightFactor * insulationMult) + sunMod + roomMod);
+
+    // Standard commercial unit sizes
+    let unitBTU = 9000;
+    let unitLabel = "9,000 BTU (0.75 Ton)";
+    let tonnageStr = "0.75 Ton";
+    let elecStr = "Requires 115V or 230V single-phase circuit (15A dedicated breaker).";
+
+    if (totalBTU > 9000 && totalBTU <= 12500) {
+      unitBTU = 12000;
+      unitLabel = "12,000 BTU (1.0 Ton)";
+      tonnageStr = "1.0 Ton";
+      elecStr = "Available in 115V or 230V models (15A–20A dedicated breaker).";
+    } else if (totalBTU > 12500 && totalBTU <= 18500) {
+      unitBTU = 18000;
+      unitLabel = "18,000 BTU (1.5 Ton)";
+      tonnageStr = "1.5 Ton";
+      elecStr = "Requires 230V single-phase power with 20A double-pole breaker.";
+    } else if (totalBTU > 18500 && totalBTU <= 25000) {
+      unitBTU = 24000;
+      unitLabel = "24,000 BTU (2.0 Ton)";
+      tonnageStr = "2.0 Ton";
+      elecStr = "Requires 230V single-phase power with 25A–30A double-pole breaker.";
+    } else if (totalBTU > 25000 && totalBTU <= 31000) {
+      unitBTU = 30000;
+      unitLabel = "30,000 BTU (2.5 Ton)";
+      tonnageStr = "2.5 Ton";
+      elecStr = "Requires 230V single-phase power with 30A double-pole breaker.";
+    } else if (totalBTU > 31000 && totalBTU <= 38000) {
+      unitBTU = 36000;
+      unitLabel = "36,000 BTU (3.0 Ton)";
+      tonnageStr = "3.0 Ton";
+      elecStr = "Requires 230V single-phase power with 35A–40A double-pole breaker.";
+    } else if (totalBTU > 38000) {
+      unitLabel = "Multi-Zone System Required (36,000+ BTU)";
+      tonnageStr = "3.5+ Tons";
+      elecStr = "Space exceeds single-head capacity. Install a multi-zone outdoor condenser with 2 or 3 indoor air handler heads.";
+    }
+
+    document.getElementById('r_unitSize').innerText = unitLabel;
+    document.getElementById('r_btuExact').innerText = `(Calculated load: ${totalBTU.toLocaleString()} BTU/hr)`;
+    document.getElementById('r_sqft').innerText = sqft + " sq ft";
+    document.getElementById('r_tonnage').innerText = tonnageStr;
+    document.getElementById('r_elecSpec').innerText = elecStr;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>
