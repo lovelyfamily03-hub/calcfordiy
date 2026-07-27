@@ -21,7 +21,7 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Calculators live:** ~39 calculators (We have successfully built almost all of Phase 2!)
+- **Calculators live:** 40 calculators (All of Phase 2 complete!)
 - **Stub pages:** 0 remaining (all replaced)
 - **AdSense:** existing approved account, new site not yet added
 
@@ -93,7 +93,7 @@
 **Utilities & HVAC (High CPC)**
 - `[x]` Furnace heating cost calculator
 - `[x]` Generator size calculator
-- `[ ]` LED bulb savings calculator
+- `[x]` LED bulb savings calculator
 - `[ ]` Pool heater operating cost (optional)
 
 **Seasonal Priority (Must be live by mid-September)**
@@ -111,9 +111,9 @@ Path: `src/pages/guides/`
 
 - `[x]` "How Much Mulch Do I Need for Garden Beds?" 
 - `[x]` "How Much Soil to Fill a 4x8 Raised Bed?" 
-- `[ ]` "How Much Concrete for Fence Posts?" 
+- `[x]` "How Much Concrete for Fence Posts?" 
 - `[x]` "How Many Bags of Grout for a Tile Shower?" 
-- `[ ]` "What Waste Factor Should I Use for Laminate Flooring?"
+- `[x]` "What Waste Factor Should I Use for Laminate Flooring?"
 - `[ ]` "How Many Recessed Lights for a 2-Car Garage?" 
 - `[ ]` "How Much Tile Do I Need for a Shower?" 
 - `[ ]` "How Many Boxes of Hardwood Flooring Do I Need?" 

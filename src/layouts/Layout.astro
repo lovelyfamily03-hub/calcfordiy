@@ -46,12 +46,14 @@ const { title, description, noindex = false } = Astro.props;
   <meta name="twitter:description" content={description} />
 </head>
   <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
-    <header class="bg-white border-b border-gray-200 px-4 py-3">
+    <header class="bg-white border-b border-gray-200 px-4 py-3 print:hidden">
       <div class="max-w-5xl mx-auto flex items-center justify-between">
         <a href="/" class="text-xl font-bold text-blue-600">CalcForDIY</a>
          <nav class="text-sm text-gray-600 flex gap-5 font-medium">
           <a href="/calculators" class="hover:text-blue-600 transition-colors">Calculators</a>
           <a href="/guides" class="hover:text-blue-600 transition-colors">Guides</a>
+          <a href="/about" class="hover:text-blue-600 transition-colors">About</a>
+          <a href="/contact" class="hover:text-blue-600 transition-colors">Contact</a>
         </nav>
       </div>
     </header>
@@ -60,12 +62,54 @@ const { title, description, noindex = false } = Astro.props;
       <slot />
     </main>
 
-    <footer class="border-t border-gray-200 mt-16 px-4 py-8 text-center text-sm text-gray-500">
-      <p>© 2026 CalcForDIY — Free calculators for home improvement projects.</p>
-      <p class="mt-2">
-        <a href="/privacy" class="hover:text-blue-600 mr-4">Privacy Policy</a>
-        <a href="/about" class="hover:text-blue-600">About</a>
-      </p>
+    <footer class="border-t border-gray-200 mt-16 px-4 py-10 text-sm text-gray-500 print:hidden">
+      <div class="max-w-5xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-3">Calculators</h3>
+            <ul class="space-y-2">
+              <li><a href="/calculators/shower-tile" class="hover:text-blue-600">Shower Tile</a></li>
+              <li><a href="/calculators/paint-room" class="hover:text-blue-600">Paint — Room</a></li>
+              <li><a href="/calculators/laminate-flooring" class="hover:text-blue-600">Laminate Flooring</a></li>
+              <li><a href="/calculators/concrete-slab" class="hover:text-blue-600">Concrete Slab</a></li>
+              <li><a href="/calculators/drywall" class="hover:text-blue-600">Drywall</a></li>
+              <li><a href="/calculators" class="text-blue-600 font-medium hover:underline">View all 40+ →</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-3">Categories</h3>
+            <ul class="space-y-2">
+              <li><a href="/calculators" class="hover:text-blue-600">Tile</a></li>
+              <li><a href="/calculators" class="hover:text-blue-600">Flooring</a></li>
+              <li><a href="/calculators" class="hover:text-blue-600">Walls</a></li>
+              <li><a href="/calculators" class="hover:text-blue-600">Paint</a></li>
+              <li><a href="/calculators" class="hover:text-blue-600">Lighting</a></li>
+              <li><a href="/calculators" class="hover:text-blue-600">Utilities</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-3">Resources</h3>
+            <ul class="space-y-2">
+              <li><a href="/guides" class="hover:text-blue-600">DIY Guides</a></li>
+              <li><a href="/guides/how-much-mulch-for-garden-beds" class="hover:text-blue-600">Mulch Guide</a></li>
+              <li><a href="/guides/laminate-flooring-waste-factor" class="hover:text-blue-600">Waste Factor Guide</a></li>
+              <li><a href="/guides/how-much-concrete-for-fence-posts" class="hover:text-blue-600">Fence Post Guide</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-3">Company</h3>
+            <ul class="space-y-2">
+              <li><a href="/about" class="hover:text-blue-600">About</a></li>
+              <li><a href="/contact" class="hover:text-blue-600">Contact</a></li>
+              <li><a href="/privacy" class="hover:text-blue-600">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gray-200 pt-6 text-center">
+          <p>© 2026 CalcForDIY — Free calculators for home improvement projects.</p>
+          <p class="mt-1 text-xs text-gray-400">All calculations are estimates. Always verify quantities with your specific product packaging before purchasing.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- Floating results button - added print:hidden so it doesn't print -->

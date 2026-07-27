@@ -4,30 +4,93 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="About CalcForDIY — Free Home Improvement Calculators"
-  description="CalcForDIY provides free, accurate calculators for home improvement and DIY projects."
+  description="CalcForDIY is a free collection of 40+ calculators for DIY home improvement projects, built by a homeowner who got tired of guessing at the hardware store."
 >
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <span>About</span>
+  </div>
+
   <h1 class="text-3xl font-bold text-gray-900 mb-6">About CalcForDIY</h1>
 
-  <div class="prose max-w-none text-gray-700 space-y-4">
+  <div class="prose max-w-3xl text-gray-700 space-y-5">
+
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
+      <p class="text-blue-900 text-lg font-medium mb-0">CalcForDIY is a free collection of <strong>40+ calculators</strong> built for homeowners, DIY enthusiasts, and contractors who need fast, accurate material estimates for home improvement projects.</p>
+    </div>
+
+    <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">Why We Built This</h2>
     <p>
-      CalcForDIY is a free collection of calculators built for homeowners, 
-      DIY enthusiasts, and contractors who need fast, accurate estimates for 
-      home improvement projects.
+      Every DIY project starts with the same frustrating question: <em>"How much do I need to buy?"</em> You measure your room, drive to the hardware store, stare at a wall of products, and either buy too much (wasting money) or too little (making a second trip). We built CalcForDIY to eliminate that guesswork entirely.
     </p>
     <p>
-      Every calculator on this site runs entirely in your browser. Nothing is 
-      uploaded to a server. No account required. No hidden fees.
+      Every calculator on this site runs entirely in your browser. Nothing is uploaded to a server. No account is required. No hidden fees. You enter your measurements, and you get an instant, printable material list.
     </p>
+
+    <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">What We Cover</h2>
+    <p>Our calculators span the most common DIY home improvement categories:</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-4">
+      <a href="/calculators" class="block bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900 text-sm">Tile</div>
+        <div class="text-xs text-gray-500">Shower, wall, grout, thinset</div>
+      </a>
+      <a href="/calculators" class="block bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900 text-sm">Flooring</div>
+        <div class="text-xs text-gray-500">Laminate, hardwood, carpet</div>
+      </a>
+      <a href="/calculators" class="block bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900 text-sm">Walls</div>
+        <div class="text-xs text-gray-500">Drywall, framing, shiplap</div>
+      </a>
+      <a href="/calculators" class="block bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900 text-sm">Paint</div>
+        <div class="text-xs text-gray-500">Interior, exterior, textured</div>
+      </a>
+      <a href="/calculators" class="block bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900 text-sm">Lighting</div>
+        <div class="text-xs text-gray-500">Recessed, outdoor, string</div>
+      </a>
+      <a href="/calculators" class="block bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900 text-sm">Garden</div>
+        <div class="text-xs text-gray-500">Mulch, soil, topsoil, seed</div>
+      </a>
+      <a href="/calculators" class="block bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900 text-sm">Concrete</div>
+        <div class="text-xs text-gray-500">Slabs, fence posts, rebar</div>
+      </a>
+      <a href="/calculators" class="block bg-white border border-gray-200 rounded-lg p-3 text-center hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900 text-sm">Utilities</div>
+        <div class="text-xs text-gray-500">AC, furnace, generator, LED</div>
+      </a>
+    </div>
+
+    <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">Our Sources &amp; Methodology</h2>
     <p>
-      Our calculators cover tile, flooring, paint, lighting, concrete, and more — 
-      with new tools added regularly. Each one is built around verified industry 
-      formulas from sources like the Tile Council of North America and the 
-      National Wood Flooring Association.
+      Accuracy matters. If a calculator tells you to buy 4 bags of grout and you actually need 6, that is a failed tool. Every formula on CalcForDIY is sourced from published industry standards:
     </p>
+    <ul class="space-y-2">
+      <li><strong>Tile Council of North America (TCNA)</strong> — tile waste factors, grout coverage rates, and thinset consumption standards.</li>
+      <li><strong>National Wood Flooring Association (NWFA)</strong> — hardwood and laminate waste factor guidelines by room complexity and installation pattern.</li>
+      <li><strong>Manufacturer Technical Data Sheets</strong> — from Mapei, LATICRETE, Quikrete, and other major brands for product-specific coverage rates.</li>
+      <li><strong>International Residential Code (IRC)</strong> — for framing stud spacing, structural load requirements, and electrical calculations.</li>
+      <li><strong>Illuminating Engineering Society (IES)</strong> — for recommended foot-candle levels by room type used in our lighting calculators.</li>
+      <li><strong>U.S. Energy Information Administration (EIA)</strong> — for average utility rates used as default values in our energy cost calculators.</li>
+    </ul>
     <p>
-      If you find an error or want to suggest a calculator, use the contact 
-      information below.
+      We continually cross-reference our formulas against real-world results. If you find an error in any calculator, please let us know immediately.
     </p>
-    <p class="text-gray-500 text-sm">Contact: hello@calcfordiy.com</p>
+
+    <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">Contact Us</h2>
+    <p>
+      Have a question, found a bug, or want to suggest a new calculator? We would love to hear from you.
+    </p>
+    <div class="bg-gray-50 border border-gray-200 rounded-lg p-5">
+      <p class="font-semibold text-gray-900 mb-1">Email</p>
+      <p><a href="mailto:hello@calcfordiy.com" class="text-blue-600 hover:underline">hello@calcfordiy.com</a></p>
+    </div>
+    <p class="text-sm text-gray-500 mt-4">
+      We typically respond within 1-2 business days. For calculator suggestions, please include the specific formula or use case you have in mind so we can evaluate it quickly.
+    </p>
   </div>
 </Layout>

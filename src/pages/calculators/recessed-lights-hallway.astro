@@ -255,6 +255,10 @@ import Layout from '../../layouts/Layout.astro';
     <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
       <strong>Tip:</strong> Center lights in the hallway width — measure to find the midpoint of the ceiling. For a 4 ft wide hallway, lights go 2 ft from each side wall, running in a straight line down the length.
     </p>
+
+    <button onclick="window.print()" class="mt-4 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print Lighting Plan
+    </button>
   </div>
 
   <div class="prose prose-gray max-w-none text-gray-700 print:prose-sm">
