@@ -1,0 +1,278 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="French Drain Calculator — Gravel Tons, Pipe & Fabric | CalcForDIY"
+  description="Calculate exact gravel tonnage, perforated pipe length, filter fabric, and dirt excavation volume for yard drainage and French drain trenches."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "French Drain Calculator",
+    "description": "Free French drain trench calculator estimating drainage gravel tons, perforated pipe length, non-woven filter fabric, and excavation volume.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How deep and wide should a French drain trench be?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard residential French drains are typically 12 inches wide and 18 to 24 inches deep. This allows for a 2 to 3-inch gravel bedding layer underneath a 4-inch perforated pipe, surrounded by 3/4-inch washed drainage stone and wrapped in non-woven geotextile fabric."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What type of gravel is best for a French drain?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use 3/4-inch washed river rock or clean crushed stone (#57 stone). Avoid pea gravel (too small, easily clogs) or crushed stone with fines/dust (turns into concrete-like mud when wet)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do I need non-woven filter fabric in a French drain?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Non-woven geotextile fabric lines the trench walls and wraps over the top of the gravel to prevent fine dirt, silt, and sand from entering the gravel layer and clogging the drain pipe."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "French Drain Calculator", "item": "https://calcfordiy.com/calculators/french-drain" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>French Drain Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">French Drain Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exact drainage gravel (in tons), perforated pipe, filter fabric, and dirt excavation volume for French drains.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Trench Dimensions
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Trench Length (Feet)</label>
+        <input type="number" id="trenchLength" placeholder="e.g. 50" value="50" min="5" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Trench Width (Inches)</label>
+        <select id="trenchWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="12" selected>12 inches (Standard Residential)</option>
+          <option value="18">18 inches (Heavy Water Flow)</option>
+          <option value="24">24 inches (Commercial / Deep Drain)</option>
+          <option value="9">9 inches (Narrow Trencher)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Average Depth (Inches)</label>
+        <select id="trenchDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="18">18 inches (Standard Depth)</option>
+          <option value="24" selected>24 inches (Deep Drainage - Recommended)</option>
+          <option value="30">30 inches (Heavy Groundwater)</option>
+          <option value="36">36 inches (Deep Frost Line / Footing)</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Pipe &amp; Slope Specs
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Perforated Drain Pipe Diameter</label>
+        <select id="pipeDiameter" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="4" selected>4-inch Perforated Pipe (Standard Residential)</option>
+          <option value="6">6-inch Perforated Pipe (High Volume Drainage)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Recommended Slope Guidance</label>
+        <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 text-xs text-blue-900 leading-relaxed">
+          Ensure a minimum slope of <strong>1/8 inch drop per linear foot</strong> (1 inch drop per 8 feet of trench) towards your discharge outlet.
+        </div>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate French Drain Materials →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your French Drain Material List</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none md:col-span-2">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_gravelTons">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">3/4" Washed Drainage Gravel Needed</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_gravelYards">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_pipeFeet">—</div>
+        <div class="text-xs text-gray-500 mt-1">Perforated Pipe (+10%)</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_fabricSqFt">—</div>
+        <div class="text-xs text-gray-500 mt-1">Filter Fabric Area</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 print:border print:border-gray-200 print:shadow-none">
+      <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900 mb-1">Excavation &amp; Dirt Removal</h3>
+          <p class="text-xs text-gray-600" id="r_dirtYards">—</p>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print Drain Material List
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to calculate materials for a French drain trench:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Trench Path:</strong> Measure the total linear length of the drain line in feet from the water collection point to the discharge outlet.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Trench Width &amp; Depth:</strong> Standard residential drains use a 12-inch wide by 24-inch deep trench.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Choose Pipe Size:</strong> 4-inch perforated pipe handles standard groundwater; 6-inch is recommended for heavy stormwater runoff.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Calculate &amp; Order:</strong> Get exact gravel tonnage, pipe length, geotextile fabric, and soil excavation yardage!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How deep and wide should a French drain trench be?</h3>
+        <p class="text-gray-600 text-sm">Standard residential French drains are typically 12 inches wide and 18 to 24 inches deep. This allows for a 2 to 3-inch gravel bedding layer underneath a 4-inch perforated pipe, surrounded by 3/4-inch washed drainage stone and wrapped in non-woven geotextile fabric.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What type of gravel is best for a French drain?</h3>
+        <p class="text-gray-600 text-sm">Use 3/4-inch washed river rock or clean crushed stone (#57 stone). Avoid pea gravel (too small, easily clogs) or crushed stone with fines/dust (turns into concrete-like mud when wet).</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why do I need non-woven filter fabric in a French drain?</h3>
+        <p class="text-gray-600 text-sm">Non-woven geotextile fabric lines the trench walls and wraps over the top of the gravel to prevent fine dirt, silt, and sand from entering the gravel layer and clogging the drain pipe.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate cubic yards and bag count for concrete slabs.</div>
+      </a>
+      <a href="/calculators/topsoil" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Topsoil Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Cubic yards and bag count for lawn and yard topsoil coverage.</div>
+      </a>
+      <a href="/calculators/mulch" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Mulch Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate cubic yards and bags of mulch needed for garden beds.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    const length = parseFloat(document.getElementById('trenchLength').value);
+    const widthInches = parseFloat(document.getElementById('trenchWidth').value);
+    const depthInches = parseFloat(document.getElementById('trenchDepth').value);
+    const pipeDiameter = parseFloat(document.getElementById('pipeDiameter').value);
+
+    if (!length || length <= 0) return;
+
+    // Trench Volume in cubic feet
+    const trenchVolCuFt = length * (widthInches / 12) * (depthInches / 12);
+    const excavationCuYd = (trenchVolCuFt / 27).toFixed(2);
+
+    // Pipe length (+10%)
+    const pipeLinearFt = Math.ceil(length * 1.10);
+
+    // Pipe displacement volume: Pi * r^2 * length (in ft)
+    const pipeRadiusFt = (pipeDiameter / 2) / 12;
+    const pipeVolCuFt = Math.PI * Math.pow(pipeRadiusFt, 2) * length;
+
+    // Net Gravel Volume = Trench Vol - Pipe Vol
+    const netGravelCuFt = Math.max(0, trenchVolCuFt - pipeVolCuFt);
+    const netGravelCuYd = netGravelCuFt / 27;
+
+    // 3/4" Washed Stone density: ~1.35 tons per cu yd
+    const gravelTons = (netGravelCuYd * 1.35).toFixed(2);
+
+    // Geotextile Fabric: Trench perimeter = (2 * width) + (2 * depth)
+    const trenchPerimeterFt = ((2 * widthInches) + (2 * depthInches)) / 12;
+    const fabricSqFt = Math.ceil(trenchPerimeterFt * length * 1.15); // +15% overlap
+    const fabricRollLinearFt = Math.ceil(fabricSqFt / 4); // 4ft wide roll
+
+    document.getElementById('r_gravelTons').innerText = gravelTons + " Tons";
+    document.getElementById('r_gravelYards').innerText = `(${netGravelCuYd.toFixed(2)} cubic yards of 3/4" washed stone)`;
+    document.getElementById('r_pipeFeet').innerText = pipeLinearFt + " LF";
+    document.getElementById('r_fabricSqFt').innerText = fabricSqFt + " sq ft (" + fabricRollLinearFt + "' of 4ft roll)";
+    document.getElementById('r_dirtYards').innerText = `Digging this trench generates roughly ${excavationCuYd} cubic yards of loose dirt to remove or redistribute on your property.`;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>
