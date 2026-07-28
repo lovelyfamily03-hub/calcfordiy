@@ -3,7 +3,7 @@
 **Attention All AI Agents:** Read this entire document to understand the context, architecture, rules, and roadmap for the `calcfordiy.com` project before making any changes.
 
 *Goal: Stable traffic and monetization within 2 months.*
-*Last updated: July 2026*
+*Last updated: July 28, 2026*
 
 ---
 
@@ -15,179 +15,218 @@
 2. **Calculator Content Structure:** Every calculator page MUST include a "How to Use This Calculator" section containing an ordered list (`<ol>`) of instructions. This is critical for SEO and user experience.
 3. **Design System:** All calculators must strictly follow the UI, UX, and Schema architecture detailed in the `calculator_design_system.md` artifact.
 4. **Development Server:** When starting the dev server, use background mode: `astro dev --background`. Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+5. **Disclaimer:** A universal safety disclaimer ("Measure seven times, cut once.") is globally injected into every calculator page via `Layout.astro`. Do NOT add individual disclaimers per page.
+6. **GA4 Events:** `calculate_button_click` and `calculator_used` events are globally fired from `Layout.astro`. Do NOT add per-page GA event code.
+7. **Contact Email:** All contact forms, mailto links, and privacy policy references must use `invictusetfortis@gmail.com`.
 
 ---
 
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Calculators live:** 53 calculators (Phase 2, Seasonal, Millwork 1A, Hardscaping 1B, HVAC 1C, and Phase 4A Expansion complete!)
+- **Calculators live:** 53 calculators
+- **SEO Guides live:** 9 guides (`src/pages/guides/`)
 - **Stub pages:** 0 remaining (all replaced)
-- **AdSense:** existing approved account, new site not yet added
+- **AdSense:** existing approved account, not yet added to this site
+- **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
+- **GSC Status (Jul 28, 2026):** 69 pages indexed, no manual actions. Zero organic impressions — site is indexed but not yet ranking. Currently recovering from a brief Cloudflare robots.txt de-indexing event.
+- **GA4:** `calculator_used` and `calculate_button_click` events are live. Bounce rate previously 100% (now fixed).
 
 ---
 
-## PHASE 1 — IMMEDIATE (Week 1-2)
-**Fixes Still Needed**
-- `[ ]` Verify canonical URL shows calcfordiy.com not localhost (View Page Source → search "canonical")
-- `[ ]` Verify sitemap-0.xml shows calcfordiy.com URLs (visit calcfordiy.com/sitemap-0.xml)
-- `[ ]` Confirm Google Analytics is firing (check GA4 Realtime report while visiting site)
-- `[ ]` Add chunk 2 content to any calculators still missing it (grout, bathroom wall tile need checking)
+## PHASE 1 — IMMEDIATE (COMPLETE ✅)
 - `[x]` Fix /calculators/thinset broken link (Built full Thinset calculator)
-
-**Quick SEO Wins (Do This Week)**
-- `[ ]` Add Google Search Console property if not already verified
-- `[ ]` Submit sitemap in GSC: calcfordiy.com/sitemap-0.xml
-- `[ ]` Request indexing for each live calculator page manually in GSC
-- `[ ]` Check GSC Coverage report for any crawl errors
-- `[ ]` Add site to Google AdSense as additional site
+- `[x]` Verify canonical URL shows calcfordiy.com not localhost
+- `[x]` Verify sitemap-0.xml shows calcfordiy.com URLs
+- `[x]` Confirm Google Analytics is firing (GA4 Realtime confirmed working)
+- `[x]` Add Google Search Console property — verified
+- `[x]` Submit sitemap in GSC — submitted
+- `[x]` Check GSC Coverage report — 69 pages indexed, no errors
+- `[x]` Fix Cloudflare Managed robots.txt conflict (was blocking Googlebot — resolved Jul 27, 2026)
+- `[x]` Add GA4 engagement event tracking to fix 100% bounce rate
 
 ---
 
-## PHASE 2 — CALCULATOR EXPANSION (Weeks 2-5)
-*Note: Massive progress has been made here. Almost all planned calculators have been built and deployed.*
+## PHASE 2 — CALCULATOR EXPANSION (COMPLETE ✅)
 
-**Tier 1: Garden Cluster**
-- `[x]` Mulch calculator 
-- `[x]` Raised bed soil calculator 
-- `[x]` Topsoil calculator 
-- `[x]` Fertilizer calculator 
+**Garden Cluster**
+- `[x]` Mulch calculator
+- `[x]` Raised bed soil calculator
+- `[x]` Topsoil calculator
+- `[x]` Fertilizer calculator
 - `[x]` Seed spacing calculator
 
-**Concrete Cluster**
-- `[x]` Concrete for fence posts 
-- `[x]` Concrete slab calculator 
-- `[x]` Quikrete bags calculator 
-- `[x]` Rebar calculator for slab 
+**Concrete & Hardscaping Cluster**
+- `[x]` Concrete for fence posts
+- `[x]` Concrete slab calculator
+- `[x]` Quikrete bags calculator
+- `[x]` Rebar calculator for slab
+- `[x]` French Drain Calculator
+- `[x]` Retaining Wall Block & Geogrid Calculator
+- `[x]` Paver Base Gravel & Sand Calculator (Phase 4A)
 
-**Tier 2: Floor Cluster**
+**Floor Cluster**
 - `[x]` Subfloor
 - `[x]` Hardwood Flooring
 - `[x]` Laminate Flooring
 - `[x]` Carpet
 - `[x]` Underlayment
 
-**Tier 3: High-Value Single Calculators**
-- `[x]` Water heater operating cost calculator
-- `[x]` AC operating cost calculator
-- `[x]` Drywall estimator
-- `[x]` Deck boards calculator
-
-**Tier 3b: Paint Cluster**
+**Paint Cluster**
 - `[x]` Paint calculator for a room
 - `[x]` Paint calculator for textured walls
 - `[x]` Exterior paint calculator
 
-**Tier 4: Extended Lighting Cluster**
+**Lighting Cluster**
 - `[x]` Recessed lighting for living room
 - `[x]` Recessed lighting for hallway
 - `[x]` Recessed lighting for kitchen
-- `[x]` Outdoor String lights (can expand)
+- `[x]` Recessed lighting for bedroom
+- `[x]` Recessed lighting for garage
+- `[x]` Outdoor String lights
+- `[x]` Outdoor Flood lights
+- `[x]` Lumens & Lux Calculator
+- `[x]` LED bulb savings calculator
 
-**Wall Cluster**
-- `[x]` Wall framing stud calculator 
-- `[x]` Trim and molding calculator 
-- `[x]` Shiplap / tongue and groove 
+**Wall & Drywall Cluster**
+- `[x]` Wall framing stud calculator
+- `[x]` Trim and molding calculator
+- `[x]` Shiplap / tongue and groove
 - `[x]` Wallpaper calculator
+- `[x]` Drywall estimator
 
-**Utilities & HVAC (High CPC)**
+**Millwork & Trim Cluster (Blue Ocean 1A)**
+- `[x]` Board and Batten Spacing Calculator
+- `[x]` Wainscoting / Picture Frame Molding Layout
+- `[x]` Coffered Ceiling Calculator
+- `[x]` Stair Stringer Cut Calculator (with live SVG diagram) (Phase 4A)
+
+**Utilities & HVAC Cluster (High CPC)**
+- `[x]` Water heater operating cost calculator
+- `[x]` AC operating cost calculator
 - `[x]` Furnace heating cost calculator
 - `[x]` Generator size calculator
-- `[x]` LED bulb savings calculator
-- `[ ]` Pool heater operating cost (optional)
+- `[x]` Mini-Split Sizing Calculator (Blue Ocean 1C)
+- `[x]` Tankless Water Heater Sizing Calculator (Blue Ocean 1C)
+- `[x]` EV Charger Circuit & Wire Gauge Calculator (Phase 4A) — NEC 80% rule, AWG sizing, voltage drop
 
-**Seasonal Priority (Must be live by mid-September)**
+**Structural & Outdoor**
+- `[x]` Deck boards calculator
+
+**Seasonal Cluster**
 - `[x]` Christmas tree lights calculator
 - `[x]` House exterior Christmas lights calculator
 - `[x]` Christmas & Halloween lights/decor outlet load calculator
 
 ---
 
-## PHASE 3 — SEO CONTENT (Weeks 3-6)
-**Supporting Articles (2 per week using local LLM)**
-These are 600-900 word pages targeting "how much [material] for [specific job]" queries. They rank for informational queries and funnel to your calculators.
-Format: `H1 → intro → calculator embed/link → step by step answer → FAQ (4 questions) → related calculators`
+## PHASE 3 — SEO CONTENT GUIDES (COMPLETE ✅)
 Path: `src/pages/guides/`
+Format: `H1 → intro → calculator CTA → step-by-step → FAQ → related calculators`
+All guides include JSON-LD schema: `Article`, `FAQPage`, `BreadcrumbList`.
 
-- `[x]` "How Much Mulch Do I Need for Garden Beds?" 
-- `[x]` "How Much Soil to Fill a 4x8 Raised Bed?" 
-- `[x]` "How Much Concrete for Fence Posts?" 
-- `[x]` "How Many Bags of Grout for a Tile Shower?" 
+- `[x]` "How Much Mulch Do I Need for Garden Beds?"
+- `[x]` "How Much Soil to Fill a 4x8 Raised Bed?"
+- `[x]` "How Much Concrete for Fence Posts?"
+- `[x]` "How Many Bags of Grout for a Tile Shower?"
 - `[x]` "What Waste Factor Should I Use for Laminate Flooring?"
-- `[x]` "How Many Recessed Lights for a 2-Car Garage?" 
-- `[x]` "How Much Tile Do I Need for a Shower?" 
-- `[x]` "How Many Boxes of Hardwood Flooring Do I Need?" 
+- `[x]` "How Many Recessed Lights for a 2-Car Garage?" (staggered date: Jul 12, 2026)
+- `[x]` "How Much Tile Do I Need for a Shower?" (staggered date: Jul 19, 2026)
+- `[x]` "How Many Boxes of Hardwood Flooring Do I Need?" (staggered date: Jul 26, 2026)
 - `[x]` "How Many Studs for a Wall?"
 
 ---
 
-## PHASE 4 — MONETIZATION (Weeks 2-8)
+## PHASE 4 — MONETIZATION (In Progress)
 **Google AdSense**
-- `[ ]` Add calcfordiy.com to existing AdSense account
+- `[ ]` Add calcfordiy.com to existing AdSense account (`invictusetfortis@gmail.com`)
 - `[ ]` Paste AdSense auto-ads code into Layout.astro head
 - `[ ]` Wait for site-level approval
-- `[ ]` After approval: manually place ads (below H1, between calc & results, after FAQ). 
-  *Agents: Provide ad unit divs to Layout.astro when requested.*
+- `[ ]` After approval: manually place ads (below H1, between calc & results, after FAQ)
 
 **Future Monetization Options (Month 3+)**
 - `[ ]` Amazon affiliate links — link to specific products in calculators
-- `[ ]` Home Depot affiliate program 
-- `[ ]` Carbon Ads 
+- `[ ]` Home Depot affiliate program
+- `[ ]` Carbon Ads
 
 ---
 
-## FUTURE FEATURES TO RESEARCH (Month 3+)
-**Calculator Ideas to Validate**
-- Raised garden bed lumber calculator
-- Drip irrigation calculator
-- Compost ratio calculator
-- Sod calculator
-- Fence post spacing calculator
-- Roof pitch calculator
-- Stair stringer calculator
-- Paver base gravel calculator
+## PHASE 5 — EXPANSION CALCULATORS (Next Wave)
 
-**Site Features to Consider**
-- `[x]` Print/PDF button on results (Added to recent calculators)
+### Phase 4A — COMPLETE ✅
+- `[x]` EV Charger Circuit & Wire Gauge Calculator (`/calculators/ev-charger-wiring`)
+- `[x]` Stair Stringer Cut Calculator with SVG diagram (`/calculators/stair-stringer`)
+- `[x]` Paver Base Gravel & Sand Calculator (`/calculators/paver-base-sand`)
+
+### Phase 4B — Roofing, Fencing & Outdoor Living
+- `[ ]` Asphalt Shingle Roofing Estimator — squares, pitch multiplier, ridge caps, underlayment (CPC: $8–$20)
+- `[ ]` Roof Pitch & Rafter Cut Calculator — plumb cut angle, bird's mouth notch, rafter length (SVG diagram)
+- `[ ]` Fence Picket & Board Calculator — pickets, posts, rails, gate posts, spacing gaps
+- `[ ]` Deck Joist Span & Beam Sizing Calculator — IRC Table R507, 2x6–2x12 sizing
+- `[ ]` Pergola & Gazebo Lumber Estimator — post sizes, beam spans, rafter spacing, hardware
+
+### Phase 4C — Energy, Insulation & Smart Home
+- `[ ]` Attic & Wall Insulation ROI Calculator — R-value upgrade, blown-in vs batt bags, payback period (CPC: $6–$14)
+- `[ ]` Solar Panel Array Estimator — kWh usage → panel count → system size (CPC: $10–$25)
+- `[ ]` Window Replacement Energy Savings Calculator — double vs triple pane, annual HVAC savings
+- `[ ]` Electrical Subpanel Sizing Calculator — 60A–125A, NEC Article 220 demand loads
+- `[ ]` Landscape Lighting Wire & Transformer Calculator
+
+### Phase 4D — Kitchen, Bath & Interior
+- `[ ]` Kitchen Backsplash Tile Calculator — different waste factors from shower, high intent buyers
+- `[ ]` Bathroom Floor Tile Calculator — simpler than shower, high search volume
+- `[ ]` Countertop Square Footage Calculator — L-shaped, peninsula, bar overhang support
+
+### Phase 4E — Landscaping & Irrigation
+- `[ ]` Sod & Lawn Calculator — pallets (450–500 sq ft each), topsoil starter
+- `[ ]` Drip Irrigation Emitter Calculator — emitter count, flow rate, pressure loss
+- `[ ]` Fence Post Spacing Calculator — equal spacing math with gate openings
+
+### Phase 4F — Quick Wins (Small effort, solid traffic)
+- `[ ]` Extension Cord Gauge & Length Calculator — companion to outlet load calc (high CPC)
+- `[ ]` Caulk & Sealant Coverage Calculator — linear feet per tube
+- `[ ]` OSB / Sheathing Calculator — exterior wall & roof decking sq ft to panel count
+- `[ ]` Split Rail Fence Calculator — very specific, near-zero modern competition
+- `[ ]` Egress Window Rough Opening Calculator — IRC Section R310, well/cover sizing
+
+---
+
+## SITE FEATURES STATUS
+- `[x]` Print/PDF button on results (global via `window.print()`)
+- `[x]` Universal safety disclaimer banner on all calculator pages (Layout.astro)
+- `[x]` Calculator search bar on homepage
+- `[x]` "Compare two options" mode (AC and Furnace Cost calculators)
+- `[x]` GA4 engagement event tracking (`calculator_used`, `calculate_button_click`)
+- `[x]` Live SVG cut diagram (Stair Stringer Calculator)
 - `[ ]` "Email my results"
 - `[ ]` Dark mode toggle
 - `[ ]` Unit switcher (metric/imperial)
-- `[x]` "Compare two options" mode (Implemented in AC and Furnace Cost calculators)
-- `[x]` Calculator search bar on homepage (Added in audit fixes)
+- `[ ]` IndexNow protocol for faster Bing/Google re-crawl signals
 
 ---
 
-## BLUE OCEAN NICHES (High-CPC / Underserved)
-When deciding what to build next, prioritize these high-value clusters:
+## PHASE 3 (NEXT) — ADDITIONAL SEO GUIDES TO WRITE
+Path: `src/pages/guides/` — Use staggered publish dates when committing.
+- `[ ]` "How Many Fence Pickets Do I Need?"
+- `[ ]` "How Many Roofing Squares Do I Need?"
+- `[ ]` "How Much Blown-In Insulation Do I Need for My Attic?"
+- `[ ]` "What Size Deck Joist Do I Need?"
+- `[ ]` "How Much Sod Do I Need?"
+- `[ ]` "How Much Backsplash Tile Do I Need for a Kitchen?"
 
-**1. Custom Trim & Millwork (Aesthetics)**
-- `[x]` Board and Batten Spacing Calculator
-- `[x]` Wainscoting / Picture Frame Molding Layout
-- `[x]` Coffered Ceiling Calculator
+---
 
-**2. Advanced Hardscaping & Drainage**
-- `[x]` French Drain Calculator
-- `[x]` Retaining Wall Block & Geogrid Calculator
-
-**3. Smart Home & Low Voltage**
-- Landscape Lighting Wire & Transformer Calculator
-
-**4. HVAC & Energy Efficiency**
-- `[x]` Mini-Split Sizing Calculator
-- Attic Insulation ROI Calculator
-
-**5. Major Structural Remodels**
-- Basement Finishing Material Estimator
-
-**6. Plumbing & Water**
-- `[x]` Tankless Water Heater Sizing Calculator
+## SEO & INDEXING STATUS (Jul 28, 2026)
+- **Root cause of zero impressions:** Cloudflare "Managed robots.txt" was prepending `Content-Signal` lines and duplicate `User-agent: *` blocks to our origin robots.txt, which caused Google to de-index the site.
+- **Fix applied Jul 27, 2026:** Disabled Cloudflare Managed robots.txt. Origin `public/robots.txt` now serves clean directives. Cloudflare cache purged.
+- **Current state:** 69 pages indexed, no manual penalty, no noindex tags. Site is awaiting Google re-crawl cycle to restore rankings (typically 2–4 weeks post de-index).
+- **Recovery actions taken:** Sitemap resubmitted, manual "Request Indexing" done for key pages, GA4 bounce rate fixed via engagement events.
 
 ---
 
 ## AGENT TASK DELEGATION GUIDE
-When working with other AI agents, delegate these tasks:
 - **Content Agent (local LLM):** Chunk 2 content, Supporting articles (`guides/`), FAQ sections, Meta descriptions.
-- **Coding Agent (Antigravity):** New calculator pages (formulas + input list), Bug fixes, New site features (print button, search bar).
+- **Coding Agent (Antigravity):** New calculator pages (formulas + input list), Bug fixes, New site features.
 - **Research Agent:** Keyword research, Competitor analysis, Finding primary sources for formulas.
 
 **Always verify before publishing:**
@@ -195,3 +234,4 @@ When working with other AI agents, delegate these tasks:
 - Canonical URL is calcfordiy.com not localhost
 - `noindex` removed from completed pages
 - Internal links point to live pages not stubs
+- New calculator added to BOTH `src/pages/index.astro` AND `src/pages/calculators/index.astro`
