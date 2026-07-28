@@ -1,0 +1,369 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Stair Stringer Cut Calculator — Rise, Run & SVG Notch Diagram | CalcForDIY"
+  description="Calculate exact stair stringer risers, tread runs, bottom step deduction, and board length. Includes live interactive SVG stringer cut diagram."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Stair Stringer Cut Calculator",
+    "description": "Free stair stringer calculator estimating risers, runs, stringer board lengths, IRC code compliance, and drawing an interactive SVG cut diagram.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why do I need to cut off the bottom of a stair stringer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You must trim the bottom of the stringer by the exact thickness of your tread board (e.g. 1.5 inches for a 2x10 tread). If you skip this step, adding the tread on top makes your first step 1.5 inches too high, creating a major tripping hazard."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the maximum allowed stair riser height per building code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under IRC building codes (International Residential Code R311.7), the maximum allowed riser height is 7.75 inches, and the minimum allowed tread run depth is 10.0 inches. Furthermore, the height difference between the tallest and shortest riser in a staircase cannot exceed 3/8 of an inch."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What size lumber should I use for stair stringers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Always use 2x12 pressure-treated lumber (or framing lumber for interior stairs) for stringers. 2x10 lumber is not wide enough after notches are cut, leaving insufficient solid wood backing to support weight."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Stair Stringer Cut Calculator", "item": "https://calcfordiy.com/calculators/stair-stringer" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Stair Stringer Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Stair Stringer Cut Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exact riser height, tread run, bottom step deduction, 2x12 board length, and view a live SVG cut diagram.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Total Vertical Rise
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Total Rise (Inches)</label>
+        <input type="number" id="totalRise" placeholder="e.g. 36" value="36" min="12" max="240" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Rise Fraction (Inches)</label>
+        <select id="riseFraction" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0" selected>0 (Exact Inches)</option>
+          <option value="0.0625">1/16 in</option>
+          <option value="0.125">1/8 in</option>
+          <option value="0.1875">3/16 in</option>
+          <option value="0.25">1/4 in</option>
+          <option value="0.3125">5/16 in</option>
+          <option value="0.375">3/8 in</option>
+          <option value="0.4375">7/16 in</option>
+          <option value="0.5">1/2 in</option>
+          <option value="0.5625">9/16 in</option>
+          <option value="0.625">5/8 in</option>
+          <option value="0.6875">11/16 in</option>
+          <option value="0.75">3/4 in</option>
+          <option value="0.8125">13/16 in</option>
+          <option value="0.875">7/8 in</option>
+          <option value="0.9375">15/16 in</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Stair Step Specs &amp; Tread Lumber
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Target Riser Height</label>
+        <input type="number" id="targetRiser" value="7.5" min="6.0" max="7.75" step="0.25" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-xs text-gray-500">Max 7.75" per IRC Code</span>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Tread Run Depth</label>
+        <input type="number" id="treadRun" value="10.0" min="10.0" max="14.0" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-xs text-gray-500">Min 10.0" per IRC Code</span>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Tread Board Thickness</label>
+        <select id="treadThick" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.5" selected>1.5 in (2x10 Deck Lumber)</option>
+          <option value="1.0">1.0 in (Standard Hardwood Tread)</option>
+          <option value="1.125">1-1/8 in (5/4 Deck Board)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Stair Stringer &amp; Draw Diagram →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Stair Stringer Cut Specifications</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_exactRiser">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Exact Riser Height</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_riserFrac">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_riserCount">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Total Risers / Cuts</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_treadCount">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_totalRun">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Horizontal Run</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_boardStock">—</div>
+        <div class="text-xs text-gray-500 mt-1">2x12 Stock Needed</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Diagram -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Stringer Cut Visual Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Auto-scaled to specs</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 print:border print:border-gray-200 print:shadow-none">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">Bottom Step Drop Deduction</h3>
+      <p class="text-xs text-gray-600" id="r_bottomCutNote">—</p>
+    </div>
+
+    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print Stringer Cut Sheet &amp; Diagram
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to layout and cut your stair stringers accurately:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Total Rise:</strong> Use a level and tape measure to find the exact vertical distance from the finished upper floor/deck to the finished lower landing ground.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Set Target Riser &amp; Run:</strong> Standard deck stairs target a 7.5" riser height and 10" tread run.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Cut &amp; Deduct Bottom:</strong> Follow the SVG cut diagram and remember to trim the bottom stringer foot by your tread thickness so all steps are identical height!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why do I need to cut off the bottom of a stair stringer?</h3>
+        <p class="text-gray-600 text-sm">You must trim the bottom of the stringer by the exact thickness of your tread board (e.g. 1.5 inches for a 2x10 tread). If you skip this step, adding the tread on top makes your first step 1.5 inches too high, creating a major tripping hazard.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the maximum allowed stair riser height per building code?</h3>
+        <p class="text-gray-600 text-sm">Under IRC building codes (International Residential Code R311.7), the maximum allowed riser height is 7.75 inches, and the minimum allowed tread run depth is 10.0 inches. Furthermore, the height difference between the tallest and shortest riser in a staircase cannot exceed 3/8 of an inch.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What size lumber should I use for stair stringers?</h3>
+        <p class="text-gray-600 text-sm">Always use 2x12 pressure-treated lumber (or framing lumber for interior stairs) for stringers. 2x10 lumber is not wide enough after notches are cut, leaving insufficient solid wood backing to support weight.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/deck-boards" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Boards Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate deck boards, joists, and fastener needs.</div>
+      </a>
+      <a href="/calculators/trim-molding" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Trim &amp; Molding Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate linear feet of trim with miter waste factor.</div>
+      </a>
+      <a href="/calculators/wall-framing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Wall Framing Stud Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate studs, corner backing, and top/bottom plates.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function toFraction(decimal) {
+    const sixteenths = Math.round((decimal % 1) * 16);
+    const whole = Math.floor(decimal);
+    if (sixteenths === 0) return `${whole}"`;
+    if (sixteenths === 16) return `${whole + 1}"`;
+
+    // simplify fraction
+    function gcd(a, b) { return b ? gcd(b, a % b) : a; }
+    const g = gcd(sixteenths, 16);
+    const num = sixteenths / g;
+    const den = 16 / g;
+
+    return whole > 0 ? `${whole}-${num}/${den}"` : `${num}/${den}"`;
+  }
+
+  function calculate() {
+    const riseInches = parseFloat(document.getElementById('totalRise').value) || 0;
+    const riseFrac = parseFloat(document.getElementById('riseFraction').value) || 0;
+    const targetRiser = parseFloat(document.getElementById('targetRiser').value) || 7.5;
+    const treadRun = parseFloat(document.getElementById('treadRun').value) || 10.0;
+    const treadThick = parseFloat(document.getElementById('treadThick').value) || 1.5;
+
+    const totalRise = riseInches + riseFrac;
+    if (totalRise <= 0) return;
+
+    const riserCount = Math.round(totalRise / targetRiser);
+    const exactRiser = totalRise / riserCount;
+    const treadCount = riserCount - 1;
+    const totalRun = treadCount * treadRun;
+    const bottomRiserCut = exactRiser - treadThick;
+
+    // Diagonal length: sqrt(rise^2 + run^2)
+    const diagonalInches = Math.sqrt((totalRise * totalRise) + (totalRun * totalRun));
+    const diagonalFeet = diagonalInches / 12;
+
+    let boardStockStr = "8 ft 2x12";
+    if (diagonalFeet > 7.5 && diagonalFeet <= 9.5) boardStockStr = "10 ft 2x12";
+    else if (diagonalFeet > 9.5 && diagonalFeet <= 11.5) boardStockStr = "12 ft 2x12";
+    else if (diagonalFeet > 11.5 && diagonalFeet <= 13.5) boardStockStr = "14 ft 2x12";
+    else if (diagonalFeet > 13.5) boardStockStr = "16 ft 2x12";
+
+    document.getElementById('r_exactRiser').innerText = exactRiser.toFixed(2) + '"';
+    document.getElementById('r_riserFrac').innerText = `(${toFraction(exactRiser)})`;
+    document.getElementById('r_riserCount').innerText = riserCount + " Risers";
+    document.getElementById('r_treadCount').innerText = `(${treadCount} Treads @ ${treadRun}" run)`;
+    
+    const runFt = Math.floor(totalRun / 12);
+    const runIn = (totalRun % 12).toFixed(1);
+    document.getElementById('r_totalRun').innerText = `${runFt}' ${runIn}"`;
+    document.getElementById('r_boardStock').innerText = boardStockStr;
+
+    document.getElementById('r_bottomCutNote').innerHTML = `✂️ <strong>Bottom Foot Cut:</strong> Cut the bottom of the stringer to <strong>${exactRiser.toFixed(2)}" - ${treadThick}" = ${bottomRiserCut.toFixed(2)}" (${toFraction(bottomRiserCut)})</strong>. Trimming by the ${treadThick}" tread thickness ensures the first step height matches all upper steps exactly.`;
+
+    // Render SVG Cut Diagram
+    renderSVG(riserCount, exactRiser, treadRun, bottomRiserCut);
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  function renderSVG(count, riserH, runW, bottomCut) {
+    const container = document.getElementById('svgContainer');
+    const width = 550;
+    const height = 220;
+
+    // Normalize coordinates for SVG
+    const displayCount = Math.min(count, 5); // show up to 5 steps visually
+    const stepW = 70;
+    const stepH = 35;
+    const startX = 40;
+    const startY = height - 40;
+
+    let pathD = `M ${startX} ${startY}`;
+    let currX = startX;
+    let currY = startY;
+
+    // Draw stringer notches
+    for (let i = 0; i < displayCount; i++) {
+      currY -= stepH; // riser up
+      pathD += ` L ${currX} ${currY}`;
+      currX += stepW; // run right
+      pathD += ` L ${currX} ${currY}`;
+    }
+
+    // Stringer back line & bottom
+    pathD += ` L ${currX} ${startY}`;
+    pathD += ` Z`;
+
+    let labelsHTML = '';
+    // Add text labels
+    labelsHTML += `<text x="${startX - 25}" y="${startY - stepH/2}" font-size="10" fill="#2563eb" font-weight="bold">${riserH.toFixed(2)}"</text>`;
+    labelsHTML += `<text x="${startX + stepW/2 - 10}" y="${startY - stepH - 6}" font-size="10" fill="#2563eb" font-weight="bold">${runW}"</text>`;
+    labelsHTML += `<text x="${startX + 10}" y="${startY + 20}" font-size="11" fill="#047857" font-weight="bold">Bottom Cut: ${bottomCut.toFixed(2)}"</text>`;
+
+    const svgHTML = `
+      <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+        
+        <!-- Ground Line -->
+        <line x1="10" y1="${startY}" x2="${width - 10}" y2="${startY}" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4"/>
+        
+        <!-- Stringer Solid Body -->
+        <path d="${pathD}" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" />
+        
+        ${labelsHTML}
+      </svg>
+    `;
+
+    container.innerHTML = svgHTML;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>

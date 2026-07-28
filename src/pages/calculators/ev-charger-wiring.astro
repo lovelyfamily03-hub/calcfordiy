@@ -1,0 +1,301 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="EV Charger Circuit & Wire Gauge Calculator — NEC Sizing | CalcForDIY"
+  description="Calculate wire AWG gauge, circuit breaker size (NEC 80% rule), and voltage drop for NEMA 14-50 and hardwired Level 2 EV chargers."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "EV Charger Circuit & Wire Gauge Calculator",
+    "description": "Free NEC-compliant EV charger wire gauge and circuit sizing tool estimating breaker amps, AWG wire sizes, voltage drop, and charging times.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What size wire do I need for a 50 Amp EV charger?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a 50-Amp circuit breaker (powering a 40-Amp continuous NEMA 14-50 plug), you need 6 AWG copper wire. If running cable through interior wall studs, use 6/3 NM-B (Romex). If running individual conductors through conduit, use 6 AWG THHN/THWN-2 copper."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use 6/3 Romex NM-B for a 60 Amp hardwired EV charger?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No! NEC Article 334.80 mandates that NM-B (Romex) must be rated at the 60°C column (55 Amps max for 6 AWG). A 48-Amp continuous charger requires a 60-Amp breaker, which exceeds 6/3 NM-B limits. You must either use 4 AWG NM-B or run 6 AWG THHN/THWN-2 copper inside conduit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does an EV charger require a breaker larger than its rating?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Electric vehicle charging is classified by the National Electrical Code (NEC Article 625) as a continuous load (operating for 3 hours or more). The NEC requires continuous loads to be sized at 125% of the charger's output, meaning a 40-Amp charger requires a 50-Amp breaker, and a 48-Amp charger requires a 60-Amp breaker."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "EV Charger Circuit & Wire Gauge Calculator", "item": "https://calcfordiy.com/calculators/ev-charger-wiring" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>EV Charger Circuit Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">EV Charger Circuit &amp; Wire Gauge Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate required copper AWG wire gauge, NEC 80% rule circuit breaker size, voltage drop over distance, and charging speeds for Level 2 EV chargers.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Charger Type &amp; Power Output
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">Charger Output &amp; Plug Style</label>
+        <select id="chargerPreset" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="40_50_plug" selected>NEMA 14-50 Plug (40A Continuous / 9.6 kW)</option>
+          <option value="48_60_hardwired">Hardwired 48A (48A Continuous / 11.5 kW — Tesla Wall Connector / ChargePoint)</option>
+          <option value="32_40_plug">NEMA 14-30 / 10-30 Plug (32A Continuous / 7.7 kW)</option>
+          <option value="16_20_level1">Level 1 or Portable (16A Continuous / 3.8 kW)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-2">EV Battery Size (kWh)</label>
+        <input type="number" id="batteryKw" placeholder="e.g. 75" value="75" min="20" max="200" step="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Distance &amp; Wiring Method
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">One-Way Wire Distance from Panel (Feet)</label>
+        <input type="number" id="wireDistance" placeholder="e.g. 35" value="35" min="5" max="300" step="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Wiring Installation Type</label>
+        <select id="wireType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="thhn" selected>THHN / THWN-2 Copper in Conduit (75°C / 90°C — Recommended)</option>
+          <option value="nmb">NM-B Romex Building Wire in Walls (60°C Limit per NEC 334.80)</option>
+          <option value="ufb">Direct Burial UF-B Underground Cable (60°C Limit)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate EV Circuit Specs →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your EV Charger Wiring Spec Sheet</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_breaker">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Circuit Breaker Size</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_continuousAmps">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_wireSize">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Min Copper Wire Size</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_wireNote">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_voltageDrop">—</div>
+        <div class="text-xs text-gray-500 mt-1">Voltage Drop @ 240V</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_chargeTime">—</div>
+        <div class="text-xs text-gray-500 mt-1">Est. 0–100% Charge Time</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 print:border print:border-gray-200 print:shadow-none">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">NEC Code &amp; Conduit Guidance</h3>
+      <p class="text-xs text-gray-600" id="r_necCodeNote">—</p>
+    </div>
+
+    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print Wiring Spec Sheet
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to calculate the required circuit breaker and wire size for your EV charger:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select Charger Output:</strong> Choose whether you are installing a NEMA 14-50 outlet (40A continuous) or a hardwired charger (such as 48A continuous for Tesla Wall Connector).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Enter Cable Run Length &amp; Type:</strong> Measure one-way distance from your main electrical breaker panel to the garage charger location, and select NM-B Romex or THHN conduit conductors.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Calculate &amp; Size:</strong> Hit calculate to view required breaker amperage, AWG copper wire gauge, voltage drop percentage, and estimated charging times!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What size wire do I need for a 50 Amp EV charger?</h3>
+        <p class="text-gray-600 text-sm">For a 50-Amp circuit breaker (powering a 40-Amp continuous NEMA 14-50 plug), you need 6 AWG copper wire. If running cable through interior wall studs, use 6/3 NM-B (Romex). If running individual conductors through conduit, use 6 AWG THHN/THWN-2 copper.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can I use 6/3 Romex NM-B for a 60 Amp hardwired EV charger?</h3>
+        <p class="text-gray-600 text-sm">No! NEC Article 334.80 mandates that NM-B (Romex) must be rated at the 60°C column (55 Amps max for 6 AWG). A 48-Amp continuous charger requires a 60-Amp breaker, which exceeds 6/3 NM-B limits. You must either use 4 AWG NM-B or run 6 AWG THHN/THWN-2 copper inside conduit.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why does an EV charger require a breaker larger than its rating?</h3>
+        <p class="text-gray-600 text-sm">Electric vehicle charging is classified by the National Electrical Code (NEC Article 625) as a continuous load (operating for 3 hours or more). The NEC requires continuous loads to be sized at 125% of the charger's output, meaning a 40-Amp charger requires a 50-Amp breaker, and a 48-Amp charger requires a 60-Amp breaker.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/generator-size" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Generator Size Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate running watts and starting surge for home backup power.</div>
+      </a>
+      <a href="/calculators/holiday-power-load" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Holiday Outlet Load Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Prevent breaker trips when powering high-wattage seasonal equipment.</div>
+      </a>
+      <a href="/calculators/mini-split-sizing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Mini-Split Sizing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate BTU capacity and electrical circuit specs for heat pumps.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    const preset = document.getElementById('chargerPreset').value;
+    const batteryKw = parseFloat(document.getElementById('batteryKw').value) || 75;
+    const distance = parseFloat(document.getElementById('wireDistance').value) || 35;
+    const wireType = document.getElementById('wireType').value;
+
+    let continuousAmps = 40;
+    let breakerAmps = 50;
+    let kwOutput = 9.6;
+
+    if (preset === '48_60_hardwired') {
+      continuousAmps = 48;
+      breakerAmps = 60;
+      kwOutput = 11.5;
+    } else if (preset === '32_40_plug') {
+      continuousAmps = 32;
+      breakerAmps = 40;
+      kwOutput = 7.7;
+    } else if (preset === '16_20_level1') {
+      continuousAmps = 16;
+      breakerAmps = 20;
+      kwOutput = 3.8;
+    }
+
+    // AWG Circular Mils and ampacity rules
+    let wireGaugeStr = "6 AWG";
+    let wireNoteStr = "THHN Copper";
+    let cmil = 26240; // 6 AWG circular mils
+
+    if (breakerAmps === 20) {
+      wireGaugeStr = "12 AWG";
+      cmil = 6530;
+      wireNoteStr = "Copper (NM-B or THHN)";
+    } else if (breakerAmps === 40) {
+      wireGaugeStr = "8 AWG";
+      cmil = 16510;
+      wireNoteStr = "Copper (8/3 NM-B or THHN)";
+    } else if (breakerAmps === 50) {
+      wireGaugeStr = "6 AWG";
+      cmil = 26240;
+      wireNoteStr = wireType === 'nmb' ? "6/3 NM-B Romex" : "6 AWG THHN in Conduit";
+    } else if (breakerAmps === 60) {
+      if (wireType === 'nmb' || wireType === 'ufb') {
+        wireGaugeStr = "4 AWG";
+        cmil = 41740;
+        wireNoteStr = "4/3 NM-B (6 AWG NM-B is capped at 55A per NEC 334.80)";
+      } else {
+        wireGaugeStr = "6 AWG";
+        cmil = 26240;
+        wireNoteStr = "6 AWG THHN Copper in 3/4\" Conduit (rated 65A @ 75°C)";
+      }
+    }
+
+    // Voltage drop equation: Vdrop = 2 * L * K * I / CM  (K=12.9 for copper)
+    const vDrop = (2 * distance * 12.9 * continuousAmps) / cmil;
+    const vDropPercent = (vDrop / 240) * 100;
+
+    // Charge time = batteryKw / kwOutput
+    const hours = (batteryKw / kwOutput).toFixed(1);
+
+    document.getElementById('r_breaker').innerText = breakerAmps + "A";
+    document.getElementById('r_continuousAmps').innerText = `(${continuousAmps}A continuous load)`;
+    document.getElementById('r_wireSize').innerText = wireGaugeStr;
+    document.getElementById('r_wireNote').innerText = wireNoteStr;
+    document.getElementById('r_voltageDrop').innerText = vDropPercent.toFixed(1) + "% (" + vDrop.toFixed(1) + "V)";
+    document.getElementById('r_chargeTime').innerText = "~" + hours + " hrs";
+
+    let necNote = `⚡ <strong>NEC Article 625 Compliance:</strong> EV charging is a continuous load requiring a 2-pole double-pole breaker rated at 125% of output (${continuousAmps}A × 1.25 = ${breakerAmps}A breaker).`;
+    if (vDropPercent > 3.0) {
+      necNote += ` <br/><span class="text-amber-700 font-semibold">⚠️ High Voltage Drop Warning:</span> Over ${distance} feet, voltage drop exceeds 3.0%. Consider upgrading to the next larger wire size to prevent heat buildup and energy loss.`;
+    }
+    document.getElementById('r_necCodeNote').innerHTML = necNote;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>

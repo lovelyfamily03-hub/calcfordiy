@@ -1,0 +1,273 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Paver Base Gravel & Sand Calculator — Patio & Driveway Sizing | CalcForDIY"
+  description="Calculate gravel base tons, leveling sand tons, polymeric sand bags, excavation depth, and snap-edge border spikes for paver patios and driveways."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Paver Base Gravel & Sand Calculator",
+    "description": "Free hardscaping calculator estimating crushed stone base tonnage, bedding sand, polymeric sand bags, and excavation depth for paver patios.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How deep should I dig for a paver patio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dig 7.5 to 8 inches deep for a standard walkway or patio (4 inches of compacted gravel base + 1 inch of bedding sand + 2.38 inch pavers). For driveways carrying vehicle loads, dig 11.5 to 12 inches deep to accommodate an 8-inch gravel base."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What type of sand goes under pavers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use coarse C33 concrete sand for the 1-inch leveling bed under pavers. Never use fine mason sand or play sand for the bedding layer, as fine sand holds water and turns into mud when wet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many tons of gravel base do I need for a 10x10 patio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a 10x10 patio (100 sq ft) with a standard 4-inch gravel base, you need 1.23 cubic yards or approximately 1.66 tons of crushed stone base (3/4-inch minus / dense grade aggregate)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Paver Base Gravel & Sand Calculator", "item": "https://calcfordiy.com/calculators/paver-base-sand" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Paver Base &amp; Sand Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Paver Base Gravel &amp; Sand Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate crushed stone base tons, bedding sand, polymeric joint sand, soil excavation depth, and edge restraints.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Patio Dimensions &amp; Application Type
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Patio Length (Feet)</label>
+        <input type="number" id="patioLength" placeholder="e.g. 15" value="15" min="2" max="200" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Patio Width (Feet)</label>
+        <input type="number" id="patioWidth" placeholder="e.g. 10" value="10" min="2" max="200" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Project Load Type</label>
+        <select id="projectType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="4" selected>Walkway / Patio (4" Gravel Base)</option>
+          <option value="8">Driveway / Vehicle Access (8" Gravel Base)</option>
+          <option value="10">Heavy Load / Clay Soil (10" Gravel Base)</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="my-5 border-gray-200 print:hidden" />
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Paver Thickness &amp; Sand Layer
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Paver Thickness</label>
+        <select id="paverThick" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="2.375" selected>2-3/8 in (60mm Standard Concrete Paver)</option>
+          <option value="1.5">1-1/2 in (Stepping Stone / Thin Brick)</option>
+          <option value="3.125">3-1/8 in (80mm Driveway Heavy Duty Paver)</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Bedding Sand Layer Depth</label>
+        <select id="sandDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.0" selected>1.0 inch Coarse Concrete Sand (Standard)</option>
+          <option value="0.75">3/4 inch Bedding Sand</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Paver Base Materials →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Paver Material Results</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_gravelTons">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Crushed Stone Base</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_gravelYards">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_sandTons">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Bedding Sand</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_sandYards">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_polyBags">—</div>
+        <div class="text-xs text-gray-500 mt-1">Polymeric Sand Bags (50 lb)</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_digDepth">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Excavation Depth</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 print:border print:border-gray-200 print:shadow-none">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">Excavation &amp; Edging Restraint Details</h3>
+      <p class="text-xs text-gray-600" id="r_extraSpecNote">—</p>
+    </div>
+
+    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
+      🖨️ Print Paver Material Order Sheet
+    </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to calculate materials for a long-lasting paver patio or driveway:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Area &amp; Load:</strong> Enter patio length and width in feet. Select 4 inches of gravel base for walkways or 8 inches for driveways.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Paver Thickness:</strong> Choose 2-3/8" (60mm) for standard concrete pavers or 3-1/8" (80mm) for driveways.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Calculate Materials:</strong> Hit calculate to get tons of crushed stone, bedding sand, polymeric joint sand bags, and plastic snap-edge border lengths!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How deep should I dig for a paver patio?</h3>
+        <p class="text-gray-600 text-sm">Dig 7.5 to 8 inches deep for a standard walkway or patio (4 inches of compacted gravel base + 1 inch of bedding sand + 2.38 inch pavers). For driveways carrying vehicle loads, dig 11.5 to 12 inches deep to accommodate an 8-inch gravel base.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What type of sand goes under pavers?</h3>
+        <p class="text-gray-600 text-sm">Use coarse C33 concrete sand for the 1-inch leveling bed under pavers. Never use fine mason sand or play sand for the bedding layer, as fine sand holds water and turns into mud when wet.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many tons of gravel base do I need for a 10x10 patio?</h3>
+        <p class="text-gray-600 text-sm">For a 10x10 patio (100 sq ft) with a standard 4-inch gravel base, you need 1.23 cubic yards or approximately 1.66 tons of crushed stone base (3/4-inch minus / dense grade aggregate).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/french-drain" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">French Drain Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate gravel tons and perforated pipe for yard drainage.</div>
+      </a>
+      <a href="/calculators/retaining-wall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Retaining Wall Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate wall blocks, base gravel, and geogrid layers.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate concrete yards and 80lb bags for poured slabs.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    const length = parseFloat(document.getElementById('patioLength').value) || 0;
+    const width = parseFloat(document.getElementById('patioWidth').value) || 0;
+    const baseInches = parseFloat(document.getElementById('projectType').value) || 4;
+    const paverInches = parseFloat(document.getElementById('paverThick').value) || 2.375;
+    const sandInches = parseFloat(document.getElementById('sandDepth').value) || 1.0;
+
+    if (length <= 0 || width <= 0) return;
+
+    const sqft = length * width;
+    const totalDigInches = baseInches + sandInches + paverInches;
+
+    // Gravel base cu yds = (sqft * baseInches / 12) / 27
+    const gravelYards = (sqft * (baseInches / 12)) / 27;
+    const gravelTons = gravelYards * 1.35; // 3/4" minus dense grade ~ 1.35 tons/yd3
+
+    // Sand cu yds = (sqft * sandInches / 12) / 27
+    const sandYards = (sqft * (sandInches / 12)) / 27;
+    const sandTons = sandYards * 1.25; // coarse concrete sand ~ 1.25 tons/yd3
+
+    // Polymeric sand bags (approx 75 sq ft per 50lb bag for 1/8" joints)
+    const polyBags = Math.ceil(sqft / 75);
+
+    // Soil excavation with 15% swell factor
+    const digYards = ((sqft * (totalDigInches / 12)) / 27) * 1.15;
+
+    // Snap edge perimeter and spikes (1 spike every 1.5 ft)
+    const perimeterFeet = 2 * (length + width);
+    const spikes = Math.ceil(perimeterFeet / 1.5);
+
+    document.getElementById('r_gravelTons').innerText = gravelTons.toFixed(2) + " Tons";
+    document.getElementById('r_gravelYards').innerText = `(${gravelYards.toFixed(2)} cu yds)`;
+    document.getElementById('r_sandTons').innerText = sandTons.toFixed(2) + " Tons";
+    document.getElementById('r_sandYards').innerText = `(${sandYards.toFixed(2)} cu yds)`;
+    document.getElementById('r_polyBags').innerText = polyBags + " Bags";
+    document.getElementById('r_digDepth').innerText = totalDigInches.toFixed(1) + '" Deep';
+
+    document.getElementById('r_extraSpecNote').innerHTML = `🚜 <strong>Excavation Volume:</strong> Dig out <strong>${digYards.toFixed(1)} cu yds</strong> of loose dirt. Order <strong>${perimeterFeet} linear ft</strong> of plastic snap-edge restraint and <strong>${spikes} landscape spikes</strong> to lock perimeter pavers.`;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>
