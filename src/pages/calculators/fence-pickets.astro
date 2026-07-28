@@ -1,0 +1,302 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Fence Picket & Board Calculator — Pickets, Posts, Rails & Concrete | CalcForDIY"
+  description="Calculate how many fence pickets, 4x4 posts, 2x4 horizontal rails, and Quikrete concrete bags you need for a privacy or picket fence."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Fence Picket and Board Calculator",
+    "description": "Free fence material calculator estimating vertical pickets, 4x4 fence posts, 2x4 horizontal rails, gate posts, and concrete bags for wood fencing.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How far apart should fence posts be spaced?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard wood fence post spacing is 6 feet to 8 feet apart on-center. 6-foot spacing is recommended for high-wind areas or heavy 6-foot privacy fences to prevent sagging."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many 2x4 rails do I need for a 6 foot privacy fence?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard 6-foot vertical privacy fence requires 3 horizontal 2x4 rails (top, middle, bottom). A 4-foot tall fence only requires 2 horizontal rails."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many bags of concrete per fence post?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use 1.5 to 2 bags of 80-lb Quikrete concrete per 4x4 post. Posts should be set in a hole that is 3 times the width of the post (12 inches wide) and buried 1/3 of the total post length (2 feet deep for a 6-foot fence)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Fence Picket Calculator", "item": "https://calcfordiy.com/calculators/fence-pickets" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Fence Picket &amp; Board Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Fence Picket &amp; Board Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exact vertical pickets, 4x4 fence posts, 2x4 horizontal rails, gate framing, and Quikrete concrete bags needed for your wood fence project.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Fence Length &amp; Picket Specs
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Total Fence Line Length (Feet)</label>
+        <input type="number" id="fenceLength" placeholder="e.g. 150" value="150" min="1" max="2000" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <p class="text-xs text-gray-400 mt-1">Total linear feet of fence perimeter</p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Picket Width (Actual Inches)</label>
+        <select id="picketWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="3.5">1x4 Picket (3.5" actual width)</option>
+          <option value="5.5" selected>1x6 Picket (5.5" actual width — standard)</option>
+          <option value="7.25">1x8 Picket (7.25" actual width)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Picket Gap Spacing (Inches)</label>
+        <select id="picketGap" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0" selected>0" Gap — Full Privacy Fence (Butt Joint)</option>
+          <option value="0.5">0.5" Gap — Semi-Privacy</option>
+          <option value="1.5">1.5" Gap — Standard Picket Fence</option>
+          <option value="2.0">2.0" Gap — Wide Open Picket</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Post &amp; Structure Options
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Post Spacing</label>
+        <select id="postSpacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="8" selected>8 Feet On-Center (Standard)</option>
+          <option value="6">6 Feet On-Center (High-Wind / Heavy)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Fence Height &amp; Rail Count</label>
+        <select id="railCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="3" selected>6 Feet Tall Privacy (3 Horizontal 2x4 Rails)</option>
+          <option value="2">4 Feet Tall Picket (2 Horizontal 2x4 Rails)</option>
+          <option value="4">8 Feet Tall High Privacy (4 Horizontal 2x4 Rails)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Number of Gates</label>
+        <input type="number" id="gateCount" placeholder="1" value="1" min="0" max="10" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <p class="text-xs text-gray-400 mt-1">+2 heavy posts per gate opening</p>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Fence Material List →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Wood Fence Shopping List</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none md:col-span-2">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_pickets">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Vertical Pickets (+10% Waste)</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_posts">—</div>
+        <div class="text-xs text-gray-500 mt-1">4x4 Posts Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_rails">—</div>
+        <div class="text-xs text-gray-500 mt-1">2x4 Rails (8-ft Lengths)</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <h3 class="text-sm font-semibold text-gray-900 mb-1">Concrete Bags (80-lb Quikrete)</h3>
+        <p class="text-xs text-gray-600" id="r_concrete">—</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <h3 class="text-sm font-semibold text-gray-900 mb-1">Fasteners &amp; Screws</h3>
+        <p class="text-xs text-gray-600" id="r_fasteners">—</p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">Fence Layout Summary</h3>
+      <p class="text-xs text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Fence Cut Sheet
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to estimate lumber and concrete for your fence:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Fence Perimeter:</strong> Measure total linear feet of fence along your property lines in feet.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Picket Size &amp; Gap:</strong> Choose 5.5" wide pickets for 1x6 boards. Set 0" gap for a full privacy fence or 1.5" gap for classic open pickets.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Set Post Spacing:</strong> Use 8-foot post spacing for standard fencing or 6-foot spacing for windy areas.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Calculate &amp; Purchase:</strong> Get exact counts for pickets (+10% waste), 4x4 posts, 2x4 rails, and Quikrete concrete bags!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many pickets do I need for 100 feet of fence?</h3>
+        <p class="text-gray-600 text-sm">For a 100-foot full privacy fence (0" gap) using standard 5.5-inch 1x6 pickets, you need approximately 219 pickets. Including a 10% waste factor, purchase 241 pickets.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How deep should fence post holes be dug?</h3>
+        <p class="text-gray-600 text-sm">Fence post holes should be dug to a depth equal to 1/3 to 1/2 of the above-ground fence height. For a 6-foot tall fence, dig holes 24 to 30 inches deep (below the frost line in cold climates) and 12 inches wide.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/concrete-fence-post" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Fence Post Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate exact concrete bag volume per post hole diameter.</div>
+      </a>
+      <a href="/calculators/deck-boards" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Boards Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate deck board counts and joist spacing.</div>
+      </a>
+      <a href="/calculators/retaining-wall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Retaining Wall Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate retaining wall block counts and backfill gravel.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    const fenceLengthFt = parseFloat(document.getElementById('fenceLength').value);
+    const picketWidthInches = parseFloat(document.getElementById('picketWidth').value);
+    const picketGapInches = parseFloat(document.getElementById('picketGap').value);
+    const postSpacingFt = parseFloat(document.getElementById('postSpacing').value);
+    const railsPerSection = parseInt(document.getElementById('railCount').value);
+    const gateCount = parseInt(document.getElementById('gateCount').value) || 0;
+
+    if (!fenceLengthFt || fenceLengthFt <= 0) return;
+
+    // Total fence length in inches
+    const totalInches = fenceLengthFt * 12;
+
+    // Effective width per picket (width + gap)
+    const effectivePicketWidth = picketWidthInches + picketGapInches;
+
+    // Raw pickets needed
+    const rawPickets = Math.ceil(totalInches / effectivePicketWidth);
+
+    // Pickets with 10% waste factor
+    const totalPickets = Math.ceil(rawPickets * 1.10);
+
+    // Posts count = (Fence Length / Post Spacing) + 1 + (2 extra posts per gate)
+    const postSections = Math.ceil(fenceLengthFt / postSpacingFt);
+    const totalPosts = postSections + 1 + (gateCount * 2);
+
+    // 2x4 Horizontal Rails:
+    // Number of 8-ft 2x4 rails = postSections * railsPerSection * 1.05
+    const totalRails = Math.ceil(postSections * railsPerSection * 1.05);
+
+    // Concrete bags (1.5 bags per 4x4 post)
+    const concreteBags = Math.ceil(totalPosts * 1.5);
+
+    // Screws/Nails: 6 exterior screws per picket + 6 per rail
+    const totalScrews = (rawPickets * 6) + (totalRails * 6);
+    const screwBoxes = Math.ceil(totalScrews / 500); // 500-ct boxes of 1-5/8" deck screws
+
+    document.getElementById('r_pickets').innerText = `${totalPickets} Pickets`;
+    document.getElementById('r_posts').innerText = `${totalPosts} Posts (4x4)`;
+    document.getElementById('r_rails').innerText = `${totalRails} Rails (2x4 × 8')`;
+
+    document.getElementById('r_concrete').innerText = `${concreteBags} Bags of 80-lb Quikrete (${(concreteBags * 80).toLocaleString()} lbs total)`;
+    document.getElementById('r_fasteners').innerText = `~${totalScrews.toLocaleString()} Deck Screws (${screwBoxes} 500-ct boxes)`;
+
+    document.getElementById('r_summary').innerText = `${fenceLengthFt} ft fence line requires ${totalPickets} pickets (${picketWidthInches}" wide w/ ${picketGapInches}" gap), ${totalPosts} 4x4 posts (spaced ${postSpacingFt}' OC), ${totalRails} 2x4 rails, and ${concreteBags} bags of 80-lb concrete.`;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>

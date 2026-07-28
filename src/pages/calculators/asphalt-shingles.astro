@@ -1,0 +1,326 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Asphalt Shingle Roofing Calculator — Bundles, Squares & Underlayment | CalcForDIY"
+  description="Calculate how many shingle bundles, roofing squares, underlayment rolls, starter strips, and nails you need. Includes pitch multipliers and waste factors."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Asphalt Shingle Roofing Calculator",
+    "description": "Free roofing estimator calculating shingle bundles, roofing squares, underlayment rolls, starter strips, ridge caps, and nails based on roof dimensions and pitch.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many bundles of shingles are in a square of roofing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "There are exactly 3 bundles of 3-tab or standard architectural asphalt shingles in 1 roofing square (100 square feet). Therefore, multiplying your total roofing squares by 3 gives the exact bundle count needed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much waste factor should I add for roofing shingles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Add a 10% waste factor for simple straight gable roofs, 15% for hip roofs or roofs with valleys, and 18% to 20% for complex roofs with multiple dormers, skylights, and valleys."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does roof pitch affect total square footage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A steeper roof has more surface area than its flat footprint. Pitch multiplier formulas multiply flat ground footprint by the slope factor (e.g. 6/12 pitch increases total surface area by 1.118x, while 12/12 pitch increases it by 1.414x)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Asphalt Shingle Roofing Calculator", "item": "https://calcfordiy.com/calculators/asphalt-shingles" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Asphalt Shingle Roofing Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Asphalt Shingle Roofing Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exact shingle bundles, roofing squares, underlayment rolls, starter strips, ridge caps, and roofing nails needed for your roof replacement.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Roof Footprint &amp; Slope Dimensions
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Building Base Length (Feet)</label>
+        <input type="number" id="baseLength" placeholder="e.g. 40" value="40" min="1" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <p class="text-xs text-gray-400 mt-1">Ground length including eave overhang</p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Building Base Width (Feet)</label>
+        <input type="number" id="baseWidth" placeholder="e.g. 30" value="30" min="1" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <p class="text-xs text-gray-400 mt-1">Ground width including eave overhang</p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Roof Pitch Slope (X / 12)</label>
+        <select id="roofPitch" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.031">3 / 12 pitch (Low slope — 1.031x)</option>
+          <option value="1.054">4 / 12 pitch (Standard — 1.054x)</option>
+          <option value="1.083">5 / 12 pitch (Standard — 1.083x)</option>
+          <option value="1.118" selected>6 / 12 pitch (Most common — 1.118x)</option>
+          <option value="1.158">7 / 12 pitch (Moderate — 1.158x)</option>
+          <option value="1.202">8 / 12 pitch (Steep — 1.202x)</option>
+          <option value="1.250">9 / 12 pitch (Steep — 1.250x)</option>
+          <option value="1.302">10 / 12 pitch (Very steep — 1.302x)</option>
+          <option value="1.414">12 / 12 pitch (45° angle — 1.414x)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Roof Complexity &amp; Material Options
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Roof Type &amp; Waste Factor</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.10" selected>Simple Gable Roof (10% waste)</option>
+          <option value="1.15">Hip Roof or Valleys (15% waste)</option>
+          <option value="1.20">Complex Roof w/ Dormers (20% waste)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Underlayment Type</label>
+        <select id="underlaymentType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1000" selected>Synthetic Underlayment (1,000 sq ft/roll)</option>
+          <option value="432">15 lb Felt Paper (432 sq ft/roll)</option>
+          <option value="216">30 lb Felt Paper (216 sq ft/roll)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">High-Wind Fastening?</label>
+        <select id="nailRate" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="320" selected>Standard Fastening (4 nails / shingle)</option>
+          <option value="480">High Wind Zone (6 nails / shingle)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Roofing Takeoff →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Roofing Material Order Sheet</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none md:col-span-2">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_bundles">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Shingle Bundles to Purchase</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_squares">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_underlayment">—</div>
+        <div class="text-xs text-gray-500 mt-1">Underlayment Rolls</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_totalArea">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Roof Sq Ft</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <h3 class="text-sm font-semibold text-gray-900 mb-1">Starter Strips (Eaves &amp; Gables)</h3>
+        <p class="text-xs text-gray-600" id="r_starter">—</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <h3 class="text-sm font-semibold text-gray-900 mb-1">Ridge Cap Shingles</h3>
+        <p class="text-xs text-gray-600" id="r_ridgeCap">—</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <h3 class="text-sm font-semibold text-gray-900 mb-1">Roofing Nails (5 lb Boxes)</h3>
+        <p class="text-xs text-gray-600" id="r_nails">—</p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">Order Details Summary</h3>
+      <p class="text-xs text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Roofing Takeoff
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to accurately estimate materials for a roof replacement:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Building Footprint:</strong> Measure the ground length and width of the home in feet, including horizontal overhangs.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Roof Pitch:</strong> Choose your roof pitch (e.g. 6/12 pitch). The calculator multiplies flat area by the pitch multiplier to get actual sloped surface area.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Set Waste Factor:</strong> Choose 10% for simple gable roofs, 15% for hip roofs, or 20% for complex roofs with dormers and valleys.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Calculate &amp; Copy List:</strong> Hit calculate to get shingle bundle counts, underlayment rolls, starter strips, and nails. Use the Copy button for easy ordering!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Building Code &amp; Trade Best Practices</h2>
+    <div class="space-y-4 text-sm text-gray-700">
+      <p><strong>Roofing Squares Definition:</strong> In North American roofing, 1 "Square" equals exactly 100 square feet of roof surface. Standard 3-tab and dimensional architectural shingles are packaged at 3 bundles per square.</p>
+      <p><strong>Starter Strips:</strong> Starter shingles must be installed along all eave lines and gable rake edges to prevent wind uplift. Never skip starter strips on eaves.</p>
+      <p><strong>Underlayment Overlap:</strong> Synthetic and felt underlayment rolls must be installed horizontally starting from the eaves upward, overlapping top seams by 2 to 4 inches and end laps by 6 inches according to IRC Section R905.</p>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many bundles of shingles are in a square?</h3>
+        <p class="text-gray-600 text-sm">There are 3 bundles of standard 3-tab or architectural shingles in 1 roofing square (100 sq ft). Heavyweight specialty shingles may require 4 bundles per square.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many nails per shingle should I use?</h3>
+        <p class="text-gray-600 text-sm">Standard building code requires 4 roofing nails per shingle. In designated high-wind zones (over 110 mph), manufacturer warranties and IRC rules mandate 6 nails per shingle.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/roof-pitch-rafter" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Roof Pitch &amp; Rafter Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate rafter lengths, pitch angles, and bird's mouth notches.</div>
+      </a>
+      <a href="/calculators/drywall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Drywall Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate ceiling drywall sheets and joint compound.</div>
+      </a>
+      <a href="/calculators/paint-exterior" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Exterior Paint Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate paint gallons for exterior siding and trim.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    const baseLen = parseFloat(document.getElementById('baseLength').value);
+    const baseWid = parseFloat(document.getElementById('baseWidth').value);
+    const pitchMult = parseFloat(document.getElementById('roofPitch').value);
+    const wasteMult = parseFloat(document.getElementById('wasteFactor').value);
+    const underlaymentRollSqFt = parseFloat(document.getElementById('underlaymentType').value);
+    const nailsPerSquare = parseInt(document.getElementById('nailRate').value);
+
+    if (!baseLen || baseLen <= 0 || !baseWid || baseWid <= 0) return;
+
+    // Ground area
+    const flatArea = baseLen * baseWid;
+
+    // True roof surface area
+    const slopedArea = flatArea * pitchMult;
+
+    // Adjusted area with waste
+    const totalAreaWithWaste = Math.ceil(slopedArea * wasteMult);
+
+    // Roofing squares (100 sq ft each)
+    const squaresDecimal = totalAreaWithWaste / 100;
+    const totalSquares = Math.ceil(squaresDecimal);
+
+    // Bundles (3 bundles per square)
+    const totalBundles = totalSquares * 3;
+
+    // Underlayment rolls (+10% overlap waste)
+    const underlaymentRolls = Math.ceil((totalAreaWithWaste * 1.10) / underlaymentRollSqFt);
+
+    // Perimeter for starter strips = 2 * (len + wid)
+    const perimeterFt = Math.ceil(2 * (baseLen + baseWid));
+
+    // Ridge length = base length (for gable roof)
+    const ridgeFt = Math.ceil(baseLen);
+    const ridgeCapBundles = Math.ceil(ridgeFt / 35); // ~35 ft coverage per cap bundle
+
+    // Roofing nails (approx 320 to 480 nails per square, ~7,200 nails per 5lb box)
+    const totalNails = totalSquares * nailsPerSquare;
+    const nailBoxes = Math.ceil(totalNails / 1800); // 5lb box contains ~1,800 1-1/4" roofing nails
+
+    document.getElementById('r_bundles').innerText = `${totalBundles} Bundles`;
+    document.getElementById('r_squares').innerText = `(${squaresDecimal.toFixed(1)} Roofing Squares total)`;
+    document.getElementById('r_underlayment').innerText = `${underlaymentRolls} Rolls`;
+    document.getElementById('r_totalArea').innerText = `${totalAreaWithWaste.toLocaleString()} Sq Ft`;
+
+    document.getElementById('r_starter').innerText = `${perimeterFt} Linear Ft of starter strips needed`;
+    document.getElementById('r_ridgeCap').innerText = `${ridgeCapBundles} Ridge Cap Bundles (${ridgeFt} ft ridge)`;
+    document.getElementById('r_nails').innerText = `${totalNails.toLocaleString()} Nails (~${nailBoxes} 5-lb boxes)`;
+
+    document.getElementById('r_summary').innerText = `Roofing job requires ${totalSquares} squares (${totalBundles} shingle bundles), ${underlaymentRolls} underlayment rolls, ${perimeterFt} ft of eave/gable starter strips, and ${ridgeCapBundles} ridge cap bundles based on a ${baseLen}'×${baseWid}' footprint.`;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>

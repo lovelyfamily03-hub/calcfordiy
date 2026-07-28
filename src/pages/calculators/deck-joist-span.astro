@@ -1,0 +1,331 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Deck Joist Span & Beam Calculator — IRC Code Sizing | CalcForDIY"
+  description="Calculate maximum deck joist spans, beam dimensions, joist counts, and total lumber per IRC Table R507. Includes 12, 16, and 24-inch spacing."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Deck Joist Span and Beam Calculator",
+    "description": "Free deck framing calculator estimating max joist span, beam size, joist count, rim joist lumber, and linear feet based on IRC Table R507 standards.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How far can a 2x8 joist span on a deck?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per IRC Table R507.6, a 2x8 Southern Pine or Douglas Fir deck joist spaced 16 inches on-center can span up to 13 feet 1 inch without an overhang. Spaced 12 inches on-center, a 2x8 can span up to 14 feet 2 inches."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is standard joist spacing for a deck?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "16 inches on-center is the industry standard for traditional wood deck boards. If you are installing composite decking (like Trex or TimberTech) diagonally at a 45-degree angle, IRC code mandates 12-inch on-center joist spacing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you calculate the number of deck joists needed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To calculate deck joists, convert total deck width to inches, divide by joist spacing (e.g. 16 inches), and add 1 for the end joist. (Deck Width Inches / 16) + 1 = Joist Count."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Deck Joist Span Calculator", "item": "https://calcfordiy.com/calculators/deck-joist-span" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Deck Joist Span &amp; Beam Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Deck Joist Span &amp; Beam Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate allowable joist spans per IRC Table R507 building code, exact joist counts, beam sizing, and total framing lumber needed for your deck.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Deck Framing Dimensions
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Deck Length / Projection (Feet)</label>
+        <input type="number" id="deckLength" placeholder="e.g. 14" value="14" min="1" max="100" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <p class="text-xs text-gray-400 mt-1">Distance out from ledger to beam line</p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Deck Width (Feet)</label>
+        <input type="number" id="deckWidth" placeholder="e.g. 20" value="20" min="1" max="100" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <p class="text-xs text-gray-400 mt-1">Parallel width along house wall</p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Joist Lumber Size</label>
+        <select id="joistSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="2x6">2x6 Treated Pressure Lumber</option>
+          <option value="2x8" selected>2x8 Treated Pressure Lumber (Standard)</option>
+          <option value="2x10">2x10 Treated Pressure Lumber</option>
+          <option value="2x12">2x12 Treated Pressure Lumber</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Spacing &amp; Code Load Settings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Joist Spacing On-Center</label>
+        <select id="joistSpacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="16" selected>16" On-Center (Standard Wood / Composite)</option>
+          <option value="12">12" On-Center (45° Diagonal Decking / Composite)</option>
+          <option value="24">24" On-Center (Light Utility / Heavy 2x Decking)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Wood Species Type</label>
+        <select id="woodSpecies" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="SYP" selected>Southern Yellow Pine (Highest Strength)</option>
+          <option value="DF">Douglas Fir / Larch</option>
+          <option value="HF">Hem-Fir / Spruce-Pine-Fir</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Design Live Load</label>
+        <select id="liveLoad" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="40" selected>40 PSF Live Load (Standard Residential IRC)</option>
+          <option value="50">50 PSF Live Load (Heavy Snow / Commercial)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Deck Framing &amp; Max Span →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Deck Framing Spec Sheet</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none md:col-span-2">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_maxSpan">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">IRC Max Allowable Joist Span</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_spanStatus">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_joistCount">—</div>
+        <div class="text-xs text-gray-500 mt-1">Floor Joists Needed</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_linearFeet">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Framing Linear Feet</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <h3 class="text-sm font-semibold text-gray-900 mb-1">Recommended Beam Sizing (Drop Beam)</h3>
+        <p class="text-xs text-gray-600" id="r_beamSize">—</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <h3 class="text-sm font-semibold text-gray-900 mb-1">Joist Hangers &amp; Hardware</h3>
+        <p class="text-xs text-gray-600" id="r_hardware">—</p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">Framing Takeoff Summary</h3>
+      <p class="text-xs text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Framing Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to size your deck joists and calculate lumber per building code:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Deck Projection &amp; Width:</strong> Length is the joist span distance from the house ledger to the support beam line. Width is parallel to the house wall.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Joist Size &amp; Spacing:</strong> Select 2x8 or 2x10 joists. Standard 16" on-center spacing suits straight decking. Use 12" spacing for diagonal composite boards.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Verify IRC Max Span Code:</strong> Ensure your requested deck length does NOT exceed the calculated IRC max allowable span for that lumber size.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Calculate &amp; Purchase:</strong> Get total joist counts, rim joist board requirements, beam recommendations, and joist hangers!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">IRC Building Code Guidelines (Table R507.6)</h2>
+    <div class="space-y-4 text-sm text-gray-700">
+      <p><strong>Max Allowable Spans (Southern Pine, 40 PSF Live Load):</strong></p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>2x6 @ 16" OC:</strong> Max span = 9 ft 11 in</li>
+        <li><strong>2x8 @ 16" OC:</strong> Max span = 13 ft 1 in</li>
+        <li><strong>2x10 @ 16" OC:</strong> Max span = 16 ft 2 in</li>
+        <li><strong>2x12 @ 16" OC:</strong> Max span = 18 ft 0 in</li>
+      </ul>
+      <p><strong>Cantilever Overhang:</strong> Joist overhang past the support beam line is limited to 1/4 of the actual joist span distance (e.g. max 3 ft cantilever for a 12 ft span).</p>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What size joist do I need for a 12 foot deck span?</h3>
+        <p class="text-gray-600 text-sm">For a 12-foot deck span, 2x8 pressure-treated joists spaced 16 inches on-center are standard and compliant with IRC building code (max allowable span is 13' 1").</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What joist spacing is required for composite decking?</h3>
+        <p class="text-gray-600 text-sm">Most composite deck manufacturers (Trex, TimberTech, Fiberon) mandate 16-inch on-center spacing for straight perpendicular boards, and 12-inch on-center spacing if laying composite boards diagonally at a 45-degree angle.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/deck-boards" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Boards Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate deck board counts and picture frame borders.</div>
+      </a>
+      <a href="/calculators/stair-stringer" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Stair Stringer Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate stair stringer riser/tread notch cuts with live SVG diagram.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate cubic yards of concrete for deck footings and piers.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  // IRC Table R507.6 Max Spans (in feet) [size][spacing]
+  const ircSpanTable = {
+    '2x6':  { 12: 10.9, 16: 9.9,  24: 8.1 },
+    '2x8':  { 12: 14.1, 16: 13.1, 24: 10.7 },
+    '2x10': { 12: 18.0, 16: 16.1, 24: 13.2 },
+    '2x12': { 12: 21.0, 16: 18.0, 24: 14.7 }
+  };
+
+  function toFeetInches(totalFeet) {
+    const feet = Math.floor(totalFeet);
+    const inches = Math.round((totalFeet - feet) * 12);
+    if (inches === 12) return `${feet + 1}' 0"`;
+    return `${feet}' ${inches}"`;
+  }
+
+  function calculate() {
+    const deckLenFt = parseFloat(document.getElementById('deckLength').value);
+    const deckWidFt = parseFloat(document.getElementById('deckWidth').value);
+    const joistSize = document.getElementById('joistSize').value;
+    const spacingInches = parseInt(document.getElementById('joistSpacing').value);
+
+    if (!deckLenFt || deckLenFt <= 0 || !deckWidFt || deckWidFt <= 0) return;
+
+    // IRC Max Span
+    const maxSpanFt = ircSpanTable[joistSize][spacingInches];
+    const isCodeCompliant = deckLenFt <= maxSpanFt;
+
+    // Joist Count = (deckWidthInches / spacingInches) + 1 + 2 rim joists
+    const deckWidthInches = deckWidFt * 12;
+    const floorJoistCount = Math.ceil(deckWidthInches / spacingInches) + 1;
+    const totalJoistCount = floorJoistCount + 2; // +2 for double rim/end joists
+
+    // Total linear feet of joist lumber = (totalJoistCount * deckLenFt) + (2 * deckWidFt for band/rim joists)
+    const totalLinearFeet = Math.ceil(((totalJoistCount * deckLenFt) + (2 * deckWidFt)) * 1.10); // +10% waste
+
+    // Beam Sizing (double 2x10 or double 2x12 for 8-10 ft post spans)
+    const beamRecommendation = deckLenFt > 12 ? "Double 2x12 Beam (or Flush Beam w/ Hangers)" : "Double 2x10 Beam";
+
+    // Joist hangers count = floorJoistCount * 2 (one at ledger, one at beam)
+    const joistHangers = floorJoistCount * 2;
+
+    document.getElementById('r_maxSpan').innerText = toFeetInches(maxSpanFt);
+    document.getElementById('r_spanStatus').innerText = isCodeCompliant 
+      ? `✅ Compliant (${deckLenFt}' deck length ≤ ${toFeetInches(maxSpanFt)} max span)` 
+      : `⚠️ EXCEEDS CODE! (Use ${joistSize === '2x8' ? '2x10' : '2x12'} joists or add mid-beam)`;
+    
+    if (!isCodeCompliant) {
+      document.getElementById('r_maxSpan').className = "text-3xl font-black text-amber-600 print:text-gray-900";
+    } else {
+      document.getElementById('r_maxSpan').className = "text-3xl font-black text-blue-700 print:text-gray-900";
+    }
+
+    document.getElementById('r_joistCount').innerText = `${floorJoistCount} Joists`;
+    document.getElementById('r_linearFeet').innerText = `${totalLinearFeet} LF`;
+
+    document.getElementById('r_beamSize').innerText = `${beamRecommendation} mounted on 6x6 posts (spaced ≤ 8 ft apart)`;
+    document.getElementById('r_hardware').innerText = `${joistHangers} Heavy-Duty Joist Hangers (1-1/2" Simpson SDS nails)`;
+
+    document.getElementById('r_summary').innerText = `${deckLenFt}' × ${deckWidFt}' deck framing requires ${floorJoistCount} ${joistSize} joists spaced ${spacingInches}" OC. Max allowable IRC code span is ${toFeetInches(maxSpanFt)}. Total lumber required: ${totalLinearFeet} LF + ${joistHangers} joist hangers.`;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>
