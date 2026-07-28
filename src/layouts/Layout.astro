@@ -178,20 +178,65 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
 
         intersectionObserver.observe(resultsEl);
 
-        // ── Watch for results div being shown — fire GA engagement event ─────
+        // ── Ensure Copy Shopping List button is present on all calculators ───────
+        function ensureCopyButton(resDiv) {
+          if (!resDiv || resDiv.querySelector('.copy-list-btn, #copyBtn')) return;
+
+          var printBtn = resDiv.querySelector('#printBtn, button[onclick*="window.print"]');
+          if (printBtn) {
+            var parent = printBtn.parentElement;
+            if (parent && parent.classList.contains('grid')) {
+              var btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2';
+              btn.innerHTML = '📋 Copy Shopping List';
+              parent.insertBefore(btn, printBtn);
+            } else {
+              var grid = document.createElement('div');
+              grid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden';
+              printBtn.parentNode.insertBefore(grid, printBtn);
+
+              printBtn.classList.remove('hidden', 'mt-5', 'mt-4');
+              printBtn.style.display = '';
+
+              var btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2';
+              btn.innerHTML = '📋 Copy Shopping List';
+
+              grid.appendChild(btn);
+              grid.appendChild(printBtn);
+            }
+          } else {
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2 mt-5 print:hidden';
+            btn.innerHTML = '📋 Copy Shopping List';
+            resDiv.appendChild(btn);
+          }
+        }
+
+        // Run initially in case results is visible
+        ensureCopyButton(resultsEl);
+
+        // ── Watch for results div being shown — fire GA engagement event & ensure copy button ─────
         var mutationObserver = new MutationObserver(function () {
           var isHidden = resultsEl.classList.contains('hidden');
 
           if (isHidden) {
             floatBtn.classList.add('hidden');
-          } else if (!gaFired) {
-            // Results just became visible → fire GA4 engagement event
-            gaFired = true;
-            fireGA('calculator_used', {
-              page_title:    document.title,
-              page_location: window.location.href,
-              engagement_time_msec: 1000 // tells GA4 this session is engaged
-            });
+          } else {
+            ensureCopyButton(resultsEl);
+
+            if (!gaFired) {
+              // Results just became visible → fire GA4 engagement event
+              gaFired = true;
+              fireGA('calculator_used', {
+                page_title:    document.title,
+                page_location: window.location.href,
+                engagement_time_msec: 1000 // tells GA4 this session is engaged
+              });
+            }
           }
         });
 
