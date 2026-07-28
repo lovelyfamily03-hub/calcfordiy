@@ -156,6 +156,17 @@ import Layout from '../../layouts/Layout.astro';
       <p class="text-xs text-gray-600" id="r_onCenter">—</p>
     </div>
 
+    <!-- Live SVG Visual Diagram -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Accent Wall Visual Layout Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Auto-scaled layout</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
     <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
       🖨️ Print Spacing Guide
     </button>
@@ -278,7 +289,74 @@ import Layout from '../../layouts/Layout.astro';
 
     document.getElementById('r_onCenter').innerText = `Measure ${onCenterFraction} (${onCenterDecimal.toFixed(2)}" on-center) from center-of-batten to center-of-batten across your wall.`;
 
+    renderSVG(wallWidth, battenWidth, battenCount, clearGapDecimal, clearGapFraction, endStyle);
+
     document.getElementById('results').classList.remove('hidden');
+  }
+
+  function renderSVG(totalWidth, battenW, count, gapDec, gapFrac, endStyle) {
+    const container = document.getElementById('svgContainer');
+    const svgWidth = 550;
+    const svgHeight = 180;
+    const marginX = 25;
+    const marginY = 25;
+    const drawW = svgWidth - (2 * marginX);
+    const drawH = svgHeight - (2 * marginY);
+
+    // Scale factors
+    const scaleX = drawW / totalWidth;
+
+    let battenXPositions = [];
+    if (endStyle === 'corner') {
+      // First batten at 0, last batten at totalWidth - battenW
+      const gap = (totalWidth - (count * battenW)) / (count - 1);
+      for (let i = 0; i < count; i++) {
+        battenXPositions.push(i * (battenW + gap));
+      }
+    } else {
+      // Gaps on ends
+      const gap = (totalWidth - (count * battenW)) / (count + 1);
+      for (let i = 0; i < count; i++) {
+        battenXPositions.push(gap + i * (battenW + gap));
+      }
+    }
+
+    let battensSVG = '';
+    battenXPositions.forEach((pos, idx) => {
+      const x = marginX + (pos * scaleX);
+      const w = Math.max(battenW * scaleX, 4); // min 4px visibility
+      battensSVG += `<rect x="${x.toFixed(1)}" y="${marginY}" width="${w.toFixed(1)}" height="${drawH}" fill="#2563eb" rx="1" />`;
+    });
+
+    const gapDimensionText = `Gap: ${gapFrac}`;
+
+    const svgHTML = `
+      <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+        
+        <!-- Outer Wall Boundary -->
+        <rect x="${marginX}" y="${marginY}" width="${drawW}" height="${drawH}" fill="#ffffff" stroke="#94a3b8" stroke-width="2" />
+        
+        <!-- Top and Bottom Board Rails -->
+        <rect x="${marginX}" y="${marginY}" width="${drawW}" height="10" fill="#cbd5e1" />
+        <rect x="${marginX}" y="${marginY + drawH - 10}" width="${drawW}" height="10" fill="#cbd5e1" />
+
+        <!-- Vertical Battens -->
+        ${battensSVG}
+
+        <!-- Spacing Label -->
+        <text x="${svgWidth / 2}" y="${marginY + drawH / 2 + 4}" text-anchor="middle" font-size="12" font-weight="bold" fill="#0f172a" bg="#ffffff">
+          ${count} Battens • Clear ${gapDimensionText}
+        </text>
+      </svg>
+    `;
+
+    container.innerHTML = svgHTML;
   }
 
   document.addEventListener('DOMContentLoaded', () => {

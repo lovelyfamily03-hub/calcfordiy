@@ -151,6 +151,17 @@ import Layout from '../../layouts/Layout.astro';
       <p class="text-xs text-gray-600" id="r_summary">—</p>
     </div>
 
+    <!-- Live SVG Visual Diagram -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Picture Frame Box Layout Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Auto-scaled to specs</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
     <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
       🖨️ Print Box Layout Cut Sheet
     </button>
@@ -269,7 +280,63 @@ import Layout from '../../layouts/Layout.astro';
 
     document.getElementById('r_summary').innerText = `Your layout requires ${boxCount} identical boxes, each measuring ${boxWidthFrac} wide by ${boxHeightFrac} high (${boxWidthDecimal.toFixed(2)}" x ${boxHeightDecimal.toFixed(2)}"). Spaced ${sideGap}" from side walls/neighbors, and ${topBottomGap}" from top/bottom.`;
 
+    renderSVG(wallLength, sectionHeight, boxCount, sideGap, topBottomGap, boxWidthDecimal, boxHeightDecimal, boxWidthFrac, boxHeightFrac);
+
     document.getElementById('results').classList.remove('hidden');
+  }
+
+  function renderSVG(totalW, totalH, count, sideGap, topBottomGap, boxW, boxH, boxWFrac, boxHFrac) {
+    const container = document.getElementById('svgContainer');
+    const svgWidth = 550;
+    const svgHeight = 200;
+    const marginX = 25;
+    const marginY = 25;
+    const drawW = svgWidth - (2 * marginX);
+    const drawH = svgHeight - (2 * marginY);
+
+    const scaleX = drawW / totalW;
+    const scaleY = drawH / totalH;
+
+    const scaledTopGap = topBottomGap * scaleY;
+    const scaledBoxH = boxH * scaleY;
+
+    let boxesSVG = '';
+    for (let i = 0; i < count; i++) {
+      const boxX = marginX + ((sideGap + i * (boxW + sideGap)) * scaleX);
+      const scaledBoxW = boxW * scaleX;
+      boxesSVG += `
+        <rect x="${boxX.toFixed(1)}" y="${(marginY + scaledTopGap).toFixed(1)}" width="${scaledBoxW.toFixed(1)}" height="${scaledBoxH.toFixed(1)}" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="2" />
+        <rect x="${(boxX + 4).toFixed(1)}" y="${(marginY + scaledTopGap + 4).toFixed(1)}" width="${Math.max(scaledBoxW - 8, 2).toFixed(1)}" height="${Math.max(scaledBoxH - 8, 2).toFixed(1)}" fill="none" stroke="#93c5fd" stroke-width="1" stroke-dasharray="2" />
+      `;
+    }
+
+    const svgHTML = `
+      <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+        
+        <!-- Outer Wall Elevation Boundary -->
+        <rect x="${marginX}" y="${marginY}" width="${drawW}" height="${drawH}" fill="#ffffff" stroke="#64748b" stroke-width="2" />
+        
+        <!-- Chair Rail (Top) & Baseboard (Bottom) -->
+        <rect x="${marginX}" y="${marginY - 6}" width="${drawW}" height="6" fill="#334155" />
+        <rect x="${marginX}" y="${marginY + drawH}" width="${drawW}" height="8" fill="#334155" />
+
+        <!-- Picture Frame Boxes -->
+        ${boxesSVG}
+
+        <!-- Label -->
+        <text x="${svgWidth / 2}" y="${svgHeight - 6}" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">
+          ${count} Picture Frame Boxes • ${boxWFrac} W × ${boxHFrac} H (Gaps: ${sideGap}" sides, ${topBottomGap}" top/bot)
+        </text>
+      </svg>
+    `;
+
+    container.innerHTML = svgHTML;
   }
 
   document.addEventListener('DOMContentLoaded', () => {

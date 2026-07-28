@@ -197,6 +197,18 @@ import Layout from '../../layouts/Layout.astro';
     <p class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3 print:bg-gray-100 print:text-gray-700 print:border print:border-gray-200">
       <strong>Note:</strong> Plate lumber assumes 1 bottom plate and 2 top plates (standard IRC requirement). Plate calculation includes a 5% waste factor for trimming. 
     </p>
+
+    <!-- Live SVG Visual Diagram -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mt-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Wall Framing Elevation Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Auto-scaled to specs</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
     <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
       🖨️ Print or Save as PDF
     </button>
@@ -388,8 +400,80 @@ import Layout from '../../layouts/Layout.astro';
     document.getElementById('r_total').innerText = totalWithWaste;
     document.getElementById('r_plates').innerText = Math.ceil(platesWithWaste);
 
+    renderSVG(totalLenFtForPlates, spacing, totalFieldStuds, totalExtras, corners, doors, windows);
+
     document.getElementById('results').classList.remove('hidden');
     document.getElementById('printBtn').classList.remove('hidden');
+  }
+
+  function renderSVG(totalFt, spacing, fieldStuds, extras, corners, doors, windows) {
+    const container = document.getElementById('svgContainer');
+    const svgWidth = 550;
+    const svgHeight = 180;
+    const marginX = 25;
+    const marginY = 20;
+    const drawW = svgWidth - (2 * marginX);
+    const drawH = svgHeight - (2 * marginY);
+
+    const plateThickness = 6;
+    const studWidth = 5;
+
+    // Draw field studs evenly across drawW
+    let studsSVG = '';
+    const numStudsToDraw = Math.min(Math.max(fieldStuds, 2), 24);
+    const studGap = (drawW - studWidth) / (numStudsToDraw - 1);
+
+    for (let i = 0; i < numStudsToDraw; i++) {
+      const x = marginX + (i * studGap);
+      studsSVG += `<rect x="${x.toFixed(1)}" y="${marginY + (plateThickness * 2)}" width="${studWidth}" height="${drawH - (plateThickness * 3)}" fill="#cbd5e1" stroke="#475569" stroke-width="0.5" />`;
+    }
+
+    // Overlay extra framing for openings if present
+    let extrasSVG = '';
+    if (doors > 0) {
+      // Draw door opening representation
+      const doorX = marginX + (drawW * 0.4);
+      const doorW = 45;
+      extrasSVG += `
+        <rect x="${doorX}" y="${marginY + (plateThickness * 2)}" width="${doorW}" height="${drawH - (plateThickness * 3)}" fill="#ffffff" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3" />
+        <rect x="${doorX - studWidth}" y="${marginY + (plateThickness * 2)}" width="${studWidth}" height="${drawH - (plateThickness * 3)}" fill="#3b82f6" />
+        <rect x="${doorX + doorW}" y="${marginY + (plateThickness * 2)}" width="${studWidth}" height="${drawH - (plateThickness * 3)}" fill="#3b82f6" />
+        <!-- Header -->
+        <rect x="${doorX - studWidth}" y="${marginY + (plateThickness * 2)}" width="${doorW + (studWidth * 2)}" height="12" fill="#1e40af" />
+        <text x="${doorX + (doorW/2)}" y="${marginY + (drawH/2) + 4}" text-anchor="middle" font-size="9" font-weight="bold" fill="#ef4444">DOOR</text>
+      `;
+    }
+
+    const svgHTML = `
+      <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+        
+        <!-- Double Top Plate -->
+        <rect x="${marginX}" y="${marginY}" width="${drawW}" height="${plateThickness}" fill="#334155" />
+        <rect x="${marginX}" y="${marginY + plateThickness}" width="${drawW}" height="${plateThickness}" fill="#475569" />
+
+        <!-- Vertical Field Studs -->
+        ${studsSVG}
+
+        <!-- Extras (Doors/Windows Headers) -->
+        ${extrasSVG}
+
+        <!-- Single Bottom Plate -->
+        <rect x="${marginX}" y="${marginY + drawH - plateThickness}" width="${drawW}" height="${plateThickness}" fill="#334155" />
+
+        <!-- Dimension Label -->
+        <text x="${svgWidth / 2}" y="${svgHeight - 2}" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">
+          ${totalFt.toFixed(1)} Linear Ft Wall • Studs ${spacing}" O.C. (${fieldStuds} Field + ${extras} Corner/Opening Studs)
+        </text>
+      </svg>
+    `;
+
+    container.innerHTML = svgHTML;
   }
 
   document.addEventListener('DOMContentLoaded', function () {
