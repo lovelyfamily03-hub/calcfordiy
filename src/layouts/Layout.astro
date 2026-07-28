@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 const { title, description, noindex = false } = Astro.props;
+const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro.url.pathname !== '/calculators/' && Astro.url.pathname !== '/calculators';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +62,20 @@ const { title, description, noindex = false } = Astro.props;
     <main class="max-w-5xl mx-auto px-4 py-8">
       <slot />
     </main>
+
+    {isCalculatorPage && (
+      <div class="max-w-5xl mx-auto px-4 mt-12 print:hidden">
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 text-sm text-amber-900 shadow-sm flex items-start gap-3">
+          <span class="text-xl shrink-0">⚠️</span>
+          <div>
+            <h4 class="font-bold text-amber-950 mb-1">Disclaimer &amp; DIY Safety Notice</h4>
+            <p class="text-xs text-amber-900 leading-relaxed">
+              While we have performed strict due diligence in researching building codes, manufacturer specifications, and material formulas, CalcForDIY bears no responsibility or liability for the use of these tools. Human or machine errors are real—typing mistakes or improper job site measurements can lead to undesirable consequences and material waste. All calculations are estimates intended for planning purposes only; use them at your own risk and responsibility. Always follow the golden rule of craftsmanship: <strong>"Measure seven times, cut once."</strong> Verify all measurements and consult licensed professionals or local building officials before purchasing materials or executing structural, electrical, or plumbing work.
+            </p>
+          </div>
+        </div>
+      </div>
+    )}
 
     <footer class="border-t border-gray-200 mt-16 px-4 py-10 text-sm text-gray-500 print:hidden">
       <div class="max-w-5xl mx-auto">
