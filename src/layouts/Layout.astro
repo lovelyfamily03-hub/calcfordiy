@@ -140,10 +140,29 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
       document.addEventListener('DOMContentLoaded', function () {
         var resultsEl = document.getElementById('results');
         var floatBtn = document.getElementById('floatBtn');
+        var calcBtn  = document.getElementById('calcBtn');
+        var gaFired  = false; // fire once per page load
+
+        // ── GA4 helper ──────────────────────────────────────────────────────
+        function fireGA(eventName, params) {
+          if (typeof gtag === 'function') {
+            gtag('event', eventName, params);
+          }
+        }
+
+        // ── Track "Calculate" button click ───────────────────────────────────
+        if (calcBtn) {
+          calcBtn.addEventListener('click', function () {
+            fireGA('calculate_button_click', {
+              page_title:    document.title,
+              page_location: window.location.href
+            });
+          });
+        }
 
         if (!resultsEl || !floatBtn) return;
 
-        // Watch results div visibility in viewport
+        // ── Watch results div visibility in viewport ─────────────────────────
         var intersectionObserver = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (resultsEl.classList.contains('hidden')) {
@@ -158,10 +177,20 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
 
         intersectionObserver.observe(resultsEl);
 
-        // Watch for results div being shown or hidden by calculator JS
+        // ── Watch for results div being shown — fire GA engagement event ─────
         var mutationObserver = new MutationObserver(function () {
-          if (resultsEl.classList.contains('hidden')) {
+          var isHidden = resultsEl.classList.contains('hidden');
+
+          if (isHidden) {
             floatBtn.classList.add('hidden');
+          } else if (!gaFired) {
+            // Results just became visible → fire GA4 engagement event
+            gaFired = true;
+            fireGA('calculator_used', {
+              page_title:    document.title,
+              page_location: window.location.href,
+              engagement_time_msec: 1000 // tells GA4 this session is engaged
+            });
           }
         });
 
