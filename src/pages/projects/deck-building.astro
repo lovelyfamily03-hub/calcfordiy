@@ -1,0 +1,123 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Deck Footings & Concrete Piers",
+    description: "Determine post hole depth, hole diameter, and Quikrete 80-lb concrete bag counts for footings below the frost line.",
+    calculatorName: "Concrete Fence Post & Pier Calculator",
+    href: "/calculators/concrete-fence-post",
+    icon: "🕳️"
+  },
+  {
+    stepNumber: 2,
+    title: "Joist Spans & Beam Sizing",
+    description: "Check allowable joist spans per IRC Table R507 building code, select joist size (2x8 vs 2x10), and size support beams.",
+    calculatorName: "Deck Joist Span Calculator",
+    href: "/calculators/deck-joist-span",
+    icon: "📐"
+  },
+  {
+    stepNumber: 3,
+    title: "Decking Boards & Border Trim",
+    description: "Calculate 5/4x6 or 2x6 deck board counts for straight or diagonal patterns, including picture-frame borders.",
+    calculatorName: "Deck Boards Calculator",
+    href: "/calculators/deck-boards",
+    icon: "🪵"
+  },
+  {
+    stepNumber: 4,
+    title: "Stair Stringer Notch Cut Diagram",
+    description: "Calculate stair riser height, tread depth, stringer length, and view an interactive SVG notch cut diagram.",
+    calculatorName: "Stair Stringer Cut Calculator",
+    href: "/calculators/stair-stringer",
+    icon: "🪜"
+  }
+];
+---
+
+<Layout
+  title="Deck Building Project Hub — Step-by-Step Framing Workflow | CalcForDIY"
+  description="Follow a 4-step deck construction workflow: concrete footings, joist span code sizing, deck boards, and stair stringer notch diagrams."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Plan and Calculate Deck Construction Materials",
+    "description": "A 4-step DIY workflow for calculating deck footings, joist spans, deck boards, and stair stringers per building code.",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Calculate Concrete Footings", "url": "https://calcfordiy.com/calculators/concrete-fence-post" },
+      { "@type": "HowToStep", "position": 2, "name": "Size Deck Joists and Beams", "url": "https://calcfordiy.com/calculators/deck-joist-span" },
+      { "@type": "HowToStep", "position": 3, "name": "Calculate Deck Boards", "url": "https://calcfordiy.com/calculators/deck-boards" },
+      { "@type": "HowToStep", "position": 4, "name": "Cut Stair Stringers", "url": "https://calcfordiy.com/calculators/stair-stringer" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Deck Building Hub", "item": "https://calcfordiy.com/projects/deck-building" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span>Deck Building Hub</span>
+  </div>
+
+  <div class="mb-8 bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="text-3xl">🪵</span>
+      <h1 class="text-3xl font-bold text-gray-900">Deck Building Project Hub</h1>
+    </div>
+    <p class="text-gray-600 text-lg leading-relaxed max-w-3xl">
+      Building a deck involves 4 critical structural phases: footings, framing, decking surface, and stairs. Follow this sequential workflow to calculate exact material takeoffs for every stage per IRC building code.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:border-blue-300 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-start gap-4">
+          <div class="bg-blue-600 text-white font-bold w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-lg shadow-sm">
+            {step.stepNumber}
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xl">{step.icon}</span>
+              <h2 class="text-xl font-bold text-gray-900">{step.title}</h2>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed max-w-2xl">
+              {step.description}
+            </p>
+          </div>
+        </div>
+
+        <a href={step.href} class="shrink-0 w-full md:w-auto bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold px-5 py-3 rounded-lg border border-blue-200 transition-colors text-sm flex items-center justify-center gap-2">
+          Use {step.calculatorName} →
+        </a>
+      </div>
+    ))}
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">Deck Construction Pro Tips &amp; Building Code</h2>
+    <div class="space-y-3 text-sm text-gray-700">
+      <p><strong>Ledger Board Flashing:</strong> Always install Z-flashing over house ledger boards to prevent rot behind the siding.</p>
+      <p><strong>Fastener Specification:</strong> Use hot-dipped galvanized or 304/316 stainless steel screws and joist hanger nails for pressure-treated lumber (ACQ chemicals corrode standard steel fast).</p>
+    </div>
+  </div>
+
+</Layout>

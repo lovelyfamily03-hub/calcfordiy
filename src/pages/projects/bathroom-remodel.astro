@@ -1,0 +1,124 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Shower Tile & Niche Coverage",
+    description: "Calculate wall tile square footage, shower pan floor tile, curb tile, niche cutouts, and 15% waste factor.",
+    calculatorName: "Shower Tile Calculator",
+    href: "/calculators/shower-tile",
+    icon: "🚿"
+  },
+  {
+    stepNumber: 2,
+    title: "Bathroom Wall Tile & Wainscot",
+    description: "Calculate accent wall tile square footage, tile counts, and perimeter trim pieces.",
+    calculatorName: "Bathroom Wall Tile Calculator",
+    href: "/calculators/bathroom-wall-tile",
+    icon: "🧱"
+  },
+  {
+    stepNumber: 3,
+    title: "Thinset Mortar Bags",
+    description: "Calculate 50-lb thinset mortar bags based on trowel notch size (1/2\" vs 1/4\") and tile format.",
+    calculatorName: "Thinset Mortar Calculator",
+    href: "/calculators/thinset",
+    icon: "🥣"
+  },
+  {
+    stepNumber: 4,
+    title: "Grout Bags & Joint Width",
+    description: "Calculate sanded or unsanded grout bag requirements based on tile dimensions and joint width (1/8\" vs 1/16\").",
+    calculatorName: "Grout Calculator",
+    href: "/calculators/grout",
+    icon: "🧹"
+  },
+  {
+    stepNumber: 5,
+    title: "Tankless Water Heater Sizing",
+    description: "Calculate required GPM flow rate and temperature rise for continuous hot water in showers.",
+    calculatorName: "Tankless Water Heater Calculator",
+    href: "/calculators/tankless-water-heater",
+    icon: "🔥"
+  }
+];
+---
+
+<Layout
+  title="Bathroom & Shower Remodel Hub — Step-by-Step Tiling Workflow | CalcForDIY"
+  description="Follow a 5-step bathroom remodel workflow: shower tile, wall tile, thinset mortar, grout bags, and tankless water heater sizing."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate Bathroom Tiling and Remodel Materials",
+    "description": "A 5-step DIY workflow for calculating shower tile, wall tile, thinset mortar bags, grout, and water heater flow.",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Calculate Shower Tile", "url": "https://calcfordiy.com/calculators/shower-tile" },
+      { "@type": "HowToStep", "position": 2, "name": "Calculate Bathroom Wall Tile", "url": "https://calcfordiy.com/calculators/bathroom-wall-tile" },
+      { "@type": "HowToStep", "position": 3, "name": "Calculate Thinset Mortar", "url": "https://calcfordiy.com/calculators/thinset" },
+      { "@type": "HowToStep", "position": 4, "name": "Calculate Grout Bags", "url": "https://calcfordiy.com/calculators/grout" },
+      { "@type": "HowToStep", "position": 5, "name": "Size Tankless Water Heater", "url": "https://calcfordiy.com/calculators/tankless-water-heater" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Bathroom Remodel Hub", "item": "https://calcfordiy.com/projects/bathroom-remodel" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span>Bathroom Remodel Hub</span>
+  </div>
+
+  <div class="mb-8 bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="text-3xl">🛁</span>
+      <h1 class="text-3xl font-bold text-gray-900">Bathroom &amp; Shower Remodel Hub</h1>
+    </div>
+    <p class="text-gray-600 text-lg leading-relaxed max-w-3xl">
+      Tile installations demand exact TCNA-compliant material estimates for tile, thinset mortar, and grout. Follow this 5-step workflow to plan your bathroom renovation.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:border-blue-300 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-start gap-4">
+          <div class="bg-blue-600 text-white font-bold w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-lg shadow-sm">
+            {step.stepNumber}
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xl">{step.icon}</span>
+              <h2 class="text-xl font-bold text-gray-900">{step.title}</h2>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed max-w-2xl">
+              {step.description}
+            </p>
+          </div>
+        </div>
+
+        <a href={step.href} class="shrink-0 w-full md:w-auto bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold px-5 py-3 rounded-lg border border-blue-200 transition-colors text-sm flex items-center justify-center gap-2">
+          Use {step.calculatorName} →
+        </a>
+      </div>
+    ))}
+  </div>
+
+</Layout>

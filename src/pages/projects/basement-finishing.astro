@@ -1,0 +1,124 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Wall Framing & Stud Spacing",
+    description: "Calculate field studs, corner studs, top/bottom plates, and opening framing for perimeter and partition walls.",
+    calculatorName: "Wall Framing Calculator",
+    href: "/calculators/wall-framing",
+    icon: "🪵"
+  },
+  {
+    stepNumber: 2,
+    title: "Drywall Sheets & Joint Compound",
+    description: "Estimate 4x8 or 4x12 drywall sheets for walls and ceiling, joint compound pails, and paper tape rolls.",
+    calculatorName: "Drywall Estimator Calculator",
+    href: "/calculators/drywall",
+    icon: "🧱"
+  },
+  {
+    stepNumber: 3,
+    title: "Subfloor Plywood / OSB Panels",
+    description: "Calculate 4x8 tongue-and-groove subfloor panels, subfloor adhesive tubes, and screw counts.",
+    calculatorName: "Subfloor Calculator",
+    href: "/calculators/subfloor",
+    icon: "📐"
+  },
+  {
+    stepNumber: 4,
+    title: "Laminate or Hardwood Flooring",
+    description: "Calculate flooring boxes based on room square footage, waste factor (8-10%), and foam underlayment rolls.",
+    calculatorName: "Laminate Flooring Calculator",
+    href: "/calculators/laminate-flooring",
+    icon: "🪵"
+  },
+  {
+    stepNumber: 5,
+    title: "Recessed Ceiling Can Lights",
+    description: "Determine exact recessed light count, spacing from walls, and light-to-light spacing for balanced ceiling illumination.",
+    calculatorName: "Recessed Lighting Calculator",
+    href: "/calculators/recessed-lights-living-room",
+    icon: "💡"
+  }
+];
+---
+
+<Layout
+  title="Basement & Room Finishing Hub — Step-by-Step Remodel Workflow | CalcForDIY"
+  description="Follow a 5-step basement finishing workflow: wall framing, drywall, subfloor, laminate/hardwood flooring, and recessed lighting."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Plan and Calculate Basement Remodeling Materials",
+    "description": "A 5-step DIY workflow for calculating framing studs, drywall sheets, subfloor OSB, laminate flooring, and recessed lighting.",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Calculate Wall Framing", "url": "https://calcfordiy.com/calculators/wall-framing" },
+      { "@type": "HowToStep", "position": 2, "name": "Calculate Drywall Sheets", "url": "https://calcfordiy.com/calculators/drywall" },
+      { "@type": "HowToStep", "position": 3, "name": "Calculate Subfloor Panels", "url": "https://calcfordiy.com/calculators/subfloor" },
+      { "@type": "HowToStep", "position": 4, "name": "Calculate Laminate Flooring", "url": "https://calcfordiy.com/calculators/laminate-flooring" },
+      { "@type": "HowToStep", "position": 5, "name": "Calculate Recessed Lighting", "url": "https://calcfordiy.com/calculators/recessed-lights-living-room" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Basement Finishing Hub", "item": "https://calcfordiy.com/projects/basement-finishing" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span>Basement Finishing Hub</span>
+  </div>
+
+  <div class="mb-8 bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="text-3xl">🔨</span>
+      <h1 class="text-3xl font-bold text-gray-900">Basement &amp; Room Finishing Hub</h1>
+    </div>
+    <p class="text-gray-600 text-lg leading-relaxed max-w-3xl">
+      Transforming unfinished space into living area requires precise material takeoffs for framing, drywall, subfloor, finish flooring, and ceiling lighting.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:border-blue-300 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-start gap-4">
+          <div class="bg-blue-600 text-white font-bold w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-lg shadow-sm">
+            {step.stepNumber}
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xl">{step.icon}</span>
+              <h2 class="text-xl font-bold text-gray-900">{step.title}</h2>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed max-w-2xl">
+              {step.description}
+            </p>
+          </div>
+        </div>
+
+        <a href={step.href} class="shrink-0 w-full md:w-auto bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold px-5 py-3 rounded-lg border border-blue-200 transition-colors text-sm flex items-center justify-center gap-2">
+          Use {step.calculatorName} →
+        </a>
+      </div>
+    ))}
+  </div>
+
+</Layout>
