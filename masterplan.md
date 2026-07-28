@@ -19,7 +19,6 @@
 5. **Disclaimer:** A universal safety disclaimer ("Measure seven times, cut once.") is globally injected into every calculator page via `Layout.astro`. Do NOT add individual disclaimers per page.
 6. **GA4 Events:** `calculate_button_click` and `calculator_used` events are globally fired from `Layout.astro`. Do NOT add per-page GA event code.
 7. **Contact Email:** All contact forms, mailto links, and privacy policy references must use `invictusetfortis@gmail.com`.
-8. **Ad Layout Buffer:** AdSense units must maintain a minimum 150px buffer from input controls on mobile to prevent accidental touch clicks and invalid traffic penalties.
 
 ---
 
@@ -38,7 +37,7 @@
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[x]` **Moat 1: Dynamic SVG Cut Diagrams** — Live interactive vector graphics drawing stair stringers, rafter cuts, and trim notches (Implemented on Stair Stringer tool).
+- `[ ]` **Moat 1: Dynamic SVG Cut Diagrams** — Live interactive vector graphics for framing, stringers, rafters, and trim layout (In Progress — live on Stair Stringer tool; expansion planned for Roof Pitch, Board & Batten, Wainscoting).
 - `[ ]` **Moat 2: One-Click `📋 Copy Shopping List` Button** — Plain text copy of exact material counts for Home Depot / Lowe's / SMS.
 - `[ ]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes (Homewyse hybrid).
 - `[ ]` **Moat 4: Project Workflow Hubs** — Grouping individual calculators into step-by-step project workflows ("Yard Drainage Hub", "Deck Building Hub", "Basement Finishing Hub").
