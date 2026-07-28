@@ -12,12 +12,14 @@
    - `src/pages/index.astro` (The main homepage)
    - `src/pages/calculators/index.astro` (The calculators directory page)
    *Failure to update both files will result in the calculator being hidden from the user.*
-2. **Calculator Content Structure:** Every calculator page MUST include a "How to Use This Calculator" section containing an ordered list (`<ol>`) of instructions. This is critical for SEO and user experience.
+2. **Calculator Content Architecture:** Every calculator page MUST follow the high-converting pillar structure:
+   `H1 → 2-sentence intro → Calculator Form (keep near top for mobile UX) → Result Card → How to Use (<ol>) → Trade Best Practices & Building Codes → Behind the Math → FAQ (JSON-LD FAQPage) → Related Calculators → Safety Disclaimer Banner → Footer`
 3. **Design System:** All calculators must strictly follow the UI, UX, and Schema architecture detailed in the `calculator_design_system.md` artifact.
 4. **Development Server:** When starting the dev server, use background mode: `astro dev --background`. Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 5. **Disclaimer:** A universal safety disclaimer ("Measure seven times, cut once.") is globally injected into every calculator page via `Layout.astro`. Do NOT add individual disclaimers per page.
 6. **GA4 Events:** `calculate_button_click` and `calculator_used` events are globally fired from `Layout.astro`. Do NOT add per-page GA event code.
 7. **Contact Email:** All contact forms, mailto links, and privacy policy references must use `invictusetfortis@gmail.com`.
+8. **Ad Layout Buffer:** AdSense units must maintain a minimum 150px buffer from input controls on mobile to prevent accidental touch clicks and invalid traffic penalties.
 
 ---
 
@@ -31,6 +33,15 @@
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
 - **GSC Status (Jul 28, 2026):** 69 pages indexed, no manual actions. Zero organic impressions — site is indexed but not yet ranking. Currently recovering from a brief Cloudflare robots.txt de-indexing event.
 - **GA4:** `calculator_used` and `calculate_button_click` events are live. Bounce rate previously 100% (now fixed).
+
+---
+
+## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
+
+- `[x]` **Moat 1: Dynamic SVG Cut Diagrams** — Live interactive vector graphics drawing stair stringers, rafter cuts, and trim notches (Implemented on Stair Stringer tool).
+- `[ ]` **Moat 2: One-Click `📋 Copy Shopping List` Button** — Plain text copy of exact material counts for Home Depot / Lowe's / SMS.
+- `[ ]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes (Homewyse hybrid).
+- `[ ]` **Moat 4: Project Workflow Hubs** — Grouping individual calculators into step-by-step project workflows ("Yard Drainage Hub", "Deck Building Hub", "Basement Finishing Hub").
 
 ---
 
@@ -142,7 +153,7 @@ All guides include JSON-LD schema: `Article`, `FAQPage`, `BreadcrumbList`.
 - `[ ]` Add calcfordiy.com to existing AdSense account (`invictusetfortis@gmail.com`)
 - `[ ]` Paste AdSense auto-ads code into Layout.astro head
 - `[ ]` Wait for site-level approval
-- `[ ]` After approval: manually place ads (below H1, between calc & results, after FAQ)
+- `[ ]` After approval: manually place ads (Unit 1: below results, Unit 2: mid-content, Unit 3: above related links)
 
 **Future Monetization Options (Month 3+)**
 - `[ ]` Amazon affiliate links — link to specific products in calculators
@@ -198,6 +209,9 @@ All guides include JSON-LD schema: `Article`, `FAQPage`, `BreadcrumbList`.
 - `[x]` "Compare two options" mode (AC and Furnace Cost calculators)
 - `[x]` GA4 engagement event tracking (`calculator_used`, `calculate_button_click`)
 - `[x]` Live SVG cut diagram (Stair Stringer Calculator)
+- `[ ]` One-click `📋 Copy Shopping List` button on result cards
+- `[ ]` Dual "DIY Material Cost" vs "Contractor Installed Cost" toggle
+- `[ ]` Project Workflow Hubs ("Yard Drainage Hub", "Deck Building Hub", "Basement Finishing Hub")
 - `[ ]` "Email my results"
 - `[ ]` Dark mode toggle
 - `[ ]` Unit switcher (metric/imperial)
