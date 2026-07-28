@@ -22,7 +22,8 @@ Consult these guides before working on related tasks:
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
 
 ## CalcForDIY Specific Rules
-- **READ THE MASTERPLAN:** Before doing anything else, you MUST read the `masterplan.md` file in the project root. It contains the complete roadmap, SEO strategy, and current status of all 40+ calculators on this site.
+- **READ THE MASTERPLAN & TODO:** Before doing anything else, you MUST read `masterplan.md` and `todo.md` in the project root. They contain the roadmap, SEO strategy, current status, and active task tracking.
+- **Track Progress in `todo.md` & `masterplan.md`:** Whenever you complete or adjust a task, feature, or calculator, you MUST update both `todo.md` and `masterplan.md` by marking the items as completed `[x]`.
 - **New Calculators:** Whenever you create a new calculator page in `src/pages/calculators/`, you MUST ALWAYS add a link to it in BOTH of the following directory arrays:
   1. `src/pages/index.astro` (The main homepage)
   2. `src/pages/calculators/index.astro` (The calculators directory page)
