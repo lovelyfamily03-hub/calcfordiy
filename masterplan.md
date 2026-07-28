@@ -25,13 +25,12 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Calculators live:** 54 calculators
+- **Calculators live:** 57 calculators
 - **SEO Guides live:** 9 guides (`src/pages/guides/`)
 - **Stub pages:** 0 remaining (all replaced)
 - **AdSense:** existing approved account, not yet added to this site
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
-- **GSC Status (Jul 28, 2026):** 70 pages indexed, no manual actions. Zero organic impressions — site is indexed but not yet ranking. Currently recovering from a brief Cloudflare robots.txt de-indexing event.
-- **GA4:** `calculator_used` and `calculate_button_click` events are live. Bounce rate previously 100% (now fixed).
+- **GSC Status (Jul 28, 2026):** 73 pages indexed, no manual actions. Zero organic impressions — site is indexed but not yet ranking. Currently recovering from a brief Cloudflare robots.txt de-indexing event.
 
 ---
 
@@ -51,7 +50,7 @@
 - `[x]` Confirm Google Analytics is firing (GA4 Realtime confirmed working)
 - `[x]` Add Google Search Console property — verified
 - `[x]` Submit sitemap in GSC — submitted
-- `[x]` Check GSC Coverage report — 69 pages indexed, no errors
+- `[x]` Check GSC Coverage report — 73 pages indexed, no errors
 - `[x]` Fix Cloudflare Managed robots.txt conflict (was blocking Googlebot — resolved Jul 27, 2026)
 - `[x]` Add GA4 engagement event tracking to fix 100% bounce rate
 
@@ -120,8 +119,12 @@
 - `[x]` Tankless Water Heater Sizing Calculator (Blue Ocean 1C)
 - `[x]` EV Charger Circuit & Wire Gauge Calculator (Phase 4A) — NEC 80% rule, AWG sizing, voltage drop
 
-**Structural & Outdoor**
+**Structural, Roofing & Fencing (Phase 4B)**
 - `[x]` Deck boards calculator
+- `[x]` Asphalt Shingle Roofing Estimator (`/calculators/asphalt-shingles`) (Phase 4B)
+- `[x]` Roof Pitch & Rafter Cut Calculator (`/calculators/roof-pitch-rafter`) (Phase 4B)
+- `[x]` Fence Picket & Board Calculator (`/calculators/fence-pickets`) (Phase 4B)
+- `[x]` Deck Joist Span & Beam Sizing Calculator (`/calculators/deck-joist-span`) (Phase 4B)
 
 **Seasonal Cluster**
 - `[x]` Christmas tree lights calculator
@@ -168,11 +171,11 @@ All guides include JSON-LD schema: `Article`, `FAQPage`, `BreadcrumbList`.
 - `[x]` Stair Stringer Cut Calculator with SVG diagram (`/calculators/stair-stringer`)
 - `[x]` Paver Base Gravel & Sand Calculator (`/calculators/paver-base-sand`)
 
-### Phase 4B — Roofing, Fencing & Outdoor Living
-- `[ ]` Asphalt Shingle Roofing Estimator — squares, pitch multiplier, ridge caps, underlayment (CPC: $8–$20)
-- `[ ]` Roof Pitch & Rafter Cut Calculator — plumb cut angle, bird's mouth notch, rafter length (SVG diagram)
-- `[ ]` Fence Picket & Board Calculator — pickets, posts, rails, gate posts, spacing gaps
-- `[ ]` Deck Joist Span & Beam Sizing Calculator — IRC Table R507, 2x6–2x12 sizing
+### Phase 4B — Roofing, Fencing & Outdoor Living (COMPLETE ✅)
+- `[x]` Asphalt Shingle Roofing Estimator — squares, pitch multiplier, ridge caps, underlayment (CPC: $8–$20)
+- `[x]` Roof Pitch & Rafter Cut Calculator — plumb cut angle, bird's mouth notch, rafter length (SVG diagram)
+- `[x]` Fence Picket & Board Calculator — pickets, posts, rails, gate posts, spacing gaps
+- `[x]` Deck Joist Span & Beam Sizing Calculator — IRC Table R507, 2x6–2x12 sizing
 - `[ ]` Pergola & Gazebo Lumber Estimator — post sizes, beam spans, rafter spacing, hardware
 
 ### Phase 4C — Energy, Insulation & Smart Home
