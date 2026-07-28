@@ -6,7 +6,7 @@
 
 ## 1. 🏆 Competitive Moats & Differentiators
 
-### 📐 Moat 1: Dynamic SVG Visual Cut & Layout Diagrams (7 of 15 Done)
+### 📐 Moat 1: Dynamic SVG Visual Cut & Layout Diagrams (COMPLETE ✅ 15 of 15 Live)
 - [x] Stair Stringer Cut Diagram (`/calculators/stair-stringer`)
 - [x] Board & Batten Elevation (`/calculators/board-and-batten`)
 - [x] Wainscoting Picture Frame Layout (`/calculators/wainscoting-layout`)
@@ -14,14 +14,14 @@
 - [x] Coffered Ceiling Grid Layout (`/calculators/coffered-ceiling`)
 - [x] Rebar Mesh Grid (`/calculators/rebar`)
 - [x] Roof Pitch & Rafter Bird's Mouth Notch (`/calculators/roof-pitch-rafter`)
-- [ ] French Drain Trench Cross-Section Diagram (`/calculators/french-drain`)
-- [ ] Retaining Wall Elevation & Geogrid Diagram (`/calculators/retaining-wall`)
-- [ ] Paver Sub-Base Cross-Section Diagram (`/calculators/paver-base-sand`)
-- [ ] Deck Joist Framing Plan Diagram (`/calculators/deck-joist-span`)
-- [ ] Fence Picket Elevation Diagram (`/calculators/fence-pickets`)
-- [ ] Subfloor Plywood Staggering Grid (`/calculators/subfloor`)
-- [ ] Recessed Lighting Ceiling Grid Diagram (`/calculators/recessed-lights-living-room`)
-- [ ] Shiplap Nickel-Gap Elevation Diagram (`/calculators/shiplap`)
+- [x] French Drain Trench Cross-Section Diagram (`/calculators/french-drain`)
+- [x] Retaining Wall Elevation & Geogrid Diagram (`/calculators/retaining-wall`)
+- [x] Paver Sub-Base Cross-Section Diagram (`/calculators/paver-base-sand`)
+- [x] Deck Joist Framing Plan Diagram (`/calculators/deck-joist-span`)
+- [x] Fence Picket Elevation Diagram (`/calculators/fence-pickets`)
+- [x] Subfloor Plywood Staggering Grid (`/calculators/subfloor`)
+- [x] Recessed Lighting Ceiling Grid Diagram (`/calculators/recessed-lights-living-room`)
+- [x] Shiplap Nickel-Gap Elevation Diagram (`/calculators/shiplap`)
 
 ### 📋 Moat 2: One-Click `📋 Copy Shopping List` Button (COMPLETE ✅)
 - [x] Global clipboard handler in `Layout.astro` with auto-injection across all calculator result cards.
