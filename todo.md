@@ -43,13 +43,13 @@
 
 ## 2. 🧮 Unbuilt High-Value Expansion Calculators
 
-### 🚀 Wave 1: Forum Research & High-CPC/Search Calculators
-- [ ] **NEC Electrical Conduit Fill & Wire Sizing Calculator** (`/calculators/conduit-fill`) — NEC Chapter 9 Table 1 40% fill limit for EMT, PVC, and Flex conduit with THHN wire gauge combinations (CPC: $6–$14).
-- [ ] **Blown-In Attic Insulation Bag & R-Value Calculator** (`/calculators/attic-insulation`) — Owens Corning / Greenfiber bags based on sq ft, current depth, and target R-38 / R-49 / R-60 energy zones.
-- [ ] **Sod Pallet & Roll Lawn Calculator** (`/calculators/sod-pallet`) — Pallets (450 sq ft), rolls/slabs, and 10% curve trimming waste.
-- [ ] **Compound Miter & Bevel Angle Calculator** (`/calculators/compound-miter`) — Wall corner angles (e.g. 88° or 92°) to exact saw Miter & Bevel angles for 38°/52° crown molding.
-- [ ] **Construction Tape Measure & Imperial Fraction Calculator** (`/calculators/construction-fraction`) — Fast adding, subtracting, multiplying feet, inches, 16ths/32nds.
-- [ ] **Septic Tank & Leach Field Drain Calculator** (`/calculators/septic-tank-sizing`) — Tank capacity (gallons) & trench length based on bedrooms/GPD (CPC: $10–$25).
+### 🚀 Wave 1: High-Search Forum Calculators (Reddit/Trade Audit - COMPLETE ✅ 63 Live Calculators)
+- [x] NEC Electrical Conduit Fill & Wire Sizing Calculator (`/calculators/conduit-fill`)
+- [x] Blown-In Attic Insulation Bag & R-Value Calculator (`/calculators/attic-insulation`)
+- [x] Sod Pallet & Lawn Roll Calculator (`/calculators/sod-pallet`)
+- [x] Compound Miter & Bevel Angle Calculator (`/calculators/compound-miter`)
+- [x] Construction Tape Measure & Imperial Fraction Calculator (`/calculators/construction-fraction`)
+- [x] Septic Tank & Leach Field Drain Calculator (`/calculators/septic-tank-sizing`)
 
 ### 🌊 Wave 2: Phase 4C–4F Masterplan Calculators
 - [ ] **Pergola & Gazebo Lumber Estimator** (`/calculators/pergola-lumber`) — Post size, beam spans, rafter spacing, shade slats, hardware.

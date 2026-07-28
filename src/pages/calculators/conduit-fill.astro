@@ -1,0 +1,380 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="NEC Conduit Fill Calculator — EMT, PVC & THHN Wire Sizing | CalcForDIY"
+  description="Calculate conduit fill percentage for EMT, PVC, and Flex conduit per NEC Chapter 9 Table 1. Check 40% fill limits for THHN electrical wires."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "NEC Conduit Fill Calculator",
+    "description": "Free electrical conduit fill calculator estimating max wire capacity for EMT, PVC Schedule 40, and Flexible Conduit per NEC code 40% fill rules.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the maximum allowed conduit fill per NEC code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per NEC Chapter 9, Table 1, the maximum fill capacity for conduit containing 3 or more conductors is 40% of the total internal conduit cross-sectional area. For 2 conductors it is 31%, and for 1 conductor it is 53%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many 12 AWG THHN wires can fit in a 1/2 inch EMT conduit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per NEC Chapter 9 Table 1 and Table 4, a 1/2-inch EMT conduit (0.122 sq in allowable 40% fill) can hold up to nine (9) 12 AWG THHN conductors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the ground wire count toward conduit fill?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Any equipment grounding conductor (bare or green insulated) running inside the conduit must be included when calculating total cross-sectional wire fill."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "NEC Conduit Fill Calculator", "item": "https://calcfordiy.com/calculators/conduit-fill" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>NEC Conduit Fill Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">NEC Conduit Fill &amp; Wire Sizing Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exact conduit fill percentage for EMT, PVC, or Flexible conduit per National Electrical Code (NEC Chapter 9 Table 1) 40% fill capacity rules.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Conduit Type &amp; Trade Size
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Conduit Type</label>
+        <select id="conduitType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="EMT" selected>EMT (Electrical Metallic Tubing — Thinwall)</option>
+          <option value="PVC40">PVC Schedule 40 (Rigid Nonmetallic)</option>
+          <option value="PVC80">PVC Schedule 80 (Heavy Wall Nonmetallic)</option>
+          <option value="FMC">FMC (Flexible Metal Conduit — Greenfield)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Conduit Trade Size</label>
+        <select id="tradeSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0.5">1/2 Inch Conduit</option>
+          <option value="0.75" selected>3/4 Inch Conduit</option>
+          <option value="1.0">1 Inch Conduit</option>
+          <option value="1.25">1-1/4 Inch Conduit</option>
+          <option value="1.5">1-1/2 Inch Conduit</option>
+          <option value="2.0">2 Inch Conduit</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Conductor / Wire Specifications (THHN/THWN)
+    </h2>
+
+    <div class="space-y-3 mb-6 bg-gray-50 p-4 rounded-lg">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
+        <div>
+          <label class="block text-xs font-medium text-gray-600 mb-1">Primary Wire Gauge</label>
+          <select id="w1_gauge" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option value="14">14 AWG THHN (15A Circuit)</option>
+            <option value="12" selected>12 AWG THHN (20A Circuit)</option>
+            <option value="10">10 AWG THHN (30A Circuit)</option>
+            <option value="8">8 AWG THHN (40A / EV)</option>
+            <option value="6">6 AWG THHN (50A / EV / Subpanel)</option>
+            <option value="4">4 AWG THHN (70A Subpanel)</option>
+            <option value="2">2 AWG THHN (90A Subpanel)</option>
+            <option value="0">1/0 AWG THHN (125A Feeder)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-600 mb-1">Number of Wires</label>
+          <input type="number" id="w1_count" placeholder="3" value="3" min="1" max="30" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        </div>
+        <div class="text-xs text-gray-500 pt-3">Hot &amp; Neutral Conductors</div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-center pt-2 border-t border-gray-200">
+        <div>
+          <label class="block text-xs font-medium text-gray-600 mb-1">Ground Wire Gauge</label>
+          <select id="w2_gauge" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option value="none">None (EMT metal conduit ground)</option>
+            <option value="14">14 AWG Bare / Green</option>
+            <option value="12" selected>12 AWG Bare / Green</option>
+            <option value="10">10 AWG Bare / Green</option>
+            <option value="8">8 AWG Bare / Green</option>
+            <option value="6">6 AWG Bare / Green</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-medium text-gray-600 mb-1">Ground Wires Count</label>
+          <input type="number" id="w2_count" placeholder="1" value="1" min="0" max="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        </div>
+        <div class="text-xs text-gray-500 pt-3">Equipment Grounding Conductor</div>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate NEC Conduit Fill →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Conduit Fill Code Analysis</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none md:col-span-2">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_fillPercent">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Conduit Fill Percentage</div>
+        <div class="text-xs font-bold mt-0.5" id="r_codeStatus">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_wireArea">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Wire Area (sq in)</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_maxAllowedArea">—</div>
+        <div class="text-xs text-gray-500 mt-1">Max 40% Allowed Area</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Diagram -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Conduit Fill Cross-Section Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Auto-scaled Vector Elevation</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">NEC Code Recommendation</h3>
+      <p class="text-xs text-gray-600" id="r_recommendation">—</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Conduit Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to ensure your electrical conduit meets National Electrical Code (NEC) fill rules:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select Conduit Type &amp; Size:</strong> Choose EMT, PVC Schedule 40, PVC Schedule 80, or Flex conduit, along with trade size (1/2" to 2").</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Enter Wire Gauges &amp; Counts:</strong> Select wire size (e.g. 12 AWG THHN) and total conductor count (including hot, neutral, and ground wires).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Verify NEC Code Compliance:</strong> Check if total fill is below the 40% maximum threshold for 3 or more conductors. View the live SVG diagram!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">NEC Code Standards (Chapter 9 Table 1)</h2>
+    <div class="space-y-4 text-sm text-gray-700">
+      <p><strong>Maximum Allowable Fill Limits:</strong></p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>1 Conductor:</strong> Max 53% conduit fill</li>
+        <li><strong>2 Conductors:</strong> Max 31% conduit fill</li>
+        <li><strong>3 or More Conductors:</strong> Max 40% conduit fill (Standard for circuit wiring)</li>
+      </ul>
+      <p><strong>Why Fill Limits Matter:</strong> Running too many current-carrying wires inside a tight conduit traps heat, degrading wire insulation over time and causing potential fire hazards or voltage drops.</p>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What size conduit do I need for three 10 AWG THHN wires?</h3>
+        <p class="text-gray-600 text-sm">Three 10 AWG THHN wires (0.0633 sq in total area) fit easily inside 1/2-inch EMT conduit (allowable 40% fill is 0.122 sq in), resulting in roughly 20.7% fill.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can I run Romex (NM-B cable) inside conduit?</h3>
+        <p class="text-gray-600 text-sm">While code allows short sleeves of conduit for physical protection, running long lengths of flat or round sheath Romex inside conduit is difficult and restricted. Individual THHN/THWN conductors are designed for conduit installations.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/ev-charger-wiring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">EV Charger Wire &amp; Circuit Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Sizing breaker, AWG wire, and voltage drop for EV chargers.</div>
+      </a>
+      <a href="/calculators/recessed-lights-garage" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Garage Recessed Lighting Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate garage ceiling can lights and circuit wiring.</div>
+      </a>
+      <a href="/calculators/generator-size" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Generator Size Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate running &amp; surge wattage for home backup power.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  // Wire areas (THHN sq in)
+  const wireAreaTable = {
+    '14': 0.0097,
+    '12': 0.0133,
+    '10': 0.0211,
+    '8': 0.0366,
+    '6': 0.0507,
+    '4': 0.0824,
+    '2': 0.1158,
+    '0': 0.1855
+  };
+
+  // 100% Total Internal Conduit Area (sq in) [Type][Size]
+  const conduitAreaTable = {
+    'EMT':   { '0.5': 0.304, '0.75': 0.533, '1.0': 0.864, '1.25': 1.496, '1.5': 2.036, '2.0': 3.356 },
+    'PVC40': { '0.5': 0.286, '0.75': 0.513, '1.0': 0.833, '1.25': 1.453, '1.5': 1.986, '2.0': 3.291 },
+    'PVC80': { '0.5': 0.216, '0.75': 0.419, '1.0': 0.694, '1.25': 1.247, '1.5': 1.735, '2.0': 2.921 },
+    'FMC':   { '0.5': 0.307, '0.75': 0.518, '1.0': 0.817, '1.25': 1.348, '1.5': 1.767, '2.0': 3.142 }
+  };
+
+  function calculate() {
+    const conduitType = document.getElementById('conduitType').value;
+    const tradeSize = document.getElementById('tradeSize').value;
+
+    const w1Gauge = document.getElementById('w1_gauge').value;
+    const w1Count = parseInt(document.getElementById('w1_count').value) || 0;
+
+    const w2Gauge = document.getElementById('w2_gauge').value;
+    const w2Count = parseInt(document.getElementById('w2_count').value) || 0;
+
+    if (w1Count <= 0) return;
+
+    // Total Wire Area
+    let totalWireArea = w1Count * wireAreaTable[w1Gauge];
+    if (w2Gauge !== 'none' && w2Count > 0) {
+      totalWireArea += w2Count * wireAreaTable[w2Gauge];
+    }
+
+    const totalConduitArea = conduitAreaTable[conduitType][tradeSize];
+    const fillPercent = (totalWireArea / totalConduitArea) * 100;
+
+    // Max 40% allowed area
+    const max40Area = totalConduitArea * 0.40;
+    const isCompliant = fillPercent <= 40.0;
+
+    document.getElementById('r_fillPercent').innerText = fillPercent.toFixed(1) + "%";
+    document.getElementById('r_wireArea').innerText = totalWireArea.toFixed(4) + " sq in";
+    document.getElementById('r_maxAllowedArea').innerText = max40Area.toFixed(4) + " sq in";
+
+    if (isCompliant) {
+      document.getElementById('r_codeStatus').innerText = "✅ NEC Code Compliant (≤ 40% Fill)";
+      document.getElementById('r_codeStatus').className = "text-xs font-bold text-green-700 mt-0.5";
+      document.getElementById('r_recommendation').innerText = `Your selected wires occupy ${fillPercent.toFixed(1)}% of the ${tradeSize}" ${conduitType} conduit. This meets NEC Chapter 9 requirements.`;
+    } else {
+      document.getElementById('r_codeStatus').innerText = "⚠️ EXCEEDS 40% NEC CODE LIMIT!";
+      document.getElementById('r_codeStatus').className = "text-xs font-bold text-red-600 mt-0.5";
+      document.getElementById('r_recommendation').innerText = `⚠️ Total wire fill is ${fillPercent.toFixed(1)}%, exceeding the 40% max allowed per NEC code. Upsize to a larger conduit (e.g. ${tradeSize === '0.5' ? '3/4"' : '1"'} conduit).`;
+    }
+
+    renderSVG(fillPercent, isCompliant, w1Count + (w2Gauge !== 'none' ? w2Count : 0), tradeSize);
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  function renderSVG(fillPct, compliant, totalWireCount, sizeStr) {
+    const container = document.getElementById('svgContainer');
+    if (!container) return;
+
+    const W = 500;
+    const H = 260;
+    const cx = W / 2;
+    const cy = H / 2;
+    const R = 85;
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="240" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+      <rect x="0" y="0" width="${W}" height="${H}" fill="#f7fafc" />
+
+      <!-- Outer Conduit Circle -->
+      <circle cx="${cx}" cy="${cy}" r="${R}" fill="#edf2f7" stroke="${compliant ? '#2b6cb0' : '#e53e3e'}" stroke-width="6" />
+      <circle cx="${cx}" cy="${cy}" r="${R - 6}" fill="none" stroke="#a0aec0" stroke-width="1.5" stroke-dasharray="4,4" />
+
+      <!-- Conduit Title -->
+      <text x="${cx}" y="25" font-size="12" fill="#1a202c" font-weight="bold" text-anchor="middle">${sizeStr}" Conduit Cross-Section (${fillPct.toFixed(1)}% Fill)</text>`;
+
+    // Render wires inside conduit
+    const wireR = Math.max(10, Math.min(22, (R * 0.6) / Math.sqrt(Math.max(1, totalWireCount))));
+    const numWires = Math.min(20, totalWireCount);
+    const ringRadius = R * 0.45;
+
+    for (let i = 0; i < numWires; i++) {
+      const angle = (i * 2 * Math.PI) / numWires;
+      const wx = cx + ringRadius * Math.cos(angle);
+      const wy = cy + ringRadius * Math.sin(angle);
+      const isGround = i === numWires - 1 && numWires > 2;
+
+      svg += `<circle cx="${wx}" cy="${wy}" r="${wireR}" fill="${isGround ? '#38a169' : '#3182ce'}" stroke="#1a202c" stroke-width="2" />`;
+      svg += `<circle cx="${wx}" cy="${wy}" r="${wireR - 4}" fill="${isGround ? '#68d391' : '#63b3ed'}" />`;
+    }
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>

@@ -25,9 +25,9 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Calculators live:** 57 calculators
+- **Calculators live:** 63 calculators
 - **SEO Guides live:** 9 guides (`src/pages/guides/`)
-- **Stub pages:** 0 remaining (all replaced)
+- **Project Workflow Hubs live:** 5 hubs (`src/pages/projects/`)
 - **AdSense:** existing approved account, not yet added to this site
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
 - **GSC Status (Jul 28, 2026):** 73 pages indexed, no manual actions. Zero organic impressions — site is indexed but not yet ranking. Currently recovering from a brief Cloudflare robots.txt de-indexing event.
@@ -36,8 +36,8 @@
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[x]` **Moat 1: Dynamic SVG Cut & Layout Diagrams** — Live interactive vector graphics for layout, elevation, and framing math (COMPLETE ✅ 15 of 15 visual calculators live).
-- `[x]` **Moat 2: One-Click `📋 Copy Shopping List` Button** — Global clipboard handler copying formatted material takeoffs for SMS, email, or store carts (COMPLETE ✅).
+- `[x]` **Status**: Phase 4B & Wave 1 Forum Expansion Complete (63 Live Interactive Calculators + 5 Project Workflow Hubs).
+**Latest Milestone Achieved**: Built 6 Wave 1 Forum Calculators (NEC Conduit Fill, Blown Attic Insulation, Sod Pallets, Compound Miter Angles, Construction Fractions, Septic Tank Sizing). Moat 1 (15 Dynamic SVG Diagrams), Moat 2 (Copy Shopping List), and Moat 4 (5 Workflow Hubs) are 100% complete!
 - `[ ]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes (Homewyse hybrid).
 - `[x]` **Moat 4: Project Workflow Hubs** — Interactive multi-step project flows under `/projects/` guiding users through 4–5 sequential calculators per project (COMPLETE ✅).
 

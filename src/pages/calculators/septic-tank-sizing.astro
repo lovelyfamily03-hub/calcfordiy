@@ -1,0 +1,226 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Septic Tank & Leach Field Calculator — Tank Gallons & Drain Lines | CalcForDIY"
+  description="Calculate required septic tank gallon capacity and leach field drain pipe linear footage per EPA & IRC building code bedroom sizing."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Septic Tank & Leach Field Calculator",
+    "description": "Free septic tank gallon capacity and leach field drain line calculator based on bedroom count and soil percolation rate per EPA code.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What size septic tank do I need for a 4 bedroom house?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per EPA and International Plumbing Code (IPC) standards, a 4-bedroom home requires a minimum 1,250-gallon septic tank (based on 600 gallons per day peak daily flow)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long should a leach field drain line be?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a standard 3-bedroom home (450 GPD) in sandy loam soil (perc rate 0.6 GPD/sq ft), you need roughly 250 to 300 linear feet of 2-foot wide gravel-and-perforated-pipe leach field trenches."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Septic Tank Calculator", "item": "https://calcfordiy.com/calculators/septic-tank-sizing" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Septic Tank &amp; Leach Field Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Septic Tank &amp; Leach Field Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate required septic tank gallon capacity and leach field drain trench linear footage based on bedroom count and soil percolation rate.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Home Sizing &amp; Daily Flow Rate
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Number of Bedrooms</label>
+        <select id="bedroomCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1">1 Bedroom (150 GPD)</option>
+          <option value="2">2 Bedrooms (300 GPD)</option>
+          <option value="3" selected>3 Bedrooms (450 GPD — Standard)</option>
+          <option value="4">4 Bedrooms (600 GPD)</option>
+          <option value="5">5 Bedrooms (750 GPD)</option>
+          <option value="6">6 Bedrooms (900 GPD)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Garbage Disposal / Heavy Water Fixtures</label>
+        <select id="garbageDisposal" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.0" selected>Standard Fixtures</option>
+          <option value="1.25">Includes Kitchen Garbage Disposal (+25% capacity)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Soil Percolation Rate (Perc Test)</label>
+        <select id="soilPerc" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0.8">Coarse Sand / Gravel (Fast perc rate)</option>
+          <option value="0.6" selected>Sandy Loam / Medium Soil (Standard perc rate)</option>
+          <option value="0.45">Clay Loam (Slower perc rate)</option>
+          <option value="0.3">Dense Heavy Clay (Slow perc rate)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Septic &amp; Leach Field Size →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Septic System Specification Sheet</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none md:col-span-2">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_tankGallons">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Min Septic Tank Size</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_dailyFlow">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_leachLinearFeet">—</div>
+        <div class="text-xs text-gray-500 mt-1">Leach Trench Linear Ft</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_trenchLines">—</div>
+        <div class="text-xs text-gray-500 mt-1">Drain Lines (2-ft Wide)</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">EPA &amp; IPC Plumbing Code Takeoff Summary</h3>
+      <p class="text-xs text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print System Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to estimate septic system tank and leach field requirements:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select Bedrooms:</strong> Sizing is based strictly on home bedroom count (150 gallons per day per bedroom), not current resident count.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Soil Perc Rate:</strong> Select your soil perc test result (sandy, loam, or clay).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Review Code Sizing:</strong> Get minimum tank gallon capacity (1,000 to 1,750 gallons) and required leach field trench linear footage!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Drainage &amp; Plumbing Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/french-drain" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">French Drain Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Perforated pipe, gravel fill, and fabric envelope.</div>
+      </a>
+      <a href="/calculators/pipe-slope" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Plumbing Pipe Slope Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">1/4" per foot sewer pipe slope drop elevation.</div>
+      </a>
+      <a href="/calculators/sump-pump-size" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Sump Pump Sizing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">HP rating and GPH flow for basement drainage.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  const baseTankSizes = { 1: 1000, 2: 1000, 3: 1000, 4: 1250, 5: 1500, 6: 1750 };
+
+  function calculate() {
+    const beds = parseInt(document.getElementById('bedroomCount').value);
+    const dispMult = parseFloat(document.getElementById('garbageDisposal').value);
+    const percRate = parseFloat(document.getElementById('soilPerc').value);
+
+    const baseGPD = beds * 150;
+    const totalGPD = baseGPD * dispMult;
+
+    // Minimum Tank Size
+    let tankGallons = baseTankSizes[beds];
+    if (dispMult > 1.0) tankGallons = Math.ceil(tankGallons * 1.20 / 250) * 250;
+
+    // Leach field square feet required = Total GPD / Perc Rate
+    const leachSqFt = totalGPD / percRate;
+
+    // Standard 2-ft wide trench linear feet = leachSqFt / 2
+    const totalLinearFeet = Math.ceil(leachSqFt / 2);
+
+    // Number of 60-ft trench lines
+    const lineCount = Math.ceil(totalLinearFeet / 60);
+    const lengthPerLine = Math.ceil(totalLinearFeet / lineCount);
+
+    document.getElementById('r_tankGallons').innerText = `${tankGallons.toLocaleString()} Gallon Tank`;
+    document.getElementById('r_dailyFlow').innerText = `(${totalGPD} GPD Daily Wastewater Flow)`;
+    document.getElementById('r_leachLinearFeet').innerText = `${totalLinearFeet} LF`;
+    document.getElementById('r_trenchLines').innerText = `${lineCount} Lines (${lengthPerLine}' ea)`;
+
+    document.getElementById('r_summary').innerText = `A ${beds}-bedroom house (${totalGPD} GPD peak flow) requires a minimum ${tankGallons.toLocaleString()} gallon septic tank and ${totalLinearFeet} linear feet of 2-ft wide leach field trenches (${lineCount} parallel lines at ${lengthPerLine} ft each).`;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>

@@ -1,0 +1,245 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Sod Pallet & Roll Calculator — Pallets, Rolls & Topsoil | CalcForDIY"
+  description="Calculate how many sod pallets, rolls/slabs, and topsoil cubic yards you need for a new lawn. Includes 10% curve trimming waste factor."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Sod Pallet and Roll Calculator",
+    "description": "Free lawn sod calculator estimating pallets (450 sq ft), individual rolls, slabs, and topsoil sub-base for new turf installation.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many square feet are in a pallet of sod?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard pallet of sod covers 450 to 500 square feet (450 sq ft is the industry standard baseline for 16x24 inch slabs or rolls)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many individual sod rolls are in a pallet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard 450 sq ft pallet contains 168 small slabs (16 inches by 24 inches = 2.67 sq ft per slab) or approximately 50 larger rolls."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much topsoil do I need before laying sod?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lay a 1 to 2-inch layer of rich topsoil or compost mix (roughly 3 to 6 cubic yards per 1,000 sq ft) over tilled soil before rolling out new sod for fast root establishment."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Sod Pallet Calculator", "item": "https://calcfordiy.com/calculators/sod-pallet" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Sod Pallet &amp; Roll Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Sod Pallet &amp; Roll Lawn Calculator</h1>
+    <p class="text-gray-600 text-lg">Calculate exact sod pallets, individual rolls/slabs, starter fertilizer, and topsoil sub-base needed to install a new lawn.</p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
+      Lawn Dimensions &amp; Trimming Waste
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Lawn Length (Feet)</label>
+        <input type="number" id="lawnLength" placeholder="e.g. 50" value="50" min="1" max="1000" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Lawn Width (Feet)</label>
+        <input type="number" id="lawnWidth" placeholder="e.g. 30" value="30" min="1" max="1000" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Trimming &amp; Curve Waste</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.05">5% Waste (Simple Square Lawn)</option>
+          <option value="1.10" selected>10% Waste (Standard Rectangle / Edges)</option>
+          <option value="1.15">15% Waste (Curved Garden Beds / Trees)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">2</span>
+      Pallet &amp; Slab Sizing
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 bg-gray-50 p-4 rounded-lg">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Pallet Size Coverage</label>
+        <select id="palletSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="450" selected>450 Sq Ft Pallet (168 slabs @ 16"×24" — Standard)</option>
+          <option value="500">500 Sq Ft Pallet (Large format)</option>
+          <option value="400">400 Sq Ft Pallet (Small format)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Topsoil Sub-Base Depth</label>
+        <select id="topsoilDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1">1 Inch Topsoil Prep Layer</option>
+          <option value="2" selected>2 Inches Topsoil Prep Layer (Recommended)</option>
+          <option value="0">No Topsoil Needed (Existing Soil Ready)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Sod Material Order →
+    </button>
+  </div>
+
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Sod Order Sheet</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none md:col-span-2">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_pallets">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Sod Pallets to Order</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_slabs">—</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_totalSqFt">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Sq Ft w/ Waste</div>
+      </div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_topsoil">—</div>
+        <div class="text-xs text-gray-500 mt-1">Topsoil Prep Base</div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4">
+      <h3 class="text-sm font-semibold text-gray-900 mb-1">Lawn Installation Summary</h3>
+      <p class="text-xs text-gray-600" id="r_summary">—</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Sod Order Sheet
+      </button>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to estimate sod pallets for your new lawn:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Lawn Area:</strong> Enter total lawn length and width in feet.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Set Trimming Waste:</strong> Use 10% waste for standard square/rectangular lawns or 15% for curved garden beds.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Calculate Pallets &amp; Topsoil:</strong> Get exact pallet counts (450 sq ft each), individual 16"x24" slab counts, and topsoil cubic yards!</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/topsoil" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Topsoil Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Cubic yards and bags for lawn topdressing.</div>
+      </a>
+      <a href="/calculators/fertilizer" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Fertilizer Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate NPK starter fertilizer lbs per 1,000 sq ft.</div>
+      </a>
+      <a href="/calculators/mulch" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Mulch Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Cubic yards of mulch for garden borders.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculate() {
+    const len = parseFloat(document.getElementById('lawnLength').value);
+    const wid = parseFloat(document.getElementById('lawnWidth').value);
+    const wasteMult = parseFloat(document.getElementById('wasteFactor').value);
+    const palletSqFt = parseFloat(document.getElementById('palletSize').value);
+    const topsoilDepthInches = parseFloat(document.getElementById('topsoilDepth').value);
+
+    if (!len || len <= 0 || !wid || wid <= 0) return;
+
+    const netSqFt = len * wid;
+    const totalSqFtWithWaste = Math.ceil(netSqFt * wasteMult);
+
+    const palletsCountDecimal = totalSqFtWithWaste / palletSqFt;
+    const palletsToOrder = Math.ceil(palletsCountDecimal);
+
+    // Individual slabs (16" x 24" = 2.67 sq ft per slab)
+    const slabsCount = Math.ceil(totalSqFtWithWaste / 2.67);
+
+    // Topsoil sub-base cu yds
+    const topsoilCuYds = ((netSqFt * (topsoilDepthInches / 12)) / 27).toFixed(1);
+
+    document.getElementById('r_pallets').innerText = `${palletsToOrder} Pallet${palletsToOrder > 1 ? 's' : ''}`;
+    document.getElementById('r_slabs').innerText = `(~${slabsCount.toLocaleString()} individual 16"×24" slabs)`;
+    document.getElementById('r_totalSqFt').innerText = `${totalSqFtWithWaste.toLocaleString()} sq ft`;
+    document.getElementById('r_topsoil').innerText = topsoilDepthInches > 0 ? `${topsoilCuYds} Cu Yds` : "None";
+
+    document.getElementById('r_summary').innerText = `${netSqFt.toLocaleString()} sq ft lawn requires ${palletsToOrder} sod pallet${palletsToOrder > 1 ? 's' : ''} (${totalSqFtWithWaste.toLocaleString()} sq ft total with waste) plus ${topsoilCuYds} cubic yards of topsoil sub-base.`;
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calcBtn').addEventListener('click', calculate);
+  });
+</script>
