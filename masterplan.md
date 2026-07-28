@@ -25,19 +25,19 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Calculators live:** 53 calculators
+- **Calculators live:** 54 calculators
 - **SEO Guides live:** 9 guides (`src/pages/guides/`)
 - **Stub pages:** 0 remaining (all replaced)
 - **AdSense:** existing approved account, not yet added to this site
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
-- **GSC Status (Jul 28, 2026):** 69 pages indexed, no manual actions. Zero organic impressions — site is indexed but not yet ranking. Currently recovering from a brief Cloudflare robots.txt de-indexing event.
+- **GSC Status (Jul 28, 2026):** 70 pages indexed, no manual actions. Zero organic impressions — site is indexed but not yet ranking. Currently recovering from a brief Cloudflare robots.txt de-indexing event.
 - **GA4:** `calculator_used` and `calculate_button_click` events are live. Bounce rate previously 100% (now fixed).
 
 ---
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[ ]` **Moat 1: Dynamic SVG Cut & Layout Diagrams** — Live interactive vector graphics for layout/framing math (In Progress — live on 4 tools: Stair Stringer, Board & Batten, Wainscoting Layout, and Wall Framing; expanding to Roof Pitch & Coffered Ceiling).
+- `[ ]` **Moat 1: Dynamic SVG Cut & Layout Diagrams** — Live interactive vector graphics for layout/framing math (In Progress — live on 7 tools: Stair Stringer, Board & Batten, Wainscoting Layout, Wall Framing, Coffered Ceiling, Rebar Mesh, and Roof Pitch & Rafter).
 - `[ ]` **Moat 2: One-Click `📋 Copy Shopping List` Button** — Plain text copy of exact material counts for Home Depot / Lowe's / SMS.
 - `[ ]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes (Homewyse hybrid).
 - `[ ]` **Moat 4: Project Workflow Hubs** — Grouping individual calculators into step-by-step project workflows ("Yard Drainage Hub", "Deck Building Hub", "Basement Finishing Hub").
