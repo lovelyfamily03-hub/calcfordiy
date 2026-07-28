@@ -142,6 +142,17 @@ import Layout from '../../layouts/Layout.astro';
       <p class="text-xs text-gray-600" id="r_summary">—</p>
     </div>
 
+    <!-- Live SVG Visual Diagram -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Coffered Ceiling Grid Layout Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Top-Down Plan View</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
     <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
       🖨️ Print Coffered Ceiling Cut List
     </button>
@@ -255,7 +266,65 @@ import Layout from '../../layouts/Layout.astro';
 
     document.getElementById('r_summary').innerText = `Your layout forms a grid of ${totalBoxes} coffered boxes. Main beams require ${widthBays + 1} runs along room length (${roomLengthFt} ft each) and ${lengthBays + 1} runs along room width (${roomWidthFt} ft each).`;
 
+    renderSVG(roomLengthFt, roomWidthFt, lengthBays, widthBays, beamWidthInches, boxLengthInches, boxWidthInches);
+
     document.getElementById('results').classList.remove('hidden');
+  }
+
+  function renderSVG(roomLenFt, roomWidFt, lenBays, widBays, beamInches, boxLenIn, boxWidIn) {
+    const container = document.getElementById('svgContainer');
+    const svgWidth = 550;
+    const svgHeight = 220;
+    const marginX = 25;
+    const marginY = 20;
+    const drawW = svgWidth - (2 * marginX);
+    const drawH = svgHeight - (2 * marginY);
+
+    const scaleX = drawW / roomLenFt;
+    const scaleY = drawH / roomWidFt;
+
+    // Draw recessed boxes
+    let boxesSVG = '';
+    const boxW_draw = (boxLenIn / 12) * scaleX;
+    const boxH_draw = (boxWidIn / 12) * scaleY;
+    const beamW_drawX = (beamInches / 12) * scaleX;
+    const beamH_drawY = (beamInches / 12) * scaleY;
+
+    for (let r = 0; r < lenBays; r++) {
+      for (let c = 0; c < widBays; c++) {
+        const x = marginX + beamW_drawX + r * (boxW_draw + beamW_drawX);
+        const y = marginY + beamH_drawY + c * (boxH_draw + beamH_drawY);
+
+        boxesSVG += `
+          <rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${boxW_draw.toFixed(1)}" height="${boxH_draw.toFixed(1)}" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="2" />
+          <rect x="${(x + 3).toFixed(1)}" y="${(y + 3).toFixed(1)}" width="${Math.max(boxW_draw - 6, 2).toFixed(1)}" height="${Math.max(boxH_draw - 6, 2).toFixed(1)}" fill="none" stroke="#bfdbfe" stroke-width="1" stroke-dasharray="2" />
+        `;
+      }
+    }
+
+    const svgHTML = `
+      <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+        
+        <!-- Room Outer Perimeter -->
+        <rect x="${marginX}" y="${marginY}" width="${drawW}" height="${drawH}" fill="#e2e8f0" stroke="#334155" stroke-width="3" />
+
+        <!-- Recessed Boxes Grid -->
+        ${boxesSVG}
+
+        <!-- Dimension Label -->
+        <text x="${svgWidth / 2}" y="${svgHeight - 4}" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">
+          ${roomLenFt}' × ${roomWidFt}' Room • Grid: ${lenBays} × ${widBays} (${lenBays * widBays} Coffered Boxes)
+        </text>
+      </svg>
+    `;
+
+    container.innerHTML = svgHTML;
   }
 
   document.addEventListener('DOMContentLoaded', () => {

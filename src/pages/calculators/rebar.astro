@@ -235,6 +235,17 @@ import Layout from '../../layouts/Layout.astro';
       <p class="text-sm text-gray-600" id="r_buying">—</p>
     </div>
 
+    <!-- Live SVG Visual Diagram -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Rebar Grid Mesh Layout Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Top-Down Plan View</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
     <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
       <strong>Tip:</strong> Set rebar at least 1.5 inches from the bottom of the slab — use rebar chairs or dobies to hold it off the ground. Rebar resting on dirt provides almost no reinforcement benefit.
     </p>
@@ -408,7 +419,64 @@ import Layout from '../../layouts/Layout.astro';
     document.getElementById('r_spacing_actual').textContent = spacingIn + '" spacing';
     document.getElementById('r_layout').textContent = layoutText;
     document.getElementById('r_buying').textContent = buying;
-    
+
+    renderSVG(len, wid, spacingIn, barsAlongWidth, barsAlongLength, gridPattern);
+  }
+
+  function renderSVG(slabLenFt, slabWidFt, spacingInches, numLengthBars, numWidthBars, pattern) {
+    var container = document.getElementById('svgContainer');
+    var svgWidth = 550;
+    var svgHeight = 220;
+    var marginX = 30;
+    var marginY = 25;
+    var drawW = svgWidth - (2 * marginX);
+    var drawH = svgHeight - (2 * marginY);
+
+    var scaleX = drawW / slabLenFt;
+    var scaleY = drawH / slabWidFt;
+
+    // Draw grid lines
+    var gridSVG = '';
+
+    // Bars along length direction (horizontal lines on plan)
+    var gapY = drawH / (numLengthBars + 1);
+    for (var i = 1; i <= numLengthBars; i++) {
+      var y = marginY + (i * gapY);
+      gridSVG += '<line x1="' + (marginX + 5) + '" y1="' + y.toFixed(1) + '" x2="' + (marginX + drawW - 5) + '" y2="' + y.toFixed(1) + '" stroke="#2563eb" stroke-width="2" />';
+    }
+
+    // Bars along width direction (vertical lines on plan) if two-way grid
+    if (pattern === 'both') {
+      var gapX = drawW / (numWidthBars + 1);
+      for (var j = 1; j <= numWidthBars; j++) {
+        var x = marginX + (j * gapX);
+        gridSVG += '<line x1="' + x.toFixed(1) + '" y1="' + (marginY + 5) + '" x2="' + x.toFixed(1) + '" y2="' + (marginY + drawH - 5) + '" stroke="#2563eb" stroke-width="2" />';
+      }
+    }
+
+    var svgHTML = `
+      <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+        
+        <!-- Slab Concrete Outline -->
+        <rect x="${marginX}" y="${marginY}" width="${drawW}" height="${drawH}" fill="#e2e8f0" stroke="#475569" stroke-width="3" rx="3" />
+
+        <!-- Rebar Steel Lines -->
+        ${gridSVG}
+
+        <!-- Label -->
+        <text x="${svgWidth / 2}" y="${svgHeight - 4}" text-anchor="middle" font-size="11" font-weight="bold" fill="#0f172a">
+          ${slabLenFt.toFixed(1)}' × ${slabWidFt.toFixed(1)}' Slab • ${spacingInches}" O.C. Grid Mesh (${pattern === 'both' ? '2-Way Rebar' : '1-Way Rebar'})
+        </text>
+      </svg>
+    `;
+
+    container.innerHTML = svgHTML;
   }
 
   document.addEventListener('DOMContentLoaded', function () {
