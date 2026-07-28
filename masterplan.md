@@ -37,7 +37,7 @@
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[ ]` **Moat 1: Dynamic SVG Cut Diagrams** — Live interactive vector graphics for framing, stringers, rafters, and trim layout (In Progress — live on Stair Stringer tool; expansion planned for Roof Pitch, Board & Batten, Wainscoting).
+- `[ ]` **Moat 1: Dynamic SVG Cut & Layout Diagrams** — Live interactive vector graphics for layout/framing math (In Progress — live on 4 tools: Stair Stringer, Board & Batten, Wainscoting Layout, and Wall Framing; expanding to Roof Pitch & Coffered Ceiling).
 - `[ ]` **Moat 2: One-Click `📋 Copy Shopping List` Button** — Plain text copy of exact material counts for Home Depot / Lowe's / SMS.
 - `[ ]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes (Homewyse hybrid).
 - `[ ]` **Moat 4: Project Workflow Hubs** — Grouping individual calculators into step-by-step project workflows ("Yard Drainage Hub", "Deck Building Hub", "Basement Finishing Hub").
