@@ -311,9 +311,24 @@ import Layout from '../../layouts/Layout.astro';
       <!-- Injected by JS -->
     </p>
 
-    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
-      🖨️ Print or Save as PDF
-    </button>
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3 border border-blue-200 mt-4">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Shiplap Wall Elevation Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Horizontal Board &amp; Gap Reveal</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Shiplap Cut Sheet
+      </button>
+    </div>
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
@@ -472,8 +487,52 @@ import Layout from '../../layouts/Layout.astro';
     
     document.getElementById('calc_note').innerHTML = noteHtml;
 
+    renderSVG(effectiveWidthInches, gapSize);
+
     document.getElementById('results').classList.remove('hidden');
-    document.getElementById('printBtn').classList.remove('hidden');
+  }
+
+  function renderSVG(faceIn, gapIn) {
+    const container = document.getElementById('svgContainer');
+    if (!container) return;
+
+    const W = 500;
+    const H = 260;
+    const wallW = 380;
+    const wallH = 180;
+    const wallX = (W - wallW) / 2;
+    const wallY = 40;
+
+    const rowsCount = Math.max(5, Math.min(10, Math.floor(wallH / 20)));
+    const boardH = wallH / rowsCount;
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="240" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+      <rect x="0" y="0" width="${W}" height="${H}" fill="#f7fafc" />
+
+      <!-- Top Trim / Crown -->
+      <rect x="${wallX - 8}" y="${wallY - 10}" width="${wallW + 16}" height="10" fill="#2d3748" rx="1" />
+
+      <!-- Bottom Baseboard -->
+      <rect x="${wallX - 8}" y="${wallY + wallH}" width="${wallW + 16}" height="15" fill="#2d3748" rx="1" />
+
+      <!-- Horizontal Shiplap Boards -->`;
+
+    for (let i = 0; i < rowsCount; i++) {
+      const by = wallY + (i * boardH);
+      const isEven = i % 2 === 0;
+      const boardFill = isEven ? "#edf2f7" : "#e2e8f0";
+
+      svg += `<rect x="${wallX}" y="${by}" width="${wallW}" height="${boardH - 2}" fill="${boardFill}" stroke="#cbd5e0" stroke-width="1" />`;
+      // Nickel gap dark reveal line
+      if (gapIn > 0 || i < rowsCount - 1) {
+        svg += `<line x1="${wallX}" y1="${by + boardH - 1}" x2="${wallX + wallW}" y2="${by + boardH - 1}" stroke="#4a5568" stroke-width="1.5" />`;
+      }
+    }
+
+    svg += `<text x="${W/2}" y="${wallY - 14}" font-size="11" fill="#1a202c" font-weight="bold" text-anchor="middle">Shiplap Wall Elevation (${faceIn.toFixed(2)}" Revealed Face + ${gapIn}" Nickel Gap)</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
   }
 
   function attachListeners() {

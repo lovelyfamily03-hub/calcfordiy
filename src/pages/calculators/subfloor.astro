@@ -271,9 +271,24 @@ import Layout from '../../layouts/Layout.astro';
       <strong>Tip:</strong> Buy one extra sheet. Subfloor cuts around pipes, vents, and irregular walls often waste more than expected. An unused sheet can be returned to most lumber yards.
     </p>
 
-    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
-      🖨️ Print or Save as PDF
-    </button>
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Subfloor Panel Staggering Grid</span>
+        <span class="text-xs text-blue-600 font-normal">Perpendicular Joist Staggering (50% Seam Offset)</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Subfloor Cut Sheet
+      </button>
+    </div>
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
@@ -436,7 +451,57 @@ import Layout from '../../layouts/Layout.astro';
     document.getElementById('r_area_with_waste').textContent = totalWithWaste.toFixed(1) + ' sq ft';
     document.getElementById('r_sheets').textContent = sheetsNeeded + ' sheets';
     document.getElementById('r_summary').textContent = summary;
-    
+
+    renderSVG(len, wid, sheetsNeeded);
+  }
+
+  function renderSVG(len, wid, sheetsCount) {
+    var container = document.getElementById('svgContainer');
+    if (!container) return;
+
+    var W = 520;
+    var H = 260;
+    var pad = 30;
+    var roomW = W - (pad * 2);
+    var roomH = 180;
+
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="240" xmlns="http://www.w3.org/2000/svg" class="font-sans">';
+    svg += '<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="#f7fafc" />';
+    svg += '<rect x="' + pad + '" y="' + pad + '" width="' + roomW + '" height="' + roomH + '" fill="#ffffff" stroke="#2d3748" stroke-width="2" />';
+
+    var joistCols = 8;
+    var colW = roomW / joistCols;
+    for (var j = 0; j <= joistCols; j++) {
+      var jx = pad + (j * colW);
+      svg += '<line x1="' + jx + '" y1="' + pad + '" x2="' + jx + '" y2="' + (pad + roomH) + '" stroke="#cbd5e0" stroke-width="1.5" stroke-dasharray="4,3" />';
+    }
+
+    var rows = 4;
+    var rowH = roomH / rows;
+    var panelW = roomW / 3;
+
+    for (var r = 0; r < rows; r++) {
+      var py = pad + (r * rowH);
+      var isStaggered = r % 2 === 1;
+      var startX = isStaggered ? pad - (panelW / 2) : pad;
+
+      for (var c = 0; c < 4; c++) {
+        var px = startX + (c * panelW);
+        if (px + panelW > pad && px < pad + roomW) {
+          var drawX = Math.max(pad, px);
+          var drawW = Math.min(pad + roomW, px + panelW) - drawX;
+          svg += '<rect x="' + drawX + '" y="' + py + '" width="' + drawW + '" height="' + (rowH - 2) + '" fill="#ed8936" fill-opacity="0.2" stroke="#c05621" stroke-width="1.5" rx="1" />';
+          if (drawW > 50) {
+            svg += '<text x="' + (drawX + drawW/2) + '" y="' + (py + rowH/2 + 3) + '" font-size="9" fill="#7b341e" font-weight="bold" text-anchor="middle">4\'x8\' Panel</text>';
+          }
+        }
+      }
+    }
+
+    svg += '<text x="' + (W/2) + '" y="' + (H - 10) + '" font-size="10" fill="#2d3748" font-weight="bold" text-anchor="middle">Dashed Lines = 16" O.C. Floor Joists • Solid Boxes = 4\'x8\' Subfloor Panels (50% Staggered Seams)</text>';
+    svg += '</svg>';
+
+    container.innerHTML = svg;
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -447,5 +512,6 @@ import Layout from '../../layouts/Layout.astro';
     document.getElementById('material').addEventListener('change', calculate);
     document.getElementById('waste').addEventListener('change', calculate);
     document.getElementById('thickness').addEventListener('change', calculate);
+    document.getElementById('calcBtn')?.addEventListener('click', calculate);
   });
 </script>

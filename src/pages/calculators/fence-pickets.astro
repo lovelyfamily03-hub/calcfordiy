@@ -174,6 +174,16 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
 
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Fence Section Elevation Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Auto-scaled Picket &amp; Rail Elevation</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
     <div class="bg-white rounded-lg p-4 shadow-sm mb-4">
       <h3 class="text-sm font-semibold text-gray-900 mb-1">Fence Layout Summary</h3>
       <p class="text-xs text-gray-600" id="r_summary">—</p>
@@ -293,7 +303,86 @@ import Layout from '../../layouts/Layout.astro';
 
     document.getElementById('r_summary').innerText = `${fenceLengthFt} ft fence line requires ${totalPickets} pickets (${picketWidthInches}" wide w/ ${picketGapInches}" gap), ${totalPosts} 4x4 posts (spaced ${postSpacingFt}' OC), ${totalRails} 2x4 rails, and ${concreteBags} bags of 80-lb concrete.`;
 
+    renderSVG(picketWidthInches, picketGapInches, railsPerSection, postSpacingFt);
+
     document.getElementById('results').classList.remove('hidden');
+  }
+
+  function renderSVG(picketWIn, gapIn, railsCount, postSpFt) {
+    const container = document.getElementById('svgContainer');
+    if (!container) return;
+
+    const W = 520;
+    const H = 280;
+    const groundY = 220;
+    const fenceTopY = 40;
+    const fenceH = groundY - fenceTopY;
+
+    const postW = 20;
+    const postX1 = 40;
+    const postX2 = W - 60;
+    const spanW = postX2 - (postX1 + postW);
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+      <defs>
+        <pattern id="soil" width="10" height="10" patternUnits="userSpaceOnUse">
+          <circle cx="3" cy="3" r="1.2" fill="#a0aec0" />
+        </pattern>
+      </defs>
+
+      <!-- Background & Grass Line -->
+      <rect x="0" y="0" width="${W}" height="${H}" fill="#f7fafc" />
+      <rect x="0" y="${groundY}" width="${W}" height="${H - groundY}" fill="url(#soil)" opacity="0.5" />
+      <line x1="0" y1="${groundY}" x2="${W}" y2="${groundY}" stroke="#38a169" stroke-width="4" />
+
+      <!-- 4x4 Posts in Ground -->
+      <!-- Left Post -->
+      <rect x="${postX1}" y="${fenceTopY - 10}" width="${postW}" height="${fenceH + 50}" fill="#744210" stroke="#451a03" stroke-width="1.5" rx="2" />
+      <polygon points="${postX1},${fenceTopY - 10} ${postX1 + postW/2},${fenceTopY - 18} ${postX1 + postW},${fenceTopY - 10}" fill="#451a03" />
+
+      <!-- Right Post -->
+      <rect x="${postX2}" y="${fenceTopY - 10}" width="${postW}" height="${fenceH + 50}" fill="#744210" stroke="#451a03" stroke-width="1.5" rx="2" />
+      <polygon points="${postX2},${fenceTopY - 10} ${postX2 + postW/2},${fenceTopY - 18} ${postX2 + postW},${fenceTopY - 10}" fill="#451a03" />
+
+      <text x="${postX1 + postW/2}" y="${groundY + 30}" font-size="9" fill="#744210" font-weight="bold" text-anchor="middle">4x4 Post</text>
+      <text x="${postX2 + postW/2}" y="${groundY + 30}" font-size="9" fill="#744210" font-weight="bold" text-anchor="middle">4x4 Post</text>`;
+
+    // Draw 2x4 Horizontal Rails behind pickets
+    const railY1 = fenceTopY + 30;
+    const railY2 = groundY - 35;
+    svg += `<rect x="${postX1 + postW}" y="${railY1}" width="${spanW}" height="12" fill="#b45309" stroke="#78350f" stroke-width="1" />`;
+    svg += `<rect x="${postX1 + postW}" y="${railY2}" width="${spanW}" height="12" fill="#b45309" stroke="#78350f" stroke-width="1" />`;
+    if (railsCount >= 3) {
+      const railY3 = (railY1 + railY2) / 2;
+      svg += `<rect x="${postX1 + postW}" y="${railY3}" width="${spanW}" height="12" fill="#b45309" stroke="#78350f" stroke-width="1" />`;
+    }
+
+    // Draw Vertical Pickets
+    // Calculate how many pickets fit visually across spanW
+    const effW = picketWIn + gapIn;
+    const visualPickets = Math.min(24, Math.max(8, Math.floor(spanW / (picketWIn * 4 + gapIn * 4))));
+    const picketPxW = (spanW / visualPickets) * (picketWIn / effW);
+    const gapPxW = (spanW / visualPickets) * (gapIn / effW);
+
+    let px = postX1 + postW + (gapPxW / 2);
+    for (let i = 0; i < visualPickets; i++) {
+      if (px + picketPxW > postX2) break;
+      // Dog-ear top or flat top
+      svg += `<rect x="${px}" y="${fenceTopY}" width="${picketPxW}" height="${fenceH - 10}" fill="#d97706" stroke="#92400e" stroke-width="1" rx="1" />`;
+      // Dog-ear corner cutouts
+      svg += `<polygon points="${px},${fenceTopY} ${px + 3},${fenceTopY - 4} ${px + picketPxW - 3},${fenceTopY - 4} ${px + picketPxW},${fenceTopY}" fill="#d97706" stroke="#92400e" stroke-width="1" />`;
+
+      px += picketPxW + gapPxW;
+    }
+
+    // Post spacing dimension arrow at top
+    svg += `<line x1="${postX1}" y1="15" x2="${postX2 + postW}" y2="15" stroke="#2d3748" stroke-width="1.5" />
+      <line x1="${postX1}" y1="10" x2="${postX1}" y2="20" stroke="#2d3748" stroke-width="1.5" />
+      <line x1="${postX2 + postW}" y1="10" x2="${postX2 + postW}" y2="20" stroke="#2d3748" stroke-width="1.5" />
+      <text x="${W/2}" y="12" font-size="10" fill="#1a202c" font-weight="bold" text-anchor="middle">${postSpFt}' Post Spacing (${picketWIn}" Pickets w/ ${gapIn}" Gap)</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
   }
 
   document.addEventListener('DOMContentLoaded', () => {

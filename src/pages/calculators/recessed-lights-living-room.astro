@@ -225,9 +225,24 @@ import Layout from '../../layouts/Layout.astro';
       <strong>Tip:</strong> Keep recessed lights at least 2 ft from walls. For a TV wall, avoid placing fixtures directly above the screen — the angle creates glare on the screen surface.
     </p>
 
-    <button onclick="window.print()" class="mt-4 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
-      🖨️ Print Lighting Plan
-    </button>
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-3 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Recessed Can Ceiling Grid Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Top-Down Ceiling Layout</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Lighting Plan
+      </button>
+    </div>
   </div>
 
   <div class="prose prose-gray max-w-none text-gray-700 print:prose-sm">
@@ -354,6 +369,46 @@ import Layout from '../../layouts/Layout.astro';
     document.getElementById('r_fixtures').textContent = fixturesNeeded + ' fixtures';
     document.getElementById('r_spacing').textContent = suggestedSpacing + ' ft';
     document.getElementById('r_layout').textContent = layoutText;
+
+    renderSVG(rows, cols, len, wid);
+  }
+
+  function renderSVG(rows, cols, len, wid) {
+    var container = document.getElementById('svgContainer');
+    if (!container) return;
+
+    var W = 500;
+    var H = 260;
+    var pad = 40;
+    var roomW = W - (pad * 2);
+    var roomH = H - (pad * 2);
+
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" width="100%" height="240" xmlns="http://www.w3.org/2000/svg" class="font-sans">';
+    svg += '<defs><radialGradient id="lightGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#feebc8" stop-opacity="1"/><stop offset="100%" stop-color="#ecc94b" stop-opacity="0"/></radialGradient></defs>';
+    svg += '<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="#1a202c" rx="6" />';
+    svg += '<rect x="' + pad + '" y="' + pad + '" width="' + roomW + '" height="' + roomH + '" fill="#2d3748" stroke="#4a5568" stroke-width="2" rx="4" />';
+
+    var colStep = roomW / (cols + 1);
+    var rowStep = roomH / (rows + 1);
+
+    for (var r = 1; r <= rows; r++) {
+      for (var c = 1; c <= cols; c++) {
+        var cx = pad + (c * colStep);
+        var cy = pad + (r * rowStep);
+
+        // Light Glow
+        svg += '<circle cx="' + cx + '" cy="' + cy + '" r="28" fill="url(#lightGlow)" opacity="0.6" />';
+        // Fixture Ring
+        svg += '<circle cx="' + cx + '" cy="' + cy + '" r="10" fill="#ffffff" stroke="#ecc94b" stroke-width="2" />';
+        svg += '<circle cx="' + cx + '" cy="' + cy + '" r="4" fill="#d69e2e" />';
+      }
+    }
+
+    // Room Label & Dimensions
+    svg += '<text x="' + (W/2) + '" y="' + (pad - 12) + '" font-size="11" fill="#e2e8f0" font-weight="bold" text-anchor="middle">Ceiling Plan: ' + len.toFixed(1) + '\' × ' + wid.toFixed(1) + '\' (' + (rows * cols) + ' Can Lights)</text>';
+    svg += '</svg>';
+
+    container.innerHTML = svg;
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -362,5 +417,6 @@ import Layout from '../../layouts/Layout.astro';
     });
     document.getElementById('purpose').addEventListener('change', calculate);
     document.getElementById('lumens').addEventListener('change', calculate);
+    document.getElementById('calcBtn')?.addEventListener('click', calculate);
   });
 </script>

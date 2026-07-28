@@ -175,9 +175,14 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
 
-    <div class="bg-white rounded-lg p-4 shadow-sm mb-4">
-      <h3 class="text-sm font-semibold text-gray-900 mb-1">Framing Takeoff Summary</h3>
-      <p class="text-xs text-gray-600" id="r_summary">—</p>
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Deck Joist Framing Plan View</span>
+        <span class="text-xs text-blue-600 font-normal">Top-Down Plan Diagram</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
@@ -322,7 +327,74 @@ import Layout from '../../layouts/Layout.astro';
 
     document.getElementById('r_summary').innerText = `${deckLenFt}' × ${deckWidFt}' deck framing requires ${floorJoistCount} ${joistSize} joists spaced ${spacingInches}" OC. Max allowable IRC code span is ${toFeetInches(maxSpanFt)}. Total lumber required: ${totalLinearFeet} LF + ${joistHangers} joist hangers.`;
 
+    renderSVG(deckLenFt, deckWidFt, floorJoistCount, spacingInches, joistSize);
+
     document.getElementById('results').classList.remove('hidden');
+  }
+
+  function renderSVG(lenFt, widFt, joistCount, spacingIn, sizeStr) {
+    const container = document.getElementById('svgContainer');
+    if (!container) return;
+
+    const W = 520;
+    const H = 300;
+    const padX = 40;
+    const padY = 40;
+    const planW = W - (padX * 2);
+    const planH = 200;
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+      <defs>
+        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#edf2f7" stroke-width="1" />
+        </pattern>
+      </defs>
+
+      <!-- Grid background -->
+      <rect x="0" y="0" width="${W}" height="${H}" fill="#f7fafc" />
+      <rect x="${padX}" y="${padY}" width="${planW}" height="${planH}" fill="url(#grid)" />
+
+      <!-- House Wall Ledger (Top) -->
+      <rect x="${padX - 10}" y="${padY - 15}" width="${planW + 20}" height="15" fill="#2d3748" rx="2" />
+      <text x="${W/2}" y="${padY - 4}" font-size="10" fill="#ffffff" font-weight="bold" text-anchor="middle">House Ledger Board (Flashed)</text>
+
+      <!-- Outer Rim / Band Joists (Left, Right, Bottom) -->
+      <rect x="${padX}" y="${padY}" width="6" height="${planH}" fill="#4a5568" />
+      <rect x="${padX + planW - 6}" y="${padY}" width="6" height="${planH}" fill="#4a5568" />
+      <rect x="${padX}" y="${padY + planH - 6}" width="${planW}" height="6" fill="#4a5568" />
+      <text x="${W/2}" y="${padY + planH + 16}" font-size="10" fill="#4a5568" font-weight="bold" text-anchor="middle">Outer Rim Joist (${widFt}' Deck Width)</text>
+
+      <!-- Drop Support Beam (at 85% of planH) -->
+      <line x1="${padX - 5}" y1="${padY + (planH * 0.82)}" x2="${padX + planW + 5}" y2="${padY + (planH * 0.82)}" stroke="#c53030" stroke-width="6" />
+      <text x="${padX + 20}" y="${padY + (planH * 0.82) - 6}" font-size="9" fill="#c53030" font-weight="bold">Drop Support Beam</text>`;
+
+    // Draw Post Locations on Beam (3 posts)
+    const postY = padY + (planH * 0.82);
+    [padX + 15, W / 2, padX + planW - 15].forEach(postX => {
+      svg += `<rect x="${postX - 7}" y="${postY - 7}" width="14" height="14" fill="#9b2c2c" stroke="#ffffff" stroke-width="1.5" rx="2" />`;
+      svg += `<text x="${postX}" y="${postY + 16}" font-size="8" fill="#742a2a" font-weight="bold" text-anchor="middle">6x6 Post</text>`;
+    });
+
+    // Draw Floor Joists
+    const availWidth = planW - 12;
+    const joistStep = joistCount > 1 ? availWidth / (joistCount - 1) : availWidth;
+
+    for (let i = 0; i < joistCount; i++) {
+      const jx = padX + 6 + (i * joistStep);
+      svg += `<line x1="${jx}" y1="${padY}" x2="${jx}" y2="${padY + planH}" stroke="#3182ce" stroke-width="2" />`;
+    }
+
+    // Dimension Arrow on Left (Deck Length / Projection)
+    svg += `<line x1="15" y1="${padY}" x2="15" y2="${padY + planH}" stroke="#2d3748" stroke-width="1.5" />
+      <line x1="10" y1="${padY}" x2="20" y2="${padY}" stroke="#2d3748" stroke-width="1.5" />
+      <line x1="10" y1="${padY + planH}" x2="20" y2="${padY + planH}" stroke="#2d3748" stroke-width="1.5" />
+      <text x="12" y="${padY + (planH/2)}" font-size="10" fill="#1a202c" font-weight="bold" alignment-baseline="middle" writing-mode="tb">${lenFt}' Span</text>`;
+
+    // Joist spacing label
+    svg += `<text x="${padX + 6 + joistStep/2}" y="${padY + 25}" font-size="9" fill="#2b6cb0" font-weight="bold" text-anchor="middle">${spacingIn}" OC</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
   }
 
   document.addEventListener('DOMContentLoaded', () => {

@@ -165,9 +165,24 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
 
-    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
-      🖨️ Print Drain Material List
-    </button>
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Trench Cross-Section Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Auto-scaled Vector Elevation</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Drain Spec Sheet
+      </button>
+    </div>
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
@@ -269,7 +284,77 @@ import Layout from '../../layouts/Layout.astro';
     document.getElementById('r_fabricSqFt').innerText = fabricSqFt + " sq ft (" + fabricRollLinearFt + "' of 4ft roll)";
     document.getElementById('r_dirtYards').innerText = `Digging this trench generates roughly ${excavationCuYd} cubic yards of loose dirt to remove or redistribute on your property.`;
 
+    renderSVG(widthInches, depthInches, pipeDiameter);
+
     document.getElementById('results').classList.remove('hidden');
+  }
+
+  function renderSVG(widthIn, depthIn, pipeDiamIn) {
+    const container = document.getElementById('svgContainer');
+    if (!container) return;
+
+    const W = 500;
+    const H = 310;
+    const trenchW = 190;
+    const trenchH = 210;
+    const x1 = (W - trenchW) / 2;
+    const y1 = 40;
+
+    const pipeRadius = Math.max(16, (pipeDiamIn / 4) * 22);
+    const pipeX = W / 2;
+    const pipeY = y1 + trenchH - 25 - pipeRadius;
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+      <defs>
+        <pattern id="soilPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1" fill="#cbd5e0" />
+          <circle cx="7" cy="7" r="1.2" fill="#a0aec0" />
+        </pattern>
+        <pattern id="gravelPattern" width="14" height="14" patternUnits="userSpaceOnUse">
+          <circle cx="4" cy="4" r="3" fill="#4a5568" />
+          <circle cx="10" cy="10" r="2.5" fill="#718096" />
+        </pattern>
+      </defs>
+
+      <!-- Soil Background -->
+      <rect x="0" y="0" width="${W}" height="${H}" fill="#f7fafc" />
+      <rect x="10" y="40" width="${x1 - 10}" height="${H - 50}" fill="url(#soilPattern)" opacity="0.5" />
+      <rect x="${x1 + trenchW}" y="40" width="${W - (x1 + trenchW) - 10}" height="${H - 50}" fill="url(#soilPattern)" opacity="0.5" />
+      <text x="35" y="70" font-size="11" fill="#718096" font-weight="bold">Unmodified Soil</text>
+
+      <!-- Geotextile Fabric Envelope -->
+      <rect x="${x1 - 4}" y="${y1 - 4}" width="${trenchW + 8}" height="${trenchH + 8}" fill="none" stroke="#3182ce" stroke-width="3" stroke-dasharray="6,4" />
+
+      <!-- Gravel Fill -->
+      <rect x="${x1}" y="${y1}" width="${trenchW}" height="${trenchH}" fill="url(#gravelPattern)" rx="4" />
+
+      <!-- Top Soil / Turf Cap -->
+      <rect x="${x1}" y="${y1}" width="${trenchW}" height="28" fill="#48bb78" opacity="0.85" />
+      <text x="${W/2}" y="${y1 + 18}" font-size="11" fill="#ffffff" font-weight="bold" text-anchor="middle">Lawn / Sod Cap</text>
+
+      <!-- Perforated Pipe -->
+      <circle cx="${pipeX}" cy="${pipeY}" r="${pipeRadius}" fill="#edf2f7" stroke="#2b6cb0" stroke-width="3" />
+      <circle cx="${pipeX}" cy="${pipeY}" r="${pipeRadius - 6}" fill="none" stroke="#4299e1" stroke-width="2" stroke-dasharray="4,4" />
+      <text x="${pipeX}" y="${pipeY + 4}" font-size="10" fill="#1a365d" font-weight="bold" text-anchor="middle">${pipeDiamIn}" Perforated Pipe</text>
+
+      <!-- Width Dimension Line -->
+      <line x1="${x1}" y1="22" x2="${x1 + trenchW}" y2="22" stroke="#2d3748" stroke-width="1.5" />
+      <line x1="${x1}" y1="17" x2="${x1}" y2="27" stroke="#2d3748" stroke-width="1.5" />
+      <line x1="${x1 + trenchW}" y1="17" x2="${x1 + trenchW}" y2="27" stroke="#2d3748" stroke-width="1.5" />
+      <text x="${W/2}" y="15" font-size="11" fill="#1a202c" font-weight="bold" text-anchor="middle">${widthIn}" Trench Width</text>
+
+      <!-- Depth Dimension Line -->
+      <line x1="${x1 + trenchW + 15}" y1="${y1}" x2="${x1 + trenchW + 15}" y2="${y1 + trenchH}" stroke="#2d3748" stroke-width="1.5" />
+      <line x1="${x1 + trenchW + 10}" y1="${y1}" x2="${x1 + trenchW + 20}" y2="${y1}" stroke="#2d3748" stroke-width="1.5" />
+      <line x1="${x1 + trenchW + 10}" y1="${y1 + trenchH}" x2="${x1 + trenchW + 20}" y2="${y1 + trenchH}" stroke="#2d3748" stroke-width="1.5" />
+      <text x="${x1 + trenchW + 22}" y="${y1 + (trenchH/2)}" font-size="11" fill="#1a202c" font-weight="bold" alignment-baseline="middle">${depthIn}" Depth</text>
+
+      <!-- Fabric Legend -->
+      <line x1="20" y1="${H - 12}" x2="50" y2="${H - 12}" stroke="#3182ce" stroke-width="3" stroke-dasharray="6,4" />
+      <text x="58" y="${H - 9}" font-size="10" fill="#4a5568">Geotextile Filter Fabric Wrap</text>
+    </svg>`;
+
+    container.innerHTML = svg;
   }
 
   document.addEventListener('DOMContentLoaded', () => {

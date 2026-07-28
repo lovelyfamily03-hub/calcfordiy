@@ -162,9 +162,24 @@ import Layout from '../../layouts/Layout.astro';
       <p class="text-xs text-gray-600" id="r_extraSpecNote">—</p>
     </div>
 
-    <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
-      🖨️ Print Paver Material Order Sheet
-    </button>
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Sub-Base Cross-Section Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Auto-scaled Layers</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Paver Material Order Sheet
+      </button>
+    </div>
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
@@ -264,7 +279,75 @@ import Layout from '../../layouts/Layout.astro';
 
     document.getElementById('r_extraSpecNote').innerHTML = `🚜 <strong>Excavation Volume:</strong> Dig out <strong>${digYards.toFixed(1)} cu yds</strong> of loose dirt. Order <strong>${perimeterFeet} linear ft</strong> of plastic snap-edge restraint and <strong>${spikes} landscape spikes</strong> to lock perimeter pavers.`;
 
+    renderSVG(baseInches, sandInches, paverInches);
+
     document.getElementById('results').classList.remove('hidden');
+  }
+
+  function renderSVG(baseIn, sandIn, paverIn) {
+    const container = document.getElementById('svgContainer');
+    if (!container) return;
+
+    const W = 500;
+    const H = 280;
+    const boxW = 380;
+    const boxX = (W - boxW) / 2;
+
+    const totalIn = baseIn + sandIn + paverIn;
+    const paverH = Math.max(35, (paverIn / totalIn) * 160);
+    const sandH = Math.max(25, (sandIn / totalIn) * 160);
+    const baseH = Math.max(50, (baseIn / totalIn) * 160);
+
+    const yPaver = 40;
+    const ySand = yPaver + paverH;
+    const yBase = ySand + sandH;
+    const ySoil = yBase + baseH;
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+      <defs>
+        <pattern id="paverPattern" width="60" height="30" patternUnits="userSpaceOnUse">
+          <rect width="58" height="28" fill="#dd6b20" rx="3" />
+        </pattern>
+        <pattern id="sandPattern" width="8" height="8" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.2" fill="#ecc94b" />
+          <circle cx="6" cy="6" r="1" fill="#d69e2e" />
+        </pattern>
+        <pattern id="gravelPattern" width="12" height="12" patternUnits="userSpaceOnUse">
+          <circle cx="3" cy="3" r="2.5" fill="#4a5568" />
+          <circle cx="9" cy="9" r="2.2" fill="#718096" />
+        </pattern>
+        <pattern id="soilPattern" width="10" height="10" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1" fill="#cbd5e0" />
+        </pattern>
+      </defs>
+
+      <!-- Soil Subgrade Base -->
+      <rect x="${boxX}" y="${ySoil}" width="${boxW}" height="40" fill="url(#soilPattern)" opacity="0.6" />
+      <line x1="${boxX}" y1="${ySoil}" x2="${boxX + boxW}" y2="${ySoil}" stroke="#a0aec0" stroke-width="2" />
+      <text x="${W/2}" y="${ySoil + 24}" font-size="10" fill="#718096" font-weight="bold" text-anchor="middle">Compacted Native Soil Subgrade</text>
+
+      <!-- Geotextile Fabric -->
+      <line x1="${boxX - 10}" y1="${ySoil - 2}" x2="${boxX + boxW + 10}" y2="${ySoil - 2}" stroke="#3182ce" stroke-width="3" stroke-dasharray="6,3" />
+
+      <!-- Crushed Aggregate Base Layer -->
+      <rect x="${boxX}" y="${yBase}" width="${boxW}" height="${baseH}" fill="url(#gravelPattern)" rx="2" />
+      <text x="${W/2}" y="${yBase + (baseH/2) + 4}" font-size="11" fill="#ffffff" font-weight="bold" text-anchor="middle" filter="drop-shadow(0px 1px 2px rgba(0,0,0,0.8))">${baseIn}" Crushed Base Gravel (3/4-Minus)</text>
+
+      <!-- Bedding Sand Layer -->
+      <rect x="${boxX}" y="${ySand}" width="${boxW}" height="${sandH}" fill="url(#sandPattern)" rx="1" />
+      <text x="${W/2}" y="${ySand + (sandH/2) + 4}" font-size="10" fill="#744210" font-weight="bold" text-anchor="middle">${sandIn}" Sharp Concrete Bedding Sand</text>
+
+      <!-- Pavers Layer -->
+      <rect x="${boxX}" y="${yPaver}" width="${boxW}" height="${paverH}" fill="#dd6b20" rx="3" stroke="#9c4221" stroke-width="2" />
+      <text x="${W/2}" y="${yPaver + (paverH/2) + 4}" font-size="11" fill="#ffffff" font-weight="bold" text-anchor="middle">${paverIn}" Interlocking Concrete Pavers</text>
+
+      <!-- Snap Edge Restraint Stake on Right -->
+      <polygon points="${boxX + boxW},${yPaver - 5} ${boxX + boxW + 20},${yPaver + paverH + sandH} ${boxX + boxW},${yPaver + paverH + sandH}" fill="#2d3748" />
+      <line x1="${boxX + boxW + 10}" y1="${yPaver - 10}" x2="${boxX + boxW + 10}" y2="${ySoil + 20}" stroke="#e2e8f0" stroke-width="4" />
+      <text x="${boxX + boxW + 25}" y="${ySand}" font-size="9" fill="#2d3748" font-weight="bold">Edge Restraint & Spike</text>
+    </svg>`;
+
+    container.innerHTML = svg;
   }
 
   document.addEventListener('DOMContentLoaded', () => {
