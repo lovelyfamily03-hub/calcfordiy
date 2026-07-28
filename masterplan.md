@@ -39,7 +39,7 @@
 - `[ ]` **Moat 1: Dynamic SVG Cut & Layout Diagrams** — Live interactive vector graphics for layout/framing math (In Progress — live on 7 tools: Stair Stringer, Board & Batten, Wainscoting Layout, Wall Framing, Coffered Ceiling, Rebar Mesh, and Roof Pitch & Rafter).
 - `[x]` **Moat 2: One-Click `📋 Copy Shopping List` Button** — Global clipboard handler copying formatted material takeoffs for SMS, email, or store carts (COMPLETE ✅).
 - `[ ]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes (Homewyse hybrid).
-- `[ ]` **Moat 4: Project Workflow Hubs** — Grouping individual calculators into step-by-step project workflows ("Yard Drainage Hub", "Deck Building Hub", "Basement Finishing Hub").
+- `[x]` **Moat 4: Project Workflow Hubs** — Interactive multi-step project flows under `/projects/` guiding users through 4–5 sequential calculators per project (COMPLETE ✅).
 
 ---
 
