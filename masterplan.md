@@ -21,7 +21,7 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Calculators live:** 50 calculators (Phase 2, Seasonal, Millwork 1A, Hardscaping 1B, and HVAC/Plumbing 1C complete!)
+- **Calculators live:** 53 calculators (Phase 2, Seasonal, Millwork 1A, Hardscaping 1B, HVAC 1C, and Phase 4A Expansion complete!)
 - **Stub pages:** 0 remaining (all replaced)
 - **AdSense:** existing approved account, new site not yet added
 
