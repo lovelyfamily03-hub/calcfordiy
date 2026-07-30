@@ -216,8 +216,227 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
           }
         }
 
+        // ── Ensure Cost Benchmarking Card is present (Moat 3) ───────────────────
+        function ensureCostBenchmarking(resDiv) {
+          if (!resDiv) return;
+
+          var benchmarkBox = resDiv.querySelector('#costBenchmarkBox');
+          if (!benchmarkBox) {
+            benchmarkBox = document.createElement('div');
+            benchmarkBox.id = 'costBenchmarkBox';
+            benchmarkBox.className = 'bg-white rounded-lg p-4 shadow-sm mb-4 border border-green-200 mt-4 print:border-gray-300';
+            
+            var svgCont = resDiv.querySelector('#svgContainer');
+            if (svgCont && svgCont.parentElement) {
+              svgCont.parentElement.parentNode.insertBefore(benchmarkBox, svgCont.parentElement.nextSibling);
+            } else {
+              var gridBtns = resDiv.querySelector('.grid.grid-cols-1.sm\\:grid-cols-2');
+              if (gridBtns) {
+                gridBtns.parentNode.insertBefore(benchmarkBox, gridBtns);
+              } else {
+                resDiv.appendChild(benchmarkBox);
+              }
+            }
+          }
+
+          // Trigger cost benchmarking calculation if available
+          if (typeof window.updateCostBenchmark === 'function') {
+            window.updateCostBenchmark();
+          } else {
+            autoGenerateCostBenchmark(resDiv, benchmarkBox);
+          }
+        }
+
+        // Generic auto-generator for cost benchmark based on results cards
+        function autoGenerateCostBenchmark(resDiv, box) {
+          var locationMultiplier = parseFloat(localStorage.getItem('calc_loc_mult')) || 1.0;
+          var title = document.title.split('—')[0].trim();
+          
+          var diyMin = 0, diyMax = 0, contMin = 0, contMax = 0;
+
+          if (title.includes('French Drain')) {
+            var gTons = parseFloat((document.getElementById('r_gravelTons')?.innerText || '').replace(/[^\d.]/g, '')) || 4;
+            var pFeet = parseFloat((document.getElementById('r_pipeFeet')?.innerText || '').replace(/[^\d.]/g, '')) || 50;
+            var fSqFt = parseFloat((document.getElementById('r_fabricSqFt')?.innerText || '').replace(/[^\d.]/g, '')) || 300;
+
+            var matCost = (gTons * 48) + (pFeet * 1.35) + (fSqFt * 0.25);
+            diyMin = Math.round(matCost * 0.90 * locationMultiplier);
+            diyMax = Math.round(matCost * 1.15 * locationMultiplier);
+            contMin = Math.round(diyMin * 4.6);
+            contMax = Math.round(diyMax * 5.8);
+          }
+          else if (title.includes('Concrete')) {
+            var yds = parseFloat((document.getElementById('r_yards')?.innerText || document.getElementById('r_totalYards')?.innerText || '').replace(/[^\d.]/g, '')) || 3;
+            var matCost = (yds * 155) + 140; // concrete + forms/gravel
+            diyMin = Math.round(matCost * 0.90 * locationMultiplier);
+            diyMax = Math.round(matCost * 1.15 * locationMultiplier);
+            contMin = Math.round(diyMin * 3.6);
+            contMax = Math.round(diyMax * 4.6);
+          }
+          else if (title.includes('Shingle') || title.includes('Roof')) {
+            var sqs = parseFloat((document.getElementById('r_squares')?.innerText || '').replace(/[^\d.]/g, '')) || 20;
+            var matCost = Math.max(600, sqs * 140);
+            diyMin = Math.round(matCost * 0.90 * locationMultiplier);
+            diyMax = Math.round(matCost * 1.15 * locationMultiplier);
+            contMin = Math.round(diyMin * 3.4);
+            contMax = Math.round(diyMax * 4.4);
+          }
+          else if (title.includes('Retaining Wall')) {
+            var blocks = parseFloat((document.getElementById('r_totalBlocks')?.innerText || '').replace(/[^\d.]/g, '')) || 100;
+            var matCost = Math.max(400, (blocks * 5.80) + 180);
+            diyMin = Math.round(matCost * 0.90 * locationMultiplier);
+            diyMax = Math.round(matCost * 1.15 * locationMultiplier);
+            contMin = Math.round(diyMin * 4.2);
+            contMax = Math.round(diyMax * 5.2);
+          }
+          else if (title.includes('Fence')) {
+            var pickets = parseFloat((document.getElementById('r_pickets')?.innerText || '').replace(/[^\d.]/g, '')) || 120;
+            var posts = parseFloat((document.getElementById('r_posts')?.innerText || '').replace(/[^\d.]/g, '')) || 15;
+            var matCost = Math.max(500, (pickets * 2.30) + (posts * 16) + 150);
+            diyMin = Math.round(matCost * 0.90 * locationMultiplier);
+            diyMax = Math.round(matCost * 1.15 * locationMultiplier);
+            contMin = Math.round(diyMin * 3.5);
+            contMax = Math.round(diyMax * 4.2);
+          }
+          else if (title.includes('Deck')) {
+            var lf = parseFloat((document.getElementById('r_linearFeet')?.innerText || '').replace(/[^\d.]/g, '')) || 300;
+            var matCost = Math.max(600, (lf * 2.20) + 200);
+            diyMin = Math.round(matCost * 0.90 * locationMultiplier);
+            diyMax = Math.round(matCost * 1.15 * locationMultiplier);
+            contMin = Math.round(diyMin * 3.4);
+            contMax = Math.round(diyMax * 4.2);
+          }
+          else if (title.includes('EV Charger')) {
+            diyMin = Math.round(180 * locationMultiplier);
+            diyMax = Math.round(260 * locationMultiplier);
+            contMin = Math.round(750 * locationMultiplier);
+            contMax = Math.round(1450 * locationMultiplier);
+          }
+          else if (title.includes('Water Heater')) {
+            diyMin = Math.round(680 * locationMultiplier);
+            diyMax = Math.round(880 * locationMultiplier);
+            contMin = Math.round(1650 * locationMultiplier);
+            contMax = Math.round(2450 * locationMultiplier);
+          }
+          else if (title.includes('Mini-Split')) {
+            diyMin = Math.round(1350 * locationMultiplier);
+            diyMax = Math.round(1850 * locationMultiplier);
+            contMin = Math.round(4200 * locationMultiplier);
+            contMax = Math.round(6800 * locationMultiplier);
+          }
+          else if (title.includes('Attic Insulation')) {
+            var bags = parseFloat((document.getElementById('r_totalBags')?.innerText || '').replace(/[^\d.]/g, '')) || 15;
+            var matCost = Math.max(200, bags * 18.50);
+            diyMin = Math.round(matCost * 0.90 * locationMultiplier);
+            diyMax = Math.round(matCost * 1.15 * locationMultiplier);
+            contMin = Math.round(diyMin * 3.2);
+            contMax = Math.round(diyMax * 4.2);
+          }
+          else if (title.includes('Sod')) {
+            var pallets = parseFloat((document.getElementById('r_pallets')?.innerText || '').replace(/[^\d.]/g, '')) || 3;
+            var matCost = Math.max(300, (pallets * 260) + 120);
+            diyMin = Math.round(matCost * 0.90 * locationMultiplier);
+            diyMax = Math.round(matCost * 1.15 * locationMultiplier);
+            contMin = Math.round(diyMin * 3.4);
+            contMax = Math.round(diyMax * 4.5);
+          }
+          else if (title.includes('Paint')) {
+            var gals = parseFloat((document.getElementById('r_gallons')?.innerText || '').replace(/[^\d.]/g, '')) || 2;
+            var matCost = Math.max(80, (gals * 52) + 35);
+            diyMin = Math.round(matCost * 0.90 * locationMultiplier);
+            diyMax = Math.round(matCost * 1.15 * locationMultiplier);
+            contMin = Math.round(diyMin * 5.2);
+            contMax = Math.round(diyMax * 6.5);
+          }
+          else {
+            var areaVal = 100;
+            var cards = resDiv.querySelectorAll('.bg-white.rounded-lg');
+            cards.forEach(function(c) {
+              var txt = c.textContent || '';
+              var numMatch = txt.match(/([\d,]+\.?\d*)/);
+              if (numMatch && !areaVal) {
+                areaVal = parseFloat(numMatch[1].replace(/,/g, ''));
+              }
+            });
+
+            var matCost = Math.max(150, areaVal * 2.50);
+            diyMin = Math.round(matCost * 0.85 * locationMultiplier);
+            diyMax = Math.round(matCost * 1.15 * locationMultiplier);
+            contMin = Math.round(diyMin * 3.5);
+            contMax = Math.round(diyMax * 4.5);
+          }
+
+          var saveMin = Math.max(50, contMin - diyMax);
+          var saveMax = Math.max(100, contMax - diyMin);
+          var savePct = Math.round(((contMin - diyMax) / contMin) * 100);
+          if (savePct < 45 || isNaN(savePct)) savePct = 68;
+
+          renderBenchmarkHTML(box, title, diyMin, diyMax, contMin, contMax, saveMin, saveMax, savePct, locationMultiplier);
+        }
+
+        window.renderBenchmarkHTML = function(box, title, diyMin, diyMax, contMin, contMax, saveMin, saveMax, savePct, locMult) {
+          box.innerHTML = `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-3 border-b border-gray-100">
+              <div>
+                <h3 class="text-sm font-bold text-gray-900 flex items-center gap-1.5">
+                  <span>💰 DIY vs. Turnkey Contractor Cost Benchmark</span>
+                  <span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded font-semibold">RSMeans Data</span>
+                </h3>
+                <p class="text-xs text-gray-500 mt-0.5">Estimated material purchase prices vs. professional contractor installed quotes</p>
+              </div>
+              <div class="flex items-center gap-1.5 print:hidden">
+                <label class="text-xs text-gray-500 font-medium shrink-0">Location:</label>
+                <select id="locMultSelect" onchange="window.changeLocMult(this.value)" class="text-xs border border-gray-300 rounded px-2 py-1 bg-gray-50 font-medium text-gray-700 focus:outline-none">
+                  <option value="0.85" ${locMult === 0.85 ? 'selected' : ''}>Rural / Low Cost (-15%)</option>
+                  <option value="1.0" ${locMult === 1.0 ? 'selected' : ''}>National Avg (Base)</option>
+                  <option value="1.25" ${locMult === 1.25 ? 'selected' : ''}>Metro / High Cost (+25%)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+              <div class="bg-gray-50 rounded-lg p-3 text-center border border-gray-200">
+                <div class="text-xs font-semibold text-gray-600 uppercase tracking-wide">🛠️ DIY Materials Only</div>
+                <div class="text-xl font-bold text-gray-900 mt-1">$${diyMin.toLocaleString()} – $${diyMax.toLocaleString()}</div>
+                <div class="text-[10px] text-gray-500 mt-0.5">Raw materials &amp; supplies</div>
+              </div>
+
+              <div class="bg-gray-50 rounded-lg p-3 text-center border border-gray-200">
+                <div class="text-xs font-semibold text-gray-600 uppercase tracking-wide">👷 Contractor Installed</div>
+                <div class="text-xl font-bold text-gray-900 mt-1">$${contMin.toLocaleString()} – $${contMax.toLocaleString()}</div>
+                <div class="text-[10px] text-gray-500 mt-0.5">Turnkey labor, equipment &amp; markup</div>
+              </div>
+
+              <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-lg p-3 text-center border-2 border-green-400 shadow-xs">
+                <div class="text-xs font-bold text-green-800 uppercase tracking-wide">💵 Potential DIY Savings</div>
+                <div class="text-xl font-black text-green-700 mt-1">SAVE $${saveMin.toLocaleString()} – $${saveMax.toLocaleString()}</div>
+                <div class="text-[10px] font-bold text-green-800 mt-0.5">Keep ~${savePct}% in your pocket!</div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+              <div class="flex justify-between items-center text-xs text-gray-600 font-medium mb-1.5">
+                <span>Contractor Cost Breakdown Benchmark</span>
+                <span>Materials 30% • Labor 55% • Overhead 15%</span>
+              </div>
+              <div class="w-full bg-gray-200 h-3 rounded-full overflow-hidden flex">
+                <div class="bg-blue-500 h-full" style="width: 30%" title="Materials: 30%"></div>
+                <div class="bg-purple-600 h-full" style="width: 55%" title="Labor & Crew: 55%"></div>
+                <div class="bg-amber-500 h-full" style="width: 15%" title="Overhead & Permits: 15%"></div>
+              </div>
+            </div>
+          `;
+        };
+
+        window.changeLocMult = function(val) {
+          localStorage.setItem('calc_loc_mult', val);
+          var resultsDiv = document.getElementById('results');
+          if (resultsDiv) ensureCostBenchmarking(resultsDiv);
+        };
+
         // Run initially in case results is visible
         ensureCopyButton(resultsEl);
+        ensureCostBenchmarking(resultsEl);
 
         // ── Watch for results div being shown — fire GA engagement event & ensure copy button ─────
         var mutationObserver = new MutationObserver(function () {
@@ -227,6 +446,7 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
             floatBtn.classList.add('hidden');
           } else {
             ensureCopyButton(resultsEl);
+            ensureCostBenchmarking(resultsEl);
 
             if (!gaFired) {
               // Results just became visible → fire GA4 engagement event

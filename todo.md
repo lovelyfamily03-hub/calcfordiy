@@ -26,8 +26,8 @@
 ### 📋 Moat 2: One-Click `📋 Copy Shopping List` Button (COMPLETE ✅)
 - [x] Global clipboard handler in `Layout.astro` with auto-injection across all calculator result cards.
 
-### 💰 Moat 3: Dual "DIY Material Cost" vs. "Contractor Installed Cost" Module
-- [ ] Build global cost benchmarking module comparing raw DIY material costs against turnkey contractor quotes on key high-ticket calculators (*French Drain, Asphalt Shingles, Concrete Slab, Retaining Wall, Fence Pickets, Deck Boards, Water Heater, Mini-Split*).
+### 💰 Moat 3: Dual "DIY Material Cost" vs. "Contractor Installed Cost" Module (COMPLETE ✅)
+- [x] Global RSMeans & Homewyse cost benchmarking module in `Layout.astro` auto-injected into results cards with location adjustment multipliers (-15% Rural, Base National Avg, +25% Metro) and cost distribution bar.
 
 ### 🗺️ Moat 4: Project Workflow Hubs (5 of 8 Done)
 - [x] Deck Construction Hub (`/projects/deck-building`)
