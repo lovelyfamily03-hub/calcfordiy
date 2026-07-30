@@ -387,8 +387,8 @@ const categories = [...new Set(calculators.map(c => c.category))];
 ---
 
 <Layout
-  title="Free DIY Calculators — CalcForDIY"
-  description="CalcForDIY offers 40+ free calculators for DIY and home improvement — tile, flooring, paint, concrete, lighting, and utilities. Industry-standard formulas, instant results, no signup required."
+  title="CalcForDIY — 63 Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks"
+  description="63 free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs."
 >
 <script type="application/ld+json" is:inline>
 {
@@ -396,7 +396,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
   "@type": "WebSite",
   "name": "CalcForDIY",
   "url": "https://calcfordiy.com",
-  "description": "CalcForDIY offers 40+ free calculators for DIY and home improvement projects.",
+  "description": "63 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.",
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://calcfordiy.com/calculators?q={search_term_string}",
@@ -404,12 +404,95 @@ const categories = [...new Set(calculators.map(c => c.category))];
   }
 }
 </script>
+
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CalcForDIY Construction & Home Improvement Suite",
+  "applicationCategory": "CalculatorApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "featureList": [
+    "63 Interactive Material & Framing Calculators",
+    "Dynamic Vector SVG Framing & Cut Diagrams",
+    "RSMeans DIY Material vs. Turnkey Contractor Cost Benchmarks",
+    "One-Click Copy Shopping List Material Takeoff Export",
+    "Multi-Step Sequential Project Construction Hubs"
+  ]
+}
+</script>
+
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does CalcForDIY compare DIY costs vs contractor installation quotes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every calculator on CalcForDIY features an RSMeans-based cost benchmarking module that compares raw DIY material costs against turnkey professional contractor quotes, including regional cost adjustments (-15% rural to +25% metro)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CalcForDIY generate visual cut diagrams?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! CalcForDIY features dynamic vector SVG cut and layout diagrams for visual tools like stair stringers, wall framing, board and batten, wainscoting, french drains, retaining walls, deck joists, and shiplap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I export my material takeoff into a shopping list?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! Every calculator includes a 1-click 'Copy Shopping List' button that formats plain-text material takeoffs for SMS, email, or store cart ordering at Home Depot and Lowe's."
+      }
+    }
+  ]
+}
+</script>
+
   <div class="mb-8">
-    <h1 class="text-4xl font-bold text-gray-900 mb-3">Free DIY Calculators</h1>
-    <p class="text-lg text-gray-600">
-      40+ instant, accurate calculators for home improvement projects. 
-      No account needed. Everything runs in your browser.
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
+      <span>✨ 63 Free Interactive Calculators</span>
+      <span>•</span>
+      <span>RSMeans Cost Benchmarks &amp; SVG Diagrams</span>
+    </div>
+    <h1 class="text-4xl font-bold text-gray-900 mb-3">Free DIY Construction &amp; Material Calculators</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      Calculate exact material takeoffs, view dynamic SVG framing diagrams, export 1-click shopping lists, and compare raw DIY costs against professional contractor quotes.
     </p>
+
+    <!-- Moats & Differentiators Showcase Feature Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-4">
+        <div class="text-2xl mb-1">📐</div>
+        <h3 class="font-bold text-gray-900 text-sm">Dynamic SVG Diagrams</h3>
+        <p class="text-xs text-gray-600 mt-1">Live vector graphics for stair stringers, wall framing, deck joists, and retaining walls.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-4">
+        <div class="text-2xl mb-1">💰</div>
+        <h3 class="font-bold text-gray-900 text-sm">DIY vs. Contractor Costs</h3>
+        <p class="text-xs text-gray-600 mt-1">RSMeans cost benchmarks comparing DIY materials vs. turnkey contractor quotes.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-purple-50 to-fuchsia-50 border border-purple-200 rounded-xl p-4">
+        <div class="text-2xl mb-1">📋</div>
+        <h3 class="font-bold text-gray-900 text-sm">1-Click Shopping Lists</h3>
+        <p class="text-xs text-gray-600 mt-1">Copy instant plain-text material takeoffs formatted for Home Depot &amp; Lowe's carts.</p>
+      </div>
+
+      <div class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-4">
+        <div class="text-2xl mb-1">🗺️</div>
+        <h3 class="font-bold text-gray-900 text-sm">Project Workflow Hubs</h3>
+        <p class="text-xs text-gray-600 mt-1">Guided multi-step calculator flows for decks, drainage, basements, and accent walls.</p>
+      </div>
+    </div>
   </div>
 
   <!-- Search Filter -->

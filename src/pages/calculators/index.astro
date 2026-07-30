@@ -387,28 +387,33 @@ const categories = [...new Set(calculators.map(c => c.category))];
 ---
 
 <Layout
-  title="Free DIY Calculators — CalcForDIY"
-  description="Free calculators for home improvement projects. Tile, flooring, lighting, and more. No signup, no uploads, instant results."
+  title="All 63 Free DIY Construction Calculators — CalcForDIY"
+  description="Browse all 63 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs."
 >
 <script type="application/ld+json" is:inline>
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "CalcForDIY",
-  "url": "https://calcfordiy.com",
-  "description": "Free calculators for home improvement projects including tile, flooring, and lighting.",
+  "name": "CalcForDIY Calculators Directory",
+  "url": "https://calcfordiy.com/calculators",
+  "description": "Directory of 63 free DIY construction & material calculators with SVG diagrams and RSMeans contractor cost benchmarks.",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://calcfordiy.com/?s={search_term_string}",
+    "target": "https://calcfordiy.com/calculators?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }
 </script>
+
   <div class="mb-10">
-    <h1 class="text-4xl font-bold text-gray-900 mb-3">Free DIY Calculators</h1>
-    <p class="text-lg text-gray-600">
-      Instant, accurate calculators for home improvement projects. 
-      No account needed. Everything runs in your browser.
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
+      <span>🛠️ Full Calculator Directory</span>
+      <span>•</span>
+      <span>63 Tools Live</span>
+    </div>
+    <h1 class="text-4xl font-bold text-gray-900 mb-3">All 63 Free DIY Calculators</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      Instant material takeoffs, dynamic SVG framing diagrams, RSMeans contractor cost benchmarks, and 1-click shopping list exports. Everything runs free in your browser.
     </p>
   </div>
 
