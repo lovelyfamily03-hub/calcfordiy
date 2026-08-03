@@ -36,10 +36,10 @@
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[x]` **Status**: Phase 4B & Wave 1 Forum Expansion Complete (63 Live Interactive Calculators + 5 Project Workflow Hubs).
-**Latest Milestone Achieved**: Built 6 Wave 1 Forum Calculators (NEC Conduit Fill, Blown Attic Insulation, Sod Pallets, Compound Miter Angles, Construction Fractions, Septic Tank Sizing). All 4 Moats & E-E-A-T Trust Signal Badges (IRC, TCNA, IES Standards, Sitewide Verification, Footer Attribution) are 100% complete!
+- `[x]` **Status**: Phase 4B & Wave 1 Forum Expansion Complete (63 Live Interactive Calculators + 8 Project Workflow Hubs).
+**Latest Milestone Achieved**: Completed all 8 Project Workflow Hubs (Deck Building, Yard Drainage, Basement Finishing, Bathroom Remodel, Accent Walls, Roofing & Exterior, Outdoor Patio, and Garage EV Workshop). All 4 Moats are 100% COMPLETE!
 - `[x]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes with regional multipliers (COMPLETE ✅).
-- `[x]` **Moat 4: Project Workflow Hubs** — Interactive multi-step project flows under `/projects/` guiding users through 4–5 sequential calculators per project (COMPLETE ✅).
+- `[x]` **Moat 4: Project Workflow Hubs** — Interactive multi-step project flows under `/projects/` guiding users through 4–5 sequential calculators per project (COMPLETE ✅ 8 of 8 Live).
 - `[x]` **E-E-A-T & Trust Signal Hardening** — Auto-injected verification badges, IRC/TCNA methodology links, contact email, and Content-Signal policy (COMPLETE ✅).
 
 ---

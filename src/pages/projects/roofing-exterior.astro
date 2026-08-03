@@ -1,0 +1,123 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Roof Pitch & Rafter Lengths",
+    description: "Determine roof slope ratio (e.g. 6/12), rafter board length, ridge board deductions, and bird's mouth cut angles with visual SVG diagram.",
+    calculatorName: "Roof Pitch & Rafter Calculator",
+    href: "/calculators/roof-pitch-rafter",
+    icon: "🏠"
+  },
+  {
+    stepNumber: 2,
+    title: "Asphalt Shingles & Roofing Squares",
+    description: "Calculate roofing squares (100 sq ft units), 3-tab or architectural shingle bundle counts, starter strips, and synthetic underlayment rolls.",
+    calculatorName: "Asphalt Shingles Calculator",
+    href: "/calculators/asphalt-shingles",
+    icon: "🧱"
+  },
+  {
+    stepNumber: 3,
+    title: "Exterior Wall Sheathing & House Wrap",
+    description: "Estimate 4x8 plywood/OSB sheathing sheets, 2x4/2x6 wall studs, and Tyvek weather-resistant barrier rolls with waste factors.",
+    calculatorName: "Wall Framing & Sheathing Calculator",
+    href: "/calculators/wall-framing",
+    icon: "🔨"
+  },
+  {
+    stepNumber: 4,
+    title: "Exterior Roofline & Gutter Lighting",
+    description: "Calculate roofline light strands, gutter clip counts, and electrical circuit amperage for exterior home illumination.",
+    calculatorName: "Exterior Christmas Lights Calculator",
+    href: "/calculators/exterior-christmas-lights",
+    icon: "✨"
+  }
+];
+---
+
+<Layout
+  title="Roofing & Exterior Siding Hub — Step-by-Step Replacement Workflow | CalcForDIY"
+  description="Follow a 4-step roofing and exterior siding workflow: roof pitch rafter cuts, asphalt shingle bundle counts, house wrap sheathing, and exterior holiday lighting."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Plan and Calculate Roofing and Exterior Siding Materials",
+    "description": "A 4-step DIY workflow for calculating roof rafters, asphalt shingles, wall sheathing, and exterior lighting.",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Calculate Roof Pitch & Rafters", "url": "https://calcfordiy.com/calculators/roof-pitch-rafter" },
+      { "@type": "HowToStep", "position": 2, "name": "Calculate Asphalt Shingles & Squares", "url": "https://calcfordiy.com/calculators/asphalt-shingles" },
+      { "@type": "HowToStep", "position": 3, "name": "Calculate Wall Sheathing & Studs", "url": "https://calcfordiy.com/calculators/wall-framing" },
+      { "@type": "HowToStep", "position": 4, "name": "Calculate Exterior Roofline Lighting", "url": "https://calcfordiy.com/calculators/exterior-christmas-lights" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Roofing & Exterior Hub", "item": "https://calcfordiy.com/projects/roofing-exterior" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span>Roofing &amp; Exterior Hub</span>
+  </div>
+
+  <div class="mb-8 bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="text-3xl">🏠</span>
+      <h1 class="text-3xl font-bold text-gray-900">Roofing &amp; Exterior Siding Hub</h1>
+    </div>
+    <p class="text-gray-600 text-lg leading-relaxed max-w-3xl">
+      Replacing a roof or exterior siding requires coordinating framing, underlayment, shingles, and weather barriers. Follow this 4-step workflow to size your roof pitch, order shingle bundles, and estimate exterior sheathing.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:border-blue-300 transition-all flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="flex items-start gap-4">
+          <div class="bg-blue-600 text-white font-bold w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-lg shadow-sm">
+            {step.stepNumber}
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xl">{step.icon}</span>
+              <h2 class="text-xl font-bold text-gray-900">{step.title}</h2>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed max-w-2xl">
+              {step.description}
+            </p>
+          </div>
+        </div>
+
+        <a href={step.href} class="shrink-0 w-full md:w-auto bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold px-5 py-3 rounded-lg border border-blue-200 transition-colors text-sm flex items-center justify-center gap-2">
+          Use {step.calculatorName} →
+        </a>
+      </div>
+    ))}
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">Roofing Installation Code &amp; Safety Guidelines</h2>
+    <div class="space-y-3 text-sm text-gray-700">
+      <p><strong>Ice &amp; Water Shield:</strong> Per IRC building code, apply self-adhering ice &amp; water shield membrane at least 24 inches inside the interior wall line in freezing climates.</p>
+      <p><strong>Underlayment Overlap:</strong> Synthetic roofing underlayment should overlap horizontal seams by at least 2 inches and vertical end laps by 6 inches.</p>
+    </div>
+  </div>
+
+</Layout>

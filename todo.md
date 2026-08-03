@@ -29,15 +29,15 @@
 ### 💰 Moat 3: Dual "DIY Material Cost" vs. "Contractor Installed Cost" Module (COMPLETE ✅)
 - [x] Global RSMeans & Homewyse cost benchmarking module in `Layout.astro` auto-injected into results cards with location adjustment multipliers (-15% Rural, Base National Avg, +25% Metro) and cost distribution bar.
 
-### 🗺️ Moat 4: Project Workflow Hubs (5 of 8 Done)
+### 🗺️ Moat 4: Project Workflow Hubs (8 of 8 COMPLETE ✅)
 - [x] Deck Construction Hub (`/projects/deck-building`)
 - [x] Yard Drainage & Landscaping Hub (`/projects/yard-drainage`)
 - [x] Basement & Room Finishing Hub (`/projects/basement-finishing`)
 - [x] Bathroom & Shower Remodel Hub (`/projects/bathroom-remodel`)
 - [x] Interior Accent Wall & Trim Hub (`/projects/room-accent-wall`)
-- [ ] Roofing & Exterior Siding Hub (`/projects/roofing-exterior`)
-- [ ] Outdoor Patio & Hardscaping Hub (`/projects/outdoor-patio`)
-- [ ] Garage Workshop & EV Electrical Hub (`/projects/garage-ev-workshop`)
+- [x] Roofing & Exterior Siding Hub (`/projects/roofing-exterior`)
+- [x] Outdoor Patio & Hardscaping Hub (`/projects/outdoor-patio`)
+- [x] Garage Workshop & EV Electrical Hub (`/projects/garage-ev-workshop`)
 
 ### 🛡️ E-E-A-T & Google Sandbox Trust Signals (COMPLETE ✅)
 - [x] Sitewide "Last Verified & Sourced from IRC, TCNA, NWFA & IES Standards" badge auto-injected on all calculator pages in `Layout.astro`.
