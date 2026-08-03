@@ -8,7 +8,8 @@
 ---
 
 ## 🛑 STRICT RULES FOR ALL AGENTS
-1. **New Calculators:** Whenever you create a new calculator page in `src/pages/calculators/`, you MUST ALWAYS add a link to it in BOTH of the following directory arrays:
+1. **ZERO CONFIRMATION BIAS & FACT-BASED RESEARCH:** Never offer confirmation bias, shallow shortcuts, over-confident promises, or urban myths. Every plan of action, technical analysis, or SEO proposal MUST be grounded in primary authoritative documentation (Google Search Quality Evaluator Guidelines, Search Central docs, official AdSense policies, and building codes like IRC/NEC/TCNA). CalcForDIY is a respectable engineering site — everything built must be above reproach.
+2. **New Calculators:** Whenever you create a new calculator page in `src/pages/calculators/`, you MUST ALWAYS add a link to it in BOTH of the following directory arrays:
    - `src/pages/index.astro` (The main homepage)
    - `src/pages/calculators/index.astro` (The calculators directory page)
    *Failure to update both files will result in the calculator being hidden from the user.*
