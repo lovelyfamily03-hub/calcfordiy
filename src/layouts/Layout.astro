@@ -61,6 +61,18 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
     </header>
     
     <main class="max-w-5xl mx-auto px-4 py-8">
+      {isCalculatorPage && (
+        <div class="mb-6 flex flex-wrap items-center gap-3 text-xs text-gray-600 bg-white border border-gray-200 rounded-xl px-4 py-2.5 shadow-xs print:hidden">
+          <span class="flex items-center gap-1.5 font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Last Verified: July 2026
+          </span>
+          <span class="text-gray-300">•</span>
+          <span>Formulas Verified Against <strong>IRC, TCNA, NWFA &amp; IES Standards</strong></span>
+          <span class="text-gray-300">•</span>
+          <a href="/about" class="text-blue-600 font-medium hover:underline">Read Our Methodology →</a>
+        </div>
+      )}
       <slot />
     </main>
 
@@ -89,7 +101,7 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
               <li><a href="/calculators/laminate-flooring" class="hover:text-blue-600">Laminate Flooring</a></li>
               <li><a href="/calculators/concrete-slab" class="hover:text-blue-600">Concrete Slab</a></li>
               <li><a href="/calculators/drywall" class="hover:text-blue-600">Drywall</a></li>
-              <li><a href="/calculators" class="text-blue-600 font-medium hover:underline">View all 40+ →</a></li>
+              <li><a href="/calculators" class="text-blue-600 font-medium hover:underline">View all 63 tools →</a></li>
             </ul>
           </div>
           <div>
@@ -106,6 +118,7 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
           <div>
             <h3 class="font-semibold text-gray-900 mb-3">Resources</h3>
             <ul class="space-y-2">
+              <li><a href="/projects" class="hover:text-blue-600 font-semibold text-blue-600">Project Hubs</a></li>
               <li><a href="/guides" class="hover:text-blue-600">DIY Guides</a></li>
               <li><a href="/guides/how-much-mulch-for-garden-beds" class="hover:text-blue-600">Mulch Guide</a></li>
               <li><a href="/guides/laminate-flooring-waste-factor" class="hover:text-blue-600">Waste Factor Guide</a></li>
@@ -113,17 +126,18 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
             </ul>
           </div>
           <div>
-            <h3 class="font-semibold text-gray-900 mb-3">Company</h3>
+            <h3 class="font-semibold text-gray-900 mb-3">Company &amp; E-E-A-T</h3>
             <ul class="space-y-2">
-              <li><a href="/about" class="hover:text-blue-600">About</a></li>
-              <li><a href="/contact" class="hover:text-blue-600">Contact</a></li>
+              <li><a href="/about" class="hover:text-blue-600 font-medium">About &amp; Methodology</a></li>
+              <li><a href="/contact" class="hover:text-blue-600">Contact Us</a></li>
               <li><a href="/privacy" class="hover:text-blue-600">Privacy Policy</a></li>
             </ul>
           </div>
         </div>
-        <div class="border-t border-gray-200 pt-6 text-center">
-          <p>© 2026 CalcForDIY — Free calculators for home improvement projects.</p>
-          <p class="mt-1 text-xs text-gray-400">All calculations are estimates. Always verify quantities with your specific product packaging before purchasing.</p>
+        <div class="border-t border-gray-200 pt-6 text-center text-xs text-gray-500 space-y-1.5">
+          <p>© 2026 CalcForDIY • Built for Homeowners &amp; Tradespeople • Sourced from IRC, TCNA, NWFA &amp; IES Building Standards.</p>
+          <p class="text-gray-400">Created &amp; Maintained by CalcForDIY Engineering • <a href="/about" class="hover:underline text-gray-500">About Our Methodology</a> • <a href="/contact" class="hover:underline text-gray-500">Contact Us</a> • <a href="/privacy" class="hover:underline text-gray-500">Privacy Policy</a></p>
+          <p class="text-gray-400">All calculations are estimates. Always verify quantities with specific product data sheets before installation.</p>
         </div>
       </div>
     </footer>

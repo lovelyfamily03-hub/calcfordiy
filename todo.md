@@ -39,6 +39,12 @@
 - [ ] Outdoor Patio & Hardscaping Hub (`/projects/outdoor-patio`)
 - [ ] Garage Workshop & EV Electrical Hub (`/projects/garage-ev-workshop`)
 
+### 🛡️ E-E-A-T & Google Sandbox Trust Signals (COMPLETE ✅)
+- [x] Sitewide "Last Verified & Sourced from IRC, TCNA, NWFA & IES Standards" badge auto-injected on all calculator pages in `Layout.astro`.
+- [x] Sitewide footer creator attribution & methodology links (`/about` and `/contact`).
+- [x] Public contact email (`invictusetfortis@gmail.com`) and FormSubmit form live on `/contact`.
+- [x] Content-Signal policy added to `public/robots.txt` (`ai-train=no, search=yes, ai-input=no`).
+
 ---
 
 ## 2. 🧮 Unbuilt High-Value Expansion Calculators
