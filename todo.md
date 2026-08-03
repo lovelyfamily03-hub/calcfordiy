@@ -67,8 +67,8 @@
 
 ## 3. 📝 SEO Content & Guide Expansion (`/guides/`)
 
+- [x] `"How Many Squares of Shingles Do I Need for a 2,000 Sq Ft Roof?"` (`/guides/how-many-roofing-squares`)
 - [ ] `"How Many Fence Pickets Do I Need for 100 Feet?"` (`/guides/how-many-fence-pickets`)
-- [ ] `"How Many Squares of Shingles Do I Need for a 2,000 Sq Ft Roof?"` (`/guides/how-many-roofing-squares`)
 - [ ] `"How Much Blown-In Insulation Do I Need for My Attic?"` (`/guides/how-much-attic-insulation`)
 - [ ] `"What Size Conduit Do I Need for 3 Wires?"` (`/guides/conduit-size-for-3-wires`)
 - [ ] `"How Far Can a 2x8 Deck Joist Span?"` (`/guides/how-far-can-2x8-deck-joist-span`)
