@@ -233,11 +233,14 @@ Path: `src/pages/guides/` — Use staggered publish dates when committing.
 
 ---
 
-## SEO & INDEXING STATUS (Jul 28, 2026)
-- **Root cause of zero impressions:** Cloudflare "Managed robots.txt" was prepending `Content-Signal` lines and duplicate `User-agent: *` blocks to our origin robots.txt, which caused Google to de-index the site.
-- **Fix applied Jul 27, 2026:** Disabled Cloudflare Managed robots.txt. Origin `public/robots.txt` now serves clean directives. Cloudflare cache purged.
-- **Current state:** 69 pages indexed, no manual penalty, no noindex tags. Site is awaiting Google re-crawl cycle to restore rankings (typically 2–4 weeks post de-index).
-- **Recovery actions taken:** Sitemap resubmitted, manual "Request Indexing" done for key pages, GA4 bounce rate fixed via engagement events.
+## SEO & INDEXING STATUS (Aug 3, 2026)
+- **Crawl & Indexing Health**: 89 total clean pages indexed, zero manual actions, zero 404s. Googlebot actively crawling 130+ requests/day.
+- **AdSense Site Review Status**: Initial automated review returned *"Low Value Content"*. 
+- **Hardened AdSense Re-Submission Strategy**: Rather than mass-padding calculators with templated 500-word boilerplate (which risks Google's Scaled Content Abuse penalty), we are executing a 4-Phase Quality Plan:
+  1. *Domain Trust (E-E-A-T)*: Explicit AdSense DART cookie privacy policy, dedicated Calculation Methodology page (`/methodology`), and localized AHJ disclaimers.
+  2. *Tiered Flagship Enhancement*: Deepening 10 top calculators (`concrete-slab`, `wall-framing`, `shower-tile`, `asphalt-shingles`, `ev-charger-wiring`, `retaining-wall`, `deck-joist-span`, `french-drain`, `stair-stringer`, `mini-split-sizing`) with explicit math equations, transparent default constants, and tool-specific job-site FAQs.
+  3. *Homepage & Navigation*: Focused 150-word intro, project paths, and site footer navigation.
+  4. *Pre-Resubmission Verification*: 89 live 200 OK pages, clean mobile viewports, `ads.txt` verified.
 
 ---
 
