@@ -70,7 +70,7 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
           <span class="text-gray-300">•</span>
           <span>Formulas Verified Against <strong>IRC, TCNA, NWFA &amp; IES Standards</strong></span>
           <span class="text-gray-300">•</span>
-          <a href="/about" class="text-blue-600 font-medium hover:underline">Read Our Methodology →</a>
+          <a href="/methodology" class="text-blue-600 font-medium hover:underline">Read Our Methodology →</a>
         </div>
       )}
       <slot />
@@ -81,9 +81,9 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
         <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 text-sm text-amber-900 shadow-sm flex items-start gap-3">
           <span class="text-xl shrink-0">⚠️</span>
           <div>
-            <h4 class="font-bold text-amber-950 mb-1">Disclaimer &amp; DIY Safety Notice</h4>
+            <h4 class="font-bold text-amber-950 mb-1">Planning Estimate Disclaimer &amp; AHJ Code Notice</h4>
             <p class="text-xs text-amber-900 leading-relaxed">
-              While we have performed strict due diligence in researching building codes, manufacturer specifications, and material formulas, CalcForDIY bears no responsibility or liability for the use of these tools. Human or machine errors are real—typing mistakes or improper job site measurements can lead to undesirable consequences and material waste. All calculations are estimates intended for planning purposes only; use them at your own risk and responsibility. Always follow the golden rule of craftsmanship: <strong>"Measure seven times, cut once."</strong> Verify all measurements, and if still unsure, consult licensed professionals or local building officials before purchasing materials or executing structural, electrical, or plumbing work.
+              While we have performed strict due diligence in researching building codes (IRC, TCNA, NEC, IES), manufacturer specifications, and material formulas, CalcForDIY bears no responsibility or liability for the use of these tools. All calculations provide planning estimates, not permit-ready structural, electrical, or plumbing designs. Always verify measurements and code compliance with your local <strong>Authority Having Jurisdiction (AHJ)</strong> or building department prior to purchasing materials or executing construction.
             </p>
           </div>
         </div>
@@ -128,7 +128,8 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
           <div>
             <h3 class="font-semibold text-gray-900 mb-3">Company &amp; E-E-A-T</h3>
             <ul class="space-y-2">
-              <li><a href="/about" class="hover:text-blue-600 font-medium">About &amp; Methodology</a></li>
+              <li><a href="/about" class="hover:text-blue-600 font-medium">About CalcForDIY</a></li>
+              <li><a href="/methodology" class="hover:text-blue-600 font-semibold text-blue-600">Calculation Methodology</a></li>
               <li><a href="/contact" class="hover:text-blue-600">Contact Us</a></li>
               <li><a href="/privacy" class="hover:text-blue-600">Privacy Policy</a></li>
             </ul>
@@ -136,8 +137,8 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
         </div>
         <div class="border-t border-gray-200 pt-6 text-center text-xs text-gray-500 space-y-1.5">
           <p>© 2026 CalcForDIY • Built for Homeowners &amp; Tradespeople • Sourced from IRC, TCNA, NWFA &amp; IES Building Standards.</p>
-          <p class="text-gray-400">Created &amp; Maintained by CalcForDIY Engineering • <a href="/about" class="hover:underline text-gray-500">About Our Methodology</a> • <a href="/contact" class="hover:underline text-gray-500">Contact Us</a> • <a href="/privacy" class="hover:underline text-gray-500">Privacy Policy</a></p>
-          <p class="text-gray-400">All calculations are estimates. Always verify quantities with specific product data sheets before installation.</p>
+          <p class="text-gray-400">Created &amp; Maintained by CalcForDIY Engineering • <a href="/about" class="hover:underline text-gray-500">About</a> • <a href="/methodology" class="hover:underline text-gray-500">Methodology &amp; Code Standards</a> • <a href="/contact" class="hover:underline text-gray-500">Contact Us</a> • <a href="/privacy" class="hover:underline text-gray-500">Privacy Policy</a></p>
+          <p class="text-gray-400">All calculations are planning estimates. Always verify quantities with specific product data sheets and your local AHJ before installation.</p>
         </div>
       </div>
     </footer>

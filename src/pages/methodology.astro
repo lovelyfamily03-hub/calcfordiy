@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Calculation Methodology & Testing Standards — CalcForDIY"
+  description="Learn how CalcForDIY researches, formulates, and tests material estimation algorithms against primary building codes (IRC, TCNA, NEC, IES, NWFA)."
+>
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/about" class="hover:text-blue-600">About</a>
+    <span>/</span>
+    <span>Methodology &amp; Standards</span>
+  </div>
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-4">Calculation Methodology &amp; Testing Standards</h1>
+  <p class="text-gray-600 text-lg mb-8 max-w-3xl leading-relaxed">
+    Accuracy is the foundation of CalcForDIY. Every formula, waste factor, and material density on this site is grounded in published trade standards, building codes, and manufacturer technical specifications.
+  </p>
+
+  <div class="prose max-w-3xl text-gray-700 space-y-8">
+
+    <section class="bg-blue-50 border border-blue-200 rounded-xl p-6">
+      <h2 class="text-xl font-bold text-blue-950 mt-0 mb-3">Our Engineering &amp; Sourcing Philosophy</h2>
+      <p class="text-blue-900 text-sm leading-relaxed mb-0">
+        If a calculator tells a homeowner to buy 4 bags of thinset mortar and the project actually requires 6, that tool has failed. We build tools that bridge the gap between architectural blueprints, hardware store aisles, and real job-site execution. Nothing is guessed or padded arbitrarily.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">1. Primary Building Codes &amp; Industry Standards</h2>
+      <p>Our calculation engines cite and adhere to established industry reference standards:</p>
+
+      <div class="space-y-4 mt-4">
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">International Residential Code (IRC 2021 / 2024)</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Used for wall framing stud spacing (16" and 24" o.c. rules), roof pitch and rafter span equations (Section R802), stair riser/tread proportion formulas (Section R311.7), and deck joist/beam allowable spans (Table R507.5).
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">Tile Council of North America (TCNA Handbook)</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Governs tile layout calculations, grout joint volume consumption rates, thinset mortar trowel coverage rates, and pattern waste factor multipliers (10% straight, 15% diagonal/offset, 20% herringbone).
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">National Electrical Code (NEC / NFPA 70)</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Used for Chapter 9 Table 1 conduit fill limits (40% maximum for 3 or more conductors), Article 220 continuous demand load rules (80% continuous breaker sizing for EV chargers per NEC 210.20), and wire gauge voltage drop math.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">Illuminating Engineering Society (IES Lighting Handbook)</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Determines recommended foot-candle (lumens per sq ft) targets by room function — living rooms (20 FC), kitchens (50 FC), hallways (10 FC), and workshop environments (75+ FC).
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">National Wood Flooring Association (NWFA)</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Establishes square-footage carton rounding, expansion perimeter gap requirements, and subfloor plywood thickness rules for hardwood and laminate installations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">2. Material Densities &amp; Physical Constants</h2>
+      <p>Where calculators measure volume to weight (cubic yards to tons), we use verified material bulk density figures:</p>
+      
+      <div class="overflow-x-auto my-4">
+        <table class="w-full text-left border-collapse border border-gray-200 text-sm">
+          <thead>
+            <tr class="bg-gray-100 border-b border-gray-200">
+              <th class="p-3 font-semibold text-gray-900">Material Grade</th>
+              <th class="p-3 font-semibold text-gray-900">Standard Bulk Density</th>
+              <th class="p-3 font-semibold text-gray-900">Primary Technical Source</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <td class="p-3 font-medium">3/4" Washed Stone (French Drains)</td>
+              <td class="p-3 font-mono">1.35 Tons / Cu Yd (2,700 lbs)</td>
+              <td class="p-3 text-xs text-gray-500">Aggregate Association Specs</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">Crusher Run / Paver Base Gravel</td>
+              <td class="p-3 font-mono">1.45 Tons / Cu Yd (2,900 lbs)</td>
+              <td class="p-3 text-xs text-gray-500">ASTM D2940 Standard</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">Wet Ready-Mix Concrete</td>
+              <td class="p-3 font-mono">1.98 Tons / Cu Yd (145 lbs/cu ft)</td>
+              <td class="p-3 text-xs text-gray-500">American Concrete Institute (ACI)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">Shredded Bark Mulch</td>
+              <td class="p-3 font-mono">800–1,000 lbs / Cu Yd</td>
+              <td class="p-3 text-xs text-gray-500">Mulch &amp; Soil Council</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold text-gray-900 mb-4">3. Algorithm Testing &amp; Verification Procedures</h2>
+      <p>
+        Before any new calculator or update is published on CalcForDIY, it undergoes a three-step verification process:
+      </p>
+      <ol class="space-y-3 list-decimal pl-5">
+        <li><strong>Theoretical Code Match:</strong> Formulas are calculated manually against structural or electrical engineering equations.</li>
+        <li><strong>Manufacturer Cross-Check:</strong> Outputs are validated against published technical data sheets from major manufacturers (including Quikrete, Mapei, LATICRETE, Owens Corning, and Southwire).</li>
+        <li><strong>RSMeans Cost Alignment:</strong> Material quantities are paired with national average unit pricing from RSMeans and Homewyse data models to ensure cost ranges reflect current market conditions.</li>
+      </ol>
+    </section>
+
+    <section class="bg-amber-50 border border-amber-200 rounded-xl p-6">
+      <h2 class="text-xl font-bold text-amber-950 mt-0 mb-3">⚠️ Planning Estimate Disclaimer &amp; Local AHJ Notice</h2>
+      <p class="text-amber-900 text-sm leading-relaxed mb-0">
+        All calculations provided on calcfordiy.com are intended strictly as <strong>planning and estimation tools</strong>. They do not constitute permit-ready architectural plans, structural engineering approvals, or licensed electrical designs. Building codes, wind/snow loads, frost depths, and local code amendments vary by municipality. Always verify project plans with your local <strong>Authority Having Jurisdiction (AHJ)</strong> or building inspection department, and strictly follow manufacturer installation instructions.
+      </p>
+    </section>
+
+    <div class="border-t border-gray-200 pt-6">
+      <p class="text-sm text-gray-600">
+        Have questions about our calculation formulas or noticed a discrepancy? <a href="/contact" class="text-blue-600 font-medium hover:underline">Contact our engineering team</a> directly.
+      </p>
+    </div>
+
+  </div>
+</Layout>

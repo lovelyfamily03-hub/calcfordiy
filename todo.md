@@ -79,10 +79,10 @@
 
 > **Strategic Explanation**: AdSense flagged the initial submission for *"Low Value Content"*. Rather than mass-padding calculators with 500 words of generic boilerplate (which risks Google's Scaled Content Abuse penalty), we are executing a **Hardened E-E-A-T Quality & Trust Plan** focusing on domain trust signals, explicit calculation formulas, transparent assumptions, and tool-specific job site guidance.
 
-### Phase 1: Domain-Level Trust & Methodology (E-E-A-T Infrastructure)
-- [ ] **AdSense Privacy Policy Compliance**: Update `/privacy` with explicit third-party vendor advertising, Google AdSense cookie collection, DART cookies, and opt-out mechanisms (`aboutads.info`).
-- [ ] **Calculation Methodology Page (`/methodology`)**: Create dedicated page detailing formula research, building code standards (IRC, TCNA, NEC, IES), and testing procedures.
-- [ ] **Standardized Localized Disclaimer**: Add localized disclaimer across all tools: *"Planning estimate, not a permit-ready design or code determination. Confirm local requirements with your AHJ."*
+### Phase 1: Domain-Level Trust & Methodology (E-E-A-T Infrastructure - COMPLETE ✅)
+- [x] **AdSense Privacy Policy Compliance**: Updated `/privacy` with explicit third-party vendor advertising, Google AdSense cookie collection, DART cookies, and opt-out mechanisms (`aboutads.info` & NAI).
+- [x] **Calculation Methodology Page (`/methodology`)**: Built dedicated page detailing formula research, building code standards (IRC 2021/2024, TCNA, NEC, IES, NWFA), testing procedures, and density constants.
+- [x] **Standardized Localized Disclaimer**: Added localized AHJ disclaimer across all tools: *"Planning estimate, not a permit-ready design or code determination. Confirm local requirements with your AHJ."*
 
 ### Phase 2: Tiered Content Enhancement for Top 10 Flagship Calculators
 Enhance top 10 core tools with unique, non-templated, tool-specific technical value below the UI (keeping tools strictly above the fold):
