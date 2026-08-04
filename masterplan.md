@@ -240,8 +240,8 @@ Path: `src/pages/guides/` — Use staggered publish dates when committing.
 - **Hardened AdSense Re-Submission Strategy**: Rather than mass-padding calculators with templated 500-word boilerplate (which risks Google's Scaled Content Abuse penalty), we are executing a 4-Phase Quality Plan:
   1. *Domain Trust (E-E-A-T - COMPLETE ✅)*: Explicit AdSense DART cookie privacy policy (`/privacy`), dedicated Calculation Methodology page (`/methodology`), and localized AHJ disclaimers.
   2. *Tiered Flagship Enhancement (COMPLETE ✅)*: Deepened top 10 core calculators (`concrete-slab`, `wall-framing`, `shower-tile`, `asphalt-shingles`, `ev-charger-wiring`, `retaining-wall`, `deck-joist-span`, `french-drain`, `stair-stringer`, `mini-split-sizing`) with explicit math equations, transparent default constants, and tool-specific job-site FAQs.
-  3. *Homepage & Navigation*: Focused 150-word intro, project paths, and site footer navigation.
-  4. *Pre-Resubmission Verification*: 89 live 200 OK pages, clean mobile viewports, `ads.txt` verified.
+  3. *Homepage & Navigation (COMPLETE ✅)*: Focused 150-word intro, project paths, and site footer navigation.
+  4. *Pre-Resubmission Verification (COMPLETE ✅)*: 90 live 200 OK pages, clean mobile viewports, `ads.txt` verified. Ready for user resubmission in AdSense Dashboard.
 
 ---
 

@@ -97,14 +97,14 @@ Enhanced top 10 core tools with unique, non-templated, tool-specific technical v
 - [x] `stair-stringer` — IRC Section R311.7 geometry (7-3/4" max riser, 10" min tread), 2x12 stock math, bottom step tread thickness deduction.
 - [x] `mini-split-sizing` — ACCA Manual J BTU/sq ft load matrix by ceiling height, sun exposure, and insulation grade.
 
-### Phase 3: Homepage & Navigation UX Polish
-- [ ] **Homepage Intro & Methodology**: Add 150-word mission statement, category hubs, and planning estimate statement to `/index.astro`.
-- [ ] **Footer Navigation**: Verify all policy, about, contact, and methodology links are visible in global footer.
+### Phase 3: Homepage & Navigation UX Polish (COMPLETE ✅)
+- [x] **Homepage Intro & Methodology**: Added 150-word mission statement, category hubs, and planning estimate statement to `/index.astro`.
+- [x] **Footer Navigation**: Verified all policy, about, contact, and methodology links are visible in global footer.
 
-### Phase 4: Pre-Resubmission Checklist
-- [ ] Confirm all 89 URLs return 200 OK with zero broken links or empty draft routes.
-- [ ] Verify mobile viewport rendering across all tools.
-- [ ] Re-verify `public/ads.txt` (`ca-pub-6410565511961171`).
+### Phase 4: Pre-Resubmission Checklist (COMPLETE ✅)
+- [x] Confirmed all 90 URLs return 200 OK with zero broken links or empty draft routes.
+- [x] Verified mobile viewport rendering across all tools.
+- [x] Re-verified `public/ads.txt` (`ca-pub-6410565511961171`).
 - [ ] Check *"I confirm I have fixed the issues"* in AdSense Dashboard and request review.
 
 ---
