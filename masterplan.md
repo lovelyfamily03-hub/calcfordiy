@@ -43,6 +43,7 @@
 - `[x]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes with regional multipliers (COMPLETE ✅).
 - `[x]` **Moat 4: Project Workflow Hubs** — Interactive multi-step project flows under `/projects/` guiding users through 4–5 sequential calculators per project (COMPLETE ✅ 8 of 8 Live).
 - `[x]` **E-E-A-T & Trust Signal Hardening** — Auto-injected verification badges, IRC/TCNA methodology links, contact email, and Content-Signal policy (COMPLETE ✅).
+- `[x]` **Pre-Calculated Coverage Lookup Tables** — Integrated static reference tables below key calculators (`concrete-slab`, `thinset`, `conduit-fill`, `wall-framing`, `asphalt-shingles`) for instant at-a-glance job site references (COMPLETE ✅).
 
 ---
 

@@ -113,6 +113,7 @@ Enhanced top 10 core tools with unique, non-templated, tool-specific technical v
 
 ## 5. ⚙️ Technical Polish & UX Enhancements
 
+- [x] **Pre-Calculated Coverage Lookup Tables**: Integrated static reference tables below key calculators (`concrete-slab`, `thinset`, `conduit-fill`, `wall-framing`, `asphalt-shingles`).
 - [ ] **Instant Live Search Filter**: Add real-time keyword filter input to `/calculators/index.astro`.
 - [ ] **Clipboard GA4 Event Tracking**: Track `copy_shopping_list` button clicks in GA4.
 - [ ] **Mobile Input Keypad Polish**: Verify `inputmode="decimal"` on all numeric input fields.

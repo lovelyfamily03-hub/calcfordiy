@@ -224,6 +224,62 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">NEC Conduit Fill Capacity Table (40% Max Fill Rule)</h2>
+    <p class="text-gray-700 text-sm mb-4">Maximum number of THHN/THWN-2 copper conductors permitted in EMT (Electrical Metallic Tubing) conduit per NEC Chapter 9 Table 1:</p>
+    
+    <div class="overflow-x-auto my-4">
+      <table class="w-full text-left border-collapse border border-gray-200 text-sm">
+        <thead>
+          <tr class="bg-gray-100 border-b border-gray-200 text-gray-900">
+            <th class="p-3 font-semibold">Wire AWG Gauge</th>
+            <th class="p-3 font-semibold">THHN Area (sq in)</th>
+            <th class="p-3 font-semibold">1/2" EMT (40% Cap: 0.122 sq in)</th>
+            <th class="p-3 font-semibold">3/4" EMT (40% Cap: 0.213 sq in)</th>
+            <th class="p-3 font-semibold">1" EMT (40% Cap: 0.346 sq in)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="p-3 font-medium">14 AWG (15A Circuit)</td>
+            <td class="p-3 font-mono">0.0097 sq in</td>
+            <td class="p-3 font-mono">12 wires max</td>
+            <td class="p-3 font-mono">22 wires max</td>
+            <td class="p-3 font-mono">35 wires max</td>
+          </tr>
+          <tr class="bg-blue-50">
+            <td class="p-3 font-medium">12 AWG (20A Circuit)</td>
+            <td class="p-3 font-mono">0.0133 sq in</td>
+            <td class="p-3 font-mono">9 wires max</td>
+            <td class="p-3 font-mono">16 wires max</td>
+            <td class="p-3 font-mono">26 wires max</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">10 AWG (30A Circuit)</td>
+            <td class="p-3 font-mono">0.0211 sq in</td>
+            <td class="p-3 font-mono">5 wires max</td>
+            <td class="p-3 font-mono">10 wires max</td>
+            <td class="p-3 font-mono">16 wires max</td>
+          </tr>
+          <tr class="bg-blue-50">
+            <td class="p-3 font-medium">8 AWG (40A/50A Circuit)</td>
+            <td class="p-3 font-mono">0.0366 sq in</td>
+            <td class="p-3 font-mono">3 wires max</td>
+            <td class="p-3 font-mono">5 wires max</td>
+            <td class="p-3 font-mono">9 wires max</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">6 AWG (60A Subpanel / EV)</td>
+            <td class="p-3 font-mono">0.0507 sq in</td>
+            <td class="p-3 font-mono text-red-600">2 wires (Over 40% if 3+)</td>
+            <td class="p-3 font-mono text-emerald-700 font-bold">4 wires max (Passes Code)</td>
+            <td class="p-3 font-mono font-bold text-emerald-700">6 wires max</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-5">NEC Code Standards (Chapter 9 Table 1)</h2>
     <div class="space-y-4 text-sm text-gray-700">
       <p><strong>Maximum Allowable Fill Limits:</strong></p>

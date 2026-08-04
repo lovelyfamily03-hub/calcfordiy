@@ -200,6 +200,62 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Roof Pitch &amp; Roofing Squares Quick-Reference Table</h2>
+    <p class="text-gray-700 text-sm mb-4">Slope expansion multipliers, actual roof surface area, and bundle counts (3 bundles = 1 square) for a 2,000 sq ft building footprint:</p>
+    
+    <div class="overflow-x-auto my-4">
+      <table class="w-full text-left border-collapse border border-gray-200 text-sm">
+        <thead>
+          <tr class="bg-gray-100 border-b border-gray-200 text-gray-900">
+            <th class="p-3 font-semibold">Roof Pitch (Rise / 12")</th>
+            <th class="p-3 font-semibold">Slope Multiplier</th>
+            <th class="p-3 font-semibold">2,000 Sq Ft Footprint Surface</th>
+            <th class="p-3 font-semibold">Roofing Squares (+10% Waste)</th>
+            <th class="p-3 font-semibold">Shingle Bundles (3 / Sq)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="p-3 font-medium">3/12 (Low Slope)</td>
+            <td class="p-3 font-mono">1.031</td>
+            <td class="p-3 font-mono">2,062 sq ft</td>
+            <td class="p-3 font-mono">22.7 Squares</td>
+            <td class="p-3 font-bold text-blue-700">69 Bundles</td>
+          </tr>
+          <tr class="bg-blue-50">
+            <td class="p-3 font-medium">4/12 (Standard Walkable)</td>
+            <td class="p-3 font-mono">1.054</td>
+            <td class="p-3 font-mono">2,108 sq ft</td>
+            <td class="p-3 font-mono">23.2 Squares</td>
+            <td class="p-3 font-bold text-blue-700">70 Bundles</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">6/12 (Most Common Residential)</td>
+            <td class="p-3 font-mono">1.118</td>
+            <td class="p-3 font-mono">2,236 sq ft</td>
+            <td class="p-3 font-mono">24.6 Squares</td>
+            <td class="p-3 font-bold text-blue-700">74 Bundles</td>
+          </tr>
+          <tr class="bg-blue-50">
+            <td class="p-3 font-medium">8/12 (Steep Slope)</td>
+            <td class="p-3 font-mono">1.202</td>
+            <td class="p-3 font-mono">2,404 sq ft</td>
+            <td class="p-3 font-mono">26.4 Squares</td>
+            <td class="p-3 font-bold text-blue-700">80 Bundles</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">12/12 (45&deg; Steep Angle)</td>
+            <td class="p-3 font-mono">1.414</td>
+            <td class="p-3 font-mono">2,828 sq ft</td>
+            <td class="p-3 font-mono">31.1 Squares</td>
+            <td class="p-3 font-bold text-blue-700">94 Bundles</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
     <p class="text-gray-700 mb-4">Follow these steps to accurately estimate materials for a roof replacement:</p>
     <ol class="space-y-4 text-gray-700">

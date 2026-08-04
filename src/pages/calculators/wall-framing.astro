@@ -243,6 +243,62 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Wall Framing Stud Quick-Reference Table</h2>
+    <p class="text-gray-700 text-sm mb-4">Estimated stud counts (including 10% waste buffer and double top plates + single bottom plate) per linear foot of wall run:</p>
+    
+    <div class="overflow-x-auto my-4">
+      <table class="w-full text-left border-collapse border border-gray-200 text-sm">
+        <thead>
+          <tr class="bg-gray-100 border-b border-gray-200 text-gray-900">
+            <th class="p-3 font-semibold">Wall Run Length</th>
+            <th class="p-3 font-semibold">16" On-Center (Standard)</th>
+            <th class="p-3 font-semibold">24" On-Center (Advanced)</th>
+            <th class="p-3 font-semibold">Horizontal Plate Lumber (3x Run)</th>
+            <th class="p-3 font-semibold">Recommended Stud Order</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="p-3 font-medium">8 Feet (Short Wall)</td>
+            <td class="p-3 font-mono">7 studs</td>
+            <td class="p-3 font-mono">5 studs</td>
+            <td class="p-3 font-mono">3 &times; 8 ft 2x4s</td>
+            <td class="p-3 font-bold text-blue-700">8 Studs (Order +1 spare)</td>
+          </tr>
+          <tr class="bg-blue-50">
+            <td class="p-3 font-medium">12 Feet (Standard Room)</td>
+            <td class="p-3 font-mono">11 studs</td>
+            <td class="p-3 font-mono">8 studs</td>
+            <td class="p-3 font-mono">3 &times; 12 ft 2x4s</td>
+            <td class="p-3 font-bold text-blue-700">12 Studs</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">20 Feet (Great Room)</td>
+            <td class="p-3 font-mono">18 studs</td>
+            <td class="p-3 font-mono">12 studs</td>
+            <td class="p-3 font-mono">6 &times; 10 ft 2x4s</td>
+            <td class="p-3 font-bold text-blue-700">20 Studs</td>
+          </tr>
+          <tr class="bg-blue-50">
+            <td class="p-3 font-medium">50 Feet (Basement Perimeter)</td>
+            <td class="p-3 font-mono">43 studs</td>
+            <td class="p-3 font-mono">29 studs</td>
+            <td class="p-3 font-mono">10 &times; 16 ft 2x4s</td>
+            <td class="p-3 font-bold text-blue-700">47 Studs (with waste)</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">100 Feet (Entire Floor Plan)</td>
+            <td class="p-3 font-mono">84 studs</td>
+            <td class="p-3 font-mono">56 studs</td>
+            <td class="p-3 font-mono">20 &times; 16 ft 2x4s</td>
+            <td class="p-3 font-bold text-blue-700">93 Studs (with waste)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
     <p class="text-gray-700 mb-4">This framing calculator utilizes standard IRC residential building codes and professional estimating rules to output your final lumber list. Here is the math:</p>
     <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
