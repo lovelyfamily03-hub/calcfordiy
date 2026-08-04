@@ -1,0 +1,444 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Electrical Subpanel Sizing & Feeder Wire Calculator | CalcForDIY"
+  description="Calculate subpanel ampacity (60A, 90A, 100A, 125A), feeder wire gauge (copper vs aluminum), breaker spaces, and NEC Article 220 demand loads for garage workshops and detached sheds."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Electrical Subpanel Sizing & Feeder Wire Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What size subpanel do I need for a garage workshop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 100-Amp subpanel fed by 2-2-2-4 SER Aluminum or 2 AWG THHN Copper is the industry standard for a garage workshop. This provides ample capacity for a 50A Level 2 EV charger, 240V air compressor, table saw, dust collector, and LED lighting without tripping the main feeder breaker."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should neutral and ground wires be bonded in a subpanel?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No! Under NEC 250.32, neutral and ground wires must be separated in all subpanels (4-wire feeder system). The neutral bus bar must remain unbonded (floating) from the subpanel enclosure, while a separate grounding bar is bonded directly to the metal box."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use aluminum wire for an electrical subpanel feeder?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Aluminum SER cable (such as 2-2-2-4 SER for 90A/100A subpanels) is widely accepted by NEC code and significantly less expensive than heavy copper feeder wire. You must apply anti-oxidant joint compound (DE-OX) to aluminum conductor terminals."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Subpanel Sizing Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Electrical Subpanel Sizing &amp; Feeder Wire Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate subpanel ampacity (60A to 125A), feeder cable gauge (copper vs aluminum), required panel breaker slots, and NEC Article 220 demand loads.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Subpanel Location &amp; Planned Electrical Loads
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Subpanel Location</label>
+        <select id="subpanelLocation" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="attached_garage" selected>Attached Garage / Workshop</option>
+          <option value="detached_shed">Detached Shed / Outbuilding (Requires Ground Rods)</option>
+          <option value="basement_suite">Basement Suite / Addition</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Feeder Run One-Way Length</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="feederLengthFt" placeholder="40" value="40" min="5" max="300" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Preferred Feeder Conductor Type</label>
+        <select id="conductorMat" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="aluminum_ser" selected>Aluminum SER Cable (Most Cost Effective)</option>
+          <option value="copper_thhn">Copper THHN Conductors in Conduit</option>
+          <option value="copper_nmb">Copper NM-B Romex Cable (Indoor Only)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Connected Loads Checkboxes -->
+    <div class="mb-5 bg-gray-50 p-4 rounded-xl border border-gray-200">
+      <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Check All Planned Circuits to Power from Subpanel:</h3>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm text-gray-700">
+        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+          <input type="checkbox" id="load_ev" class="w-4 h-4 text-blue-600 rounded" checked />
+          <span>Level 2 EV Charger (50A / 40A Cont.)</span>
+        </label>
+
+        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+          <input type="checkbox" id="load_compressor" class="w-4 h-4 text-blue-600 rounded" checked />
+          <span>240V Air Compressor (30A)</span>
+        </label>
+
+        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+          <input type="checkbox" id="load_tablesaw" class="w-4 h-4 text-blue-600 rounded" checked />
+          <span>240V Table Saw / Welder (30A)</span>
+        </label>
+
+        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+          <input type="checkbox" id="load_dust" class="w-4 h-4 text-blue-600 rounded" />
+          <span>Dust Collector / Machinery (20A)</span>
+        </label>
+
+        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+          <input type="checkbox" id="load_minisplit" class="w-4 h-4 text-blue-600 rounded" checked />
+          <span>Mini-Split Heat Pump (20A / 240V)</span>
+        </label>
+
+        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+          <input type="checkbox" id="load_lighting" class="w-4 h-4 text-blue-600 rounded" checked />
+          <span>LED Shop Lighting &amp; 120V Outlets (20A)</span>
+        </label>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Subpanel Sizing &amp; Wire Spec →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Subpanel Sizing &amp; Feeder Specification</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_panelAmps">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Recommended Subpanel</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_panelSlots">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_feederWire">—</div>
+        <div class="text-xs text-gray-500 mt-1">Feeder Cable Gauge</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_feederType">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_feederBreaker">—</div>
+        <div class="text-xs text-gray-500 mt-1">Main Panel Feeder Breaker</div>
+        <div class="text-xs text-gray-500 mt-0.5">Double-Pole 240V</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_voltageDrop">—</div>
+        <div class="text-xs text-gray-500 mt-1">Voltage Drop %</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_dropNote">—</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Wiring Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 NEC 4-Wire Subpanel Feeder &amp; Bus Bar Wiring Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Auto-scaled Wiring Diagram</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- NEC Code Requirements Box -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">📜 Mandatory NEC Code Requirements (NEC 250.32 &amp; 220)</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_necCodeList">
+        <!-- Auto-injected NEC rules -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Subpanel Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to size an electrical subpanel and feeder cable according to National Electrical Code (NEC NFPA 70) rules:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Select Location &amp; Distance:</strong> Choose attached garage, detached building, or basement, and measure one-way cable length from main service panel.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Conductor Material:</strong> Choose Aluminum SER cable (most economic for 90A/100A runs) or THHN Copper in conduit.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Check Planned Connected Loads:</strong> Select all equipment (EV charger, compressor, heat pump, shop tools) to calculate NEC demand load.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Calculate Specification:</strong> View required panel rating, feeder cable gauge, voltage drop, and NEC grounding schematic!</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Code Standard -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula &amp; NEC Demand Load Logic</h2>
+    <p class="text-gray-700 mb-4">This subpanel calculator applies primary NEC Article 220 demand factors and ampacity tables:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Continuous Load Factor = 125% of Largest Continuous Motor / EV Load</p>
+      <p>Demand Amps = Continuous Loads (125%) + Non-Continuous Loads (100%)</p>
+      <p>Feeder Wire Selection = Matched to Ampacity from NEC Table 310.16 (75°C / 60°C Columns)</p>
+      <p>Voltage Drop % = [ (2 &times; K &times; Amps &times; Feet) &divide; CMIL ] &divide; 240 &times; 100</p>
+    </div>
+    <p class="text-gray-700">
+      <strong>Isolated Neutral Rule (NEC 250.32):</strong> In a main service panel, neutral and ground bars are bonded together. In all subpanels, neutral and ground MUST be separate. Neutral bars float on insulated blocks, while the ground bar is screwed into the metal box.
+    </p>
+    <p class="text-gray-700 mt-3">
+      <strong>Detached Building Grounding (NEC 250.32(A)):</strong> Subpanels installed in detached garages or outbuildings require 2 copper grounding electrode rods driven at least 6 feet apart into the earth, connected to the subpanel ground bar with 6 AWG bare copper wire.
+    </p>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What size subpanel do I need for a garage workshop?</h3>
+        <p class="text-gray-600 text-sm">A 100-Amp subpanel fed by 2-2-2-4 SER Aluminum or 2 AWG THHN Copper is the industry standard for a garage workshop. This provides ample capacity for a 50A Level 2 EV charger, 240V air compressor, table saw, dust collector, and LED lighting without tripping the main feeder breaker.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should neutral and ground wires be bonded in a subpanel?</h3>
+        <p class="text-gray-600 text-sm">No! Under NEC 250.32, neutral and ground wires must be separated in all subpanels (4-wire feeder system). The neutral bus bar must remain unbonded (floating) from the subpanel enclosure, while a separate grounding bar is bonded directly to the metal box.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can I use aluminum wire for an electrical subpanel feeder?</h3>
+        <p class="text-gray-600 text-sm">Yes. Aluminum SER cable (such as 2-2-2-4 SER for 90A/100A subpanels) is widely accepted by NEC code and significantly less expensive than heavy copper feeder wire. You must apply anti-oxidant joint compound (DE-OX) to aluminum conductor terminals.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/ev-charger-wiring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">EV Charger Wiring Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate wire gauge and breaker size for Level 2 EV chargers.</div>
+      </a>
+      <a href="/calculators/conduit-fill" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Conduit Fill Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate EMT/PVC conduit trade sizes for THHN conductors per NEC.</div>
+      </a>
+      <a href="/calculators/generator-size" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Generator Size Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate running watts and starting surge for home backup power.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateSubpanel() {
+    const location = document.getElementById('subpanelLocation').value;
+    const lengthFt = parseFloat(document.getElementById('feederLengthFt').value) || 40;
+    const conductorMat = document.getElementById('conductorMat').value;
+
+    const hasEV = document.getElementById('load_ev').checked;
+    const hasComp = document.getElementById('load_compressor').checked;
+    const hasSaw = document.getElementById('load_tablesaw').checked;
+    const hasDust = document.getElementById('load_dust').checked;
+    const hasMini = document.getElementById('load_minisplit').checked;
+    const hasLight = document.getElementById('load_lighting').checked;
+
+    // NEC Demand Load Amps Calculation
+    let totalAmps = 0;
+    let totalSlotsNeeded = 4; // base main breaker & lighting
+
+    if (hasEV) { totalAmps += 50; totalSlotsNeeded += 2; }
+    if (hasComp) { totalAmps += 30; totalSlotsNeeded += 2; }
+    if (hasSaw) { totalAmps += 30; totalSlotsNeeded += 2; }
+    if (hasDust) { totalAmps += 20; totalSlotsNeeded += 1; }
+    if (hasMini) { totalAmps += 20; totalSlotsNeeded += 2; }
+    if (hasLight) { totalAmps += 15; totalSlotsNeeded += 2; }
+
+    // Diversity factor (not all tools run simultaneously, but EV & HVAC run continuous)
+    let calculatedDemandAmps = Math.round(totalAmps * 0.75);
+    if (calculatedDemandAmps < 60) calculatedDemandAmps = 60;
+
+    let panelAmps = 60;
+    let feederBreakerAmps = 60;
+
+    if (calculatedDemandAmps > 60 && calculatedDemandAmps <= 90) {
+      panelAmps = 100;
+      feederBreakerAmps = 90;
+    } else if (calculatedDemandAmps > 90 && calculatedDemandAmps <= 100) {
+      panelAmps = 100;
+      feederBreakerAmps = 100;
+    } else if (calculatedDemandAmps > 100) {
+      panelAmps = 125;
+      feederBreakerAmps = 125;
+    }
+
+    // Feeder Wire Selection per NEC Table 310.16
+    let wireGaugeStr = "6 AWG Copper";
+    let cmil = 26240;
+
+    if (conductorMat === 'aluminum_ser') {
+      if (feederBreakerAmps === 60) { wireGaugeStr = "4 AWG Aluminum SER"; cmil = 41740; }
+      else if (feederBreakerAmps <= 90) { wireGaugeStr = "2 AWG Aluminum SER"; cmil = 66360; }
+      else if (feederBreakerAmps <= 100) { wireGaugeStr = "1 AWG or 2/0 Aluminum SER"; cmil = 83690; }
+      else { wireGaugeStr = "2/0 AWG Aluminum SER"; cmil = 133100; }
+    } else if (conductorMat === 'copper_thhn') {
+      if (feederBreakerAmps === 60) { wireGaugeStr = "6 AWG THHN Copper"; cmil = 26240; }
+      else if (feederBreakerAmps <= 90) { wireGaugeStr = "3 AWG THHN Copper"; cmil = 52620; }
+      else if (feederBreakerAmps <= 100) { wireGaugeStr = "2 AWG THHN Copper"; cmil = 66360; }
+      else { wireGaugeStr = "1 AWG THHN Copper"; cmil = 83690; }
+    } else { // copper_nmb
+      if (feederBreakerAmps === 60) { wireGaugeStr = "4 AWG NM-B Romex"; cmil = 41740; }
+      else if (feederBreakerAmps <= 90) { wireGaugeStr = "2 AWG NM-B Romex"; cmil = 66360; }
+      else { wireGaugeStr = "1/0 AWG NM-B Romex"; cmil = 105600; }
+    }
+
+    // Voltage Drop % Calculation = (2 * K * I * L / CMIL) / 240 * 100
+    const K = conductorMat.includes('aluminum') ? 21.2 : 12.9;
+    const vDropVolts = (2 * K * calculatedDemandAmps * lengthFt) / cmil;
+    const vDropPercent = ((vDropVolts / 240) * 100).toFixed(1);
+
+    // Update Results UI
+    document.getElementById('r_panelAmps').textContent = `${panelAmps} Amp Panel`;
+    document.getElementById('r_panelSlots').textContent = `Min 12-Space / 24-Circuit Panel`;
+
+    document.getElementById('r_feederWire').textContent = wireGaugeStr;
+    document.getElementById('r_feederType').textContent = conductorMat === 'aluminum_ser' ? '4-Conductor SER (2 Hot, 1 Neutral, 1 Ground)' : '4-Wire Feed';
+
+    document.getElementById('r_feederBreaker').textContent = `${feederBreakerAmps} Amp`;
+    document.getElementById('r_voltageDrop').textContent = `${vDropPercent}%`;
+    document.getElementById('r_dropNote').textContent = vDropPercent > 3.0 ? "⚠️ Upsize wire gauge to limit voltage drop < 3%" : "✅ Complies with NEC 3% max drop";
+
+    // NEC Rules Injected
+    const necList = document.getElementById('r_necCodeList');
+    necList.innerHTML = '';
+    necList.innerHTML += `<li><strong>4-Wire Feeder System:</strong> 2 Hot conductors (120V/240V), 1 Neutral, and 1 Equipment Grounding Conductor.</li>`;
+    necList.innerHTML += `<li><strong>Separated Neutral &amp; Ground Bars:</strong> Subpanel neutral bar MUST be unbonded (floating). Grounding bar bonded to metal enclosure.</li>`;
+    if (location === 'detached_shed') {
+      necList.innerHTML += `<li><strong>Detached Outbuilding Ground Rods:</strong> Requires 2 copper grounding electrode rods (8 ft long, 6 ft apart) wired to subpanel ground bar with 6 AWG bare copper.</li>`;
+      necList.innerHTML += `<li><strong>Building Disconnect:</strong> Panel must feature a main shutoff breaker or local disconnect switch at outbuilding entrance.</li>`;
+    }
+    if (conductorMat.includes('aluminum')) {
+      hwList.innerHTML += `<li><strong>Anti-Oxidant Compound:</strong> Must apply DE-OX joint compound on all aluminum wire terminal terminations.</li>`;
+    }
+
+    // Render SVG
+    renderSVG(panelAmps, feederBreakerAmps, wireGaugeStr, location);
+
+    // Clipboard Handler
+    setupClipboard(panelAmps, feederBreakerAmps, wireGaugeStr, conductorMat, lengthFt, vDropPercent);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSVG(panelAmps, breakerAmps, wireStr, loc) {
+    const container = document.getElementById('svgContainer');
+    const width = 600;
+    const height = 220;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Main Panel Box
+    svg += `<rect x="30" y="30" width="140" height="160" fill="#F3F4F6" stroke="#374151" stroke-width="2" rx="6" />`;
+    svg += `<text x="100" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F2937" font-family="sans-serif">Main Service Panel</text>`;
+    svg += `<rect x="60" y="75" width="80" height="30" fill="#DC2626" rx="4" />`;
+    svg += `<text x="100" y="95" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF" font-family="sans-serif">${breakerAmps}A 240V Feeder</text>`;
+
+    // Feeder Cable Lines (4 Wires)
+    svg += `<path d="M 140 90 L 430 90" stroke="#DC2626" stroke-width="3" fill="none" />`; // Hot 1 Red
+    svg += `<path d="M 140 98 L 430 98" stroke="#111827" stroke-width="3" fill="none" />`; // Hot 2 Black
+    svg += `<path d="M 140 106 L 430 106" stroke="#9CA3AF" stroke-dasharray="4" stroke-width="3" fill="none" />`; // Neutral White
+    svg += `<path d="M 140 114 L 430 114" stroke="#16A34A" stroke-width="3" fill="none" />`; // Ground Green
+
+    svg += `<text x="285" y="80" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563EB" font-family="sans-serif">Feeder: ${wireStr}</text>`;
+
+    // Subpanel Box
+    svg += `<rect x="430" y="30" width="140" height="160" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2" rx="6" />`;
+    svg += `<text x="500" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E3A8A" font-family="sans-serif">${panelAmps}A Subpanel</text>`;
+
+    // Separate Neutral & Ground Bars
+    svg += `<rect x="445" y="75" width="40" height="15" fill="#9CA3AF" rx="2" />`;
+    svg += `<text x="465" y="87" text-anchor="middle" font-size="9" fill="#FFFFFF" font-weight="bold">Neutral (Unbonded)</text>`;
+
+    svg += `<rect x="515" y="75" width="40" height="15" fill="#16A34A" rx="2" />`;
+    svg += `<text x="535" y="87" text-anchor="middle" font-size="9" fill="#FFFFFF" font-weight="bold">Ground (Bonded)</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(panelAmps, breakerAmps, wireStr, mat, length, drop) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY SUBPANEL WIRING TAKEOFF:\n\n`;
+      text += `• Subpanel: ${panelAmps}-Amp 12-Space/24-Circuit Outdoor/Indoor Main Lug Panel\n`;
+      text += `• Feeder Breaker: ${breakerAmps}-Amp Double-Pole 240V Breaker (Main Panel)\n`;
+      text += `• Feeder Cable: ${length} feet of ${wireStr} (4-Conductor Feeder)\n`;
+      text += `• Voltage Drop: ${drop}% over ${length} ft run\n`;
+      text += `• Grounding Bar: Separate Equipment Grounding Bar Kit (Ground/Neutral Unbonded)\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/subpanel-sizing`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateSubpanel);
+</script>

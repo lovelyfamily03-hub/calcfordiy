@@ -57,8 +57,9 @@
 - [x] Construction Tape Measure & Imperial Fraction Calculator (`/calculators/construction-fraction`)
 - [x] Septic Tank & Leach Field Drain Calculator (`/calculators/septic-tank-sizing`)
 
-### 🌊 Wave 2: Phase 4C–4F Masterplan Calculators
-- [ ] **Pergola & Gazebo Lumber Estimator** (`/calculators/pergola-lumber`) — Post size, beam spans, rafter spacing, shade slats, hardware.
+### 🌊 Wave 2: Phase 4C–4F Masterplan Expansion Calculators (65 Live Calculators)
+- [x] **Pergola & Gazebo Lumber Estimator** (`/calculators/pergola-lumber`) — Post size (4x4 vs 6x6), double beam plies, rafter spacing, shade purlins, concrete footings, Simpson Strong-Tie hardware schedule, and live SVG elevation diagram.
+- [x] **Electrical Subpanel Sizing Calculator** (`/calculators/subpanel-sizing`) — Subpanel ampacity (60A to 125A), feeder cable gauge (Aluminum SER vs Copper THHN), NEC Article 220 demand loads, voltage drop, separate neutral/ground bar rules, and live SVG schematic.
 - [ ] **Whole-House Fan Sizing Calculator** (`/calculators/whole-house-fan`) — CFM per sq ft, attic net free vent area (NFVA).
 - [ ] **Radiant Floor Heating Loop Calculator** (`/calculators/radiant-floor-heating`) — PEX tubing feet, loop counts, manifold ports, heat output (BTU).
 - [ ] **Solar Panel & Battery Storage Estimator** (`/calculators/solar-battery-sizing`) — Daily kWh consumption, panel count, battery Ah capacity.

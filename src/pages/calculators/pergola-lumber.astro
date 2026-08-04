@@ -1,0 +1,458 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Pergola Lumber & Hardware Estimator | CalcForDIY"
+  description="Calculate posts (4x4 or 6x6), main support beams, rafter joists, shade purlins, concrete footings, and structural hardware for custom wood pergolas."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Pergola Lumber & Hardware Estimator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should I use 4x4 or 6x6 posts for a pergola?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "6x6 posts (actual 5.5 x 5.5 inches) are strongly recommended for all pergolas larger than 8x8 feet. 6x6 posts resist warping, provide a wider notch shoulder for double 2x8 or 2x10 support beams, and prevent top-heavy swaying in high wind conditions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How far can pergola support beams span without sagging?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Double 2x8 beams can span up to 8 feet between posts. Double 2x10 beams can span up to 10 feet. Double 2x12 beams can span up to 12 feet. For spans exceeding 12 feet, add an intermediate post or use engineered LVL/Glulam beams treated for exterior exposure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How deep should pergola post footings be buried?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In ground-burial applications, posts must extend at least 36 to 48 inches deep below your local frost line on a 6-inch gravel pad filled with 2 to 3 bags of 80 lb concrete per hole. If mounting on an existing concrete patio, use structural metal post bases with heavy-duty wedge anchors."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Pergola Lumber Estimator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Pergola Lumber &amp; Hardware Estimator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate posts, double support beams, rafter joists, top shade purlins, footing concrete, and structural hardware for custom timber pergolas.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Pergola Dimensions &amp; Design Options
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Pergola Length (Beam Direction)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="pergolaLengthFt" placeholder="12" value="12" min="4" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Pergola Width (Rafter Span)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="pergolaWidthFt" placeholder="10" value="10" min="4" max="40" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Post Height (Above Ground)</label>
+        <div class="flex items-center gap-2">
+          <select id="postHeightFt" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option value="8">8 Feet (Standard Clearance)</option>
+            <option value="9">9 Feet (High Ceiling)</option>
+            <option value="10">10 Feet (Tall Pergola)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Post Size &amp; Mounting</label>
+        <select id="postOption" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="6x6_buried" selected>6x6 Posts — In-Ground Burial (3 ft deep)</option>
+          <option value="6x6_surface">6x6 Posts — Surface Bracket (Concrete Slab/Deck)</option>
+          <option value="4x4_buried">4x4 Posts — In-Ground Burial (3 ft deep)</option>
+          <option value="4x4_surface">4x4 Posts — Surface Bracket (Concrete Slab/Deck)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Main Beam Lumber Size</label>
+        <select id="beamOption" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="double_2x10" selected>Double 2x10 Beams (Up to 10 ft span)</option>
+          <option value="double_2x8">Double 2x8 Beams (Up to 8 ft span)</option>
+          <option value="double_2x12">Double 2x12 Beams (Up to 12 ft span)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Rafter Spacing (On-Center)</label>
+        <select id="rafterSpacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="16" selected>16 Inches (Standard Shade &amp; Rigidity)</option>
+          <option value="12">12 Inches (Dense Shade)</option>
+          <option value="24">24 Inches (Light Open Shade)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Top Shade Purlins / Lath Slats</label>
+        <select id="purlinOption" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="2x2_6in" selected>2x2 Slats spaced 6" On-Center (50% Shade)</option>
+          <option value="2x2_12in">2x2 Slats spaced 12" On-Center (25% Shade)</option>
+          <option value="none">None — Rafters Only</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Rafter &amp; Beam Overhang (Tails)</label>
+        <select id="overhangInches" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="12" selected>12 Inches Overhang (Decorative Tails)</option>
+          <option value="18">18 Inches Overhang</option>
+          <option value="0">0 Inches (Flush Edges)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Pergola Materials &amp; Hardware →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Pergola Material Takeoff &amp; Hardware Bill</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_postCount">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Posts (Lumber Stock)</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_postSpec">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_beamCount">—</div>
+        <div class="text-xs text-gray-500 mt-1">Double Support Beams</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_beamSpec">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_rafterCount">—</div>
+        <div class="text-xs text-gray-500 mt-1">Rafter Joists (2x6)</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_rafterSpec">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_concreteBags">—</div>
+        <div class="text-xs text-gray-500 mt-1">80lb Concrete Bags</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_footingNote">—</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Elevation Diagram -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Pergola Structural Framing Elevation Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">Auto-scaled Vector Elevation</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Hardware Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">🔩 Structural Hardware &amp; Fastener Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_hardwareList">
+        <!-- Hardware auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Pergola Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to generate a complete lumber and hardware takeoff for your timber pergola:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Outer Dimensions:</strong> Enter total length along the main support beams and width across the rafter span in feet.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Post Mounting Method:</strong> Choose 6x6 posts for stability. Select in-ground burial (3 ft deep) or heavy metal post base brackets for existing concrete slabs.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Configure Rafters &amp; Shade Slats:</strong> Select 16-inch rafter spacing for standard shade, and optional top 2x2 purlins for 50% sun block.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Export Takeoff:</strong> Hit calculate to view lumber counts, concrete footings, structural screw counts, hurricane ties, and a vector cut diagram!</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula &amp; Timber Engineering Logic</h2>
+    <p class="text-gray-700 mb-4">This calculator applies IRC timber framing rules and Simpson Strong-Tie structural load guidelines:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Post Count = 4 corner posts for spans up to 12 ft; intermediate posts added every 10–12 ft</p>
+      <p>Rafter Count = Ceiling[ (Pergola Length ft &times; 12) &divide; Rafter Spacing in ] + 1</p>
+      <p>Rafter Length = Pergola Width ft + [ 2 &times; (Overhang Inches / 12) ]</p>
+      <p>Double Beam Count = 2 &times; Number of Beam Line Runs</p>
+      <p>Purlin Count = Ceiling[ (Rafter Span Length in) &divide; Purlin Spacing in ] + 1</p>
+    </div>
+    <p class="text-gray-700">
+      <strong>Beam Notch &amp; Fastener Mechanics:</strong> Double support beams sandwich the top of 6x6 posts. Rather than relying solely on bolts in shear strength, double beams should rest on a 1.5-inch shoulder notch cut into the 6x6 post, secured with two 1/2-inch hot-dipped galvanized carriage bolts or 6-inch structural timber screws (Simpson SDWS).
+    </p>
+    <p class="text-gray-700 mt-3">
+      <strong>Wind Uplift Protection:</strong> Rafter joists must be tied down to main support beams using hurricane ties (H2.5A) or structural 6" timber screws driven at an angle through the top of the rafter into the beam to withstand wind uplift loads.
+    </p>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should I use 4x4 or 6x6 posts for a pergola?</h3>
+        <p class="text-gray-600 text-sm">6x6 posts (actual 5.5 x 5.5 inches) are strongly recommended for all pergolas larger than 8x8 feet. 6x6 posts resist warping, provide a wider notch shoulder for double 2x8 or 2x10 support beams, and prevent top-heavy swaying in high wind conditions.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How far can pergola support beams span without sagging?</h3>
+        <p class="text-gray-600 text-sm">Double 2x8 beams can span up to 8 feet between posts. Double 2x10 beams can span up to 10 feet. Double 2x12 beams can span up to 12 feet. For spans exceeding 12 feet, add an intermediate post or use engineered LVL/Glulam beams treated for exterior exposure.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How deep should pergola post footings be buried?</h3>
+        <p class="text-gray-600 text-sm">In ground-burial applications, posts must extend at least 36 to 48 inches deep below your local frost line on a 6-inch gravel pad filled with 2 to 3 bags of 80 lb concrete per hole. If mounting on an existing concrete patio, use structural metal post bases with heavy-duty wedge anchors.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/deck-joist-span" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Joist Span Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Size 2x6 through 2x12 deck joists and beam plies per IRC Table R507.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate cubic yards and bag counts for concrete patio pads.</div>
+      </a>
+      <a href="/calculators/quikrete-bags" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Quikrete Bags Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate concrete bag counts for post footings and piers.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculatePergola() {
+    const lengthFt = parseFloat(document.getElementById('pergolaLengthFt').value) || 12;
+    const widthFt = parseFloat(document.getElementById('pergolaWidthFt').value) || 10;
+    const heightFt = parseFloat(document.getElementById('postHeightFt').value) || 8;
+    const postOption = document.getElementById('postOption').value;
+    const beamOption = document.getElementById('beamOption').value;
+    const rafterSpacingIn = parseInt(document.getElementById('rafterSpacing').value) || 16;
+    const purlinOption = document.getElementById('purlinOption').value;
+    const overhangIn = parseInt(document.getElementById('overhangInches').value) || 12;
+
+    // Post Calculation
+    let postCount = 4;
+    if (lengthFt > 12) {
+      const extraPostsPerSide = Math.ceil(lengthFt / 10) - 1;
+      postCount += (extraPostsPerSide * 2);
+    }
+
+    const isBuried = postOption.includes('buried');
+    const postSizeStr = postOption.includes('6x6') ? '6x6' : '4x4';
+    const totalPostLengthFt = isBuried ? (heightFt + 3) : heightFt;
+    const postLumberStockStr = totalPostLengthFt <= 10 ? '10 ft' : (totalPostLengthFt <= 12 ? '12 ft' : '16 ft');
+
+    // Concrete Footings
+    const concreteBags = isBuried ? (postCount * 3) : 0; // 3 bags 80lb per 3ft hole
+
+    // Beams (Double Beams along Length)
+    const beamRuns = 2; // two main beam lines
+    const beamLineLengthFt = lengthFt + (2 * overhangIn / 12);
+    let beamStockStr = "12 ft";
+    if (beamLineLengthFt > 12 && beamLineLengthFt <= 16) beamStockStr = "16 ft";
+    if (beamLineLengthFt > 16) beamStockStr = "20 ft (or splice 2x)";
+
+    let beamSizeName = "Double 2x10";
+    if (beamOption.includes('2x8')) beamSizeName = "Double 2x8";
+    if (beamOption.includes('2x12')) beamSizeName = "Double 2x12";
+
+    const totalBeamBoards = beamRuns * 2; // 2 plies per line
+
+    // Rafters (Spanning Across Width)
+    const rafterSpanFt = widthFt + (2 * overhangIn / 12);
+    const rafterCount = Math.ceil((lengthFt * 12) / rafterSpacingIn) + 1;
+    let rafterStockStr = "12 ft 2x6";
+    if (rafterSpanFt > 12 && rafterSpanFt <= 16) rafterStockStr = "16 ft 2x6";
+
+    // Purlins / Lath Slats
+    let purlinCount = 0;
+    let purlinStockStr = "None";
+    if (purlinOption !== 'none') {
+      const purlinSpacingIn = purlinOption.includes('6in') ? 6 : 12;
+      purlinCount = Math.ceil((widthFt * 12) / purlinSpacingIn) + 1;
+      purlinStockStr = `${purlinCount} pcs — ${lengthFt + 2} ft 2x2`;
+    }
+
+    // Update Result UI
+    document.getElementById('r_postCount').textContent = `${postCount} Posts`;
+    document.getElementById('r_postSpec').textContent = `${postSizeStr} PT (${postLumberStockStr} stock)`;
+    
+    document.getElementById('r_beamCount').textContent = `${totalBeamBoards} Boards`;
+    document.getElementById('r_beamSpec').textContent = `${beamSizeName} (${beamStockStr})`;
+
+    document.getElementById('r_rafterCount').textContent = `${rafterCount} Rafters`;
+    document.getElementById('r_rafterSpec').textContent = `${rafterStockStr} stock @ ${rafterSpacingIn}" o.c.`;
+
+    document.getElementById('r_concreteBags').textContent = isBuried ? `${concreteBags} Bags` : "0 Bags";
+    document.getElementById('r_footingNote').textContent = isBuried ? "80lb Quikrete (3/hole)" : "Surface Mount Bracket";
+
+    // Hardware Schedule Generation
+    const hwList = document.getElementById('r_hardwareList');
+    hwList.innerHTML = '';
+
+    if (isBuried) {
+      hwList.innerHTML += `<li><strong>Post Base Gravel:</strong> ${postCount * 0.5} cu ft 3/4" crushed gravel for post drainage bases</li>`;
+    } else {
+      hwList.innerHTML += `<li><strong>Post Base Brackets:</strong> ${postCount} Heavy-Duty Structural ${postSizeStr} Post Anchors + 1/2" Concrete Wedge Anchors</li>`;
+    }
+
+    hwList.innerHTML += `<li><strong>Beam-to-Post Fasteners:</strong> ${postCount * 4} Structural Timber Screws (6" SDWS) or 1/2" &times; 8" Galvanized Carriage Bolts</li>`;
+    hwList.innerHTML += `<li><strong>Rafter-to-Beam Tie-Downs:</strong> ${rafterCount * 2} Hurricane Ties (Simpson H2.5A) + 1-1/2" Structural Connector Nails</li>`;
+    if (purlinOption !== 'none') {
+      hwList.innerHTML += `<li><strong>Purlin Fasteners:</strong> ${purlinCount * rafterCount} 3" Exterior Deck Screws (2 per rafter intersection)</li>`;
+    }
+
+    // Dynamic SVG Elevation Render
+    renderSVG(postCount, lengthFt, widthFt, heightFt, postSizeStr, beamSizeName, rafterCount);
+
+    // Setup Clipboard Shopping List
+    setupClipboard(postCount, postSizeStr, postLumberStockStr, totalBeamBoards, beamSizeName, beamStockStr, rafterCount, rafterStockStr, concreteBags, isBuried);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSVG(posts, len, wid, ht, postSize, beamSize, rafters) {
+    const container = document.getElementById('svgContainer');
+    const width = 600;
+    const height = 240;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Background Ground
+    svg += `<rect x="0" y="190" width="${width}" height="50" fill="#E5E7EB" />`;
+    svg += `<line x1="0" y1="190" x2="${width}" y2="190" stroke="#9CA3AF" stroke-width="3" />`;
+    svg += `<text x="20" y="215" font-size="11" fill="#4B5563" font-family="sans-serif">Ground Level</text>`;
+
+    // Footings / Posts
+    const p1X = 100;
+    const p2X = 500;
+    const postWidth = postSize === '6x6' ? 18 : 12;
+
+    // Post 1
+    svg += `<rect x="${p1X - postWidth/2}" y="60" width="${postWidth}" height="130" fill="#D97706" stroke="#B45309" stroke-width="2" />`;
+    // Post 2
+    svg += `<rect x="${p2X - postWidth/2}" y="60" width="${postWidth}" height="130" fill="#D97706" stroke="#B45309" stroke-width="2" />`;
+
+    // Double Beam
+    svg += `<rect x="70" y="45" width="460" height="18" fill="#B45309" stroke="#78350F" stroke-width="2" />`;
+    svg += `<text x="300" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E3A8A" font-family="sans-serif">Main ${beamSize} Support Beams (${len} ft)</text>`;
+
+    // Rafter Notch Tails
+    const rSpacing = (p2X - p1X + 40) / 8;
+    for (let i = 0; i <= 8; i++) {
+      const rx = 80 + (i * rSpacing);
+      svg += `<rect x="${rx}" y="25" width="6" height="20" fill="#2563EB" opacity="0.8" />`;
+    }
+
+    svg += `<text x="300" y="18" text-anchor="middle" font-size="11" fill="#2563EB" font-family="sans-serif">${rafters} Rafters Across ${wid} ft Span</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(posts, postSize, postStock, beams, beamSize, beamStock, rafters, rafterStock, concrete, isBuried) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY PERGOLA MATERIAL TAKEOFF:\n\n`;
+      text += `• Posts: ${posts} pcs ${postSize} PT Lumber (${postStock} stock)\n`;
+      text += `• Beams: ${beams} boards ${beamSize} PT Lumber (${beamStock} stock)\n`;
+      text += `• Rafters: ${rafters} boards 2x6 PT Lumber (${rafterStock} stock)\n`;
+      if (isBuried) {
+        text += `• Concrete: ${concrete} bags 80lb Quikrete (3 bags/post)\n`;
+      } else {
+        text += `• Post Anchors: ${posts} Heavy-Duty Structural Post Base Brackets\n`;
+      }
+      text += `• Hardware: Structural Timber Screws (SDWS), Hurricane Ties (H2.5A), Carriage Bolts\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/pergola-lumber`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculatePergola);
+</script>

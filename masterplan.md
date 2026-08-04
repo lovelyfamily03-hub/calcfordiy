@@ -26,8 +26,8 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Total Pages Live:** 91 pages
-- **Calculators live:** 63 calculators
+- **Total Pages Live:** 93 pages
+- **Calculators live:** 65 calculators (Latest: Pergola Lumber Estimator & Electrical Subpanel Sizing Calculator)
 - **SEO Guides live:** 10 guides (`src/pages/guides/`)
 - **Project Workflow Hubs live:** 8 hubs (`src/pages/projects/`)
 - **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. AdSense re-submission is intentionally PAUSED while Googlebot crawls the new pages and site enhancements are deployed.
