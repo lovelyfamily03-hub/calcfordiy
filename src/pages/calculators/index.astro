@@ -417,26 +417,49 @@ const categories = [...new Set(calculators.map(c => c.category))];
 }
 </script>
 
-  <div class="mb-10">
+  <div class="mb-8">
     <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
       <span>🛠️ Full Calculator Directory</span>
       <span>•</span>
-      <span>63 Tools Live</span>
+      <span>65 Tools Live</span>
     </div>
-    <h1 class="text-4xl font-bold text-gray-900 mb-3">All 63 Free DIY Calculators</h1>
-    <p class="text-lg text-gray-600 max-w-3xl">
+    <h1 class="text-4xl font-bold text-gray-900 mb-3">All 65 Free DIY Calculators</h1>
+    <p class="text-lg text-gray-600 max-w-3xl mb-6">
       Instant material takeoffs, dynamic SVG framing diagrams, RSMeans contractor cost benchmarks, and 1-click shopping list exports. Everything runs free in your browser.
     </p>
+
+    <!-- Instant Live Search Bar -->
+    <div class="relative max-w-2xl bg-white rounded-xl shadow-xs border border-gray-300 p-2 flex items-center gap-2">
+      <svg class="w-5 h-5 text-gray-400 ml-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input
+        type="text"
+        id="calcSearchInput"
+        placeholder="Search 65 calculators (e.g. 'concrete', 'tile', 'wire', 'deck', 'roof')..."
+        class="w-full bg-transparent text-gray-900 placeholder-gray-400 text-base focus:outline-none py-1"
+      />
+      <button
+        type="button"
+        id="clearSearchBtn"
+        class="hidden text-xs text-gray-400 hover:text-gray-600 font-semibold px-2 py-1 bg-gray-100 rounded-md"
+      >
+        Clear
+      </button>
+    </div>
+    <div class="text-xs text-gray-500 mt-2 ml-1" id="searchStatusText">
+      Showing all 65 calculators across 8 trade categories.
+    </div>
   </div>
 
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-4" id="categoriesContainer">
     {categories.map(category => (
-      <details class="group bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+      <details class="category-group group bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden" open>
         <summary class="flex items-center justify-between cursor-pointer p-6 bg-white hover:bg-gray-50 transition-colors list-none [&::-webkit-details-marker]:hidden">
           <h2 class="text-xl font-bold text-gray-900">{category} Calculators</h2>
           
           <span class="flex items-center gap-3">
-            <span class="text-sm font-medium text-gray-400 bg-gray-100 px-3 py-1 rounded-full group-open:hidden">
+            <span class="text-sm font-medium text-gray-400 bg-gray-100 px-3 py-1 rounded-full group-open:hidden category-count">
               {calculators.filter(c => c.category === category).length} tools
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 transition-transform duration-200 group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -452,7 +475,9 @@ const categories = [...new Set(calculators.map(c => c.category))];
               .map(calc => (
                 <a
                   href={calc.href}
-                  class="block p-5 bg-white rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all flex flex-col h-full"
+                  class="calc-card block p-5 bg-white rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all flex flex-col h-full"
+                  data-title={calc.title.toLowerCase()}
+                  data-desc={calc.description.toLowerCase()}
                 >
                   <h3 class="font-semibold text-gray-900 mb-2">{calc.title}</h3>
                   <p class="text-sm text-gray-600 flex-grow">{calc.description}</p>
@@ -470,3 +495,65 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
   <AboutCalculators />
 </Layout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('calcSearchInput');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    const statusText = document.getElementById('searchStatusText');
+    const cards = document.querySelectorAll('.calc-card');
+    const groups = document.querySelectorAll('.category-group');
+
+    if (!searchInput) return;
+
+    function filterCalculators() {
+      const query = searchInput.value.trim().toLowerCase();
+      let totalVisible = 0;
+
+      if (query.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+
+      groups.forEach(group => {
+        const groupCards = group.querySelectorAll('.calc-card');
+        let groupVisibleCount = 0;
+
+        groupCards.forEach(card => {
+          const title = card.getAttribute('data-title') || '';
+          const desc = card.getAttribute('data-desc') || '';
+
+          if (title.includes(query) || desc.includes(query)) {
+            card.classList.remove('hidden');
+            groupVisibleCount++;
+            totalVisible++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (groupVisibleCount > 0) {
+          group.classList.remove('hidden');
+          group.setAttribute('open', ''); // Auto-expand category details when searching
+        } else {
+          group.classList.add('hidden');
+        }
+      });
+
+      if (query.length > 0) {
+        statusText.textContent = `Found ${totalVisible} calculator${totalVisible === 1 ? '' : 's'} matching "${query}".`;
+      } else {
+        statusText.textContent = `Showing all 65 calculators across 8 trade categories.`;
+      }
+    }
+
+    searchInput.addEventListener('input', filterCalculators);
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      filterCalculators();
+      searchInput.focus();
+    });
+  });
+</script>

@@ -481,6 +481,15 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
         });
       });
 
+      // ── Global Mobile Keypad Auto-Enhancer ──────────────────────────
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('input[type="number"]').forEach(function(input) {
+          if (!input.hasAttribute('inputmode')) {
+            input.setAttribute('inputmode', 'decimal');
+          }
+        });
+      });
+
       // ── Global "Copy Shopping List" Handler ─────────────────────────────────
       document.addEventListener('click', function (e) {
         var btn = e.target.closest('.copy-list-btn, #copyBtn');
@@ -536,6 +545,22 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
         var origText = btn.innerHTML;
         btn.innerHTML = '✓ Copied to Clipboard!';
         btn.classList.add('bg-green-700', 'border-green-700');
+
+        // Fire GA4 Event for engagement tracking
+        if (typeof gtag === 'function') {
+          gtag('event', 'copy_shopping_list', {
+            page_location: window.location.href,
+            page_title: document.title
+          });
+        }
+
+        // Auto-enhance all numeric inputs with inputmode="decimal" for mobile keypads
+        document.querySelectorAll('input[type="number"]').forEach(function(input) {
+          if (!input.hasAttribute('inputmode')) {
+            input.setAttribute('inputmode', 'decimal');
+          }
+        });
+
         setTimeout(function () {
           btn.innerHTML = origText;
           btn.classList.remove('bg-green-700', 'border-green-700');
