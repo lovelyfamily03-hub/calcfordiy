@@ -84,18 +84,18 @@
 - [x] **Calculation Methodology Page (`/methodology`)**: Built dedicated page detailing formula research, building code standards (IRC 2021/2024, TCNA, NEC, IES, NWFA), testing procedures, and density constants.
 - [x] **Standardized Localized Disclaimer**: Added localized AHJ disclaimer across all tools: *"Planning estimate, not a permit-ready design or code determination. Confirm local requirements with your AHJ."*
 
-### Phase 2: Tiered Content Enhancement for Top 10 Flagship Calculators
-Enhance top 10 core tools with unique, non-templated, tool-specific technical value below the UI (keeping tools strictly above the fold):
-- [ ] `concrete-slab` — Explicit cubic yard math, 1.35 ton/yd³ density defaults, sub-base compaction FAQs.
-- [ ] `wall-framing` — Explicit stud count formula (16" o.c. + corners/openings + 15% waste), sheathing layout notes.
-- [ ] `shower-tile` — Explicit net wall/floor area math, TCNA waste percentages by pattern (10% straight, 15% diagonal, 20% herringbone).
-- [ ] `asphalt-shingles` — Slope expansion multipliers (1.118 for 6/12 pitch), 3-bundle per square rule, starter/ridge caps.
-- [ ] `ev-charger-wiring` — NEC 80% continuous load rule (60A breaker for 48A charger), 6 AWG copper wire gauge specs.
-- [ ] `retaining-wall` — Block volume math, cap stones, geogrid layers, gravel backfill depth.
-- [ ] `deck-joist-span` — IRC Table R507.5 allowable spans, ledger flashing, fastener specs.
-- [ ] `french-drain` — Pipe displacement volume, 3/4" stone density, geotextile fabric envelope overlap.
-- [ ] `stair-stringer` — Riser/tread proportion rule (7-3/4" max riser, 10" min tread), bottom step deduction.
-- [ ] `mini-split-sizing` — BTU/sq ft matrix by ceiling height, sun exposure, and insulation grade.
+### Phase 2: Tiered Content Enhancement for Top 10 Flagship Calculators (COMPLETE ✅)
+Enhanced top 10 core tools with unique, non-templated, tool-specific technical value below the UI (keeping tools strictly above the fold):
+- [x] `concrete-slab` — Explicit cubic yard math, 1.35 ton/yd³ density defaults, ACI 4" vs 6" guidelines, sub-base compaction FAQs.
+- [x] `wall-framing` — Explicit stud count formula (16" o.c. + California corners + header jacks + 10% waste), sheathing layout notes.
+- [x] `shower-tile` — Explicit net wall/floor area math, TCNA waste percentages by pattern (10% straight, 15% diagonal, 20% herringbone).
+- [x] `asphalt-shingles` — Slope expansion multipliers (1.118 for 6/12 pitch), 3-bundle per square rule, starter/ridge caps.
+- [x] `ev-charger-wiring` — NEC 80% continuous load rule (60A breaker for 48A charger), 60°C Romex NM-B vs 75°C THHN conduit specs.
+- [x] `retaining-wall` — NCMA block volume math, cap stones, geogrid soil reinforcement layers, gravel backfill depth.
+- [x] `deck-joist-span` — IRC Table R507.5 allowable spans, ledger flashing, fastener specs.
+- [x] `french-drain` — Pipe displacement volume subtraction, 3/4" stone density, geotextile fabric envelope overlap.
+- [x] `stair-stringer` — IRC Section R311.7 geometry (7-3/4" max riser, 10" min tread), 2x12 stock math, bottom step tread thickness deduction.
+- [x] `mini-split-sizing` — ACCA Manual J BTU/sq ft load matrix by ceiling height, sun exposure, and insulation grade.
 
 ### Phase 3: Homepage & Navigation UX Polish
 - [ ] **Homepage Intro & Methodology**: Add 150-word mission statement, category hubs, and planning estimate statement to `/index.astro`.

@@ -195,6 +195,23 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula &amp; HVAC BTU Load Logic</h2>
+    <p class="text-gray-700 mb-4">This calculator applies ACCA Manual J load calculation principles scaled for single-zone mini-split equipment:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Base Cooling Load (BTU) = Area (sq ft) &times; 25 BTU/sq ft</p>
+      <p>Height Factor = Ceiling Height (ft) &divide; 8.0 ft</p>
+      <p>Adjusted Load = (Base Load &times; Height Factor &times; Insulation Multiplier) + Sun Mod + Room Mod</p>
+      <p>Tonnage Rating = Total BTU Load &divide; 12,000 BTU/Ton</p>
+    </div>
+    <p class="text-gray-700">
+      <strong>Standard Unit Steps:</strong> Ductless mini-split outdoor condensers and indoor air handlers are manufactured in standard capacity increments: 9,000 BTU (0.75 Ton), 12,000 BTU (1.0 Ton), 18,000 BTU (1.5 Ton), 24,000 BTU (2.0 Ton), 30,000 BTU (2.5 Ton), and 36,000 BTU (3.0 Ton). The calculator automatically rounds up to the next commercial unit step.
+    </p>
+    <p class="text-gray-700 mt-3">
+      <strong>Inverter Modulating Technology:</strong> Modern mini-splits utilize variable-speed inverter compressors that can throttle down to 30% of max capacity, preventing short-cycling while ensuring humidity removal.
+    </p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>

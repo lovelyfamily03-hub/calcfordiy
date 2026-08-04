@@ -181,6 +181,23 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula &amp; NEC Code Logic</h2>
+    <p class="text-gray-700 mb-4">This calculator uses primary National Electrical Code (NEC NFPA 70) rules for sizing continuous branch circuits and conductors:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Continuous Load Rule (NEC 210.20): Breaker Rating = Continuous Amps &times; 1.25</p>
+      <p>kW Power Output = (240 Volts &times; Continuous Amps) &divide; 1,000</p>
+      <p>Voltage Drop % = [ (2 &times; K &times; Amps &times; One-Way Feet) &divide; CMIL ] &divide; 240 &times; 100</p>
+      <p>Charge Time (Hours) = (Battery kWh Capacity &times; 0.90 Usable) &divide; kW Power</p>
+    </div>
+    <p class="text-gray-700">
+      Under <strong>NEC Article 625</strong>, electric vehicle charging is classified as a continuous load because it draws full current uninterrupted for over 3 hours. Standard thermal-magnetic circuit breakers must be derated to 80% of their nameplate rating for continuous loads. Therefore, a 48-Amp continuous charger requires a 60-Amp circuit breaker (48A &times; 1.25 = 60A).
+    </p>
+    <p class="text-gray-700 mt-3">
+      For conductor temperature ratings, <strong>NEC Article 334.80</strong> mandates that NM-B (Romex) non-metallic sheathed cable must be sized from the 60°C column (55 Amps max for 6 AWG copper), requiring 4 AWG NM-B for 60-Amp circuits. Conversely, individual THHN/THWN-2 copper conductors inside EMT or PVC conduit are sized from the 75°C terminal rating column (65 Amps max for 6 AWG copper), allowing 6 AWG THHN to safely serve a 60-Amp breaker.
+    </p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>

@@ -209,6 +209,24 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula &amp; Volumetric Calculations</h2>
+    <p class="text-gray-700 mb-4">This calculator determines true gravel displacement volume by subtracting pipe displacement from total trench excavation:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Gross Trench Volume (cu ft) = Length &times; (Width ft) &times; (Depth ft)</p>
+      <p>Pipe Displacement Volume (cu ft) = &pi; &times; (Pipe Radius ft)&sup2; &times; Length</p>
+      <p>Net Gravel Volume (cu yd) = [ (Gross Volume &minus; Pipe Volume) &divide; 27 ] &times; 1.10 (Waste Buffer)</p>
+      <p>Gravel Tons = Net Gravel (cu yd) &times; 1.35 Tons/cu yd (3/4" Washed Stone Density)</p>
+      <p>Filter Fabric Area (sq ft) = Length &times; [ (2 &times; Depth ft) + (2 &times; Width ft) + 1 ft Overlap ]</p>
+    </div>
+    <p class="text-gray-700">
+      <strong>Pipe Displacement Factor:</strong> A standard 4-inch perforated pipe (outside diameter ~4.5 inches) occupies approximately 0.11 cubic feet per linear foot. Over a 50-foot trench, the pipe displaces 5.5 cubic feet of volume. Subtracting this displacement prevents over-ordering washed stone.
+    </p>
+    <p class="text-gray-700 mt-3">
+      <strong>Geotextile Envelope Sizing:</strong> Non-woven geotextile fabric (4 oz / 6 oz weight) must line both sides of the trench, the bottom bed, and fold over the top with at least 12 inches of continuous overlap to form a dirt-impermeable envelope around the gravel.
+    </p>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
