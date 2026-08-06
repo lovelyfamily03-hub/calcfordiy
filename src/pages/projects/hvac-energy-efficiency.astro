@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Whole-House Fan Sizing & Attic Vent Area",
+    description: "Calculate required fan CFM, air changes per hour (ACH), and attic Net Free Vent Area (NFVA sq ft) per HVI standards for rapid evening cooling.",
+    calculatorName: "Whole-House Fan Calculator",
+    href: "/calculators/whole-house-fan",
+    icon: "💨"
+  },
+  {
+    stepNumber: 2,
+    title: "Attic & Ceiling Blown-In Insulation R-Value",
+    description: "Calculate bags of blown fiberglass or cellulose insulation to upgrade attic thermal depth to R-38, R-49, or R-60 energy code standards.",
+    calculatorName: "Attic Insulation Calculator",
+    href: "/calculators/attic-insulation",
+    icon: "🏡"
+  },
+  {
+    stepNumber: 3,
+    title: "Mini-Split Heat Pump Room Load Sizing",
+    description: "Calculate room BTU cooling/heating loads and inverter ductless mini-split tonnage based on room square footage, ceiling height, and sun exposure.",
+    calculatorName: "Mini-Split Sizing Calculator",
+    href: "/calculators/mini-split-sizing",
+    icon: "❄️"
+  },
+  {
+    stepNumber: 4,
+    title: "Hydronic Radiant Floor Heating PEX Loops",
+    description: "Calculate 1/2\" PEX tubing linear feet, 300 ft maximum loop counts, manifold port sizes, and floor BTU heat output.",
+    calculatorName: "Radiant Floor Heating Calculator",
+    href: "/calculators/radiant-floor-heating",
+    icon: "🔥"
+  }
+];
+---
+
+<Layout
+  title="Whole-Home Energy & HVAC Efficiency Hub — Step-by-Step Thermal Workflow | CalcForDIY"
+  description="Follow a 4-step DIY home energy & HVAC efficiency workflow: Whole-house fan CFM, blown attic insulation R-value, ductless mini-split sizing, and hydronic radiant floor heating."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Plan and Calculate Whole-Home HVAC and Energy Efficiency Upgrades",
+    "description": "A 4-step DIY workflow for calculating whole-house fans, blown attic insulation, mini-split heat pumps, and radiant floor heating.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Whole-House Fan Airflow Sizing",
+        "text": "Calculate required fan CFM and attic Net Free Vent Area (NFVA)."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Attic Insulation R-Value Upgrade",
+        "text": "Determine bag counts for blown fiberglass or cellulose to hit R-49 or R-60 depth."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Ductless Mini-Split Heat Pump Sizing",
+        "text": "Calculate room BTU loads and inverter mini-split tonnage."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Radiant Floor Heating PEX Loops",
+        "text": "Calculate PEX tubing linear feet, max 300 ft loop counts, and manifold ports."
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span>HVAC &amp; Energy Efficiency Workflow</span>
+  </div>
+
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+      <span>⚡ Step-by-Step Energy Workflow</span>
+      <span>•</span>
+      <span>4 Integrated Calculators</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Whole-Home HVAC &amp; Energy Efficiency Workflow</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      Plan, size, and calculate your whole-house cooling fan, blown attic insulation, ductless mini-split heat pumps, and hydronic radiant floor heating in 4 sequential steps.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs hover:border-blue-400 transition-all">
+        <div class="flex items-start gap-4">
+          <div class="bg-blue-600 text-white rounded-xl w-10 h-10 flex items-center justify-center font-bold text-lg shrink-0 mt-1">
+            {step.stepNumber}
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xl">{step.icon}</span>
+              <h2 class="text-xl font-bold text-gray-900">{step.title}</h2>
+            </div>
+            <p class="text-gray-600 text-sm mb-4 leading-relaxed">{step.description}</p>
+            <a
+              href={step.href}
+              class="inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold px-4 py-2 rounded-lg text-sm transition-colors border border-blue-200"
+            >
+              Open {step.calculatorName} →
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-2xl p-8 text-white text-center">
+    <h2 class="text-2xl font-bold mb-2">Need More Home Improvement Calculators?</h2>
+    <p class="text-slate-300 text-sm max-w-2xl mx-auto mb-6">
+      Explore all 68 free DIY calculators, dynamic SVG framing diagrams, and trade-verified building code tools.
+    </p>
+    <a href="/calculators" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+      View All 68 DIY Calculators →
+    </a>
+  </div>
+</Layout>

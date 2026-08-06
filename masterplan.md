@@ -26,20 +26,20 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Total Pages Live:** 99 pages
+- **Total Pages Live:** 102 pages
 - **Calculators live:** 68 calculators
 - **SEO Guides live:** 13 guides (`src/pages/guides/`)
-- **Project Workflow Hubs live:** 8 hubs (`src/pages/projects/`)
+- **Project Workflow Hubs live:** 11 hubs (`src/pages/projects/`)
 - **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. AdSense re-submission is intentionally PAUSED while Googlebot crawls the new pages and site enhancements are deployed.
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
-- **GSC Status:** 99 pages indexed/crawlable, zero manual actions. Googlebot actively crawling 130+ requests/day.
+- **GSC Status:** 102 pages indexed/crawlable, zero manual actions. Googlebot actively crawling 130+ requests/day.
 
 ---
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[x]` **Status**: Phase 4B & Wave 1 & Wave 2 Expansion Complete (68 Live Interactive Calculators + 8 Project Workflow Hubs).
-**Latest Milestone Achieved**: Completed all 8 Project Workflow Hubs (Deck Building, Yard Drainage, Basement Finishing, Bathroom Remodel, Accent Walls, Roofing & Exterior, Outdoor Patio, and Garage EV Workshop) + 68 Live Calculators + Pre-Calculated Coverage Lookup Tables. All 4 Moats are 100% COMPLETE!
+- `[x]` **Status**: Phase 4B & Wave 1 & Wave 2 Expansion Complete (68 Live Interactive Calculators + 11 Project Workflow Hubs).
+**Latest Milestone Achieved**: Completed all 11 Project Workflow Hubs (Deck Building, Yard Drainage, Basement Finishing, Bathroom Remodel, Accent Walls, Roofing & Exterior, Outdoor Patio, Garage EV Workshop, Off-Grid Solar, Pergola Patio, and Whole-Home HVAC) + 68 Live Calculators + Pre-Calculated Coverage Lookup Tables. All 4 Moats are 100% COMPLETE!
 - `[x]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes with regional multipliers (COMPLETE ✅).
 - `[x]` **Moat 4: Project Workflow Hubs** — Interactive multi-step project flows under `/projects/` guiding users through 4–5 sequential calculators per project (COMPLETE ✅ 8 of 8 Live).
 - `[x]` **E-E-A-T & Trust Signal Hardening** — Auto-injected verification badges, IRC/TCNA methodology links, contact email, and Content-Signal policy (COMPLETE ✅).

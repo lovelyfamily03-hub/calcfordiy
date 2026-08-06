@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Timber Pergola & Gazebo Lumber Estimator",
+    description: "Calculate posts (4x4 vs 6x6), double support beams, rafter joists, shade purlins, concrete footings, and Simpson Strong-Tie timber screw hardware.",
+    calculatorName: "Pergola Lumber Estimator",
+    href: "/calculators/pergola-lumber",
+    icon: "🪵"
+  },
+  {
+    stepNumber: 2,
+    title: "Concrete Patio Slab & Footing Volume",
+    description: "Calculate cubic yards of concrete and 80 lb Quikrete bags needed for patio pads, hot tub slabs, and post footing piers.",
+    calculatorName: "Concrete Slab Calculator",
+    href: "/calculators/concrete-slab",
+    icon: "🏗️"
+  },
+  {
+    stepNumber: 3,
+    title: "Paver Base Crushed Stone & Sand Sub-Base",
+    description: "Estimate 3-layer patio base requirements: crushed stone sub-base tons, concrete leveling sand, polymeric joint sand, and edge restraint feet.",
+    calculatorName: "Paver Base Gravel & Sand Calculator",
+    href: "/calculators/paver-base-sand",
+    icon: "🧱"
+  },
+  {
+    stepNumber: 4,
+    title: "Outdoor Patio Flood & String Lighting",
+    description: "Calculate outdoor floodlight coverage, LED string light strand lengths, low-voltage transformer wattage, and perimeter spacing.",
+    calculatorName: "Outdoor Lighting Calculator",
+    href: "/calculators/outdoor-flood-lights",
+    icon: "💡"
+  }
+];
+---
+
+<Layout
+  title="Pergola & Outdoor Living Hub — Step-by-Step Patio Construction Workflow | CalcForDIY"
+  description="Follow a 4-step DIY pergola & outdoor patio workflow: Timber pergola lumber, concrete slab footings, paver sub-base gravel/sand, and outdoor string lighting."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Plan and Calculate Pergola and Outdoor Living Patio Construction",
+    "description": "A 4-step DIY workflow for calculating pergola lumber, concrete patio slabs, paver base gravel, and outdoor string lighting.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Pergola Lumber & Hardware Sizing",
+        "text": "Calculate posts, double support beams, rafters, shade purlins, and structural hardware."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Concrete Slab Footings",
+        "text": "Determine concrete volume and Quikrete bag counts for patio pads and post footings."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Paver Base Gravel & Sand",
+        "text": "Estimate crushed stone base tons, leveling sand, and polymeric joint sand."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Outdoor Patio Lighting",
+        "text": "Calculate LED string light strand lengths and low-voltage transformer wattage."
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span>Pergola &amp; Outdoor Living Workflow</span>
+  </div>
+
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+      <span>🌿 Step-by-Step Outdoor Workflow</span>
+      <span>•</span>
+      <span>4 Integrated Calculators</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Pergola &amp; Outdoor Living Patio Workflow</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      Plan, size, and calculate your custom timber pergola, concrete patio slab, paver sub-base gravel, and outdoor evening lighting in 4 sequential steps.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs hover:border-blue-400 transition-all">
+        <div class="flex items-start gap-4">
+          <div class="bg-blue-600 text-white rounded-xl w-10 h-10 flex items-center justify-center font-bold text-lg shrink-0 mt-1">
+            {step.stepNumber}
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xl">{step.icon}</span>
+              <h2 class="text-xl font-bold text-gray-900">{step.title}</h2>
+            </div>
+            <p class="text-gray-600 text-sm mb-4 leading-relaxed">{step.description}</p>
+            <a
+              href={step.href}
+              class="inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold px-4 py-2 rounded-lg text-sm transition-colors border border-blue-200"
+            >
+              Open {step.calculatorName} →
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-2xl p-8 text-white text-center">
+    <h2 class="text-2xl font-bold mb-2">Need More Home Improvement Calculators?</h2>
+    <p class="text-slate-300 text-sm max-w-2xl mx-auto mb-6">
+      Explore all 68 free DIY calculators, dynamic SVG framing diagrams, and trade-verified building code tools.
+    </p>
+    <a href="/calculators" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+      View All 68 DIY Calculators →
+    </a>
+  </div>
+</Layout>
