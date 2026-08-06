@@ -1,0 +1,406 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Solar Panel & Battery Storage Calculator | CalcForDIY"
+  description="Calculate solar panel count (400W panels), system kW size, LiFePO4 battery bank kWh capacity, hybrid inverter wattage, and daily emergency backup autonomy."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Solar Panel & Battery Storage Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many solar panels do I need to power a house?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The average US home uses 30 kWh per day and requires a 7.5 kW to 9 kW solar panel system (19 to 23 modern 400W solar panels), depending on local peak sun hours (4.0 to 5.5 hours/day)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How big of a battery bank do I need for power outages?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To back up essential loads (refrigerator, sump pump, LED lights, Wi-Fi, and well pump consuming ~10 kWh/day) for 1 full day of power outage autonomy, you need a 10 to 15 kWh LiFePO4 lithium battery bank."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between solar array kW and battery kWh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Solar array kilowatts (kW) measures real-time generation speed (how fast panels generate electricity in sunlight). Battery kilowatt-hours (kWh) measures total energy storage capacity (how much energy is stored to run loads at night)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Solar &amp; Battery Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Solar Panel &amp; Battery Storage Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate solar panel count (400W panels), system kW size, LiFePO4 battery storage capacity (kWh / Ah), and hybrid inverter sizing.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Daily Energy Consumption &amp; Sun Exposure
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Average Daily Electricity Usage</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="dailyKwh" placeholder="30" value="30" min="2" max="250" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">kWh / day</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Regional Peak Sun Hours</label>
+        <select id="peakSunHours" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="5.5">5.5 Hours (Sunbelt / Southwest / CA / AZ)</option>
+          <option value="4.5" selected>4.5 Hours (Midwest / Central US / SE)</option>
+          <option value="3.5">3.5 Hours (Northeast / Pacific NW / Alaska)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Desired Emergency Backup Autonomy</label>
+        <select id="backupDays" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1" selected>1 Day Backup (Essential Outage Protection)</option>
+          <option value="2">2 Days Backup (Extended Storm Outage)</option>
+          <option value="0">Grid-Tied Only (No Battery Storage)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Individual Solar Panel Rating</label>
+        <select id="panelWattage" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="400" selected>400 Watt Premium Monocrystalline Panel</option>
+          <option value="350">350 Watt Standard Monocrystalline Panel</option>
+          <option value="450">450 Watt Commercial High-Yield Panel</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Battery Chemistry Type</label>
+        <select id="batteryChem" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="lifepo4" selected>LiFePO4 Lithium Iron Phosphate (90% DOD, 6,000 Cycles)</option>
+          <option value="lead_acid">AGM Sealed Lead-Acid (50% DOD Limit)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Solar Array &amp; Battery Storage →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Solar System &amp; Battery Takeoff</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_systemKw">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Solar System Size</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_panelCount">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_batteryKwh">—</div>
+        <div class="text-xs text-gray-500 mt-1">Battery Storage Bank</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_batteryAh">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_inverterKw">—</div>
+        <div class="text-xs text-gray-500 mt-1">Hybrid Inverter Size</div>
+        <div class="text-xs text-gray-500 mt-0.5">Pure Sine Wave 120/240V</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_annualOffset">—</div>
+        <div class="text-xs text-gray-500 mt-1">Est. Annual Offset</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_annualSavings">—</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Solar PV &amp; Battery Storage System Architecture Schematic</span>
+        <span class="text-xs text-blue-600 font-normal">Hybrid Solar Architecture</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Component Hardware Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ System Component &amp; Balance of Plant (BOP) Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_solarHwList">
+        <!-- Hardware schedule auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Solar System Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to size a grid-tied or off-grid solar panel and battery system:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Enter Daily kWh Usage:</strong> Check your monthly electric bill for average daily kWh (US average is ~30 kWh/day).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Peak Sun Hours:</strong> Choose your geographic sun exposure region (5.5 hrs for Southwest, 4.5 hrs for Central US, 3.5 hrs for Northwest/NE).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Select Battery Autonomy:</strong> Choose 1 or 2 days of backup battery storage for grid outages, or select Grid-Tied Only.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Calculate Takeoff:</strong> View total solar panel counts, system kW DC size, LiFePO4 battery Ah capacity, and annual electric bill savings!</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Engineering Math &amp; NEC Article 690 Logic</h2>
+    <p class="text-gray-700 mb-4">This calculator applies NREL (National Renewable Energy Laboratory) PVWatts formulas and NEC Article 690 rules:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Required Array kW DC = ( Daily kWh &divide; Peak Sun Hours ) &divide; 0.85 (Derating Factor)</p>
+      <p>Panel Count = Ceiling[ (Array kW &times; 1000) &divide; Panel Watts ]</p>
+      <p>Battery Storage kWh = ( Essential Daily kWh &times; Days Autonomy ) &divide; Depth of Discharge</p>
+      <p>Battery Capacity Ah (@ 48V Nominal) = ( Battery kWh &times; 1000 ) &divide; 48V</p>
+    </div>
+    <p class="text-gray-700">
+      <strong>System Efficiency Derating (0.85):</strong> Solar panels operate under Standard Test Conditions (25°C). In real-world summer heat, panel efficiency drops by 0.4% per degree Celsius above 25°C. Combined with inverter conversion losses (96% efficiency) and wiring voltage drop, a 15% system loss factor is mandatory for accurate sizing.
+    </p>
+    <p class="text-gray-700 mt-3">
+      <strong>LiFePO4 Lithium vs. Lead-Acid:</strong> LiFePO4 (Lithium Iron Phosphate) batteries can safely discharge to 90% Depth of Discharge (DOD) without degrading, lasting 6,000+ cycles. Lead-acid batteries must never discharge below 50% DOD to avoid permanent plate sulfation.
+    </p>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many solar panels do I need to power a house?</h3>
+        <p class="text-gray-600 text-sm">The average US home uses 30 kWh per day and requires a 7.5 kW to 9 kW solar panel system (19 to 23 modern 400W solar panels), depending on local peak sun hours (4.0 to 5.5 hours/day).</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How big of a battery bank do I need for power outages?</h3>
+        <p class="text-gray-600 text-sm">To back up essential loads (refrigerator, sump pump, LED lights, Wi-Fi, and well pump consuming ~10 kWh/day) for 1 full day of power outage autonomy, you need a 10 to 15 kWh LiFePO4 lithium battery bank.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the difference between solar array kW and battery kWh?</h3>
+        <p class="text-gray-600 text-sm">Solar array kilowatts (kW) measures real-time generation speed (how fast panels generate electricity in sunlight). Battery kilowatt-hours (kWh) measures total energy storage capacity (how much energy is stored to run loads at night).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/generator-size" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Generator Size Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate running watts and starting surge for home standby generators.</div>
+      </a>
+      <a href="/calculators/ev-charger-wiring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">EV Charger Wiring Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate wire gauge and breaker size for Level 2 EV home chargers.</div>
+      </a>
+      <a href="/calculators/subpanel-sizing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Subpanel Sizing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate subpanel feeder wire and ampacity for workshops and solar additions.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateSolarSystem() {
+    const dailyKwh = parseFloat(document.getElementById('dailyKwh').value) || 30;
+    const sunHours = parseFloat(document.getElementById('peakSunHours').value) || 4.5;
+    const backupDays = parseInt(document.getElementById('backupDays').value);
+    const panelWatts = parseInt(document.getElementById('panelWattage').value) || 400;
+    const batteryChem = document.getElementById('batteryChem').value;
+
+    // Required Array kW DC = (Daily kWh / sunHours) / 0.85
+    const arrayKw = ((dailyKwh / sunHours) / 0.85);
+    const roundedKw = arrayKw.toFixed(1);
+
+    // Panel Count
+    const totalWattsNeeded = arrayKw * 1000;
+    const panelCount = Math.ceil(totalWattsNeeded / panelWatts);
+
+    // Battery Bank Sizing (kWh & Ah at 48V)
+    let batteryKwh = 0;
+    let batteryAh = 0;
+    const dod = batteryChem === 'lifepo4' ? 0.90 : 0.50;
+
+    if (backupDays > 0) {
+      const essentialDailyKwh = dailyKwh * 0.50; // 50% essential load backup
+      batteryKwh = Math.round((essentialDailyKwh * backupDays) / dod);
+      batteryAh = Math.round((batteryKwh * 1000) / 48); // 48V nominal
+    }
+
+    // Hybrid Inverter Sizing (kW)
+    let inverterKw = 7.6; // standard 7.6 kW home hybrid inverter
+    if (arrayKw > 8 && arrayKw <= 12) inverterKw = 11.4;
+    if (arrayKw > 12) inverterKw = 15.0;
+
+    // Annual Energy Generation & Savings
+    const annualKwhGenerated = Math.round(arrayKw * sunHours * 365 * 0.85);
+    const annualSavingsDollars = Math.round(annualKwhGenerated * 0.16); // $0.16/kWh national avg
+
+    // Update Result UI
+    document.getElementById('r_systemKw').textContent = `${roundedKw} kW DC`;
+    document.getElementById('r_panelCount').textContent = `${panelCount} Panels (${panelWatts}W each)`;
+
+    document.getElementById('r_batteryKwh').textContent = backupDays > 0 ? `${batteryKwh} kWh` : "0 kWh";
+    document.getElementById('r_batteryAh').textContent = backupDays > 0 ? `${batteryAh.toLocaleString()} Ah @ 48V (${batteryChem === 'lifepo4' ? 'LiFePO4' : 'AGM Lead'})` : "Grid-Tied (No Battery)";
+
+    document.getElementById('r_inverterKw').textContent = `${inverterKw} kW`;
+    document.getElementById('r_annualOffset').textContent = `${annualKwhGenerated.toLocaleString()} kWh/yr`;
+    document.getElementById('r_annualSavings').textContent = `~$${annualSavingsDollars.toLocaleString()} / year saved`;
+
+    // System Hardware Schedule Injected
+    const hwList = document.getElementById('r_solarHwList');
+    hwList.innerHTML = '';
+    hwList.innerHTML += `<li><strong>Solar Panel Array:</strong> ${panelCount} Monocrystalline Solar Panels (${panelWatts}W each, total ${roundedKw} kW DC)</li>`;
+    hwList.innerHTML += `<li><strong>Hybrid Inverter Charger:</strong> ${inverterKw} kW 120V/240V Split-Phase Pure Sine Wave Hybrid Inverter</li>`;
+    if (backupDays > 0) {
+      hwList.innerHTML += `<li><strong>LiFePO4 Lithium Battery Bank:</strong> ${batteryKwh} kWh (${batteryAh} Ah @ 48V) Rack-Mount Lithium Battery System</li>`;
+    }
+    hwList.innerHTML += `<li><strong>PV Roof Racking &amp; Mounting:</strong> ${panelCount} Aluminum Roof Rails + L-Feet + End/Mid Clamps</li>`;
+    hwList.innerHTML += `<li><strong>Electrical Disconnects &amp; Safety:</strong> 600V DC Rapid Shutdown System (NEC 690.12) + 200A AC Service Disconnect Switch</li>`;
+
+    // Render SVG
+    renderSVG(roundedKw, panelCount, batteryKwh, inverterKw);
+
+    // Clipboard Handler
+    setupClipboard(roundedKw, panelCount, panelWatts, batteryKwh, batteryAh, inverterKw, annualSavingsDollars);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSVG(kw, panels, battery, inverter) {
+    const container = document.getElementById('svgContainer');
+    const width = 600;
+    const height = 220;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Solar Panel Grid (Left)
+    svg += `<rect x="30" y="30" width="130" height="90" fill="#1E3A8A" stroke="#3B82F6" stroke-width="2" rx="4" />`;
+    svg += `<line x1="73" y1="30" x2="73" y2="120" stroke="#93C5FD" stroke-width="1.5" />`;
+    svg += `<line x1="116" y1="30" x2="116" y2="120" stroke="#93C5FD" stroke-width="1.5" />`;
+    svg += `<line x1="30" y1="75" x2="160" y2="75" stroke="#93C5FD" stroke-width="1.5" />`;
+    svg += `<text x="95" y="140" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E3A8A" font-family="sans-serif">Solar Array: ${kw} kW</text>`;
+    svg += `<text x="95" y="155" text-anchor="middle" font-size="10" fill="#6B7280" font-family="sans-serif">(${panels} &times; 400W Panels)</text>`;
+
+    // DC Line to Inverter
+    svg += `<path d="M 160 75 L 240 75" stroke="#DC2626" stroke-width="3" fill="none" />`;
+    svg += `<text x="200" y="65" text-anchor="middle" font-size="10" font-weight="bold" fill="#DC2626">DC Power</text>`;
+
+    // Hybrid Inverter Box (Middle)
+    svg += `<rect x="240" y="40" width="120" height="110" fill="#F3F4F6" stroke="#111827" stroke-width="2" rx="6" />`;
+    svg += `<text x="300" y="65" text-anchor="middle" font-size="12" font-weight="bold" fill="#111827" font-family="sans-serif">Hybrid Inverter</text>`;
+    svg += `<text x="300" y="82" text-anchor="middle" font-size="11" font-weight="bold" fill="#2563EB" font-family="sans-serif">${inverter} kW</text>`;
+
+    // Battery Bank Box (Bottom Middle)
+    if (battery > 0) {
+      svg += `<rect x="250" y="165" width="100" height="45" fill="#059669" rx="4" />`;
+      svg += `<text x="300" y="185" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF" font-family="sans-serif">LiFePO4 Battery</text>`;
+      svg += `<text x="300" y="200" text-anchor="middle" font-size="10" fill="#E11D48" font-weight="bold" font-family="sans-serif">${battery} kWh Storage</text>`;
+      svg += `<path d="M 300 150 L 300 165" stroke="#059669" stroke-width="3" fill="none" />`;
+    }
+
+    // AC Line to Main Home Panel
+    svg += `<path d="M 360 95 L 440 95" stroke="#2563EB" stroke-width="3" fill="none" />`;
+    svg += `<text x="400" y="85" text-anchor="middle" font-size="10" font-weight="bold" fill="#2563EB">AC 120/240V</text>`;
+
+    // Home Subpanel Box (Right)
+    svg += `<rect x="440" y="40" width="130" height="110" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2" rx="6" />`;
+    svg += `<text x="505" y="70" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E3A8A" font-family="sans-serif">Critical Home</text>`;
+    svg += `<text x="505" y="85" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E3A8A" font-family="sans-serif">Loads Panel</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(kw, panels, panelWatts, batteryKwh, batteryAh, inverter, savings) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY SOLAR & BATTERY SYSTEM TAKEOFF:\n\n`;
+      text += `• Solar Panel Array: ${kw} kW DC (${panels} panels @ ${panelWatts}W each)\n`;
+      text += `• Hybrid Inverter: ${inverter} kW 120/240V Pure Sine Wave Inverter\n`;
+      if (batteryKwh > 0) {
+        text += `• Battery Bank: ${batteryKwh} kWh (${batteryAh} Ah @ 48V LiFePO4 Lithium)\n`;
+      } else {
+        text += `• Battery Bank: Grid-Tied Only\n`;
+      }
+      text += `• Est. Electricity Savings: ~$${savings} / year\n`;
+      text += `• Accessories: Roof Racking, Solar PV Cables, Rapid Shutdown (NEC 690.12)\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/solar-battery-sizing`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateSolarSystem);
+</script>

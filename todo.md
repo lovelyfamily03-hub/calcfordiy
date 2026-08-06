@@ -57,12 +57,12 @@
 - [x] Construction Tape Measure & Imperial Fraction Calculator (`/calculators/construction-fraction`)
 - [x] Septic Tank & Leach Field Drain Calculator (`/calculators/septic-tank-sizing`)
 
-### 🌊 Wave 2: Phase 4C–4F Masterplan Expansion Calculators (65 Live Calculators)
+### 🌊 Wave 2: Phase 4C–4F Masterplan Expansion Calculators (COMPLETE ✅ 68 Live Calculators)
 - [x] **Pergola & Gazebo Lumber Estimator** (`/calculators/pergola-lumber`) — Post size (4x4 vs 6x6), double beam plies, rafter spacing, shade purlins, concrete footings, Simpson Strong-Tie hardware schedule, and live SVG elevation diagram.
 - [x] **Electrical Subpanel Sizing Calculator** (`/calculators/subpanel-sizing`) — Subpanel ampacity (60A to 125A), feeder cable gauge (Aluminum SER vs Copper THHN), NEC Article 220 demand loads, voltage drop, separate neutral/ground bar rules, and live SVG schematic.
-- [ ] **Whole-House Fan Sizing Calculator** (`/calculators/whole-house-fan`) — CFM per sq ft, attic net free vent area (NFVA).
-- [ ] **Radiant Floor Heating Loop Calculator** (`/calculators/radiant-floor-heating`) — PEX tubing feet, loop counts, manifold ports, heat output (BTU).
-- [ ] **Solar Panel & Battery Storage Estimator** (`/calculators/solar-battery-sizing`) — Daily kWh consumption, panel count, battery Ah capacity.
+- [x] **Whole-House Fan Sizing Calculator** (`/calculators/whole-house-fan`) — Fan CFM, air changes per hour (ACH), HVI 1:750 Net Free Vent Area (NFVA sq ft), soffit vs ridge vent schedule, and live SVG airflow diagram.
+- [x] **Radiant Floor Heating Loop Calculator** (`/calculators/radiant-floor-heating`) — PEX-a tubing linear feet, 300 ft maximum loop counts, manifold port sizes, heat output (BTU/hr), water supply temps, and live SVG hydronic schematic.
+- [x] **Solar Panel & Battery Storage Estimator** (`/calculators/solar-battery-sizing`) — Solar panel count (400W panels), system kW DC size, LiFePO4 battery capacity (kWh/Ah), hybrid inverter wattage, annual dollar savings, and live SVG solar PV schematic.
 
 ---
 

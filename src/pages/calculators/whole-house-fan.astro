@@ -1,0 +1,381 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Whole-House Fan Sizing & Attic Vent Calculator | CalcForDIY"
+  description="Calculate required whole-house fan CFM, air changes per hour (ACH), attic Net Free Vent Area (NFVA in sq ft), and soffit vs ridge vent requirements per HVI standards."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Whole-House Fan Sizing & Attic Vent Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many CFM do I need for a whole house fan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As a rule of thumb, you need 2 to 3 CFM per square foot of living area for 8-foot ceilings. For a 2,000 sq ft home, size a 4,000 to 6,000 CFM whole-house fan to achieve 30 to 45 complete air changes per hour for rapid evening cooling."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is attic ventilation (NFVA) critical for whole-house fans?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Whole-house fans pull massive volumes of air from living areas and blast it into the attic. If your attic lacks sufficient Net Free Vent Area (NFVA), the air pressurizes the attic, forcing heat, dust, and insulation fibers down through light fixtures and drywall cracks back into your home."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should windows be open when running a whole house fan?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! You MUST open several windows on the cool side of the house before turning on a whole-house fan. Running a high-CFM fan with closed windows creates strong negative pressure, which can backdraft carbon monoxide from gas water heaters and furnaces."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Whole-House Fan Sizing</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Whole-House Fan Sizing &amp; Attic Vent Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate required fan airflow (CFM), air changes per hour (ACH), and attic Net Free Vent Area (NFVA sq ft) per HVI ventilation standards.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      House Living Area &amp; Cooling Requirements
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Living Area (Conditioned Space)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="homeSqFt" placeholder="2000" value="2000" min="400" max="10000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">sq ft</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Average Ceiling Height</label>
+        <select id="ceilingHeightFt" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="8" selected>8 Feet (Standard Ceiling)</option>
+          <option value="9">9 Feet (Modern Ceiling)</option>
+          <option value="10">10 Feet (High / Vaulted Ceilings)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Desired Air Cooling Rate</label>
+        <select id="coolingRate" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="30">Standard Cooling (30 Air Changes / Hr)</option>
+          <option value="45" selected>Rapid Evening Flush (45 Air Changes / Hr)</option>
+          <option value="60">Maximum Breeze (60 Air Changes / Hr)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Fan Motor Type</label>
+        <select id="fanMotorType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="ecm" selected>ECM Variable Speed Motor (Ultra-Quiet &amp; Energy Efficient)</option>
+          <option value="psc">PSC Direct Drive / Belt Drive Motor (Standard)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Attic Vent Type Installed</label>
+        <select id="atticVentType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="soffit_ridge" selected>Continuous Soffit Vents + Ridge Vent</option>
+          <option value="gable_louvers">Gable End Wall Louvers + Soffits</option>
+          <option value="roof_dorms">Roof Dormer Vents + Soffits</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Fan CFM &amp; Attic Vent Area →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Whole-House Fan &amp; Attic Vent Sizing Takeoff</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_requiredCFM">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Recommended Fan Capacity</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_cfmPerSqFt">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_atticNFVA">—</div>
+        <div class="text-xs text-gray-500 mt-1">Net Free Vent Area (NFVA)</div>
+        <div class="text-xs text-gray-500 mt-0.5">Minimum Required Opening</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_airVolume">—</div>
+        <div class="text-xs text-gray-500 mt-1">House Air Volume</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_achRate">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_estPowerCost">—</div>
+        <div class="text-xs text-gray-500 mt-1">Est. Operating Cost</div>
+        <div class="text-xs text-gray-500 mt-0.5">per 4-hour evening run</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Airflow Diagram -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Whole-House Fan Airflow &amp; Attic Venting Vector Diagram</span>
+        <span class="text-xs text-blue-600 font-normal">HVI Airflow Dynamics</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Attic Vent Schedule Box -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">💨 Mandatory Attic Venting Schedule (HVI 1 sq ft per 750 CFM Rule)</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_ventScheduleList">
+        <!-- Auto-injected vent counts -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Fan Sizing Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to size a quiet, high-efficiency whole-house fan and verify your attic's exhaust venting capacity:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Enter Living Area:</strong> Enter total conditioned floor space in square feet (exclude unheated basement and garage).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Cooling Rate:</strong> Choose 45 air changes per hour for standard evening cooling, or 60 ACH for rapid flush in hot climates.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Check Attic Venting (NFVA):</strong> Review the Net Free Vent Area output to ensure your attic soffit and ridge vents can exhaust the fan's full CFM output.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Export Spec Sheet:</strong> Click calculate to view recommended CFM, motor wattage, operating costs, and vent area requirements!</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Engineering Math &amp; Ventilation Standards</h2>
+    <p class="text-gray-700 mb-4">This calculator strictly applies Home Ventilating Institute (HVI) and Department of Energy (DOE) sizing rules:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>House Volume (cu ft) = Living Area (sq ft) &times; Average Ceiling Height (ft)</p>
+      <p>Required CFM = (House Volume &times; Air Changes / Hr) &divide; 60 Minutes</p>
+      <p>Attic NFVA Required (sq ft) = Required CFM &divide; 750 (HVI Standard Opening Ratio)</p>
+      <p>Est. Operating Cost = (Fan Motor Watts &divide; 1000) &times; Hours &times; $0.16/kWh</p>
+    </div>
+    <p class="text-gray-700">
+      <strong>The 1:750 Vent Area Rule:</strong> For every 750 CFM of whole-house fan capacity, your attic must feature at least 1 square foot of net free vent opening. Net Free Vent Area (NFVA) accounts for the physical screen or louver blockage (a standard 16"x8" soffit vent has ~0.45 sq ft of actual net opening).
+    </p>
+    <p class="text-gray-700 mt-3">
+      <strong>Negative Pressure &amp; Safety:</strong> Whole-house fans work by creating positive pressure in the attic and negative pressure in the living area. You MUST open windows in occupied rooms before turning on the fan to prevent backdrafting carbon monoxide from gas water heaters or fireplaces into the home.
+    </p>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many CFM do I need for a whole house fan?</h3>
+        <p class="text-gray-600 text-sm">As a rule of thumb, you need 2 to 3 CFM per square foot of living area for 8-foot ceilings. For a 2,000 sq ft home, size a 4,000 to 6,000 CFM whole-house fan to achieve 30 to 45 complete air changes per hour for rapid evening cooling.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why is attic ventilation (NFVA) critical for whole-house fans?</h3>
+        <p class="text-gray-600 text-sm">Whole-house fans pull massive volumes of air from living areas and blast it into the attic. If your attic lacks sufficient Net Free Vent Area (NFVA), the air pressurizes the attic, forcing heat, dust, and insulation fibers down through light fixtures and drywall cracks back into your home.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should windows be open when running a whole house fan?</h3>
+        <p class="text-gray-600 text-sm">Yes! You MUST open several windows on the cool side of the house before turning on a whole-house fan. Running a high-CFM fan with closed windows creates strong negative pressure, which can backdraft carbon monoxide from gas water heaters and furnaces.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/attic-insulation" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Attic Insulation Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate blown fiberglass/cellulose bags to hit R-49 or R-60 energy code depth.</div>
+      </a>
+      <a href="/calculators/mini-split-sizing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Mini-Split Heat Pump Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate room BTU cooling loads and inverter ductless mini-split sizing.</div>
+      </a>
+      <a href="/calculators/ac-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Air Conditioner Operating Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate monthly electricity costs for central AC vs whole house fan cooling.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateWholeHouseFan() {
+    const sqFt = parseFloat(document.getElementById('homeSqFt').value) || 2000;
+    const ceilingHt = parseFloat(document.getElementById('ceilingHeightFt').value) || 8;
+    const ach = parseFloat(document.getElementById('coolingRate').value) || 45;
+    const motorType = document.getElementById('fanMotorType').value;
+    const ventType = document.getElementById('atticVentType').value;
+
+    // Air Volume (cu ft)
+    const houseVolumeCuFt = sqFt * ceilingHt;
+
+    // Required CFM = (Volume * ACH) / 60
+    const requiredCFM = Math.round((houseVolumeCuFt * ach) / 60);
+    const cfmPerSqFt = (requiredCFM / sqFt).toFixed(1);
+
+    // Required Net Free Vent Area (NFVA sq ft) = CFM / 750
+    const nfvaSqFt = (requiredCFM / 750).toFixed(1);
+    const nfvaSqInches = Math.round(nfvaSqFt * 144);
+
+    // Motor Power & Operating Cost Estimate
+    const motorWatts = motorType === 'ecm' ? Math.round(requiredCFM * 0.05) : Math.round(requiredCFM * 0.12);
+    const costPer4Hours = ((motorWatts / 1000) * 4 * 0.16).toFixed(2); // $0.16/kWh national avg
+
+    // Update Result UI
+    document.getElementById('r_requiredCFM').textContent = `${requiredCFM.toLocaleString()} CFM`;
+    document.getElementById('r_cfmPerSqFt').textContent = `${cfmPerSqFt} CFM per sq ft (${ach} ACH)`;
+
+    document.getElementById('r_atticNFVA').textContent = `${nfvaSqFt} Sq Ft`;
+    document.getElementById('r_airVolume').textContent = `${houseVolumeCuFt.toLocaleString()} cu ft`;
+    document.getElementById('r_achRate').textContent = `${ach} Air Changes / Hour`;
+
+    document.getElementById('r_estPowerCost').textContent = `$${costPer4Hours}`;
+
+    // Vent Schedule List Injected
+    const ventList = document.getElementById('r_ventScheduleList');
+    ventList.innerHTML = '';
+
+    const halfNfvaSqFt = (nfvaSqFt / 2).toFixed(1);
+    const soffitVentCount = Math.ceil((halfNfvaSqFt * 144) / 45); // 16x8 soffit vent ~45 sq in net area
+    const ridgeVentLinearFt = Math.ceil(halfNfvaSqFt / 0.12); // 18 sq in per lin ft ridge vent = 0.125 sq ft
+
+    ventList.innerHTML += `<li><strong>Total Minimum Net Free Vent Opening:</strong> ${nfvaSqFt} sq ft (${nfvaSqInches} sq in net area)</li>`;
+    ventList.innerHTML += `<li><strong>Soffit Intake Vents (Low Attic):</strong> At least ${halfNfvaSqFt} sq ft (~${soffitVentCount} standard 16"&times;8" continuous soffit vents)</li>`;
+    ventList.innerHTML += `<li><strong>Exhaust Vents (High Attic/Ridge):</strong> At least ${halfNfvaSqFt} sq ft (~${ridgeVentLinearFt} linear feet of continuous ridge vent or 4 roof dormers)</li>`;
+    if (motorType === 'ecm') {
+      ventList.innerHTML += `<li><strong>Motor Efficiency:</strong> High-efficiency ECM motor uses only ~${motorWatts} Watts on high speed (90% energy savings vs central AC).</li>`;
+    }
+
+    // Render SVG
+    renderSVG(requiredCFM, nfvaSqFt, sqFt);
+
+    // Clipboard Handler
+    setupClipboard(requiredCFM, cfmPerSqFt, nfvaSqFt, houseVolumeCuFt, costPer4Hours, motorType);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSVG(cfm, nfva, sqft) {
+    const container = document.getElementById('svgContainer');
+    const width = 600;
+    const height = 240;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Roof Triangle (Attic)
+    svg += `<polygon points="30,120 300,20 570,120" fill="#FEF3C7" stroke="#D97706" stroke-width="3" />`;
+    svg += `<text x="300" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400E" font-family="sans-serif">Attic Space (NFVA Needed: ${nfva} sq ft)</text>`;
+
+    // House Living Space Box
+    svg += `<rect x="50" y="120" width="500" height="90" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="3" />`;
+    svg += `<text x="300" y="170" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E3A8A" font-family="sans-serif">Living Space (${sqft} sq ft)</text>`;
+
+    // Open Window Air Intake Arrows
+    svg += `<path d="M 60 180 L 120 180" stroke="#2563EB" stroke-width="3" marker-end="url(#arrow)" fill="none" />`;
+    svg += `<text x="90" y="198" text-anchor="middle" font-size="10" fill="#2563EB" font-family="sans-serif">Fresh Cool Air In</text>`;
+
+    // Whole House Ceiling Fan Shutter Box
+    svg += `<rect x="250" y="110" width="100" height="20" fill="#2563EB" rx="4" />`;
+    svg += `<text x="300" y="124" text-anchor="middle" font-size="10" font-weight="bold" fill="#FFFFFF" font-family="sans-serif">FAN: ${cfm} CFM</text>`;
+
+    // Air Upward Flow Arrows into Attic
+    svg += `<path d="M 300 110 L 300 70" stroke="#DC2626" stroke-width="4" stroke-dasharray="4" fill="none" />`;
+    
+    // Attic Exhaust Vents Arrows
+    svg += `<path d="M 270 25 L 330 25" stroke="#D97706" stroke-width="3" fill="none" />`;
+    svg += `<text x="300" y="15" text-anchor="middle" font-size="10" font-weight="bold" fill="#D97706" font-family="sans-serif">Ridge Vent Exhaust Out</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(cfm, cfmSqFt, nfva, volume, cost, motor) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY WHOLE-HOUSE FAN SIZING TAKEOFF:\n\n`;
+      text += `• Recommended Fan Airflow: ${cfm} CFM (${cfmSqFt} CFM/sq ft)\n`;
+      text += `• Minimum Attic NFVA Vent Opening: ${nfva} sq ft\n`;
+      text += `• House Air Volume: ${volume} cu ft\n`;
+      text += `• Motor Type: ${motor === 'ecm' ? 'ECM Ultra-Quiet Variable Speed' : 'Direct/Belt Drive'}\n`;
+      text += `• Estimated Energy Cost: ~$${cost} per 4-hour evening run\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/whole-house-fan`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateWholeHouseFan);
+</script>

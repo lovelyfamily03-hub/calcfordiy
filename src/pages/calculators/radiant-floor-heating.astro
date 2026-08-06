@@ -1,0 +1,391 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Radiant Floor Heating Loop & PEX Calculator | CalcForDIY"
+  description="Calculate PEX tubing feet, loop spacing (6 to 12 in o.c.), max 300 ft loop counts, manifold port sizes, heat output (BTU/hr), and boiler water temperature requirements."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Radiant Floor Heating Loop & PEX Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the maximum length for a 1/2 inch PEX radiant floor loop?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The maximum recommended length for a single 1/2-inch PEX radiant heating loop is 300 feet (including lead-in lines to the manifold). Keeping loops under 300 feet prevents excessive pump head pressure loss and ensures even heat distribution across the floor."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What PEX tubing spacing should I use for radiant floor heating?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use 6-inch spacing for high heat loss areas (bathrooms, stone/tile floors, exterior wall perimeters, and sunrooms). Use 9-inch to 12-inch spacing for well-insulated main living areas and wood or vinyl plank floors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I install radiant floor heating under hardwood or carpet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, but tile and stone transfer heat most efficiently. Engineered hardwood can handle up to 82°F surface temperatures. Thick carpet and heavy pad act as thermal insulators (R-value), requiring higher water supply temperatures (120°F to 130°F)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Radiant Floor Heating</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Radiant Floor Heating Loop &amp; PEX Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate linear feet of 1/2" PEX-a tubing, 300 ft maximum loop counts, manifold port sizes, heat output (BTU/hr), and boiler supply temperatures.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Heated Floor Area &amp; Installation Specs
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Total Heated Room Area</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="heatedSqFt" placeholder="400" value="400" min="20" max="5000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">sq ft</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">PEX Tubing Spacing (On-Center)</label>
+        <select id="pexSpacingIn" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="6">6 Inches (High Heat / Bathrooms / Tile)</option>
+          <option value="9" selected>9 Inches (Standard Residential)</option>
+          <option value="12">12 Inches (Well Insulated / Wood Floors)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Distance to Manifold Location</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="manifoldDistanceFt" placeholder="15" value="15" min="2" max="100" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">ft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Finished Flooring Material</label>
+        <select id="flooringMat" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="tile_stone" selected>Ceramic Tile / Porcelain / Natural Stone (High Thermal Conduction)</option>
+          <option value="wood_laminate">Engineered Wood / Luxury Vinyl Plank (Medium Conduction)</option>
+          <option value="carpet">Carpet &amp; Underlayment Pad (Thermal Insulator)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">PEX Tubing Diameter</label>
+        <select id="pexDiameter" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="half_inch" selected>1/2" PEX-a Oxygen Barrier (Standard, 300' max loop)</option>
+          <option value="five_eighths">5/8" PEX-a Oxygen Barrier (Large Areas, 400' max loop)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate PEX Tubing &amp; Manifold Loops →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Radiant Floor PEX Takeoff &amp; Loop Schedule</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_totalPexFeet">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Total PEX Tubing</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_pexCoils">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_loopCount">—</div>
+        <div class="text-xs text-gray-500 mt-1">Individual Heating Loops</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_loopLengthEach">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_manifoldPorts">—</div>
+        <div class="text-xs text-gray-500 mt-1">Manifold Size</div>
+        <div class="text-xs text-gray-500 mt-0.5">Stainless Steel Flowmeter</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_btuOutput">—</div>
+        <div class="text-xs text-gray-500 mt-1">Est. Heat Output</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_waterTemp">—</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Radiant PEX Floor Loop &amp; Manifold Vector Schematic</span>
+        <span class="text-xs text-blue-600 font-normal">Hydronic Heating Grid</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- System Component Schedule Box -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">🔩 System Component &amp; Hardware Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_radiantHwList">
+        <!-- Component details auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Radiant Loop Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <p class="text-gray-700 mb-4">Follow these steps to generate a hydronic radiant floor heating takeoff:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Enter Heated Floor Area:</strong> Measure total square feet of floor space requiring active PEX heating loops.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Loop Spacing:</strong> Choose 6 inches for tile/stone bathrooms, or 9 to 12 inches for wood/vinyl main rooms.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Specify Manifold Lead-In Distance:</strong> Enter one-way distance in feet from the room to your central manifold cabinet.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Calculate Takeoff:</strong> View total PEX feet, required loop counts (max 300 ft each), manifold ports, and water temperature requirements!</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Engineering Math &amp; Hydronic Standards</h2>
+    <p class="text-gray-700 mb-4">This calculator applies RPA (Radiant Panel Association) and ASHRAE floor heating guidelines:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Base Tubing Feet = Heated Area (sq ft) &times; (12 / Spacing in inches)</p>
+      <p>Lead-In Line Feet = Number of Loops &times; 2 &times; Manifold Distance (ft)</p>
+      <p>Total PEX Feet = (Base Tubing + Lead-In Lines) &times; 1.05 (5% Bending Factor)</p>
+      <p>Loop Count = Ceiling( Total PEX Feet / Target Loop Length ~250 ft ) [Max 300 ft limit]</p>
+    </div>
+    <p class="text-gray-700">
+      <strong>Maximum Loop Length Rule:</strong> For 1/2-inch PEX-a, individual loops must not exceed 300 feet. If a loop exceeds 300 feet, water friction increases exponentially, causing the circulator pump to cavitate and leaving the end of the loop cold.
+    </p>
+    <p class="text-gray-700 mt-3">
+      <strong>Oxygen Barrier PEX-a:</strong> Hydronic radiant systems must use EVOH Oxygen Barrier PEX-a tubing. Standard plumbing PEX allows microscopic oxygen molecules to penetrate the pipe wall over time, rusting steel boilers, cast-iron pumps, and expansion tanks.
+    </p>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the maximum length for a 1/2 inch PEX radiant floor loop?</h3>
+        <p class="text-gray-600 text-sm">The maximum recommended length for a single 1/2-inch PEX radiant heating loop is 300 feet (including lead-in lines to the manifold). Keeping loops under 300 feet prevents excessive pump head pressure loss and ensures even heat distribution across the floor.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What PEX tubing spacing should I use for radiant floor heating?</h3>
+        <p class="text-gray-600 text-sm">Use 6-inch spacing for high heat loss areas (bathrooms, stone/tile floors, exterior wall perimeters, and sunrooms). Use 9-inch to 12-inch spacing for well-insulated main living areas and wood or vinyl plank floors.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can I install radiant floor heating under hardwood or carpet?</h3>
+        <p class="text-gray-600 text-sm">Yes, but tile and stone transfer heat most efficiently. Engineered hardwood can handle up to 82°F surface temperatures. Thick carpet and heavy pad act as thermal insulators (R-value), requiring higher water supply temperatures (120°F to 130°F).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate concrete volume for in-slab radiant heating tube pours.</div>
+      </a>
+      <a href="/calculators/subfloor" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Subfloor Plywood Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate subfloor plywood panels and staggering layout grids.</div>
+      </a>
+      <a href="/calculators/thinset" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Thinset Mortar Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate thinset coverage for tiling over uncoupling membranes.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateRadiantHeating() {
+    const sqFt = parseFloat(document.getElementById('heatedSqFt').value) || 400;
+    const spacingIn = parseInt(document.getElementById('pexSpacingIn').value) || 9;
+    const distanceFt = parseFloat(document.getElementById('manifoldDistanceFt').value) || 15;
+    const flooringMat = document.getElementById('flooringMat').value;
+    const pexDiameter = document.getElementById('pexDiameter').value;
+
+    const maxLoopLimit = pexDiameter === 'five_eighths' ? 400 : 300;
+
+    // Base tubing multiplier: 12 / spacingIn
+    const multiplier = 12 / spacingIn;
+    const basePexFeet = sqFt * multiplier;
+
+    // Estimate loop count
+    // Target ~240 ft per loop + lead-in
+    let loopCount = Math.ceil(basePexFeet / 220);
+    if (loopCount < 1) loopCount = 1;
+
+    const leadInFeet = loopCount * 2 * distanceFt;
+    const totalPexFeet = Math.round((basePexFeet + leadInFeet) * 1.05); // 5% bending factor
+
+    // Recalculate loop length
+    let loopLengthEach = Math.round(totalPexFeet / loopCount);
+    if (loopLengthEach > maxLoopLimit) {
+      loopCount = Math.ceil(totalPexFeet / (maxLoopLimit - 40));
+      loopLengthEach = Math.round(totalPexFeet / loopCount);
+    }
+
+    // Coils required (sold in 300ft, 500ft, 1000ft rolls)
+    let coilSpecStr = "1 &times; 500 ft roll";
+    if (totalPexFeet <= 300) coilSpecStr = "1 &times; 300 ft roll";
+    else if (totalPexFeet > 500 && totalPexFeet <= 1000) coilSpecStr = "1 &times; 1000 ft roll";
+    else if (totalPexFeet > 1000) coilSpecStr = `${Math.ceil(totalPexFeet / 1000)} &times; 1000 ft rolls`;
+
+    // Heat Output (BTU/hr) & Water Temp
+    let btuPerSqFt = 25;
+    let waterTempStr = "110°F Supply";
+    if (flooringMat === 'tile_stone') { btuPerSqFt = 35; waterTempStr = "105°F to 115°F Water"; }
+    else if (flooringMat === 'wood_laminate') { btuPerSqFt = 25; waterTempStr = "115°F to 120°F Water"; }
+    else { btuPerSqFt = 18; waterTempStr = "125°F to 130°F Water"; }
+
+    const totalBtu = Math.round(sqFt * btuPerSqFt);
+
+    // Update Result UI
+    document.getElementById('r_totalPexFeet').textContent = `${totalPexFeet.toLocaleString()} Feet`;
+    document.getElementById('r_pexCoils').textContent = coilSpecStr;
+
+    document.getElementById('r_loopCount').textContent = `${loopCount} Loops`;
+    document.getElementById('r_loopLengthEach').textContent = `~${loopLengthEach} ft per loop (Max ${maxLoopLimit}')`;
+
+    document.getElementById('r_manifoldPorts').textContent = `${loopCount}-Loop Manifold`;
+    document.getElementById('r_btuOutput').textContent = `${totalBtu.toLocaleString()} BTU/hr`;
+    document.getElementById('r_waterTemp').textContent = waterTempStr;
+
+    // Component Schedule Injected
+    const hwList = document.getElementById('r_radiantHwList');
+    hwList.innerHTML = '';
+    hwList.innerHTML += `<li><strong>PEX Tubing Spec:</strong> ${totalPexFeet} ft of ${pexDiameter === 'half_inch' ? '1/2"' : '5/8"'} Oxygen Barrier PEX-a (EVOH)</li>`;
+    hwList.innerHTML += `<li><strong>Manifold Assembly:</strong> ${loopCount}-Port Stainless Steel Radiant Manifold with adjustable flowmeters &amp; isolation valves</li>`;
+    hwList.innerHTML += `<li><strong>Subfloor Thermal Insulation:</strong> 2" Rigid XPS Foam Board (R-10) below slab/subfloor to prevent downward heat loss</li>`;
+    hwList.innerHTML += `<li><strong>Fasteners &amp; Tracks:</strong> ~${Math.ceil(totalPexFeet / 2)} PEX Staples / Heat Spreader Transfer Plates or Plastic Clip Tracks</li>`;
+
+    // Render SVG
+    renderSVG(loopCount, spacingIn, sqFt);
+
+    // Clipboard Handler
+    setupClipboard(totalPexFeet, coilSpecStr, loopCount, loopLengthEach, totalBtu, waterTempStr);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSVG(loops, spacing, sqft) {
+    const container = document.getElementById('svgContainer');
+    const width = 600;
+    const height = 220;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Subfloor Base
+    svg += `<rect x="30" y="160" width="540" height="40" fill="#D1D5DB" stroke="#6B7280" stroke-width="2" />`;
+    svg += `<text x="300" y="185" text-anchor="middle" font-size="11" fill="#374151" font-family="sans-serif">Insulated Subfloor Base / XPS Foam (R-10)</text>`;
+
+    // Manifold Box Left
+    svg += `<rect x="40" y="30" width="60" height="110" fill="#1F2937" rx="4" />`;
+    svg += `<text x="70" y="70" text-anchor="middle" font-size="10" font-weight="bold" fill="#3B82F6" font-family="sans-serif">MANIFOLD</text>`;
+    svg += `<text x="70" y="85" text-anchor="middle" font-size="9" fill="#9CA3AF" font-family="sans-serif">${loops} Loops</text>`;
+
+    // PEX Serpentine Loops (Red/Blue Lines)
+    const startX = 120;
+    const endX = 540;
+    const yTop = 50;
+    const yBot = 140;
+
+    svg += `<path d="M 100 60 L 140 60 L 140 140 L 180 140 L 180 60 L 220 60 L 220 140 L 260 140 L 260 60 L 300 60 L 300 140 L 340 140 L 340 60 L 380 60 L 380 140 L 420 140 L 420 60 L 460 60 L 460 140 L 500 140 L 500 60 L 100 60" stroke="#DC2626" stroke-width="3" fill="none" />`;
+
+    svg += `<text x="320" y="35" text-anchor="middle" font-size="12" font-weight="bold" fill="#DC2626" font-family="sans-serif">1/2" PEX-a Loops Spaced ${spacing}" On-Center (${sqft} sq ft)</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(totalPex, coil, loops, lengthEach, btu, waterTemp) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY RADIANT FLOOR HEATING TAKEOFF:\n\n`;
+      text += `• Total PEX-a Tubing: ${totalPex} Feet (${coil})\n`;
+      text += `• Heating Loops: ${loops} Loops (~${lengthEach} ft per loop)\n`;
+      text += `• Manifold Size: ${loops}-Port Stainless Steel Flowmeter Manifold\n`;
+      text += `• Est. Heat Output: ${btu} BTU/hr (${waterTemp})\n`;
+      text += `• Accessories: EVOH PEX-a, 2" XPS R-10 Insulation, PEX Staples / Heat Plates\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/radiant-floor-heating`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateRadiantHeating);
+</script>
