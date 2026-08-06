@@ -1,0 +1,188 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="What Size Conduit Do I Need for 3 Wires? | CalcForDIY"
+  description="Learn what size EMT or PVC conduit you need for 3 THHN copper wires (14 AWG to 2 AWG) based on the NEC 40% maximum conduit fill rule."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Size Conduit Do I Need for 3 Wires?",
+    "description": "Comprehensive guide on sizing EMT, PVC Schedule 40, and Schedule 80 electrical conduit for 3 current-carrying THHN conductors per NEC Chapter 9 Table 1.",
+    "author": { "@type": "Organization", "name": "CalcForDIY Engineering" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "url": "https://calcfordiy.com" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What size conduit do I need for 3 #6 AWG wires?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For three #6 AWG THHN/THWN-2 copper wires (standard for a 60A EV charger or subpanel), you need 3/4-inch EMT conduit (or 3/4-inch PVC Schedule 40). A 1/2-inch conduit exceeds the NEC 40% maximum fill limit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What size conduit do I need for 3 #10 AWG wires?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can fit three #10 AWG THHN wires in a 1/2-inch EMT or PVC Schedule 40 conduit. Three #10 wires consume approximately 0.0633 sq in, which is well under the 0.122 sq in 40% fill limit for 1/2-inch EMT."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is 40% the maximum conduit fill rule in the NEC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The NEC Chapter 9 Table 1 mandates a 40% maximum fill limit for 3 or more conductors to prevent excessive friction during wire pulling and to allow adequate air circulation for thermal heat dissipation under continuous electrical load."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>Conduit Size for 3 Wires</span>
+  </div>
+
+  <article class="max-w-3xl">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">What Size Conduit Do I Need for 3 Wires?</h1>
+    
+    <div class="prose prose-blue max-w-none text-gray-700 space-y-5">
+      <div class="p-5 bg-blue-50 border border-blue-200 rounded-xl">
+        <h2 class="text-lg font-bold text-blue-950 mt-0 mb-2">⚡ Quick Answer Summary:</h2>
+        <p class="text-blue-900 text-base leading-relaxed mb-0">
+          The National Electrical Code (NEC Chapter 9) allows a <strong>maximum 40% fill capacity</strong> for 3 or more conductors:
+          <br />• <strong>3 &times; #14 AWG (15A Circuit):</strong> 1/2" Conduit
+          <br />• <strong>3 &times; #12 AWG (20A Circuit):</strong> 1/2" Conduit
+          <br />• <strong>3 &times; #10 AWG (30A Dryer/AC):</strong> 1/2" Conduit
+          <br />• <strong>3 &times; #8 AWG (40A Range/EV):</strong> 3/4" Conduit
+          <br />• <strong>3 &times; #6 AWG (60A Subpanel/EV):</strong> 3/4" Conduit (1" for PVC Sched 80)
+          <br />• <strong>3 &times; #2 AWG (90A/100A Subpanel):</strong> 1-1/4" Conduit
+        </p>
+      </div>
+
+      <p class="text-lg">
+        Selecting the correct conduit trade size for 3 conductors is critical for building code compliance, fire safety, and preventing damaged wire insulation during hard wire pulls.
+      </p>
+
+      <!-- Calculator CTA -->
+      <div class="my-8 p-6 bg-gradient-to-br from-blue-50 to-indigo-100 border border-blue-200 rounded-xl shadow-sm">
+        <h2 class="text-xl font-bold text-blue-950 mb-2 mt-0">Calculate Custom Conduit Fill &amp; Wire Combos</h2>
+        <p class="text-blue-900 mb-4">Use our free NEC Conduit Fill Calculator to mix different wire gauges (THHN, XHHW, Romex) across EMT, PVC Sched 40/80, or Flex conduit instantly.</p>
+        <a href="/calculators/conduit-fill" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+          Go to the NEC Conduit Fill Calculator →
+        </a>
+      </div>
+
+      <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">1. NEC Conduit Fill Table for 3 THHN Wires</h2>
+      <p>
+        Below is the exact minimum conduit trade size required for 3 THHN/THWN-2 copper conductors across EMT (metal tubing), PVC Schedule 40, and heavy underground PVC Schedule 80:
+      </p>
+
+      <div class="overflow-x-auto my-6">
+        <table class="w-full text-left border-collapse border border-gray-200 text-sm">
+          <thead>
+            <tr class="bg-gray-100 border-b border-gray-200 text-gray-900">
+              <th class="p-3 font-semibold">Wire AWG Gauge</th>
+              <th class="p-3 font-semibold">Ampacity (75&deg;C)</th>
+              <th class="p-3 font-semibold">EMT Metal Conduit</th>
+              <th class="p-3 font-semibold">PVC Sched 40</th>
+              <th class="p-3 font-semibold">PVC Sched 80 (Heavy)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <td class="p-3 font-medium">14 AWG</td>
+              <td class="p-3">15 Amps</td>
+              <td class="p-3 font-mono font-bold text-blue-700">1/2"</td>
+              <td class="p-3 font-mono">1/2"</td>
+              <td class="p-3 font-mono">1/2"</td>
+            </tr>
+            <tr class="bg-blue-50">
+              <td class="p-3 font-medium">12 AWG</td>
+              <td class="p-3">20 Amps</td>
+              <td class="p-3 font-mono font-bold text-blue-700">1/2"</td>
+              <td class="p-3 font-mono">1/2"</td>
+              <td class="p-3 font-mono">1/2"</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">10 AWG</td>
+              <td class="p-3">30 Amps</td>
+              <td class="p-3 font-mono font-bold text-blue-700">1/2"</td>
+              <td class="p-3 font-mono">1/2"</td>
+              <td class="p-3 font-mono">1/2"</td>
+            </tr>
+            <tr class="bg-blue-50">
+              <td class="p-3 font-medium">8 AWG</td>
+              <td class="p-3">50 Amps</td>
+              <td class="p-3 font-mono font-bold text-blue-700">3/4"</td>
+              <td class="p-3 font-mono">3/4"</td>
+              <td class="p-3 font-mono">3/4"</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">6 AWG</td>
+              <td class="p-3">65 Amps</td>
+              <td class="p-3 font-mono font-bold text-blue-700">3/4"</td>
+              <td class="p-3 font-mono">3/4"</td>
+              <td class="p-3 font-mono text-red-600 font-bold">1" (Sched 80 is thicker)</td>
+            </tr>
+            <tr class="bg-blue-50">
+              <td class="p-3 font-medium">4 AWG</td>
+              <td class="p-3">85 Amps</td>
+              <td class="p-3 font-mono font-bold text-blue-700">1"</td>
+              <td class="p-3 font-mono">1"</td>
+              <td class="p-3 font-mono">1"</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">2 AWG</td>
+              <td class="p-3">115 Amps</td>
+              <td class="p-3 font-mono font-bold text-blue-700">1-1/4"</td>
+              <td class="p-3 font-mono">1-1/4"</td>
+              <td class="p-3 font-mono">1-1/4"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">2. Understanding the 40% Maximum Fill Rule</h2>
+      <p>
+        Under <strong>NEC Chapter 9 Table 1</strong>, conduit fill capacity is capped based on the total number of conductors pulled inside:
+      </p>
+      <ul class="space-y-2">
+        <li><strong>1 Conductor:</strong> 53% Maximum Area Fill</li>
+        <li><strong>2 Conductors:</strong> 31% Maximum Area Fill</li>
+        <li><strong>3 or More Conductors:</strong> 40% Maximum Area Fill</li>
+      </ul>
+
+      <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">3. Pro Wire Pulling Tips for DIYers</h2>
+      <ul class="space-y-2">
+        <li><strong>Use Wire Pull Lubricant (Ideal Clear):</strong> For long conduit runs or pulls with 90° bends, apply wire pulling gel to eliminate friction.</li>
+        <li><strong>Limit 90-Degree Bends:</strong> NEC 358.26 limits conduit runs to a maximum of 360° total bends (4 quarter-bends) between pull boxes.</li>
+        <li><strong>Upsize for Long Runs:</strong> If your conduit run exceeds 75 feet, upsizing from 3/4" to 1" makes pulling heavy #6 or #4 wire significantly easier!</li>
+      </ul>
+
+      <!-- Bottom Calculator CTA -->
+      <div class="mt-10 p-6 bg-blue-50 border border-blue-200 rounded-xl text-center">
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Need to Check Conduit Fill for Custom Wire Mixes?</h3>
+        <p class="text-gray-600 text-sm mb-4">Use our free NEC conduit fill calculator to verify fill percentages for any wire combination.</p>
+        <a href="/calculators/conduit-fill" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+          Open Conduit Fill Calculator →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

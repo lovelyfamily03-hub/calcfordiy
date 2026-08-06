@@ -1,0 +1,159 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="How Far Can a 2x8 Deck Joist Span? | CalcForDIY"
+  description="Learn maximum allowable spans for 2x8 deck joists (Southern Yellow Pine, Cedar, Douglas Fir) at 12 in, 16 in, and 24 in o.c. spacing per IRC Table R507.5."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How Far Can a 2x8 Deck Joist Span?",
+    "description": "Comprehensive guide on IRC Table R507.5 allowable spans for 2x8 lumber, wood vs composite decking joist spacing, cantilever overhang limits, and beam sizing.",
+    "author": { "@type": "Organization", "name": "CalcForDIY Engineering" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "url": "https://calcfordiy.com" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How far can a 2x8 Southern Yellow Pine deck joist span?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under IRC Table R507.5, a #2 Southern Yellow Pine 2x8 deck joist can span up to 13 feet 3 inches at 12-inch spacing, 11 feet 10 inches at 16-inch spacing, and 9 feet 8 inches at 24-inch spacing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What joist spacing is required for composite decking?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most composite decking brands (Trex, TimberTech) require 16-inch maximum joist spacing for straight perpendicular boards, and 12-inch maximum spacing if laying deck boards diagonally at 45 degrees."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How far can a 2x8 deck joist cantilever past the beam?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under IRC R507.6, joist cantilevers are limited to 1/4 (25%) of the actual joist back-span length. For a 2x8 joist spanning 10 feet between ledger and beam, the maximum allowable cantilever past the beam is 2 feet 6 inches (or 2x8 size limit of 2' 2\" whichever is smaller)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>2x8 Deck Joist Span Guide</span>
+  </div>
+
+  <article class="max-w-3xl">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">How Far Can a 2x8 Deck Joist Span?</h1>
+    
+    <div class="prose prose-blue max-w-none text-gray-700 space-y-5">
+      <div class="p-5 bg-blue-50 border border-blue-200 rounded-xl">
+        <h2 class="text-lg font-bold text-blue-950 mt-0 mb-2">⚡ Quick Answer Summary:</h2>
+        <p class="text-blue-900 text-base leading-relaxed mb-0">
+          For standard <strong>16-inch on-center (o.c.) joist spacing</strong> using #2 grade pressure-treated lumber (40 lbs/sq ft live load):
+          <br />• <strong>Southern Yellow Pine (SYP):</strong> Spans up to <strong>11 Feet 10 Inches</strong>
+          <br />• <strong>Douglas Fir / Hem-Fir:</strong> Spans up to <strong>11 Feet 1 Inch</strong>
+          <br />• <strong>Western Cedar / Redwood:</strong> Spans up to <strong>9 Feet 8 Inches</strong>
+          <br /><em>Tightening spacing to 12" o.c. increases allowable SYP 2x8 span to <strong>13 Feet 3 Inches</strong>.</em>
+        </p>
+      </div>
+
+      <p class="text-lg">
+        Sizing deck joists properly under the International Residential Code (IRC 2021 / 2024 Table R507.5) prevents bouncy, sagging decks and ensures structural safety for heavy furniture and gatherings.
+      </p>
+
+      <!-- Calculator CTA -->
+      <div class="my-8 p-6 bg-gradient-to-br from-blue-50 to-indigo-100 border border-blue-200 rounded-xl shadow-sm">
+        <h2 class="text-xl font-bold text-blue-950 mb-2 mt-0">Size 2x6 Through 2x12 Deck Joists &amp; Beams</h2>
+        <p class="text-blue-900 mb-4">Use our free Deck Joist Span Calculator to check allowable spans, beam plies, and post spacing per IRC Table R507.5 instantly.</p>
+        <a href="/calculators/deck-joist-span" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+          Go to the Deck Joist Span Calculator →
+        </a>
+      </div>
+
+      <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">1. IRC Table R507.5 Allowable 2x8 Deck Joist Spans</h2>
+      <p>
+        The table below shows maximum allowable spans (measured from house ledger to center of support beam) for #2 grade pressure-treated 2x8 lumber:
+      </p>
+
+      <div class="overflow-x-auto my-6">
+        <table class="w-full text-left border-collapse border border-gray-200 text-sm">
+          <thead>
+            <tr class="bg-gray-100 border-b border-gray-200 text-gray-900">
+              <th class="p-3 font-semibold">Wood Species (#2 Grade)</th>
+              <th class="p-3 font-semibold">12" Spacing (Dense)</th>
+              <th class="p-3 font-semibold">16" Spacing (Standard)</th>
+              <th class="p-3 font-semibold">24" Spacing (Wide)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr class="bg-blue-50">
+              <td class="p-3 font-medium">Southern Yellow Pine (PT)</td>
+              <td class="p-3 font-mono font-bold text-blue-700">13' 3"</td>
+              <td class="p-3 font-mono font-bold text-blue-700">11' 10"</td>
+              <td class="p-3 font-mono">9' 8"</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">Douglas Fir / Larch</td>
+              <td class="p-3 font-mono">12' 6"</td>
+              <td class="p-3 font-mono">11' 1"</td>
+              <td class="p-3 font-mono">9' 1"</td>
+            </tr>
+            <tr class="bg-blue-50">
+              <td class="p-3 font-medium">Hem-Fir / Spruce</td>
+              <td class="p-3 font-mono">11' 10"</td>
+              <td class="p-3 font-mono">10 me' 7"</td>
+              <td class="p-3 font-mono">8' 8"</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">Western Cedar / Redwood</td>
+              <td class="p-3 font-mono">10' 9"</td>
+              <td class="p-3 font-mono">9' 8"</td>
+              <td class="p-3 font-mono">7' 11"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">2. Wood vs. Composite Decking Spacing Rules</h2>
+      <ul class="space-y-2">
+        <li><strong>Standard 5/4" Wood Decking:</strong> Can span up to 16 inches on-center.</li>
+        <li><strong>Composite Decking (Perpendicular):</strong> Requires 16-inch maximum joist spacing.</li>
+        <li><strong>Composite Decking (45-Degree Diagonal):</strong> Requires 12-inch maximum joist spacing to prevent board flex.</li>
+      </ul>
+
+      <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">3. 2x8 Cantilever Overhang Limits (IRC R507.6)</h2>
+      <p>
+        A joist cantilever is the portion of the joist extending past the support beam. Under IRC building codes:
+      </p>
+      <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 font-mono text-sm space-y-2">
+        <p>Max Cantilever = L / 4 (where L is the joist span between ledger and beam)</p>
+        <p>2x8 SYP Cantilever Limit = 2 Feet 2 Inches Maximum</p>
+      </div>
+
+      <!-- Bottom Calculator CTA -->
+      <div class="mt-10 p-6 bg-blue-50 border border-blue-200 rounded-xl text-center">
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Ready to Design Your Deck Framing Plan?</h3>
+        <p class="text-gray-600 text-sm mb-4">Use our free deck joist span calculator to size joists, double beams, and post footings per IRC building code.</p>
+        <a href="/calculators/deck-joist-span" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+          Open Deck Joist Span Calculator →
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

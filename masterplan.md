@@ -26,13 +26,13 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Total Pages Live:** 96 pages
-- **Calculators live:** 68 calculators (Latest: Whole-House Fan, Radiant Floor Heating, Solar & Battery Storage)
-- **SEO Guides live:** 10 guides (`src/pages/guides/`)
+- **Total Pages Live:** 99 pages
+- **Calculators live:** 68 calculators
+- **SEO Guides live:** 13 guides (`src/pages/guides/`)
 - **Project Workflow Hubs live:** 8 hubs (`src/pages/projects/`)
 - **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. AdSense re-submission is intentionally PAUSED while Googlebot crawls the new pages and site enhancements are deployed.
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
-- **GSC Status:** 96 pages indexed/crawlable, zero manual actions. Googlebot actively crawling 130+ requests/day.
+- **GSC Status:** 99 pages indexed/crawlable, zero manual actions. Googlebot actively crawling 130+ requests/day.
 
 ---
 
