@@ -105,12 +105,14 @@ Enhanced top 10 core tools with unique, non-templated, tool-specific technical v
 - [x] **Homepage Intro & Methodology**: Added 150-word mission statement, category hubs, and planning estimate statement to `/index.astro`.
 - [x] **Footer Navigation**: Verified all policy, about, contact, and methodology links are visible in global footer.
 
-### Phase 4: Pre-Resubmission Checklist & Organic Crawl Cycle (IN PROGRESS ⏳)
-- [x] Confirmed all 90 URLs return 200 OK with zero broken links or empty draft routes.
-- [x] Verified mobile viewport rendering across all tools.
+### Phase 4: Pre-Resubmission Checklist & Organic Crawl Cycle (COMPLETE ✅)
+- [x] Confirmed all 103 URLs return 200 OK with zero broken internal links across the entire built site.
+- [x] Verified mobile viewport rendering and numeric keypad inputs across all tools.
 - [x] Re-verified `public/ads.txt` (`ca-pub-6410565511961171`).
-- [ ] **Googlebot Re-Crawl Buffer**: Allowing Googlebot 1-2 weeks to naturally crawl and index updated pages, E-E-A-T methodology infrastructure, and technical calculator logic before clicking "Request Review".
-- [ ] AdSense Dashboard Re-Submission (Holding off until crawl cycle completes and further site quality enhancements are deployed).
+- [x] Added `/terms` Terms of Service page and updated `/about` to reflect 68+ live calculators.
+- [x] Completed full competitive analysis against Omni Calculator, Blocklayer, and Calculator.net.
+- [x] **Googlebot Re-Crawl Buffer**: Completed (over 2 weeks elapsed with active crawling on GSC).
+- [x] **AdSense Dashboard Re-Submission**: Site is 100% ready for "Request Review".
 
 ---
 
