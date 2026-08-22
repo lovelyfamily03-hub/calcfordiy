@@ -140,3 +140,20 @@ Enhanced top 10 core tools with unique, non-templated, tool-specific technical v
 - [x] **Instant Live Search Filter**: Integrated real-time keyword search bar and auto-expanding category filter on `/calculators/index.astro`.
 - [x] **Clipboard GA4 Event Tracking**: Added custom `copy_shopping_list` GA4 event tracking in `Layout.astro`.
 - [x] **Mobile Input Keypad Polish**: Auto-injected `inputmode="decimal"` across all numeric input fields sitewide.
+
+---
+
+## 6. 🚀 Next Priority Development Queue (Pending Next Session)
+
+- [ ] **E-Commerce Material Takeoff Affiliate Integration**:
+  - Centralized affiliate config (`src/config/affiliates.js`) supporting Amazon Associates tag (`calcfordiy-20`) and Home Depot / Lowe's (Impact.com & CJ).
+  - Context-aware retail checkout buttons below calculator takeoff results (e.g., *32 Bags of 80 lb Quikrete* → `[ View on Home Depot ]` / `[ View on Amazon ]`).
+  - Required FTC affiliate disclosure banner in global footer and takeoffs.
+- [ ] **Moat 6: Dual Imperial (US) ⇄ Metric (SI) Measurement Switcher**:
+  - Global / per-calculator toggle between Feet/Inches/Lbs and Meters/Centimeters/kg to capture Canadian, UK, Australian, and European search volume.
+- [ ] **Next Batch of Search Console Long-Tail Target Guides**:
+  - `"How to Measure and Cut Crown Molding Angles (Miter & Bevel Chart)"`
+  - `"How Many Watts Does a Refrigerator Use on a Generator?"`
+  - `"How Much Topsoil Do I Need for a New Lawn?"`
+  - `"What Size Subpanel for a Detached Garage Workshop?"`
+  - `"How Many Amps Does a 3-Ton Central AC Unit Draw?"`
