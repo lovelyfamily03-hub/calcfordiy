@@ -1,0 +1,398 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Sump Pump Sizing & Flow Rate Calculator | CalcForDIY"
+  description="Calculate required sump pump GPH flow rate, Total Dynamic Head (TDH), horsepower (1/3 HP, 1/2 HP, 3/4 HP), and battery backup runtime for basement waterproofing."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Sump Pump Sizing Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What size sump pump do I need for a 1,500 sq ft basement?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For an average 1,500 sq ft basement with moderate water table depth and an 8 to 10 foot vertical lift, a 1/2 HP submersible cast iron sump pump rated for 3,000 GPH at 10 ft Total Dynamic Head is recommended."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Total Dynamic Head (TDH) in sump pump sizing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Total Dynamic Head is the total resistance the pump must overcome. It equals the vertical elevation lift (from pump to highest discharge point) plus friction loss through horizontal pipe (1 ft of head per 10 ft of run) and 90-degree pipe fittings (approx. 1 ft of head per elbow)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When do I need a 3/4 HP sump pump instead of 1/2 HP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You need a 3/4 HP sump pump if your vertical lift exceeds 15 feet, if your discharge line runs over 50 feet horizontally, or if your home sits on an active underground spring with heavy inflow exceeding 3,500 GPH."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Sump Pump Sizing</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Sump Pump Sizing &amp; Flow Rate Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate required GPH flow rate, Total Dynamic Head (TDH), pump horsepower (1/3 HP, 1/2 HP, 3/4 HP), and emergency battery backup runtime.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Basement Drainage Dimensions &amp; Water Inflow
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Basement Floor Area</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="basementSqft" placeholder="1500" value="1500" min="200" max="10000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">sq ft</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Water Inflow &amp; Water Table Severity</label>
+        <select id="waterSeverity" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="light">Light (Sandy soil, low water table, minor seepage)</option>
+          <option value="moderate" selected>Moderate (Standard clay/loam soil, storm runoff)</option>
+          <option value="heavy">Heavy (High water table, active spring, heavy clay)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Vertical Lift (Basement Floor to Exit)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="verticalLift" placeholder="9" value="9" min="3" max="25" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">feet</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Horizontal Discharge Pipe Length</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="horizontalRun" placeholder="25" value="25" min="0" max="200" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">feet of 1.5" PVC</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Number of 90&deg; Elbow Fittings</label>
+        <select id="elbowCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1">1 Elbow (Direct upward &amp; out)</option>
+          <option value="2" selected>2 Elbows (Standard basement rim joist exit)</option>
+          <option value="3">3 Elbows (Offset around foundation obstacles)</option>
+          <option value="4">4 Elbows (Long route around joists)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Sump Pump Size &amp; Dynamic Head →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Sump Pump Engineering Sizing</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_hp">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Recommended Motor</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_submersibleType">Cast Iron Submersible</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_gph">—</div>
+        <div class="text-xs text-gray-500 mt-1">Flow Rate Required</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_gpm">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_tdh">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Dynamic Head (TDH)</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_staticLift">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_backupRuntime">—</div>
+        <div class="text-xs text-gray-500 mt-1">12V Backup Runtime</div>
+        <div class="text-xs text-gray-500 mt-0.5">100Ah Deep Cycle Battery</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Sump Basin &amp; Discharge Plumbing Elevation Schematic</span>
+        <span class="text-xs text-blue-600 font-normal">Cross-Section View</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Component Hardware Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ Sump Pit Installation &amp; Plumbing Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_plumbingHwList">
+        <!-- Hardware schedule auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Sump Pump Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Size a Sump Pump Correctly</h2>
+    <p class="text-gray-700 mb-4">Follow these engineering steps to select the right horsepower pump for your basement:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Determine Inflow Rate (GPM):</strong> Soil porosity and basement footprint dictate how fast water enters the sump basin during heavy downpours.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Calculate Total Dynamic Head (TDH):</strong> Measure vertical lift from basin bottom to outside exit pipe, plus friction from pipe length and 90° elbows.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Select Motor HP (1/3 HP vs 1/2 HP vs 3/4 HP):</strong> Match your TDH and required GPH against manufacturer pump flow performance curves.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Install Critical Safety Components:</strong> Always install a rubber quiet check valve, weep hole, and dedicated 15A GFCI circuit.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Engineering Math &amp; TDH Sizing Formulas</h2>
+    <p class="text-gray-700 mb-4">This calculator applies Hydraulic Institute and Sump and Sewage Pump Manufacturers Association (SSPMA) engineering standards:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Inflow Rate GPM = ( Basement Sq Ft &divide; 100 ) &times; Soil Severity Factor (0.5 to 1.5)</p>
+      <p>Required GPH = Inflow GPM &times; 60 &times; 1.25 (25% Safety Factor)</p>
+      <p>Friction Head Loss (ft) = Horizontal Pipe Length &times; 0.10 + Elbow Count &times; 1.0</p>
+      <p>Total Dynamic Head (TDH ft) = Vertical Static Lift (ft) + Friction Head Loss (ft)</p>
+    </div>
+    <p class="text-gray-700">
+      <strong>Why 1/2 HP Cast Iron is Standard:</strong> 1/2 HP pumps provide the optimal balance between high water flow (3,000+ GPH) and heat dissipation. Cast iron housings dissipate motor heat into the sump water 3x faster than plastic housings, preventing thermal overload during non-stop torrential storms.
+    </p>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What size sump pump do I need for a 1,500 sq ft basement?</h3>
+        <p class="text-gray-600 text-sm">For an average 1,500 sq ft basement with moderate water table depth and an 8 to 10 foot vertical lift, a 1/2 HP submersible cast iron sump pump rated for 3,000 GPH at 10 ft Total Dynamic Head is recommended.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is Total Dynamic Head (TDH) in sump pump sizing?</h3>
+        <p class="text-gray-600 text-sm">Total Dynamic Head is the total resistance the pump must overcome. It equals the vertical elevation lift (from pump to highest discharge point) plus friction loss through horizontal pipe (1 ft of head per 10 ft of run) and 90-degree pipe fittings (approx. 1 ft of head per elbow).</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why is a check valve required on a sump pump discharge line?</h3>
+        <p class="text-gray-600 text-sm">A check valve prevents pumped water remaining in the vertical pipe from flowing back down into the basin when the motor turns off, eliminating rapid on/off short cycling that burns out the pump switch.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Drainage &amp; Plumbing Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/french-drain" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">French Drain Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate gravel tons, perforated pipe, and geotextile fabric for yard and perimeter drainage.</div>
+      </a>
+      <a href="/calculators/generator-size" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Generator Size Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate running watts and starting surge to keep sump pumps running during storm power outages.</div>
+      </a>
+      <a href="/calculators/tankless-water-heater" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Tankless Water Heater Sizing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate GPM flow rates and temperature rise for home domestic plumbing.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateSumpPump() {
+    const sqft = parseFloat(document.getElementById('basementSqft').value) || 1500;
+    const severity = document.getElementById('waterSeverity').value;
+    const lift = parseFloat(document.getElementById('verticalLift').value) || 9;
+    const horizRun = parseFloat(document.getElementById('horizontalRun').value) || 25;
+    const elbows = parseInt(document.getElementById('elbowCount').value) || 2;
+
+    // Severity factor (GPM per 100 sq ft)
+    let sevFactor = 1.0;
+    if (severity === 'light') sevFactor = 0.5;
+    if (severity === 'heavy') sevFactor = 1.6;
+
+    // Inflow Rate
+    const rawGpm = (sqft / 100) * sevFactor;
+    const safetyGpm = rawGpm * 1.25;
+    const requiredGph = Math.round(safetyGpm * 60);
+
+    // Total Dynamic Head (TDH)
+    const frictionHead = (horizRun * 0.10) + (elbows * 1.0);
+    const tdh = Math.round(lift + frictionHead);
+
+    // Motor Sizing Logic
+    let hp = "1/2 HP";
+    let subType = "Cast Iron Submersible";
+    if (requiredGph <= 2000 && tdh <= 11) {
+      hp = "1/3 HP";
+      subType = "Submersible Thermoplastic/Cast Iron";
+    } else if (requiredGph > 3300 || tdh > 16) {
+      hp = "3/4 HP";
+      subType = "Heavy-Duty Commercial Cast Iron";
+    }
+
+    // Battery Backup Runtime (100Ah battery @ 12V = 1200Wh, pump draws ~500W at 20% duty cycle)
+    const dutyCycleHours = Math.round((100 * 12 * 0.85) / (hp === '1/3 HP' ? 350 * 0.20 : (hp === '1/2 HP' ? 550 * 0.20 : 800 * 0.20)));
+
+    // Update Result UI
+    document.getElementById('r_hp').textContent = hp;
+    document.getElementById('r_submersibleType').textContent = subType;
+    document.getElementById('r_gph').textContent = `${requiredGph.toLocaleString()} GPH`;
+    document.getElementById('r_gpm').textContent = `~${Math.round(safetyGpm)} GPM @ ${tdh} ft TDH`;
+    document.getElementById('r_tdh').textContent = `${tdh} Feet`;
+    document.getElementById('r_staticLift').textContent = `${lift}' Lift + ${frictionHead.toFixed(1)}' Friction Head`;
+    document.getElementById('r_backupRuntime').textContent = `~${dutyCycleHours} Hours`;
+
+    // Plumbing Hardware Schedule
+    const hwList = document.getElementById('r_plumbingHwList');
+    hwList.innerHTML = '';
+    hwList.innerHTML += `<li><strong>Primary Sump Pump:</strong> ${hp} ${subType} (${requiredGph.toLocaleString()} GPH capacity at ${tdh} ft head)</li>`;
+    hwList.innerHTML += `<li><strong>Discharge Piping:</strong> 1-1/2" Schedule 40 PVC Pipe (${Math.round(lift + horizRun)} linear feet)</li>`;
+    hwList.innerHTML += `<li><strong>Silent Check Valve:</strong> 1-1/2" Rubber Compression Spring Check Valve with Stainless Clamps</li>`;
+    hwList.innerHTML += `<li><strong>Sump Basin &amp; Cover:</strong> 18" &times; 22" Structural Foam Basin with Sealed Radon/Vapor Lid</li>`;
+    hwList.innerHTML += `<li><strong>Safety Hole:</strong> 3/16" Air Relief Weep Hole drilled in PVC between pump discharge and check valve</li>`;
+    hwList.innerHTML += `<li><strong>Electrical:</strong> Dedicated 15-Amp or 20-Amp 120V GFCI Receptacle (never use extension cords)</li>`;
+
+    // Render SVG
+    renderSVG(lift, horizRun, hp, tdh);
+
+    // Clipboard Handler
+    setupClipboard(hp, subType, requiredGph, tdh, lift, horizRun, dutyCycleHours);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSVG(lift, horizRun, hp, tdh) {
+    const container = document.getElementById('svgContainer');
+    const width = 560;
+    const height = 230;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Foundation Wall & Floor
+    svg += `<rect x="20" y="20" width="160" height="20" fill="#9CA3AF" />`;
+    svg += `<text x="100" y="35" text-anchor="middle" font-size="10" fill="#FFFFFF" font-family="sans-serif">Concrete Foundation Wall</text>`;
+    svg += `<rect x="20" y="160" width="220" height="15" fill="#D1D5DB" />`;
+    svg += `<text x="100" y="172" text-anchor="middle" font-size="9" fill="#4B5563" font-family="sans-serif">Basement Slab</text>`;
+
+    // Sump Basin
+    svg += `<rect x="70" y="160" width="70" height="60" fill="#1E293B" rx="2" />`;
+    svg += `<rect x="73" y="185" width="64" height="32" fill="#38BDF8" opacity="0.6" />`;
+    
+    // Pump inside pit
+    svg += `<rect x="85" y="192" width="40" height="25" fill="#0284C7" stroke="#0369A1" stroke-width="1.5" rx="3" />`;
+    svg += `<text x="105" y="208" text-anchor="middle" font-size="9" font-weight="bold" fill="#FFFFFF">${hp}</text>`;
+
+    // Vertical PVC Pipe
+    svg += `<path d="M 105 192 L 105 45" stroke="#F3F4F6" stroke-width="6" />`;
+    svg += `<path d="M 105 192 L 105 45" stroke="#374151" stroke-width="1.5" fill="none" />`;
+
+    // Check Valve on Pipe
+    svg += `<rect x="99" y="125" width="12" height="16" fill="#10B981" stroke="#047857" stroke-width="1" rx="2" />`;
+    svg += `<text x="145" y="137" text-anchor="start" font-size="9" font-weight="bold" fill="#047857">Check Valve</text>`;
+
+    // 90 Elbow & Horizontal Run through wall
+    svg += `<path d="M 105 45 L 340 45 L 340 70" stroke="#F3F4F6" stroke-width="6" fill="none" />`;
+    svg += `<path d="M 105 45 L 340 45 L 340 70" stroke="#374151" stroke-width="1.5" fill="none" />`;
+    
+    // Water Discharge Spray
+    svg += `<path d="M 340 70 Q 360 85 380 110" stroke="#0284C7" stroke-width="3" stroke-dasharray="4,2" fill="none" />`;
+    svg += `<text x="360" y="60" text-anchor="middle" font-size="10" font-weight="bold" fill="#0369A1">Discharge Gravity Exit</text>`;
+
+    // Elevation Dimensions
+    svg += `<line x1="50" y1="192" x2="50" y2="45" stroke="#DC2626" stroke-width="1.5" marker-end="url(#arrow)" />`;
+    svg += `<text x="45" y="115" text-anchor="end" font-size="10" font-weight="bold" fill="#DC2626">${lift} ft Lift</text>`;
+    svg += `<text x="220" y="38" text-anchor="middle" font-size="9" font-weight="bold" fill="#4B5563">TDH: ${tdh} ft Head Loss</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(hp, subType, gph, tdh, lift, horizRun, backupHours) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY SUMP PUMP TAKEOFF:\n\n`;
+      text += `• Recommended Pump: ${hp} ${subType}\n`;
+      text += `• Required Flow Rate: ${gph.toLocaleString()} GPH @ ${tdh} ft TDH\n`;
+      text += `• Lift & Head: ${lift} ft vertical static lift + ${horizRun} ft horizontal run\n`;
+      text += `• Piping: 1-1/2" Schedule 40 PVC + 1-1/2" Rubber Quiet Spring Check Valve\n`;
+      text += `• Basin: 18"x22" Poly Basin with Vapor Cover & Weep Hole\n`;
+      text += `• Est. Battery Backup Autonomy: ~${backupHours} Hours on 100Ah Deep Cycle Battery\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/sump-pump-sizing`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateSumpPump);
+</script>

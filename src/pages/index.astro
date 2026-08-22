@@ -172,6 +172,36 @@ const calculators = [
     category: "Electrical & Lighting"
   },
   {
+    title: "Sump Pump Sizing & Flow Rate Calculator",
+    description: "Calculate required GPH flow rate, Total Dynamic Head (TDH), pump horsepower (1/3 HP, 1/2 HP, 3/4 HP), and battery backup runtime.",
+    href: "/calculators/sump-pump-sizing",
+    category: "Plumbing & Heating"
+  },
+  {
+    title: "Plumbing Pipe Slope & Sewer Fall Calculator",
+    description: "Calculate total elevation fall in inches, trench pitch percentage, and gravity drainage depth for drain and sewer pipes per IPC code.",
+    href: "/calculators/pipe-slope",
+    category: "Plumbing & Heating"
+  },
+  {
+    title: "Drywall Mud & Joint Compound Calculator",
+    description: "Calculate 4.5-gallon buckets of drywall joint compound (all-purpose and topping), rolls of joint tape, and corner beads.",
+    href: "/calculators/drywall-mud",
+    category: "Walls"
+  },
+  {
+    title: "Firewood Cord & Wood Stove Heat Calculator",
+    description: "Calculate full cords (128 cu ft), face cords, ricks, total weight, and Million BTU heat output across hardwoods and softwoods.",
+    href: "/calculators/firewood-cord",
+    category: "Plumbing & Heating"
+  },
+  {
+    title: "Polymeric Sand & Paver Joint Calculator",
+    description: "Calculate 50 lb bags of polymeric sand for paver patios, driveways, and flagstone based on paver dimensions and joint width.",
+    href: "/calculators/polymeric-sand",
+    category: "Landscaping & Concrete"
+  },
+  {
     title: "Shiplap Calculator",
     description: "Calculate exactly how many shiplap or tongue and groove boards you need, including true exposed face and gap waste.",
     href: "/calculators/shiplap",
@@ -417,8 +447,8 @@ const categories = [...new Set(calculators.map(c => c.category))];
 ---
 
 <Layout
-  title="CalcForDIY — 68 Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks"
-  description="68 free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs."
+  title="CalcForDIY — 73 Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks"
+  description="73 free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs."
 >
 <script type="application/ld+json" is:inline>
 {

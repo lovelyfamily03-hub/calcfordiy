@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Shed Foundation & Concrete Slab Pad",
+    description: "Calculate cubic yards of concrete, 80 lb Quikrete bags, gravel sub-base, and rebar mesh for a level 4-inch shed slab foundation.",
+    calculatorName: "Concrete Slab Calculator",
+    href: "/calculators/concrete-slab",
+    icon: "🏗️"
+  },
+  {
+    stepNumber: 2,
+    title: "Wall Framing Studs & Corner Headers",
+    description: "Determine 2x4 stud counts (16\" o.c.), top/bottom plates, door/window king and jack studs, and OSB exterior wall sheathing sheets.",
+    calculatorName: "Wall Framing Calculator",
+    href: "/calculators/wall-framing",
+    icon: "🔨"
+  },
+  {
+    stepNumber: 3,
+    title: "Roof Pitch & Rafter Cut Geometry",
+    description: "Calculate rafter lengths (2x4 or 2x6), plumb cut angles, seat cut bird's mouth notches, and overhang lengths for gable or lean-to shed roofs.",
+    calculatorName: "Roof Pitch & Rafter Calculator",
+    href: "/calculators/roof-pitch-rafter",
+    icon: "📐"
+  },
+  {
+    stepNumber: 4,
+    title: "Asphalt Shingle Roofing & Drip Edge",
+    description: "Estimate roofing squares, 3-bundle per square packs, starter strips, ridge caps, and underlayment rolls based on roof pitch slope multipliers.",
+    calculatorName: "Asphalt Shingles Calculator",
+    href: "/calculators/asphalt-shingles",
+    icon: "🏠"
+  }
+];
+---
+
+<Layout
+  title="Shed Construction Hub — Step-by-Step DIY Outbuilding Workflow | CalcForDIY"
+  description="Follow a 4-step DIY shed building workflow: Concrete slab foundation, 2x4 wall framing, roof rafter cut geometry, and asphalt shingle roofing."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Plan and Build a DIY Storage Shed or Workshop",
+    "description": "A 4-step DIY workflow for calculating concrete slab foundations, 2x4 wall framing, roof rafters, and shingle roofing.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Shed Foundation Sizing",
+        "text": "Calculate concrete slab volume, gravel sub-base, and rebar reinforcement."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Wall Framing & Studs",
+        "text": "Determine 2x4 stud counts, corner assemblies, and top/bottom plates."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Roof Rafter Cut Geometry",
+        "text": "Calculate rafter lengths, plumb cuts, and bird's mouth notches."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Roofing Shingles & Weatherproofing",
+        "text": "Estimate roofing squares, starter strips, and ridge cap shingles."
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span>Shed Construction Workflow</span>
+  </div>
+
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+      <span>🪵 Step-by-Step Framing Workflow</span>
+      <span>•</span>
+      <span>4 Integrated Calculators</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">DIY Shed &amp; Workshop Construction Workflow</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      Plan, size, and calculate your custom storage shed, garden shed, or detached workshop from foundation to roof in 4 sequential steps.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs hover:border-blue-400 transition-all">
+        <div class="flex items-start gap-4">
+          <div class="bg-blue-600 text-white rounded-xl w-10 h-10 flex items-center justify-center font-bold text-lg shrink-0 mt-1">
+            {step.stepNumber}
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xl">{step.icon}</span>
+              <h2 class="text-xl font-bold text-gray-900">{step.title}</h2>
+            </div>
+            <p class="text-gray-600 text-sm mb-4 leading-relaxed">{step.description}</p>
+            <a
+              href={step.href}
+              class="inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold px-4 py-2 rounded-lg text-sm transition-colors border border-blue-200"
+            >
+              Open {step.calculatorName} →
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-2xl p-8 text-white text-center">
+    <h2 class="text-2xl font-bold mb-2">Need More Home Improvement Calculators?</h2>
+    <p class="text-slate-300 text-sm max-w-2xl mx-auto mb-6">
+      Explore all 73 free DIY calculators, dynamic SVG framing diagrams, and trade-verified building code tools.
+    </p>
+    <a href="/calculators" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+      View All 73 DIY Calculators →
+    </a>
+  </div>
+</Layout>

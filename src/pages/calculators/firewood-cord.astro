@@ -1,0 +1,368 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Firewood Cord & Wood Stove Heat Calculator | CalcForDIY"
+  description="Calculate full cords (128 cu ft), face cords, ricks, and total million BTU heat output by wood species (Oak, Hickory, Maple, Ash, Pine) for wood stoves and fireplaces."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Firewood Cord Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between a full cord and a face cord of firewood?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A full cord is a legally defined volume of 128 cubic feet of tightly stacked wood (measuring 4 feet high, 4 feet deep, and 8 feet long). A face cord (or rick) is only one single stack 4 feet high by 8 feet long with 16-inch log lengths, which equals roughly 1/3 of a full cord (42.6 cu ft)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which firewood species gives off the most heat?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dense hardwoods like Shagbark Hickory (27.7 Million BTU/cord), Black Locust (26.8 MBTU), and White Oak (26.4 MBTU) produce the highest heat output and longest burn times per cord."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many cords of firewood do I need for the winter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For supplemental wood stove heating in cold climates, most homes burn 2 to 3 full cords per winter. For primary whole-house wood heating in northern states, plan on 4 to 6 full cords of seasoned hardwood."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Firewood Cord Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Firewood Cord &amp; Wood Stove Heat Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate full cords (128 cu ft), face cords, ricks, total weight, and Million BTU heat output across hardwoods and softwoods.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Wood Stack Dimensions &amp; Tree Species
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Wood Stack Length</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="stackLength" placeholder="16" value="16" min="1" max="100" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">feet long</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Wood Stack Height</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="stackHeight" placeholder="4" value="4" min="1" max="12" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">feet high</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Average Cut Log Length</label>
+        <select id="logLength" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="16" selected>16 Inches (Standard Firewood Length)</option>
+          <option value="18">18 Inches (Large Stove Length)</option>
+          <option value="24">24 Inches (Fireplace Log Length)</option>
+          <option value="12">12 Inches (Small Cookstove Length)</option>
+          <option value="48">48 Inches (4-Foot Full Cord Depth)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Wood Species &amp; Heat Density</label>
+        <select id="woodSpecies" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="oak" selected>White / Red Oak (26.4 Million BTU/cord — Premium)</option>
+          <option value="hickory">Hickory / Black Locust (27.7 Million BTU/cord — Highest Heat)</option>
+          <option value="maple">Sugar / Hard Maple (24.0 Million BTU/cord — Clean Long Burn)</option>
+          <option value="ash">White Ash (23.6 Million BTU/cord — Easy Splitting)</option>
+          <option value="cherry">Black Cherry / Birch (20.5 Million BTU/cord — Great Aroma)</option>
+          <option value="pine">Douglas Fir / Pine (17.1 Million BTU/cord — Softwood Kindling)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Heating Season Objective</label>
+        <select id="heatingUse" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="supplemental" selected>Supplemental Heat (Evening &amp; Weekend fires)</option>
+          <option value="primary">Primary Whole-House Wood Stove Heating</option>
+          <option value="ambiance">Occasional Fireplace Ambiance / Campfires</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Cords &amp; BTU Heat Output →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Firewood Volume &amp; Energy Takeoff</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_fullCords">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Full Cords (128 cu ft)</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_cuFt">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_faceCords">—</div>
+        <div class="text-xs text-gray-500 mt-1">Face Cords / Ricks</div>
+        <div class="text-xs text-gray-500 mt-0.5">Single 4'x8' Ranks</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_totalBtu">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Heat Energy</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_btuPerCord">Million BTUs</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_seasonWeight">—</div>
+        <div class="text-xs text-gray-500 mt-1">Seasoned Dry Weight</div>
+        <div class="text-xs text-gray-500 mt-0.5">&lt; 20% Moisture Content</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Firewood Stack Dimensions &amp; Cord Volume Schematic</span>
+        <span class="text-xs text-blue-600 font-normal">Standard 128 Cu Ft Full Cord Reference</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Component Hardware Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ Firewood Storage &amp; Seasoning Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_woodHwList">
+        <!-- Hardware schedule auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Firewood Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Measure Firewood Accurately</h2>
+    <p class="text-gray-700 mb-4">Follow these standard forestry and wood stove measurement guidelines:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Tightly Stacked Volume:</strong> Firewood must be stacked parallel, bark-up, with logs packed tightly before measuring length, height, and depth.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Know What You Buy:</strong> In most states, selling wood by the "truckload" or "rick" is legally ambiguous. Always request prices per <strong>Full Cord (128 cu ft)</strong>.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Check Moisture with a Pin Meter:</strong> Wood must season for 6 to 12 months until internal moisture drops below 20% to prevent chimney creosote buildup.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Forest Products Laboratory Energy Density Standards</h2>
+    <p class="text-gray-700 mb-4">Calculations based on USDA Forest Service (FPL-GTR-190) thermal energy tables:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Stack Volume (cu ft) = Length (ft) &times; Height (ft) &times; (Log Length in &divide; 12)</p>
+      <p>Full Cords = Stack Volume (cu ft) &divide; 128</p>
+      <p>Face Cords (16" length) = Stack Volume &divide; 42.66</p>
+      <p>Total Heat Energy = Full Cords &times; Species Million BTU per Cord</p>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the difference between a full cord and a face cord?</h3>
+        <p class="text-gray-600 text-sm">A full cord is a legally defined volume of 128 cubic feet of tightly stacked wood (measuring 4 feet high, 4 feet deep, and 8 feet long). A face cord (or rick) is only one single stack 4 feet high by 8 feet long with 16-inch log lengths, which equals roughly 1/3 of a full cord (42.6 cu ft).</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How can I tell if firewood is dry and ready to burn?</h3>
+        <p class="text-gray-600 text-sm">Dry seasoned firewood has radial cracks (checking) on log ends, a hollow ringing sound when two logs are knocked together, gray/darkened bark, and reads below 20% on a digital wood moisture meter.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why shouldn't I burn unseasoned green wood?</h3>
+        <p class="text-gray-600 text-sm">Burning green wood wastes up to 50% of the fire's heat energy simply evaporating water. It creates low flue temperatures, dense smoky exhaust, and dangerous flammable chimney creosote deposits that cause chimney fires.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Heating &amp; Lumber Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/furnace-cost" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Furnace Operating Cost Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Compare wood stove savings against natural gas and propane furnace heating costs.</div>
+      </a>
+      <a href="/calculators/radiant-floor-heating" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Radiant Floor Heating Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate hydronic floor heat output and PEX tubing loop requirements.</div>
+      </a>
+      <a href="/calculators/attic-insulation" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Attic Insulation Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate blown-in insulation R-value to keep wood stove heat inside your home.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  const speciesData = {
+    oak: { btu: 26.4, weight: 3800, name: "White/Red Oak" },
+    hickory: { btu: 27.7, weight: 4200, name: "Shagbark Hickory" },
+    maple: { btu: 24.0, weight: 3600, name: "Hard Sugar Maple" },
+    ash: { btu: 23.6, weight: 3500, name: "White Ash" },
+    cherry: { btu: 20.5, weight: 3100, name: "Black Cherry / Birch" },
+    pine: { btu: 17.1, weight: 2600, name: "Douglas Fir / Pine" }
+  };
+
+  function calculateFirewood() {
+    const length = parseFloat(document.getElementById('stackLength').value) || 16;
+    const height = parseFloat(document.getElementById('stackHeight').value) || 4;
+    const logInches = parseFloat(document.getElementById('logLength').value) || 16;
+    const species = document.getElementById('woodSpecies').value;
+
+    const depthFeet = logInches / 12;
+    const cuFt = length * height * depthFeet;
+    const fullCords = (cuFt / 128).toFixed(2);
+    const faceCords = (cuFt / 42.66).toFixed(1);
+
+    const spec = speciesData[species] || speciesData.oak;
+    const totalBtu = (parseFloat(fullCords) * spec.btu).toFixed(1);
+    const totalWeightLbs = Math.round(parseFloat(fullCords) * spec.weight);
+
+    // Update Result UI
+    document.getElementById('r_fullCords').textContent = `${fullCords} Cords`;
+    document.getElementById('r_cuFt').textContent = `${Math.round(cuFt)} Total Cubic Feet`;
+    document.getElementById('r_faceCords').textContent = `${faceCords} Face Cords`;
+    document.getElementById('r_totalBtu').textContent = `${totalBtu} MBTU`;
+    document.getElementById('r_btuPerCord').textContent = `${spec.btu} MBTU / Cord (${spec.name})`;
+    document.getElementById('r_seasonWeight').textContent = `~${totalWeightLbs.toLocaleString()} lbs`;
+
+    // Schedule
+    const hwList = document.getElementById('r_woodHwList');
+    hwList.innerHTML = '';
+    hwList.innerHTML += `<li><strong>Total Firewood Volume:</strong> ${fullCords} Full Cords (or ${faceCords} Face Cords of ${logInches}" cut logs)</li>`;
+    hwList.innerHTML += `<li><strong>Heating Energy:</strong> ${totalBtu} Million BTUs (Equivalent to ~${Math.round(parseFloat(totalBtu) * 10.9)} Therms of Natural Gas)</li>`;
+    hwList.innerHTML += `<li><strong>Log Racks:</strong> ~${Math.ceil(length / 8)} &times; 8-Foot Steel or 2x4 Timber Firewood Storage Racks</li>`;
+    hwList.innerHTML += `<li><strong>Seasoning Cover:</strong> Heavy-duty top tarp (keep sides open for airflow and cross-ventilation)</li>`;
+    hwList.innerHTML += `<li><strong>Moisture Target:</strong> Must measure &le; 20% internal moisture with pin meter before burning</li>`;
+
+    // Render SVG
+    renderSVG(length, height, logInches, fullCords);
+
+    // Clipboard Handler
+    setupClipboard(fullCords, faceCords, cuFt, totalBtu, totalWeightLbs, spec.name);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSVG(length, height, logInches, cords) {
+    const container = document.getElementById('svgContainer');
+    const width = 560;
+    const height = 200;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Ground Line
+    svg += `<line x1="30" y1="160" x2="530" y2="160" stroke="#475569" stroke-width="3" />`;
+
+    // Wood Rick Stack (Wood Planks Outer Box)
+    svg += `<rect x="60" y="40" width="440" height="120" fill="#FEF3C7" stroke="#B45309" stroke-width="2" rx="4" />`;
+
+    // Render Stacked Firewood Circles
+    for (let r = 0; r < 4; r++) {
+      for (let c = 0; c < 14; c++) {
+        const cx = 80 + (c * 30);
+        const cy = 55 + (r * 28);
+        svg += `<circle cx="${cx}" cy="${cy}" r="12" fill="#D97706" stroke="#78350F" stroke-width="1.5" />`;
+        svg += `<circle cx="${cx}" cy="${cy}" r="4" fill="#B45309" />`;
+      }
+    }
+
+    // Dimensions
+    svg += `<text x="280" y="25" text-anchor="middle" font-size="11" font-weight="bold" fill="#B45309">Stack Length: ${length} Feet (${logInches}" Log Depth)</text>`;
+    svg += `<text x="280" y="185" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E293B">Total Firewood: ${cords} Full Cords (128 cu ft/cord)</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(cords, faceCords, cuFt, btu, weight, speciesName) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY FIREWOOD VOLUME & BTU TAKEOFF:\n\n`;
+      text += `• Total Full Cords: ${cords} Cords (${cuFt} Cubic Feet)\n`;
+      text += `• Face Cords: ${faceCords} Face Cords (Ricks)\n`;
+      text += `• Tree Species: ${speciesName}\n`;
+      text += `• Heat Energy Output: ${btu} Million BTUs\n`;
+      text += `• Est. Seasoned Weight: ~${weight.toLocaleString()} lbs\n`;
+      text += `• Stacking: Tightly stacked off-ground with top tarp protection\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/firewood-cord`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateFirewood);
+</script>

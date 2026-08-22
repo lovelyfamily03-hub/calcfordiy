@@ -29,7 +29,7 @@
 ### 💰 Moat 3: Dual "DIY Material Cost" vs. "Contractor Installed Cost" Module (COMPLETE ✅)
 - [x] Global RSMeans & Homewyse cost benchmarking module in `Layout.astro` auto-injected into results cards with location adjustment multipliers (-15% Rural, Base National Avg, +25% Metro) and cost distribution bar.
 
-### 🗺️ Moat 4: Project Workflow Hubs (11 of 11 COMPLETE ✅)
+### 🗺️ Moat 4: Project Workflow Hubs (14 of 14 COMPLETE ✅)
 - [x] Deck Construction Hub (`/projects/deck-building`)
 - [x] Yard Drainage & Landscaping Hub (`/projects/yard-drainage`)
 - [x] Basement & Room Finishing Hub (`/projects/basement-finishing`)
@@ -41,6 +41,9 @@
 - [x] Off-Grid Solar & Backup Power Hub (`/projects/offgrid-solar-backup`)
 - [x] Pergola & Outdoor Living Patio Hub (`/projects/pergola-outdoor-living`)
 - [x] Whole-Home Energy & HVAC Efficiency Hub (`/projects/hvac-energy-efficiency`)
+- [x] Shed & Workshop Construction Hub (`/projects/shed-building`)
+- [x] Basement Waterproofing & Drainage Hub (`/projects/basement-waterproofing`)
+- [x] Hardwood & Laminate Flooring Makeover Hub (`/projects/flooring-installation`)
 
 ### 🛡️ E-E-A-T & Google Sandbox Trust Signals (COMPLETE ✅)
 - [x] Sitewide "Last Verified & Sourced from IRC, TCNA, NWFA & IES Standards" badge auto-injected on all calculator pages in `Layout.astro`.
@@ -66,6 +69,13 @@
 - [x] **Whole-House Fan Sizing Calculator** (`/calculators/whole-house-fan`) — Fan CFM, air changes per hour (ACH), HVI 1:750 Net Free Vent Area (NFVA sq ft), soffit vs ridge vent schedule, and live SVG airflow diagram.
 - [x] **Radiant Floor Heating Loop Calculator** (`/calculators/radiant-floor-heating`) — PEX-a tubing linear feet, 300 ft maximum loop counts, manifold port sizes, heat output (BTU/hr), water supply temps, and live SVG hydronic schematic.
 - [x] **Solar Panel & Battery Storage Estimator** (`/calculators/solar-battery-sizing`) — Solar panel count (400W panels), system kW DC size, LiFePO4 battery capacity (kWh/Ah), hybrid inverter wattage, annual dollar savings, and live SVG solar PV schematic.
+
+### 🚀 Wave 3: Advanced Trade & Plumbing Expansion Calculators (COMPLETE ✅ 73 Live Calculators)
+- [x] **Sump Pump Sizing & Flow Rate Calculator** (`/calculators/sump-pump-sizing`) — GPH flow rate, Total Dynamic Head (TDH), horsepower (1/3, 1/2, 3/4 HP), battery backup runtime, and live SVG basin elevation schematic.
+- [x] **Plumbing Pipe Slope & Sewer Fall Calculator** (`/calculators/pipe-slope`) — Total elevation fall in inches, IPC Section 704.1 code slope rates (1/8" vs 1/4" per ft), trench invert depth, and live SVG cross-section diagram.
+- [x] **Drywall Mud & Joint Compound Calculator** (`/calculators/drywall-mud`) — 4.5 gal buckets (all-purpose vs lightweight topping), joint tape rolls, quick-set hot mud bags, corner beads, and live SVG 3-coat joint anatomy schematic.
+- [x] **Firewood Cord & Wood Stove Heat Calculator** (`/calculators/firewood-cord`) — Full cords (128 cu ft), face cords/ricks, Million BTU energy output by wood species (Oak, Hickory, Maple, Ash, Pine), seasoned weight, and live SVG firewood rick schematic.
+- [x] **Polymeric Sand & Paver Joint Calculator** (`/calculators/polymeric-sand`) — 50 lb bags of polymeric sand by paver dimensions and joint width (1/8" to 1"), compaction procedures, and live SVG paver joint cross-section.
 
 ---
 

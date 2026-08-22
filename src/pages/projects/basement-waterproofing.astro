@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Interior French Drain Trench & Perforated Pipe",
+    description: "Calculate 3/4\" washed gravel tons, 4\" perforated drain tile linear feet, and non-woven geotextile fabric envelope for perimeter basement drainage.",
+    calculatorName: "French Drain Calculator",
+    href: "/calculators/french-drain",
+    icon: "💧"
+  },
+  {
+    stepNumber: 2,
+    title: "Sump Pump Capacity & Horsepower Sizing",
+    description: "Determine required GPH flow rate, Total Dynamic Head (TDH), submersible pump horsepower (1/3 HP, 1/2 HP, 3/4 HP), and emergency battery backup runtime.",
+    calculatorName: "Sump Pump Sizing Calculator",
+    href: "/calculators/sump-pump-sizing",
+    icon: "⚡"
+  },
+  {
+    stepNumber: 3,
+    title: "Discharge Pipe Gravity Slope & Exit Elevation",
+    description: "Calculate sewer pipe fall (1/8\" to 1/4\" per foot), exterior trench depth, and scouring flow velocity to safely route water away from the foundation.",
+    calculatorName: "Pipe Slope Calculator",
+    href: "/calculators/pipe-slope",
+    icon: "📐"
+  },
+  {
+    stepNumber: 4,
+    title: "Dry Subfloor Moisture Barrier & Plywood Sheets",
+    description: "Calculate dimpled vapor barrier underlayment rolls and 4x8 tongue-and-groove subfloor OSB/plywood panels for a dry, mold-free basement living space.",
+    calculatorName: "Subfloor Calculator",
+    href: "/calculators/subfloor",
+    icon: "🪵"
+  }
+];
+---
+
+<Layout
+  title="Basement Waterproofing Hub — Step-by-Step Drainage & Sump Pump Workflow | CalcForDIY"
+  description="Follow a 4-step DIY basement waterproofing workflow: Interior French drain trenching, sump pump horsepower sizing, discharge pipe slope, and subfloor moisture barrier."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Plan and Calculate Basement Waterproofing and Drainage",
+    "description": "A 4-step DIY workflow for calculating interior French drains, sump pump sizing, discharge pipe slope, and subfloor panels.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Interior French Drain Trenching",
+        "text": "Calculate gravel tons, perforated pipe, and geotextile filter fabric."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Sump Pump Capacity Sizing",
+        "text": "Determine pump horsepower and Total Dynamic Head (TDH)."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Discharge Pipe Gravity Fall",
+        "text": "Calculate elevation drop and trench exit depths per IPC code."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Dry Subfloor Vapor Barrier",
+        "text": "Estimate dimpled membrane rolls and subfloor plywood sheets."
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span>Basement Waterproofing Workflow</span>
+  </div>
+
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+      <span>💧 Step-by-Step Drainage Workflow</span>
+      <span>•</span>
+      <span>4 Integrated Calculators</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Basement Waterproofing &amp; Sump Pump Workflow</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      Plan, size, and calculate your interior French drain, sump basin pump, exterior discharge pipe slope, and moisture-sealed subfloor in 4 sequential steps.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs hover:border-blue-400 transition-all">
+        <div class="flex items-start gap-4">
+          <div class="bg-blue-600 text-white rounded-xl w-10 h-10 flex items-center justify-center font-bold text-lg shrink-0 mt-1">
+            {step.stepNumber}
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xl">{step.icon}</span>
+              <h2 class="text-xl font-bold text-gray-900">{step.title}</h2>
+            </div>
+            <p class="text-gray-600 text-sm mb-4 leading-relaxed">{step.description}</p>
+            <a
+              href={step.href}
+              class="inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold px-4 py-2 rounded-lg text-sm transition-colors border border-blue-200"
+            >
+              Open {step.calculatorName} →
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-2xl p-8 text-white text-center">
+    <h2 class="text-2xl font-bold mb-2">Need More Home Improvement Calculators?</h2>
+    <p class="text-slate-300 text-sm max-w-2xl mx-auto mb-6">
+      Explore all 73 free DIY calculators, dynamic SVG framing diagrams, and trade-verified building code tools.
+    </p>
+    <a href="/calculators" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+      View All 73 DIY Calculators →
+    </a>
+  </div>
+</Layout>

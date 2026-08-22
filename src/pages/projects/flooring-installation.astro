@@ -1,0 +1,131 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Subfloor Plywood Repair & Leveling",
+    description: "Calculate 4x8 tongue-and-groove plywood sheets, construction adhesive tubes, and ring-shank screws to eliminate squeaks before laying flooring.",
+    calculatorName: "Subfloor Calculator",
+    href: "/calculators/subfloor",
+    icon: "🪵"
+  },
+  {
+    stepNumber: 2,
+    title: "Acoustic Foam & Moisture Underlayment Rolls",
+    description: "Determine roll counts for 2-in-1 and 3-in-1 vapor barrier foam underlayment (100 sq ft rolls) and vapor seam tape.",
+    calculatorName: "Underlayment Calculator",
+    href: "/calculators/underlayment",
+    icon: "📜"
+  },
+  {
+    stepNumber: 3,
+    title: "Hardwood or Laminate Box Takeoff",
+    description: "Calculate carton counts, square footage yield, and NWFA pattern waste factors (10% straight, 15% diagonal) for solid oak, engineered wood, or vinyl plank.",
+    calculatorName: "Hardwood Flooring Calculator",
+    href: "/calculators/hardwood-flooring",
+    icon: "🪵"
+  },
+  {
+    stepNumber: 4,
+    title: "Baseboard, Shoe Molding & Quarter Round",
+    description: "Calculate linear footage of baseboard molding, quarter round shoe trim to cover the 3/8\" expansion gap, and 45° corner miter cuts.",
+    calculatorName: "Trim & Molding Calculator",
+    href: "/calculators/trim-molding",
+    icon: "📐"
+  }
+];
+---
+
+<Layout
+  title="Flooring Installation Hub — Step-by-Step Hardwood & Laminate Workflow | CalcForDIY"
+  description="Follow a 4-step DIY flooring installation workflow: Subfloor leveling, foam underlayment rolls, hardwood/laminate box takeoff, and baseboard shoe molding."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Plan and Install Hardwood and Laminate Flooring",
+    "description": "A 4-step DIY workflow for calculating subfloor panels, underlayment rolls, flooring cartons, and baseboard molding.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Subfloor Inspection & Prep",
+        "text": "Calculate subfloor plywood panels and subfloor adhesive."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Moisture Barrier & Underlayment",
+        "text": "Determine underlayment roll counts and vapor seam tape."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Flooring Box Sizing",
+        "text": "Calculate exact carton counts and NWFA waste factor buffers."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Baseboard & Shoe Molding",
+        "text": "Estimate linear feet of baseboard and quarter round molding."
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span>Flooring Installation Workflow</span>
+  </div>
+
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+      <span>🪵 Step-by-Step Flooring Workflow</span>
+      <span>•</span>
+      <span>4 Integrated Calculators</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Hardwood &amp; Laminate Flooring Installation Workflow</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      Plan, size, and calculate your subfloor prep, acoustic underlayment rolls, hardwood or laminate carton takeoff, and perimeter shoe trim in 4 sequential steps.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs hover:border-blue-400 transition-all">
+        <div class="flex items-start gap-4">
+          <div class="bg-blue-600 text-white rounded-xl w-10 h-10 flex items-center justify-center font-bold text-lg shrink-0 mt-1">
+            {step.stepNumber}
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xl">{step.icon}</span>
+              <h2 class="text-xl font-bold text-gray-900">{step.title}</h2>
+            </div>
+            <p class="text-gray-600 text-sm mb-4 leading-relaxed">{step.description}</p>
+            <a
+              href={step.href}
+              class="inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold px-4 py-2 rounded-lg text-sm transition-colors border border-blue-200"
+            >
+              Open {step.calculatorName} →
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Bottom CTA -->
+  <div class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-2xl p-8 text-white text-center">
+    <h2 class="text-2xl font-bold mb-2">Need More Home Improvement Calculators?</h2>
+    <p class="text-slate-300 text-sm max-w-2xl mx-auto mb-6">
+      Explore all 73 free DIY calculators, dynamic SVG framing diagrams, and trade-verified building code tools.
+    </p>
+    <a href="/calculators" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+      View All 73 DIY Calculators →
+    </a>
+  </div>
+</Layout>

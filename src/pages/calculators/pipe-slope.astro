@@ -1,0 +1,380 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Plumbing Pipe Slope & Sewer Fall Calculator | CalcForDIY"
+  description="Calculate total elevation fall in inches, trench pitch percentage, and gravity drainage depth for drain and sewer pipes per IPC & UPC plumbing code."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Plumbing Pipe Slope Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the minimum slope for a 3-inch or 4-inch sewer pipe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under IPC Section 704.1 and UPC Table 708.1, the minimum allowable slope for 3-inch and 4-inch building drain and sewer pipe is 1/8 inch per foot (a 1.04% slope gradient), which equals 1.25 inches of vertical drop per 10 feet of horizontal run."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the code slope for 1.5-inch and 2-inch drain pipes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pipes 2-1/2 inches in diameter or smaller require a minimum slope of 1/4 inch per foot (2.08% grade), providing 2.5 inches of elevation drop every 10 feet to maintain scouring velocity (minimum 2 feet per second)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a sewer pipe have too much slope?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! If a gravity drain pipe exceeds 1/2 inch per foot slope (over 4%), water rushes ahead too fast, leaving heavy solid waste stranded behind on the pipe floor, causing frequent severe sewer line clogs."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Pipe Slope Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Plumbing Pipe Slope &amp; Sewer Fall Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate total elevation drop in inches, trench pitch percentage, and pipe invert depths per International Plumbing Code (IPC).
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Drain Pipe Run &amp; Pitch Specifications
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Total Pipe Run Length</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="pipeLength" placeholder="40" value="40" min="1" max="500" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">feet</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Pipe Diameter &amp; Code Standard</label>
+        <select id="pipeSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0.25">1-1/2" to 2" Pipe (1/4" per ft — Standard Sink/Shower)</option>
+          <option value="0.125" selected>3" to 4" Pipe (1/8" per ft — Main Building Sewer / Toilet)</option>
+          <option value="0.0625">6"+ Pipe (1/16" per ft — Large Commercial Main)</option>
+          <option value="custom">Custom Slope Rate</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Starting Invert Depth (Trench Top of Pipe)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="startDepth" placeholder="24" value="24" min="0" max="240" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">inches deep</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="customSlopeRow" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Custom Slope (Inches of Drop per Foot)</label>
+        <input type="number" id="customSlope" placeholder="0.25" value="0.25" step="0.01" min="0.01" max="1.0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Total Fall &amp; Trench Elevation →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Plumbing Elevation &amp; Trench Takeoff</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_totalDrop">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Total Vertical Drop</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_fractionDrop">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_endDepth">—</div>
+        <div class="text-xs text-gray-500 mt-1">Ending Trench Depth</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_depthChange">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_percentSlope">—</div>
+        <div class="text-xs text-gray-500 mt-1">Slope Percentage</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_dropPer10">Drop per 10 Ft</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_codeStatus">IPC Approved</div>
+        <div class="text-xs text-gray-500 mt-1">Building Code Compliance</div>
+        <div class="text-xs text-gray-500 mt-0.5">Scouring Flow Velocity</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Pipe Elevation Fall &amp; Trench Cross-Section Profile</span>
+        <span class="text-xs text-blue-600 font-normal">Gravity Flow Direction →</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Component Hardware Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ Trenching &amp; Pipe Bedding Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_pipeHwList">
+        <!-- Hardware schedule auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Pipe Elevation Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Measure and Set Pipe Slope</h2>
+    <p class="text-gray-700 mb-4">Follow these professional plumbing steps to achieve accurate pipe fall:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Measure Total Horizontal Distance:</strong> Measure the total linear feet from building drain exit to city sewer tap or septic inlet.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Select Code Fall Rate:</strong> Use 1/4" per ft for 1.5" to 2" pipes, and 1/8" per ft for 3" to 4" sewer lines (IPC Table 704.1).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Set Trench Bedding:</strong> Dig trench and bed pipe on 4" of compacted pea gravel or crushed stone sand. Never lay PVC on loose dirt.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Verify with a Torpedo Level:</strong> Use a dedicated slope level with 1/8" and 1/4" bubble pitch lines on every 10-foot pipe joint.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">IPC Section 704.1 Code Rules &amp; Scouring Velocity</h2>
+    <p class="text-gray-700 mb-4">Plumbing drainage requires maintaining water flow velocity between 2 feet per second (fps) and 4 feet per second:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Total Drop (inches) = Pipe Length (ft) &times; Slope Rate (inches/ft)</p>
+      <p>Slope Percentage (%) = ( Total Drop &divide; (Pipe Length &times; 12) ) &times; 100</p>
+      <p>Ending Trench Depth (in) = Starting Invert Depth (in) + Total Drop (in)</p>
+    </div>
+    <p class="text-gray-700">
+      <strong>The Scouring Velocity Principle:</strong> If slope is under 1/8" per foot, water moves too slowly (<2 fps) and fails to carry solids. If slope is too steep (>1/2" per foot), liquids drain away rapidly, stranding waste. Exactly 1/8" to 1/4" per foot keeps solids floating smoothly in suspension.
+    </p>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the minimum slope for a 3-inch or 4-inch sewer pipe?</h3>
+        <p class="text-gray-600 text-sm">Under IPC Section 704.1 and UPC Table 708.1, the minimum allowable slope for 3-inch and 4-inch building drain and sewer pipe is 1/8 inch per foot (a 1.04% slope gradient), which equals 1.25 inches of vertical drop per 10 feet of horizontal run.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the code slope for 1.5-inch and 2-inch drain pipes?</h3>
+        <p class="text-gray-600 text-sm">Pipes 2-1/2 inches in diameter or smaller require a minimum slope of 1/4 inch per foot (2.08% grade), providing 2.5 inches of elevation drop every 10 feet to maintain scouring velocity (minimum 2 feet per second).</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can a sewer pipe have too much slope?</h3>
+        <p class="text-gray-600 text-sm">Yes! If a gravity drain pipe exceeds 1/2 inch per foot slope (over 4%), water rushes ahead too fast, leaving heavy solid waste stranded behind on the pipe floor, causing frequent severe sewer line clogs.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Plumbing &amp; Drainage Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/septic-tank-sizing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Septic Tank Sizing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate septic tank capacity and leach field trench footage.</div>
+      </a>
+      <a href="/calculators/french-drain" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">French Drain Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate gravel tons and perforated drain pipe for surface water control.</div>
+      </a>
+      <a href="/calculators/sump-pump-sizing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Sump Pump Sizing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate GPH flow rates and Total Dynamic Head for basement sump pits.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  document.getElementById('pipeSize').addEventListener('change', function() {
+    const customRow = document.getElementById('customSlopeRow');
+    if (this.value === 'custom') {
+      customRow.classList.remove('hidden');
+    } else {
+      customRow.classList.add('hidden');
+    }
+  });
+
+  function calculatePipeSlope() {
+    const length = parseFloat(document.getElementById('pipeLength').value) || 40;
+    const startDepth = parseFloat(document.getElementById('startDepth').value) || 24;
+    let slopeRate = parseFloat(document.getElementById('pipeSize').value);
+
+    if (document.getElementById('pipeSize').value === 'custom') {
+      slopeRate = parseFloat(document.getElementById('customSlope').value) || 0.25;
+    }
+
+    // Total Drop = Length * slopeRate
+    const totalDrop = length * slopeRate;
+    const endDepth = startDepth + totalDrop;
+    const percentSlope = ((totalDrop / (length * 12)) * 100).toFixed(2);
+    const dropPer10 = (slopeRate * 10).toFixed(2);
+
+    // Update Result UI
+    document.getElementById('r_totalDrop').textContent = `${totalDrop.toFixed(1)}"`;
+    document.getElementById('r_fractionDrop').textContent = `Total Fall over ${length} Feet`;
+    document.getElementById('r_endDepth').textContent = `${endDepth.toFixed(1)}"`;
+    document.getElementById('r_depthChange').textContent = `Starts at ${startDepth}" → Ends at ${endDepth.toFixed(1)}"`;
+    document.getElementById('r_percentSlope').textContent = `${percentSlope}%`;
+    document.getElementById('r_dropPer10').textContent = `${dropPer10}" Drop per 10 Ft`;
+
+    // Code Compliance Check
+    const codeEl = document.getElementById('r_codeStatus');
+    if (slopeRate > 0.50) {
+      codeEl.textContent = "⚠️ Too Steep (Clog Risk)";
+      codeEl.className = "text-2xl font-bold text-amber-700 print:text-3xl";
+    } else if (slopeRate < 0.0625) {
+      codeEl.textContent = "❌ Too Flat (No Scour)";
+      codeEl.className = "text-2xl font-bold text-red-700 print:text-3xl";
+    } else {
+      codeEl.textContent = "✅ IPC Code Compliant";
+      codeEl.className = "text-2xl font-bold text-green-700 print:text-3xl";
+    }
+
+    // Plumbing Hardware Schedule
+    const pipeCount = Math.ceil(length / 10);
+    const hwList = document.getElementById('r_pipeHwList');
+    hwList.innerHTML = '';
+    hwList.innerHTML += `<li><strong>Drain Pipe:</strong> ${pipeCount} &times; 10-Foot Schedule 40 Solid PVC or ABS Pipe sticks (total ${length} linear feet)</li>`;
+    hwList.innerHTML += `<li><strong>Fittings:</strong> PVC Couplings + Two-Way Cleanout Tee fitting with threaded plug at building exit</li>`;
+    hwList.innerHTML += `<li><strong>Trench Bedding:</strong> ~${(length * 0.05).toFixed(1)} Cubic Yards of crushed pea gravel or stone sand for pipe bed support</li>`;
+    hwList.innerHTML += `<li><strong>Verification Tool:</strong> 24" Magnetic Torpedo Level with 1/8" and 1/4" pitch markings</li>`;
+    hwList.innerHTML += `<li><strong>Solvent Weld:</strong> 1 Pt Purple Primer + 1 Pt Heavy Duty PVC Cement</li>`;
+
+    // Render SVG
+    renderSVG(length, startDepth, totalDrop, endDepth, slopeRate);
+
+    // Clipboard Handler
+    setupClipboard(length, slopeRate, totalDrop, startDepth, endDepth, percentSlope);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSVG(length, startDepth, totalDrop, endDepth, slopeRate) {
+    const container = document.getElementById('svgContainer');
+    const width = 560;
+    const height = 210;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Ground Surface Line
+    svg += `<line x1="30" y1="40" x2="530" y2="40" stroke="#16A34A" stroke-width="4" />`;
+    svg += `<text x="280" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803D" font-family="sans-serif">Ground Surface Grade Level</text>`;
+
+    // Starting Cleanout Vertical Riser
+    svg += `<rect x="60" y="40" width="16" height="50" fill="#E5E7EB" stroke="#374151" stroke-width="1.5" />`;
+    svg += `<text x="68" y="32" text-anchor="middle" font-size="9" fill="#374151">Cleanout</text>`;
+
+    // Sloped Drain Pipe
+    const startY = 90;
+    const endY = 160;
+    svg += `<path d="M 68 ${startY} L 480 ${endY}" stroke="#FFFFFF" stroke-width="14" />`;
+    svg += `<path d="M 68 ${startY} L 480 ${endY}" stroke="#2563EB" stroke-width="8" />`;
+
+    // Flow Arrow
+    svg += `<path d="M 240 115 L 300 133" stroke="#93C5FD" stroke-width="3" fill="none" marker-end="url(#arrow)" />`;
+    svg += `<text x="280" y="110" text-anchor="middle" font-size="10" font-weight="bold" fill="#1D4ED8">Gravity Flow (${slopeRate}"/ft)</text>`;
+
+    // Dimension Callouts: Start Depth
+    svg += `<line x1="45" y1="40" x2="45" y2="${startY}" stroke="#DC2626" stroke-width="1.5" />`;
+    svg += `<text x="40" y="${startY - 20}" text-anchor="end" font-size="10" font-weight="bold" fill="#DC2626">${startDepth}" Depth</text>`;
+
+    // Dimension Callouts: End Depth
+    svg += `<line x1="500" y1="40" x2="500" y2="${endY}" stroke="#DC2626" stroke-width="1.5" />`;
+    svg += `<text x="505" y="${endY - 30}" text-anchor="start" font-size="10" font-weight="bold" fill="#DC2626">${endDepth.toFixed(1)}" Depth</text>`;
+
+    // Horizontal Run Dimension
+    svg += `<text x="280" y="195" text-anchor="middle" font-size="11" font-weight="bold" fill="#374151">Total Pipe Run: ${length} Linear Feet (${totalDrop.toFixed(1)}" Total Elevation Fall)</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(length, slopeRate, totalDrop, startDepth, endDepth, percentSlope) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY PIPE SLOPE & ELEVATION TAKEOFF:\n\n`;
+      text += `• Total Run Length: ${length} Feet\n`;
+      text += `• Slope Rate: ${slopeRate} Inches per Foot (${percentSlope}% grade)\n`;
+      text += `• Total Elevation Drop: ${totalDrop.toFixed(1)} Inches\n`;
+      text += `• Starting Invert Depth: ${startDepth}" → Ending Trench Depth: ${endDepth.toFixed(1)}"\n`;
+      text += `• Materials: ${Math.ceil(length / 10)} x 10' Schedule 40 PVC Sticks + 2-Way Cleanout Tee\n`;
+      text += `• Bedding: Crushed stone sand / pea gravel bedding (IPC compliant)\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/pipe-slope`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculatePipeSlope);
+</script>

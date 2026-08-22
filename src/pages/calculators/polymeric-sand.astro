@@ -1,0 +1,359 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Polymeric Sand & Paver Joint Calculator | CalcForDIY"
+  description="Calculate 50-lb bags of polymeric sand needed for paver patios, walkways, and driveways based on paver dimensions (4x8, 6x9, 12x12) and joint width (1/8 in to 1 in)."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Polymeric Sand Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many bags of polymeric sand do I need for a 400 sq ft patio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a 400 sq ft patio using standard 4x8 inch brick pavers with 1/8-inch narrow joints, you need approximately 5 to 6 fifty-pound bags of polymeric sand. For wide joint flagstone, you will need 14 to 16 bags."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between standard and wide-joint polymeric sand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard polymeric sand is formulated for narrow interlocking paver joints from 1/8\" up to 1/2\". Wide-joint or Max/HP polymeric sand contains coarser aggregate and higher polymer binder concentrations to prevent cracking in joints up to 1 inch to 4 inches wide."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can polymeric sand be installed if rain is in the forecast?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No! Polymeric sand requires a completely dry paver surface during sweeping and a rain-free curing window of at least 24 to 48 hours after misting. Rain on uncured sand will wash out polymer binders and create white haze stains on paver faces."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Polymeric Sand Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Polymeric Sand &amp; Paver Joint Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate 50 lb bags of polymeric sand for paver patios, driveways, and flagstone based on paver size, thickness, and joint gap width.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Patio Area &amp; Paver Dimensions
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Patio or Walkway Area</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="patioSqft" placeholder="400" value="400" min="20" max="10000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">sq ft</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Paver Size &amp; Style</label>
+        <select id="paverStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="4x8" selected>Standard 4" &times; 8" Holland Pavers (2-3/8" thick)</option>
+          <option value="6x9">6" &times; 9" Cobblestone / Mega Pavers (2-3/8" thick)</option>
+          <option value="12x12">12" &times; 12" Large Format Slabs (2" thick)</option>
+          <option value="flagstone">Irregular Natural Flagstone (1.5" to 2" thick)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Joint Gap Width</label>
+        <select id="jointWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0.125" selected>1/8" (Standard Tight Interlocking Joint)</option>
+          <option value="0.25">1/4" (Medium Joint)</option>
+          <option value="0.50">1/2" (Wide Textured Joint)</option>
+          <option value="0.75">3/4" to 1" (Wide Flagstone Joint)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Polymeric Sand Bags →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Polymeric Sand Takeoff</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_bags">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">50 lb Sand Bags</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_totalWeight">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_coveragePerBag">—</div>
+        <div class="text-xs text-gray-500 mt-1">Yield Per 50 lb Bag</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_sandType">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_estCost">—</div>
+        <div class="text-xs text-gray-500 mt-1">Est. Material Cost</div>
+        <div class="text-xs text-gray-500 mt-0.5">~$32 - $38 / Bag</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_cureTime">24 - 48 Hrs</div>
+        <div class="text-xs text-gray-500 mt-1">Rain-Free Cure Window</div>
+        <div class="text-xs text-gray-500 mt-0.5">Water Activated Polymers</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Interlocking Paver &amp; Polymeric Sand Joint Anatomy</span>
+        <span class="text-xs text-blue-600 font-normal">Cross-Section Layer Detail</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Component Hardware Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ Paver Sanding &amp; Compaction Tools Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_sandHwList">
+        <!-- Hardware schedule auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Polymeric Sand Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Install Polymeric Sand Without Hazing</h2>
+    <p class="text-gray-700 mb-4">Follow the 4 ICPI (Interlocking Concrete Pavement Institute) installation rules:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Ensure Pavers are 100% Dry:</strong> Never pour polymeric sand onto damp pavers. Moisture on the paver surface activates the glue instantly, leaving stubborn white polymer haze stains.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Vibrate with Plate Compactor:</strong> Sweep sand into joints, then run a vibrating plate compactor (with a protective rubber mat pad) over the pavers to settle and consolidate the sand.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Blow Off All Excess Sand:</strong> Use a leaf blower on low throttle held at a shallow angle to blow every grain of sand off the paver face before introducing water.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Mist in 3 Gentle Cycles:</strong> Set your garden hose nozzle to shower/mist mode. Spray gently for 30 seconds, wait 5 minutes, and repeat 3 times to soak full joint depth without washing sand out.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">ICPI Standard Sand Yield Matrix</h2>
+    <p class="text-gray-700 mb-4">Average coverage per 50 lb bag based on manufacturer testing (Alliance Gator Maxx &amp; Sakrete):</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>4" &times; 8" Pavers (1/8" Joint) = ~75 Sq Ft per 50 lb Bag</p>
+      <p>6" &times; 9" Pavers (1/8" Joint) = ~95 Sq Ft per 50 lb Bag</p>
+      <p>12" &times; 12" Slabs (1/8" Joint) = ~135 Sq Ft per 50 lb Bag</p>
+      <p>Irregular Flagstone (1/2" to 3/4" Joint) = ~25 Sq Ft per 50 lb Bag</p>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many bags of polymeric sand do I need for a 400 sq ft patio?</h3>
+        <p class="text-gray-600 text-sm">For a 400 sq ft patio using standard 4x8 inch brick pavers with 1/8-inch narrow joints, you need approximately 5 to 6 fifty-pound bags of polymeric sand. For wide joint flagstone, you will need 14 to 16 bags.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the difference between standard and wide-joint polymeric sand?</h3>
+        <p class="text-gray-600 text-sm">Standard polymeric sand is formulated for narrow interlocking paver joints from 1/8\" up to 1/2\". Wide-joint or Max/HP polymeric sand contains coarser aggregate and higher polymer binder concentrations to prevent cracking in joints up to 1 inch to 4 inches wide.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can weeds grow through polymeric sand?</h3>
+        <p class="text-gray-600 text-sm">When properly compacted and cured, polymeric sand hardens like flexible mortar, preventing weed roots from penetrating up from the sub-base and stopping ants from excavating sand tunnels.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Patio &amp; Hardscape Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/paver-base-sand" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Paver Base &amp; Sand Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate crushed stone base tons, concrete leveling sand, and edge restraint.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate cubic yards and concrete bags for patio sub-slabs and pads.</div>
+      </a>
+      <a href="/calculators/retaining-wall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Retaining Wall Block Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate wall blocks, capstones, and gravel backfill for patio borders.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculatePolymericSand() {
+    const sqft = parseFloat(document.getElementById('patioSqft').value) || 400;
+    const style = document.getElementById('paverStyle').value;
+    const jointWidth = parseFloat(document.getElementById('jointWidth').value) || 0.125;
+
+    // Base yield per 50 lb bag for 1/8" joint
+    let baseYield = 75; // 4x8
+    if (style === '6x9') baseYield = 95;
+    if (style === '12x12') baseYield = 135;
+    if (style === 'flagstone') baseYield = 28;
+
+    // Adjust for joint width (inverse scale)
+    const widthFactor = 0.125 / jointWidth;
+    let actualYield = Math.max(12, Math.round(baseYield * widthFactor));
+    if (style === 'flagstone' && jointWidth > 0.5) actualYield = 20;
+
+    const exactBags = sqft / actualYield;
+    const totalBags = Math.max(1, Math.ceil(exactBags * 1.10)); // 10% compaction buffer
+    const totalLbs = totalBags * 50;
+    const totalCost = totalBags * 35; // ~$35/bag
+
+    // Recommended sand product
+    let sandType = "Standard Polymeric Sand";
+    if (jointWidth >= 0.50 || style === 'flagstone') {
+      sandType = "High-Performance Wide-Joint Sand (Maxx / HP)";
+    }
+
+    // Update Result UI
+    document.getElementById('r_bags').textContent = `${totalBags} Bags`;
+    document.getElementById('r_totalWeight').textContent = `(${totalLbs.toLocaleString()} lbs total)`;
+    document.getElementById('r_coveragePerBag').textContent = `~${actualYield} Sq Ft / Bag`;
+    document.getElementById('r_sandType').textContent = sandType;
+    document.getElementById('r_estCost').textContent = `~$${totalCost.toLocaleString()}`;
+
+    // Schedule
+    const hwList = document.getElementById('r_sandHwList');
+    hwList.innerHTML = '';
+    hwList.innerHTML += `<li><strong>Polymeric Joint Sand:</strong> ${totalBags} &times; 50 lb Bags of ${sandType} (Color: Tan / Granite Grey)</li>`;
+    hwList.innerHTML += `<li><strong>Sweeping Tools:</strong> Push Broom with Medium-Stiff Poly Bristles</li>`;
+    hwList.innerHTML += `<li><strong>Compaction Equipment:</strong> Vibrating Plate Compactor + Protective Polyurethane Roller Mat</li>`;
+    hwList.innerHTML += `<li><strong>Surface Cleaning:</strong> Leaf Blower (to blow sand dust off paver bevels before water misting)</li>`;
+    hwList.innerHTML += `<li><strong>Activation:</strong> Garden Hose Multi-Pattern Nozzle on fine "Shower/Mist" setting</li>`;
+
+    // Render SVG
+    renderSVG();
+
+    // Clipboard Handler
+    setupClipboard(totalBags, totalLbs, actualYield, sandType, totalCost, sqft);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSVG() {
+    const container = document.getElementById('svgContainer');
+    const width = 560;
+    const height = 190;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Crushed Stone Sub-Base Layer (Bottom)
+    svg += `<rect x="30" y="135" width="500" height="40" fill="#94A3B8" />`;
+    svg += `<text x="280" y="160" text-anchor="middle" font-size="10" font-weight="bold" fill="#FFFFFF" font-family="sans-serif">Compacted Crushed Stone Base (4" to 6")</text>`;
+
+    // Leveling Sand Bed (Middle)
+    svg += `<rect x="30" y="115" width="500" height="20" fill="#FDE047" stroke="#EAB308" stroke-width="1" />`;
+    svg += `<text x="280" y="129" text-anchor="middle" font-size="10" font-weight="bold" fill="#854D0E" font-family="sans-serif">Concrete Leveling Sand Bed (1")</text>`;
+
+    // Paver 1 (Left)
+    svg += `<rect x="40" y="35" width="145" height="80" fill="#B91C1C" stroke="#7F1D1D" stroke-width="2" rx="3" />`;
+    svg += `<text x="112" y="80" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">Paver Unit 1</text>`;
+
+    // Polymeric Sand Joint (Center)
+    svg += `<rect x="185" y="35" width="22" height="80" fill="#D97706" />`;
+    svg += `<text x="196" y="24" text-anchor="middle" font-size="9" font-weight="bold" fill="#B45309">Sand Joint</text>`;
+
+    // Paver 2 (Middle)
+    svg += `<rect x="207" y="35" width="145" height="80" fill="#B91C1C" stroke="#7F1D1D" stroke-width="2" rx="3" />`;
+    svg += `<text x="280" y="80" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">Paver Unit 2</text>`;
+
+    // Polymeric Sand Joint (Right)
+    svg += `<rect x="352" y="35" width="22" height="80" fill="#D97706" />`;
+
+    // Paver 3 (Right)
+    svg += `<rect x="374" y="35" width="145" height="80" fill="#B91C1C" stroke="#7F1D1D" stroke-width="2" rx="3" />`;
+    svg += `<text x="446" y="80" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">Paver Unit 3</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(bags, lbs, yieldPerBag, sandType, cost, sqft) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY POLYMERIC SAND TAKEOFF:\n\n`;
+      text += `• Total Material: ${bags} x 50 lb Bags (${lbs.toLocaleString()} lbs)\n`;
+      text += `• Product Type: ${sandType}\n`;
+      text += `• Patio Area: ${sqft} Sq Ft (Yield: ~${yieldPerBag} sq ft/bag)\n`;
+      text += `• Estimated Cost: ~$${cost.toLocaleString()} (@ ~$35/bag)\n`;
+      text += `• Tools: Push Broom, Compactor Rubber Mat, Leaf Blower, Hose Mist Nozzle\n`;
+      text += `• Weather: Requires 100% dry pavers and 24-48 hr rain-free forecast\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/polymeric-sand`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculatePolymericSand);
+</script>

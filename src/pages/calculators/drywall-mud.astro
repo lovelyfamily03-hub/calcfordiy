@@ -1,0 +1,361 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Drywall Mud & Joint Compound Calculator | CalcForDIY"
+  description="Calculate 4.5-gallon buckets of drywall joint compound (all-purpose and lightweight topping), rolls of paper/mesh tape, and corner beads for standard 3-coat finishing."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Drywall Mud Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many buckets of drywall mud do I need for 1,000 sq ft?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For 1,000 sq ft of drywall (approx. 31 sheets of 4x8 drywall), you need 2.5 to 3 five-gallon (4.5 gal) buckets of joint compound for a standard 3-coat finish (taping, bedding, and skim coating)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between All-Purpose and Lightweight Topping mud?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All-purpose joint compound contains heavy binding polymers and vinyl adhesive, making it ideal for embedding paper tape and first coats. Lightweight topping mud (like Sheetrock Plus 3) is easier to spread and sands effortlessly, making it the ideal choice for 2nd and 3rd finish coats."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much tape do I need per sheet of drywall?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard 4x8 sheet of drywall requires approximately 10 to 14 linear feet of paper joint tape. For a 1,000 sq ft room, plan on 350 to 400 linear feet of tape (two 250-foot rolls)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Drywall Mud Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Drywall Mud &amp; Joint Compound Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate 4.5-gallon pails of joint compound, rolls of joint tape, corner bead sticks, and fast-set hot mud bags for standard 3-coat drywall finishing.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Drywall Area &amp; Finish Specifications
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Total Drywall Surface Area</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="drywallSqft" placeholder="1000" value="1000" min="50" max="25000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">sq ft</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Finishing Level (Gypsum Standard)</label>
+        <select id="finishLevel" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="4" selected>Level 4 (Standard 3 Coats — Ready for flat/eggshell paint)</option>
+          <option value="5">Level 5 (Premium Full Surface Skim Coat — Critical lighting)</option>
+          <option value="3">Level 3 (2 Coats — Ready for heavy wall textures)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Outside Corner Count (8 ft Corners)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="cornerBeadCount" placeholder="4" value="4" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">corners</span>
+        </div>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Drywall Mud &amp; Tape Takeoff →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Drywall Finishing Material Takeoff</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_totalBuckets">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">4.5 Gal Mud Pails</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_mudSplit">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_tapeRolls">—</div>
+        <div class="text-xs text-gray-500 mt-1">Joint Tape Rolls (250')</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_tapeLinearFeet">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_quickSetBags">—</div>
+        <div class="text-xs text-gray-500 mt-1">Quick-Set Hot Mud</div>
+        <div class="text-xs text-gray-500 mt-0.5">18 lb Bag (Pre-fill)</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_cornerBeadFeet">—</div>
+        <div class="text-xs text-gray-500 mt-1">Corner Bead</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_cornerSticks">8 ft Vinyl / Metal Sticks</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 3-Coat Drywall Joint Cross-Section Anatomy</span>
+        <span class="text-xs text-blue-600 font-normal">Level 4 Finish Schedule</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Component Hardware Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ Drywall Taping &amp; Finishing Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_drywallHwList">
+        <!-- Hardware schedule auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Drywall Mud Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Apply Drywall Mud (The 3-Coat System)</h2>
+    <p class="text-gray-700 mb-4">Follow the trade sequence for smooth, professional Level 4 drywall joints:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Pre-Fill &amp; First Coat (Bedding):</strong> Mix setting-type quick-set hot mud to fill any gaps wider than 1/8". Apply all-purpose mud with a 5" knife and firmly embed paper tape into the bevel.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Second Coat (Feathering):</strong> Once dry, scrape any ridges with your knife. Use lightweight topping mud and an 8" or 10" taping knife to feather the joint 2 to 3 inches wider on each side.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Third Coat (Skim &amp; Finish):</strong> Apply an ultra-thin finish coat with a 12" taping knife, feathering the edges 10 to 12 inches wide total across the tapered factory seam.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Final Sanding:</strong> Hand-sand joints using 220-grit drywall sanding screens or sponges under an inspection light before priming.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Gypsum Association (GA-214) Finishing Standards</h2>
+    <p class="text-gray-700 mb-4">Coverage rates based on USG Sheetrock and National Gypsum technical specifications:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Standard Mud Yield = 1 &times; 4.5 Gal Pail per 400 to 450 Sq Ft of Drywall</p>
+      <p>Tape Consumption = ~0.37 Linear Feet of Tape per Sq Ft of Drywall</p>
+      <p>Quick-Set Pre-Fill = 1 &times; 18 lb Bag per 1,000 Sq Ft of Board</p>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many buckets of drywall mud do I need for 1,000 sq ft?</h3>
+        <p class="text-gray-600 text-sm">For 1,000 sq ft of drywall (approx. 31 sheets of 4x8 drywall), you need 2.5 to 3 five-gallon (4.5 gal) buckets of joint compound for a standard 3-coat finish (taping, bedding, and skim coating).</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the difference between All-Purpose and Lightweight Topping mud?</h3>
+        <p class="text-gray-600 text-sm">All-purpose joint compound contains heavy binding polymers and vinyl adhesive, making it ideal for embedding paper tape and first coats. Lightweight topping mud (like Sheetrock Plus 3) is easier to spread and sands effortlessly, making it the ideal choice for 2nd and 3rd finish coats.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should I use paper tape or fiberglass mesh tape?</h3>
+        <p class="text-gray-600 text-sm">Paper tape is significantly stronger on tapered seams and inside corners, resisting cracks under building movement. Mesh tape is only self-adhesive with setting-type quick-set hot mud and should not be used with standard pre-mixed drying compounds.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Drywall &amp; Wall Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/drywall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Drywall Sheet Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate 4x8 and 4x12 sheet counts, drywall screws, and waste factors.</div>
+      </a>
+      <a href="/calculators/paint-room" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Room Paint Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate primer and paint gallons to finish your newly mudded drywall walls.</div>
+      </a>
+      <a href="/calculators/wall-framing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Wall Framing Stud Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate 2x4 studs and top/bottom plates for basement and room framing.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateDrywallMud() {
+    const sqft = parseFloat(document.getElementById('drywallSqft').value) || 1000;
+    const level = parseInt(document.getElementById('finishLevel').value) || 4;
+    const corners = parseInt(document.getElementById('cornerBeadCount').value) || 0;
+
+    // Mud yield per bucket (4.5 gal pail)
+    let sqftPerPail = 425;
+    if (level === 5) sqftPerPail = 275; // Heavy full-surface skim
+    if (level === 3) sqftPerPail = 550; // 2 coats only
+
+    const exactPails = sqft / sqftPerPail;
+    const totalPails = Math.max(1, Math.ceil(exactPails));
+
+    // Split between All-Purpose (Taping) and Plus 3 (Topping)
+    const tapingPails = Math.max(1, Math.floor(totalPails * 0.40));
+    const toppingPails = totalPails - tapingPails;
+
+    // Tape footage (approx 0.37 ft of tape per sq ft of drywall)
+    const tapeFeet = Math.round(sqft * 0.37);
+    const tapeRolls = Math.max(1, Math.ceil(tapeFeet / 250));
+
+    // Quick-Set Pre-Fill Bags (18 lb)
+    const quickSetBags = Math.max(1, Math.ceil(sqft / 1200));
+
+    // Corner Bead
+    const cornerFeet = corners * 8;
+
+    // Update Result UI
+    document.getElementById('r_totalBuckets').textContent = `${totalPails} Pails`;
+    document.getElementById('r_mudSplit').textContent = `${tapingPails} All-Purpose + ${toppingPails} Topping`;
+    document.getElementById('r_tapeRolls').textContent = `${tapeRolls} Rolls`;
+    document.getElementById('r_tapeLinearFeet').textContent = `~${tapeFeet.toLocaleString()} Linear Feet Tape`;
+    document.getElementById('r_quickSetBags').textContent = `${quickSetBags} Bag${quickSetBags > 1 ? 's' : ''}`;
+    document.getElementById('r_cornerBeadFeet').textContent = corners > 0 ? `${cornerFeet} Linear Feet` : "None";
+    document.getElementById('r_cornerSticks').textContent = corners > 0 ? `${corners} \u00d7 8' Corner Sticks` : "No corners entered";
+
+    // Schedule items
+    const hwList = document.getElementById('r_drywallHwList');
+    hwList.innerHTML = '';
+    hwList.innerHTML += `<li><strong>Embedding / Taping Mud:</strong> ${tapingPails} &times; 4.5-Gallon Pail USG Sheetrock All-Purpose (Green Lid)</li>`;
+    hwList.innerHTML += `<li><strong>Finishing / Skim Mud:</strong> ${toppingPails} &times; 4.5-Gallon Pail Sheetrock Plus 3 Lightweight Topping (Blue Lid)</li>`;
+    hwList.innerHTML += `<li><strong>Joint Tape:</strong> ${tapeRolls} &times; 250-Foot Rolls of Heavy Paper Joint Tape</li>`;
+    hwList.innerHTML += `<li><strong>Setting Mud (Pre-Fill):</strong> ${quickSetBags} &times; 18 lb Bag Easy Sand 45/90 Quick-Set Powder</li>`;
+    if (corners > 0) {
+      hwList.innerHTML += `<li><strong>Corner Bead:</strong> ${corners} &times; 8-Foot Vinyl or Metal Outside Corner Beads</li>`;
+    }
+    hwList.innerHTML += `<li><strong>Sanding Supplies:</strong> 2 &times; 220-Grit Sanding Sponges + 1 &times; 150-Grit Sanding Pole Screen Pack</li>`;
+
+    // Render SVG
+    renderSVG();
+
+    // Clipboard Handler
+    setupClipboard(totalPails, tapingPails, toppingPails, tapeRolls, tapeFeet, quickSetBags, corners, cornerFeet);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSVG() {
+    const container = document.getElementById('svgContainer');
+    const width = 560;
+    const height = 180;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Left Drywall Sheet with Tapered Edge
+    svg += `<path d="M 30 50 L 220 50 L 250 65 L 250 130 L 30 130 Z" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2" />`;
+    svg += `<text x="120" y="95" text-anchor="middle" font-size="11" font-weight="bold" fill="#475569" font-family="sans-serif">Drywall Panel (Left)</text>`;
+
+    // Right Drywall Sheet with Tapered Edge
+    svg += `<path d="M 530 50 L 340 50 L 310 65 L 310 130 L 530 130 Z" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2" />`;
+    svg += `<text x="440" y="95" text-anchor="middle" font-size="11" font-weight="bold" fill="#475569" font-family="sans-serif">Drywall Panel (Right)</text>`;
+
+    // Seam Gap
+    svg += `<rect x="250" y="65" width="60" height="65" fill="#CBD5E1" opacity="0.3" />`;
+
+    // 1st Coat & Embedded Tape (Green)
+    svg += `<rect x="260" y="68" width="40" height="6" fill="#15803D" rx="1" />`;
+    svg += `<text x="280" y="62" text-anchor="middle" font-size="8" font-weight="bold" fill="#15803D">1. Paper Tape Embed</text>`;
+
+    // 2nd Bedding Coat (Blue)
+    svg += `<path d="M 230 65 Q 280 56 330 65 Z" fill="#3B82F6" opacity="0.8" />`;
+    svg += `<text x="280" y="48" text-anchor="middle" font-size="8" font-weight="bold" fill="#1D4ED8">2. 8" Feather Coat</text>`;
+
+    // 3rd Wide Skim Coat (Amber)
+    svg += `<path d="M 180 52 Q 280 44 380 52 Z" fill="#F59E0B" opacity="0.6" />`;
+    svg += `<text x="280" y="36" text-anchor="middle" font-size="9" font-weight="bold" fill="#B45309">3. 12" Skim Finish Coat</text>`;
+
+    svg += `<text x="280" y="160" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E293B">Total Level 4 Feathered Joint Width: 10" to 12"</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(totalPails, taping, topping, tapeRolls, tapeFeet, quickSet, corners, cornerFeet) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY DRYWALL MUD & TAPING TAKEOFF:\n\n`;
+      text += `• Total Joint Compound: ${totalPails} x 4.5-Gallon Pails\n`;
+      text += `  - ${taping} Pails All-Purpose Mud (Taping & Bedding)\n`;
+      text += `  - ${topping} Pails Lightweight Topping Mud (Finish Skim)\n`;
+      text += `• Joint Tape: ${tapeRolls} Rolls (${tapeFeet} Linear Feet Heavy Paper Tape)\n`;
+      text += `• Pre-Fill: ${quickSet} x 18 lb Bag Quick-Set 45/90 Mud\n`;
+      if (corners > 0) {
+        text += `• Corner Beads: ${corners} x 8-Foot Outside Corner Sticks (${cornerFeet} Linear Feet)\n`;
+      }
+      text += `• Sanding: 220-Grit Sponges & 150-Grit Sanding Screens\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/drywall-mud`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateDrywallMud);
+</script>
