@@ -144,6 +144,33 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
       </div>
     </footer>
 
+    <!-- Embed Calculator Modal (Moat 5) -->
+    {isCalculatorPage && (
+      <div id="embedModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 print:hidden">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-gray-200">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-md font-mono text-xs font-bold">&lt;/&gt;</span>
+              <h3 class="text-base font-bold text-gray-900">Embed this Calculator on Your Website</h3>
+            </div>
+            <button type="button" onclick="document.getElementById('embedModal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600 text-2xl font-bold leading-none">&times;</button>
+          </div>
+          <p class="text-xs text-gray-600 mb-3">Add this free interactive calculation tool to your blog, carpentry website, or contractor portal. Copy and paste the HTML snippet below:</p>
+          <div class="relative mb-4">
+            <textarea id="embedSnippetArea" readonly rows="4" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-3 text-xs font-mono text-gray-800 select-all focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+          </div>
+          <div class="flex gap-2">
+            <button type="button" id="copyEmbedBtn" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-lg text-xs transition-colors flex items-center justify-center gap-2">
+              📋 Copy HTML Embed Code
+            </button>
+            <button type="button" onclick="document.getElementById('embedModal').classList.add('hidden')" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2.5 px-4 rounded-lg text-xs transition-colors">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+
     <!-- Floating results button - added print:hidden so it doesn't print -->
     <div id="floatBtn" class="hidden fixed bottom-6 inset-x-0 flex justify-center z-50 pointer-events-none print:hidden">
       <button
@@ -194,9 +221,12 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
 
         intersectionObserver.observe(resultsEl);
 
-        // ── Ensure Copy Shopping List button is present on all calculators ───────
+        // ── Ensure Action Buttons (Copy, Print, Embed) are present ────────────
         function ensureCopyButton(resDiv) {
-          if (!resDiv || resDiv.querySelector('.copy-list-btn, #copyBtn')) return;
+          if (!resDiv) return;
+
+          var existingCopy = resDiv.querySelector('.copy-list-btn');
+          if (existingCopy) return;
 
           var printBtn = resDiv.querySelector('#printBtn, button[onclick*="window.print"]');
           if (printBtn) {
@@ -207,28 +237,14 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
               btn.className = 'copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2';
               btn.innerHTML = '📋 Copy Shopping List';
               parent.insertBefore(btn, printBtn);
-            } else {
-              var grid = document.createElement('div');
-              grid.className = 'grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden';
-              printBtn.parentNode.insertBefore(grid, printBtn);
 
-              printBtn.classList.remove('hidden', 'mt-5', 'mt-4');
-              printBtn.style.display = '';
-
-              var btn = document.createElement('button');
-              btn.type = 'button';
-              btn.className = 'copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2';
-              btn.innerHTML = '📋 Copy Shopping List';
-
-              grid.appendChild(btn);
-              grid.appendChild(printBtn);
+              // Add Embed button if not present
+              var embedBtn = document.createElement('button');
+              embedBtn.type = 'button';
+              embedBtn.className = 'open-embed-modal-btn w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2 col-span-full mt-2';
+              embedBtn.innerHTML = '&lt;/&gt; Embed on Your Website (Free)';
+              parent.appendChild(embedBtn);
             }
-          } else {
-            var btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2 mt-5 print:hidden';
-            btn.innerHTML = '📋 Copy Shopping List';
-            resDiv.appendChild(btn);
           }
         }
 
@@ -584,6 +600,35 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
         }
         document.body.removeChild(textArea);
       }
+
+      // ── Global Embed Modal Controller (Moat 5) ──────────────────────────
+      document.addEventListener('click', function(e) {
+        var openBtn = e.target.closest('.open-embed-modal-btn');
+        if (openBtn) {
+          var modal = document.getElementById('embedModal');
+          var area = document.getElementById('embedSnippetArea');
+          if (modal && area) {
+            var calcTitle = document.title.split('—')[0].trim();
+            var calcUrl = window.location.href.split('?')[0];
+            var snippet = '<iframe src="' + calcUrl + '" width="100%" height="680" frameborder="0" style="border:1px solid #e2e8f0;border-radius:12px;max-width:100%;"></iframe>\n<p style="font-size:11px;color:#64748b;margin-top:4px;text-align:right;">Powered by <a href="' + calcUrl + '" target="_blank" style="color:#2563eb;text-decoration:underline;">' + calcTitle + '</a></p>';
+            area.value = snippet;
+            modal.classList.remove('hidden');
+          }
+        }
+
+        var copyEmbedBtn = e.target.closest('#copyEmbedBtn');
+        if (copyEmbedBtn) {
+          var area = document.getElementById('embedSnippetArea');
+          if (area) {
+            navigator.clipboard.writeText(area.value).then(function() {
+              copyEmbedBtn.textContent = '✓ Embed Code Copied!';
+              setTimeout(function() {
+                copyEmbedBtn.textContent = '📋 Copy HTML Embed Code';
+              }, 2500);
+            });
+          }
+        }
+      });
     </script>
   </body>
 </html>

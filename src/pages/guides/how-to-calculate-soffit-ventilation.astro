@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="How to Calculate Soffit & Attic Ventilation (1:150 & 1:300 Code Rule) | CalcForDIY"
+  description="Calculate required soffit intake Net Free Vent Area (NFVA in sq inches) and ridge exhaust per IRC Section R806 building code."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Calculate Soffit and Attic Ventilation",
+    "description": "Engineering guide to calculating balanced soffit intake and ridge exhaust ventilation using the IRC 1:150 and 1:300 rules.",
+    "author": {
+      "@type": "Organization",
+      "name": "CalcForDIY Engineering"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://calcfordiy.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/how-to-calculate-soffit-ventilation"
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the 1:300 rule for attic ventilation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under IRC Section R806.2, the 1:300 rule requires 1 square foot of Net Free Vent Area (NFVA) for every 300 square feet of attic floor space, provided that 40% to 50% of the ventilation is positioned at the upper ridge and the remainder at the lower eave/soffit intake."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you calculate Net Free Vent Area (NFVA)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the total attic square footage by 300 to find total square feet of NFVA needed. Multiply by 144 to convert to square inches, then divide by 2 to split the required area equally between low soffit intake and high ridge exhaust."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if an attic has more exhaust than intake?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If ridge exhaust exceeds soffit intake, the attic creates negative air pressure, which pulls conditioned air and moisture out of your living space through ceiling penetrations, increasing energy bills and risking mold."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>Soffit Ventilation Calculation</span>
+  </div>
+
+  <article class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
+        <span>🏠 Roofing &amp; HVAC Code Standards</span>
+        <span>•</span>
+        <span>IRC Section R806</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+        How to Calculate Soffit &amp; Attic Ventilation (The 1:300 Rule)
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Proper attic ventilation prevents roof ice dams in winter and reduces attic cooling loads in summer. Here is how to calculate your Net Free Vent Area (NFVA).
+      </p>
+    </header>
+
+    <!-- Quick Formula Box -->
+    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-300 rounded-xl p-6 mb-8 shadow-xs">
+      <h2 class="text-lg font-bold text-blue-950 mb-2 flex items-center gap-2">
+        <span>📐</span> The 1:300 Attic Ventilation Formula:
+      </h2>
+      <div class="bg-white/80 rounded-lg p-3 font-mono text-sm text-blue-900 mb-3">
+        <p>Total NFVA (Sq Ft) = Attic Floor Area (Sq Ft) &divide; 300</p>
+        <p>Total NFVA (Sq Inches) = Total NFVA (Sq Ft) &times; 144</p>
+        <p>Soffit Intake Needed = Total NFVA (Sq In) &divide; 2 (50% at Eaves)</p>
+        <p>Ridge Exhaust Needed = Total NFVA (Sq In) &divide; 2 (50% at Peak)</p>
+      </div>
+      <p class="text-xs text-blue-800">
+        <em>Example for a 1,500 sq ft attic:</em> 1,500 &divide; 300 = 5 sq ft total (720 sq in). Split 50/50 = <strong>360 sq inches of soffit intake</strong> and <strong>360 sq inches of ridge exhaust</strong>.
+      </p>
+    </div>
+
+    <!-- Sizing Matrix Table -->
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Attic Ventilation Requirements by Home Footprint</h2>
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full text-left border-collapse bg-white rounded-xl border border-gray-200 shadow-xs text-sm">
+        <thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200">
+          <tr>
+            <th class="p-3.5">Attic Floor Area</th>
+            <th class="p-3.5">Total NFVA Required</th>
+            <th class="p-3.5">Soffit Intake (50%)</th>
+            <th class="p-3.5">Ridge Vent Length (18 sq in/ft)</th>
+            <th class="p-3.5">Soffit Strip Vents (8' sticks)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-gray-700">
+          <tr class="hover:bg-gray-50">
+            <td class="p-3.5 font-bold">1,000 Sq Ft</td>
+            <td class="p-3.5">480 Sq Inches</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">240 Sq In</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">~14 Linear Feet</td>
+            <td class="p-3.5">~5 Sticks (8' each)</td>
+          </tr>
+          <tr class="bg-blue-50/50 hover:bg-blue-50">
+            <td class="p-3.5 font-bold text-blue-900">1,500 Sq Ft (Avg)</td>
+            <td class="p-3.5 font-bold text-blue-900">720 Sq Inches</td>
+            <td class="p-3.5 font-mono text-blue-800 font-bold">360 Sq In</td>
+            <td class="p-3.5 font-mono text-blue-800 font-bold">~20 Linear Feet</td>
+            <td class="p-3.5 font-bold text-blue-900">~8 Sticks</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3.5 font-bold">2,000 Sq Ft</td>
+            <td class="p-3.5">960 Sq Inches</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">480 Sq In</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">~27 Linear Feet</td>
+            <td class="p-3.5">~10 Sticks</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3.5 font-bold">2,500 Sq Ft</td>
+            <td class="p-3.5">1,200 Sq Inches</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">600 Sq In</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">~34 Linear Feet</td>
+            <td class="p-3.5">~13 Sticks</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Balanced Ventilation Section -->
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Why Balanced 50/50 Ventilation is Critical</h2>
+    <p class="text-gray-700 mb-4 leading-relaxed">
+      Attic ventilation works by natural thermal convection (the stack effect). Warm attic air rises and exits through high ridge vents, creating slight negative pressure that draws cool, fresh outside air in through the low soffit vents.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-2xs">
+        <h3 class="font-bold text-red-600 mb-2">❌ When Intake is Blocked (Too Little Soffit)</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">If insulation blocks your eaves or there are insufficient soffit vents, the high ridge exhaust creates strong suction. This pulls heated, humid indoor air up through ceiling can lights, exhaust fans, and drywall seams, promoting attic mold.</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-2xs">
+        <h3 class="font-bold text-green-700 mb-2">✅ Balanced System (50% Low + 50% High)</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">Equalized intake and exhaust creates a smooth continuous laminar airflow across the roof sheathing underside, removing moisture before it can condense on rafters.</p>
+      </div>
+    </div>
+
+    <!-- Related Tools Section -->
+    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+      <h3 class="text-lg font-bold text-gray-900 mb-3">Related Ventilation &amp; Insulation Tools</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="/calculators/whole-house-fan" class="bg-white p-3.5 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-xs transition-all">
+          <div class="font-bold text-sm text-gray-900">Whole-House Fan Calculator</div>
+          <div class="text-xs text-gray-500 mt-1">Calculate CFM and required attic exhaust relief area.</div>
+        </a>
+        <a href="/calculators/attic-insulation" class="bg-white p-3.5 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-xs transition-all">
+          <div class="font-bold text-sm text-gray-900">Attic Insulation Calculator</div>
+          <div class="text-xs text-gray-500 mt-1">Calculate blown-in insulation depth &amp; baffle clearance.</div>
+        </a>
+        <a href="/calculators/asphalt-shingles" class="bg-white p-3.5 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-xs transition-all">
+          <div class="font-bold text-sm text-gray-900">Roofing Shingles Calculator</div>
+          <div class="text-xs text-gray-500 mt-1">Calculate ridge cap shingles &amp; roofing squares.</div>
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

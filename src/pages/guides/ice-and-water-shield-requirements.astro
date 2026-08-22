@@ -1,0 +1,189 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Ice and Water Shield Code Requirements & Roll Calculator | CalcForDIY"
+  description="Learn IRC Section R905.1.2 ice barrier building codes, how many courses of self-adhering membrane you need at eaves (24 inches past interior wall), valleys, and low-slope roofs."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Ice and Water Shield Code Requirements & Sizing Guide",
+    "description": "Comprehensive guide to IRC Section R905.1.2 ice barrier membrane code requirements, overhang calculations, and roll quantities.",
+    "author": {
+      "@type": "Organization",
+      "name": "CalcForDIY Engineering"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://calcfordiy.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/ice-and-water-shield-requirements"
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How far up the roof must ice and water shield go?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under IRC Section R905.1.2, ice barrier membrane must extend from the lowest roof eave edge to a point at least 24 inches (2 feet) inside the exterior wall line of the heated building space."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need 1 or 2 rows of ice and water shield?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If your roof overhang is 12 inches or less on a standard 4/12 to 6/12 pitch roof, one 36-inch wide row is typically sufficient. If your overhang is 16 inches or wider, you must install 2 full courses (6 feet) to meet the 24-inch interior wall code requirement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many square feet is a roll of ice and water shield?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard rolls of self-adhering polymer modified bitumen membrane (like Grace Ice & Water Shield, Owens Corning WeatherLock, or GAF StormGuard) measure 36 inches wide by 66.7 feet long, covering 200 square feet (2 roofing squares)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>Ice &amp; Water Shield Requirements</span>
+  </div>
+
+  <article class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
+        <span>🏠 Roofing &amp; IRC Code Standards</span>
+        <span>•</span>
+        <span>IRC Section R905.1.2</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+        Ice &amp; Water Shield Code Requirements &amp; Roll Sizing Guide
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Understand International Residential Code (IRC) ice barrier requirements, overhang calculations, valley lining rules, and exactly how many 200 sq ft rolls you need.
+      </p>
+    </header>
+
+    <!-- Quick Rule Box -->
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-300 rounded-xl p-6 mb-8 shadow-xs">
+      <h2 class="text-lg font-bold text-blue-950 mb-2 flex items-center gap-2">
+        <span>❄️</span> The 24-Inch Inside Wall Code Rule (IRC R905.1.2):
+      </h2>
+      <p class="text-blue-900 text-base leading-relaxed mb-3">
+        In regions where the average January temperature is <strong>25&deg;F (-4&deg;C) or colder</strong>, building code mandates self-adhering ice barrier membrane extending from the eave edge to <strong>at least 24 inches inside the exterior heated wall line</strong>.
+      </p>
+      <div class="bg-white/80 rounded-lg p-3 font-mono text-xs text-blue-900 mb-2">
+        <p>Minimum Membrane Width = ( Soffit Overhang + Wall Thickness + 24" ) &times; Roof Pitch Multiplier</p>
+      </div>
+      <p class="text-xs text-blue-800">
+        <em>Example:</em> A 16" overhang + 6" wall + 24" inside = 46 inches horizontal. On a 6/12 pitch (&times; 1.118), requires <strong>51.4 inches of membrane</strong> &rarr; <strong>2 full 36" courses (72" total) required!</strong>
+      </p>
+    </div>
+
+    <!-- Sizing Matrix Table -->
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Eave Overhang vs. Required Courses Matrix</h2>
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full text-left border-collapse bg-white rounded-xl border border-gray-200 shadow-xs text-sm">
+        <thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200">
+          <tr>
+            <th class="p-3.5">Soffit Overhang Depth</th>
+            <th class="p-3.5">Roof Pitch</th>
+            <th class="p-3.5">Actual Slope Distance</th>
+            <th class="p-3.5">36" Courses Required</th>
+            <th class="p-3.5">Total Membrane Width</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-gray-700">
+          <tr class="hover:bg-gray-50">
+            <td class="p-3.5 font-bold">12 Inches (Flush Eave)</td>
+            <td class="p-3.5">4/12 to 6/12</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">~44–46 Inches</td>
+            <td class="p-3.5 font-bold text-green-700">1 Course (w/ 6" drip starter)</td>
+            <td class="p-3.5">36" to 42"</td>
+          </tr>
+          <tr class="bg-blue-50/50 hover:bg-blue-50">
+            <td class="p-3.5 font-bold text-blue-900">16 to 18 Inches (Standard)</td>
+            <td class="p-3.5 font-bold text-blue-900">6/12 Pitch</td>
+            <td class="p-3.5 font-mono text-blue-800 font-bold">~51–54 Inches</td>
+            <td class="p-3.5 font-bold text-blue-900">2 Courses (Overlap 3")</td>
+            <td class="p-3.5 font-bold text-blue-900">69 Inches</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3.5 font-bold">24 Inches (Wide Overhang)</td>
+            <td class="p-3.5">6/12 to 8/12</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">~60–65 Inches</td>
+            <td class="p-3.5 font-bold text-blue-700">2 Courses</td>
+            <td class="p-3.5">69 Inches</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3.5 font-bold">Low Slope (2:12 to 4:12)</td>
+            <td class="p-3.5">2/12 to 3.9/12</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">Full Roof Deck</td>
+            <td class="p-3.5 font-bold text-amber-700">100% Full Deck Coverage</td>
+            <td class="p-3.5">Entire Roof Area</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Critical Application Locations -->
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">The 4 Critical Roof Locations for Ice &amp; Water Shield</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-2xs">
+        <h3 class="font-bold text-gray-900 mb-1">1. Eaves (Ice Dam Zone)</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">Installed directly on bare wood deck over the drip edge at eaves to stop standing water pooled behind ice dams from backing up under shingles.</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-2xs">
+        <h3 class="font-bold text-gray-900 mb-1">2. Roof Valleys</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">Center a full 36" wide sheet down every valley centerline before installing metal W-valley flashing or woven shingles to protect high-volume water channels.</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-2xs">
+        <h3 class="font-bold text-gray-900 mb-1">3. Low-Slope Roofs (2:12 to 4:12 Pitch)</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">Shingles shed water slowly on low pitches. Code requires double underlayment or 100% full-deck self-adhering membrane to prevent wind-driven rain penetration.</p>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-2xs">
+        <h3 class="font-bold text-gray-900 mb-1">4. Penetrations (Skylights, Chimneys, Boots)</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">Wrap 12" up sidewalls, chimneys, and plumbing vent flashing collars to create an elastomeric gasket seal around roofing nails.</p>
+      </div>
+    </div>
+
+    <!-- Related Tools Section -->
+    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+      <h3 class="text-lg font-bold text-gray-900 mb-3">Related Roofing Calculators</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="/calculators/asphalt-shingles" class="bg-white p-3.5 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-xs transition-all">
+          <div class="font-bold text-sm text-gray-900">Roofing Shingles Calc</div>
+          <div class="text-xs text-gray-500 mt-1">Calculate roofing squares, bundles, underlayment &amp; nails.</div>
+        </a>
+        <a href="/calculators/roof-pitch-rafter" class="bg-white p-3.5 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-xs transition-all">
+          <div class="font-bold text-sm text-gray-900">Roof Pitch &amp; Rafter Calc</div>
+          <div class="text-xs text-gray-500 mt-1">Calculate pitch angles, slope multipliers &amp; rafter cuts.</div>
+        </a>
+        <a href="/calculators/attic-insulation" class="bg-white p-3.5 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-xs transition-all">
+          <div class="font-bold text-sm text-gray-900">Attic Insulation Calc</div>
+          <div class="text-xs text-gray-500 mt-1">Calculate attic R-value to prevent roof ice dams.</div>
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

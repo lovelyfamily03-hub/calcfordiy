@@ -1,0 +1,200 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="What Gauge Wire for a 50-Amp EV Charger? (NEC Wire Sizing Guide) | CalcForDIY"
+  description="Learn what gauge copper wire you need for a 50-amp Level 2 EV charger circuit. Detailed breakdown of 6/3 NM-B Romex vs 6 AWG THHN in conduit per NEC Article 625."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Gauge Wire for a 50-Amp EV Charger?",
+    "description": "Complete NEC code guide to sizing wire gauge, circuit breakers, and conduit for 50-amp Level 2 electric vehicle home chargers.",
+    "author": {
+      "@type": "Organization",
+      "name": "CalcForDIY Engineering"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://calcfordiy.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/what-gauge-wire-for-50-amp-ev-charger"
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can I use 6/3 Romex NM-B for a 50-amp EV charger?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. 6 AWG NM-B Romex is rated for 55 amps under the NEC 60°C temperature column (NEC 334.80 & Table 310.16). Because 55A exceeds the 50A breaker rating, 6/3 NM-B is code-compliant for a 50-amp circuit powering a 40-amp continuous EV load."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use 8 AWG wire for a 50-amp breaker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. 8 AWG NM-B Romex is only rated for 40 amps, and 8 AWG THHN in conduit is rated for 50 amps at 75°C. Under NEC 80% continuous load rules, a 50A circuit requires 6 AWG copper wire to prevent dangerous overheating during multi-hour charging sessions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does a 40-amp EV charger need a 50-amp breaker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under NEC Article 625.42, EV charging is legally defined as a continuous electrical load (drawing power for 3 hours or longer). The National Electrical Code requires continuous loads to not exceed 80% of the circuit breaker ampacity (50A breaker × 0.80 = 40A max continuous draw)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>50-Amp EV Charger Wire Gauge</span>
+  </div>
+
+  <article class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
+        <span>⚡ Electrical &amp; NEC Code Standards</span>
+        <span>•</span>
+        <span>Trade-Verified Spec Guide</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+        What Gauge Wire Do You Need for a 50-Amp EV Charger?
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Installing a Level 2 home EV charger requires strict adherence to NEC Article 625 continuous load rules. Here is the exact copper wire gauge required for 50-amp breakers.
+      </p>
+    </header>
+
+    <!-- Quick Answer Box -->
+    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-300 rounded-xl p-6 mb-8 shadow-xs">
+      <h2 class="text-lg font-bold text-blue-950 mb-2 flex items-center gap-2">
+        <span>⚡</span> Quick Rule of Thumb:
+      </h2>
+      <p class="text-blue-900 text-base leading-relaxed mb-3">
+        For a <strong>50-amp circuit breaker</strong> powering a Level 2 EV charger (40A continuous draw), you must use <strong>6 AWG Copper Wire</strong>.
+      </p>
+      <ul class="text-sm text-blue-800 space-y-1.5 list-disc pl-5">
+        <li><strong>Inside Walls / Attics:</strong> <code>6/3 NM-B Romex Copper</code> (Rated for 55A at 60°C).</li>
+        <li><strong>In Conduit (EMT / PVC):</strong> <code>3 &times; 6 AWG THHN / THWN-2 Copper Wires + 10 AWG Ground</code> (Rated for 65A at 75°C).</li>
+        <li><strong>Outdoor / Underground:</strong> <code>6/3 UF-B Direct Burial Copper</code> or <code>6 AWG THWN-2 in Schedule 40 PVC</code>.</li>
+      </ul>
+      <div class="mt-4 pt-3 border-t border-blue-200 flex justify-between items-center">
+        <span class="text-xs text-blue-700 font-medium">Need exact voltage drop &amp; conduit fill calculations?</span>
+        <a href="/calculators/ev-charger-wiring" class="inline-flex items-center text-xs font-bold text-blue-700 hover:text-blue-800 bg-white px-3 py-1.5 rounded-lg border border-blue-300 shadow-2xs">
+          Open EV Charger Wire Calculator →
+        </a>
+      </div>
+    </div>
+
+    <!-- Wire Sizing Table -->
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Level 2 EV Charger Wire Sizing Matrix (NEC 310.16)</h2>
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full text-left border-collapse bg-white rounded-xl border border-gray-200 shadow-xs text-sm">
+        <thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200">
+          <tr>
+            <th class="p-3.5">Breaker Size</th>
+            <th class="p-3.5">Max Continuous EV Load</th>
+            <th class="p-3.5">NM-B Romex Wire Gauge</th>
+            <th class="p-3.5">THHN in Conduit Gauge</th>
+            <th class="p-3.5">Max Level 2 Charge Speed</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-gray-700">
+          <tr class="hover:bg-gray-50">
+            <td class="p-3.5 font-bold text-gray-900">40 Amps</td>
+            <td class="p-3.5">32 Amps (7.7 kW)</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">8/3 NM-B</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">8 AWG THHN</td>
+            <td class="p-3.5">~25–30 Miles / Hr</td>
+          </tr>
+          <tr class="bg-blue-50/50 hover:bg-blue-50">
+            <td class="p-3.5 font-bold text-blue-900">50 Amps (Standard)</td>
+            <td class="p-3.5 font-bold text-blue-900">40 Amps (9.6 kW)</td>
+            <td class="p-3.5 font-mono text-blue-800 font-bold">6/3 NM-B</td>
+            <td class="p-3.5 font-mono text-blue-800 font-bold">6 AWG THHN</td>
+            <td class="p-3.5 font-bold text-blue-900">~30–38 Miles / Hr</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3.5 font-bold text-gray-900">60 Amps (Hardwired)</td>
+            <td class="p-3.5">48 Amps (11.5 kW)</td>
+            <td class="p-3.5 text-red-600 font-bold">❌ Prohibited (Exceeds 60°C)</td>
+            <td class="p-3.5 font-mono text-blue-700 font-bold">6 AWG THHN (75°C)</td>
+            <td class="p-3.5">~40–45 Miles / Hr</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- The 80% Rule Explained -->
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Why EV Charging Requires the 80% Continuous Load Rule</h2>
+    <p class="text-gray-700 mb-4 leading-relaxed">
+      Unlike a household oven or clothes dryer that cycles on and off, an electric vehicle charges continuously at maximum current for 6 to 10 consecutive hours. Under <strong>NEC Section 625.42</strong> and <strong>Article 210.20</strong>, any electrical load sustained for 3 hours or more is classified as a <em>continuous load</em>.
+    </p>
+    <p class="text-gray-700 mb-6 leading-relaxed">
+      Continuous loads generate continuous thermal resistance inside the circuit breaker and wiring. To prevent insulation degradation and nuisance breaker tripping, the circuit breaker must be sized at <strong>125% of the vehicle’s charging rate</strong> (or conversely, the vehicle’s charging rate cannot exceed <strong>80% of the breaker’s rated capacity</strong>):
+    </p>
+    <div class="bg-gray-100 rounded-xl p-4 font-mono text-sm text-gray-800 mb-6">
+      <p>50-Amp Circuit Breaker &times; 0.80 = 40 Amps Maximum Continuous Draw (9.6 kW @ 240V)</p>
+      <p>48-Amp Hardwired EV Wallbox &times; 1.25 = 60-Amp Circuit Breaker Required</p>
+    </div>
+
+    <!-- Receptacle vs Hardwired -->
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">NEMA 14-50 Outlet vs. Hardwired Installation</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-2xs">
+        <h3 class="text-base font-bold text-gray-900 mb-2">🔌 NEMA 14-50 Plug-In Setup</h3>
+        <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4">
+          <li>Max charge rate capped at <strong>40 Amps (50A breaker)</strong>.</li>
+          <li><strong>Requires a GFCI Breaker:</strong> Under NEC 2020/2023 Section 210.8(A), all 240V receptacle outlets in garages require expensive GFCI dual-function breakers ($120–$180).</li>
+          <li>Must use commercial-grade industrial receptacles (Bryant or Hubbell 9450A) to prevent thermal meltdown.</li>
+        </ul>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-2xs">
+        <h3 class="text-base font-bold text-gray-900 mb-2">⚡ Hardwired Wallbox Setup (Tesla / JuiceBox)</h3>
+        <ul class="text-xs text-gray-600 space-y-2 list-disc pl-4">
+          <li>Can operate on a <strong>60A breaker delivering full 48 Amps (11.5 kW)</strong>.</li>
+          <li><strong>No GFCI Breaker Required:</strong> The hardwired EVSE has internal ground fault detection built in, allowing use of a standard $25 double-pole breaker.</li>
+          <li>Eliminates plug prong resistance points for maximum safety.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Related Tools Section -->
+    <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8">
+      <h3 class="text-lg font-bold text-gray-900 mb-3">Related Electrical Calculators</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="/calculators/ev-charger-wiring" class="bg-white p-3.5 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-xs transition-all">
+          <div class="font-bold text-sm text-gray-900">EV Charger Calculator</div>
+          <div class="text-xs text-gray-500 mt-1">Calculate wire gauge, voltage drop &amp; charging speed.</div>
+        </a>
+        <a href="/calculators/subpanel-sizing" class="bg-white p-3.5 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-xs transition-all">
+          <div class="font-bold text-sm text-gray-900">Subpanel Sizing Calculator</div>
+          <div class="text-xs text-gray-500 mt-1">Size garage subpanels for EV chargers &amp; workshops.</div>
+        </a>
+        <a href="/calculators/conduit-fill" class="bg-white p-3.5 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-xs transition-all">
+          <div class="font-bold text-sm text-gray-900">Conduit Fill Calculator</div>
+          <div class="text-xs text-gray-500 mt-1">Size EMT or PVC conduit for 6 AWG THHN wires.</div>
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

@@ -77,15 +77,23 @@
 - [x] **Firewood Cord & Wood Stove Heat Calculator** (`/calculators/firewood-cord`) — Full cords (128 cu ft), face cords/ricks, Million BTU energy output by wood species (Oak, Hickory, Maple, Ash, Pine), seasoned weight, and live SVG firewood rick schematic.
 - [x] **Polymeric Sand & Paver Joint Calculator** (`/calculators/polymeric-sand`) — 50 lb bags of polymeric sand by paver dimensions and joint width (1/8" to 1"), compaction procedures, and live SVG paver joint cross-section.
 
+### 🏆 Moat 5: Embeddable Calculator Widget Engine (COMPLETE ✅)
+- [x] Auto-injected `< / > Embed on Your Website` button and modal across all 73 calculators with 1-click HTML iframe generator and permanent do-follow canonical backlink attribution.
+
 ---
 
-## 3. 📝 SEO Content & Guide Expansion (`/guides/` - COMPLETE ✅ 13 Live Guides)
+## 3. 📝 SEO Content & Guide Expansion (`/guides/` - COMPLETE ✅ 18 Live Guides)
 
 - [x] `"How Many Squares of Shingles Do I Need for a 2,000 Sq Ft Roof?"` (`/guides/how-many-roofing-squares`)
 - [x] `"How Many Fence Pickets Do I Need for 100 Feet?"` (`/guides/how-many-fence-pickets`)
 - [x] `"How Much Blown-In Insulation Do I Need for My Attic?"` (`/guides/how-much-attic-insulation`)
 - [x] `"What Size Conduit Do I Need for 3 Wires?"` (`/guides/conduit-size-for-3-wires`)
 - [x] `"How Far Can a 2x8 Deck Joist Span?"` (`/guides/how-far-can-2x8-deck-joist-span`)
+- [x] `"What Gauge Wire for a 50-Amp EV Charger?"` (`/guides/what-gauge-wire-for-50-amp-ev-charger`)
+- [x] `"How Many Bags of Concrete for a 4x4 Fence Post?"` (`/guides/how-many-bags-of-concrete-for-4x4-post`)
+- [x] `"How to Calculate Soffit & Attic Ventilation (1:300 Rule)"` (`/guides/how-to-calculate-soffit-ventilation`)
+- [x] `"How Much Tile Do I Need for a Standard Shower?"` (`/guides/how-much-tile-for-standard-shower`)
+- [x] `"Ice & Water Shield Code Requirements & Sizing"` (`/guides/ice-and-water-shield-requirements`)
 
 ---
 
