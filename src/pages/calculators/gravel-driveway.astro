@@ -1,0 +1,373 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Gravel Driveway Calculator (Tons, Layers & Truckloads) | CalcForDIY"
+  description="Calculate crushed stone tons, cubic yards, dump truck loads, geotextile driveway fabric, and 3-layer sub-base depth (#3 ballast, #57 stone, crusher run)."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Gravel Driveway Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many tons of gravel for a 100 foot driveway?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a standard 100-foot long by 12-foot wide driveway (1,200 sq ft) with a 3-inch top coat of #57 stone or crusher run, you will need approximately 15 tons (about 1 tri-axle dump truck load). For a new driveway built from bare dirt with a full 8-inch 3-layer base, you will need approximately 40 to 45 tons (3 truckloads)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the 3 layers of a gravel driveway?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A long-lasting gravel driveway consists of: 1) Sub-base: 4 to 6 inches of large #3 or #4 crushed ballast stone (2\" to 3\" rock) over geotextile fabric; 2) Intermediate base: 3 to 4 inches of #57 crushed stone (3/4\"); 3) Surface layer: 2 to 3 inches of Crusher Run / Dense Grade Aggregate (DGA) with stone dust to compact rock solid."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many tons does a dump truck carry?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard tandem-axle dump truck delivers 10 to 12 tons of crushed stone. A large tri-axle dump truck delivers 15 to 18 tons, and a commercial quad-axle or semi end-dump carries 20 to 24 tons."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Gravel Driveway Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Gravel Driveway &amp; Crushed Stone Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate crushed gravel tons, cubic yards, dump truck deliveries, geotextile underlayment, and multi-layer base depths.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Driveway Dimensions &amp; Construction Scope
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Driveway Total Length</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="drivewayLength" placeholder="100" value="100" min="10" max="5000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">feet</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Driveway Width</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="drivewayWidth" placeholder="12" value="12" min="8" max="100" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">feet wide</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Driveway Project Scope</label>
+        <select id="drivewayScope" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="new_3layer" selected>Brand New Driveway (Full 8" 3-Layer System)</option>
+          <option value="topcoat_3in">Resurfacing Existing Driveway (3" Top Coat)</option>
+          <option value="base_only_4in">Heavy Sub-Base Only (4" #3 Ballast Stone)</option>
+          <option value="custom">Custom Depth</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="customDepthBox" class="hidden mb-5">
+      <label class="block text-xs font-medium text-gray-600 mb-1">Custom Total Gravel Depth (Inches)</label>
+      <div class="flex items-center gap-2 max-w-xs">
+        <input type="number" id="customDepth" placeholder="6" value="6" min="1" max="24" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-xs text-gray-500 shrink-0">inches total</span>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Crushed Stone Tons &amp; Truckloads →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Gravel Driveway Aggregate Takeoff</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_totalTons">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Total Crushed Stone</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_sqftSummary">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_truckLoads">—</div>
+        <div class="text-xs text-gray-500 mt-1">Tri-Axle Dump Loads</div>
+        <div class="text-xs text-gray-500 mt-0.5">~16 Tons / Truckload</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_cubicYards">—</div>
+        <div class="text-xs text-gray-500 mt-1">Volume in Cubic Yards</div>
+        <div class="text-xs text-gray-500 mt-0.5">At 1.38 tons / yd³</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_fabricSqFt">—</div>
+        <div class="text-xs text-gray-500 mt-1">Geotextile Underlay</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_fabricRolls">Heavy Woven Fabric</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Driveway Cross-Section &amp; Crown Drainage Profile</span>
+        <span class="text-xs text-blue-600 font-normal">3-Layer Heavy-Duty Construction Detail</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Multi-Layer Breakdown Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ Layer-by-Layer Aggregate Breakdown</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_layerSchedule">
+        <!-- Layer list auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Driveway Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Build a Gravel Driveway -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Build a Pothole-Proof Gravel Driveway</h2>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Excavate &amp; Shape the Subgrade:</strong> Strip topsoil down to solid subsoil (6 to 8 inches). Shape a 1/2" per foot crown in the soil so water naturally sheds to side drainage ditches.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Lay Heavy-Duty Woven Geotextile Fabric:</strong> Never skip fabric over clay/dirt. Woven fabric prevents your expensive crushed rock from sinking into the mud under vehicle weight.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Install 4" Sub-Base (#3 or #4 Ballast Stone):</strong> Spread large 2" to 3" crushed rock and compact. These large stones create a rigid structural foundation bridge over soft soil.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Install 2" Surface Coat (Crusher Run / DGA):</strong> Top with dense grade aggregate containing 3/4" stone blended with stone fines. Wet and roll with a heavy roller to pack like concrete.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Aggregate Density &amp; Tonnage Math</h2>
+    <p class="text-gray-700 mb-4">Material calculations based on standard quarry aggregate bulk densities:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Cubic Yards = ( Length ft &times; Width ft &times; (Depth in &divide; 12) ) &divide; 27</p>
+      <p>Crushed Stone Weight = Cubic Yards &times; 1.38 Tons per Yard (2,760 lbs/yd³)</p>
+      <p>Tri-Axle Truck Loads = Total Tons &divide; 16 Tons per delivery</p>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the best gravel for the top surface of a driveway?</h3>
+        <p class="text-gray-600 text-sm">Crusher Run (also called DGA, Dense Grade Aggregate, or 21A) is the gold standard because it blends 3/4-inch crushed stone with fine stone dust. When compacted, the fines lock the larger stones together into a cement-like, rut-resistant driving surface.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why should I avoid using round pea gravel or river rock for a driveway?</h3>
+        <p class="text-gray-600 text-sm">Smooth, rounded stones never interlock. Driving over pea gravel feels like driving in deep marbles; vehicle tires push it aside, creating deep wheel ruts and throwing rocks everywhere. Always use angular crushed quarry stone.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How steep should the crown of a driveway be?</h3>
+        <p class="text-gray-600 text-sm">A gravel driveway must have a crown of approximately 1/2 inch of rise per horizontal foot from the edge to the centerline (e.g. for a 12-foot driveway, the center should be 3 inches higher than the outer edges) to shed rainwater immediately.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Earthwork &amp; Paving Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/paver-base-sand" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Paver Base &amp; Sand Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate gravel base tons and soil swell factors.</div>
+      </a>
+      <a href="/calculators/french-drain" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">French Drain Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate drainage ditch stone, pipe &amp; fabric.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate ready-mix concrete for garages and pads.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  document.getElementById('drivewayScope').addEventListener('change', function() {
+    const cBox = document.getElementById('customDepthBox');
+    if (this.value === 'custom') {
+      cBox.classList.remove('hidden');
+    } else {
+      cBox.classList.add('hidden');
+    }
+  });
+
+  function calculateGravelDriveway() {
+    const length = parseFloat(document.getElementById('drivewayLength').value) || 100;
+    const width = parseFloat(document.getElementById('drivewayWidth').value) || 12;
+    const scope = document.getElementById('drivewayScope').value;
+
+    const sqft = length * width;
+    let totalDepthIn = 8; // Default 3-layer
+
+    if (scope === 'topcoat_3in') totalDepthIn = 3;
+    if (scope === 'base_only_4in') totalDepthIn = 4;
+    if (scope === 'custom') totalDepthIn = parseFloat(document.getElementById('customDepth').value) || 6;
+
+    const cuYd = (sqft * (totalDepthIn / 12)) / 27;
+    const totalTons = (cuYd * 1.38).toFixed(1);
+    const truckLoads = Math.ceil(parseFloat(totalTons) / 16);
+
+    const fabricSqFt = Math.round(sqft * 1.15); // 15% overlap
+    const fabricRolls = Math.ceil(fabricSqFt / 1500); // 12.5' x 120' standard roll = 1500 sq ft
+
+    // Update Result UI
+    document.getElementById('r_totalTons').textContent = `${totalTons} Tons`;
+    document.getElementById('r_sqftSummary').textContent = `${sqft.toLocaleString()} Sq Ft (${length}' \u00d7 ${width}') @ ${totalDepthIn}" Depth`;
+    document.getElementById('r_truckLoads').textContent = `${truckLoads} Truckloads`;
+    document.getElementById('r_cubicYards').textContent = `${cuYd.toFixed(1)} Cu Yds`;
+    document.getElementById('r_fabricSqFt').textContent = `${fabricSqFt.toLocaleString()} Sq Ft`;
+    document.getElementById('r_fabricRolls').textContent = `~${fabricRolls} Commercial Fabric Roll(s)`;
+
+    // Layer breakdown
+    const layerList = document.getElementById('r_layerSchedule');
+    layerList.innerHTML = '';
+
+    if (scope === 'new_3layer') {
+      const baseTons = (((sqft * (4 / 12)) / 27) * 1.38).toFixed(1);
+      const midTons = (((sqft * (2.5 / 12)) / 27) * 1.38).toFixed(1);
+      const topTons = (((sqft * (2 / 12)) / 27) * 1.38).toFixed(1);
+
+      layerList.innerHTML += `<li><strong>Bottom Sub-Base (4" Depth):</strong> ~${baseTons} Tons of #3 / #4 Ballast Stone (2"-3" crushed rock) over geotextile fabric</li>`;
+      layerList.innerHTML += `<li><strong>Middle Layer (2.5" Depth):</strong> ~${midTons} Tons of #57 Crushed Stone (3/4" clean drainage stone)</li>`;
+      layerList.innerHTML += `<li><strong>Top Surface Coat (2" Depth):</strong> ~${topTons} Tons of Crusher Run / DGA (Dense Grade Aggregate with stone dust)</li>`;
+    } else {
+      layerList.innerHTML += `<li><strong>Selected Aggregate:</strong> ${totalTons} Tons of Crushed Quarry Stone applied at ${totalDepthIn} inches depth</li>`;
+    }
+    layerList.innerHTML += `<li><strong>Subgrade Stabilization:</strong> ${fabricSqFt.toLocaleString()} Sq Ft Heavy Woven Geotextile Underlayment Fabric</li>`;
+    layerList.innerHTML += `<li><strong>Crown Drainage:</strong> Form a ${(width / 4).toFixed(1)}" center crown ridge to shed surface water to roadside swales</li>`;
+
+    // Render SVG
+    renderDrivewaySVG(width, totalDepthIn);
+
+    // Setup Clipboard
+    setupClipboard(totalTons, cuYd, truckLoads, fabricSqFt, length, width, totalDepthIn, scope);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderDrivewaySVG(width, depth) {
+    const container = document.getElementById('svgContainer');
+    const w = 560;
+    const h = 200;
+
+    let svg = `<svg viewBox="0 0 ${w} ${h}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Subgrade Soil Base
+    svg += `<rect x="30" y="130" width="500" height="55" fill="#78716C" />`;
+    svg += `<text x="280" y="165" text-anchor="middle" font-size="10" font-weight="bold" fill="#FFFFFF">Compacted Subsoil Foundation</text>`;
+
+    // Geotextile Fabric Line
+    svg += `<line x1="45" y1="130" x2="515" y2="130" stroke="#000000" stroke-dasharray="4,2" stroke-width="3" />`;
+    svg += `<text x="280" y="125" text-anchor="middle" font-size="9" font-weight="bold" fill="#0F172A">Heavy Woven Geotextile Driveway Fabric</text>`;
+
+    // Layer 1: #3 Ballast Stone (Bottom)
+    svg += `<path d="M 45 128 Q 280 115 515 128 L 515 95 Q 280 80 45 95 Z" fill="#64748B" />`;
+    svg += `<text x="280" y="108" text-anchor="middle" font-size="9" font-weight="bold" fill="#FFFFFF">Sub-Base: #3 Ballast Stone (2"-3" Rock)</text>`;
+
+    // Layer 2: #57 Crushed Stone (Middle)
+    svg += `<path d="M 45 95 Q 280 80 515 95 L 515 65 Q 280 50 45 65 Z" fill="#94A3B8" />`;
+    svg += `<text x="280" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E293B">Intermediate: #57 Crushed Stone (3/4")</text>`;
+
+    // Layer 3: Crusher Run Top Surface (Curved Crown)
+    svg += `<path d="M 45 65 Q 280 50 515 65 L 515 45 Q 280 30 45 45 Z" fill="#D1D5DB" stroke="#475569" stroke-width="2" />`;
+    svg += `<text x="280" y="44" text-anchor="middle" font-size="11" font-weight="black" fill="#0F172A">Surface: Crusher Run / DGA (Compacted Center Crown)</text>`;
+
+    // Drainage Ditch Indicators (Left and Right)
+    svg += `<path d="M 30 130 L 45 130 L 45 65 Z" fill="#3B82F6" opacity="0.3" />`;
+    svg += `<text x="35" y="110" font-size="8" font-weight="bold" fill="#1D4ED8" text-anchor="end">Ditch</text>`;
+    svg += `<path d="M 530 130 L 515 130 L 515 65 Z" fill="#3B82F6" opacity="0.3" />`;
+    svg += `<text x="525" y="110" font-size="8" font-weight="bold" fill="#1D4ED8" text-anchor="start">Ditch</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(tons, cuYd, loads, fabric, length, width, depth, scope) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY GRAVEL DRIVEWAY TAKEOFF:\n\n`;
+      text += `• Driveway: ${length}' Long \u00d7 ${width}' Wide (${length*width} Sq Ft)\n`;
+      text += `• Total Depth: ${depth} Inches (${scope})\n`;
+      text += `• Total Crushed Stone: ${tons} Tons (${cuYd.toFixed(1)} Cu Yds)\n`;
+      text += `• Dump Truck Deliveries: ~${loads} Tri-Axle Truckloads (16 tons/load)\n`;
+      text += `• Geotextile Fabric: ${fabric.toLocaleString()} Sq Ft Woven Underlayment\n`;
+      text += `• Profile: ${(width/4).toFixed(1)}" Compacted Center Crown with Side Drainage\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/gravel-driveway`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateGravelDriveway);
+</script>

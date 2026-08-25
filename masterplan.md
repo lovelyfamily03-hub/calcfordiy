@@ -26,20 +26,20 @@
 ## CURRENT STATUS
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Total Pages Live:** 116 pages
-- **Calculators live:** 73 calculators
-- **SEO Guides live:** 18 guides (`src/pages/guides/`)
-- **Project Workflow Hubs live:** 14 hubs (`src/pages/projects/`)
-- **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. 0 broken links verified across all 116 HTML pages. AdSense crawl buffer elapsed. Site is 100% READY for dashboard resubmission ("Request Review").
+- **Total Pages Live:** 125 pages
+- **Calculators live:** 78 calculators
+- **SEO Guides live:** 21 guides (`src/pages/guides/`)
+- **Project Workflow Hubs live:** 15 hubs (`src/pages/projects/`)
+- **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. 0 broken links verified across all 125 HTML pages. AdSense crawl buffer elapsed. Site is 100% READY for dashboard resubmission ("Request Review").
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
-- **GSC Status:** 116 pages indexed/crawlable, zero manual actions. Googlebot actively crawling 130+ requests/day.
+- **GSC Status:** 125 pages indexed/crawlable, zero manual actions. Googlebot actively crawling 130+ requests/day.
 
 ---
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[x]` **Status**: Phase 5A & 5B Complete (73 Live Interactive Calculators + 14 Project Workflow Hubs + 18 SEO Guides).
-**Latest Milestone Achieved**: Completed Moat 5 (Embeddable Widget Engine across all 73 calculators) + 5 Search Console Target Guides + 14 Project Workflow Hubs + 0 Broken Links. All 5 Moats are 100% COMPLETE!
+- `[x]` **Status**: Wave 4 Expansion Complete (78 Live Interactive Calculators + 15 Project Workflow Hubs + 21 SEO Guides).
+**Latest Milestone Achieved**: Completed Wave 4 expansion (Crown Molding, Paver Walkway, Spray Foam, Sonotube Pier, Gravel Driveway) + 3 Target Guides + Gravel Driveway Project Hub + 0 Broken Links across 125 pages!
 - `[x]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes with regional multipliers (COMPLETE ✅).
 - `[x]` **Moat 4: Project Workflow Hubs** — Interactive multi-step project flows under `/projects/` guiding users through 4–5 sequential calculators per project (COMPLETE ✅ 8 of 8 Live).
 - `[x]` **E-E-A-T & Trust Signal Hardening** — Auto-injected verification badges, IRC/TCNA methodology links, contact email, and Content-Signal policy (COMPLETE ✅).

@@ -1,0 +1,433 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Paver Walkway & Stepping Stone Calculator | CalcForDIY"
+  description="Calculate pavers, gravel base tons, bedding sand, polymeric joint sand, and snap-edge restraints for straight, curving, or stepping stone garden walkways."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Paver Walkway Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How wide should a DIY paver walkway be?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A comfortable single-person garden walkway is 36 inches (3 feet) wide. For a primary front entrance walkway where two people can walk side-by-side comfortably, 48 inches (4 feet) to 60 inches (5 feet) is recommended."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How deep should the base be for a paver walkway?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A residential pedestrian walkway requires a 4-inch compacted crushed stone base (dense grade aggregate / crusher run) plus a 1-inch screeded concrete sand bedding layer, for a total sub-base depth of 5 inches beneath the pavers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the proper spacing for garden stepping stones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Stepping stones should be placed 24 inches on-center (measured from center of one stone to center of next), which matches the average adult walking stride."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Paver Walkway Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Paver Walkway &amp; Stepping Stone Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate pavers, crushed gravel base tons, bedding sand, edge restraints, and stepping stone spacing for front walks and garden paths.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Walkway Dimensions &amp; Paving Style
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Walkway Style</label>
+        <select id="walkwayStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="pavers" selected>Continuous Interlocking Paver Walkway</option>
+          <option value="stepping_stones">Stepping Stones with Gravel/Mulch Infill</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Walkway Total Length</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="walkLength" placeholder="30" value="30" min="5" max="500" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">feet long</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Walkway Width</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="walkWidth" placeholder="3" value="3" min="1.5" max="20" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">feet wide</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="paverOptionRow" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Paver Unit Size</label>
+        <select id="paverSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="4x8" selected>Standard 4" &times; 8" Brick Pavers (4.5 units / sq ft)</option>
+          <option value="6x6">6" &times; 6" Square Cobble (4 units / sq ft)</option>
+          <option value="6x9">6" &times; 9" Rectangle Pavers (2.67 units / sq ft)</option>
+          <option value="12x12">12" &times; 12" Large Slabs (1 unit / sq ft)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Crushed Stone Base Thickness</label>
+        <select id="baseDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="4" selected>4 Inches (Standard Pedestrian Walkway Base)</option>
+          <option value="6">6 Inches (Heavy Freeze/Thaw or Soft Soil Base)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Walkway Materials &amp; Base Layers →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Walkway Material Takeoff</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_paverUnits">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1" id="r_unitLabel">Paver Units</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_walkSqft">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_gravelTons">—</div>
+        <div class="text-xs text-gray-500 mt-1">Crushed Stone Base</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_gravelCuYd">Tons at 1.35 t/yd³</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_sandTons">—</div>
+        <div class="text-xs text-gray-500 mt-1">Bedding Sand (1")</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_polyBags">Plus Polymeric Sand</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_edgingFeet">—</div>
+        <div class="text-xs text-gray-500 mt-1">Snap-Edge Restraints</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_spikeCount">With 10" Steel Spikes</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Walkway Cross-Section &amp; Edge Restraint Anatomy</span>
+        <span class="text-xs text-blue-600 font-normal">ICPI Standard Detail</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Component Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ Walkway Material &amp; Tool Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_walkHwList">
+        <!-- Hardware schedule auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Walkway Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Build a Durable Paver Walkway (Step-by-Step)</h2>
+    <p class="text-gray-700 mb-4">Follow the 4 ICPI trade construction steps:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Excavate &amp; Slope:</strong> Excavate 7 to 8 inches deep (4" base + 1" sand + 2-3/8" paver). Slope the trench 1/4" per foot away from the house foundation.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Compact Crushed Stone Base:</strong> Lay geotextile fabric, then add 3/4" crushed dense-grade aggregate in 2-inch lifts, compacting each lift thoroughly with a plate compactor.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Screed 1" Bedding Sand:</strong> Lay two 1" outside-diameter conduit pipes and screed coarse concrete sand perfectly level. Never walk on or compact the bedding sand before laying pavers.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Install Edge Restraint &amp; Polymeric Sand:</strong> Spike snap-edge plastic restraints every 12 inches along both sides, sweep polymeric joint sand into joints, and mist with water.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">ICPI Standard Density &amp; Coverage Standards</h2>
+    <p class="text-gray-700 mb-4">Material calculations based on standard bulk aggregate densities:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Crushed Stone Base (tons) = ( Area Sq Ft &times; (Base Depth in &divide; 12) &divide; 27 ) &times; 1.35 tons/yd³</p>
+      <p>Bedding Sand (tons) = ( Area Sq Ft &times; (1 &divide; 12) &divide; 27 ) &times; 1.25 tons/yd³</p>
+      <p>Edge Restraints = Total Walkway Length (ft) &times; 2 (Both Sides)</p>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How wide should a DIY paver walkway be?</h3>
+        <p class="text-gray-600 text-sm">A comfortable single-person garden walkway is 36 inches (3 feet) wide. For a primary front entrance walkway where two people can walk side-by-side comfortably, 48 inches (4 feet) to 60 inches (5 feet) is recommended.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can I use stone dust instead of concrete sand for bedding?</h3>
+        <p class="text-gray-600 text-sm">No. ICPI guidelines specifically prohibit stone dust (screenings) as bedding sand because it retains water, does not allow proper drainage, and turns to mush during freeze/thaw cycles. Always use coarse ASTM C33 concrete sand.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many spikes do I need for paver edging?</h3>
+        <p class="text-gray-600 text-sm">Drive one 10-inch spiral steel landscape spike into the edge restraint every 12 inches on straight runs, and every 6 to 8 inches along curved walkway sections.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Hardscape &amp; Patio Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/polymeric-sand" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Polymeric Sand Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate 50 lb bags of joint sand for paver seams.</div>
+      </a>
+      <a href="/calculators/paver-base-sand" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Paver Base &amp; Sand Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate excavation volume, base tons &amp; soil swell.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate poured concrete pads and walkways.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  document.getElementById('walkwayStyle').addEventListener('change', function() {
+    const pRow = document.getElementById('paverOptionRow');
+    if (this.value === 'stepping_stones') {
+      pRow.classList.add('hidden');
+    } else {
+      pRow.classList.remove('hidden');
+    }
+  });
+
+  function calculateWalkway() {
+    const style = document.getElementById('walkwayStyle').value;
+    const length = parseFloat(document.getElementById('walkLength').value) || 30;
+    const width = parseFloat(document.getElementById('walkWidth').value) || 3;
+    const baseInches = parseFloat(document.getElementById('baseDepth')?.value || 4);
+    const pSize = document.getElementById('paverSize')?.value || '4x8';
+
+    const sqft = length * width;
+
+    if (style === 'stepping_stones') {
+      // Stepping stones every 2 ft on center
+      const stoneCount = Math.ceil(length / 2);
+      const gravelTons = (((sqft * (3 / 12)) / 27) * 1.35).toFixed(2);
+      const edgingFeet = Math.round(length * 2);
+
+      document.getElementById('r_paverUnits').textContent = `${stoneCount} Stones`;
+      document.getElementById('r_unitLabel').textContent = "Stepping Stones";
+      document.getElementById('r_walkSqft').textContent = `${sqft} Sq Ft Walkway (${length}' \u00d7 ${width}')`;
+      document.getElementById('r_gravelTons').textContent = `${gravelTons} Tons`;
+      document.getElementById('r_gravelCuYd').textContent = "3\" Pea Gravel Surround";
+      document.getElementById('r_sandTons').textContent = "Geotextile";
+      document.getElementById('r_polyBags').textContent = `${sqft} Sq Ft Weed Barrier`;
+      document.getElementById('r_edgingFeet').textContent = `${edgingFeet} Linear Ft`;
+      document.getElementById('r_spikeCount').textContent = "Metal / Poly Edging";
+
+      renderSteppingSVG(length, width, stoneCount);
+      setupSteppingClipboard(stoneCount, gravelTons, edgingFeet, sqft, length, width);
+    } else {
+      // Continuous Pavers
+      let unitsPerSqft = 4.5;
+      if (pSize === '6x6') unitsPerSqft = 4.0;
+      if (pSize === '6x9') unitsPerSqft = 2.67;
+      if (pSize === '12x12') unitsPerSqft = 1.0;
+
+      const paverCount = Math.ceil(sqft * unitsPerSqft * 1.10); // 10% cut waste
+      const baseCuYds = (sqft * (baseInches / 12)) / 27;
+      const baseTons = (baseCuYds * 1.35).toFixed(2);
+      const sandCuYds = (sqft * (1 / 12)) / 27;
+      const sandTons = (sandCuYds * 1.25).toFixed(2);
+      const polyBags = Math.max(1, Math.ceil(sqft / 75));
+      const edgingFeet = Math.round(length * 2);
+      const spikes = Math.ceil(edgingFeet / 1.0);
+
+      document.getElementById('r_paverUnits').textContent = `${paverCount} Pavers`;
+      document.getElementById('r_unitLabel').textContent = "Total Paver Units";
+      document.getElementById('r_walkSqft').textContent = `${sqft} Sq Ft (${length}' \u00d7 ${width}')`;
+      document.getElementById('r_gravelTons').textContent = `${baseTons} Tons`;
+      document.getElementById('r_gravelCuYd').textContent = `${baseInches}" Crushed Stone Base`;
+      document.getElementById('r_sandTons').textContent = `${sandTons} Tons`;
+      document.getElementById('r_polyBags').textContent = `${polyBags} Bags Poly Sand (50 lb)`;
+      document.getElementById('r_edgingFeet').textContent = `${edgingFeet} Linear Ft`;
+      document.getElementById('r_spikeCount').textContent = `~${spikes} \u00d7 10" Steel Spikes`;
+
+      renderPaverSVG(width, baseInches);
+      setupPaverClipboard(paverCount, baseTons, sandTons, polyBags, edgingFeet, spikes, sqft, length, width, baseInches);
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderPaverSVG(width, baseInches) {
+    const container = document.getElementById('svgContainer');
+    const w = 560;
+    const h = 200;
+
+    let svg = `<svg viewBox="0 0 ${w} ${h}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Subgrade soil
+    svg += `<rect x="30" y="140" width="500" height="45" fill="#78716C" />`;
+    svg += `<text x="280" y="165" text-anchor="middle" font-size="10" font-weight="bold" fill="#FFFFFF">Compacted Soil Subgrade</text>`;
+
+    // Base Crushed Stone
+    svg += `<rect x="45" y="95" width="470" height="45" fill="#94A3B8" />`;
+    svg += `<text x="280" y="120" text-anchor="middle" font-size="10" font-weight="bold" fill="#FFFFFF">${baseInches}" Compacted Crushed Stone Base</text>`;
+
+    // Bedding Sand (1")
+    svg += `<rect x="65" y="75" width="430" height="20" fill="#FDE047" stroke="#EAB308" stroke-width="1" />`;
+    svg += `<text x="280" y="89" text-anchor="middle" font-size="9" font-weight="bold" fill="#854D0E">1" Screeded Bedding Sand</text>`;
+
+    // Paver Top Layer
+    svg += `<rect x="65" y="35" width="430" height="40" fill="#B91C1C" stroke="#7F1D1D" stroke-width="2" rx="2" />`;
+    svg += `<text x="280" y="60" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFFFFF">Walkway Paver Surface (${width} Ft Wide)</text>`;
+
+    // Snap edge restraints (Left & Right)
+    svg += `<path d="M 45 75 L 65 75 L 65 35 Z" fill="#1E293B" />`;
+    svg += `<line x1="50" y1="75" x2="50" y2="150" stroke="#000000" stroke-width="3" />`;
+    svg += `<text x="35" y="55" text-anchor="end" font-size="9" font-weight="bold" fill="#1E293B">Snap Edge</text>`;
+
+    svg += `<path d="M 515 75 L 495 75 L 495 35 Z" fill="#1E293B" />`;
+    svg += `<line x1="510" y1="75" x2="510" y2="150" stroke="#000000" stroke-width="3" />`;
+    svg += `<text x="525" y="55" text-anchor="start" font-size="9" font-weight="bold" fill="#1E293B">10" Spike</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function renderSteppingSVG(length, width, count) {
+    const container = document.getElementById('svgContainer');
+    const w = 560;
+    const h = 180;
+
+    let svg = `<svg viewBox="0 0 ${w} ${h}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Lawn Background
+    svg += `<rect x="30" y="20" width="500" height="140" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" rx="8" />`;
+
+    // Stepping stones
+    for (let i = 0; i < 7; i++) {
+      const cx = 70 + (i * 65);
+      const cy = 90 + (i % 2 === 0 ? -15 : 15);
+      svg += `<ellipse cx="${cx}" cy="${cy}" rx="22" ry="16" fill="#64748B" stroke="#334155" stroke-width="2" />`;
+    }
+
+    svg += `<text x="280" y="45" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803D">Stepping Stones Spaced ~24" On-Center (Stride Interval)</text>`;
+    svg += `<text x="280" y="150" text-anchor="middle" font-size="10" font-weight="bold" fill="#334155">${count} Total Natural Stepping Stones across ${length} Ft Walkway</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupPaverClipboard(pavers, baseTons, sandTons, polyBags, edgingFeet, spikes, sqft, l, w, baseDepth) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY PAVER WALKWAY TAKEOFF:\n\n`;
+      text += `• Walkway Area: ${sqft} Sq Ft (${l}' Long \u00d7 ${w}' Wide)\n`;
+      text += `• Paver Units: ${pavers} Pavers (includes 10% cut waste)\n`;
+      text += `• Crushed Stone Base (${baseDepth}"): ${baseTons} Tons\n`;
+      text += `• Bedding Sand (1"): ${sandTons} Tons\n`;
+      text += `• Polymeric Joint Sand: ${polyBags} x 50 lb Bags\n`;
+      text += `• Edge Restraints: ${edgingFeet} Linear Feet (${spikes} x 10" Steel Spikes)\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/paver-walkway`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  function setupSteppingClipboard(stones, gravelTons, edgingFeet, sqft, l, w) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY STEPPING STONE WALKWAY TAKEOFF:\n\n`;
+      text += `• Walkway: ${l}' Long \u00d7 ${w}' Wide (${sqft} Sq Ft)\n`;
+      text += `• Stepping Stones: ${stones} Large Flat Stones (24" on-center stride)\n`;
+      text += `• Pea Gravel Surround (3"): ${gravelTons} Tons\n`;
+      text += `• Landscape Weed Barrier: ${sqft} Sq Ft Non-Woven Geotextile\n`;
+      text += `• Pathway Edging: ${edgingFeet} Linear Feet\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/paver-walkway`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateWalkway);
+</script>

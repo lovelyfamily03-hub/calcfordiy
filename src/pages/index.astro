@@ -441,14 +441,44 @@ const calculators = [
     href: "/calculators/paver-base-sand",
     category: "Concrete"
   },
+  {
+    title: "Crown Molding Miter & Bevel Calculator",
+    description: "Calculate exact compound miter saw settings (miter & bevel) for crown molding laid flat, plus board footage and cut directions.",
+    href: "/calculators/crown-molding",
+    category: "Millwork & Trim"
+  },
+  {
+    title: "Paver Walkway & Stepping Stone Calculator",
+    description: "Calculate pavers, crushed gravel base tons, bedding sand, edge restraints, and stepping stone spacing for walkways.",
+    href: "/calculators/paver-walkway",
+    category: "Concrete"
+  },
+  {
+    title: "Spray Foam Insulation Calculator",
+    description: "Calculate board feet, closed-cell vs. open-cell 200/600 canister kits, final R-value, and moisture vapor barrier depth.",
+    href: "/calculators/spray-foam-insulation",
+    category: "Utilities"
+  },
+  {
+    title: "Sonotube Concrete Pier Calculator",
+    description: "Calculate concrete volume in cubic yards, 60 lb / 80 lb bag counts, Sonotube form lengths, and rebar for deck piers.",
+    href: "/calculators/sonotube-concrete",
+    category: "Concrete"
+  },
+  {
+    title: "Gravel Driveway & Crushed Stone Calculator",
+    description: "Calculate crushed gravel tons, cubic yards, dump truck deliveries, geotextile underlayment, and multi-layer base depths.",
+    href: "/calculators/gravel-driveway",
+    category: "Concrete"
+  },
 ];
 
 const categories = [...new Set(calculators.map(c => c.category))];
 ---
 
 <Layout
-  title="CalcForDIY — 73 Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks"
-  description="73 free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs."
+  title="CalcForDIY — 78 Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks"
+  description="78 free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs."
 >
 <script type="application/ld+json" is:inline>
 {
@@ -456,7 +486,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
   "@type": "WebSite",
   "name": "CalcForDIY",
   "url": "https://calcfordiy.com",
-  "description": "63 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.",
+  "description": "78 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.",
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://calcfordiy.com/calculators?q={search_term_string}",
@@ -474,7 +504,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
   "operatingSystem": "Web Browser",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "featureList": [
-    "63 Interactive Material & Framing Calculators",
+    "78 Interactive Material & Framing Calculators",
     "Dynamic Vector SVG Framing & Cut Diagrams",
     "RSMeans DIY Material vs. Turnkey Contractor Cost Benchmarks",
     "One-Click Copy Shopping List Material Takeoff Export",
@@ -518,7 +548,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
   <div class="mb-8">
     <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
-      <span>✨ 63 Free Interactive Calculators</span>
+      <span>✨ 78 Free Interactive Calculators</span>
       <span>•</span>
       <span>RSMeans Cost Benchmarks &amp; SVG Diagrams</span>
     </div>

@@ -77,12 +77,19 @@
 - [x] **Firewood Cord & Wood Stove Heat Calculator** (`/calculators/firewood-cord`) — Full cords (128 cu ft), face cords/ricks, Million BTU energy output by wood species (Oak, Hickory, Maple, Ash, Pine), seasoned weight, and live SVG firewood rick schematic.
 - [x] **Polymeric Sand & Paver Joint Calculator** (`/calculators/polymeric-sand`) — 50 lb bags of polymeric sand by paver dimensions and joint width (1/8" to 1"), compaction procedures, and live SVG paver joint cross-section.
 
+### 🚀 Wave 4: High-Demand Carpentry, Hardscape & Insulation Calculators (COMPLETE ✅ 78 Live Calculators)
+- [x] **Crown Molding Miter & Bevel Calculator** (`/calculators/crown-molding`) — Exact compound miter and bevel angles for 90°, 135° bay windows, 4-direction cut guide, and live SVG miter saw protractor gauge.
+- [x] **Paver Walkway & Stepping Stone Calculator** (`/calculators/paver-walkway`) — Paver units, 4" crushed stone base tons, 1" bedding sand, polymeric sand, snap-edge restraints, stepping stone stride spacing, and live SVG cross-section.
+- [x] **Spray Foam Insulation Calculator** (`/calculators/spray-foam-insulation`) — Board feet volume, 200/600 bd ft canister kits, closed-cell (R-6.7/in) vs open-cell (R-3.7/in), Class II vapor barrier depth, and live SVG stud bay cavity diagram.
+- [x] **Sonotube Concrete Pier Calculator** (`/calculators/sonotube-concrete`) — Round tube diameters (8" to 24"), frost depth, concrete cubic yards, 60lb/80lb bag counts, rebar vertical dowels, flared bell base footings, and live SVG pier diagram.
+- [x] **Gravel Driveway & Crushed Stone Calculator** (`/calculators/gravel-driveway`) — 3-layer aggregate system (#3 ballast rock, #57 stone, crusher run / DGA), total tonnage, cubic yards, tri-axle dump truck loads, geotextile fabric, and live SVG crowned driveway profile.
+
 ### 🏆 Moat 5: Embeddable Calculator Widget Engine (COMPLETE ✅)
-- [x] Auto-injected `< / > Embed on Your Website` button and modal across all 73 calculators with 1-click HTML iframe generator and permanent do-follow canonical backlink attribution.
+- [x] Auto-injected `< / > Embed on Your Website` button and modal across all 78 calculators with 1-click HTML iframe generator and permanent do-follow canonical backlink attribution.
 
 ---
 
-## 3. 📝 SEO Content & Guide Expansion (`/guides/` - COMPLETE ✅ 18 Live Guides)
+## 3. 📝 SEO Content & Guide Expansion (`/guides/` - COMPLETE ✅ 21 Live Guides)
 
 - [x] `"How Many Squares of Shingles Do I Need for a 2,000 Sq Ft Roof?"` (`/guides/how-many-roofing-squares`)
 - [x] `"How Many Fence Pickets Do I Need for 100 Feet?"` (`/guides/how-many-fence-pickets`)
@@ -94,6 +101,9 @@
 - [x] `"How to Calculate Soffit & Attic Ventilation (1:300 Rule)"` (`/guides/how-to-calculate-soffit-ventilation`)
 - [x] `"How Much Tile Do I Need for a Standard Shower?"` (`/guides/how-much-tile-for-standard-shower`)
 - [x] `"Ice & Water Shield Code Requirements & Sizing"` (`/guides/ice-and-water-shield-requirements`)
+- [x] `"How to Measure & Cut Crown Molding (Miter & Bevel Chart)"` (`/guides/how-to-cut-crown-molding`)
+- [x] `"How Many Bags of Concrete for a Sonotube (8, 10, 12, 16 In)?"` (`/guides/how-many-bags-of-concrete-for-sonotube`)
+- [x] `"How Deep Should a Gravel Driveway Be? (3-Layer Guide)"` (`/guides/how-deep-should-a-gravel-driveway-be`)
 
 ---
 

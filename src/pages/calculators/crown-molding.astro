@@ -1,0 +1,392 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Crown Molding Miter & Bevel Angle Calculator | CalcForDIY"
+  description="Calculate exact compound miter saw angles (miter & bevel) for crown molding laid flat on the saw table or nested against the fence for 90°, 135° bay windows, and custom corners."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Crown Molding Miter & Bevel Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the miter and bevel angles for a 90-degree corner with 38-degree crown molding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a standard 90° corner using 38° spring angle crown molding laid flat on the saw table, set your miter saw to 31.62° Miter and 33.86° Bevel (often marked on compound miter saw scales with small crown icons)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is spring angle on crown molding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The spring angle is the angle between the back face of the crown molding and the wall when installed. Standard residential crown molding has a 38-degree spring angle (often called 52/38 molding). Symmetrical moldings have a 45-degree spring angle."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it better to cut crown molding flat or nested upside down?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If your crown molding is wider than 4 inches and your miter saw blade cannot clear it when nested against the fence, you must cut it laying flat on the table using compound miter and bevel settings. For smaller molding (under 3.5\"), cutting nested upside down with a single miter angle at 45° is often simpler."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Crown Molding Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Crown Molding Miter &amp; Bevel Angle Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate exact compound miter saw settings (miter &amp; bevel angles) for crown molding laid flat, plus board footage and cut directions.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Crown Molding Specs &amp; Wall Corner Angles
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Molding Spring Angle</label>
+        <select id="springAngle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="38" selected>38° Spring Angle (Standard 52/38 Residential Crown)</option>
+          <option value="45">45° Spring Angle (Equal 45/45 Symmetrical Crown)</option>
+          <option value="52">52° Spring Angle (Steep Profile Crown)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Wall Corner Angle</label>
+        <select id="cornerAnglePreset" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="90" selected>90° Standard Square Corner (Square Room)</option>
+          <option value="135">135° Bay Window / Octagon Corner</option>
+          <option value="120">120° Hexagon Corner</option>
+          <option value="custom">Custom Measured Angle (e.g. 89.5° or 91°)</option>
+        </select>
+      </div>
+
+      <div id="customAngleBox" class="hidden">
+        <label class="block text-xs font-medium text-gray-600 mb-1">Exact Corner Angle (from angle finder)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="customAngle" placeholder="89.5" value="89.5" step="0.1" min="30" max="180" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">degrees</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Total Room Perimeter Length</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="roomPerimeter" placeholder="54" value="54" min="5" max="1000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">linear feet</span>
+        </div>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Compound Miter &amp; Bevel Settings →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Compound Miter Saw Settings (Laying Flat on Table)</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_miterAngle">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Miter Saw Angle</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_miterSide">Turn Saw Table Right/Left</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-indigo-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-indigo-700 print:text-gray-900" id="r_bevelAngle">—</div>
+        <div class="text-xs text-indigo-800 font-semibold uppercase tracking-wide mt-1">Bevel Tilt Angle</div>
+        <div class="text-xs text-gray-500 mt-0.5">Tilt Saw Blade to Left</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_linearFeetNeeded">—</div>
+        <div class="text-xs text-gray-500 mt-1">Molding to Order</div>
+        <div class="text-xs text-gray-500 mt-0.5">Includes 15% Miter Waste</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_boardCount">—</div>
+        <div class="text-xs text-gray-500 mt-1">8-Foot Sticks</div>
+        <div class="text-xs text-gray-500 mt-0.5">Standard Lumber Stock</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Compound Miter Saw Protractor Dial Settings</span>
+        <span class="text-xs text-blue-600 font-normal">Flat on Table Method</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- The 4 Cut Setup Matrix -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ 4-Direction Cut Guide (Molding Face Up on Saw Table)</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-700 mt-3">
+        <div class="p-3 bg-blue-50/50 rounded-lg border border-blue-100">
+          <strong class="text-blue-900 block mb-1">1. Inside Corner — Left Side Piece:</strong>
+          • Miter: <span id="r_ic_miter_l" class="font-bold text-blue-700">Right</span><br />
+          • Bevel: <span class="font-bold text-indigo-700">Left</span><br />
+          • Orientation: Top of molding against fence (save right end of cut).
+        </div>
+        <div class="p-3 bg-blue-50/50 rounded-lg border border-blue-100">
+          <strong class="text-blue-900 block mb-1">2. Inside Corner — Right Side Piece:</strong>
+          • Miter: <span id="r_ic_miter_r" class="font-bold text-blue-700">Left</span><br />
+          • Bevel: <span class="font-bold text-indigo-700">Left</span><br />
+          • Orientation: Bottom of molding against fence (save right end of cut).
+        </div>
+        <div class="p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+          <strong class="text-amber-900 block mb-1">3. Outside Corner — Left Side Piece:</strong>
+          • Miter: <span id="r_oc_miter_l" class="font-bold text-amber-700">Left</span><br />
+          • Bevel: <span class="font-bold text-indigo-700">Left</span><br />
+          • Orientation: Bottom of molding against fence (save left end of cut).
+        </div>
+        <div class="p-3 bg-amber-50/50 rounded-lg border border-amber-100">
+          <strong class="text-amber-900 block mb-1">4. Outside Corner — Right Side Piece:</strong>
+          • Miter: <span id="r_oc_miter_r" class="font-bold text-amber-700">Right</span><br />
+          • Bevel: <span class="font-bold text-indigo-700">Left</span><br />
+          • Orientation: Top of molding against fence (save left end of cut).
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Crown Cut Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Cut Crown Molding (Flat vs. Nested)</h2>
+    <p class="text-gray-700 mb-4">There are two professional ways to cut crown molding on a miter saw:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>The "Laying Flat" Method (Compound Miter &amp; Bevel):</strong> The molding lies face up flat on the saw table. You adjust both the miter table angle and the saw blade bevel tilt. This is required for large moldings (over 4") that exceed your saw's vertical clearance.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>The "Nested" Method (Upside Down &amp; Backwards):</strong> The molding rests against the vertical fence and base table at its installed spring angle. The bevel stays at 0°, and you only swing the miter angle (e.g. 45°).</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Always Cut Test Scraps First:</strong> Cut two 6-inch test pieces with your calculated angles and test the corner fit before cutting your expensive long molding boards.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Trigonometric Compound Miter Formulas</h2>
+    <p class="text-gray-700 mb-4">Calculations based on standard geometric compound angle trigonometry:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Miter Angle = arctan( sin(Spring Angle) &divide; tan(Corner Angle &divide; 2) )</p>
+      <p>Bevel Angle = arcsin( cos(Spring Angle) &times; cos(Corner Angle &divide; 2) )</p>
+    </div>
+    <p class="text-gray-700">
+      For a 90° corner with 38° spring: <code>Miter = arctan(sin 38° / tan 45°) = 31.62°</code> and <code>Bevel = arcsin(cos 38° &times; cos 45°) = 33.86°</code>.
+    </p>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What are the miter and bevel angles for a 90-degree corner with 38-degree crown molding?</h3>
+        <p class="text-gray-600 text-sm">For a standard 90° corner using 38° spring angle crown molding laid flat on the saw table, set your miter saw to 31.62° Miter and 33.86° Bevel (often marked on compound miter saw scales with small crown icons).</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is the angle for a 135-degree bay window corner?</h3>
+        <p class="text-gray-600 text-sm">For a 135-degree corner with 38° spring crown molding, set your miter saw to 18.59° Miter and 22.95° Bevel.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why don't my 90-degree corner joints close tightly?</h3>
+        <p class="text-gray-600 text-sm">Drywall corners in residential homes are rarely exactly 90 degrees due to joint compound buildup. Use an adjustable digital angle gauge to measure the true corner angle (e.g. 89.2° or 91.5°) and plug the exact measurement into our custom angle calculator.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Millwork &amp; Carpentry Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/trim-molding" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Trim &amp; Baseboard Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate linear feet, corner miters &amp; waste factors for baseboard.</div>
+      </a>
+      <a href="/calculators/stair-stringer" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Stair Stringer Cut Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate rise, run &amp; live SVG stringer notches.</div>
+      </a>
+      <a href="/calculators/coffered-ceiling" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Coffered Ceiling Grid Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate beam layout spacing and crown molding box trim.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  document.getElementById('cornerAnglePreset').addEventListener('change', function() {
+    const customBox = document.getElementById('customAngleBox');
+    if (this.value === 'custom') {
+      customBox.classList.remove('hidden');
+    } else {
+      customBox.classList.add('hidden');
+    }
+  });
+
+  function calculateCrownMolding() {
+    const springDeg = parseFloat(document.getElementById('springAngle').value) || 38;
+    const preset = document.getElementById('cornerAnglePreset').value;
+    let cornerDeg = parseFloat(preset);
+
+    if (preset === 'custom') {
+      cornerDeg = parseFloat(document.getElementById('customAngle').value) || 89.5;
+    }
+
+    const perimeter = parseFloat(document.getElementById('roomPerimeter').value) || 54;
+
+    // Convert degrees to radians
+    const springRad = (springDeg * Math.PI) / 180;
+    const halfCornerRad = ((cornerDeg / 2) * Math.PI) / 180;
+
+    // Compound Formulas:
+    // Miter = atan( sin(spring) / tan(corner / 2) )
+    // Bevel = asin( cos(spring) * cos(corner / 2) )
+    const miterRad = Math.atan(Math.sin(springRad) / Math.tan(halfCornerRad));
+    const miterDeg = (miterRad * 180) / Math.PI;
+
+    const bevelRad = Math.asin(Math.cos(springRad) * Math.cos(halfCornerRad));
+    const bevelDeg = (bevelRad * 180) / Math.PI;
+
+    // Material Takeoff: 15% miter waste
+    const totalFeet = Math.round(perimeter * 1.15);
+    const sticks8ft = Math.ceil(totalFeet / 8);
+
+    // Update Result UI
+    document.getElementById('r_miterAngle').textContent = `${miterDeg.toFixed(2)}°`;
+    document.getElementById('r_bevelAngle').textContent = `${bevelDeg.toFixed(2)}°`;
+    document.getElementById('r_linearFeetNeeded').textContent = `${totalFeet} Linear Ft`;
+    document.getElementById('r_boardCount').textContent = `${sticks8ft} Sticks (8')`;
+
+    // 4 Cut Table
+    document.getElementById('r_ic_miter_l').textContent = `Right ${miterDeg.toFixed(1)}°`;
+    document.getElementById('r_ic_miter_r').textContent = `Left ${miterDeg.toFixed(1)}°`;
+    document.getElementById('r_oc_miter_l').textContent = `Left ${miterDeg.toFixed(1)}°`;
+    document.getElementById('r_oc_miter_r').textContent = `Right ${miterDeg.toFixed(1)}°`;
+
+    // Render SVG Protractor
+    renderProtractorSVG(miterDeg, bevelDeg, cornerDeg, springDeg);
+
+    // Clipboard Handler
+    setupClipboard(miterDeg, bevelDeg, cornerDeg, springDeg, totalFeet, sticks8ft);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderProtractorSVG(miter, bevel, corner, spring) {
+    const container = document.getElementById('svgContainer');
+    const width = 560;
+    const height = 200;
+
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Miter Scale Arc (Left)
+    svg += `<path d="M 60 140 A 90 90 0 0 1 240 140" fill="none" stroke="#94A3B8" stroke-width="4" />`;
+    svg += `<line x1="150" y1="140" x2="150" y2="40" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.5" />`;
+    svg += `<text x="150" y="32" text-anchor="middle" font-size="10" font-weight="bold" fill="#64748b">0° Miter (Center)</text>`;
+    
+    // Miter Indicator Line
+    const angleOffset = (miter / 45) * 60;
+    const endX = 150 + angleOffset;
+    const endY = 140 - Math.sqrt(Math.max(0, 90*90 - angleOffset*angleOffset));
+    svg += `<line x1="150" y1="140" x2="${endX}" y2="${endY}" stroke="#2563EB" stroke-width="3" />`;
+    svg += `<circle cx="150" cy="140" r="5" fill="#1E40AF" />`;
+    svg += `<text x="150" y="165" text-anchor="middle" font-size="12" font-weight="bold" fill="#1D4ED8">Miter: ${miter.toFixed(2)}°</text>`;
+
+    // Bevel Tilt Scale (Right)
+    svg += `<path d="M 320 140 A 90 90 0 0 1 500 140" fill="none" stroke="#94A3B8" stroke-width="4" />`;
+    svg += `<line x1="410" y1="140" x2="410" y2="40" stroke="#CBD5E1" stroke-dasharray="3,3" stroke-width="1.5" />`;
+    svg += `<text x="410" y="32" text-anchor="middle" font-size="10" font-weight="bold" fill="#64748b">0° Bevel (Vertical)</text>`;
+
+    // Bevel Indicator Line
+    const bevelOffset = -(bevel / 45) * 60;
+    const bEndX = 410 + bevelOffset;
+    const bEndY = 140 - Math.sqrt(Math.max(0, 90*90 - bevelOffset*bevelOffset));
+    svg += `<line x1="410" y1="140" x2="${bEndX}" y2="${bEndY}" stroke="#4F46E5" stroke-width="3" />`;
+    svg += `<circle cx="410" cy="140" r="5" fill="#3730A3" />`;
+    svg += `<text x="410" y="165" text-anchor="middle" font-size="12" font-weight="bold" fill="#4338CA">Bevel Tilt: ${bevel.toFixed(2)}°</text>`;
+
+    svg += `<text x="280" y="190" text-anchor="middle" font-size="10" fill="#475569">For ${corner}° Wall Corner with ${spring}° Spring Crown</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(miter, bevel, corner, spring, feet, sticks) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY CROWN MOLDING CUT SCHEDULE:\n\n`;
+      text += `• Corner Angle: ${corner}° (Spring: ${spring}°)\n`;
+      text += `• Miter Setting: ${miter.toFixed(2)}°\n`;
+      text += `• Bevel Setting: ${bevel.toFixed(2)}° (Tilt Left)\n`;
+      text += `• Cut Orientation: Laying flat on saw table face up\n`;
+      text += `• Molding Material: ${feet} Linear Feet (${sticks} x 8-Foot Sticks with 15% miter waste)\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/crown-molding`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateCrownMolding);
+</script>

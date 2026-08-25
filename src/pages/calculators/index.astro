@@ -441,14 +441,44 @@ const calculators = [
     href: "/calculators/paver-base-sand",
     category: "Concrete"
   },
+  {
+    title: "Crown Molding Miter & Bevel Calculator",
+    description: "Calculate exact compound miter saw settings (miter & bevel) for crown molding laid flat, plus board footage and cut directions.",
+    href: "/calculators/crown-molding",
+    category: "Millwork & Trim"
+  },
+  {
+    title: "Paver Walkway & Stepping Stone Calculator",
+    description: "Calculate pavers, crushed gravel base tons, bedding sand, edge restraints, and stepping stone spacing for walkways.",
+    href: "/calculators/paver-walkway",
+    category: "Concrete"
+  },
+  {
+    title: "Spray Foam Insulation Calculator",
+    description: "Calculate board feet, closed-cell vs. open-cell 200/600 canister kits, final R-value, and moisture vapor barrier depth.",
+    href: "/calculators/spray-foam-insulation",
+    category: "Utilities"
+  },
+  {
+    title: "Sonotube Concrete Pier Calculator",
+    description: "Calculate concrete volume in cubic yards, 60 lb / 80 lb bag counts, Sonotube form lengths, and rebar for deck piers.",
+    href: "/calculators/sonotube-concrete",
+    category: "Concrete"
+  },
+  {
+    title: "Gravel Driveway & Crushed Stone Calculator",
+    description: "Calculate crushed gravel tons, cubic yards, dump truck deliveries, geotextile underlayment, and multi-layer base depths.",
+    href: "/calculators/gravel-driveway",
+    category: "Concrete"
+  },
 ];
 
 const categories = [...new Set(calculators.map(c => c.category))];
 ---
 
 <Layout
-  title="All 63 Free DIY Construction Calculators — CalcForDIY"
-  description="Browse all 63 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs."
+  title="All 78 Free DIY Construction Calculators — CalcForDIY"
+  description="Browse all 78 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs."
 >
 <script type="application/ld+json" is:inline>
 {
@@ -456,7 +486,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
   "@type": "WebSite",
   "name": "CalcForDIY Calculators Directory",
   "url": "https://calcfordiy.com/calculators",
-  "description": "Directory of 63 free DIY construction & material calculators with SVG diagrams and RSMeans contractor cost benchmarks.",
+  "description": "Directory of 78 free DIY construction & material calculators with SVG diagrams and RSMeans contractor cost benchmarks.",
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://calcfordiy.com/calculators?q={search_term_string}",
@@ -469,9 +499,9 @@ const categories = [...new Set(calculators.map(c => c.category))];
     <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
       <span>🛠️ Full Calculator Directory</span>
       <span>•</span>
-      <span>73 Tools Live</span>
+      <span>78 Tools Live</span>
     </div>
-    <h1 class="text-4xl font-bold text-gray-900 mb-3">All 73 Free DIY Calculators</h1>
+    <h1 class="text-4xl font-bold text-gray-900 mb-3">All 78 Free DIY Calculators</h1>
     <p class="text-lg text-gray-600 max-w-3xl mb-6">
       Instant material takeoffs, dynamic SVG framing diagrams, RSMeans contractor cost benchmarks, and 1-click shopping list exports. Everything runs free in your browser.
     </p>
@@ -484,7 +514,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
       <input
         type="text"
         id="calcSearchInput"
-        placeholder="Search 73 calculators (e.g. 'concrete', 'sump pump', 'drywall', 'pipe slope', 'firewood')..."
+        placeholder="Search 78 calculators (e.g. 'concrete', 'sump pump', 'drywall', 'pipe slope', 'firewood')..."
         class="w-full bg-transparent text-gray-900 placeholder-gray-400 text-base focus:outline-none py-1"
       />
       <button
@@ -496,7 +526,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
       </button>
     </div>
     <div class="text-xs text-gray-500 mt-2 ml-1" id="searchStatusText">
-      Showing all 65 calculators across 8 trade categories.
+      Showing all 78 calculators across trade categories.
     </div>
   </div>
 

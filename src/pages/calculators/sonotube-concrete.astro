@@ -1,0 +1,440 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Sonotube Concrete Calculator (Piers, Footings & Bags) | CalcForDIY"
+  description="Calculate concrete cubic yards, 60 lb & 80 lb Quikrete bags, Sonotube cylinder tube lengths, and rebar for deck piers, pole barns, and frost-depth footings."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Sonotube Concrete Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many 80 lb bags of concrete for a 12-inch Sonotube 4 feet deep?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 12-inch diameter Sonotube that is 48 inches (4 feet) deep has a volume of 3.14 cubic feet. You will need approximately 5.3 eighty-pound bags (round up to 6 bags) or 7 sixty-pound bags per pier."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many 80 lb bags for an 8-inch or 10-inch Sonotube?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a 4-foot deep pier: an 8-inch Sonotube requires ~2.5 eighty-pound bags, and a 10-inch Sonotube requires ~3.6 eighty-pound bags (4 bags)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should concrete piers go below the frost line?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Per IRC Section R403.1.4.1, all structural exterior concrete piers and footings must extend at least 12 inches below the local regional frost line (often 36 to 48 inches deep in Northern states) to prevent winter frost heaving."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Sonotube Concrete Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Sonotube Concrete Pier &amp; Footing Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate concrete volume in cubic yards, 60 lb / 80 lb bag counts, Sonotube form lengths, rebar reinforcement, and flared bell footings.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Pier Cylinder Dimensions &amp; Footing Specs
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Sonotube Tube Diameter</label>
+        <select id="tubeDiameter" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="8">8-Inch Diameter (Light Decks / Porches)</option>
+          <option value="10">10-Inch Diameter (Standard Deck Piers)</option>
+          <option value="12" selected>12-Inch Diameter (Heavy Decks &amp; Carports)</option>
+          <option value="16">16-Inch Diameter (Pole Barns / 2-Story)</option>
+          <option value="18">18-Inch Diameter (Heavy Commercial / Addition)</option>
+          <option value="24">24-Inch Diameter (High Load / Soft Soil)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Hole Depth (Below Grade)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="depthInches" placeholder="48" value="48" min="12" max="120" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">inches</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Height Above Ground</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="heightAboveGrade" placeholder="6" value="6" min="0" max="60" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">inches</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Number of Pier Footings</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="pierCount" placeholder="6" value="6" min="1" max="100" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">piers</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Footing Base Style</label>
+        <select id="footingStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="cylinder" selected>Straight Cylindrical Tube (Standard Sonotube Column)</option>
+          <option value="bell_footing">Flared Bell Footing / Bigfoot Form Base (+2.2 cu ft / pier)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Concrete Spillage / Hole Waste Buffer</label>
+        <select id="wasteBuffer" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.05">5% Standard Buffer</option>
+          <option value="1.10" selected>10% Recommended (Over-digging &amp; slump)</option>
+          <option value="1.15">15% High (Rocky soil / flared tops)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Concrete Bags &amp; Pier Volumes →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Concrete Pier Material Takeoff</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_bags80">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">80 lb Concrete Bags</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_bagsPerPier">~0 Bags per Pier</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_bags60">—</div>
+        <div class="text-xs text-gray-500 mt-1">60 lb Bags Alternative</div>
+        <div class="text-xs text-gray-500 mt-0.5">Quikrete / Sakrete</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_cubicYards">—</div>
+        <div class="text-xs text-gray-500 mt-1">Total Concrete Volume</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_totalCuFt">Cubic Feet</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_sonotubeForms">—</div>
+        <div class="text-xs text-gray-500 mt-1">Sonotubes (4' Sticks)</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_tubeSummary">Round Concrete Forms</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Pier Cross-Section &amp; Rebar Reinforcement Anatomy</span>
+        <span class="text-xs text-blue-600 font-normal">IRC Section R403 Frost Detail</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Component Hardware Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ Concrete Pier Hardware &amp; Rebar Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_pierHwList">
+        <!-- Hardware schedule auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Sonotube Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- Quick Bag Lookup Reference Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">Sonotube Concrete Bags per Pier (Quick Lookup Table)</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse text-sm text-gray-700">
+        <thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200">
+          <tr>
+            <th class="p-3">Tube Diameter</th>
+            <th class="p-3">Pier Depth</th>
+            <th class="p-3">Volume (Cu Ft)</th>
+            <th class="p-3">80 lb Bags (Yellow)</th>
+            <th class="p-3">60 lb Bags (Red)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 font-bold">8 Inches</td>
+            <td class="p-3">48 Inches (4 ft)</td>
+            <td class="p-3 font-mono">1.40 cu ft</td>
+            <td class="p-3 font-bold text-blue-700">2.5 Bags (~3)</td>
+            <td class="p-3 font-mono">3.2 Bags (~4)</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 font-bold">10 Inches</td>
+            <td class="p-3">48 Inches (4 ft)</td>
+            <td class="p-3 font-mono">2.18 cu ft</td>
+            <td class="p-3 font-bold text-blue-700">3.7 Bags (~4)</td>
+            <td class="p-3 font-mono">4.9 Bags (~5)</td>
+          </tr>
+          <tr class="bg-blue-50/50 hover:bg-blue-50">
+            <td class="p-3 font-bold text-blue-900">12 Inches (Standard)</td>
+            <td class="p-3 font-bold text-blue-900">48 Inches (4 ft)</td>
+            <td class="p-3 font-mono font-bold text-blue-900">3.14 cu ft</td>
+            <td class="p-3 font-bold text-blue-800">5.3 Bags (~6)</td>
+            <td class="p-3 font-bold text-blue-800">7.0 Bags</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="p-3 font-bold">16 Inches</td>
+            <td class="p-3">48 Inches (4 ft)</td>
+            <td class="p-3 font-mono">5.58 cu ft</td>
+            <td class="p-3 font-bold text-blue-700">9.3 Bags (~10)</td>
+            <td class="p-3 font-mono">12.4 Bags</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Pour Sonotube Concrete Piers (Pro Method)</h2>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Auger Below the Frost Line:</strong> Dig holes at least 12" deeper than your local frost line. Add 4 to 6 inches of crushed gravel to the bottom of the hole and tamp solid for drainage.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Set Sonotube Forms Plumb &amp; Level:</strong> Insert the cardboard tube, cut to finished height with a handsaw, level with string lines, and backfill soil around the outside to hold it rigid.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Install Vertical Rebar Dowels:</strong> Push two to four #4 (1/2") vertical steel rebar rods into the concrete, keeping them 2 inches away from tube walls to maintain structural concrete cover.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Embed Post Anchor Brackets:</strong> While concrete is still wet, embed Simpson Strong-Tie post bases (ABA44/ABU66) aligned to your deck layout grid.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many 80 lb bags of concrete for a 12-inch Sonotube 4 feet deep?</h3>
+        <p class="text-gray-600 text-sm">A 12-inch diameter Sonotube that is 48 inches (4 feet) deep has a volume of 3.14 cubic feet. You will need approximately 5.3 eighty-pound bags (round up to 6 bags) or 7 sixty-pound bags per pier.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Do I need to peel off the Sonotube cardboard after it dries?</h3>
+        <p class="text-gray-600 text-sm">Yes, you should strip the exposed above-ground cardboard portion after 48 hours to expose clean concrete and prevent paper decay. The underground portion can remain as it biodegrades naturally in the soil.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">At what yardage should I order a ready-mix concrete truck instead of bags?</h3>
+        <p class="text-gray-600 text-sm">If your project requires more than <strong>1.5 to 2.0 cubic yards (60+ eighty-pound bags)</strong>, ordering a ready-mix concrete delivery truck is much faster, less physically exhausting, and ensures consistent 4,000 PSI strength across all piers.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Foundation &amp; Deck Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate cubic yards and bags for flat concrete slabs.</div>
+      </a>
+      <a href="/calculators/deck-joist-span" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Joist Span Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate beam sizes, post spacing &amp; allowable joist spans.</div>
+      </a>
+      <a href="/calculators/quikrete-bags" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Quikrete Bags Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Convert cubic yards to 50, 60, and 80 lb bags.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateSonotube() {
+    const diamIn = parseFloat(document.getElementById('tubeDiameter').value) || 12;
+    const depthIn = parseFloat(document.getElementById('depthInches').value) || 48;
+    const heightIn = parseFloat(document.getElementById('heightAboveGrade').value) || 6;
+    const count = parseInt(document.getElementById('pierCount').value) || 6;
+    const style = document.getElementById('footingStyle').value;
+    const buffer = parseFloat(document.getElementById('wasteBuffer').value) || 1.10;
+
+    const totalHeightIn = depthIn + heightIn;
+    const radiusFt = (diamIn / 2) / 12;
+    const heightFt = totalHeightIn / 12;
+
+    // Single tube cylinder volume (cu ft)
+    let singleCuFt = Math.PI * radiusFt * radiusFt * heightFt;
+
+    // Add bell footing volume if selected (Bigfoot BF24/BF28 average +2.2 cu ft)
+    if (style === 'bell_footing') {
+      singleCuFt += 2.2;
+    }
+
+    const totalCuFt = singleCuFt * count * buffer;
+    const totalCuYd = totalCuFt / 27;
+
+    // Bag yields: 80 lb = 0.60 cu ft, 60 lb = 0.45 cu ft
+    const totalBags80 = Math.ceil(totalCuFt / 0.60);
+    const totalBags60 = Math.ceil(totalCuFt / 0.45);
+    const bags80PerPier = (totalBags80 / count).toFixed(1);
+
+    // Sonotube stick length (4 ft sticks)
+    const sticksPerPier = Math.ceil(totalHeightIn / 48);
+    const totalTubes = sticksPerPier * count;
+
+    // Update Result UI
+    document.getElementById('r_bags80').textContent = `${totalBags80} Bags`;
+    document.getElementById('r_bagsPerPier').textContent = `~${bags80PerPier} Bags (80 lb) per Pier`;
+    document.getElementById('r_bags60').textContent = `${totalBags60} Bags (60 lb)`;
+    document.getElementById('r_cubicYards').textContent = `${totalCuYd.toFixed(2)} Cu Yds`;
+    document.getElementById('r_totalCuFt').textContent = `${totalCuFt.toFixed(1)} Total Cubic Feet`;
+    document.getElementById('r_sonotubeForms').textContent = `${totalTubes} Tubes (4')`;
+    document.getElementById('r_tubeSummary').textContent = `${diamIn}" Diam \u00d7 ${totalHeightIn}" Total Length`;
+
+    // Component Schedule
+    const hwList = document.getElementById('r_pierHwList');
+    hwList.innerHTML = '';
+    hwList.innerHTML += `<li><strong>Concrete Mix:</strong> ${totalBags80} x 80 lb Quikrete/Sakrete bags OR ${totalCuYd.toFixed(2)} Cu Yds ready-mix truck delivery</li>`;
+    hwList.innerHTML += `<li><strong>Cardboard Forms:</strong> ${totalTubes} x 4-foot Sonotube forms (${diamIn}" Diameter)</li>`;
+    hwList.innerHTML += `<li><strong>Footing Style:</strong> ${style === 'bell_footing' ? 'Bigfoot / Flared Bell Base (+2.2 cu ft per pier for frost heave resistance)' : 'Standard Straight Cylindrical Pier'}</li>`;
+    hwList.innerHTML += `<li><strong>Steel Rebar:</strong> ${count * 2} to ${count * 4} x #4 (1/2") vertical rebar dowels cut to ${totalHeightIn - 6}" length</li>`;
+    hwList.innerHTML += `<li><strong>Post Anchor Brackets:</strong> ${count} x Simpson Strong-Tie ABA / ABU post bases + 1/2" anchor J-bolts</li>`;
+    hwList.innerHTML += `<li><strong>Drainage Gravel:</strong> ~${(count * 0.15).toFixed(1)} Tons of 3/4" crushed stone for pier base gravel</li>`;
+
+    // Render SVG
+    renderSonotubeSVG(diamIn, depthIn, heightIn, style);
+
+    // Setup Clipboard
+    setupClipboard(totalBags80, totalBags60, totalCuYd, totalTubes, diamIn, totalHeightIn, count, style);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderSonotubeSVG(diam, depth, aboveGrade, style) {
+    const container = document.getElementById('svgContainer');
+    const w = 560;
+    const h = 240;
+
+    let svg = `<svg viewBox="0 0 ${w} ${h}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Soil Line (Ground Grade)
+    svg += `<rect x="30" y="70" width="500" height="150" fill="#78716C" />`;
+    svg += `<line x1="30" y1="70" x2="530" y2="70" stroke="#15803D" stroke-width="4" />`;
+    svg += `<text x="50" y="62" font-size="10" font-weight="bold" fill="#15803D">Finished Grade (Ground Level)</text>`;
+
+    // Frost Line
+    svg += `<line x1="30" y1="160" x2="530" y2="160" stroke="#0284C7" stroke-dasharray="4,4" stroke-width="2" />`;
+    svg += `<text x="50" y="152" font-size="9" font-weight="bold" fill="#0284C7">Regional Frost Line Depth (~36"-48")</text>`;
+
+    // Concrete Pier Center Column
+    const colWidth = Math.min(100, Math.max(50, diam * 5));
+    const colLeft = 280 - (colWidth / 2);
+    const colRight = 280 + (colWidth / 2);
+
+    // Sonotube Tube Concrete
+    svg += `<rect x="${colLeft}" y="30" width="${colWidth}" height="150" fill="#CBD5E1" stroke="#475569" stroke-width="3" rx="2" />`;
+
+    // Flared Footing / Bell Base
+    if (style === 'bell_footing') {
+      svg += `<path d="M ${colLeft} 180 L ${colLeft - 35} 215 L ${colRight + 35} 215 L ${colRight} 180 Z" fill="#94A3B8" stroke="#475569" stroke-width="3" />`;
+      svg += `<text x="280" y="205" text-anchor="middle" font-size="9" font-weight="bold" fill="#0F172A">Flared Bell Base</text>`;
+    } else {
+      svg += `<rect x="${colLeft - 10}" y="180" width="${colWidth + 20}" height="35" fill="#94A3B8" stroke="#475569" stroke-width="2" />`;
+    }
+
+    // Vertical Rebar
+    svg += `<line x1="${colLeft + 12}" y1="40" x2="${colLeft + 12}" y2="200" stroke="#B91C1C" stroke-width="3" />`;
+    svg += `<line x1="${colRight - 12}" y1="40" x2="${colRight - 12}" y2="200" stroke="#B91C1C" stroke-width="3" />`;
+
+    // Post Base Anchor on Top
+    svg += `<rect x="265" y="18" width="30" height="12" fill="#1E293B" rx="1" />`;
+    svg += `<line x1="280" y1="30" x2="280" y2="55" stroke="#1E293B" stroke-width="3" />`;
+    svg += `<text x="280" y="12" text-anchor="middle" font-size="9" font-weight="bold" fill="#0F172A">Simpson Post Base</text>`;
+
+    // Dimension Labels
+    svg += `<text x="${colRight + 15}" y="50" font-size="10" font-weight="bold" fill="#1E40AF">${aboveGrade}" Above Grade</text>`;
+    svg += `<text x="${colRight + 15}" y="120" font-size="10" font-weight="bold" fill="#0F172A">${depth}" Below Grade Pier (${diam}" Sonotube)</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(b80, b60, yards, tubes, diam, height, count, style) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY SONOTUBE CONCRETE TAKEOFF:\n\n`;
+      text += `• Piers: ${count} x ${diam}" Diameter Sonotube Piers (${height}" Total Length)\n`;
+      text += `• Footing Style: ${style === 'bell_footing' ? 'Flared Bell Base / Bigfoot' : 'Straight Cylinder'}\n`;
+      text += `• Total Concrete: ${b80} Bags (80 lb Quikrete) OR ${b60} Bags (60 lb)\n`;
+      text += `• Volume: ${yards.toFixed(2)} Cubic Yards (includes 10% waste buffer)\n`;
+      text += `• Forms: ${tubes} x 4-foot Sonotube Cylinders (${diam}" Diam)\n`;
+      text += `• Reinforcement: #4 (1/2") Vertical Rebar Dowels + Simpson Strong-Tie Post Bases\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/sonotube-concrete`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateSonotube);
+</script>

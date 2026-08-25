@@ -1,0 +1,155 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Excavation & Geotextile Underlayment",
+    description: "Determine excavation depth (6\" to 8\"), soil volume, and square footage of heavy-duty woven geotextile ground stabilization fabric.",
+    calculatorName: "Gravel Driveway Calculator",
+    href: "/calculators/gravel-driveway",
+    icon: "🚜"
+  },
+  {
+    stepNumber: 2,
+    title: "Sub-Base & Intermediate Crushed Stone",
+    description: "Calculate tonnage and truckloads for #3 ballast stone (4\" base) and #57 crushed stone (3\" drainage layer) at 1.38 tons/cu yd.",
+    calculatorName: "Gravel Driveway Calculator",
+    href: "/calculators/gravel-driveway",
+    icon: "🪨"
+  },
+  {
+    stepNumber: 3,
+    title: "Pedestrian Walkway & Stepping Stone Connector",
+    description: "Plan connected front walkways and garden pathways using interlocking pavers, bedding sand, and snap-edge restraints.",
+    calculatorName: "Paver Walkway Calculator",
+    href: "/calculators/paver-walkway",
+    icon: "🚶"
+  },
+  {
+    stepNumber: 4,
+    title: "Driveway Drainage & Culvert French Drain",
+    description: "Calculate crushed stone backfill, perforated corrugated pipe, and trench slope to channel driveway runoff away from structures.",
+    calculatorName: "French Drain Calculator",
+    href: "/calculators/french-drain",
+    icon: "💧"
+  }
+];
+---
+
+<Layout
+  title="Gravel Driveway & Pathway Construction Hub — Step-by-Step DIY Workflow | CalcForDIY"
+  description="Follow a 4-step DIY workflow for gravel driveways and walkways: soil excavation, 3-layer crushed stone base, paver path connectors, and drainage."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Build a Long-Lasting Gravel Driveway and Pathway",
+    "description": "A 4-step DIY workflow for calculating excavation, 3-layer crushed stone tonnage, paver walkway paths, and drainage swales.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Excavate & Lay Geotextile Fabric",
+        "text": "Strip 6-8 inches of topsoil down to subgrade and roll heavy woven geotextile fabric across the trench."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Install Multi-Layer Crushed Stone Base",
+        "text": "Spread and compact 4 inches of #3 ballast stone followed by 3 inches of #57 stone and 2 inches of crusher run top coat."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Build Connecting Paver Walkway",
+        "text": "Install connecting pedestrian walkways with 4-inch base, 1-inch bedding sand, and spiked edge restraints."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Install Swale & French Drain Runoff",
+        "text": "Channel driveway water runoff into roadside ditches or French drains to prevent wheel ruts and potholes."
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span>Gravel Driveway &amp; Pathway</span>
+  </div>
+
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+      <span>🚜 Heavy Hardscaping &amp; Driveway Workflow</span>
+      <span>•</span>
+      <span>4 Sequential Calculators</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+      Gravel Driveway &amp; Pathway Construction Hub
+    </h1>
+    <p class="text-lg text-gray-600 max-w-3xl leading-relaxed">
+      A heavy-duty gravel driveway requires a proper 3-layer aggregate structure and geotextile fabric to prevent potholes and rutting. Follow this 4-step workflow to calculate your materials from base rock to finished pathways.
+    </p>
+  </div>
+
+  <!-- Interactive Step-by-Step Workflow Cards -->
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border-2 border-gray-200 hover:border-blue-500 rounded-2xl p-6 transition-all shadow-xs hover:shadow-md">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-2xl shrink-0">
+              {step.icon}
+            </div>
+            <div>
+              <div class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">
+                Step {step.stepNumber} of 4
+              </div>
+              <h2 class="text-xl font-bold text-gray-900 mb-1">
+                {step.title}
+              </h2>
+              <p class="text-sm text-gray-600 max-w-2xl leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </div>
+          <div class="shrink-0">
+            <a
+              href={step.href}
+              class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-colors shadow-2xs"
+            >
+              <span>Open {step.calculatorName}</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Professional Construction Schedule Reference -->
+  <div class="bg-gray-50 border border-gray-200 rounded-2xl p-8 mb-8">
+    <h2 class="text-2xl font-bold text-gray-900 mb-4">Driveway Construction Rules of Thumb</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-700">
+      <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-2xs">
+        <div class="font-bold text-gray-900 text-base mb-2">1. Always Lay Geotextile</div>
+        <p class="text-xs text-gray-600 leading-relaxed">Without heavy woven fabric, your expensive stone ballast will sink into the mud under 5,000 lb pickup truck axle loads within one rainy season.</p>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-2xs">
+        <div class="font-bold text-gray-900 text-base mb-2">2. Maintain a 1/2" Crown</div>
+        <p class="text-xs text-gray-600 leading-relaxed">Potholes form when standing water softens gravel. Shape a 1/2-inch per foot center ridge crown so water sheds immediately into side swales.</p>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-2xs">
+        <div class="font-bold text-gray-900 text-base mb-2">3. Tri-Axle Truck Delivery</div>
+        <p class="text-xs text-gray-600 leading-relaxed">Order in full 15–18 ton tri-axle dump truck loads from a local aggregate quarry for the lowest per-ton cost.</p>
+      </div>
+    </div>
+  </div>
+</Layout>

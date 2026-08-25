@@ -1,0 +1,396 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Spray Foam Insulation Calculator (Board Feet & Kit Sizing) | CalcForDIY"
+  description="Calculate board feet, closed-cell vs open-cell foam canister kits (200 & 600 bd ft), R-value thickness, and cost for rim joists, crawl spaces, and pole barns."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Spray Foam Insulation Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a board foot in spray foam insulation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A board foot (bd ft) is a volume unit measuring 1 square foot of surface area covered at 1 inch of cured foam thickness (12\" × 12\" × 1\"). For example, 100 sq ft sprayed at 2 inches thick equals 200 board feet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between closed-cell and open-cell spray foam?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Closed-cell spray foam (2.0 lb density) provides R-6.5 to R-7.0 per inch, adds structural rigidity, and acts as a 100% moisture vapor barrier at 2 inches thick. Open-cell foam (0.5 lb density) provides R-3.7 per inch, expands 100x for exceptional air sealing and acoustic sound dampening, but is vapor permeable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many kits of spray foam do I need for a 100-foot rim joist?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard 100 linear foot rim joist (10 inches high = ~83 sq ft) sprayed with 2 inches of closed-cell foam (R-13 to R-14 vapor barrier) requires approximately 166 board feet. One 200 board-foot DIY canister kit (e.g. Froth-Pak 200 or Touch 'n Foam) will complete the entire project with buffer."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Spray Foam Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Spray Foam Insulation Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate board feet, closed-cell vs. open-cell 200/600 canister kits, final R-value, and moisture vapor barrier depth.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above the Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Surface Area &amp; Spray Foam Specifications
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Total Wall / Cavity Surface Area</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="foamSqft" placeholder="250" value="250" min="10" max="10000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">sq ft</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Target Foam Thickness (Inches)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="foamThickness" placeholder="2" value="2" min="0.5" max="12" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">inches depth</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Spray Foam Formulation</label>
+        <select id="foamType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="closed" selected>Closed-Cell Foam (R-6.7 / inch — Vapor Barrier &amp; Rigid)</option>
+          <option value="open">Open-Cell Foam (R-3.7 / inch — Acoustic &amp; High Expansion)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Application Project Location</label>
+        <select id="projectLocation" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="rim_joist" selected>Basement Rim Joists &amp; Sill Plates</option>
+          <option value="crawlspace">Crawlspace Walls / Underfloor</option>
+          <option value="pole_barn">Pole Barn / Garage Metal Walls</option>
+          <option value="attic">Attic Roof Deck / Cathedral Ceiling</option>
+          <option value="van">Camper Van / Cargo Trailer Conversion</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Overspray &amp; Uneven Cavity Buffer</label>
+        <select id="wasteBuffer" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.10">10% Standard Waste Buffer</option>
+          <option value="1.15" selected>15% Recommended (Uneven studs / framing)</option>
+          <option value="1.20">20% High (Overhead spraying / cold temps)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="calcBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base print:hidden">
+      Calculate Board Feet &amp; Canister Kits →
+    </button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8 print:bg-white print:border-gray-300 print:from-white print:to-white print:shadow-none">
+    <h2 class="text-lg font-semibold text-blue-900 mb-4 print:text-xl print:text-gray-900">Your Spray Foam Material Takeoff</h2>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-blue-400 print:border-gray-300 print:shadow-none">
+        <div class="text-3xl font-black text-blue-700 print:text-gray-900" id="r_boardFeet">—</div>
+        <div class="text-xs text-blue-800 font-semibold uppercase tracking-wide mt-1">Total Board Feet</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_sqftSummary">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_rValue">—</div>
+        <div class="text-xs text-gray-500 mt-1">Thermal Resistance</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_rPerInch">—</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-gray-900 print:text-3xl" id="r_canisterKits">—</div>
+        <div class="text-xs text-gray-500 mt-1">Recommended DIY Kits</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_kitType">Froth-Pak / Tiger Foam</div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm print:border print:border-gray-200 print:shadow-none">
+        <div class="text-2xl font-bold text-green-700 print:text-3xl print:text-gray-900" id="r_vaporStatus">Vapor Barrier</div>
+        <div class="text-xs text-gray-500 mt-1">Moisture Protection</div>
+        <div class="text-xs text-gray-500 mt-0.5" id="r_permClass">Class II Vapor Retarder</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Visual Schematic -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-blue-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center justify-between">
+        <span>📐 Cavity Cross-Section &amp; Thermal R-Value Profile</span>
+        <span class="text-xs text-blue-600 font-normal">Expanding Foam Layer Detail</span>
+      </h3>
+      <div id="svgContainer" class="w-full overflow-x-auto flex justify-center bg-gray-50 p-2 rounded">
+        <!-- SVG rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Component Hardware Schedule -->
+    <div class="bg-white rounded-lg p-4 shadow-sm mb-4 border border-gray-200">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">⚡ Spray Foam Equipment &amp; Safety Schedule</h3>
+      <ul class="text-xs text-gray-700 space-y-1.5 list-disc pl-4" id="r_foamHwList">
+        <!-- Hardware schedule auto-injected -->
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-5 print:hidden">
+      <button type="button" class="copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        📋 Copy Shopping List
+      </button>
+      <button type="button" onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2">
+        🖨️ Print Spray Foam Spec Sheet
+      </button>
+    </div>
+  </div>
+
+  <!-- How to Use -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Apply Spray Foam Safely (DIY Canister Rules)</h2>
+    <p class="text-gray-700 mb-4">Follow the 4 essential safety and application rules for 2-component spray foam kits:</p>
+    <ol class="space-y-4 text-gray-700">
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
+        <span><strong>Warm Canisters to 75&deg;F to 85&deg;F:</strong> The chemical reaction of A (isocynate) and B (polyol) requires warm tank temperatures. Cold tanks cause uneven mixture, low expansion yield, and gooey uncured foam.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
+        <span><strong>Mandatory Full PPE:</strong> Always wear an organic vapor half-mask respirator (NIOSH approved), chemical splash goggles, disposable Tyvek suit with hood, and nitrile gloves.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
+        <span><strong>Spray in Maximum 2-Inch Lifts:</strong> Closed-cell spray foam generates intense exothermic heat during curing. Never apply thicker than 2 inches in a single pass; wait 15 minutes between layers to prevent internal scorching.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
+        <span><strong>Keep Gun Moving Continuously:</strong> If you stop spraying for more than 30 seconds, the foam will cure inside the plastic mix nozzle tip. Always have a pack of 10 replacement spray tips ready.</span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Technical Logic & Sourcing -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Thermal R-Value &amp; Moisture Permeance Physics</h2>
+    <p class="text-gray-700 mb-4">Calculations based on ASTM C518 and ICC-ES evaluation reports for polyurethane foam:</p>
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2">
+      <p>Board Feet = Surface Area (Sq Ft) &times; Depth (Inches) &times; Waste Factor</p>
+      <p>Closed-Cell R-Value = Depth (Inches) &times; 6.7 per inch (Vapor Barrier &ge; 2.0")</p>
+      <p>Open-Cell R-Value = Depth (Inches) &times; 3.7 per inch (Air Seal only)</p>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    <div class="space-y-5">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is a board foot in spray foam insulation?</h3>
+        <p class="text-gray-600 text-sm">A board foot (bd ft) is a volume unit measuring 1 square foot of surface area covered at 1 inch of cured foam thickness (12\" × 12\" × 1\"). For example, 100 sq ft sprayed at 2 inches thick equals 200 board feet.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many 600 board foot kits do I need for a 30x40 pole barn?</h3>
+        <p class="text-gray-600 text-sm">For a 30x40 pole barn with 10-foot walls (1,400 sq ft wall area) sprayed at 1.5 inches of closed-cell foam (2,100 board feet + 15% buffer = 2,415 bd ft), you will need 4 of the large 600/620 board-foot canister kits or a contractor mobile spray rig.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Do I need a vapor barrier over closed-cell spray foam?</h3>
+        <p class="text-gray-600 text-sm">No. Closed-cell polyurethane foam at a minimum thickness of 2.0 inches has a moisture vapor permeance of less than 0.8 perms, legally qualifying as a Class II vapor retarder under IRC Section R702.7. Adding plastic poly sheeting over closed-cell foam is prohibited as it creates a moisture trap.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Insulation &amp; Energy Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/attic-insulation" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Attic Insulation Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate blown-in fiberglass &amp; cellulose bags to reach R-49/R-60.</div>
+      </a>
+      <a href="/calculators/mini-split-sizing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Mini-Split Heat Pump Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate BTU heat loads for insulated rooms and pole barns.</div>
+      </a>
+      <a href="/calculators/radiant-floor-heating" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Radiant Floor Heating Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate PEX loop tubing and under-slab insulation requirements.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateSprayFoam() {
+    const sqft = parseFloat(document.getElementById('foamSqft').value) || 250;
+    const depth = parseFloat(document.getElementById('foamThickness').value) || 2;
+    const type = document.getElementById('foamType').value;
+    const buffer = parseFloat(document.getElementById('wasteBuffer').value) || 1.15;
+    const loc = document.getElementById('projectLocation').value;
+
+    const rawBdFt = sqft * depth;
+    const totalBdFt = Math.round(rawBdFt * buffer);
+
+    const rPerInch = (type === 'closed' ? 6.7 : 3.7);
+    const finalR = (depth * rPerInch).toFixed(1);
+
+    // Canister Kit Sizing (600 bd ft or 200 bd ft)
+    let kitStr = "";
+    if (totalBdFt <= 220) {
+      kitStr = "1 \u00d7 200 bd ft Kit";
+    } else if (totalBdFt <= 650) {
+      kitStr = "1 \u00d7 600 bd ft Kit";
+    } else {
+      const k600 = Math.floor(totalBdFt / 600);
+      const rem = totalBdFt % 600;
+      if (rem > 300) {
+        kitStr = `${k600 + 1} \u00d7 600 bd ft Kits`;
+      } else if (rem > 0) {
+        kitStr = `${k600} \u00d7 600 + 1 \u00d7 200 Kit`;
+      } else {
+        kitStr = `${k600} \u00d7 600 bd ft Kits`;
+      }
+    }
+
+    // Vapor barrier check
+    let vaporText = "Air Barrier Only";
+    let permText = "Vapor Permeable (>5 Perms)";
+    if (type === 'closed') {
+      if (depth >= 2.0) {
+        vaporText = "100% Vapor Barrier";
+        permText = "Class II Vapor Retarder (<0.8 Perm)";
+      } else {
+        vaporText = "Air Barrier + Partial Vapor";
+        permText = `Class III at ${depth}" thickness`;
+      }
+    }
+
+    // Update Result UI
+    document.getElementById('r_boardFeet').textContent = `${totalBdFt.toLocaleString()} bd ft`;
+    document.getElementById('r_sqftSummary').textContent = `${sqft} Sq Ft @ ${depth}" Depth (${Math.round((buffer-1)*100)}% Buffer)`;
+    document.getElementById('r_rValue').textContent = `R-${Math.round(finalR)}`;
+    document.getElementById('r_rPerInch').textContent = `@ R-${rPerInch}/inch (${type === 'closed' ? 'Closed-Cell' : 'Open-Cell'})`;
+    document.getElementById('r_canisterKits').textContent = kitStr;
+    document.getElementById('r_kitType').textContent = totalBdFt > 2000 ? "Or Pro Truck Spray Rig" : "DIY 2-Component Canisters";
+    document.getElementById('r_vaporStatus').textContent = vaporText;
+    document.getElementById('r_permClass').textContent = permText;
+
+    // Schedule
+    const hwList = document.getElementById('r_foamHwList');
+    hwList.innerHTML = '';
+    hwList.innerHTML += `<li><strong>Total Material Volume:</strong> ${totalBdFt.toLocaleString()} Board Feet (${type === 'closed' ? '2.0 lb Closed-Cell' : '0.5 lb Open-Cell'} Polyurethane)</li>`;
+    hwList.innerHTML += `<li><strong>Canister Sizing:</strong> ${kitStr} (e.g. Touch 'n Seal, Froth-Pak, or Tiger Foam)</li>`;
+    hwList.innerHTML += `<li><strong>Thermal Value:</strong> Delivers continuous R-${Math.round(finalR)} insulation rating across ${sqft} sq ft</li>`;
+    hwList.innerHTML += `<li><strong>Application Gun &amp; Hoses:</strong> 15-ft dual chemical hose assembly with pressure gauge</li>`;
+    hwList.innerHTML += `<li><strong>Spare Mix Tips:</strong> Pack of 10 fan-spray &amp; cone-spray replacement nozzles</li>`;
+    hwList.innerHTML += `<li><strong>PPE Required:</strong> NIOSH Organic Vapor Respirator Cartridges, Disposable Tyvek Suit with Hood, Splash Goggles &amp; Heavy Nitrile Gloves</li>`;
+
+    // Render SVG
+    renderFoamSVG(depth, finalR, type);
+
+    // Clipboard Handler
+    setupClipboard(totalBdFt, sqft, depth, type, finalR, kitStr, vaporText);
+
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function renderFoamSVG(depth, rVal, type) {
+    const container = document.getElementById('svgContainer');
+    const w = 560;
+    const h = 200;
+
+    let svg = `<svg viewBox="0 0 ${w} ${h}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    
+    // Wood Studs (Left and Right)
+    svg += `<rect x="50" y="30" width="30" height="140" fill="#D97706" stroke="#92400E" stroke-width="2" />`;
+    svg += `<text x="65" y="105" text-anchor="middle" font-size="9" font-weight="bold" fill="#FFFFFF" transform="rotate(-90 65 105)">2x6 Framing Stud</text>`;
+
+    svg += `<rect x="480" y="30" width="30" height="140" fill="#D97706" stroke="#92400E" stroke-width="2" />`;
+    svg += `<text x="495" y="105" text-anchor="middle" font-size="9" font-weight="bold" fill="#FFFFFF" transform="rotate(-90 495 105)">2x6 Framing Stud</text>`;
+
+    // Exterior Sheathing (Back)
+    svg += `<rect x="80" y="30" width="400" height="15" fill="#78716C" />`;
+    svg += `<text x="280" y="42" text-anchor="middle" font-size="9" fill="#FFFFFF">Exterior Wall Sheathing / Rim Joist Backing</text>`;
+
+    // Spray Foam Cured Body
+    const foamColor = type === 'closed' ? '#38BDF8' : '#FEF08A';
+    const foamStroke = type === 'closed' ? '#0284C7' : '#EAB308';
+    svg += `<rect x="80" y="45" width="400" height="90" fill="${foamColor}" stroke="${foamStroke}" stroke-width="2" rx="4" />`;
+
+    // Internal Foam Bubbles Texture
+    for (let i = 0; i < 18; i++) {
+      const bx = 100 + (i * 20);
+      const by = 65 + (i % 3 === 0 ? 15 : -10);
+      svg += `<circle cx="${bx}" cy="${by}" r="5" fill="#FFFFFF" opacity="0.6" />`;
+    }
+
+    svg += `<text x="280" y="95" text-anchor="middle" font-size="14" font-weight="black" fill="#0F172A">R-${Math.round(rVal)} Insulation (${depth}" ${type === 'closed' ? 'Closed-Cell' : 'Open-Cell'})</text>`;
+    svg += `<text x="280" y="115" text-anchor="middle" font-size="10" font-weight="bold" fill="#0369A1">Continuous Air &amp; Moisture Seal</text>`;
+
+    svg += `</svg>`;
+    container.innerHTML = svg;
+  }
+
+  function setupClipboard(bdFt, sqft, depth, type, rVal, kits, vapor) {
+    const btn = document.querySelector('.copy-list-btn');
+    if (!btn) return;
+
+    btn.onclick = function() {
+      let text = `📋 CALCFORDIY SPRAY FOAM TAKEOFF:\n\n`;
+      text += `• Total Board Feet: ${bdFt.toLocaleString()} bd ft\n`;
+      text += `• Surface Area: ${sqft} Sq Ft @ ${depth}" Thickness\n`;
+      text += `• Formulation: ${type === 'closed' ? 'Closed-Cell (2.0 lb)' : 'Open-Cell (0.5 lb)'}\n`;
+      text += `• Thermal Value: R-${Math.round(rVal)} (${vapor})\n`;
+      text += `• Canister Package: ${kits}\n`;
+      text += `• PPE: NIOSH Respirator, Tyvek Suit, Chemical Goggles, Replacement Nozzles\n\n`;
+      text += `Calculated at calcfordiy.com/calculators/spray-foam-insulation`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅ Shopping List Copied!";
+        setTimeout(() => { btn.textContent = "📋 Copy Shopping List"; }, 2500);
+      });
+    };
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculateSprayFoam);
+</script>
