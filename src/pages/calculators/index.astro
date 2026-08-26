@@ -637,7 +637,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
       if (query.length > 0) {
         statusText.textContent = `Found ${totalVisible} calculator${totalVisible === 1 ? '' : 's'} matching "${query}".`;
       } else {
-        statusText.textContent = `Showing all 65 calculators across 8 trade categories.`;
+        statusText.textContent = `Showing all ${cards.length} calculators across 8 trade categories.`;
       }
     }
 
