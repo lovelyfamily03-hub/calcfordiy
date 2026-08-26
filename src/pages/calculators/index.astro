@@ -3,474 +3,489 @@ import Layout from '../../layouts/Layout.astro';
 import AboutCalculators from '../../components/AboutCalculators.astro';
 
 const calculators = [
+  // 1. Tile & Flooring (8)
   {
     title: "Shower Tile Calculator",
     description: "Calculate exactly how much tile you need for shower walls and floor.",
     href: "/calculators/shower-tile",
-    category: "Tile"
+    category: "Tile & Flooring"
   },
   {
     title: "Bathroom Wall Tile Calculator",
     description: "Estimate tile needed for bathroom walls with waste factor included.",
     href: "/calculators/bathroom-wall-tile",
-    category: "Tile"
+    category: "Tile & Flooring"
   },
   {
     title: "Grout Calculator",
     description: "Find out how many bags of grout you need for any tile project.",
     href: "/calculators/grout",
-    category: "Tile"
+    category: "Tile & Flooring"
   },
   {
-  title: "Thinset Calculator",
-  description: "How many bags of thinset mortar you need, plus the right trowel size for your tile.",
-  href: "/calculators/thinset",
-  category: "Tile"
-  },
-  {
-    title: "Laminate Flooring Calculator",
-    description: "Calculate boxes of laminate flooring needed including waste.",
-    href: "/calculators/laminate-flooring",
-    category: "Flooring"
+    title: "Thinset Mortar Calculator",
+    description: "How many bags of thinset mortar you need, plus the right trowel size for your tile.",
+    href: "/calculators/thinset",
+    category: "Tile & Flooring"
   },
   {
     title: "Hardwood Flooring Calculator",
     description: "Estimate hardwood flooring by box coverage with waste factor.",
     href: "/calculators/hardwood-flooring",
-    category: "Flooring"
+    category: "Tile & Flooring"
   },
   {
-    title: "Underlayment Calculator",
+    title: "Laminate Flooring Calculator",
+    description: "Calculate boxes of laminate flooring needed including waste.",
+    href: "/calculators/laminate-flooring",
+    category: "Tile & Flooring"
+  },
+  {
+    title: "Floor Underlayment Calculator",
     description: "Calculate how many rolls of underlayment your floor project needs.",
     href: "/calculators/underlayment",
-    category: "Flooring"
+    category: "Tile & Flooring"
   },
   {
-  title: "Subfloor Calculator",
-  description: "How many sheets of plywood or OSB subfloor you need, with thickness and waste factor included.",
-  href: "/calculators/subfloor",
-  category: "Flooring"
-  },
-  {
-    title: "Carpet Calculator",
+    title: "Carpet & Padding Calculator",
     description: "Estimate carpet and padding in square yards for any room.",
     href: "/calculators/carpet",
-    category: "Flooring"
+    category: "Tile & Flooring"
   },
-  {
-    title: "Deck Boards Calculator",
-    description: "How many deck boards you need — straight or diagonal pattern, picture frame border included.",
-    href: "/calculators/deck-boards",
-    category: "Flooring"
-  },
-  {
-    title: "Deck Joist Span Calculator",
-    description: "Calculate max deck joist spans per IRC code, beam sizing, joist count, and rim joist lumber.",
-    href: "/calculators/deck-joist-span",
-    category: "Flooring"
-  },
-  {
-    title: "Drywall Calculator",
-    description: "How many sheets of drywall for walls and ceiling — joint compound and tape estimate included.",
-    href: "/calculators/drywall",
-    category: "Walls"
-  },
+
+  // 2. Carpentry, Framing & Roofing (10)
   {
     title: "Wall Framing Calculator",
     description: "Calculate exactly how many studs and linear feet of plates you need for a partition wall.",
     href: "/calculators/wall-framing",
-    category: "Walls"
+    category: "Carpentry, Framing & Roofing"
   },
   {
-    title: "Fence Picket & Board Calculator",
-    description: "Calculate vertical pickets, 4x4 posts, 2x4 rails, gate posts, and Quikrete concrete bags.",
-    href: "/calculators/fence-pickets",
-    category: "Walls"
-  },
-  {
-    title: "Roof Pitch & Rafter Calculator",
-    description: "Calculate rafter length, roof pitch angle, plumb cut, overhang, and bird's mouth notch cuts with live SVG diagram.",
-    href: "/calculators/roof-pitch-rafter",
-    category: "Walls"
-  },
-  {
-    title: "Asphalt Shingle Roofing Calculator",
-    description: "Calculate shingle bundles, roofing squares, underlayment rolls, starter strips, and nails.",
-    href: "/calculators/asphalt-shingles",
-    category: "Walls"
-  },
-  {
-    title: "Trim & Molding Calculator",
-    description: "Calculate exactly how much baseboard, crown molding, or trim you need with miter waste.",
-    href: "/calculators/trim-molding",
-    category: "Walls"
-  },
-  {
-    title: "NEC Conduit Fill & Wire Sizing Calculator",
-    description: "Calculate conduit fill percentage for EMT, PVC, and Flex conduit per NEC Chapter 9 Table 1 40% fill limits.",
-    href: "/calculators/conduit-fill",
-    category: "Electrical & Lighting"
-  },
-  {
-    title: "Blown-In Attic Insulation Calculator",
-    description: "Calculate bag count for blown cellulose and AttiCat fiberglass to hit R-30, R-38, R-49, or R-60 energy code depth.",
-    href: "/calculators/attic-insulation",
-    category: "Walls"
-  },
-  {
-    title: "Sod Pallet & Lawn Roll Calculator",
-    description: "Calculate sod pallets, individual slabs, trimming waste, and topsoil sub-base layer.",
-    href: "/calculators/sod-pallet",
-    category: "Landscaping & Concrete"
-  },
-  {
-    title: "Compound Miter & Bevel Angle Calculator",
-    description: "Calculate exact miter table angle and blade bevel tilt angle for crown molding laid flat on saw table.",
-    href: "/calculators/compound-miter",
-    category: "Walls"
-  },
-  {
-    title: "Construction Tape Measure Fraction Calculator",
-    description: "Add or subtract feet, inches, and 16ths fractions for quick framing and woodworking takeoffs.",
-    href: "/calculators/construction-fraction",
-    category: "Walls"
-  },
-  {
-    title: "Septic Tank & Leach Field Calculator",
-    description: "Calculate required septic tank gallon capacity and leach field drain pipe linear footage per EPA code.",
-    href: "/calculators/septic-tank-sizing",
-    category: "Landscaping & Concrete"
-  },
-  {
-    title: "Pergola Lumber & Hardware Estimator",
-    description: "Calculate posts (4x4/6x6), double support beams, rafter joists, shade purlins, concrete footings, and structural hardware.",
-    href: "/calculators/pergola-lumber",
-    category: "Landscaping & Concrete"
-  },
-  {
-    title: "Electrical Subpanel Sizing & Feeder Calculator",
-    description: "Calculate subpanel ampacity (60A to 125A), feeder cable gauge (copper/aluminum), breaker slots, and NEC demand loads.",
-    href: "/calculators/subpanel-sizing",
-    category: "Electrical & Lighting"
-  },
-  {
-    title: "Whole-House Fan Sizing & Attic Vent Calculator",
-    description: "Calculate required fan CFM, air changes per hour (ACH), and attic Net Free Vent Area (NFVA sq ft) per HVI standards.",
-    href: "/calculators/whole-house-fan",
-    category: "Electrical & Lighting"
-  },
-  {
-    title: "Radiant Floor Heating Loop Calculator",
-    description: "Calculate linear feet of 1/2 inch PEX tubing, 300 ft loop counts, manifold port sizes, and BTU heat output.",
-    href: "/calculators/radiant-floor-heating",
-    category: "Flooring"
-  },
-  {
-    title: "Solar Panel & Battery Storage Calculator",
-    description: "Calculate solar panel count (400W panels), system kW size, LiFePO4 battery capacity (kWh/Ah), and hybrid inverter wattage.",
-    href: "/calculators/solar-battery-sizing",
-    category: "Electrical & Lighting"
-  },
-  {
-    title: "Sump Pump Sizing & Flow Rate Calculator",
-    description: "Calculate required GPH flow rate, Total Dynamic Head (TDH), pump horsepower (1/3 HP, 1/2 HP, 3/4 HP), and battery backup runtime.",
-    href: "/calculators/sump-pump-sizing",
-    category: "Plumbing & Heating"
-  },
-  {
-    title: "Plumbing Pipe Slope & Sewer Fall Calculator",
-    description: "Calculate total elevation fall in inches, trench pitch percentage, and gravity drainage depth for drain and sewer pipes per IPC code.",
-    href: "/calculators/pipe-slope",
-    category: "Plumbing & Heating"
+    title: "Drywall Sheet Calculator",
+    description: "How many sheets of drywall for walls and ceiling — joint compound and tape estimate included.",
+    href: "/calculators/drywall",
+    category: "Carpentry, Framing & Roofing"
   },
   {
     title: "Drywall Mud & Joint Compound Calculator",
     description: "Calculate 4.5-gallon buckets of drywall joint compound (all-purpose and topping), rolls of joint tape, and corner beads.",
     href: "/calculators/drywall-mud",
-    category: "Walls"
+    category: "Carpentry, Framing & Roofing"
   },
   {
-    title: "Firewood Cord & Wood Stove Heat Calculator",
-    description: "Calculate full cords (128 cu ft), face cords, ricks, total weight, and Million BTU heat output across hardwoods and softwoods.",
-    href: "/calculators/firewood-cord",
-    category: "Plumbing & Heating"
+    title: "Subfloor Plywood/OSB Calculator",
+    description: "How many sheets of plywood or OSB subfloor you need, with thickness and waste factor included.",
+    href: "/calculators/subfloor",
+    category: "Carpentry, Framing & Roofing"
   },
   {
-    title: "Polymeric Sand & Paver Joint Calculator",
-    description: "Calculate 50 lb bags of polymeric sand for paver patios, driveways, and flagstone based on paver dimensions and joint width.",
-    href: "/calculators/polymeric-sand",
-    category: "Landscaping & Concrete"
+    title: "Roof Pitch & Rafter Calculator",
+    description: "Calculate rafter length, roof pitch angle, plumb cut, overhang, and bird's mouth notch cuts with live SVG diagram.",
+    href: "/calculators/roof-pitch-rafter",
+    category: "Carpentry, Framing & Roofing"
   },
   {
-    title: "Shiplap Calculator",
-    description: "Calculate exactly how many shiplap or tongue and groove boards you need, including true exposed face and gap waste.",
-    href: "/calculators/shiplap",
-    category: "Walls"
+    title: "Asphalt Shingle Roofing Calculator",
+    description: "Calculate shingle bundles, roofing squares, underlayment rolls, starter strips, and nails.",
+    href: "/calculators/asphalt-shingles",
+    category: "Carpentry, Framing & Roofing"
   },
   {
-    title: "Wallpaper Calculator",
-    description: "Calculate exact wallpaper rolls needed, accounting for straight and half-drop pattern repeats.",
-    href: "/calculators/wallpaper",
-    category: "Walls"
+    title: "Deck Boards Calculator",
+    description: "How many deck boards you need — straight or diagonal pattern, picture frame border included.",
+    href: "/calculators/deck-boards",
+    category: "Carpentry, Framing & Roofing"
   },
   {
-  title: "Paint Calculator — Room",
-  description: "How many gallons of paint for a room including walls, ceiling, doors and windows.",
-  href: "/calculators/paint-room",
-  category: "Paint"
-  },
-  {
-  title: "Paint Calculator — Textured Walls",
-  description: "Textured walls need 10-40% more paint than smooth. Get an accurate estimate by texture type.",
-  href: "/calculators/paint-textured-walls",
-  category: "Paint"
-  },
-  {
-  title: "Exterior Paint Calculator",
-  description: "How many gallons to paint a house exterior — body, trim, doors, shutters, and gable ends.",
-  href: "/calculators/paint-exterior",
-  category: "Paint"
-  },
-  {
-    title: "Recessed Lighting Calculator — Garage",
-    description: "How many recessed lights do you need for your garage?",
-    href: "/calculators/recessed-lights-garage",
-    category: "Lighting"
-  },
-  {
-    title: "Recessed Lighting Calculator — Bedroom",
-    description: "Calculate the perfect number of can lights for a bedroom.",
-    href: "/calculators/recessed-lights-bedroom",
-    category: "Lighting"
-  },
-  {
-    title: "Lumens Calculator",
-    description: "Find out how many lumens you need for any room size.",
-    href: "/calculators/lumens",
-    category: "Lighting"
-  },
-  {
-  title: "Recessed Lighting Calculator — Living Room",
-  description: "How many recessed lights for a living room — fixture count, spacing, and layout by room size.",
-  href: "/calculators/recessed-lights-living-room",
-  category: "Lighting"
-  },
-  {
-  title: "Recessed Lighting Calculator — Hallway",
-  description: "How many lights for a hallway and exact spacing between them — positions calculated from wall to wall.",
-  href: "/calculators/recessed-lights-hallway",
-  category: "Lighting"
-  },
-  {
-  title: "Recessed Lighting Calculator — Kitchen",
-  description: "Ambient and task lighting for a kitchen calculated separately — counters and island included.",
-  href: "/calculators/recessed-lights-kitchen",
-  category: "Lighting"
-  },
-  {
-  title: "Outdoor Flood Light Calculator",
-  description: "How many outdoor flood lights for a driveway, backyard, or security area — based on IES standards.",
-  href: "/calculators/outdoor-flood-lights",
-  category: "Lighting"
-  },
-  {
-  title: "String Lights Calculator — Deck & Patio",
-  description: "How many strands of string lights for a deck or patio — crisscross, straight runs, or perimeter with outlet guide.",
-  href: "/calculators/string-lights",
-  category: "Lighting"
-  },
-  {
-  title: "Mulch Calculator",
-  description: "Calculate cubic yards and bags of mulch needed for garden beds by depth and area.",
-  href: "/calculators/mulch",
-  category: "Garden"
-  },
-  {
-  title: "Raised Bed Soil Calculator",
-  description: "How much soil to fill a raised garden bed, with Mel's Mix breakdown included.",
-  href: "/calculators/raised-bed-soil",
-  category: "Garden"
-  },
-  {
-  title: "Topsoil Calculator",
-  description: "Cubic yards and bag count for lawn, yard, or garden topsoil coverage.",
-  href: "/calculators/topsoil",
-  category: "Garden"
-  },
-  {
-  title: "Fertilizer Calculator",
-  description: "How much fertilizer to apply by lawn size — works with any brand using NPK values.",
-  href: "/calculators/fertilizer",
-  category: "Garden"
-  },
-  {
-  title: "Seed Spacing Calculator",
-  description: "How many plants fit in a garden bed and how many seeds to buy — select a vegetable to auto-fill spacing.",
-  href: "/calculators/seed-spacing",
-  category: "Garden"
-  },
-  {
-  title: "Concrete for Fence Posts Calculator",
-  description: "How many bags of concrete for fence posts by hole diameter, depth, and post count.",
-  href: "/calculators/concrete-fence-post",
-  category: "Concrete"
-  },
-  {
-  title: "Concrete Slab Calculator",
-  description: "Cubic yards and bag count for concrete slabs — patio, driveway, shed floor, or walkway.",
-  href: "/calculators/concrete-slab",
-  category: "Concrete"
-  },
-  {
-  title: "Rebar Calculator",
-  description: "How many rebar bars and linear feet for a concrete slab — spacing, bar size, and weight included.",
-  href: "/calculators/rebar",
-  category: "Concrete"
-  },
-  {
-  title: "Quikrete Bags Calculator",
-  description: "Exact Quikrete bag count per fence post by hole diameter and depth — 50, 60, and 80 lb bags.",
-  href: "/calculators/quikrete-bags",
-  category: "Concrete"
-  },
-  {
-  title: "French Drain Calculator",
-  description: "Calculate gravel tons, perforated pipe length, filter fabric, and dirt excavation volume.",
-  href: "/calculators/french-drain",
-  category: "Concrete"
-  },
-  {
-  title: "Retaining Wall Block Calculator",
-  description: "Calculate retaining wall blocks, capstones, base gravel, backfill, adhesive, and geogrid layers.",
-  href: "/calculators/retaining-wall",
-  category: "Concrete"
-  },
-  {
-  title: "Water Heater Cost Calculator",
-  description: "Monthly and annual water heater operating cost — compare gas vs electric and calculate upgrade payback.",
-  href: "/calculators/water-heater-cost",
-  category: "Utilities"
-  },
-  {
-    title: "AC Operating Cost Calculator",
-    description: "Calculate how much your air conditioner costs to run per month and per year.",
-    href: "/calculators/ac-cost",
-    category: "Utilities"
-  },
-  {
-    title: "Furnace & Heating Cost Calculator",
-    description: "Calculate exactly how much it costs to run your gas furnace, electric heater, or heat pump.",
-    href: "/calculators/furnace-cost",
-    category: "Utilities"
-  },
-  {
-    title: "Generator Size Calculator",
-    description: "Calculate the exact size generator you need based on running watts and starting surge requirements.",
-    href: "/calculators/generator-size",
-    category: "Utilities"
-  },
-  {
-    title: "LED Bulb Savings Calculator",
-    description: "Calculate exactly how many months it will take for new LED bulbs to pay for themselves.",
-    href: "/calculators/led-savings",
-    category: "Utilities"
-  },
-  {
-    title: "Ductless Mini-Split Sizing Calculator",
-    description: "Calculate BTU cooling/heating capacity, unit tonnage, and electrical voltage for ductless mini-splits.",
-    href: "/calculators/mini-split-sizing",
-    category: "Utilities"
-  },
-  {
-    title: "Tankless Water Heater Sizing Calculator",
-    description: "Calculate peak GPM flow rate, temperature rise, gas BTU inputs, and electric breaker counts.",
-    href: "/calculators/tankless-water-heater",
-    category: "Utilities"
-  },
-  {
-    title: "EV Charger Circuit & Wire Gauge Calculator",
-    description: "Calculate copper wire AWG gauge, breaker size (NEC 80% rule), and voltage drop for EV chargers.",
-    href: "/calculators/ev-charger-wiring",
-    category: "Utilities"
-  },
-  {
-    title: "Christmas Tree Lights Calculator",
-    description: "Calculate how many light strands and feet of lights you need for any Christmas tree height.",
-    href: "/calculators/christmas-tree-lights",
-    category: "Seasonal"
-  },
-  {
-    title: "Exterior House Christmas Lights Calculator",
-    description: "Calculate total feet, 50ft strands, clips, and power draw for rooflines, gutters, and gables.",
-    href: "/calculators/exterior-christmas-lights",
-    category: "Seasonal"
-  },
-  {
-    title: "Holiday & Halloween Power Load Calculator",
-    description: "Calculate watts, breaker load, and extension cord gauge safety for fog machines, inflatables, and lights.",
-    href: "/calculators/holiday-power-load",
-    category: "Seasonal"
-  },
-  {
-    title: "Board and Batten Spacing Calculator",
-    description: "Calculate exact spacing gaps down to 1/16ths of an inch between vertical battens for accent walls.",
-    href: "/calculators/board-and-batten",
-    category: "Millwork & Trim"
-  },
-  {
-    title: "Wainscoting & Picture Frame Molding Calculator",
-    description: "Calculate exact box widths, heights, panel gaps, and molding linear feet for wainscoting.",
-    href: "/calculators/wainscoting-layout",
-    category: "Millwork & Trim"
-  },
-  {
-    title: "Coffered Ceiling Beam Layout Calculator",
-    description: "Calculate exact recessed box dimensions, beam linear feet, and crown molding for coffered ceilings.",
-    href: "/calculators/coffered-ceiling",
-    category: "Millwork & Trim"
+    title: "Deck Joist Span Calculator",
+    description: "Calculate max deck joist spans per IRC code, beam sizing, joist count, and rim joist lumber.",
+    href: "/calculators/deck-joist-span",
+    category: "Carpentry, Framing & Roofing"
   },
   {
     title: "Stair Stringer Cut Calculator",
     description: "Calculate riser height, tread run, bottom step deduction, 2x12 board length, and view SVG cut diagram.",
     href: "/calculators/stair-stringer",
-    category: "Millwork & Trim"
+    category: "Carpentry, Framing & Roofing"
   },
   {
-    title: "Paver Base Gravel & Sand Calculator",
-    description: "Calculate crushed stone base tons, bedding sand, polymeric sand bags, and excavation depth for patios.",
-    href: "/calculators/paver-base-sand",
-    category: "Concrete"
+    title: "Construction Tape Measure Fraction Calculator",
+    description: "Add or subtract feet, inches, and 16ths fractions for quick framing and woodworking takeoffs.",
+    href: "/calculators/construction-fraction",
+    category: "Carpentry, Framing & Roofing"
   },
+
+  // 3. Millwork, Trim & Walls (8)
   {
     title: "Crown Molding Miter & Bevel Calculator",
     description: "Calculate exact compound miter saw settings (miter & bevel) for crown molding laid flat, plus board footage and cut directions.",
     href: "/calculators/crown-molding",
-    category: "Millwork & Trim"
+    category: "Millwork, Trim & Walls"
   },
   {
-    title: "Paver Walkway & Stepping Stone Calculator",
-    description: "Calculate pavers, crushed gravel base tons, bedding sand, edge restraints, and stepping stone spacing for walkways.",
-    href: "/calculators/paver-walkway",
-    category: "Concrete"
+    title: "Compound Miter & Bevel Angle Calculator",
+    description: "Calculate exact miter table angle and blade bevel tilt angle for crown molding laid flat on saw table.",
+    href: "/calculators/compound-miter",
+    category: "Millwork, Trim & Walls"
   },
   {
-    title: "Spray Foam Insulation Calculator",
-    description: "Calculate board feet, closed-cell vs. open-cell 200/600 canister kits, final R-value, and moisture vapor barrier depth.",
-    href: "/calculators/spray-foam-insulation",
-    category: "Utilities"
+    title: "Trim & Baseboard Molding Calculator",
+    description: "Calculate exactly how much baseboard, crown molding, or trim you need with miter waste.",
+    href: "/calculators/trim-molding",
+    category: "Millwork, Trim & Walls"
+  },
+  {
+    title: "Board and Batten Spacing Calculator",
+    description: "Calculate exact spacing gaps down to 1/16ths of an inch between vertical battens for accent walls.",
+    href: "/calculators/board-and-batten",
+    category: "Millwork, Trim & Walls"
+  },
+  {
+    title: "Wainscoting & Picture Frame Molding Calculator",
+    description: "Calculate exact box widths, heights, panel gaps, and molding linear feet for wainscoting.",
+    href: "/calculators/wainscoting-layout",
+    category: "Millwork, Trim & Walls"
+  },
+  {
+    title: "Coffered Ceiling Beam Layout Calculator",
+    description: "Calculate exact recessed box dimensions, beam linear feet, and crown molding for coffered ceilings.",
+    href: "/calculators/coffered-ceiling",
+    category: "Millwork, Trim & Walls"
+  },
+  {
+    title: "Shiplap Board Calculator",
+    description: "Calculate exactly how many shiplap or tongue and groove boards you need, including true exposed face and gap waste.",
+    href: "/calculators/shiplap",
+    category: "Millwork, Trim & Walls"
+  },
+  {
+    title: "Wallpaper Roll Calculator",
+    description: "Calculate exact wallpaper rolls needed, accounting for straight and half-drop pattern repeats.",
+    href: "/calculators/wallpaper",
+    category: "Millwork, Trim & Walls"
+  },
+
+  // 4. Concrete & Masonry (6)
+  {
+    title: "Concrete Slab Calculator",
+    description: "Cubic yards and bag count for concrete slabs — patio, driveway, shed floor, or walkway.",
+    href: "/calculators/concrete-slab",
+    category: "Concrete & Masonry"
+  },
+  {
+    title: "Quikrete Bags Calculator",
+    description: "Exact Quikrete bag count per fence post by hole diameter and depth — 50, 60, and 80 lb bags.",
+    href: "/calculators/quikrete-bags",
+    category: "Concrete & Masonry"
+  },
+  {
+    title: "Concrete for Fence Posts Calculator",
+    description: "How many bags of concrete for fence posts by hole diameter, depth, and post count.",
+    href: "/calculators/concrete-fence-post",
+    category: "Concrete & Masonry"
   },
   {
     title: "Sonotube Concrete Pier Calculator",
     description: "Calculate concrete volume in cubic yards, 60 lb / 80 lb bag counts, Sonotube form lengths, and rebar for deck piers.",
     href: "/calculators/sonotube-concrete",
-    category: "Concrete"
+    category: "Concrete & Masonry"
   },
+  {
+    title: "Rebar Calculator",
+    description: "How many rebar bars and linear feet for a concrete slab — spacing, bar size, and weight included.",
+    href: "/calculators/rebar",
+    category: "Concrete & Masonry"
+  },
+  {
+    title: "Retaining Wall Block Calculator",
+    description: "Calculate retaining wall blocks, capstones, base gravel, backfill, adhesive, and geogrid layers.",
+    href: "/calculators/retaining-wall",
+    category: "Concrete & Masonry"
+  },
+
+  // 5. Landscaping & Hardscaping (13)
   {
     title: "Gravel Driveway & Crushed Stone Calculator",
     description: "Calculate crushed gravel tons, cubic yards, dump truck deliveries, geotextile underlayment, and multi-layer base depths.",
     href: "/calculators/gravel-driveway",
-    category: "Concrete"
+    category: "Landscaping & Hardscaping"
   },
+  {
+    title: "Paver Walkway & Stepping Stone Calculator",
+    description: "Calculate pavers, crushed gravel base tons, bedding sand, edge restraints, and stepping stone spacing for walkways.",
+    href: "/calculators/paver-walkway",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Paver Base Gravel & Sand Calculator",
+    description: "Calculate crushed stone base tons, bedding sand, polymeric sand bags, and excavation depth for patios.",
+    href: "/calculators/paver-base-sand",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Polymeric Sand & Paver Joint Calculator",
+    description: "Calculate 50 lb bags of polymeric sand for paver patios, driveways, and flagstone based on paver dimensions and joint width.",
+    href: "/calculators/polymeric-sand",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "French Drain Calculator",
+    description: "Calculate gravel tons, perforated pipe length, filter fabric, and dirt excavation volume.",
+    href: "/calculators/french-drain",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Fence Picket & Board Calculator",
+    description: "Calculate vertical pickets, 4x4 posts, 2x4 rails, gate posts, and Quikrete concrete bags.",
+    href: "/calculators/fence-pickets",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Pergola Lumber & Hardware Estimator",
+    description: "Calculate posts (4x4/6x6), double support beams, rafter joists, shade purlins, concrete footings, and structural hardware.",
+    href: "/calculators/pergola-lumber",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Mulch Calculator",
+    description: "Calculate cubic yards and bags of mulch needed for garden beds by depth and area.",
+    href: "/calculators/mulch",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Raised Bed Soil Calculator",
+    description: "How much soil to fill a raised garden bed, with Mel's Mix breakdown included.",
+    href: "/calculators/raised-bed-soil",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Topsoil Calculator",
+    description: "Cubic yards and bag count for lawn, yard, or garden topsoil coverage.",
+    href: "/calculators/topsoil",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Sod Pallet & Lawn Roll Calculator",
+    description: "Calculate sod pallets, individual slabs, trimming waste, and topsoil sub-base layer.",
+    href: "/calculators/sod-pallet",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Fertilizer Calculator",
+    description: "How much fertilizer to apply by lawn size — works with any brand using NPK values.",
+    href: "/calculators/fertilizer",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Seed Spacing Calculator",
+    description: "How many plants fit in a garden bed and how many seeds to buy — select a vegetable to auto-fill spacing.",
+    href: "/calculators/seed-spacing",
+    category: "Landscaping & Hardscaping"
+  },
+
+  // 6. Paint & Finishing (3)
+  {
+    title: "Paint Calculator — Room",
+    description: "How many gallons of paint for a room including walls, ceiling, doors and windows.",
+    href: "/calculators/paint-room",
+    category: "Paint & Finishing"
+  },
+  {
+    title: "Paint Calculator — Textured Walls",
+    description: "Textured walls need 10-40% more paint than smooth. Get an accurate estimate by texture type.",
+    href: "/calculators/paint-textured-walls",
+    category: "Paint & Finishing"
+  },
+  {
+    title: "Exterior Paint Calculator",
+    description: "How many gallons to paint a house exterior — body, trim, doors, shutters, and gable ends.",
+    href: "/calculators/paint-exterior",
+    category: "Paint & Finishing"
+  },
+
+  // 7. Electrical, Solar & Lighting (16)
+  {
+    title: "EV Charger Circuit & Wire Gauge Calculator",
+    description: "Calculate copper wire AWG gauge, breaker size (NEC 80% rule), and voltage drop for EV chargers.",
+    href: "/calculators/ev-charger-wiring",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Electrical Subpanel Sizing & Feeder Calculator",
+    description: "Calculate subpanel ampacity (60A to 125A), feeder cable gauge (copper/aluminum), breaker slots, and NEC demand loads.",
+    href: "/calculators/subpanel-sizing",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "NEC Conduit Fill & Wire Sizing Calculator",
+    description: "Calculate conduit fill percentage for EMT, PVC, and Flex conduit per NEC Chapter 9 Table 1 40% fill limits.",
+    href: "/calculators/conduit-fill",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Solar Panel & Battery Storage Calculator",
+    description: "Calculate solar panel count (400W panels), system kW size, LiFePO4 battery capacity (kWh/Ah), and hybrid inverter wattage.",
+    href: "/calculators/solar-battery-sizing",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Recessed Lighting Calculator — Kitchen",
+    description: "Ambient and task lighting for a kitchen calculated separately — counters and island included.",
+    href: "/calculators/recessed-lights-kitchen",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Recessed Lighting Calculator — Living Room",
+    description: "How many recessed lights for a living room — fixture count, spacing, and layout by room size.",
+    href: "/calculators/recessed-lights-living-room",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Recessed Lighting Calculator — Bedroom",
+    description: "Calculate the perfect number of can lights for a bedroom.",
+    href: "/calculators/recessed-lights-bedroom",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Recessed Lighting Calculator — Hallway",
+    description: "How many lights for a hallway and exact spacing between them — positions calculated from wall to wall.",
+    href: "/calculators/recessed-lights-hallway",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Recessed Lighting Calculator — Garage",
+    description: "How many recessed lights do you need for your garage workshop?",
+    href: "/calculators/recessed-lights-garage",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Outdoor Flood Light Calculator",
+    description: "How many outdoor flood lights for a driveway, backyard, or security area — based on IES standards.",
+    href: "/calculators/outdoor-flood-lights",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "String Lights Calculator — Deck & Patio",
+    description: "How many strands of string lights for a deck or patio — crisscross, straight runs, or perimeter with outlet guide.",
+    href: "/calculators/string-lights",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Lumens Calculator",
+    description: "Find out how many lumens you need for any room size.",
+    href: "/calculators/lumens",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "LED Bulb Savings Calculator",
+    description: "Calculate exactly how many months it will take for new LED bulbs to pay for themselves.",
+    href: "/calculators/led-savings",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Christmas Tree Lights Calculator",
+    description: "Calculate how many light strands and feet of lights you need for any Christmas tree height.",
+    href: "/calculators/christmas-tree-lights",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Exterior House Christmas Lights Calculator",
+    description: "Calculate roofline light strands, gutter clip counts, and electrical circuit amperage for holiday lights.",
+    href: "/calculators/exterior-christmas-lights",
+    category: "Electrical, Solar & Lighting"
+  },
+  {
+    title: "Christmas & Halloween Power Load Calculator",
+    description: "Calculate total wattage and circuit load percentage for animatronics, fog machines, and light displays.",
+    href: "/calculators/holiday-power-load",
+    category: "Electrical, Solar & Lighting"
+  },
+
+  // 8. Plumbing, HVAC & Energy (14)
+  {
+    title: "Sump Pump Sizing & Flow Rate Calculator",
+    description: "Calculate required GPH flow rate, Total Dynamic Head (TDH), pump horsepower (1/3 HP, 1/2 HP, 3/4 HP), and battery backup runtime.",
+    href: "/calculators/sump-pump-sizing",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Plumbing Pipe Slope & Sewer Fall Calculator",
+    description: "Calculate total elevation fall in inches, trench pitch percentage, and gravity drainage depth for drain and sewer pipes per IPC code.",
+    href: "/calculators/pipe-slope",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Tankless Water Heater Sizing Calculator",
+    description: "Calculate peak GPM flow rate, temperature rise, gas BTU inputs, and electric breaker counts.",
+    href: "/calculators/tankless-water-heater",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Water Heater Operating Cost Calculator",
+    description: "Monthly and annual water heater operating cost — compare gas vs electric and calculate upgrade payback.",
+    href: "/calculators/water-heater-cost",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Ductless Mini-Split Sizing Calculator",
+    description: "Calculate BTU cooling/heating capacity, unit tonnage, and electrical voltage for ductless mini-splits.",
+    href: "/calculators/mini-split-sizing",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "AC Operating Cost Calculator",
+    description: "How much does your air conditioner cost to run per month and per year — with SEER upgrade comparison.",
+    href: "/calculators/ac-cost",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Furnace & Heating Cost Calculator",
+    description: "Calculate exactly how much it costs to run your gas furnace, electric heater, or heat pump.",
+    href: "/calculators/furnace-cost",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Radiant Floor Heating Loop Calculator",
+    description: "Calculate linear feet of 1/2 inch PEX tubing, 300 ft loop counts, manifold port sizes, and BTU heat output.",
+    href: "/calculators/radiant-floor-heating",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Blown-In Attic Insulation Calculator",
+    description: "Calculate bag count for blown cellulose and AttiCat fiberglass to hit R-30, R-38, R-49, or R-60 energy code depth.",
+    href: "/calculators/attic-insulation",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Spray Foam Insulation Calculator",
+    description: "Calculate board feet, closed-cell vs. open-cell 200/600 canister kits, final R-value, and moisture vapor barrier depth.",
+    href: "/calculators/spray-foam-insulation",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Whole-House Fan Sizing & Attic Vent Calculator",
+    description: "Calculate required fan CFM, air changes per hour (ACH), and attic Net Free Vent Area (NFVA sq ft) per HVI standards.",
+    href: "/calculators/whole-house-fan",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Generator Size Calculator",
+    description: "Calculate the exact size generator you need based on running watts and starting surge requirements.",
+    href: "/calculators/generator-size",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Septic Tank & Leach Field Calculator",
+    description: "Calculate required septic tank gallon capacity and leach field drain pipe linear footage per EPA code.",
+    href: "/calculators/septic-tank-sizing",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Firewood Cord & Wood Stove Heat Calculator",
+    description: "Calculate full cords (128 cu ft), face cords, ricks, total weight, and Million BTU heat output across hardwoods and softwoods.",
+    href: "/calculators/firewood-cord",
+    category: "Plumbing, HVAC & Energy"
+  }
 ];
 
 const categories = [...new Set(calculators.map(c => c.category))];
