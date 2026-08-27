@@ -1,2 +1,2 @@
-# Redirect /calculators to homepage to avoid duplicate content
-/calculators / 301
+# Cloudflare Pages 301 Redirect Rules
+# Legacy redirects can be added here
