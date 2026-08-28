@@ -1,0 +1,411 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Mortar Calculator — Bags, Sand & Cement Mix Proportions | CalcForDIY"
+  description="Calculate how many bags of pre-mixed mortar (Type S, N, M) or Portland cement, hydrated lime, and masonry sand you need for brick, block, and stone projects."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mortar Mix & Bag Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many bags of mortar do I need for 1000 bricks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For 1,000 standard modular bricks with 3/8-inch joints, you will need approximately 7 to 8 bags (80 lb each) of Type N or Type S pre-blended mortar mix (or roughly 1 ton of masonry sand and 6 bags of masonry cement if mixing by hand)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between Type N, Type S, and Type M mortar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Type N (750 PSI) is standard for above-grade exterior and interior brick walls. Type S (1,800 PSI) has high tensile bond strength for below-grade foundation walls, retaining walls, and pavers. Type M (2,500 PSI) is for heavy structural loadbearing foundations and stone masonry."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the standard mixing ratio for site-mixed mortar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per ASTM C270, standard Type N mortar is mixed in a 1 : 1 : 6 proportion by volume (1 part Portland cement, 1 part hydrated lime, and 6 parts damp masonry sand). Type S is 2 : 1 : 9 (2 parts Portland, 1 part Lime, 9 parts Sand)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Mortar Mix Calculator", "item": "https://calcfordiy.com/calculators/mortar-mix" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Mortar Mix Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Masonry Mortar Mix &amp; Bag Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate pre-blended 60 lb / 80 lb mortar bags, or bulk Portland cement, hydrated lime, and masonry sand tonnage for brickwork, blockwork, stone veneer, and repointing.
+    </p>
+  </div>
+
+  <!-- Calculator Input Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Masonry Project Type &amp; Material Count
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Masonry Unit Type</label>
+        <select id="masonryType" onchange="adjustDefaults()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="brick" selected>Standard Modular Brick (3/8" Joint)</option>
+          <option value="cmu8">8" × 8" × 16" CMU Cinder Blocks</option>
+          <option value="cmu12">12" × 8" × 16" Heavy CMU Blocks</option>
+          <option value="stone">Manufactured Stone Veneer (Sq Ft)</option>
+          <option value="repoint">Tuckpointing / Brick Repointing (Sq Ft)</option>
+        </select>
+      </div>
+
+      <div>
+        <label id="countLabel" class="block text-xs font-medium text-gray-600 mb-1">Number of Bricks</label>
+        <input type="number" id="unitCount" placeholder="500" value="500" min="1" max="100000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Mortar Grade (ASTM C270)</label>
+        <select id="mortarGrade" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="typeN" selected>Type N (750 PSI — Above-Grade Brick / Chimney)</option>
+          <option value="typeS">Type S (1,800 PSI — Retaining Wall / Foundation)</option>
+          <option value="typeM">Type M (2,500 PSI — Heavy Load / Stone Masonry)</option>
+          <option value="typeO">Type O (350 PSI — Historic Restoration / Interior)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Waste &amp; Droppings Factor</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.10">10% Waste (Experienced Mason)</option>
+          <option value="1.15" selected>15% Waste (Standard DIY Project)</option>
+          <option value="1.20">20% Waste (Heavy Scrap / Stone)</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calculateMortar()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors cursor-pointer text-sm shadow-xs">
+      Calculate Mortar Takeoff
+    </button>
+  </div>
+
+  <!-- Primary Results Grid -->
+  <div id="results" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-blue-600 font-semibold uppercase tracking-wide">Pre-Mixed 80 lb Bags</div>
+      <div id="r_bags80" class="text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">4.5 Bags</div>
+      <div id="r_bags60" class="text-xs text-blue-700 mt-1">or 6 Bags (60 lb)</div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-amber-600 font-semibold uppercase tracking-wide">Masonry Sand</div>
+      <div id="r_sandTons" class="text-2xl sm:text-3xl font-extrabold text-amber-900 mt-1">0.45 Tons</div>
+      <div id="r_sandYards" class="text-xs text-amber-700 mt-1">~0.35 Cubic Yards</div>
+    </div>
+
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Site-Mix Cement</div>
+      <div id="r_portlandBags" class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-1">1.5 Bags</div>
+      <div id="r_portlandType" class="text-xs text-emerald-700 mt-1">94 lb Portland Cement</div>
+    </div>
+
+    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-purple-600 font-semibold uppercase tracking-wide">Hydrated Lime</div>
+      <div id="r_limeBags" class="text-2xl sm:text-3xl font-extrabold text-purple-900 mt-1">1.5 Bags</div>
+      <div id="r_waterGal" class="text-xs text-purple-700 mt-1">50 lb Type S Hydrated Lime</div>
+    </div>
+  </div>
+
+  <!-- Dynamic SVG Diagram -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+      <h2 class="text-base font-semibold text-gray-800">Mortar Joint &amp; Recipe Proportion Diagram</h2>
+      <span class="text-xs text-gray-500 font-mono">ASTM C270 Proportion Specification</span>
+    </div>
+    <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
+      <svg id="mortarSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-600 rounded-xs"></span> Brick / CMU Unit</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-400 rounded-xs"></span> Bed Joint (3/8")</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-blue-500 rounded-xs"></span> Portland Cement</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-emerald-400 rounded-xs"></span> Hydrated Lime</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-300 rounded-xs"></span> Masonry Sand</div>
+    </div>
+  </div>
+
+  <!-- Material Breakdown & RSMeans Cost -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+      <h3 class="font-bold text-gray-900 text-sm mb-3">Batch Mixing Proportions by Shovel &amp; Bucket</h3>
+      <table class="w-full text-xs text-left">
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="py-2 text-gray-600">Mixing Water Required</td><td id="t_water" class="py-2 font-mono text-right font-bold text-gray-900">~22 Gallons (Clean Potable)</td></tr>
+          <tr><td class="py-2 text-gray-600">Pre-Blended Mortar Weight</td><td id="t_premixedWt" class="py-2 font-mono text-right text-gray-900">360 lbs (~4.5 Bags)</td></tr>
+          <tr><td class="py-2 text-gray-600">Site Recipe Ratio (Vol)</td><td id="t_recipeRatio" class="py-2 font-mono text-right text-gray-900">1 Portland : 1 Lime : 6 Sand</td></tr>
+          <tr><td class="py-2 text-gray-600">Shovel Formula per Batch</td><td id="t_shovelFormula" class="py-2 font-mono text-right text-gray-900">3 Shovels Cement : 3 Lime : 18 Sand</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 1-Click Shopping List Button -->
+      <button id="copyListBtn" onclick="copyShoppingList()" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-300">
+        <span>📋 Copy Shopping List for Home Depot / Lowe's</span>
+      </button>
+    </div>
+
+    <!-- RSMeans DIY vs Pro Benchmark -->
+    <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm text-blue-200">Mortar Cost &amp; Masonry Benchmark</h3>
+        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      </div>
+      <p class="text-xs text-slate-300 mb-4">Mortar material cost vs professional contractor turnkey brick/tuckpointing quote.</p>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Estimated Mortar Cost</div>
+          <div id="c_diyCost" class="text-xl font-black text-emerald-400 mt-0.5">$55 – $80</div>
+          <div class="text-[10px] text-slate-400 mt-1">Pre-mixed bags or raw ingredients</div>
+        </div>
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Turnkey Masonry Labor</div>
+          <div id="c_proCost" class="text-xl font-black text-amber-300 mt-0.5">$850 – $1,250</div>
+          <div class="text-[10px] text-slate-400 mt-1">Laying &amp; striking joints</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-400 font-bold text-sm">💰</span>
+        <span>DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$795 – $1,170</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should I buy pre-mixed bagged mortar (Spec Mix / Sakrete) or mix my own sand and cement?</h3>
+        <p class="text-gray-600 text-sm">For projects under 1,000 bricks or 200 CMU blocks, pre-blended 80 lb bags are much faster and guarantee factory-consistent cement-to-sand ratios. For large masonry retaining walls or entire home foundations, buying bulk masonry sand by the dump truck load and 94 lb Portland cement bags reduces material costs by 40% to 50%.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How long does mixed mortar stay usable in the wheelbarrow?</h3>
+        <p class="text-gray-600 text-sm">Mortar typically has a pot life of 1.5 to 2 hours at 70°F. If it begins to stiffen from moisture evaporation within the first 90 minutes, you can "re-temper" it by adding a small splash of water and remixing. After 2 hours, hydration has begun and excess mortar must be discarded.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Masonry Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/concrete-block-cmu" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Block (CMU) Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate 8x8x16 blocks, core grout, and vertical rebar.</div>
+      </a>
+      <a href="/calculators/thinset" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Thinset Mortar Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate thinset mortar bags &amp; trowel sizes for tile.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate cubic yards and cement bags for flat slabs.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function adjustDefaults() {
+    const type = document.getElementById('masonryType').value;
+    const label = document.getElementById('countLabel');
+    const input = document.getElementById('unitCount');
+
+    if (type === 'brick') {
+      label.textContent = 'Number of Bricks';
+      input.value = 500;
+    } else if (type === 'cmu8' || type === 'cmu12') {
+      label.textContent = 'Number of CMU Blocks';
+      input.value = 150;
+    } else if (type === 'stone') {
+      label.textContent = 'Stone Veneer Area (Sq Ft)';
+      input.value = 120;
+    } else if (type === 'repoint') {
+      label.textContent = 'Wall Surface Area to Repoint (Sq Ft)';
+      input.value = 150;
+    }
+    calculateMortar();
+  }
+
+  function calculateMortar() {
+    const type = document.getElementById('masonryType').value;
+    const count = parseFloat(document.getElementById('unitCount').value) || 500;
+    const grade = document.getElementById('mortarGrade').value;
+    const waste = parseFloat(document.getElementById('wasteFactor').value) || 1.15;
+
+    // Yield factors (Pre-blended 80 lb bags needed per unit)
+    let bags80PerUnit = 0.0075; // Standard brick: 1 bag lays ~135 bricks
+    if (type === 'cmu8') bags80PerUnit = 0.031; // 1 bag lays ~32 blocks
+    if (type === 'cmu12') bags80PerUnit = 0.045; // 1 bag lays ~22 heavy blocks
+    if (type === 'stone') bags80PerUnit = 0.025; // 1 bag covers ~40 sq ft scratch + bond coat
+    if (type === 'repoint') bags80PerUnit = 0.015; // 1 bag repoints ~65 sq ft 3/4" deep
+
+    const baseBags80 = count * bags80PerUnit;
+    const totalBags80 = Math.ceil(baseBags80 * waste);
+    const totalBags60 = Math.ceil(totalBags80 * 1.33);
+
+    // Bulk site mix conversions
+    // 1 bag 80 lb premix ~ 0.55 cu ft wet mortar
+    const totalCuFtWet = totalBags80 * 0.55;
+    const sandYards = (totalCuFtWet * 1.15 / 27).toFixed(2);
+    const sandTons = (sandYards * 1.35).toFixed(2);
+
+    // Site recipe: Type N (1 Portland : 1 Lime : 6 Sand), Type S (2 Portland : 1 Lime : 9 Sand)
+    let portlandBags = 0;
+    let limeBags = 0;
+    let recipeRatioText = '1 Portland : 1 Lime : 6 Sand (Type N)';
+
+    if (grade === 'typeS') {
+      portlandBags = (totalBags80 * 0.35).toFixed(1);
+      limeBags = (totalBags80 * 0.18).toFixed(1);
+      recipeRatioText = '2 Portland : 1 Lime : 9 Sand (Type S)';
+    } else if (grade === 'typeM') {
+      portlandBags = (totalBags80 * 0.42).toFixed(1);
+      limeBags = (totalBags80 * 0.12).toFixed(1);
+      recipeRatioText = '3 Portland : 1 Lime : 12 Sand (Type M)';
+    } else {
+      portlandBags = (totalBags80 * 0.28).toFixed(1);
+      limeBags = (totalBags80 * 0.28).toFixed(1);
+      recipeRatioText = '1 Portland : 1 Lime : 6 Sand (Type N)';
+    }
+
+    const waterGal = Math.round(totalBags80 * 4.5);
+
+    // Update DOM
+    document.getElementById('r_bags80').textContent = `${totalBags80} Bags`;
+    document.getElementById('r_bags60').textContent = `or ${totalBags60} Bags (60 lb)`;
+    document.getElementById('r_sandTons').textContent = `${sandTons} Tons`;
+    document.getElementById('r_sandYards').textContent = `~${sandYards} Cubic Yards Sand`;
+    document.getElementById('r_portlandBags').textContent = `${portlandBags} Bags`;
+    document.getElementById('r_portlandType').textContent = `94 lb Bags Portland Cement`;
+    document.getElementById('r_limeBags').textContent = `${limeBags} Bags`;
+    document.getElementById('r_waterGal').textContent = `50 lb Bags Hydrated Lime`;
+
+    document.getElementById('t_water').textContent = `~${waterGal} Gallons Potable Water`;
+    document.getElementById('t_premixedWt').textContent = `${totalBags80 * 80} lbs (${totalBags80} Bags)`;
+    document.getElementById('t_recipeRatio').textContent = recipeRatioText;
+    document.getElementById('t_shovelFormula').textContent = grade === 'typeS' ? '4 Shovels Cement : 2 Lime : 18 Sand' : '3 Shovels Cement : 3 Lime : 18 Sand';
+
+    // Cost Benchmarks
+    const diyCostMin = Math.round(totalBags80 * 12);
+    const diyCostMax = Math.round(diyCostMin * 1.3);
+    const proCostMin = Math.round(count * (type === 'brick' ? 1.8 : 6.0));
+    const proCostMax = Math.round(proCostMin * 1.4);
+
+    document.getElementById('c_diyCost').textContent = `$${diyCostMin} – $${diyCostMax}`;
+    document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
+    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()}`;
+
+    drawMortarSvg(grade);
+  }
+
+  function drawMortarSvg(grade) {
+    const svg = document.getElementById('mortarSvg');
+    if (!svg) return;
+
+    let content = '';
+    // Draw cross-section of brick masonry joint
+    content += `<rect x="30" y="30" width="240" height="50" fill="#B91C1C" stroke="#7F1D1D" stroke-width="2" rx="2" />`;
+    content += `<text x="150" y="60" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFFFFF">Upper Masonry Unit</text>`;
+
+    // Mortar Bed Joint (3/8")
+    content += `<rect x="30" y="80" width="240" height="20" fill="#F59E0B" opacity="0.85" stroke="#D97706" stroke-width="1.5" />`;
+    content += `<text x="150" y="94" text-anchor="middle" font-size="10" font-weight="bold" fill="#78350F">3/8" Mortar Bed Joint</text>`;
+
+    content += `<rect x="30" y="100" width="240" height="50" fill="#B91C1C" stroke="#7F1D1D" stroke-width="2" rx="2" />`;
+    content += `<text x="150" y="130" text-anchor="middle" font-size="12" font-weight="bold" fill="#FFFFFF">Lower Masonry Unit</text>`;
+
+    // Volumetric Recipe Buckets Diagram on Right
+    content += `<rect x="310" y="25" width="260" height="135" fill="#1E293B" stroke="#334155" stroke-width="1.5" rx="6" />`;
+    content += `<text x="440" y="45" text-anchor="middle" font-size="11" font-weight="bold" fill="#38BDF8">ASTM C270 Mix Recipe By Volume</text>`;
+
+    // Cement Bar
+    content += `<rect x="330" y="60" width="40" height="35" fill="#3B82F6" rx="2" />`;
+    content += `<text x="350" y="82" text-anchor="middle" font-size="10" font-weight="bold" fill="#FFFFFF">${grade === 'typeS' ? '2' : '1'} Pt</text>`;
+    content += `<text x="350" y="110" text-anchor="middle" font-size="9" fill="#94A3B8">Portland</text>`;
+
+    // Lime Bar
+    content += `<rect x="390" y="60" width="40" height="35" fill="#10B981" rx="2" />`;
+    content += `<text x="410" y="82" text-anchor="middle" font-size="10" font-weight="bold" fill="#FFFFFF">1 Pt</text>`;
+    content += `<text x="410" y="110" text-anchor="middle" font-size="9" fill="#94A3B8">Lime</text>`;
+
+    // Sand Bar
+    content += `<rect x="450" y="60" width="100" height="35" fill="#FBBF24" rx="2" />`;
+    content += `<text x="500" y="82" text-anchor="middle" font-size="10" font-weight="bold" fill="#78350F">${grade === 'typeS' ? '9' : '6'} Pts</text>`;
+    content += `<text x="500" y="110" text-anchor="middle" font-size="9" fill="#94A3B8">Masonry Sand</text>`;
+
+    content += `<text x="440" y="142" text-anchor="middle" font-size="10" font-weight="bold" fill="#FDE68A">+ Clean Potable Water to Trowel Slump</text>`;
+
+    svg.innerHTML = content;
+  }
+
+  function copyShoppingList() {
+    const bags80 = document.getElementById('r_bags80').textContent;
+    const sand = document.getElementById('r_sandTons').textContent;
+    const type = document.getElementById('masonryType').selectedOptions[0].text;
+
+    const listText = `CalcForDIY Material Takeoff — Masonry Mortar:\n` +
+      `- Project: ${type}\n` +
+      `- Pre-mixed: ${bags80} (80 lb Type S / Type N Mortar Mix)\n` +
+      `- Sand Required: ${sand}\n` +
+      `Calculated at https://calcfordiy.com/calculators/mortar-mix`;
+
+    navigator.clipboard.writeText(listText).then(() => {
+      const btn = document.getElementById('copyListBtn');
+      btn.innerHTML = '<span>✅ Copied to Clipboard!</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy Shopping List for Home Depot / Lowe\'s</span>';
+      }, 2500);
+    });
+  }
+
+  calculateMortar();
+</script>

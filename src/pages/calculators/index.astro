@@ -165,7 +165,31 @@ const calculators = [
     category: "Millwork, Trim & Walls"
   },
 
-  // 4. Concrete & Masonry (6)
+    // 4. Concrete & Masonry (10)
+  {
+    title: "Concrete Block (CMU) Calculator",
+    description: "Calculate 8x8x16 cinder blocks, mortar bags, core grout cubic yards, and rebar for retaining walls and foundations.",
+    href: "/calculators/concrete-block-cmu",
+    category: "Concrete & Masonry"
+  },
+  {
+    title: "Mortar Mix & Bag Calculator",
+    description: "Calculate pre-blended 80 lb mortar bags (Type S, N, M), Portland cement, lime, and masonry sand proportions.",
+    href: "/calculators/mortar-mix",
+    category: "Concrete & Masonry"
+  },
+  {
+    title: "Brick & Mortar Wall Calculator",
+    description: "Calculate total brick count, strapped cubes/pallets, mortar bags, and corrugated metal wall ties for brick walls.",
+    href: "/calculators/brick-calculator",
+    category: "Concrete & Masonry"
+  },
+  {
+    title: "Concrete Footing & Trench Calculator",
+    description: "Calculate concrete cubic yards, 80 lb bags, steel rebar, and excavation spoil for continuous strip footings and isolated pads.",
+    href: "/calculators/concrete-footing",
+    category: "Concrete & Masonry"
+  },
   {
     title: "Concrete Slab Calculator",
     description: "Cubic yards and bag count for concrete slabs — patio, driveway, shed floor, or walkway.",
@@ -283,7 +307,25 @@ const calculators = [
     category: "Landscaping & Hardscaping"
   },
 
-  // 6. Paint & Finishing (3)
+    // 6. Paint & Finishing (6)
+  {
+    title: "Deck Stain & Sealer Calculator",
+    description: "Calculate stain gallons, wood brightener, and 2.5x railing multipliers for deck boards, spindles, and stairs.",
+    href: "/calculators/deck-stain",
+    category: "Paint & Finishing"
+  },
+  {
+    title: "Drywall Primer & Sealer Calculator",
+    description: "Calculate PVA drywall primer gallons, high-build surfacer, and ceiling sealer for new sheetrock and mud joints.",
+    href: "/calculators/drywall-primer-sealer",
+    category: "Paint & Finishing"
+  },
+  {
+    title: "Wood Fence Stain & Sealer Calculator",
+    description: "Calculate stain gallons, 5-gallon pails, 2-sided picket multipliers, and airless sprayer overspray for wood fences.",
+    href: "/calculators/fence-stain",
+    category: "Paint & Finishing"
+  },
   {
     title: "Paint Calculator — Room",
     description: "How many gallons of paint for a room including walls, ceiling, doors and windows.",
@@ -493,7 +535,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
 <Layout
   title="All 78 Free DIY Construction Calculators — CalcForDIY"
-  description="Browse all 78 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs."
+  description="Browse all 85 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs."
 >
 <script type="application/ld+json" is:inline>
 {
@@ -516,7 +558,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
       <span>•</span>
       <span>78 Tools Live</span>
     </div>
-    <h1 class="text-4xl font-bold text-gray-900 mb-3">All 78 Free DIY Calculators</h1>
+    <h1 class="text-4xl font-bold text-gray-900 mb-3">All 85 Free DIY Calculators</h1>
     <p class="text-lg text-gray-600 max-w-3xl mb-6">
       Instant material takeoffs, dynamic SVG framing diagrams, RSMeans contractor cost benchmarks, and 1-click shopping list exports. Everything runs free in your browser.
     </p>

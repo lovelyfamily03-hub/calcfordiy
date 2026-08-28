@@ -1,0 +1,412 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Deck Stain Calculator — Gallons, Railing Multiplier & Coats | CalcForDIY"
+  description="Calculate how many gallons of deck stain, wood sealer, and cleaner you need for deck boards, railings, balusters, and stairs with 1 or 2 coats."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Deck Stain and Sealer Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many square feet does 1 gallon of deck stain cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On smooth, planed cedar or pressure-treated wood, 1 gallon of semi-transparent deck stain covers approximately 200 to 250 sq ft on the 1st coat and 300 to 350 sq ft on the 2nd coat. On weathered or rough-sawn porous wood, coverage drops to 150 to 175 sq ft per gallon."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you calculate stain for deck railings and spindles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because spindles (balusters) have four exposed sides and detailed edges, standard industry practice is to multiply the linear footage of railing by 2.5 to 3.0 to calculate the true equivalent paintable square footage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should you apply 1 or 2 coats of deck stain?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Clear sealers and oil-based penetrating stains typically require 1 saturated coat (or 'wet-on-wet' within 20 minutes). Solid and acrylic water-based stains generally require 2 full coats for even color and UV protection."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Deck Stain Calculator", "item": "https://calcfordiy.com/calculators/deck-stain" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Deck Stain Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Deck Stain &amp; Sealer Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate stain gallons, wood cleaner/brightener, and application pails for deck floorboards, railings, baluster spindles, and stair steps.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Deck Floor Dimensions &amp; Wood Age
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Deck Length (ft)</label>
+        <input type="number" id="deckLength" placeholder="20" value="20" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Deck Width (ft)</label>
+        <input type="number" id="deckWidth" placeholder="16" value="16" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Wood Condition &amp; Porosity</label>
+        <select id="woodCondition" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="smooth" selected>Smooth / New Planed Lumber (225 sq ft/gal)</option>
+          <option value="weathered">Aged / Weathered Dry Wood (160 sq ft/gal)</option>
+          <option value="rough">Rough-Sawn Cedar / Textured (135 sq ft/gal)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Stain Opacity &amp; Formula</label>
+        <select id="stainType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="semi_trans" selected>Semi-Transparent Oil Stain (Standard)</option>
+          <option value="clear">Clear Water Sealer / Wood Protector</option>
+          <option value="semi_solid">Semi-Solid Color Stain</option>
+          <option value="solid">Solid Acrylic Color Stain (Heavy Coat)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Railings, Stairs &amp; Number of Coats
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Perimeter Railing Length (ft)</label>
+        <input type="number" id="railingLength" placeholder="36" value="36" min="0" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-[10px] text-gray-500">Includes top rail, bottom rail &amp; 4-sided baluster spindles</span>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Number of Stair Steps</label>
+        <input type="number" id="stairCount" placeholder="5" value="5" min="0" max="50" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-[10px] text-gray-500">Standard 4ft wide stair treads &amp; risers</span>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Number of Coats</label>
+        <select id="coatCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1">1 Saturated Coat (Oil Penetrating Stains)</option>
+          <option value="2" selected>2 Coats (Standard for Acrylic / Full Color)</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calculateStain()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors cursor-pointer text-sm shadow-xs">
+      Calculate Stain Gallons
+    </button>
+  </div>
+
+  <!-- Primary Results Grid -->
+  <div id="results" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-blue-600 font-semibold uppercase tracking-wide">Total Stain Needed</div>
+      <div id="r_totalGallons" class="text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">4.0 Gallons</div>
+      <div id="r_pailBreakdown" class="text-xs text-blue-700 mt-1">4 × 1-Gal Cans (or 1 × 5-Gal Pail)</div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-amber-600 font-semibold uppercase tracking-wide">Total Paintable Area</div>
+      <div id="r_totalSqFt" class="text-2xl sm:text-3xl font-extrabold text-amber-900 mt-1">440 Sq Ft</div>
+      <div id="r_areaDetail" class="text-xs text-amber-700 mt-1">320' floor + 90' rail + 30' stairs</div>
+    </div>
+
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Wood Cleaner / Prep</div>
+      <div id="r_cleanerGal" class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-1">2 Gallons</div>
+      <div id="r_cleanerDetail" class="text-xs text-emerald-700 mt-1">Deck Wash / Oxalic Brightener</div>
+    </div>
+
+    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-purple-600 font-semibold uppercase tracking-wide">Coverage Rate</div>
+      <div id="r_coverageRate" class="text-2xl sm:text-3xl font-extrabold text-purple-900 mt-1">225 sq ft/gal</div>
+      <div id="r_coatDetail" class="text-xs text-purple-700 mt-1">2 Full Application Coats</div>
+    </div>
+  </div>
+
+  <!-- Dynamic SVG Deck Diagram -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+      <h2 class="text-base font-semibold text-gray-800">Dynamic Deck Floor &amp; Railing Staining Diagram</h2>
+      <span class="text-xs text-gray-500 font-mono">Floorboards • Railings • Balusters</span>
+    </div>
+    <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
+      <svg id="deckSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-700 rounded-xs"></span> Stained Decking Planks</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-500 rounded-xs"></span> Top / Bottom Railings</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-300 rounded-xs"></span> 4-Sided Spindles</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-blue-500 rounded-xs"></span> Stair Treads &amp; Risers</div>
+    </div>
+  </div>
+
+  <!-- Material Takeoff Table & RSMeans Cost Benchmarks -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+      <h3 class="font-bold text-gray-900 text-sm mb-3">Stain &amp; Application Tool Takeoff</h3>
+      <table class="w-full text-xs text-left">
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="py-2 text-gray-600">1st Coat Stain Volume</td><td id="t_coat1" class="py-2 font-mono text-right font-bold text-gray-900">2.2 Gallons</td></tr>
+          <tr><td class="py-2 text-gray-600">2nd Coat Stain Volume</td><td id="t_coat2" class="py-2 font-mono text-right text-gray-900">1.8 Gallons (less porous)</td></tr>
+          <tr><td class="py-2 text-gray-600">Stain Applicator Pad / 3/8" Roller</td><td id="t_applicator" class="py-2 font-mono text-right text-gray-900">1 Pad + 1 Natural Bristle Brush</td></tr>
+          <tr><td class="py-2 text-gray-600">Pump Sprayer &amp; Back-Brush</td><td id="t_sprayer" class="py-2 font-mono text-right text-gray-900">Recommended for Railing Spindles</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 1-Click Shopping List Button -->
+      <button id="copyListBtn" onclick="copyShoppingList()" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-300">
+        <span>📋 Copy Shopping List for Home Depot / Lowe's</span>
+      </button>
+    </div>
+
+    <!-- RSMeans DIY vs Pro Benchmark -->
+    <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm text-blue-200">DIY vs Deck Staining Contractor Cost</h3>
+        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      </div>
+      <p class="text-xs text-slate-300 mb-4">Retail premium oil/acrylic stain &amp; cleaner vs licensed painting contractor quote.</p>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Estimated DIY Cost</div>
+          <div id="c_diyCost" class="text-xl font-black text-emerald-400 mt-0.5">$210 – $280</div>
+          <div class="text-[10px] text-slate-400 mt-1">Stain, cleaner, pads &amp; brushes</div>
+        </div>
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Contractor Powerwash &amp; Stain</div>
+          <div id="c_proCost" class="text-xl font-black text-amber-300 mt-0.5">$1,320 – $1,980</div>
+          <div class="text-[10px] text-slate-400 mt-1">$3.00 – $4.50 / sq ft complete</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-400 font-bold text-sm">💰</span>
+        <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$1,110 – $1,700 (84%)</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Best Practices -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Professional Deck Staining Guidelines (PDCA P1-09)</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+      <div class="border-l-2 border-blue-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Moisture Meter Testing</h4>
+        <p class="text-xs leading-relaxed">
+          Never apply stain to wood with greater than <strong>12% to 15% moisture content</strong>. Allow power-washed wood to dry in direct sunlight for at least 48 to 72 hours before applying oil or acrylic stains.
+        </p>
+      </div>
+      <div class="border-l-2 border-amber-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Back-Brushing Technique</h4>
+        <p class="text-xs leading-relaxed">
+          If spraying stain with an airless or pump sprayer, always have a helper <strong>back-brush</strong> immediately with a 4-inch natural China bristle brush. This works the stain deep into wood pores and eliminates surface puddling.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should I buy 1-gallon cans or a 5-gallon bucket of stain?</h3>
+        <p class="text-gray-600 text-sm">If your calculation indicates 4 or more gallons, buying a single 5-gallon pail is usually 15% to 20% cheaper than four individual cans and prevents subtle color batch variations (boxing the paint).</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can I stain a brand new pressure-treated deck immediately?</h3>
+        <p class="text-gray-600 text-sm">No. Fresh pressure-treated lumber contains high preservative moisture. Perform the 'water drop test': sprinkle water drops on the deck boards. If the water beads up, the wood is too wet. If it absorbs within 10 seconds, it is ready to stain (usually 3 to 6 months of seasoning).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Deck &amp; Exterior Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/deck-boards" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Boards Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate 5/4x6 composite &amp; cedar deck planks.</div>
+      </a>
+      <a href="/calculators/deck-joist-span" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Joist Span Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate beam sizes, post spacing &amp; allowable spans.</div>
+      </a>
+      <a href="/calculators/paint-exterior" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Exterior Paint Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate siding paint gallons &amp; trim coverage.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateStain() {
+    const length = parseFloat(document.getElementById('deckLength').value) || 20;
+    const width = parseFloat(document.getElementById('deckWidth').value) || 16;
+    const condition = document.getElementById('woodCondition').value;
+    const stainType = document.getElementById('stainType').value;
+    const railingFt = parseFloat(document.getElementById('railingLength').value) || 36;
+    const stairSteps = parseInt(document.getElementById('stairCount').value) || 5;
+    const coats = parseInt(document.getElementById('coatCount').value) || 2;
+
+    const floorSqFt = length * width;
+    // Railing factor: 1 linear ft of 36" railing with 4-sided spindles = 2.5 sq ft equivalent
+    const railingSqFt = railingFt * 2.5;
+    // Stair step factor: 4ft wide tread + riser = 6 sq ft per step
+    const stairSqFt = stairSteps * 6.0;
+
+    const totalSurfaceSqFt = floorSqFt + railingSqFt + stairSqFt;
+
+    // Coverage rates per gallon (1st coat)
+    let coverage1 = 225;
+    if (condition === 'weathered') coverage1 = 160;
+    if (condition === 'rough') coverage1 = 135;
+
+    // 2nd coat covers ~30% more because pores are partially sealed
+    const coverage2 = coverage1 * 1.35;
+
+    const coat1Gal = totalSurfaceSqFt / coverage1;
+    const coat2Gal = coats === 2 ? (totalSurfaceSqFt / coverage2) : 0;
+    const totalGal = (coat1Gal + coat2Gal) * 1.10; // +10% waste / brush soak
+    const roundedGal = Math.ceil(totalGal);
+
+    const cleanerGal = Math.ceil(totalSurfaceSqFt / 250);
+
+    // Update DOM
+    document.getElementById('r_totalGallons').textContent = `${roundedGal}.0 Gallons`;
+    document.getElementById('r_pailBreakdown').textContent = roundedGal >= 5 ? `1 × 5-Gal Pail (or ${roundedGal} × 1-Gal Cans)` : `${roundedGal} × 1-Gallon Cans`;
+    document.getElementById('r_totalSqFt').textContent = `${Math.round(totalSurfaceSqFt)} Sq Ft`;
+    document.getElementById('r_areaDetail').textContent = `${Math.round(floorSqFt)}' floor + ${Math.round(railingSqFt)}' rail + ${Math.round(stairSqFt)}' stairs`;
+    document.getElementById('r_cleanerGal').textContent = `${cleanerGal} Gallons`;
+    document.getElementById('r_cleanerDetail').textContent = `Deck Cleaner & Wood Brightener`;
+    document.getElementById('r_coverageRate').textContent = `${coverage1} sq ft/gal`;
+    document.getElementById('r_coatDetail').textContent = `${coats} Full Application Coat${coats > 1 ? 's' : ''}`;
+
+    document.getElementById('t_coat1').textContent = `${coat1Gal.toFixed(1)} Gallons (1st Coat @ ${coverage1} sq ft/gal)`;
+    document.getElementById('t_coat2').textContent = coats === 2 ? `${coat2Gal.toFixed(1)} Gallons (2nd Coat @ ${Math.round(coverage2)} sq ft/gal)` : '1-Coat Application Selected';
+
+    // RSMeans Cost Benchmarks
+    const galPrice = stainType === 'solid' ? 52 : (stainType === 'clear' ? 38 : 46);
+    const diyCostMin = Math.round(roundedGal * galPrice + cleanerGal * 18 + 35);
+    const diyCostMax = Math.round(diyCostMin * 1.25);
+
+    const proCostMin = Math.round(totalSurfaceSqFt * 3.00);
+    const proCostMax = Math.round(totalSurfaceSqFt * 4.50);
+
+    document.getElementById('c_diyCost').textContent = `$${diyCostMin} – $${diyCostMax}`;
+    document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
+    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()} (${Math.round((1 - diyCostMin/proCostMin)*100)}%)`;
+
+    drawDeckSvg();
+  }
+
+  function drawDeckSvg() {
+    const svg = document.getElementById('deckSvg');
+    if (!svg) return;
+
+    let content = '';
+    // Deck floorboards
+    content += `<rect x="30" y="30" width="380" height="140" fill="#92400E" stroke="#78350F" stroke-width="2" rx="4" />`;
+    
+    // Planks lines
+    for (let py = 45; py < 170; py += 15) {
+      content += `<line x1="30" y1="${py}" x2="410" y2="${py}" stroke="#78350F" stroke-width="1.5" />`;
+    }
+    content += `<text x="220" y="105" text-anchor="middle" font-size="14" font-weight="bold" fill="#FEF3C7">Deck Floor Surface</text>`;
+
+    // Perimeter Railing on Top & Left
+    content += `<rect x="25" y="20" width="390" height="10" fill="#D97706" stroke="#B45309" stroke-width="1" />`;
+    for (let rx = 35; rx < 410; rx += 25) {
+      content += `<line x1="${rx}" y1="20" x2="${rx}" y2="30" stroke="#FDE68A" stroke-width="2.5" />`;
+    }
+    content += `<text x="220" y="16" text-anchor="middle" font-size="10" font-weight="bold" fill="#FBBF24">Top Rail &amp; Balusters (2.5x Multiplier)</text>`;
+
+    // Stairs Section on Right
+    content += `<rect x="430" y="70" width="140" height="100" fill="#1E293B" stroke="#334155" stroke-width="1.5" rx="4" />`;
+    content += `<text x="500" y="90" text-anchor="middle" font-size="11" font-weight="bold" fill="#38BDF8">Stair Steps &amp; Stringers</text>`;
+
+    for (let s = 0; s < 4; s++) {
+      const sy = 105 + s * 16;
+      content += `<rect x="450" y="${sy}" width="100" height="10" fill="#B45309" stroke="#92400E" stroke-width="1" rx="1" />`;
+    }
+
+    svg.innerHTML = content;
+  }
+
+  function copyShoppingList() {
+    const gal = document.getElementById('r_totalGallons').textContent;
+    const pails = document.getElementById('r_pailBreakdown').textContent;
+    const cleaner = document.getElementById('r_cleanerGal').textContent;
+    const stain = document.getElementById('stainType').selectedOptions[0].text;
+
+    const listText = `CalcForDIY Material Takeoff — Deck Staining:\n` +
+      `- Stain Type: ${stain}\n` +
+      `- Total Stain: ${gal} (${pails})\n` +
+      `- Prep Cleaner: ${cleaner} (Deck Wash / Brightener)\n` +
+      `- Tools: 1 Applicator Pad + 1 China Bristle Brush\n` +
+      `Calculated at https://calcfordiy.com/calculators/deck-stain`;
+
+    navigator.clipboard.writeText(listText).then(() => {
+      const btn = document.getElementById('copyListBtn');
+      btn.innerHTML = '<span>✅ Copied to Clipboard!</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy Shopping List for Home Depot / Lowe\'s</span>';
+      }, 2500);
+    });
+  }
+
+  calculateStain();
+</script>

@@ -1,0 +1,461 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Concrete Footing Calculator — Trench, Strip & Spread Footings | CalcForDIY"
+  description="Calculate concrete cubic yards, 80 lb & 60 lb bags, rebar steel, and excavation volume for continuous strip footings and isolated spread pads."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Concrete Footing Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How wide and deep should a concrete footing be?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per IRC Section R403, a standard continuous concrete footing for residential 1-to-2 story construction should be at least twice the thickness of the foundation wall it supports (e.g. 16 to 20 inches wide for an 8-inch wall) and at least 8 to 12 inches thick."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much concrete do I need for a 100-foot trench footing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 100-foot continuous trench footing that is 16 inches wide and 10 inches deep has a volume of approximately 4.12 cubic yards (or roughly 185 eighty-pound bags of concrete including a 10% waste buffer)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much rebar goes in a continuous concrete footing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard continuous trench footings typically require two continuous lines of #4 (1/2-inch) or #5 (5/8-inch) deformed steel rebar elevated 3 inches off the ground on rebar chairs, with overlapping lap splices of at least 24 inches at joints."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Concrete Footing Calculator", "item": "https://calcfordiy.com/calculators/concrete-footing" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Concrete Footing Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Concrete Footing &amp; Trench Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate concrete cubic yards, 80 lb / 60 lb bagged concrete, steel rebar sticks, and excavation spoil volume for continuous strip trench footings and isolated spread pads.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Footing Style &amp; Trench Dimensions
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Footing Type</label>
+        <select id="footingType" onchange="toggleFootingType()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="continuous" selected>Continuous Strip / Trench Footing (Wall Base)</option>
+          <option value="isolated">Isolated Spread Pad (Deck Post / Column Pier)</option>
+        </select>
+      </div>
+
+      <div>
+        <label id="lengthLabel" class="block text-xs font-medium text-gray-600 mb-1">Total Trench Run Length (ft)</label>
+        <input type="number" id="footingLength" placeholder="80" value="80" min="1" max="1000" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Footing Width (Inches)</label>
+        <select id="footingWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="12">12" Width (Light Non-Bearing / 4" Wall)</option>
+          <option value="16" selected>16" Width (Standard 8" CMU / 1-Story Frame)</option>
+          <option value="18">18" Width (2-Story Wood Frame Building)</option>
+          <option value="20">20" Width (2-Story Brick Veneer / Retaining)</option>
+          <option value="24">24" Width (Heavy Load / Soft Soil &lt; 2,000 PSF)</option>
+          <option value="30">30" Width (Engineered Heavy Foundation)</option>
+          <option value="36">36" Width (Wide Commercial Footing Pad)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Footing Thickness / Depth (Inches)</label>
+        <select id="footingThickness" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="8">8" Deep (Standard Minimum per IRC R403)</option>
+          <option value="10" selected>10" Deep (Standard 1-2 Story Residential)</option>
+          <option value="12">12" Deep (Heavy Retaining Wall / Commercial)</option>
+          <option value="16">16" Deep (Engineered Grade Beam)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Steel Rebar &amp; Spillage Buffer
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Continuous Longitudinal Rebar</label>
+        <select id="rebarLines" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="2" selected>2 Continuous Runs #4 Rebar (Standard)</option>
+          <option value="3">3 Continuous Runs #4 Rebar (Heavy Load)</option>
+          <option value="2_no5">2 Continuous Runs #5 (5/8") Rebar</option>
+          <option value="none">No Rebar (Plain Unreinforced Footing)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Trench Over-Dig &amp; Spillage Factor</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.08">8% Buffer (Formed Clean Wood Trench)</option>
+          <option value="1.12" selected>12% Buffer (Standard Earth-Formed Trench)</option>
+          <option value="1.18">18% Buffer (Rough Rocky Excavation)</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calculateFooting()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors cursor-pointer text-sm shadow-xs">
+      Calculate Footing Concrete
+    </button>
+  </div>
+
+  <!-- Primary Results Grid -->
+  <div id="results" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-blue-600 font-semibold uppercase tracking-wide">Total Concrete</div>
+      <div id="r_cubicYards" class="text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">3.69 Cu Yds</div>
+      <div id="r_cuFt" class="text-xs text-blue-700 mt-1">99.6 Total Cubic Feet</div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-amber-600 font-semibold uppercase tracking-wide">80 lb Quikrete Bags</div>
+      <div id="r_bags80" class="text-2xl sm:text-3xl font-extrabold text-amber-900 mt-1">166 Bags</div>
+      <div id="r_bags60" class="text-xs text-amber-700 mt-1">or 222 Bags (60 lb)</div>
+    </div>
+
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Rebar (20' Sticks)</div>
+      <div id="r_rebarSticks" class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-1">10 Sticks</div>
+      <div id="r_rebarFt" class="text-xs text-emerald-700 mt-1">184 Linear Feet with Laps</div>
+    </div>
+
+    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-purple-600 font-semibold uppercase tracking-wide">Footing Weight</div>
+      <div id="r_totalWeight" class="text-2xl sm:text-3xl font-extrabold text-purple-900 mt-1">7.4 Tons</div>
+      <div id="r_rebarChairs" class="text-xs text-purple-700 mt-1">~40 Rebar Chairs (3" clearance)</div>
+    </div>
+  </div>
+
+  <!-- Dynamic SVG Diagram -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+      <h2 class="text-base font-semibold text-gray-800">Dynamic Concrete Trench Footing Cross-Section</h2>
+      <span class="text-xs text-gray-500 font-mono">IRC R403 Foundation Specification</span>
+    </div>
+    <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
+      <svg id="footingSvg" viewBox="0 0 600 220" class="w-full max-w-2xl h-auto" style="min-height: 170px;"></svg>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-400 rounded-xs"></span> Poured Concrete Footing (3,000 PSI)</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-red-500 rounded-full"></span> Longitudinal Rebar Rods</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-400 rounded-xs"></span> 3" Rebar Support Chairs</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-600 rounded-xs"></span> Undisturbed Soil / Gravel Base</div>
+    </div>
+  </div>
+
+  <!-- Material Table & RSMeans Cost Benchmarks -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+      <h3 class="font-bold text-gray-900 text-sm mb-3">Footing Engineering Schedule</h3>
+      <table class="w-full text-xs text-left">
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="py-2 text-gray-600">Excavation Trench Volume (Soil Spoil)</td><td id="t_spoilYards" class="py-2 font-mono text-right font-bold text-gray-900">4.8 Cu Yds (with 30% swell)</td></tr>
+          <tr><td class="py-2 text-gray-600">Base Crushed Stone (4" Bedding)</td><td id="t_gravelBase" class="py-2 font-mono text-right text-gray-900">1.8 Tons #57 Stone</td></tr>
+          <tr><td class="py-2 text-gray-600">Vertical Foundation Dowels (every 32")</td><td id="t_dowels" class="py-2 font-mono text-right text-gray-900">31 Dowels (#4 Rebar x 36")</td></tr>
+          <tr><td class="py-2 text-gray-600">Ready-Mix Truck vs Bags Threshold</td><td id="t_truckRec" class="py-2 font-mono text-right font-bold text-blue-600">Order Concrete Truck (3.7 yd³)</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 1-Click Shopping List Button -->
+      <button id="copyListBtn" onclick="copyShoppingList()" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-300">
+        <span>📋 Copy Shopping List for Home Depot / Lowe's</span>
+      </button>
+    </div>
+
+    <!-- RSMeans DIY vs Pro Benchmark -->
+    <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm text-blue-200">DIY vs Concrete Contractor Cost</h3>
+        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      </div>
+      <p class="text-xs text-slate-300 mb-4">Materials cost vs turnkey excavation &amp; poured footing contractor quotes.</p>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Estimated DIY Materials</div>
+          <div id="c_diyCost" class="text-xl font-black text-emerald-400 mt-0.5">$650 – $850</div>
+          <div class="text-[10px] text-slate-400 mt-1">Ready-mix truck or bags, rebar, chairs</div>
+        </div>
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Excavation &amp; Footing Quote</div>
+          <div id="c_proCost" class="text-xl font-black text-amber-300 mt-0.5">$2,800 – $4,200</div>
+          <div class="text-[10px] text-slate-400 mt-1">Trenching, rebar tying &amp; pour</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-400 font-bold text-sm">💰</span>
+        <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$2,150 – $3,350 (78%)</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Building Codes & Best Practices -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Footing Building Codes &amp; Soil Rules (IRC R403)</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+      <div class="border-l-2 border-blue-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Frost Line Depth (IRC R403.1.4.1)</h4>
+        <p class="text-xs leading-relaxed">
+          The bottom of all exterior continuous and isolated footings must extend below your municipality's official frost penetration line (typically 12" to 48" below grade) to prevent winter frost heaving and foundation settlement.
+        </p>
+      </div>
+      <div class="border-l-2 border-amber-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Rebar Concrete Cover (ACI 318)</h4>
+        <p class="text-xs leading-relaxed">
+          When concrete is cast against and permanently exposed to earth, rebar must have a minimum of <strong>3.0 inches of concrete cover</strong> on all sides and the bottom. Use plastic or concrete rebar chairs (dobies) rather than placing rebar directly on dirt.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">When should I order a concrete truck instead of mixing bags?</h3>
+        <p class="text-gray-600 text-sm">If your footing requires more than <strong>1.5 cubic yards (60+ eighty-pound bags)</strong>, ordering a ready-mix concrete truck is strongly recommended. Continuous footings should be poured monolithically in one continuous operation to prevent cold joints.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Can I pour concrete directly into an earth trench?</h3>
+        <p class="text-gray-600 text-sm">Yes, if the soil is cohesive (clay/loam) and trench walls hold their vertical shape cleanly without collapsing. If the soil is sandy or gravelly, wooden 2x10 or plywood forms must be set to maintain uniform footing width.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Foundation &amp; Concrete Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/concrete-block-cmu" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Block (CMU) Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate 8x8x16 blocks, core grout, and vertical rebar.</div>
+      </a>
+      <a href="/calculators/sonotube-concrete" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Sonotube Concrete Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate round pier footings, bags, and tube forms.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate concrete volume &amp; bags for flat slabs.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function toggleFootingType() {
+    const type = document.getElementById('footingType').value;
+    const label = document.getElementById('lengthLabel');
+    const input = document.getElementById('footingLength');
+
+    if (type === 'continuous') {
+      label.textContent = 'Total Trench Run Length (ft)';
+      input.value = 80;
+    } else {
+      label.textContent = 'Number of Isolated Pads';
+      input.value = 6;
+    }
+    calculateFooting();
+  }
+
+  function calculateFooting() {
+    const type = document.getElementById('footingType').value;
+    const lengthOrCount = parseFloat(document.getElementById('footingLength').value) || 80;
+    const widthIn = parseFloat(document.getElementById('footingWidth').value) || 16;
+    const thickIn = parseFloat(document.getElementById('footingThickness').value) || 10;
+    const rebarConfig = document.getElementById('rebarLines').value;
+    const waste = parseFloat(document.getElementById('wasteFactor').value) || 1.12;
+
+    const widthFt = widthIn / 12;
+    const thickFt = thickIn / 12;
+
+    let baseCuFt = 0;
+    let lengthRunFt = 0;
+
+    if (type === 'continuous') {
+      lengthRunFt = lengthOrCount;
+      baseCuFt = lengthRunFt * widthFt * thickFt;
+    } else {
+      // Isolated pad: each pad is width x width x thickness
+      lengthRunFt = lengthOrCount * widthFt;
+      baseCuFt = lengthOrCount * (widthFt * widthFt * thickFt);
+    }
+
+    const totalCuFt = baseCuFt * waste;
+    const totalCuYd = totalCuFt / 27;
+    const totalBags80 = Math.ceil(totalCuFt / 0.60);
+    const totalBags60 = Math.ceil(totalCuFt / 0.45);
+    const totalTons = (totalCuYd * 2.0).toFixed(1);
+
+    // Excavation spoil with 30% swell
+    const spoilYards = (totalCuYd * 1.30).toFixed(1);
+    const gravelTons = ((lengthRunFt * widthFt * (4 / 12)) / 27 * 1.4).toFixed(1);
+
+    // Rebar calculation
+    let rebarLinesCount = 0;
+    if (rebarConfig === '2' || rebarConfig === '2_no5') rebarLinesCount = 2;
+    if (rebarConfig === '3') rebarLinesCount = 3;
+
+    const totalRebarLinearFt = Math.ceil(lengthRunFt * rebarLinesCount * 1.15); // +15% for lap splices
+    const rebarSticks20 = Math.ceil(totalRebarLinearFt / 20);
+    const chairsCount = Math.ceil(lengthRunFt / 2);
+    const dowelsCount = Math.ceil(lengthRunFt / (32 / 12));
+
+    // Update DOM
+    document.getElementById('r_cubicYards').textContent = `${totalCuYd.toFixed(2)} Cu Yds`;
+    document.getElementById('r_cuFt').textContent = `${totalCuFt.toFixed(1)} Total Cu Ft (${Math.round((waste-1)*100)}% buffer)`;
+    document.getElementById('r_bags80').textContent = `${totalBags80} Bags`;
+    document.getElementById('r_bags60').textContent = `or ${totalBags60} Bags (60 lb)`;
+    document.getElementById('r_rebarSticks').textContent = rebarLinesCount > 0 ? `${rebarSticks20} Sticks (20')` : '0 Sticks';
+    document.getElementById('r_rebarFt').textContent = rebarLinesCount > 0 ? `${totalRebarLinearFt} Lin Ft Rebar with Laps` : 'Plain unreinforced';
+    document.getElementById('r_totalWeight').textContent = `${totalTons} Tons`;
+    document.getElementById('r_rebarChairs').textContent = `~${chairsCount} Rebar Chairs (3" ground clearance)`;
+
+    document.getElementById('t_spoilYards').textContent = `${spoilYards} Cu Yds (Excavation Soil Spoil)`;
+    document.getElementById('t_gravelBase').textContent = `${gravelTons} Tons #57 Crushed Stone (4" base)`;
+    document.getElementById('t_dowels').textContent = `${dowelsCount} Foundation Dowels (every 32" o.c.)`;
+    document.getElementById('t_truckRec').textContent = totalCuYd >= 1.5 ? `Order Ready-Mix Truck (${totalCuYd.toFixed(1)} yd³)` : `Mix ~${totalBags80} Bags (80 lb)`;
+
+    // RSMeans Cost Benchmarks
+    const concreteCost = totalCuYd >= 1.5 ? (totalCuYd * 165) : (totalBags80 * 6.50);
+    const rebarCost = rebarSticks20 * 11.50;
+    const diyCostMin = Math.round(concreteCost + rebarCost + 50);
+    const diyCostMax = Math.round(diyCostMin * 1.25);
+
+    const proCostMin = Math.round(lengthRunFt * 35);
+    const proCostMax = Math.round(lengthRunFt * 52);
+
+    document.getElementById('c_diyCost').textContent = `$${diyCostMin.toLocaleString()} – $${diyCostMax.toLocaleString()}`;
+    document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
+    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()} (${Math.round((1 - diyCostMin/proCostMin)*100)}%)`;
+
+    drawFootingSvg(widthIn, thickIn, rebarLinesCount);
+  }
+
+  function drawFootingSvg(widthIn, thickIn, rebarCount) {
+    const svg = document.getElementById('footingSvg');
+    if (!svg) return;
+
+    let content = '';
+    // Background Ground Earth
+    content += `<rect x="20" y="20" width="560" height="180" fill="#334155" />`;
+    content += `<line x1="20" y1="40" x2="580" y2="40" stroke="#10B981" stroke-width="3" />`;
+    content += `<text x="70" y="34" font-size="10" font-weight="bold" fill="#34D399">Grade Surface</text>`;
+
+    // Crushed Stone Bedding
+    content += `<rect x="150" y="160" width="300" height="25" fill="#64748B" stroke="#475569" stroke-width="1" />`;
+    content += `<text x="300" y="176" text-anchor="middle" font-size="9" fill="#E2E8F0">4" Compacted Crushed Stone Base</text>`;
+
+    // Poured Concrete Footing
+    content += `<rect x="150" y="70" width="300" height="90" fill="#94A3B8" stroke="#0F172A" stroke-width="2" />`;
+    content += `<text x="300" y="115" text-anchor="middle" font-size="12" font-weight="bold" fill="#0F172A">3,000 PSI Poured Footing (${widthIn}" W × ${thickIn}" D)</text>`;
+
+    // 3" Rebar Chairs
+    content += `<path d="M 210 160 L 210 135 L 218 135 L 218 160" stroke="#F59E0B" stroke-width="2" fill="none" />`;
+    content += `<path d="M 380 160 L 380 135 L 388 135 L 388 160" stroke="#F59E0B" stroke-width="2" fill="none" />`;
+
+    // Longitudinal Rebar Cross-sections
+    if (rebarCount === 2) {
+      content += `<circle cx="214" cy="132" r="5" fill="#EF4444" stroke="#7F1D1D" stroke-width="1" />`;
+      content += `<circle cx="384" cy="132" r="5" fill="#EF4444" stroke="#7F1D1D" stroke-width="1" />`;
+      content += `<text x="214" y="122" text-anchor="middle" font-size="9" font-weight="bold" fill="#EF4444">#4 Bar</text>`;
+      content += `<text x="384" y="122" text-anchor="middle" font-size="9" font-weight="bold" fill="#EF4444">#4 Bar</text>`;
+    } else if (rebarCount === 3) {
+      content += `<circle cx="200" cy="132" r="5" fill="#EF4444" stroke="#7F1D1D" stroke-width="1" />`;
+      content += `<circle cx="300" cy="132" r="5" fill="#EF4444" stroke="#7F1D1D" stroke-width="1" />`;
+      content += `<circle cx="400" cy="132" r="5" fill="#EF4444" stroke="#7F1D1D" stroke-width="1" />`;
+    }
+
+    // Vertical Foundation Wall Dowel
+    content += `<line x1="300" y1="135" x2="300" y2="40" stroke="#EF4444" stroke-width="3" />`;
+    content += `<path d="M 300 135 L 325 135" stroke="#EF4444" stroke-width="3" />`;
+    content += `<text x="310" y="55" font-size="9" font-weight="bold" fill="#EF4444">Vertical Wall Dowel</text>`;
+
+    // 3" clearance dimension
+    content += `<line x1="160" y1="160" x2="160" y2="132" stroke="#FBBF24" stroke-width="1.5" />`;
+    content += `<text x="175" y="148" font-size="9" font-weight="bold" fill="#FDE68A">3" Min Cover</text>`;
+
+    svg.innerHTML = content;
+  }
+
+  function copyShoppingList() {
+    const yards = document.getElementById('r_cubicYards').textContent;
+    const bags80 = document.getElementById('r_bags80').textContent;
+    const rebar = document.getElementById('r_rebarSticks').textContent;
+    const gravel = document.getElementById('t_gravelBase').textContent;
+    const width = document.getElementById('footingWidth').selectedOptions[0].text;
+
+    const listText = `CalcForDIY Material Takeoff — Concrete Footing:\n` +
+      `- Footing Spec: ${width}\n` +
+      `- Concrete Required: ${yards} (${bags80})\n` +
+      `- Steel Rebar: ${rebar}\n` +
+      `- Base Stone: ${gravel}\n` +
+      `Calculated at https://calcfordiy.com/calculators/concrete-footing`;
+
+    navigator.clipboard.writeText(listText).then(() => {
+      const btn = document.getElementById('copyListBtn');
+      btn.innerHTML = '<span>✅ Copied to Clipboard!</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy Shopping List for Home Depot / Lowe\'s</span>';
+      }, 2500);
+    });
+  }
+
+  calculateFooting();
+</script>
