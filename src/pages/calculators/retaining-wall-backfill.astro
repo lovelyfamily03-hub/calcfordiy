@@ -1,0 +1,436 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Retaining Wall Backfill & Drainage Calculator (Gravel & Fabric) | CalcForDIY"
+  description="Calculate crushed stone drainage gravel tons, non-woven geotextile filter fabric, geogrid reinforcement, and soil backfill volume for retaining walls."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Retaining Wall Backfill Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much gravel backfill do I need behind a retaining wall?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per NCMA masonry retaining wall guidelines, you must backfill a continuous vertical column of clean #57 crushed stone (3/4\" washed gravel) at least 12 inches wide directly behind the entire height and length of the wall. For a 40-foot long by 4-foot tall wall, this requires approximately 5.9 cubic yards (or 8.3 tons) of gravel."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do retaining walls fail if backfilled with plain soil?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Over 90% of retaining wall failures are caused by hydrostatic water pressure, not earth weight. Wet soil expands and exerts tremendous hydraulic pressure against the wall. A 12-inch gravel drainage chimney with a perforated pipe relieves this water pressure instantly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When is geogrid reinforcement required for retaining walls?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Geogrid is typically required for any segmental block or timber retaining wall over 3 to 4 feet in height, or any wall holding a sloped backfill or vehicle driveway surcharge. Geogrid layers anchor the wall face into the compacted soil mass behind it."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Retaining Wall Backfill Calculator", "item": "https://calcfordiy.com/calculators/retaining-wall-backfill" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Retaining Wall Backfill Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Retaining Wall Drainage &amp; Backfill Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate #57 clean drainage gravel tons, soil backfill cubic yards, non-woven geotextile filter fabric, perforated drain pipe, and NCMA geogrid reinforcement.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Wall Dimensions &amp; Embedment Depth
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Wall Length (ft)</label>
+        <input type="number" id="wallLength" placeholder="40" value="40" min="5" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Exposed Wall Height (ft)</label>
+        <input type="number" id="wallHeight" placeholder="4.0" value="4.0" min="1" max="15" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Buried Base Embedment (Inches)</label>
+        <select id="buriedDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="6" selected>6" Buried (Standard 1 block course)</option>
+          <option value="12">12" Buried (Tall wall / slope)</option>
+          <option value="0">0" (Freestanding on Poured Footing)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Gravel Drainage Chimney Width</label>
+        <select id="gravelWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="12" selected>12" Wide (NCMA Standard 1-Foot Column)</option>
+          <option value="18">18" Wide (Heavy Clay Soil Drainage)</option>
+          <option value="24">24" Wide (Commercial High-Flow Drainage)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Slope, Geogrid &amp; Filter Fabric Options
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Backfill Slope Behind Wall</label>
+        <select id="backfillSlope" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="flat" selected>Flat / Level Ground</option>
+          <option value="moderate">Moderate Slope (3:1 Slope — +20% Backfill)</option>
+          <option value="steep">Steep Surcharge Slope (2:1 Slope — +40% Backfill)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Include Geogrid Reinforcement?</label>
+        <select id="includeGeogrid" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="auto" selected>Auto-Determine (Required if &gt; 3.5 ft)</option>
+          <option value="yes">Yes (Reinforce with Geogrid Layers)</option>
+          <option value="no">No (Gravity Wall under 3 ft)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Non-Woven Geotextile Fabric</label>
+        <select id="includeFabric" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="yes" selected>Yes (Wrap Gravel Chimney — Prevents Silt Clogs)</option>
+          <option value="no">No Fabric</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Soil Compaction Factor</label>
+        <select id="compactionFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.12">12% Compaction Buffer</option>
+          <option value="1.18" selected>18% Standard Compaction &amp; Settling</option>
+          <option value="1.25">25% Heavy Compaction Buffer</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calculateBackfill()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors cursor-pointer text-sm shadow-xs">
+      Calculate Drainage &amp; Backfill
+    </button>
+  </div>
+
+  <!-- Primary Results Grid -->
+  <div id="results" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-blue-600 font-semibold uppercase tracking-wide">#57 Drainage Gravel</div>
+      <div id="r_gravelTons" class="text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">9.2 Tons</div>
+      <div id="r_gravelYards" class="text-xs text-blue-700 mt-1">6.6 Cu Yds (Clean 3/4" Stone)</div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-amber-600 font-semibold uppercase tracking-wide">Soil Backfill Volume</div>
+      <div id="r_soilYards" class="text-2xl sm:text-3xl font-extrabold text-amber-900 mt-1">14.0 Cu Yds</div>
+      <div id="r_soilTons" class="text-xs text-amber-700 mt-1">~18.2 Tons Compacted Soil</div>
+    </div>
+
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Geotextile Filter Fabric</div>
+      <div id="r_fabricSqYds" class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-1">45 Sq Yds</div>
+      <div id="r_fabricRolls" class="text-xs text-emerald-700 mt-1">1 Roll (4' × 100' Non-Woven)</div>
+    </div>
+
+    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-purple-600 font-semibold uppercase tracking-wide">Drain Pipe &amp; Geogrid</div>
+      <div id="r_drainPipe" class="text-2xl sm:text-3xl font-extrabold text-purple-900 mt-1">40 Lin Ft</div>
+      <div id="r_geogridDetail" class="text-xs text-purple-700 mt-1">2 Layers Geogrid Grid Mesh</div>
+    </div>
+  </div>
+
+  <!-- Dynamic SVG Retaining Wall Drainage Cross-Section Diagram -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+      <h2 class="text-base font-semibold text-gray-800">NCMA Compliant Drainage &amp; Backfill Cross-Section</h2>
+      <span class="text-xs text-gray-500 font-mono">12" Gravel Column • Filter Fabric Wrap</span>
+    </div>
+    <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
+      <svg id="backfillSvg" viewBox="0 0 600 220" class="w-full max-w-2xl h-auto" style="min-height: 170px;"></svg>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-400 rounded-xs"></span> Retaining Wall Face</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-blue-400 rounded-xs"></span> #57 Crushed Drainage Stone</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-cyan-400 rounded-xs"></span> Non-Woven Filter Fabric</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-600 rounded-xs"></span> Compacted Soil Backfill</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-red-400 rounded-xs"></span> 4" Perforated Drain Pipe</div>
+    </div>
+  </div>
+
+  <!-- Material Schedule & RSMeans Cost Benchmarks -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+      <h3 class="font-bold text-gray-900 text-sm mb-3">Complete Backfill &amp; Drainage Schedule</h3>
+      <table class="w-full text-xs text-left">
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="py-2 text-gray-600">Total Wall Height (Exposed + Buried)</td><td id="t_totalHeight" class="py-2 font-mono text-right font-bold text-gray-900">4.5 ft (54 inches)</td></tr>
+          <tr><td class="py-2 text-gray-600">Gravel Chimney Cross-Section</td><td id="t_gravelCross" class="py-2 font-mono text-right text-gray-900">12" Wide × 4.5' Tall × 40' Long</td></tr>
+          <tr><td class="py-2 text-gray-600">Geogrid Embedment Length</td><td id="t_geogridLength" class="py-2 font-mono text-right text-gray-900">3.5 ft deep into soil (every 2 courses)</td></tr>
+          <tr><td class="py-2 text-gray-600">Perforated Drain Pipe Outlet</td><td id="t_pipeOutlet" class="py-2 font-mono text-right text-blue-600 font-bold">Daylight to gravity slope or pop-up emitter</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 1-Click Shopping List Button -->
+      <button id="copyListBtn" onclick="copyShoppingList()" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-300">
+        <span>📋 Copy Shopping List for Bulk Materials Yard</span>
+      </button>
+    </div>
+
+    <!-- RSMeans DIY vs Pro Benchmark -->
+    <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm text-blue-200">DIY vs Excavation Contractor Cost</h3>
+        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      </div>
+      <p class="text-xs text-slate-300 mb-4">Bulk gravel, fabric &amp; pipe delivered vs turnkey drainage contractor quote.</p>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Estimated DIY Materials</div>
+          <div id="c_diyCost" class="text-xl font-black text-emerald-400 mt-0.5">$650 – $880</div>
+          <div class="text-[10px] text-slate-400 mt-1">Gravel delivery, pipe, fabric, geogrid</div>
+        </div>
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Excavation / Masonry Quote</div>
+          <div id="c_proCost" class="text-xl font-black text-amber-300 mt-0.5">$2,200 – $3,400</div>
+          <div class="text-[10px] text-slate-400 mt-1">$55 – $85 / linear foot installed</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-400 font-bold text-sm">💰</span>
+        <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$1,550 – $2,520 (72%)</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Building Codes & Best Practices -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Retaining Wall Drainage Codes (NCMA Standards)</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+      <div class="border-l-2 border-blue-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Geotextile 'Burrito Wrap' Rule</h4>
+        <p class="text-xs leading-relaxed">
+          Place non-woven 4-oz geotextile fabric between the gravel chimney and the native soil backfill. This allows water to freely pass into the stone while permanently preventing fine clay/silt particles from clogging the drainage core.
+        </p>
+      </div>
+      <div class="border-l-2 border-amber-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Perforated Drain Pipe Slope (1% Minimum)</h4>
+        <p class="text-xs leading-relaxed">
+          Install the 4-inch perforated drain pipe holes-facing-down at the base of the gravel column immediately above the leveling pad. Maintain at least a <strong>1/8" per foot slope (1%)</strong> and daylight the pipe to gravity discharge.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What type of gravel is best for retaining wall backfill?</h3>
+        <p class="text-gray-600 text-sm">Always use <strong>#57 clean crushed stone</strong> (3/4-inch angular washed limestone or granite). Never use pea gravel (which shifts under pressure) or crusher run/road base (which contains fine stone dust that compacts into concrete-like silt and blocks drainage).</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How do I cap the top 6 inches of the gravel column?</h3>
+        <p class="text-gray-600 text-sm">Fold the geotextile filter fabric over the top of the gravel column and cover the top 4 to 6 inches with low-permeability clay soil or lawn topsoil. This forces surface rainwater to run off rather than soaking directly down into the wall backfill.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Hardscaping Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/retaining-wall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Retaining Wall Block Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate SRW blocks, capstones &amp; adhesive.</div>
+      </a>
+      <a href="/calculators/french-drain" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">French Drain Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate trench gravel tons &amp; perforated pipe.</div>
+      </a>
+      <a href="/calculators/concrete-block-cmu" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Block (CMU) Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate 8x8x16 cinder blocks, mortar &amp; core grout.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateBackfill() {
+    const length = parseFloat(document.getElementById('wallLength').value) || 40;
+    const expHeight = parseFloat(document.getElementById('wallHeight').value) || 4.0;
+    const buriedIn = parseFloat(document.getElementById('buriedDepth').value) || 6;
+    const gravWidthIn = parseFloat(document.getElementById('gravelWidth').value) || 12;
+    const slope = document.getElementById('backfillSlope').value;
+    const geogridOpt = document.getElementById('includeGeogrid').value;
+    const compaction = parseFloat(document.getElementById('compactionFactor').value) || 1.18;
+
+    const totalHeightFt = expHeight + (buriedIn / 12);
+    const gravWidthFt = gravWidthIn / 12;
+
+    // Gravel Chimney Volume: Length * Total Height * Gravel Width
+    const gravelCuFt = length * totalHeightFt * gravWidthFt;
+    const gravelCuYds = (gravelCuFt / 27) * 1.10; // +10% delivery/settling
+    const gravelTons = gravelCuYds * 1.4; // 1.4 tons per cu yd #57 stone
+
+    // Soil Backfill Volume behind the gravel column:
+    // Triangular/trapezoidal earth wedge behind wall (roughly height x length x 2ft to 3ft width)
+    let slopeMult = 1.0;
+    if (slope === 'moderate') slopeMult = 1.25;
+    if (slope === 'steep') slopeMult = 1.45;
+
+    const soilCuFt = (length * totalHeightFt * (totalHeightFt * 0.75)) * slopeMult;
+    const soilCuYds = (soilCuFt / 27) * compaction;
+    const soilTons = soilCuYds * 1.3;
+
+    // Filter Fabric: Height + Width + 1ft overlap along entire length
+    const fabricSqFt = length * (totalHeightFt + gravWidthFt + 1.5);
+    const fabricSqYds = Math.ceil(fabricSqFt / 9);
+
+    // Geogrid: If wall >= 3.5 ft or explicitly enabled
+    const needsGeogrid = geogridOpt === 'yes' || (geogridOpt === 'auto' && totalHeightFt >= 3.5);
+    const geogridLayers = needsGeogrid ? Math.floor(totalHeightFt / 1.33) : 0; // every 16" (2 block courses)
+
+    // Update DOM
+    document.getElementById('r_gravelTons').textContent = `${gravelTons.toFixed(1)} Tons`;
+    document.getElementById('r_gravelYards').textContent = `${gravelCuYds.toFixed(1)} Cu Yds (#57 Washed Stone)`;
+
+    document.getElementById('r_soilYards').textContent = `${Math.round(soilCuYds)} Cu Yds`;
+    document.getElementById('r_soilTons').textContent = `~${soilTons.toFixed(1)} Tons Compacted Soil`;
+
+    document.getElementById('r_fabricSqYds').textContent = `${fabricSqYds} Sq Yds`;
+    document.getElementById('r_fabricRolls').textContent = `1 Roll (4' × 100' Non-Woven 4-oz)`;
+
+    document.getElementById('r_drainPipe').textContent = `${Math.ceil(length)} Lin Ft`;
+    document.getElementById('r_geogridDetail').textContent = needsGeogrid ? `${geogridLayers} Layers Geogrid Reinforcement` : 'Not Required (Gravity Wall)';
+
+    document.getElementById('t_totalHeight').textContent = `${totalHeightFt.toFixed(1)} ft (${expHeight}' exposed + ${buriedIn}" buried)`;
+    document.getElementById('t_gravelCross').textContent = `${gravWidthIn}" Wide × ${totalHeightFt.toFixed(1)}' Tall × ${length}' Long`;
+    document.getElementById('t_geogridLength').textContent = needsGeogrid ? `${(totalHeightFt * 0.8).toFixed(1)} ft deep into soil (every 16" height)` : 'None';
+
+    // RSMeans Cost Benchmarks
+    const diyCostMin = Math.round((gravelTons * 48) + (soilCuYds * 26) + (fabricSqYds * 1.2) + (length * 1.5) + 60);
+    const diyCostMax = Math.round(diyCostMin * 1.25);
+
+    const proCostMin = Math.round(length * 55);
+    const proCostMax = Math.round(length * 85);
+
+    document.getElementById('c_diyCost').textContent = `$${diyCostMin.toLocaleString()} – $${diyCostMax.toLocaleString()}`;
+    document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
+    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()} (${Math.round((1 - diyCostMin/proCostMin)*100)}%)`;
+
+    drawBackfillSvg(needsGeogrid);
+  }
+
+  function drawBackfillSvg(needsGeogrid) {
+    const svg = document.getElementById('backfillSvg');
+    if (!svg) return;
+
+    let content = '';
+    // Retaining Wall Face (Left)
+    content += `<rect x="80" y="30" width="50" height="150" fill="#94A3B8" stroke="#475569" stroke-width="2" rx="2" />`;
+    content += `<text x="105" y="110" text-anchor="middle" font-size="11" font-weight="bold" fill="#0F172A" transform="rotate(-90 105 110)">Retaining Wall Face</text>`;
+
+    // 12" Gravel Drainage Chimney (Middle)
+    content += `<rect x="130" y="35" width="70" height="145" fill="#38BDF8" opacity="0.6" stroke="#0284C7" stroke-width="1.5" stroke-dasharray="3 2" />`;
+    content += `<text x="165" y="90" text-anchor="middle" font-size="10" font-weight="bold" fill="#0369A1">#57 Stone</text>`;
+
+    // 4" Perforated Drain Pipe at Base of Gravel
+    content += `<circle cx="165" cy="165" r="12" fill="#EF4444" stroke="#991B1B" stroke-width="1.5" />`;
+    content += `<circle cx="165" cy="165" r="6" fill="#FEE2E2" />`;
+    content += `<text x="165" y="195" text-anchor="middle" font-size="9" font-weight="bold" fill="#EF4444">4" Drain Pipe</text>`;
+
+    // Geotextile Fabric Line (Vertical along gravel back)
+    content += `<line x1="200" y1="35" x2="200" y2="180" stroke="#06B6D4" stroke-width="3" stroke-dasharray="5 3" />`;
+    content += `<text x="205" y="50" font-size="9" font-weight="bold" fill="#22D3EE">Filter Fabric</text>`;
+
+    // Native Soil Backfill (Right)
+    content += `<polygon points="200,35 520,35 520,180 200,180" fill="#B45309" opacity="0.8" />`;
+    content += `<text x="360" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#FEF3C7">Compacted Soil Backfill</text>`;
+
+    // Geogrid Mesh Layers (if enabled)
+    if (needsGeogrid) {
+      content += `<line x1="105" y1="80" x2="420" y2="80" stroke="#FBBF24" stroke-width="2.5" stroke-dasharray="6 3" />`;
+      content += `<line x1="105" y1="130" x2="420" y2="130" stroke="#FBBF24" stroke-width="2.5" stroke-dasharray="6 3" />`;
+      content += `<text x="310" y="75" text-anchor="middle" font-size="9" font-weight="bold" fill="#FDE68A">Geogrid Mesh</text>`;
+    }
+
+    svg.innerHTML = content;
+  }
+
+  function copyShoppingList() {
+    const gravel = document.getElementById('r_gravelTons').textContent;
+    const soil = document.getElementById('r_soilYards').textContent;
+    const fabric = document.getElementById('r_fabricSqYds').textContent;
+    const pipe = document.getElementById('r_drainPipe').textContent;
+
+    const listText = `CalcForDIY Material Takeoff — Retaining Wall Drainage:\n` +
+      `- Drainage Gravel: ${gravel} (#57 Washed Crushed Stone)\n` +
+      `- Soil Backfill: ${soil}\n` +
+      `- Geotextile Fabric: ${fabric} (4-oz Non-Woven)\n` +
+      `- Perforated Drain Pipe: ${pipe} (4" Corrugated with Sock)\n` +
+      `Calculated at https://calcfordiy.com/calculators/retaining-wall-backfill`;
+
+    navigator.clipboard.writeText(listText).then(() => {
+      const btn = document.getElementById('copyListBtn');
+      btn.innerHTML = '<span>✅ Copied to Clipboard!</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy Shopping List for Bulk Materials Yard</span>';
+      }, 2500);
+    });
+  }
+
+  calculateBackfill();
+</script>

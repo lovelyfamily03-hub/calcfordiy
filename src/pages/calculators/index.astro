@@ -3,7 +3,19 @@ import Layout from '../../layouts/Layout.astro';
 import AboutCalculators from '../../components/AboutCalculators.astro';
 
 const calculators = [
-  // 1. Tile & Flooring (8)
+    // 1. Tile & Flooring (10)
+  {
+    title: "Vinyl Plank Flooring Calculator",
+    description: "Calculate Luxury Vinyl Plank (LVP) boxes, square footage, transition moldings, and waste factor.",
+    href: "/calculators/vinyl-plank-flooring",
+    category: "Tile & Flooring"
+  },
+  {
+    title: "Epoxy Floor Coating Calculator",
+    description: "Calculate 100% solids epoxy basecoat gallons, vapor barrier primer, decorative color chips, and clear topcoat.",
+    href: "/calculators/epoxy-floor",
+    category: "Tile & Flooring"
+  },
   {
     title: "Shower Tile Calculator",
     description: "Calculate exactly how much tile you need for shower walls and floor.",
@@ -227,7 +239,19 @@ const calculators = [
     category: "Concrete & Masonry"
   },
 
-  // 5. Landscaping & Hardscaping (13)
+    // 5. Landscaping & Hardscaping (15)
+  {
+    title: "Retaining Wall Backfill & Drainage Calculator",
+    description: "Calculate #57 clean drainage gravel tons, soil backfill cubic yards, non-woven geotextile fabric, and geogrid reinforcement.",
+    href: "/calculators/retaining-wall-backfill",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Lawn Overseeding & Grass Seed Calculator",
+    description: "Calculate grass seed pounds, starter fertilizer bags, peat moss bales, and core aeration coverage.",
+    href: "/calculators/lawn-overseeding",
+    category: "Landscaping & Hardscaping"
+  },
   {
     title: "Gravel Driveway & Crushed Stone Calculator",
     description: "Calculate crushed gravel tons, cubic yards, dump truck deliveries, geotextile underlayment, and multi-layer base depths.",
@@ -535,7 +559,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
 <Layout
   title="All 78 Free DIY Construction Calculators — CalcForDIY"
-  description="Browse all 85 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs."
+  description="Browse all 93 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs."
 >
 <script type="application/ld+json" is:inline>
 {
@@ -558,7 +582,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
       <span>•</span>
       <span>78 Tools Live</span>
     </div>
-    <h1 class="text-4xl font-bold text-gray-900 mb-3">All 85 Free DIY Calculators</h1>
+    <h1 class="text-4xl font-bold text-gray-900 mb-3">All 93 Free DIY Calculators</h1>
     <p class="text-lg text-gray-600 max-w-3xl mb-6">
       Instant material takeoffs, dynamic SVG framing diagrams, RSMeans contractor cost benchmarks, and 1-click shopping list exports. Everything runs free in your browser.
     </p>

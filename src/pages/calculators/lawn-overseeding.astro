@@ -1,0 +1,438 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Lawn Overseeding Calculator (Grass Seed, Aeration & Peat Moss) | CalcForDIY"
+  description="Calculate how many pounds of grass seed, starter fertilizer, peat moss bales, and core aeration passes you need for lawn overseeding or new seeding."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Lawn Overseeding Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many pounds of grass seed do I need to overseed a 5,000 sq ft lawn?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seed requirements depend on the grass species. For Kentucky Bluegrass (which has over 1.3 million tiny seeds per pound), you need 2 to 3 lbs per 1,000 sq ft (10 to 15 lbs total). For Tall Fescue (which has larger seeds), you need 4 to 6 lbs per 1,000 sq ft (20 to 30 lbs total for 5,000 sq ft)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is core aeration recommended before overseeding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Core aeration pulls 2-to-3 inch soil plugs out of compacted turf, relieving soil compaction and creating ideal micro-channels where grass seed falls directly into contact with moist earth (seed-to-soil contact), dramatically boosting germination rates above 85%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should you cover grass seed with peat moss or straw?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sphagnum peat moss is superior to straw because it holds up to 20 times its dry weight in water, contains zero weed seeds (unlike wheat straw or hay), and turns light brown when dry, visually alerting you when the newly seeded lawn needs water."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Lawn Overseeding Calculator", "item": "https://calcfordiy.com/calculators/lawn-overseeding" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Lawn Overseeding Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Lawn Overseeding &amp; Grass Seed Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate grass seed pounds, 50-lb contractor bags, high-phosphorus starter fertilizer, peat moss topdressing bales, and core aeration coverage.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Lawn Area &amp; Lot Size Presets
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Yard Size Presets</label>
+        <select id="yardPreset" onchange="applyYardPreset()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="custom">Custom Area (Sq Ft)</option>
+          <option value="small">Small Townhome Yard (2,500 sq ft)</option>
+          <option value="suburban" selected>Suburban Lawn (5,000 sq ft)</option>
+          <option value="quarter">1/4 Acre Lot (10,890 sq ft total / ~7,500 lawn)</option>
+          <option value="half">1/2 Acre Lot (21,780 sq ft total / ~15,000 lawn)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Lawn Square Footage</label>
+        <input type="number" id="lawnSqFt" placeholder="5000" value="5000" min="100" max="500000" step="250" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Project Type</label>
+        <select id="seedingMode" onchange="calculateLawn()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="overseed" selected>Overseeding Existing Lawn (Thickening Turf)</option>
+          <option value="new_lawn">New Lawn Seeding (Bare Dirt / 2x Seed Rate)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Grass Species (Turf Type)</label>
+        <select id="grassType" onchange="calculateLawn()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="ttf" selected>Turf-Type Tall Fescue (TTTF — 5 lbs/1,000 sq ft)</option>
+          <option value="kbg">Kentucky Bluegrass (KBG — 2.5 lbs/1,000 sq ft)</option>
+          <option value="perennial_rye">Perennial Ryegrass (PRG — 6 lbs/1,000 sq ft)</option>
+          <option value="fine_fescue">Fine / Shade Fescue (4 lbs/1,000 sq ft)</option>
+          <option value="bermuda">Bermudagrass (Warm Season — 1.5 lbs/1,000 sq ft)</option>
+          <option value="sun_shade">Sun &amp; Shade Mix (Fescue/KBG/Rye Blend — 4 lbs)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Aeration, Starter Fertilizer &amp; Topdressing
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Mechanical Core Aeration</label>
+        <select id="includeAeration" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="yes" selected>Yes (Double Pass Core Aerator — Recommended)</option>
+          <option value="no">No (Slit-Seeding or Liquid Aeration)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Starter Fertilizer (High Phosphorus)</label>
+        <select id="includeFertilizer" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="yes" selected>Yes (18-24-12 Starter Fertilizer for Root Growth)</option>
+          <option value="no">No Fertilizer</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Peat Moss / Compost Topdressing</label>
+        <select id="includeTopdress" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="spot" selected>Spot Treatment (Bare Patches Only — 2 Bales)</option>
+          <option value="full">Full 1/8" Lawn Blanket Topdressing</option>
+          <option value="none">No Topdressing</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calculateLawn()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors cursor-pointer text-sm shadow-xs">
+      Calculate Lawn Materials
+    </button>
+  </div>
+
+  <!-- Primary Results Grid -->
+  <div id="results" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-blue-600 font-semibold uppercase tracking-wide">Grass Seed Needed</div>
+      <div id="r_seedLbs" class="text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">25.0 lbs</div>
+      <div id="r_seedDetail" class="text-xs text-blue-700 mt-1">1× 25 lb Bag (or 5× 5 lb bags)</div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-amber-600 font-semibold uppercase tracking-wide">Starter Fertilizer</div>
+      <div id="r_fertBags" class="text-2xl sm:text-3xl font-extrabold text-amber-900 mt-1">1 Bag</div>
+      <div id="r_fertDetail" class="text-xs text-amber-700 mt-1">5,000 sq ft Bag (18-24-12)</div>
+    </div>
+
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Peat Moss Bales</div>
+      <div id="r_peatBales" class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-1">2 Bales</div>
+      <div id="r_peatDetail" class="text-xs text-emerald-700 mt-1">3.8 cu ft Compressed Bales</div>
+    </div>
+
+    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-purple-600 font-semibold uppercase tracking-wide">Aeration Plugs</div>
+      <div id="r_aeratePlugs" class="text-2xl sm:text-3xl font-extrabold text-purple-900 mt-1">~100,000</div>
+      <div id="r_aerateDetail" class="text-xs text-purple-700 mt-1">20 plugs/sq ft (Double Pass)</div>
+    </div>
+  </div>
+
+  <!-- Dynamic SVG Seed-to-Soil Cross-Section Diagram -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+      <h2 class="text-base font-semibold text-gray-800">Seed-to-Soil Contact &amp; Core Aeration Cross-Section</h2>
+      <span class="text-xs text-gray-500 font-mono">2.5" Core Depth • Seed Germination Bed</span>
+    </div>
+    <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
+      <svg id="lawnSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-800 rounded-xs"></span> Soil Horizon</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-700 rounded-xs"></span> Aeration Core Hole</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-300 rounded-xs"></span> Grass Seeds in Core Bed</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-emerald-500 rounded-xs"></span> Existing &amp; New Grass Blades</div>
+    </div>
+  </div>
+
+  <!-- Material Schedule & RSMeans Cost Benchmarks -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+      <h3 class="font-bold text-gray-900 text-sm mb-3">Lawn Renovation Material Schedule</h3>
+      <table class="w-full text-xs text-left">
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="py-2 text-gray-600">Lawn Surface Area</td><td id="t_lawnArea" class="py-2 font-mono text-right font-bold text-gray-900">5,000 sq ft</td></tr>
+          <tr><td class="py-2 text-gray-600">Recommended Seeding Rate</td><td id="t_rate" class="py-2 font-mono text-right text-gray-900">5.0 lbs / 1,000 sq ft (TTTF)</td></tr>
+          <tr><td class="py-2 text-gray-600">Rotary Spreader Calibration</td><td id="t_spreader" class="py-2 font-mono text-right text-gray-900">Scotts DLX: #6.5 (Apply in 2 criss-cross passes)</td></tr>
+          <tr><td class="py-2 text-gray-600">Daily Watering Schedule</td><td id="t_watering" class="py-2 font-mono text-right text-blue-600 font-bold">3x daily (5-8 mins) until germination</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 1-Click Shopping List Button -->
+      <button id="copyListBtn" onclick="copyShoppingList()" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-300">
+        <span>📋 Copy Shopping List for Garden Center</span>
+      </button>
+    </div>
+
+    <!-- RSMeans DIY vs Pro Benchmark -->
+    <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm text-blue-200">DIY vs Professional Lawn Care Quote</h3>
+        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      </div>
+      <p class="text-xs text-slate-300 mb-4">Certified weed-free seed, fertilizer &amp; aerator rental vs TruGreen / Lawn Doctor quote.</p>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Estimated DIY Materials</div>
+          <div id="c_diyCost" class="text-xl font-black text-emerald-400 mt-0.5">$180 – $240</div>
+          <div class="text-[10px] text-slate-400 mt-1">Seed, starter fert, aerator rental</div>
+        </div>
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Lawn Service Quote</div>
+          <div id="c_proCost" class="text-xl font-black text-amber-300 mt-0.5">$650 – $950</div>
+          <div class="text-[10px] text-slate-400 mt-1">$0.13 – $0.19 / sq ft turnkey</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-400 font-bold text-sm">💰</span>
+        <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$470 – $710 (74%)</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Building Codes & Best Practices -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Agronomic Best Practices (Turfgrass Extension)</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+      <div class="border-l-2 border-blue-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Optimal Seeding Window (Late Summer / Early Fall)</h4>
+        <p class="text-xs leading-relaxed">
+          For cool-season grasses (Fescue, KBG, Rye), seed between <strong>August 15 and September 30</strong>. Soil temperatures of 65°F–70°F accelerate germination while warm daytime and cool nighttime temperatures suppress weed competition.
+        </p>
+      </div>
+      <div class="border-l-2 border-amber-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">0.0% Weed Seed Certification</h4>
+        <p class="text-xs leading-relaxed">
+          Always inspect the seed analysis label on the back of the bag. Look for <strong>0.0% Weed Seed</strong> and <strong>0.0% Other Crop Seed</strong> (such as invasive Poa Annua or Orchardgrass), which cannot be selectively killed once established.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How many days does grass seed take to germinate?</h3>
+        <p class="text-gray-600 text-sm">Perennial Ryegrass germinates rapidly in <strong>5 to 10 days</strong>. Turf-Type Tall Fescue takes <strong>7 to 14 days</strong>. Kentucky Bluegrass takes the longest, requiring <strong>14 to 28 days</strong> of consistent daily moisture before sprouting.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">When can I mow my lawn after overseeding?</h3>
+        <p class="text-gray-600 text-sm">Wait until the new seedlings reach <strong>3.5 to 4 inches in height</strong> (typically 3 to 4 weeks after seeding). Ensure mower blades are razor-sharp to avoid tearing young seedlings out by their tender roots, and never cut more than one-third of the blade height.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Lawn &amp; Soil Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/fertilizer" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Fertilizer Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate NPK application rates &amp; bag coverage.</div>
+      </a>
+      <a href="/calculators/topsoil" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Topsoil Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate cubic yards and tons for lawn leveling.</div>
+      </a>
+      <a href="/calculators/sod-pallet" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Sod Pallet Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate pallets of instant sod turfgrass rolls.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function applyYardPreset() {
+    const preset = document.getElementById('yardPreset').value;
+    const input = document.getElementById('lawnSqFt');
+    if (preset === 'small') input.value = 2500;
+    else if (preset === 'suburban') input.value = 5000;
+    else if (preset === 'quarter') input.value = 7500;
+    else if (preset === 'half') input.value = 15000;
+    calculateLawn();
+  }
+
+  function calculateLawn() {
+    const area = parseFloat(document.getElementById('lawnSqFt').value) || 5000;
+    const mode = document.getElementById('seedingMode').value;
+    const species = document.getElementById('grassType').value;
+    const hasAeration = document.getElementById('includeAeration').value === 'yes';
+    const hasFert = document.getElementById('includeFertilizer').value === 'yes';
+    const topdress = document.getElementById('includeTopdress').value;
+
+    // Base overseeding rate per 1,000 sq ft
+    let ratePer1k = 5.0; // TTTF default
+    if (species === 'kbg') ratePer1k = 2.5;
+    if (species === 'perennial_rye') ratePer1k = 6.0;
+    if (species === 'fine_fescue') ratePer1k = 4.0;
+    if (species === 'bermuda') ratePer1k = 1.5;
+    if (species === 'sun_shade') ratePer1k = 4.0;
+
+    // If new lawn on bare dirt, double the rate
+    if (mode === 'new_lawn') ratePer1k *= 1.8;
+
+    const totalLbs = (area / 1000) * ratePer1k;
+
+    // Starter fertilizer: standard 5,000 sq ft bags (or 15k bags)
+    const fertBags = hasFert ? Math.ceil(area / 5000) : 0;
+
+    // Peat moss: 1 compressed 3.8 cu ft bale covers ~300 sq ft at 1/8"
+    let peatBales = 0;
+    if (topdress === 'spot') peatBales = Math.max(2, Math.ceil(area / 2500));
+    else if (topdress === 'full') peatBales = Math.ceil(area / 300);
+
+    // Aeration plugs: double pass ~20 plugs per sq ft
+    const plugsCount = hasAeration ? Math.round(area * 20) : 0;
+
+    // Update DOM
+    document.getElementById('r_seedLbs').textContent = `${totalLbs.toFixed(1)} lbs`;
+    document.getElementById('r_seedDetail').textContent = totalLbs >= 50 ? `${Math.ceil(totalLbs/50)}× 50-lb Bag` : `${Math.ceil(totalLbs/5)}× 5-lb Bags`;
+
+    document.getElementById('r_fertBags').textContent = hasFert ? `${fertBags} Bag${fertBags > 1 ? 's' : ''}` : 'None Selected';
+    document.getElementById('r_fertDetail').textContent = hasFert ? `${fertBags * 5000} sq ft coverage (18-24-12)` : 'Starter fertilizer skipped';
+
+    document.getElementById('r_peatBales').textContent = topdress === 'none' ? '0 Bales' : `${peatBales} Bales`;
+    document.getElementById('r_peatDetail').textContent = topdress === 'none' ? 'No topdressing' : '3.8 cu ft Compressed Bales';
+
+    document.getElementById('r_aeratePlugs').textContent = hasAeration ? `~${plugsCount.toLocaleString()}` : 'None';
+    document.getElementById('r_aerateDetail').textContent = hasAeration ? '20 core holes / sq ft (Double Pass)' : 'Aerator rental skipped';
+
+    document.getElementById('t_lawnArea').textContent = `${area.toLocaleString()} sq ft`;
+    document.getElementById('t_rate').textContent = `${ratePer1k.toFixed(1)} lbs / 1,000 sq ft (${mode === 'new_lawn' ? 'Bare Soil' : 'Overseed'})`;
+
+    // RSMeans Cost Benchmarks
+    const seedPricePerLb = 4.25; // Premium certified blue tag seed
+    const aeratorRental = hasAeration ? 75 : 0;
+    const diyCostMin = Math.round((totalLbs * seedPricePerLb) + (fertBags * 28) + (peatBales * 18) + aeratorRental);
+    const diyCostMax = Math.round(diyCostMin * 1.25);
+
+    const proCostMin = Math.round(area * 0.13);
+    const proCostMax = Math.round(area * 0.19);
+
+    document.getElementById('c_diyCost').textContent = `$${diyCostMin.toLocaleString()} – $${diyCostMax.toLocaleString()}`;
+    document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
+    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()} (${Math.round((1 - diyCostMin/proCostMin)*100)}%)`;
+
+    drawLawnSvg(hasAeration);
+  }
+
+  function drawLawnSvg(hasAeration) {
+    const svg = document.getElementById('lawnSvg');
+    if (!svg) return;
+
+    let content = '';
+    const startX = 30;
+    const width = 540;
+
+    // Soil Horizon (Brown)
+    content += `<rect x="${startX}" y="70" width="${width}" height="100" fill="#78350F" stroke="#451A03" stroke-width="1.5" rx="2" />`;
+    content += `<text x="300" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#FEF3C7">Native Soil &amp; Root Zone</text>`;
+
+    // Aeration Core Holes & Seeds
+    if (hasAeration) {
+      for (let x = startX + 40; x < startX + width - 40; x += 55) {
+        // Hollow Core Hole (Darker Brown)
+        content += `<rect x="${x}" y="70" width="16" height="45" fill="#1E293B" rx="3" />`;
+        // Seed grains at bottom of core
+        content += `<circle cx="${x + 5}" cy="110" r="2" fill="#FBBF24" />`;
+        content += `<circle cx="${x + 11}" cy="110" r="2" fill="#FBBF24" />`;
+        content += `<circle cx="${x + 8}" cy="105" r="2" fill="#FBBF24" />`;
+      }
+      content += `<text x="300" y="100" text-anchor="middle" font-size="10" font-weight="bold" fill="#38BDF8">2.5" Core Aeration Plug Holes (Seed Nesting Bed)</text>`;
+    }
+
+    // Grass blades on surface
+    for (let gx = startX + 5; gx < startX + width - 5; gx += 8) {
+      const h = 25 + (gx % 15);
+      content += `<line x1="${gx}" y1="70" x2="${gx - 2}" y2="${70 - h}" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" />`;
+    }
+
+    svg.innerHTML = content;
+  }
+
+  function copyShoppingList() {
+    const seed = document.getElementById('r_seedLbs').textContent;
+    const fert = document.getElementById('r_fertBags').textContent;
+    const peat = document.getElementById('r_peatBales').textContent;
+
+    const listText = `CalcForDIY Material Takeoff — Lawn Overseeding:\n` +
+      `- Certified Grass Seed: ${seed}\n` +
+      `- Starter Fertilizer: ${fert} (18-24-12)\n` +
+      `- Peat Moss Topdressing: ${peat}\n` +
+      `- Equipment: Core Aerator (Double Pass) + Broadcast Spreader\n` +
+      `Calculated at https://calcfordiy.com/calculators/lawn-overseeding`;
+
+    navigator.clipboard.writeText(listText).then(() => {
+      const btn = document.getElementById('copyListBtn');
+      btn.innerHTML = '<span>✅ Copied to Clipboard!</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy Shopping List for Garden Center</span>';
+      }, 2500);
+    });
+  }
+
+  calculateLawn();
+</script>

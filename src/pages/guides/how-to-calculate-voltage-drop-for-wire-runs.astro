@@ -1,0 +1,132 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="How to Calculate Voltage Drop for Long Wire Runs (NEC Formula) | CalcForDIY"
+  description="Learn how to calculate voltage drop for long electrical wire runs using the NEC 3% rule, Ohm's law formula, copper conductor circular mils, and subpanel wire sizing."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "How to Calculate Voltage Drop for Wire Runs", "item": "https://calcfordiy.com/guides/how-to-calculate-voltage-drop-for-wire-runs" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Calculate Voltage Drop for Long Electrical Wire Runs (NEC Formulas & Charts)",
+    "description": "Learn how to calculate voltage drop for long electrical wire runs using the NEC 3% rule, Ohm's law formula, copper conductor circular mils, and subpanel wire sizing.",
+    "author": { "@type": "Organization", "name": "CalcForDIY" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "url": "https://calcfordiy.com" },
+    "datePublished": "2026-08-30",
+    "dateModified": "2026-08-30"
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>How to Calculate Voltage Drop for Wire Runs</span>
+  </div>
+
+  <article class="max-w-3xl">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-6 tracking-tight">
+      How to Calculate Voltage Drop for Long Wire Runs (NEC Formula &amp; Sizing Chart)
+    </h1>
+    
+    <div class="prose prose-blue max-w-none text-gray-700 space-y-5 leading-relaxed">
+      <p class="text-lg">
+        When running electrical circuits over long distances—such as powering a backyard workshop subpanel, a detached garage, or an outdoor Level 2 EV charger—electrical resistance causes voltage to decrease along the wire. If voltage drop exceeds <strong>3% on a branch circuit</strong>, motors overheat, EV charging throttles, and LED lights flicker.
+      </p>
+
+      <!-- Calculator CTA -->
+      <div class="my-8 p-6 bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl shadow-sm">
+        <h2 class="text-xl font-bold text-blue-900 mb-2 mt-0">Calculate Exact Voltage Drop &amp; Upsize Wire Instantly</h2>
+        <p class="text-blue-800 mb-4 text-sm">Enter your circuit amperage, voltage (120V/240V), one-way distance, and conductor material to get exact percentage drop and NEC code-compliant wire gauges.</p>
+        <a href="/calculators/ev-charger-wiring" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-5 rounded-lg text-sm transition-colors shadow-xs">
+          Open Wire Gauge &amp; Circuit Calculator →
+        </a>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The National Electrical Code (NEC) 3% Rule</h2>
+      <p>
+        Under <strong>NEC Section 210.19(A) Informational Note No. 4</strong> and <strong>NEC Section 215.2(A)(1)</strong>, the National Electrical Code recommends:
+      </p>
+      <ul class="list-disc pl-5 space-y-2">
+        <li>Maximum <strong>3% voltage drop</strong> on branch circuits (e.g., max 3.6V drop on 120V or 7.2V on 240V).</li>
+        <li>Maximum <strong>5% total voltage drop</strong> combined across the feeder and branch circuit from service panel to outlet.</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">The Single-Phase Voltage Drop Formula</h2>
+      <p>
+        To calculate single-phase voltage drop in volts for two-wire AC/DC circuits:
+      </p>
+
+      <div class="bg-slate-900 text-slate-100 p-4 rounded-xl font-mono text-sm my-4 text-center">
+        Voltage Drop (Volts) = (2 × K × I × L) ÷ CM
+      </div>
+
+      <p class="text-sm">Where:</p>
+      <ul class="list-disc pl-5 text-sm space-y-1">
+        <li><strong>K</strong> = Conductor constant resistivity (12.9 for Copper at 75°C, 21.2 for Aluminum).</li>
+        <li><strong>I</strong> = Circuit current load in Amperes.</li>
+        <li><strong>L</strong> = One-way length of the circuit run in feet.</li>
+        <li><strong>CM</strong> = Cross-sectional area of the wire in Circular Mils (from NEC Chapter 9, Table 8).</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Conductor Circular Mils (NEC Chapter 9 Table 8)</h2>
+      <div class="overflow-x-auto my-4">
+        <table class="min-w-full text-xs text-left border border-gray-200 rounded-lg">
+          <thead class="bg-gray-100 font-bold text-gray-800">
+            <tr>
+              <th class="p-3 border-b">Wire Gauge (AWG / kcmil)</th>
+              <th class="p-3 border-b">Circular Mils (CM)</th>
+              <th class="p-3 border-b">Max Amps (75°C Copper)</th>
+              <th class="p-3 border-b">Max Amps (75°C Aluminum)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 text-gray-700">
+            <tr><td class="p-3 font-semibold">14 AWG</td><td class="p-3 font-mono">4,110</td><td class="p-3 font-bold text-blue-700">15A</td><td class="p-3">—</td></tr>
+            <tr><td class="p-3 font-semibold">12 AWG</td><td class="p-3 font-mono">6,530</td><td class="p-3 font-bold text-blue-700">20A</td><td class="p-3">15A</td></tr>
+            <tr><td class="p-3 font-semibold">10 AWG</td><td class="p-3 font-mono">10,380</td><td class="p-3 font-bold text-blue-700">30A</td><td class="p-3">25A</td></tr>
+            <tr><td class="p-3 font-semibold">8 AWG</td><td class="p-3 font-mono">16,510</td><td class="p-3 font-bold text-blue-700">50A</td><td class="p-3">40A</td></tr>
+            <tr><td class="p-3 font-semibold">6 AWG</td><td class="p-3 font-mono">26,240</td><td class="p-3 font-bold text-blue-700">65A</td><td class="p-3">50A</td></tr>
+            <tr><td class="p-3 font-semibold">4 AWG</td><td class="p-3 font-mono">41,740</td><td class="p-3 font-bold text-blue-700">85A</td><td class="p-3">65A</td></tr>
+            <tr><td class="p-3 font-semibold">2 AWG</td><td class="p-3 font-mono">66,360</td><td class="p-3 font-bold text-blue-700">115A</td><td class="p-3">90A</td></tr>
+            <tr><td class="p-3 font-semibold">1/0 AWG</td><td class="p-3 font-mono">105,600</td><td class="p-3 font-bold text-blue-700">150A</td><td class="p-3">120A</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">When Should You Upsize Wire by One Gauge?</h2>
+      <p>
+        As a general rule of thumb for standard 120V / 240V residential wiring:
+      </p>
+      <ul class="list-disc pl-5 space-y-2">
+        <li><strong>Under 50 Feet:</strong> Standard NEC ampacity sizing is almost always sufficient without upsizing.</li>
+        <li><strong>50 to 100 Feet:</strong> Upsize wire by <strong>one full AWG gauge</strong> if running at continuous 80% full load (e.g. use 10 AWG instead of 12 AWG for a 20A circuit).</li>
+        <li><strong>Over 100 Feet:</strong> Always perform the mathematical voltage drop calculation; you may need to upsize by 2 full gauges (e.g., #4 AWG copper for a 50A EV charger at 150 feet).</li>
+      </ul>
+
+      <!-- Related Subpanel Hub CTA -->
+      <div class="mt-8 p-6 bg-slate-900 text-white rounded-xl">
+        <h3 class="text-lg font-bold text-blue-300 mb-2">Electrical Sizing &amp; Subpanel Hub</h3>
+        <p class="text-slate-300 text-sm mb-4">Calculate subpanel demand ampacity, conduit fill percentages, and breaker slot requirements.</p>
+        <a href="/calculators/subpanel-sizing" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg text-xs transition-colors">
+          View Subpanel Sizing Calculator →
+        </a>
+      </div>
+    </div>
+  </article>
+
+</Layout>

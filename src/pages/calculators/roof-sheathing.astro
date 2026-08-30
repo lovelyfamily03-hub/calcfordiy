@@ -1,0 +1,443 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Roof Sheathing Calculator (4x8 OSB & Plywood Sheets) | CalcForDIY"
+  description="Calculate how many 4x8 sheets of OSB or CDX plywood roof decking you need with pitch multipliers, APA H-clips, and 8d ring-shank nails."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Roof Sheathing Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many 4x8 sheets of OSB do I need for a 2,000 sq ft roof footprint?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a 2,000 sq ft flat house footprint with a standard 6/12 pitch roof (1.118 multiplier), your actual sloped roof area is 2,236 sq ft. With a standard 10% waste buffer (2,460 sq ft) and 32 sq ft per 4x8 sheet, you will need 77 sheets of 7/16\" or 1/2\" OSB decking."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do you need H-clips between roof sheathing panels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per APA (The Engineered Wood Association) and IRC building codes, metal H-clips (ply-clips) are required midway between roof trusses on un-supported horizontal panel edges. They prevent panel sagging between 24\" on-center rafters and automatically maintain the mandatory 1/8-inch thermal expansion gap."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which orientation should roof sheathing panels be installed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Always install 4x8 sheathing panels perpendicular (crosswise) to the roof rafters or trusses, with the 8-foot length running horizontally across rafters. End joints must be staggered by at least 24 inches on adjacent rows."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Roof Sheathing Calculator", "item": "https://calcfordiy.com/calculators/roof-sheathing" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Roof Sheathing Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Roof Sheathing &amp; OSB Decking Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate 4×8 OSB / Plywood sheathing sheets, slope pitch multipliers, metal H-clips, and 8d ring-shank framing nails per APA and IRC code.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Roof Dimensions &amp; Pitch Slope
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Building Length (ft)</label>
+        <input type="number" id="roofLength" placeholder="40" value="40" min="1" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Building Width / Span (ft)</label>
+        <input type="number" id="roofWidth" placeholder="28" value="28" min="1" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Roof Pitch (Slope)</label>
+        <select id="roofPitch" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.054">4/12 Pitch (Multiplier 1.054)</option>
+          <option value="1.083">5/12 Pitch (Multiplier 1.083)</option>
+          <option value="1.118" selected>6/12 Pitch (Multiplier 1.118 — Standard)</option>
+          <option value="1.158">7/12 Pitch (Multiplier 1.158)</option>
+          <option value="1.202">8/12 Pitch (Multiplier 1.202 — Steep)</option>
+          <option value="1.250">9/12 Pitch (Multiplier 1.250)</option>
+          <option value="1.302">10/12 Pitch (Multiplier 1.302)</option>
+          <option value="1.414">12/12 Pitch (Multiplier 1.414 — 45° Steep)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Roof Geometry Style</label>
+        <select id="roofStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="gable" selected>Gable Roof (2 Slopes)</option>
+          <option value="hip">Hip Roof (4 Slopes — +5% Angle Cuts)</option>
+          <option value="shed">Shed / Mono-Pitch (Single Slope)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Decking Panel Material &amp; Framing Spacing
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Panel Material &amp; Thickness</label>
+        <select id="sheathingType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="osb_716" selected>7/16" OSB Sheathing (Standard 24/16 span)</option>
+          <option value="ply_12">1/2" CDX Plywood (Exterior Grade)</option>
+          <option value="osb_58">5/8" OSB / Plywood (Heavy Snow Load)</option>
+          <option value="zip_system">7/16" ZIP System (Integrated Vapor Barrier)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Rafter / Truss Spacing</label>
+        <select id="rafterSpacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="24" selected>24" on-center (Standard Roof Trusses)</option>
+          <option value="16">16" on-center (Stick-Built Heavy Rafters)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Eaves Overhang Extension</label>
+        <select id="eavesOverhang" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.0">12" Overhang (+1 ft each side)</option>
+          <option value="1.33" selected>16" Overhang (+1.33 ft each side)</option>
+          <option value="2.0">24" Overhang (+2 ft each side)</option>
+          <option value="0">Zero Overhang (Flush)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Trimming Waste Buffer</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.08">8% Waste (Simple Gable Roof)</option>
+          <option value="1.10" selected>10% Waste (Standard DIY with Gables)</option>
+          <option value="1.15">15% Waste (Hip Roof / Valleys / Dormers)</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calculateRoofSheathing()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors cursor-pointer text-sm shadow-xs">
+      Calculate Sheathing Sheets
+    </button>
+  </div>
+
+  <!-- Primary Results Grid -->
+  <div id="results" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-blue-600 font-semibold uppercase tracking-wide">4×8 Sheathing Sheets</div>
+      <div id="r_totalSheets" class="text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">47 Sheets</div>
+      <div id="r_sheetDetail" class="text-xs text-blue-700 mt-1">1,504 Sq Ft Total Coverage</div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-amber-600 font-semibold uppercase tracking-wide">True 3D Roof Area</div>
+      <div id="r_totalSqFt" class="text-2xl sm:text-3xl font-extrabold text-amber-900 mt-1">1,475 Sq Ft</div>
+      <div id="r_sqFtDetail" class="text-xs text-amber-700 mt-1">14.8 Roofing Squares (6/12 Pitch)</div>
+    </div>
+
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Panel H-Clips</div>
+      <div id="r_hClips" class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-1">85 Clips</div>
+      <div id="r_hClipDetail" class="text-xs text-emerald-700 mt-1">1 per bay on horizontal seams</div>
+    </div>
+
+    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-purple-600 font-semibold uppercase tracking-wide">8d Framing Nails</div>
+      <div id="r_nailCount" class="text-2xl sm:text-3xl font-extrabold text-purple-900 mt-1">1 Box (1,500)</div>
+      <div id="r_nailDetail" class="text-xs text-purple-700 mt-1">6" Edge / 12" Field Spacing</div>
+    </div>
+  </div>
+
+  <!-- Dynamic SVG Sheathing Stagger Diagram -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+      <h2 class="text-base font-semibold text-gray-800">Perpendicular 4x8 Panel Layout &amp; Stagger Diagram</h2>
+      <span class="text-xs text-gray-500 font-mono">Perpendicular to Rafters • 1/8" Expansion Gaps</span>
+    </div>
+    <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
+      <svg id="sheathingSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-700 rounded-xs"></span> 4x8 Sheathing Panel</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-500 rounded-xs"></span> 24" o.c. Truss Top Chord</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-blue-400 rounded-xs"></span> Metal H-Clips at Mid-Span</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-red-400 rounded-xs"></span> 8d Ring-Shank Nails</div>
+    </div>
+  </div>
+
+  <!-- Material Schedule & RSMeans Cost Benchmarks -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+      <h3 class="font-bold text-gray-900 text-sm mb-3">Roof Decking Fastener &amp; Material Schedule</h3>
+      <table class="w-full text-xs text-left">
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="py-2 text-gray-600">Flat Roof Footprint + Overhangs</td><td id="t_flatArea" class="py-2 font-mono text-right font-bold text-gray-900">1,319 sq ft</td></tr>
+          <tr><td class="py-2 text-gray-600">Roof Slope Multiplier</td><td id="t_pitchMult" class="py-2 font-mono text-right text-gray-900">1.118 (6/12 Pitch)</td></tr>
+          <tr><td class="py-2 text-gray-600">Fastener Spacing (IRC Table R602.3)</td><td id="t_nailSpacing" class="py-2 font-mono text-right text-gray-900">6" on edges, 12" in field</td></tr>
+          <tr><td class="py-2 text-gray-600">1/8" Edge Expansion Gap</td><td id="t_gap" class="py-2 font-mono text-right text-blue-600 font-bold">Mandatory (Use 10d nail as spacer)</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 1-Click Shopping List Button -->
+      <button id="copyListBtn" onclick="copyShoppingList()" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-300">
+        <span>📋 Copy Shopping List for Home Depot / Lowe's</span>
+      </button>
+    </div>
+
+    <!-- RSMeans DIY vs Pro Benchmark -->
+    <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm text-blue-200">DIY vs Framing Carpenter Decking Cost</h3>
+        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      </div>
+      <p class="text-xs text-slate-300 mb-4">Retail 4x8 OSB/Plywood sheets vs turnkey framing contractor installation quote.</p>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Estimated DIY Materials</div>
+          <div id="c_diyCost" class="text-xl font-black text-emerald-400 mt-0.5">$850 – $1,150</div>
+          <div class="text-[10px] text-slate-400 mt-1">47 sheets OSB, H-clips, 8d nails</div>
+        </div>
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Framing Contractor Quote</div>
+          <div id="c_proCost" class="text-xl font-black text-amber-300 mt-0.5">$2,600 – $3,800</div>
+          <div class="text-[10px] text-slate-400 mt-1">$1.80 – $2.60 / sq ft installed</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-400 font-bold text-sm">💰</span>
+        <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$1,750 – $2,650 (69%)</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Building Codes & Best Practices -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Roof Sheathing Building Codes (APA &amp; IRC Section R803)</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+      <div class="border-l-2 border-blue-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">1/8-Inch Edge Expansion Gap</h4>
+        <p class="text-xs leading-relaxed">
+          Wood panels expand as they absorb ambient moisture from humidity. Never butt 4x8 sheathing panels tightly together. Maintain a mandatory <strong>1/8-inch expansion gap</strong> on all ends and edges to prevent panel buckling and ridge crowning.
+        </p>
+      </div>
+      <div class="border-l-2 border-amber-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Nailing Schedule (IRC Table R602.3(1))</h4>
+        <p class="text-xs leading-relaxed">
+          Fasten 7/16" or 1/2" roof sheathing using <strong>8d common or ring-shank nails (2-1/2" × 0.131")</strong>. Space nails a maximum of <strong>6 inches on-center along supported panel edges</strong> and <strong>12 inches on-center at intermediate field supports</strong>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should I use 7/16" OSB or 1/2" CDX Plywood for roof decking?</h3>
+        <p class="text-gray-600 text-sm">7/16" OSB is the most common, cost-effective builder standard and has a 24/16 span rating (safe for 24" o.c. trusses). 1/2" CDX plywood is slightly stiffer, holds fasteners better over time in humid environments, and dries out faster if minor roof leaks occur.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Which side of the OSB panel faces up towards the sky?</h3>
+        <p class="text-gray-600 text-sm">Always install OSB with the textured, slip-resistant grid side facing up. The smooth side with stamp markings should face down towards the attic rafters.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Carpentry &amp; Roofing Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/roof-pitch-rafter" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Roof Pitch &amp; Rafter Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate rafter lengths, pitch angles &amp; seat cuts.</div>
+      </a>
+      <a href="/calculators/asphalt-shingles" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Roofing Shingle Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate roofing squares, bundles &amp; underlayment.</div>
+      </a>
+      <a href="/calculators/wall-framing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Wall Framing Stud Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate 2x4 / 2x6 wall studs, top &amp; bottom plates.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateRoofSheathing() {
+    const length = parseFloat(document.getElementById('roofLength').value) || 40;
+    const width = parseFloat(document.getElementById('roofWidth').value) || 28;
+    const pitchMult = parseFloat(document.getElementById('roofPitch').value) || 1.118;
+    const overhang = parseFloat(document.getElementById('eavesOverhang').value) || 1.33;
+    const waste = parseFloat(document.getElementById('wasteFactor').value) || 1.10;
+    const spacing = parseInt(document.getElementById('rafterSpacing').value) || 24;
+
+    // Total flat footprint with overhangs
+    const totalLength = length + (2 * overhang);
+    const totalWidth = width + (2 * overhang);
+    const flatSqFt = totalLength * totalWidth;
+
+    // 3D Sloped roof surface area
+    const slopedSqFt = flatSqFt * pitchMult;
+    const grossSqFt = slopedSqFt * waste;
+
+    // 4x8 sheet = 32 sq ft
+    const totalSheets = Math.ceil(grossSqFt / 32);
+
+    // H-Clips: roughly 2 clips per horizontal 8-foot seam when spaced 24" o.c. (1 clip per rafter bay)
+    const hClips = spacing === 24 ? Math.ceil(totalSheets * 1.8) : 0;
+
+    // Nails: ~33 nails per 4x8 sheet (6" perimeter, 12" field on 24" o.c.)
+    const totalNails = Math.ceil(totalSheets * 35);
+    const nailBoxes = Math.ceil(totalNails / 1500);
+
+    // Update DOM
+    document.getElementById('r_totalSheets').textContent = `${totalSheets} Sheets (4×8)`;
+    document.getElementById('r_sheetDetail').textContent = `${(totalSheets * 32).toLocaleString()} Sq Ft Total Purchased`;
+
+    document.getElementById('r_totalSqFt').textContent = `${Math.round(slopedSqFt).toLocaleString()} Sq Ft`;
+    document.getElementById('r_sqFtDetail').textContent = `${(slopedSqFt / 100).toFixed(1)} Roofing Squares (${Math.round(grossSqFt - slopedSqFt)} sq ft waste)`;
+
+    document.getElementById('r_hClips').textContent = spacing === 24 ? `${hClips} H-Clips` : 'None Required (16" o.c.)';
+    document.getElementById('r_hClipDetail').textContent = 'Placed midway between 24" o.c. trusses';
+
+    document.getElementById('r_nailCount').textContent = `${nailBoxes} Box (${totalNails} Nails)`;
+    document.getElementById('r_nailDetail').textContent = '8d 2-1/2" Ring-Shank Framing Nails';
+
+    document.getElementById('t_flatArea').textContent = `${flatSqFt.toFixed(1)} sq ft (${totalLength.toFixed(1)}' × ${totalWidth.toFixed(1)}')`;
+    document.getElementById('t_pitchMult').textContent = `${pitchMult} Slope Multiplier`;
+
+    // RSMeans Cost Benchmarks
+    const sheetCost = 19.50; // 7/16" OSB 4x8
+    const diyCostMin = Math.round((totalSheets * sheetCost) + (nailBoxes * 55) + 30);
+    const diyCostMax = Math.round(diyCostMin * 1.25);
+
+    const proCostMin = Math.round(slopedSqFt * 1.80);
+    const proCostMax = Math.round(slopedSqFt * 2.60);
+
+    document.getElementById('c_diyCost').textContent = `$${diyCostMin.toLocaleString()} – $${diyCostMax.toLocaleString()}`;
+    document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
+    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()} (${Math.round((1 - diyCostMin/proCostMin)*100)}%)`;
+
+    drawSheathingSvg();
+  }
+
+  function drawSheathingSvg() {
+    const svg = document.getElementById('sheathingSvg');
+    if (!svg) return;
+
+    let content = '';
+    const startX = 30;
+    const startY = 30;
+    const rowH = 35;
+    const sheetW = 160;
+
+    // Draw Rafter / Truss Top Chords (Vertical Gray Bars spaced 40px)
+    for (let rx = startX; rx <= startX + 540; rx += 40) {
+      content += `<line x1="${rx}" y1="${startY - 10}" x2="${rx}" y2="${startY + 150}" stroke="#475569" stroke-width="2" />`;
+    }
+
+    // Draw Staggered 4x8 Panels (Horizontal)
+    for (let r = 0; r < 4; r++) {
+      const y = startY + r * (rowH + 3);
+      const offset = (r % 2) * (sheetW / 2);
+
+      for (let x = startX - offset; x < startX + 530; x += sheetW + 3) {
+        let renderX = x;
+        let renderW = sheetW;
+
+        if (renderX < startX) {
+          renderW = renderX + sheetW - startX;
+          renderX = startX;
+        } else if (renderX + renderW > startX + 530) {
+          renderW = (startX + 530) - renderX;
+        }
+
+        if (renderW > 5) {
+          content += `<rect x="${renderX}" y="${y}" width="${renderW}" height="${rowH}" fill="#B45309" stroke="#78350F" stroke-width="1.5" rx="1" />`;
+          content += `<text x="${renderX + renderW/2}" y="${y + rowH/2 + 4}" text-anchor="middle" font-size="9" font-weight="bold" fill="#FEF3C7">4×8 OSB Panel</text>`;
+
+          // Draw H-clips on top seam
+          if (r > 0) {
+            content += `<rect x="${renderX + renderW/3}" y="${y - 3}" width="6" height="5" fill="#38BDF8" rx="1" />`;
+            content += `<rect x="${renderX + (2 * renderW)/3}" y="${y - 3}" width="6" height="5" fill="#38BDF8" rx="1" />`;
+          }
+        }
+      }
+    }
+
+    svg.innerHTML = content;
+  }
+
+  function copyShoppingList() {
+    const sheets = document.getElementById('r_totalSheets').textContent;
+    const clips = document.getElementById('r_hClips').textContent;
+    const nails = document.getElementById('r_nailCount').textContent;
+
+    const listText = `CalcForDIY Material Takeoff — Roof Sheathing Decking:\n` +
+      `- OSB / Plywood Sheathing: ${sheets}\n` +
+      `- Panel Ply H-Clips: ${clips}\n` +
+      `- Nails: ${nails} (8d Ring-Shank 2-1/2" Framing Nails)\n` +
+      `Calculated at https://calcfordiy.com/calculators/roof-sheathing`;
+
+    navigator.clipboard.writeText(listText).then(() => {
+      const btn = document.getElementById('copyListBtn');
+      btn.innerHTML = '<span>✅ Copied to Clipboard!</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy Shopping List for Home Depot / Lowe\'s</span>';
+      }, 2500);
+    });
+  }
+
+  calculateRoofSheathing();
+</script>

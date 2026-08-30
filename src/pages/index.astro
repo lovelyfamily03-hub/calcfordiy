@@ -3,7 +3,19 @@ import Layout from '../layouts/Layout.astro';
 import AboutCalculators from '../components/AboutCalculators.astro';
 
 const calculators = [
-  // 1. Tile & Flooring (8)
+    // 1. Tile & Flooring (10)
+  {
+    title: "Vinyl Plank Flooring Calculator",
+    description: "Calculate Luxury Vinyl Plank (LVP) boxes, square footage, transition moldings, and waste factor.",
+    href: "/calculators/vinyl-plank-flooring",
+    category: "Tile & Flooring"
+  },
+  {
+    title: "Epoxy Floor Coating Calculator",
+    description: "Calculate 100% solids epoxy basecoat gallons, vapor barrier primer, decorative color chips, and clear topcoat.",
+    href: "/calculators/epoxy-floor",
+    category: "Tile & Flooring"
+  },
   {
     title: "Shower Tile Calculator",
     description: "Calculate exactly how much tile you need for shower walls and floor.",
@@ -227,7 +239,19 @@ const calculators = [
     category: "Concrete & Masonry"
   },
 
-  // 5. Landscaping & Hardscaping (13)
+    // 5. Landscaping & Hardscaping (15)
+  {
+    title: "Retaining Wall Backfill & Drainage Calculator",
+    description: "Calculate #57 clean drainage gravel tons, soil backfill cubic yards, non-woven geotextile fabric, and geogrid reinforcement.",
+    href: "/calculators/retaining-wall-backfill",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Lawn Overseeding & Grass Seed Calculator",
+    description: "Calculate grass seed pounds, starter fertilizer bags, peat moss bales, and core aeration coverage.",
+    href: "/calculators/lawn-overseeding",
+    category: "Landscaping & Hardscaping"
+  },
   {
     title: "Gravel Driveway & Crushed Stone Calculator",
     description: "Calculate crushed gravel tons, cubic yards, dump truck deliveries, geotextile underlayment, and multi-layer base depths.",
@@ -534,8 +558,8 @@ const categories = [...new Set(calculators.map(c => c.category))];
 ---
 
 <Layout
-  title="CalcForDIY — 85 Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks"
-  description="85 free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs."
+  title="CalcForDIY — 93 Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks"
+  description="93 free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs."
 >
 <script type="application/ld+json" is:inline>
 {
@@ -543,7 +567,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
   "@type": "WebSite",
   "name": "CalcForDIY",
   "url": "https://calcfordiy.com",
-  "description": "85 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.",
+  "description": "93 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.",
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://calcfordiy.com/calculators?q={search_term_string}",
@@ -561,7 +585,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
   "operatingSystem": "Web Browser",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "featureList": [
-    "85 Interactive Material & Framing Calculators",
+    "93 Interactive Material & Framing Calculators",
     "Dynamic Vector SVG Framing & Cut Diagrams",
     "RSMeans DIY Material vs. Turnkey Contractor Cost Benchmarks",
     "One-Click Copy Shopping List Material Takeoff Export",
@@ -605,7 +629,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
   <div class="mb-8">
     <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
-      <span>✨ 85 Free Interactive Calculators</span>
+      <span>✨ 93 Free Interactive Calculators</span>
       <span>•</span>
       <span>RSMeans Cost Benchmarks &amp; SVG Diagrams</span>
     </div>

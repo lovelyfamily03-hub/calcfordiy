@@ -1,0 +1,423 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Soffit & Fascia Calculator (Panels, J-Channel & Venting) | CalcForDIY"
+  description="Calculate how many soffit panels, aluminum fascia wrap, J-channel trim, and Net Free Ventilating Area (NFVA) you need for roof eaves and overhangs."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Soffit and Fascia Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many soffit panels do I need for a 100-foot roof eave?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a 100-foot roof eave with a standard 16-inch overhang, your soffit area is approximately 133 square feet. With standard 12-foot vinyl/aluminum soffit panels (12 sq ft each) and a 10% waste buffer, you will need 13 standard 12-foot panels."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much J-channel do I need for soffit installation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You will need J-channel (or F-channel) along both the house wall side and gable rake edges. Typically, order 1.15 times the linear footage of your eaves in 12-foot J-channel pieces."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the IRC building code requirement for soffit intake venting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per IRC Section R806.2, unconditioned attics require 1 square foot of Net Free Ventilating Area (NFVA) for every 150 sq ft of attic floor space (or 1:300 if balanced with ridge vents). Soffit intake vents should provide at least 50% of the total required ventilation."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Soffit & Fascia Calculator", "item": "https://calcfordiy.com/calculators/soffit-fascia" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Soffit &amp; Fascia Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Roof Soffit &amp; Fascia Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate soffit panels, aluminum fascia wrap, J-channel/F-channel trim, and IRC Section R806 Net Free Ventilating Area (NFVA) airflow intake.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Eaves Run &amp; Overhang Geometry
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Total Eaves &amp; Rake Length (ft)</label>
+        <input type="number" id="eavesLength" placeholder="120" value="120" min="1" max="1000" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Overhang Depth (Inches)</label>
+        <select id="overhangDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="12">12" Overhang (1.0 ft)</option>
+          <option value="16" selected>16" Overhang (Standard 1.33 ft)</option>
+          <option value="18">18" Overhang (1.5 ft)</option>
+          <option value="24">24" Deep Overhang (2.0 ft)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Soffit Panel Material</label>
+        <select id="soffitMaterial" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="vinyl_vented" selected>Perforated Vented Vinyl (12' × 12" panels)</option>
+          <option value="aluminum_vented">Aluminum Continuous Vented Panels</option>
+          <option value="fiber_cement">Hardie / Fiber Cement Vented Soffit</option>
+          <option value="wood_beadboard">Wood Tongue &amp; Groove / Beadboard</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Fascia Board Height</label>
+        <select id="fasciaSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="6" selected>1×6 / 2×6 Fascia (5.5" actual height)</option>
+          <option value="8">1×8 / 2×8 Fascia (7.25" actual height)</option>
+          <option value="wrap_only">Aluminum Coil Wrap Only (over existing)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Attic Size for NFVA Code Check &amp; Waste
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Attic Floor Footprint (Sq Ft)</label>
+        <input type="number" id="atticSqFt" placeholder="1500" value="1500" min="100" max="10000" step="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-[10px] text-gray-500">Evaluates IRC Section R806 1:150 / 1:300 ventilation ratio</span>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Fascia Metal Aluminum Wrap?</label>
+        <select id="includeWrap" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="yes" selected>Yes (Prefinished White/Bronze Aluminum Wrap)</option>
+          <option value="no">No (Painted Wood Subfascia Only)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Miter &amp; Corner Waste Buffer</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.08">8% Waste (Straight Ranch Roof)</option>
+          <option value="1.12" selected>12% Waste (Standard Hip/Gable with Corners)</option>
+          <option value="1.18">18% Waste (Complex Multi-Gable Roof)</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calculateSoffit()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors cursor-pointer text-sm shadow-xs">
+      Calculate Eaves Takeoff
+    </button>
+  </div>
+
+  <!-- Primary Results Grid -->
+  <div id="results" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-blue-600 font-semibold uppercase tracking-wide">12' Soffit Panels</div>
+      <div id="r_soffitPanels" class="text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">15 Panels</div>
+      <div id="r_soffitArea" class="text-xs text-blue-700 mt-1">179.2 sq ft (with 12% waste)</div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-amber-600 font-semibold uppercase tracking-wide">Fascia Trim (12')</div>
+      <div id="r_fasciaSticks" class="text-2xl sm:text-3xl font-extrabold text-amber-900 mt-1">12 Sticks</div>
+      <div id="r_fasciaDetail" class="text-xs text-amber-700 mt-1">134.4 Linear Ft with Laps</div>
+    </div>
+
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">J-Channel Trim (12')</div>
+      <div id="r_jChannel" class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-1">12 Pieces</div>
+      <div id="r_jChannelDetail" class="text-xs text-emerald-700 mt-1">Wall Receiving Channel</div>
+    </div>
+
+    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-purple-600 font-semibold uppercase tracking-wide">Ventilation (NFVA)</div>
+      <div id="r_nfvaScore" class="text-2xl sm:text-3xl font-extrabold text-purple-900 mt-1">100% Pass</div>
+      <div id="r_nfvaDetail" class="text-xs text-purple-700 mt-1">Meets IRC R806 1:150 Rule</div>
+    </div>
+  </div>
+
+  <!-- Dynamic SVG Eaves Cross-Section Diagram -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+      <h2 class="text-base font-semibold text-gray-800">Roof Eaves &amp; Soffit Airflow Cross-Section</h2>
+      <span class="text-xs text-gray-500 font-mono">IRC R806 Intake Airflow Path</span>
+    </div>
+    <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
+      <svg id="soffitSvg" viewBox="0 0 600 220" class="w-full max-w-2xl h-auto" style="min-height: 170px;"></svg>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-600 rounded-xs"></span> Subfascia &amp; Rafter Tail</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-400 rounded-xs"></span> Aluminum Fascia Metal</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-blue-400 rounded-xs"></span> Vented Soffit Panel</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-cyan-400 rounded-full"></span> Intake Airflow Arrow</div>
+    </div>
+  </div>
+
+  <!-- Material Schedule & RSMeans Cost Benchmarks -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+      <h3 class="font-bold text-gray-900 text-sm mb-3">Eaves &amp; Trim Takeoff Schedule</h3>
+      <table class="w-full text-xs text-left">
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="py-2 text-gray-600">Net Overhang Surface Area</td><td id="t_netArea" class="py-2 font-mono text-right font-bold text-gray-900">160.0 sq ft</td></tr>
+          <tr><td class="py-2 text-gray-600">Soffit Panel Cuts per 12' Stick</td><td id="t_cutsPerStick" class="py-2 font-mono text-right text-gray-900">9 Cuts (16" length ea)</td></tr>
+          <tr><td class="py-2 text-gray-600">Stainless / Aluminum Trim Nails</td><td id="t_nails" class="py-2 font-mono text-right text-gray-900">1 Box 1-1/4" Painted Trim Nails</td></tr>
+          <tr><td class="py-2 text-gray-600">Intake Airflow (NFVA) Provided</td><td id="t_nfvaProvided" class="py-2 font-mono text-right text-blue-600 font-bold">1,080 sq in (7.5 sq ft free air)</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 1-Click Shopping List Button -->
+      <button id="copyListBtn" onclick="copyShoppingList()" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-300">
+        <span>📋 Copy Shopping List for Home Depot / Lowe's</span>
+      </button>
+    </div>
+
+    <!-- RSMeans DIY vs Pro Benchmark -->
+    <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm text-blue-200">DIY vs Siding Contractor Cost</h3>
+        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      </div>
+      <p class="text-xs text-slate-300 mb-4">Retail vinyl/aluminum soffit &amp; fascia trim vs licensed contractor installation quote.</p>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Estimated DIY Materials</div>
+          <div id="c_diyCost" class="text-xl font-black text-emerald-400 mt-0.5">$380 – $520</div>
+          <div class="text-[10px] text-slate-400 mt-1">Soffit, fascia wrap, J-channel, nails</div>
+        </div>
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Siding / Roofing Quote</div>
+          <div id="c_proCost" class="text-xl font-black text-amber-300 mt-0.5">$1,550 – $2,400</div>
+          <div class="text-[10px] text-slate-400 mt-1">$13.00 – $20.00 / lin ft installed</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-400 font-bold text-sm">💰</span>
+        <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$1,170 – $1,880 (75%)</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Building Codes & Best Practices -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Roof Ventilation &amp; Soffit Rules (IRC Section R806)</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+      <div class="border-l-2 border-blue-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Balanced 50/50 Ventilation Rule</h4>
+        <p class="text-xs leading-relaxed">
+          Attic airflow requires balance: <strong>50% intake ventilation at the lower soffit eaves</strong> and <strong>50% exhaust ventilation at the upper roof ridge</strong>. Never install unvented solid soffit without dedicated gable/eyebrow intake vents.
+        </p>
+      </div>
+      <div class="border-l-2 border-amber-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Attic Insulation Baffles (Rafer Vents)</h4>
+        <p class="text-xs leading-relaxed">
+          Install rigid foam or plastic rafter baffles (AccuVent / Durovent) in every rafter bay over the wall top-plate. This prevents blown-in attic insulation from clogging the soffit airflow intake channel.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should I choose vinyl or aluminum soffit?</h3>
+        <p class="text-gray-600 text-sm">Vinyl soffit is less expensive, flexible, and completely rot-proof. Aluminum soffit is more rigid over long 24-inch overhang spans, holds straight sightlines better in extreme heat, and offers superior fire resistance near wildland-urban interfaces.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How do I cut vinyl soffit panels cleanly?</h3>
+        <p class="text-gray-600 text-sm">Install a fine-tooth plywood blade backwards on your circular saw or miter saw. Cutting in reverse produces butter-smooth edges without chipping or shattering thin vinyl ribs.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Roofing &amp; Siding Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/roof-pitch-rafter" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Roof Pitch &amp; Rafter Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate rafter lengths, bird's mouth cuts &amp; pitch angles.</div>
+      </a>
+      <a href="/calculators/attic-insulation" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Attic Insulation Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate blown-in cellulose and AttiCat bag counts.</div>
+      </a>
+      <a href="/calculators/asphalt-shingles" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Roofing Shingle Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate roofing squares, bundles &amp; ridge cap shingles.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateSoffit() {
+    const length = parseFloat(document.getElementById('eavesLength').value) || 120;
+    const overhangIn = parseFloat(document.getElementById('overhangDepth').value) || 16;
+    const material = document.getElementById('soffitMaterial').value;
+    const hasWrap = document.getElementById('includeWrap').value === 'yes';
+    const atticArea = parseFloat(document.getElementById('atticSqFt').value) || 1500;
+    const waste = parseFloat(document.getElementById('wasteFactor').value) || 1.12;
+
+    const overhangFt = overhangIn / 12;
+    const netAreaSqFt = length * overhangFt;
+    const totalAreaSqFt = netAreaSqFt * waste;
+
+    // Standard 12' x 12" panel = 12 sq ft per stick (or 12' x 16" = 16 sq ft)
+    const cutsPerStick = Math.floor(144 / overhangIn); // 144" in 12 ft
+    const piecesNeeded = Math.ceil(length / (12 / 12)); // 1 ft wide panels
+    const totalPanels = Math.ceil((piecesNeeded / cutsPerStick) * waste);
+
+    // Fascia & J-Channel (12-foot pieces)
+    const totalFasciaFt = length * waste;
+    const fasciaSticks = Math.ceil(totalFasciaFt / 12);
+    const jChannelSticks = Math.ceil(totalFasciaFt / 12);
+
+    // NFVA Calculation (IRC Section R806)
+    // 1:150 ratio requirement = atticArea / 150 sq ft of free vent area
+    const requiredTotalNFVASqIn = (atticArea / 150) * 144;
+    const requiredIntakeNFVASqIn = requiredTotalNFVASqIn * 0.50; // 50% at soffits
+
+    // Vented vinyl typically provides 5.0 to 9.0 sq in of NFVA per linear foot
+    const providedNFVASqIn = length * 9.0;
+    const isPassing = providedNFVASqIn >= requiredIntakeNFVASqIn;
+
+    // Update DOM
+    document.getElementById('r_soffitPanels').textContent = `${totalPanels} Panels (12')`;
+    document.getElementById('r_soffitArea').textContent = `${totalAreaSqFt.toFixed(1)} sq ft (${netAreaSqFt.toFixed(1)}' net + ${Math.round((waste-1)*100)}% waste)`;
+
+    document.getElementById('r_fasciaSticks').textContent = `${fasciaSticks} Sticks (12')`;
+    document.getElementById('r_fasciaDetail').textContent = hasWrap ? 'Prefinished Aluminum Fascia Wrap' : 'Subfascia Wood Boards';
+
+    document.getElementById('r_jChannel').textContent = `${jChannelSticks} Pieces (12')`;
+    document.getElementById('r_jChannelDetail').textContent = 'F-Channel / J-Channel Trim';
+
+    document.getElementById('r_nfvaScore').textContent = isPassing ? '100% Pass' : 'Low Intake';
+    document.getElementById('r_nfvaDetail').textContent = `${Math.round(providedNFVASqIn)} sq in provided vs ${Math.round(requiredIntakeNFVASqIn)} required`;
+
+    document.getElementById('t_netArea').textContent = `${netAreaSqFt.toFixed(1)} sq ft (${length}' run × ${overhangIn}" deep)`;
+    document.getElementById('t_cutsPerStick').textContent = `${cutsPerStick} Cuts (${overhangIn}" length ea per 12' stick)`;
+    document.getElementById('t_nails').textContent = '1 Box 1-1/4" Painted Trim Nails';
+    document.getElementById('t_nfvaProvided').textContent = `${Math.round(providedNFVASqIn)} sq in (${(providedNFVASqIn/144).toFixed(1)} sq ft free airflow)`;
+
+    // RSMeans Cost Benchmarks
+    const panelPrice = material === 'aluminum_vented' ? 24 : 14;
+    const fasciaPrice = hasWrap ? 18 : 12;
+    const diyCostMin = Math.round((totalPanels * panelPrice) + (fasciaSticks * fasciaPrice) + (jChannelSticks * 8) + 35);
+    const diyCostMax = Math.round(diyCostMin * 1.25);
+
+    const proCostMin = Math.round(length * 13.00);
+    const proCostMax = Math.round(length * 20.00);
+
+    document.getElementById('c_diyCost').textContent = `$${diyCostMin.toLocaleString()} – $${diyCostMax.toLocaleString()}`;
+    document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
+    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()} (${Math.round((1 - diyCostMin/proCostMin)*100)}%)`;
+
+    drawSoffitSvg(overhangIn);
+  }
+
+  function drawSoffitSvg(overhangIn) {
+    const svg = document.getElementById('soffitSvg');
+    if (!svg) return;
+
+    let content = '';
+    // House Exterior Wall (Left)
+    content += `<rect x="60" y="80" width="80" height="120" fill="#64748B" stroke="#475569" stroke-width="1.5" />`;
+    content += `<text x="100" y="150" text-anchor="middle" font-size="11" font-weight="bold" fill="#F1F5F9">Exterior Wall</text>`;
+
+    // Sloped Rafter Tail
+    content += `<path d="M 60 40 L 460 110 L 460 140 L 140 85 L 60 85 Z" fill="#B45309" stroke="#78350F" stroke-width="2" />`;
+    content += `<text x="250" y="70" font-size="11" font-weight="bold" fill="#FEF3C7">Rafter Tail Overhang</text>`;
+
+    // Subfascia & Metal Fascia (Right)
+    content += `<rect x="450" y="90" width="18" height="60" fill="#94A3B8" stroke="#334155" stroke-width="1.5" />`;
+    content += `<text x="480" y="125" font-size="10" font-weight="bold" fill="#FBBF24">Fascia Wrap</text>`;
+
+    // Horizontal Soffit Panel (Connecting Wall to Fascia)
+    content += `<line x1="140" y1="145" x2="450" y2="145" stroke="#38BDF8" stroke-width="5" stroke-dasharray="6 3" />`;
+    content += `<text x="290" y="165" text-anchor="middle" font-size="11" font-weight="bold" fill="#38BDF8">Vented Soffit Panel (${overhangIn}" Depth)</text>`;
+
+    // J-Channel at Wall
+    content += `<rect x="135" y="138" width="8" height="12" fill="#F59E0B" />`;
+
+    // Blue Airflow Arrow going up into attic
+    content += `<path d="M 290 180 L 290 130 L 240 70" stroke="#06B6D4" stroke-width="3.5" fill="none" stroke-dasharray="4 2" />`;
+    content += `<polygon points="235,72 245,65 248,78" fill="#06B6D4" />`;
+    content += `<text x="290" y="195" text-anchor="middle" font-size="10" font-weight="bold" fill="#22D3EE">Intake Air Flow Path</text>`;
+
+    svg.innerHTML = content;
+  }
+
+  function copyShoppingList() {
+    const panels = document.getElementById('r_soffitPanels').textContent;
+    const fascia = document.getElementById('r_fasciaSticks').textContent;
+    const jchannel = document.getElementById('r_jChannel').textContent;
+
+    const listText = `CalcForDIY Material Takeoff — Soffit & Fascia:\n` +
+      `- Soffit Panels: ${panels} (12-foot sticks)\n` +
+      `- Fascia Trim: ${fascia} (12-foot sticks)\n` +
+      `- J-Channel: ${jchannel} (12-foot sticks)\n` +
+      `- Fasteners: 1 Box 1-1/4" Painted Stainless Trim Nails\n` +
+      `Calculated at https://calcfordiy.com/calculators/soffit-fascia`;
+
+    navigator.clipboard.writeText(listText).then(() => {
+      const btn = document.getElementById('copyListBtn');
+      btn.innerHTML = '<span>✅ Copied to Clipboard!</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy Shopping List for Home Depot / Lowe\'s</span>';
+      }, 2500);
+    });
+  }
+
+  calculateSoffit();
+</script>

@@ -1,0 +1,422 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Baseboard & Shoe Molding Calculator (Linear Feet, Sticks & Waste) | CalcForDIY"
+  description="Calculate linear feet, 8ft/12ft/16ft contractor sticks, inside copes, outside miters, and finish nails for baseboard, quarter round, and shoe molding trim."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Baseboard and Shoe Molding Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much baseboard do I need for a 12x15 room?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 12x15 room has a 54-foot perimeter. Subtracting two 3-foot doorway openings (6 ft) gives 48 net linear feet. Adding a standard 10% waste buffer for miter cuts and scarf joints equals 53 linear feet (or four 16-foot contractor sticks)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between shoe molding and quarter round?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Quarter round is a true quarter circle (3/4\" × 3/4\"). Shoe molding is taller and narrower (typically 1/2\" wide × 3/4\" high), making it more discreet and flexible for following minor dips in uneven flooring."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should you nail shoe molding to the baseboard or to the floor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Always nail shoe molding horizontally into the baseboard wall framing at a 45-degree angle, NEVER into the floating floor. Floating laminate, vinyl, or hardwood floors must be free to expand and contract beneath the trim."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Baseboard & Shoe Molding Calculator", "item": "https://calcfordiy.com/calculators/baseboard-shoe-molding" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Baseboard &amp; Shoe Molding Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Baseboard, Shoe Molding &amp; Trim Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate linear footage, contractor stick counts (8', 12', 16'), doorway casing subtractions, scarf joint offcuts, finishing nails, and painter's caulk.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Room Dimensions &amp; Door Openings
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Room Length (ft)</label>
+        <input type="number" id="roomLength" placeholder="18" value="18" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Room Width (ft)</label>
+        <input type="number" id="roomWidth" placeholder="14" value="14" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Standard Interior Doors (32"-36")</label>
+        <select id="doorCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0">0 Doors (Full Perimeter)</option>
+          <option value="1">1 Door (-3 Linear Feet)</option>
+          <option value="2" selected>2 Doors (-6 Linear Feet)</option>
+          <option value="3">3 Doors (-9 Linear Feet)</option>
+          <option value="4">4 Doors (-12 Linear Feet)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Closet / Bifold Openings (60"-72")</label>
+        <select id="closetCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0">0 Closets</option>
+          <option value="1" selected>1 Bifold Closet (-6 Linear Feet)</option>
+          <option value="2">2 Bifold Closets (-12 Linear Feet)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Stock Board Length &amp; Shoe Molding Option
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Stock Board Length</label>
+        <select id="stockLength" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="16" selected>16-Foot Contractor Sticks (Fewer Seams)</option>
+          <option value="12">12-Foot Boards</option>
+          <option value="8">8-Foot Boards (Easy Vehicle Transport)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Include Base Shoe / Quarter Round?</label>
+        <select id="includeShoe" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="yes" selected>Yes (Baseboard + Matching Shoe Molding)</option>
+          <option value="no">No (Baseboard Only)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Baseboard Profile &amp; Height</label>
+        <select id="trimProfile" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="craftsman" selected>Craftsman Flat Stock (1x4 / 1x6 Square Edge)</option>
+          <option value="colonial">Colonial Ogee (3-1/4" to 5-1/4" Moulded)</option>
+          <option value="victorian">Tall Baseboard (7-1/4" Multi-Piece)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Cutting &amp; Miter Waste</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.10" selected>10% Waste (Standard Rectangular Room)</option>
+          <option value="1.15">15% Waste (Many Corners, Bump-Outs, Scarf Cuts)</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calculateBaseboard()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors cursor-pointer text-sm shadow-xs">
+      Calculate Trim &amp; Molding
+    </button>
+  </div>
+
+  <!-- Primary Results Grid -->
+  <div id="results" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-blue-600 font-semibold uppercase tracking-wide">Baseboard Sticks</div>
+      <div id="r_baseSticks" class="text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">4 Sticks (16')</div>
+      <div id="r_baseLinFt" class="text-xs text-blue-700 mt-1">57 Linear Feet (with 10% waste)</div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-amber-600 font-semibold uppercase tracking-wide">Shoe Molding Sticks</div>
+      <div id="r_shoeSticks" class="text-2xl sm:text-3xl font-extrabold text-amber-900 mt-1">4 Sticks (16')</div>
+      <div id="r_shoeLinFt" class="text-xs text-amber-700 mt-1">57 Linear Feet Quarter Round</div>
+    </div>
+
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Finishing Nails</div>
+      <div id="r_nailCount" class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-1">1 Box (16-Ga)</div>
+      <div id="r_nailDetail" class="text-xs text-emerald-700 mt-1">2" 16-Ga Nails (2 per wall stud)</div>
+    </div>
+
+    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-purple-600 font-semibold uppercase tracking-wide">Painter's Caulk</div>
+      <div id="r_caulkTubes" class="text-2xl sm:text-3xl font-extrabold text-purple-900 mt-1">2 Tubes</div>
+      <div id="r_caulkDetail" class="text-xs text-purple-700 mt-1">Siliconized Acrylic Latex Caulk</div>
+    </div>
+  </div>
+
+  <!-- Dynamic SVG Trim Elevation Diagram -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+      <h2 class="text-base font-semibold text-gray-800">Baseboard &amp; Shoe Molding Cross-Section Diagram</h2>
+      <span class="text-xs text-gray-500 font-mono">45° Scarf Joint • 45° Shoe Fastening</span>
+    </div>
+    <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
+      <svg id="trimSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-400 rounded-xs"></span> Drywall &amp; Sole Plate Stud</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-600 rounded-xs"></span> Baseboard Trim (1x4 / 1x6)</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-400 rounded-xs"></span> Shoe Molding / Quarter Round</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-blue-500 rounded-xs"></span> Floating Floor (1/4" Gap Underneath)</div>
+    </div>
+  </div>
+
+  <!-- Material Schedule & RSMeans Cost Benchmarks -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+      <h3 class="font-bold text-gray-900 text-sm mb-3">Trim Takeoff &amp; Fastener Schedule</h3>
+      <table class="w-full text-xs text-left">
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="py-2 text-gray-600">Gross Room Perimeter</td><td id="t_grossPerimeter" class="py-2 font-mono text-right font-bold text-gray-900">64.0 Linear Feet</td></tr>
+          <tr><td class="py-2 text-gray-600">Doorway Openings Subtracted</td><td id="t_openingsSub" class="py-2 font-mono text-right text-gray-900">-12.0 Linear Feet (2 Doors + 1 Closet)</td></tr>
+          <tr><td class="py-2 text-gray-600">Net Installed Linear Footage</td><td id="t_netFt" class="py-2 font-mono text-right text-gray-900">52.0 Linear Feet</td></tr>
+          <tr><td class="py-2 text-gray-600">Estimated Wall Stud Locations</td><td id="t_studs" class="py-2 font-mono text-right text-gray-900">~39 Studs (Nail every 16" o.c.)</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 1-Click Shopping List Button -->
+      <button id="copyListBtn" onclick="copyShoppingList()" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-300">
+        <span>📋 Copy Shopping List for Home Depot / Lowe's</span>
+      </button>
+    </div>
+
+    <!-- RSMeans DIY vs Pro Benchmark -->
+    <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm text-blue-200">DIY vs Trim Carpenter Contractor Cost</h3>
+        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      </div>
+      <p class="text-xs text-slate-300 mb-4">Primed MDF/Pine baseboard &amp; shoe molding vs licensed finish carpenter installation quote.</p>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Estimated DIY Materials</div>
+          <div id="c_diyCost" class="text-xl font-black text-emerald-400 mt-0.5">$110 – $165</div>
+          <div class="text-[10px] text-slate-400 mt-1">Baseboard, shoe, nails, caulk, filler</div>
+        </div>
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Finish Carpenter Quote</div>
+          <div id="c_proCost" class="text-xl font-black text-amber-300 mt-0.5">$420 – $650</div>
+          <div class="text-[10px] text-slate-400 mt-1">$4.00 – $6.00 / lin ft installed</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-400 font-bold text-sm">💰</span>
+        <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$310 – $485 (74%)</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Building Codes & Best Practices -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Professional Finish Carpentry Rules (AWI Section 10)</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+      <div class="border-l-2 border-blue-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">45-Degree Scarf Joints</h4>
+        <p class="text-xs leading-relaxed">
+          On long wall runs exceeding your stock board length, never butt two square ends together. Cut mating <strong>45-degree bevel scarf joints</strong> directly over a wall stud and glue with PVA wood glue so the seam remains invisible after caulking.
+        </p>
+      </div>
+      <div class="border-l-2 border-amber-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Inside Coped Corners vs 45° Miters</h4>
+        <p class="text-xs leading-relaxed">
+          For inside 90° corners, standard carpenter trade practice is <strong>coping</strong> (cutting one board square to the corner, and back-cutting the contour on the intersecting board with a coping saw). This prevents gaps when drywall corners aren't square.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should I paint baseboards before or after installing them?</h3>
+        <p class="text-gray-600 text-sm">Painting the first coat on the sawhorses before cutting saves significant masking time. After installing, fill nail holes, caulk the top seam to the drywall, and apply one final quick touch-up topcoat in place.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Why should I buy 16-foot sticks instead of 8-foot boards?</h3>
+        <p class="text-gray-600 text-sm">Most residential bedrooms and living rooms are 12 to 16 feet wide. Using 16-foot contractor sticks allows you to span entire walls seamlessly in a single piece with zero mid-wall scarf joints.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Millwork &amp; Wall Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/trim-molding" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Door &amp; Window Trim Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate door casing, window frames, and header trim.</div>
+      </a>
+      <a href="/calculators/wainscoting-layout" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Wainscoting Layout Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate picture frame boxes, stile spacing &amp; chair rail.</div>
+      </a>
+      <a href="/calculators/crown-molding" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Crown Molding Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate corner miters, spring angles &amp; ceiling linear feet.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function calculateBaseboard() {
+    const length = parseFloat(document.getElementById('roomLength').value) || 18;
+    const width = parseFloat(document.getElementById('roomWidth').value) || 14;
+    const doors = parseInt(document.getElementById('doorCount').value) || 2;
+    const closets = parseInt(document.getElementById('closetCount').value) || 1;
+    const stockLen = parseFloat(document.getElementById('stockLength').value) || 16;
+    const hasShoe = document.getElementById('includeShoe').value === 'yes';
+    const waste = parseFloat(document.getElementById('wasteFactor').value) || 1.10;
+
+    const grossPerimeter = 2 * (length + width);
+    const deduction = (doors * 3.0) + (closets * 6.0);
+    const netLinearFt = Math.max(grossPerimeter - deduction, 0);
+    const totalLinearFt = netLinearFt * waste;
+
+    const baseSticks = Math.ceil(totalLinearFt / stockLen);
+    const shoeSticks = hasShoe ? baseSticks : 0;
+
+    // Fasteners: 2 16-ga nails per wall stud (spaced 16" o.c.)
+    const studsCount = Math.ceil(netLinearFt / (16 / 12));
+    const nailCount = studsCount * 2;
+    const caulkTubes = Math.ceil(netLinearFt / 30); // 1 tube caulk covers ~30 ft top & bottom
+
+    // Update DOM
+    document.getElementById('r_baseSticks').textContent = `${baseSticks} Sticks (${stockLen}')`;
+    document.getElementById('r_baseLinFt').textContent = `${totalLinearFt.toFixed(1)} Lin Ft (${netLinearFt.toFixed(1)}' net + ${Math.round((waste-1)*100)}% waste)`;
+
+    document.getElementById('r_shoeSticks').textContent = hasShoe ? `${shoeSticks} Sticks (${stockLen}')` : 'None Selected';
+    document.getElementById('r_shoeLinFt').textContent = hasShoe ? `${totalLinearFt.toFixed(1)} Lin Ft Shoe Molding` : 'No shoe molding';
+
+    document.getElementById('r_nailCount').textContent = '1 Box (16-Ga)';
+    document.getElementById('r_nailDetail').textContent = `~${nailCount} 2" Finish Nails (into studs)`;
+
+    document.getElementById('r_caulkTubes').textContent = `${caulkTubes} Tubes`;
+    document.getElementById('r_caulkDetail').textContent = `Siliconized Acrylic Painter's Caulk`;
+
+    document.getElementById('t_grossPerimeter').textContent = `${grossPerimeter.toFixed(1)} Linear Feet`;
+    document.getElementById('t_openingsSub').textContent = `-${deduction.toFixed(1)} Linear Feet (${doors} Doors, ${closets} Closets)`;
+    document.getElementById('t_netFt').textContent = `${netLinearFt.toFixed(1)} Linear Feet`;
+    document.getElementById('t_studs').textContent = `~${studsCount} Studs (Nail every 16" o.c.)`;
+
+    // RSMeans Cost Benchmarks
+    const baseCostPerFt = 1.45; // Primed MDF 5-1/4"
+    const shoeCostPerFt = hasShoe ? 0.65 : 0;
+    const diyCostMin = Math.round((baseSticks * stockLen * baseCostPerFt) + (shoeSticks * stockLen * shoeCostPerFt) + (caulkTubes * 6) + 20);
+    const diyCostMax = Math.round(diyCostMin * 1.25);
+
+    const proCostMin = Math.round(netLinearFt * (hasShoe ? 5.00 : 3.50));
+    const proCostMax = Math.round(netLinearFt * (hasShoe ? 7.50 : 5.50));
+
+    document.getElementById('c_diyCost').textContent = `$${diyCostMin} – $${diyCostMax}`;
+    document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
+    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()} (${Math.round((1 - diyCostMin/proCostMin)*100)}%)`;
+
+    drawTrimSvg(hasShoe);
+  }
+
+  function drawTrimSvg(hasShoe) {
+    const svg = document.getElementById('trimSvg');
+    if (!svg) return;
+
+    let content = '';
+    // Drywall wall line
+    content += `<rect x="180" y="20" width="40" height="130" fill="#CBD5E1" stroke="#94A3B8" stroke-width="1.5" />`;
+    content += `<text x="170" y="80" text-anchor="end" font-size="11" font-weight="bold" fill="#64748B">Drywall Wall</text>`;
+
+    // Subfloor & Floorboard
+    content += `<rect x="180" y="150" width="380" height="30" fill="#B45309" stroke="#78350F" stroke-width="1.5" />`;
+    content += `<text x="350" y="170" text-anchor="middle" font-size="11" font-weight="bold" fill="#FEF3C7">Finished Floor (1/4" Expansion Gap)</text>`;
+
+    // Baseboard Trim (attached to drywall)
+    content += `<rect x="220" y="60" width="16" height="90" fill="#F59E0B" stroke="#B45309" stroke-width="2" rx="1" />`;
+    content += `<text x="245" y="105" font-size="11" font-weight="bold" fill="#FBBF24">Baseboard Trim</text>`;
+
+    // Finish Nail into Stud
+    content += `<line x1="210" y1="80" x2="160" y2="80" stroke="#EF4444" stroke-width="2" />`;
+    content += `<circle cx="210" cy="80" r="2" fill="#EF4444" />`;
+    content += `<text x="150" y="84" text-anchor="end" font-size="9" fill="#EF4444">16-Ga Nail into Stud</text>`;
+
+    // Shoe Molding (if enabled)
+    if (hasShoe) {
+      content += `<path d="M 236 150 L 236 135 A 15 15 0 0 1 251 150 Z" fill="#FBBF24" stroke="#D97706" stroke-width="1.5" />`;
+      content += `<text x="260" y="145" font-size="10" font-weight="bold" fill="#FDE68A">Base Shoe</text>`;
+      // Nail into baseboard at 45 deg
+      content += `<line x1="245" y1="145" x2="225" y2="125" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="3 2" />`;
+    }
+
+    svg.innerHTML = content;
+  }
+
+  function copyShoppingList() {
+    const base = document.getElementById('r_baseSticks').textContent;
+    const shoe = document.getElementById('r_shoeSticks').textContent;
+    const caulk = document.getElementById('r_caulkTubes').textContent;
+
+    const listText = `CalcForDIY Material Takeoff — Baseboard & Trim:\n` +
+      `- Baseboard: ${base}\n` +
+      `- Shoe Molding: ${shoe}\n` +
+      `- Painter's Caulk: ${caulk}\n` +
+      `- Nails: 1 Box 2" 16-Gauge Finishing Nails + 1 Box 18-Gauge Brads\n` +
+      `Calculated at https://calcfordiy.com/calculators/baseboard-shoe-molding`;
+
+    navigator.clipboard.writeText(listText).then(() => {
+      const btn = document.getElementById('copyListBtn');
+      btn.innerHTML = '<span>✅ Copied to Clipboard!</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy Shopping List for Home Depot / Lowe\'s</span>';
+      }, 2500);
+    });
+  }
+
+  calculateBaseboard();
+</script>

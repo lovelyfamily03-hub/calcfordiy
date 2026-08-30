@@ -1,0 +1,437 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Vinyl Plank Flooring Calculator (LVP, Boxes & Waste) | CalcForDIY"
+  description="Calculate how many boxes of Luxury Vinyl Plank (LVP), square footage, transition moldings, and waste factor you need for straight, diagonal, or herringbone layouts."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Vinyl Plank Flooring Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many boxes of vinyl plank flooring do I need for a 12x12 room?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 12x12 room is 144 square feet. With a standard 10% waste buffer (158.4 sq ft) and typical 20 sq ft per box packaging, you will need 8 full boxes (160 sq ft total coverage)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What waste factor should I use for Luxury Vinyl Plank (LVP)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a simple rectangular room with standard straight stagger, use 7% to 10% waste. For rooms with multiple doorways, closets, or diagonal installations, use 12% to 15%. For herringbone LVP patterns, use 15% to 18% to account for angle cuts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How large should the expansion gap be around the perimeter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per RFCI installation standards, rigid core SPC/WPC vinyl plank flooring requires a 1/4-inch (6mm) expansion gap along all walls, door jambs, and fixed vertical cabinetry to allow for seasonal thermal expansion."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Vinyl Plank Flooring Calculator", "item": "https://calcfordiy.com/calculators/vinyl-plank-flooring" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Vinyl Plank Flooring Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Luxury Vinyl Plank (LVP) Flooring Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate total LVP boxes, square footage coverage, plank count, transition T-moldings, and perimeter expansion gaps for straight, diagonal, or herringbone layouts.
+    </p>
+  </div>
+
+  <!-- Calculator Form (Above Fold) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Room Dimensions &amp; Layout Pattern
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Room Length (ft)</label>
+        <input type="number" id="roomLength" placeholder="18" value="18" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Room Width (ft)</label>
+        <input type="number" id="roomWidth" placeholder="14" value="14" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Installation Pattern</label>
+        <select id="layoutPattern" onchange="adjustWasteFactor()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="straight" selected>Straight Running Stagger (1/3 or Random Offset)</option>
+          <option value="diagonal">45° Diagonal Layout (+15% Angle Cuts)</option>
+          <option value="herringbone">Herringbone / Chevron Pattern (+18% Waste)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Waste &amp; Cutting Buffer</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.07">7% Waste (Simple Single Rectangle)</option>
+          <option value="1.10" selected>10% Waste (Standard DIY with Closets &amp; Doors)</option>
+          <option value="1.15">15% Waste (Complex Layout / Angle Cuts)</option>
+          <option value="1.18">18% Waste (Herringbone Layout)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Plank Dimensions &amp; Packaging Specs
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Box Coverage (Sq Ft / Carton)</label>
+        <div class="flex items-center gap-2">
+          <input type="number" id="boxSqFt" placeholder="20.0" value="20.0" min="10" max="40" step="0.1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <span class="text-xs text-gray-500 shrink-0">sq ft/box</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Plank Width (Inches)</label>
+        <select id="plankWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="6">6" Width</option>
+          <option value="7" selected>7" Width (Standard Wide Plank)</option>
+          <option value="8">8" Width</option>
+          <option value="9">9" Extra Wide Plank</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Plank Length (Inches)</label>
+        <select id="plankLength" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="36">36" Length</option>
+          <option value="48" selected>48" Length (Standard 4-Foot Plank)</option>
+          <option value="60">60" Length (5-Foot Long Plank)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Doorway Transitions</label>
+        <select id="doorways" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1">1 Doorway (3 ft T-Molding / Reducer)</option>
+          <option value="2" selected>2 Doorways (6 ft Transitions)</option>
+          <option value="3">3 Doorways (9 ft Transitions)</option>
+          <option value="4">4 Doorways (12 ft Transitions)</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calculateLVP()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors cursor-pointer text-sm shadow-xs">
+      Calculate Flooring Boxes
+    </button>
+  </div>
+
+  <!-- Primary Results Grid -->
+  <div id="results" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-blue-600 font-semibold uppercase tracking-wide">Total Boxes to Buy</div>
+      <div id="r_totalBoxes" class="text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">14 Boxes</div>
+      <div id="r_boxDetail" class="text-xs text-blue-700 mt-1">280.0 sq ft purchased</div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-amber-600 font-semibold uppercase tracking-wide">Square Footage</div>
+      <div id="r_totalSqFt" class="text-2xl sm:text-3xl font-extrabold text-amber-900 mt-1">277 Sq Ft</div>
+      <div id="r_sqFtDetail" class="text-xs text-amber-700 mt-1">252' net + 25' waste (10%)</div>
+    </div>
+
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Plank Count</div>
+      <div id="r_plankCount" class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-1">120 Planks</div>
+      <div id="r_plankDetail" class="text-xs text-emerald-700 mt-1">~10 Planks per Box</div>
+    </div>
+
+    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-purple-600 font-semibold uppercase tracking-wide">Perimeter Expansion</div>
+      <div id="r_expansionGap" class="text-2xl sm:text-3xl font-extrabold text-purple-900 mt-1">1/4" Gap</div>
+      <div id="r_perimeterFt" class="text-xs text-purple-700 mt-1">64 Linear Ft Perimeter</div>
+    </div>
+  </div>
+
+  <!-- Dynamic SVG Flooring Stagger Diagram -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+      <h2 class="text-base font-semibold text-gray-800">Dynamic LVP Plank Stagger &amp; Seam Layout Diagram</h2>
+      <span class="text-xs text-gray-500 font-mono">1/3 Stagger Pattern • 1/4" Wall Gap</span>
+    </div>
+    <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
+      <svg id="lvpSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-700 rounded-xs"></span> Vinyl Plank (Rigid Core)</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-500 rounded-xs"></span> Staggered End Joint (&gt; 8" offset)</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-blue-500 rounded-xs"></span> 1/4" Wall Spacers</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-400 rounded-xs"></span> Transition T-Molding</div>
+    </div>
+  </div>
+
+  <!-- Material Schedule & RSMeans Cost Benchmarks -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+      <h3 class="font-bold text-gray-900 text-sm mb-3">Complete Flooring Installation Schedule</h3>
+      <table class="w-full text-xs text-left">
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="py-2 text-gray-600">Floor Surface Area (Net)</td><td id="t_netArea" class="py-2 font-mono text-right font-bold text-gray-900">252.0 sq ft</td></tr>
+          <tr><td class="py-2 text-gray-600">Plank Size &amp; Area</td><td id="t_plankArea" class="py-2 font-mono text-right text-gray-900">7" × 48" (2.33 sq ft / plank)</td></tr>
+          <tr><td class="py-2 text-gray-600">Transition Strips (T-Molding / Reducer)</td><td id="t_transitions" class="py-2 font-mono text-right text-gray-900">2 Strips (72" Total)</td></tr>
+          <tr><td class="py-2 text-gray-600">1/4" Expansion Spacers Needed</td><td id="t_spacers" class="py-2 font-mono text-right text-gray-900">~30 Spacers (every 2 ft wall perimeter)</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 1-Click Shopping List Button -->
+      <button id="copyListBtn" onclick="copyShoppingList()" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-300">
+        <span>📋 Copy Shopping List for Home Depot / Lowe's</span>
+      </button>
+    </div>
+
+    <!-- RSMeans DIY vs Pro Benchmark -->
+    <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm text-blue-200">DIY vs Flooring Installer Cost</h3>
+        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      </div>
+      <p class="text-xs text-slate-300 mb-4">Retail LVP flooring ($2.75–$4.50/sq ft) vs turnkey licensed flooring contractor quote.</p>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Estimated DIY Materials</div>
+          <div id="c_diyCost" class="text-xl font-black text-emerald-400 mt-0.5">$850 – $1,150</div>
+          <div class="text-[10px] text-slate-400 mt-1">LVP boxes, transitions, tapping block</div>
+        </div>
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Flooring Contractor Quote</div>
+          <div id="c_proCost" class="text-xl font-black text-amber-300 mt-0.5">$1,850 – $2,650</div>
+          <div class="text-[10px] text-slate-400 mt-1">$7.50 – $10.50 / sq ft installed</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-400 font-bold text-sm">💰</span>
+        <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$1,000 – $1,500 (57%)</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Building Codes & Best Practices -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">LVP Flooring Rules &amp; RFCI Standards</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+      <div class="border-l-2 border-blue-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">End Joint Stagger Rule</h4>
+        <p class="text-xs leading-relaxed">
+          Always stagger short end-joints by at least <strong>8 inches (20 cm)</strong> between adjacent rows. Never create an 'H-pattern' or line up seams across alternating rows, which weakens the click-lock locking mechanism.
+        </p>
+      </div>
+      <div class="border-l-2 border-amber-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Subfloor Flatness Tolerance</h4>
+        <p class="text-xs leading-relaxed">
+          Per manufacturer warranties, subfloors must be flat within <strong>3/16" over 10 feet</strong> (or 1/8" over 6 feet). High spots must be sanded/ground down and low spots filled with self-leveling underlayment.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Do I need an underlayment pad under Luxury Vinyl Plank?</h3>
+        <p class="text-gray-600 text-sm">Most modern SPC/WPC rigid core vinyl planks come with a pre-attached 1mm to 1.5mm acoustic foam or IXPE pad. If your flooring has an attached pad, do not install a second soft foam pad underneath, as excessive deflection will snap the locking tongues.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">Should I install kitchen cabinets on top of floating LVP?</h3>
+        <p class="text-gray-600 text-sm">No. Heavy heavy base cabinets and kitchen islands pinch floating floors and prevent natural thermal expansion, leading to buckling and separated seams. Always install kitchen cabinets first, and lay the LVP up to the cabinet kicks with a 1/4" gap covered by shoe molding.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Flooring Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/subfloor" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Subfloor Plywood Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate 4x8 OSB/plywood subfloor sheets and screws.</div>
+      </a>
+      <a href="/calculators/underlayment" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Floor Underlayment Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate vapor barrier rolls &amp; acoustic padding.</div>
+      </a>
+      <a href="/calculators/laminate-flooring" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Laminate Flooring Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate laminate flooring box counts and waste.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function adjustWasteFactor() {
+    const pattern = document.getElementById('layoutPattern').value;
+    const wasteSelect = document.getElementById('wasteFactor');
+    if (pattern === 'diagonal') wasteSelect.value = '1.15';
+    else if (pattern === 'herringbone') wasteSelect.value = '1.18';
+    else wasteSelect.value = '1.10';
+    calculateLVP();
+  }
+
+  function calculateLVP() {
+    const length = parseFloat(document.getElementById('roomLength').value) || 18;
+    const width = parseFloat(document.getElementById('roomWidth').value) || 14;
+    const waste = parseFloat(document.getElementById('wasteFactor').value) || 1.10;
+    const boxSqFt = parseFloat(document.getElementById('boxSqFt').value) || 20.0;
+    const plankWIn = parseFloat(document.getElementById('plankWidth').value) || 7;
+    const plankLIn = parseFloat(document.getElementById('plankLength').value) || 48;
+    const doorways = parseInt(document.getElementById('doorways').value) || 2;
+
+    const netSqFt = length * width;
+    const totalSqFt = netSqFt * waste;
+    const totalBoxes = Math.ceil(totalSqFt / boxSqFt);
+    const purchasedSqFt = (totalBoxes * boxSqFt).toFixed(1);
+
+    const singlePlankSqFt = (plankWIn * plankLIn) / 144;
+    const totalPlanks = Math.ceil(totalSqFt / singlePlankSqFt);
+    const planksPerBox = Math.round(boxSqFt / singlePlankSqFt);
+
+    const perimeterLinearFt = 2 * (length + width);
+
+    // Update DOM
+    document.getElementById('r_totalBoxes').textContent = `${totalBoxes} Boxes`;
+    document.getElementById('r_boxDetail').textContent = `${purchasedSqFt} sq ft purchased (${boxSqFt} sq ft/ctn)`;
+    document.getElementById('r_totalSqFt').textContent = `${Math.round(totalSqFt)} Sq Ft`;
+    document.getElementById('r_sqFtDetail').textContent = `${Math.round(netSqFt)}' net + ${Math.round(totalSqFt - netSqFt)}' waste (${Math.round((waste-1)*100)}%)`;
+    document.getElementById('r_plankCount').textContent = `${totalPlanks} Planks`;
+    document.getElementById('r_plankDetail').textContent = `~${planksPerBox} Planks per Box (${singlePlankSqFt.toFixed(2)} sq ft ea)`;
+    document.getElementById('r_expansionGap').textContent = '1/4" Gap';
+    document.getElementById('r_perimeterFt').textContent = `${perimeterLinearFt} Linear Ft Wall Perimeter`;
+
+    document.getElementById('t_netArea').textContent = `${netSqFt.toFixed(1)} sq ft`;
+    document.getElementById('t_plankArea').textContent = `${plankWIn}" × ${plankLIn}" (${singlePlankSqFt.toFixed(2)} sq ft / plank)`;
+    document.getElementById('t_transitions').textContent = `${doorways} Transition Strips (${doorways * 36}" Total)`;
+    document.getElementById('t_spacers').textContent = `~${Math.ceil(perimeterLinearFt / 2)} Spacers (every 2 ft)`;
+
+    // RSMeans Cost Benchmarks
+    const pricePerSqFt = 3.45; // Quality 20mil wear layer LVP avg
+    const diyCostMin = Math.round((totalBoxes * boxSqFt * pricePerSqFt) + (doorways * 28) + 45);
+    const diyCostMax = Math.round(diyCostMin * 1.25);
+
+    const proCostMin = Math.round(netSqFt * 7.50);
+    const proCostMax = Math.round(netSqFt * 10.50);
+
+    document.getElementById('c_diyCost').textContent = `$${diyCostMin.toLocaleString()} – $${diyCostMax.toLocaleString()}`;
+    document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
+    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()} (${Math.round((1 - diyCostMin/proCostMin)*100)}%)`;
+
+    drawLVPSvg();
+  }
+
+  function drawLVPSvg() {
+    const svg = document.getElementById('lvpSvg');
+    if (!svg) return;
+
+    let content = '';
+    const startX = 30;
+    const startY = 30;
+    const rowH = 22;
+    const numRows = 6;
+    const plankW = 120;
+
+    // Room border with 1/4" expansion gap indicator
+    content += `<rect x="25" y="25" width="550" height="150" fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-dasharray="4 2" rx="4" />`;
+
+    // Draw Staggered LVP Plank Rows
+    for (let r = 0; r < numRows; r++) {
+      const y = startY + r * (rowH + 2);
+      const offset = (r * (plankW / 3)) % plankW;
+
+      for (let x = startX - offset; x < startX + 540; x += plankW + 2) {
+        let renderX = x;
+        let renderW = plankW;
+
+        if (renderX < startX) {
+          renderW = renderX + plankW - startX;
+          renderX = startX;
+        } else if (renderX + renderW > startX + 540) {
+          renderW = (startX + 540) - renderX;
+        }
+
+        if (renderW > 2) {
+          content += `<rect x="${renderX}" y="${y}" width="${renderW}" height="${rowH}" fill="#B45309" stroke="#78350F" stroke-width="1" rx="1" />`;
+          // Subtle woodgrain line
+          content += `<line x1="${renderX + 4}" y1="${y + rowH/2}" x2="${renderX + renderW - 4}" y2="${y + rowH/2}" stroke="#92400E" stroke-width="0.75" />`;
+        }
+      }
+    }
+
+    // Expansion gap arrows
+    content += `<text x="300" y="18" text-anchor="middle" font-size="10" font-weight="bold" fill="#60A5FA">1/4" (6mm) Perimeter Expansion Gap on All Walls</text>`;
+
+    svg.innerHTML = content;
+  }
+
+  function copyShoppingList() {
+    const boxes = document.getElementById('r_totalBoxes').textContent;
+    const sqft = document.getElementById('r_totalSqFt').textContent;
+    const trans = document.getElementById('t_transitions').textContent;
+
+    const listText = `CalcForDIY Material Takeoff — Luxury Vinyl Plank (LVP):\n` +
+      `- Flooring Required: ${boxes} (${sqft})\n` +
+      `- Transitions: ${trans}\n` +
+      `- Tools: 1/4" Floor Spacers Pack + Tapping Block + Pull Bar + Utility Knife\n` +
+      `Calculated at https://calcfordiy.com/calculators/vinyl-plank-flooring`;
+
+    navigator.clipboard.writeText(listText).then(() => {
+      const btn = document.getElementById('copyListBtn');
+      btn.innerHTML = '<span>✅ Copied to Clipboard!</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy Shopping List for Home Depot / Lowe\'s</span>';
+      }, 2500);
+    });
+  }
+
+  calculateLVP();
+</script>

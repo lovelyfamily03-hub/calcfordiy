@@ -1,0 +1,465 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Epoxy Floor Calculator — Garage Kits, Gallons & Flakes | CalcForDIY"
+  description="Calculate how many gallons of 100% solids epoxy, moisture barrier primer, clear polyaspartic topcoat, and decorative color chips you need for garage and basement floors."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Epoxy Floor Coating Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many gallons of epoxy do I need for a 2-car garage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard 2-car garage is approximately 400 to 500 square feet. For a high-build 100% solids commercial epoxy system (applied at 8 to 10 mils thickness), you will need 2.5 to 3.0 gallons of pigmented basecoat epoxy, 3 to 5 lbs of color flakes, and 2.5 gallons of clear polyaspartic/urethane topcoat."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between water-based epoxy kits and 100% solids epoxy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Water-based DIY boxed kits (like Rust-Oleum EpoxyShield) contain 40-50% water and solvent that evaporates as it dries, leaving a thin 2-3 mil paint film that can peel under hot vehicle tires. 100% solids epoxy has zero evaporation, curing into an indestructible 8-12 mil chemical-resistant armored resin."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many pounds of decorative color flakes do I need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a light random broadcast, use 1 lb per 250 sq ft (~2 lbs for a 2-car garage). For medium broadcast, use 1 lb per 100 sq ft (~5 lbs). For a full 100% coverage broadcast (where no basecoat color is visible), you need 1 lb per 8 to 10 sq ft (~50 lbs for a 2-car garage)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Epoxy Floor Calculator", "item": "https://calcfordiy.com/calculators/epoxy-floor" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Epoxy Floor Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Garage &amp; Basement Epoxy Floor Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate 100% solids epoxy basecoat gallons, vapor barrier primer, decorative color flakes, anti-slip aluminum oxide, and clear protective topcoats.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Garage Dimensions &amp; Size Presets
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Standard Bay Presets</label>
+        <select id="garagePreset" onchange="applyPreset()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="custom">Custom Dimensions</option>
+          <option value="1car">1-Car Garage (12' × 20' — 240 sq ft)</option>
+          <option value="2car" selected>2-Car Garage (20' × 22' — 440 sq ft)</option>
+          <option value="3car">3-Car Garage (30' × 22' — 660 sq ft)</option>
+          <option value="basement">Basement Floor (24' × 36' — 864 sq ft)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Floor Length (ft)</label>
+        <input type="number" id="floorLength" placeholder="22" value="22" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Floor Width (ft)</label>
+        <input type="number" id="floorWidth" placeholder="20" value="20" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Concrete Porosity / Profile</label>
+        <select id="concreteProfile" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="smooth" selected>Smooth Troweled (CSP 1-2 — 200 sq ft/gal)</option>
+          <option value="etched">Acid Etched / Diamond Ground (CSP 2-3 — 175 sq ft/gal)</option>
+          <option value="rough">Porous / Shot-Blasted Concrete (CSP 3-4 — 140 sq ft/gal)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Coating System, Flakes &amp; Topcoat Specs
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Epoxy System Grade</label>
+        <select id="epoxyGrade" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="solids100" selected>100% Solids Commercial Epoxy (8–10 mils high build)</option>
+          <option value="waterbased">Water-Based 2-Part DIY Kit (2–3 mils thin coat)</option>
+          <option value="metallic">Designer Metallic 3D Epoxy System</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Decorative Color Flake Density</label>
+        <select id="flakeDensity" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="none">No Flakes (Solid Monolithic Color)</option>
+          <option value="light">Light Random Broadcast (1 lb / 250 sq ft)</option>
+          <option value="medium" selected>Medium Broadcast (1 lb / 100 sq ft — Standard)</option>
+          <option value="heavy">Heavy Broadcast (1 lb / 40 sq ft)</option>
+          <option value="full">Full 100% Broadcast (1 lb / 10 sq ft — Granite Look)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Protective Clear Topcoat</label>
+        <select id="topcoatType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="polyaspartic" selected>Clear Polyaspartic (UV-Stable, Non-Yellowing)</option>
+          <option value="urethane">Moisture-Cure Polyurethane Topcoat</option>
+          <option value="epoxy_clear">High-Gloss Clear Epoxy</option>
+          <option value="none">No Topcoat (Light Foot Traffic Only)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-xs font-medium text-gray-600 mb-1">Moisture Vapor Barrier Primer</label>
+        <select id="vaporBarrier" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="yes" selected>Yes (Epoxy Vapor Barrier Primer — Recommended)</option>
+          <option value="no">No (Dry Concrete with Zero Vapor Pressure)</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="button" onclick="calculateEpoxy()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors cursor-pointer text-sm shadow-xs">
+      Calculate Epoxy Materials
+    </button>
+  </div>
+
+  <!-- Primary Results Grid -->
+  <div id="results" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-blue-600 font-semibold uppercase tracking-wide">Epoxy Basecoat</div>
+      <div id="r_epoxyGal" class="text-2xl sm:text-3xl font-extrabold text-blue-900 mt-1">3.0 Gallons</div>
+      <div id="r_epoxyDetail" class="text-xs text-blue-700 mt-1">2-Part Resin + Hardener (Part A/B)</div>
+    </div>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-amber-600 font-semibold uppercase tracking-wide">Decorative Color Flakes</div>
+      <div id="r_flakeWeight" class="text-2xl sm:text-3xl font-extrabold text-amber-900 mt-1">5.0 lbs</div>
+      <div id="r_flakeDetail" class="text-xs text-amber-700 mt-1">Medium Broadcast Density</div>
+    </div>
+
+    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-emerald-600 font-semibold uppercase tracking-wide">Clear Protective Topcoat</div>
+      <div id="r_topcoatGal" class="text-2xl sm:text-3xl font-extrabold text-emerald-900 mt-1">2.0 Gallons</div>
+      <div id="r_topcoatDetail" class="text-xs text-emerald-700 mt-1">UV-Stable Clear Polyaspartic</div>
+    </div>
+
+    <div class="bg-purple-50 border border-purple-200 rounded-xl p-4 text-center">
+      <div class="text-xs text-purple-600 font-semibold uppercase tracking-wide">Vapor Primer / Prep</div>
+      <div id="r_primerGal" class="text-2xl sm:text-3xl font-extrabold text-purple-900 mt-1">2.0 Gallons</div>
+      <div id="r_etchWeight" class="text-xs text-purple-700 mt-1">+ 2 Gallons Muriatic Acid / Cleaner</div>
+    </div>
+  </div>
+
+  <!-- Dynamic SVG Coating Layer Cross-Section Diagram -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+      <h2 class="text-base font-semibold text-gray-800">Multi-Layer Commercial Epoxy Floor Cross-Section</h2>
+      <span class="text-xs text-gray-500 font-mono">100% Solids System • Flake Matrix</span>
+    </div>
+    <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
+      <svg id="epoxySvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-500 rounded-xs"></span> Concrete Substrate</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-blue-500 rounded-xs"></span> Moisture Vapor Primer</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-800 rounded-xs"></span> Pigmented 100% Solids Epoxy</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-400 rounded-xs"></span> Color Flakes</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 bg-cyan-300 rounded-xs"></span> Clear Polyaspartic Topcoat</div>
+    </div>
+  </div>
+
+  <!-- Material Takeoff Table & RSMeans Cost Benchmarks -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs">
+      <h3 class="font-bold text-gray-900 text-sm mb-3">Complete Garage Epoxy Material Schedule</h3>
+      <table class="w-full text-xs text-left">
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="py-2 text-gray-600">Floor Surface Area</td><td id="t_surfaceArea" class="py-2 font-mono text-right font-bold text-gray-900">440.0 sq ft (2-Car Garage)</td></tr>
+          <tr><td class="py-2 text-gray-600">Basecoat Wet Film Thickness (WFT)</td><td id="t_wftMils" class="py-2 font-mono text-right text-gray-900">9.0 Mils (100% Solids High Build)</td></tr>
+          <tr><td class="py-2 text-gray-600">Anti-Slip Aluminum Oxide (50 mesh)</td><td id="t_antiSlip" class="py-2 font-mono text-right text-gray-900">1.0 lb (Broadcast into Topcoat)</td></tr>
+          <tr><td class="py-2 text-gray-600">Spiked Shoes &amp; Squeegee Kit</td><td id="t_tools" class="py-2 font-mono text-right text-gray-900">18" Notched Squeegee + 3/8" Nap Roller</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 1-Click Shopping List Button -->
+      <button id="copyListBtn" onclick="copyShoppingList()" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-semibold py-2 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer border border-gray-300">
+        <span>📋 Copy Shopping List for Home Depot / Lowe's</span>
+      </button>
+    </div>
+
+    <!-- RSMeans DIY vs Pro Benchmark -->
+    <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm text-blue-200">DIY vs Professional Epoxy Floor Cost</h3>
+        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      </div>
+      <p class="text-xs text-slate-300 mb-4">Commercial grade 100% solids epoxy kit vs professional diamond-grind installation quote.</p>
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Estimated DIY Materials</div>
+          <div id="c_diyCost" class="text-xl font-black text-emerald-400 mt-0.5">$550 – $750</div>
+          <div class="text-[10px] text-slate-400 mt-1">Primer, epoxy, flakes, topcoat, squeegee</div>
+        </div>
+        <div class="bg-white/10 p-3 rounded-lg border border-white/10">
+          <div class="text-[11px] text-slate-300 font-medium">Pro Contractor Quote</div>
+          <div id="c_proCost" class="text-xl font-black text-amber-300 mt-0.5">$2,400 – $3,500</div>
+          <div class="text-[10px] text-slate-400 mt-1">$5.50 – $8.00 / sq ft installed</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-400 font-bold text-sm">💰</span>
+        <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$1,850 – $2,750 (76%)</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Building Codes & Best Practices -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Concrete Surface Prep &amp; Application Rules (SSPC / NACE)</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+      <div class="border-l-2 border-blue-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Surface Profile (CSP 2-3 Requirement)</h4>
+        <p class="text-xs leading-relaxed">
+          Epoxy will not mechanically bond to slick, power-troweled concrete. The concrete must be diamond-ground or acid-etched to create a texture resembling <strong>100-grit sandpaper</strong> (Concrete Surface Profile CSP 2 to 3) before primer application.
+        </p>
+      </div>
+      <div class="border-l-2 border-amber-500 pl-3">
+        <h4 class="font-bold text-gray-900 mb-1">Calcium Chloride Moisture Test (ASTM F1869)</h4>
+        <p class="text-xs leading-relaxed">
+          Never apply epoxy over concrete emitting moisture vapor &gt; 3 lbs / 1,000 sq ft / 24 hours. Tape a 2ft × 2ft plastic sheet to the concrete for 24 hours. If condensation appears underneath, an epoxy vapor-barrier primer is mandatory to prevent blistering.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">What is 'pot life' when mixing 2-part epoxy?</h3>
+        <p class="text-gray-600 text-sm">Pot life is the working time after combining Part A (resin) and Part B (hardener). In a mixing bucket, the exothermic chemical reaction generates heat, giving you only 20 to 30 minutes of working time at 75°F. Pour the mixed epoxy onto the floor in ribbons immediately to slow down the heat reaction.</p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-1">How long before I can park my car on a newly epoxied garage floor?</h3>
+        <p class="text-gray-600 text-sm">You can walk on the floor in clean socks or shoes after 24 hours. However, wait <strong>72 hours for light foot traffic</strong> and at least <strong>5 to 7 full days before parking hot car tires</strong> on 100% solids epoxy to avoid hot-tire pickup.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Garage &amp; Concrete Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/recessed-lights-garage" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Garage Lighting Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate lumens and fixture layout for garage workshops.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate cubic yards and cement bags for garage slabs.</div>
+      </a>
+      <a href="/calculators/mini-split-sizing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Mini-Split Sizing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate BTU heating/cooling for garage workshops.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
+
+<script is:inline>
+  function applyPreset() {
+    const preset = document.getElementById('garagePreset').value;
+    const lInput = document.getElementById('floorLength');
+    const wInput = document.getElementById('floorWidth');
+
+    if (preset === '1car') { lInput.value = 20; wInput.value = 12; }
+    else if (preset === '2car') { lInput.value = 22; wInput.value = 20; }
+    else if (preset === '3car') { lInput.value = 22; wInput.value = 30; }
+    else if (preset === 'basement') { lInput.value = 36; wInput.value = 24; }
+
+    calculateEpoxy();
+  }
+
+  function calculateEpoxy() {
+    const length = parseFloat(document.getElementById('floorLength').value) || 22;
+    const width = parseFloat(document.getElementById('floorWidth').value) || 20;
+    const profile = document.getElementById('concreteProfile').value;
+    const grade = document.getElementById('epoxyGrade').value;
+    const flake = document.getElementById('flakeDensity').value;
+    const topcoat = document.getElementById('topcoatType').value;
+    const hasPrimer = document.getElementById('vaporBarrier').value === 'yes';
+
+    const surfaceSqFt = length * width;
+
+    // Coverage per gallon
+    let coverage = 180;
+    if (profile === 'smooth') coverage = 200;
+    if (profile === 'etched') coverage = 175;
+    if (profile === 'rough') coverage = 140;
+
+    if (grade === 'waterbased') coverage = 250; // Water-based applies thinner
+
+    const basecoatGal = Math.ceil((surfaceSqFt / coverage) * 1.10);
+    const primerGal = hasPrimer ? Math.ceil((surfaceSqFt / 250) * 1.05) : 0;
+
+    // Flake density
+    let flakeRate = 0; // lbs per sq ft
+    if (flake === 'light') flakeRate = 1 / 250;
+    if (flake === 'medium') flakeRate = 1 / 100;
+    if (flake === 'heavy') flakeRate = 1 / 40;
+    if (flake === 'full') flakeRate = 1 / 10;
+
+    const flakeLbs = Math.max(Math.ceil(surfaceSqFt * flakeRate), flake === 'none' ? 0 : 2);
+
+    // Topcoat gallons
+    let topcoatGal = 0;
+    if (topcoat !== 'none') {
+      const topCoverage = (flake === 'full' || flake === 'heavy') ? 150 : 220; // Textured flake needs more clearcoat
+      topcoatGal = Math.ceil((surfaceSqFt / topCoverage) * 1.10);
+    }
+
+    // Update DOM
+    document.getElementById('r_epoxyGal').textContent = `${basecoatGal}.0 Gallons`;
+    document.getElementById('r_epoxyDetail').textContent = grade === 'solids100' ? '100% Solids Resin + Hardener Kit' : 'Water-Based 2-Part Kit';
+
+    document.getElementById('r_flakeWeight').textContent = flake === 'none' ? '0 lbs' : `${flakeLbs}.0 lbs`;
+    document.getElementById('r_flakeDetail').textContent = flake === 'full' ? '100% Full Granite Broadcast' : `${flake.toUpperCase()} Flake Broadcast`;
+
+    document.getElementById('r_topcoatGal').textContent = topcoat === 'none' ? '0 Gallons' : `${topcoatGal}.0 Gallons`;
+    document.getElementById('r_topcoatDetail').textContent = topcoat === 'polyaspartic' ? 'UV-Stable Clear Polyaspartic' : 'High-Gloss Clear Shield';
+
+    document.getElementById('r_primerGal').textContent = hasPrimer ? `${primerGal}.0 Gallons` : 'None Selected';
+    document.getElementById('r_etchWeight').textContent = `+ ${Math.ceil(surfaceSqFt / 200)} Gal Muriatic Prep Acid`;
+
+    document.getElementById('t_surfaceArea').textContent = `${surfaceSqFt.toFixed(1)} sq ft`;
+    document.getElementById('t_wftMils').textContent = grade === 'solids100' ? '9.0 Mils (High-Build Armor)' : '3.0 Mils (Thin Film)';
+    document.getElementById('t_antiSlip').textContent = `${(surfaceSqFt / 400).toFixed(1)} lbs (Aluminum Oxide Grip)`;
+
+    // RSMeans Cost Benchmarks
+    const epoxyUnitCost = grade === 'solids100' ? 85 : 45;
+    const topcoatUnitCost = 110;
+    const primerUnitCost = 75;
+    const diyCostMin = Math.round((basecoatGal * epoxyUnitCost) + (topcoatGal * topcoatUnitCost) + (primerGal * primerUnitCost) + (flakeLbs * 6) + 60);
+    const diyCostMax = Math.round(diyCostMin * 1.25);
+
+    const proCostMin = Math.round(surfaceSqFt * 5.50);
+    const proCostMax = Math.round(surfaceSqFt * 8.50);
+
+    document.getElementById('c_diyCost').textContent = `$${diyCostMin.toLocaleString()} – $${diyCostMax.toLocaleString()}`;
+    document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
+    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()} (${Math.round((1 - diyCostMin/proCostMin)*100)}%)`;
+
+    drawEpoxySvg(flake, hasPrimer, topcoat !== 'none');
+  }
+
+  function drawEpoxySvg(flake, hasPrimer, hasTopcoat) {
+    const svg = document.getElementById('epoxySvg');
+    if (!svg) return;
+
+    let content = '';
+    const startX = 30;
+    const startY = 30;
+    const width = 540;
+
+    // Layer 1: Concrete Substrate
+    content += `<rect x="${startX}" y="120" width="${width}" height="50" fill="#64748B" stroke="#475569" stroke-width="1.5" rx="2" />`;
+    content += `<text x="300" y="150" text-anchor="middle" font-size="12" font-weight="bold" fill="#F1F5F9">Concrete Substrate (Diamond Ground CSP 2-3)</text>`;
+
+    // Layer 2: Vapor Barrier Primer (if enabled)
+    if (hasPrimer) {
+      content += `<rect x="${startX}" y="105" width="${width}" height="15" fill="#3B82F6" opacity="0.9" />`;
+      content += `<text x="300" y="116" text-anchor="middle" font-size="9" font-weight="bold" fill="#FFFFFF">Moisture Vapor Barrier Primer</text>`;
+    }
+
+    // Layer 3: 100% Solids Pigmented Basecoat
+    content += `<rect x="${startX}" y="80" width="${width}" height="25" fill="#1E293B" stroke="#0F172A" stroke-width="1" />`;
+    content += `<text x="300" y="96" text-anchor="middle" font-size="11" font-weight="bold" fill="#38BDF8">Pigmented 100% Solids Epoxy Basecoat (9 Mils)</text>`;
+
+    // Layer 4: Color Flakes (if enabled)
+    if (flake !== 'none') {
+      for (let fx = startX + 15; fx < startX + width - 15; fx += (flake === 'full' ? 8 : 20)) {
+        content += `<circle cx="${fx}" cy="${78 + (fx % 5)}" r="2.5" fill="#FBBF24" />`;
+        content += `<circle cx="${fx + 5}" cy="${80 - (fx % 4)}" r="2" fill="#FFFFFF" />`;
+      }
+    }
+
+    // Layer 5: Clear Topcoat
+    if (hasTopcoat) {
+      content += `<rect x="${startX}" y="55" width="${width}" height="25" fill="#06B6D4" opacity="0.6" stroke="#0891B2" stroke-width="1.5" rx="2" />`;
+      content += `<text x="300" y="71" text-anchor="middle" font-size="11" font-weight="bold" fill="#083344">High-Gloss UV Clear Polyaspartic Topcoat</text>`;
+    }
+
+    svg.innerHTML = content;
+  }
+
+  function copyShoppingList() {
+    const epoxy = document.getElementById('r_epoxyGal').textContent;
+    const flakes = document.getElementById('r_flakeWeight').textContent;
+    const topcoat = document.getElementById('r_topcoatGal').textContent;
+    const primer = document.getElementById('r_primerGal').textContent;
+
+    const listText = `CalcForDIY Material Takeoff — Garage Epoxy Floor:\n` +
+      `- Basecoat Epoxy: ${epoxy} (100% Solids Part A/B Kit)\n` +
+      `- Color Flakes: ${flakes}\n` +
+      `- Clear Topcoat: ${topcoat} (Clear Polyaspartic)\n` +
+      `- Vapor Primer: ${primer}\n` +
+      `- Tools: Spiked Shoes + 18" Notched Squeegee + 3/8" Lint-Free Rollers\n` +
+      `Calculated at https://calcfordiy.com/calculators/epoxy-floor`;
+
+    navigator.clipboard.writeText(listText).then(() => {
+      const btn = document.getElementById('copyListBtn');
+      btn.innerHTML = '<span>✅ Copied to Clipboard!</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>📋 Copy Shopping List for Home Depot / Lowe\'s</span>';
+      }, 2500);
+    });
+  }
+
+  calculateEpoxy();
+</script>
