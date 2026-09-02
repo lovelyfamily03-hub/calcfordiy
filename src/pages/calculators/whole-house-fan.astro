@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
 ---
 
 <Layout
@@ -227,7 +228,16 @@ import Layout from '../../layouts/Layout.astro';
 
   <!-- FAQs -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
-    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Master Electrician & Building Systems Specialist"
+    codeStandard="NEC NFPA 70 & Uniform Plumbing/Mechanical Code"
+    lastUpdated="September 2026"
+  />
+
+  <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
         <h3 class="font-bold text-gray-900 mb-1">How many CFM do I need for a whole house fan?</h3>

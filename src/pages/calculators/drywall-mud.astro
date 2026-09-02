@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -200,7 +202,16 @@ import Layout from '../../layouts/Layout.astro';
 
   <!-- FAQs -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
-    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="IRC 2021/2024 & ASTM International Standards"
+    lastUpdated="September 2026"
+  />
+
+  <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
         <h3 class="font-bold text-gray-900 mb-1">How many buckets of drywall mud do I need for 1,000 sq ft?</h3>
@@ -218,6 +229,17 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <!-- Related Calculators -->
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="basement-finishing"
+    hubTitle="Basement Finishing Project Hub →"
+    hubDesc="Multi-step guide for basement walls, joint compound finishing, and subfloor panels."
+    guideSlug="how-many-studs-for-a-wall"
+    guideTitle="Framing & Drywall Layout Guide →"
+    guideDesc="Prepare clean wall surfaces and corner backing before taping and mudding."
+  />
+
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Drywall &amp; Wall Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">

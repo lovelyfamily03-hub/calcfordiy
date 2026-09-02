@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -208,7 +210,16 @@ import Layout from '../../layouts/Layout.astro';
 
   <!-- FAQs -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
-    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="IRC 2021/2024 & ASTM International Standards"
+    lastUpdated="September 2026"
+  />
+
+  <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
         <h3 class="font-bold text-gray-900 mb-1">What is the best gravel for the top surface of a driveway?</h3>
@@ -226,6 +237,17 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <!-- Related Calculators -->
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="gravel-driveway-pathway"
+    hubTitle="Gravel Driveway Construction Hub →"
+    hubDesc="4-step workflow: Subgrade excavation, geotextile fabric, #3 base stone, and top gravel."
+    guideSlug="how-deep-should-a-gravel-driveway-be"
+    guideTitle="How Deep Should a Gravel Driveway Be? →"
+    guideDesc="Layer-by-layer compaction depths: 4-inch crusher run base + 4-inch #57 crushed stone."
+  />
+
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Earthwork &amp; Paving Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">

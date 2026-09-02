@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -289,6 +291,17 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <!-- Related Calculators -->
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="lvp-flooring-renovation"
+    hubTitle="LVP Flooring Renovation Hub →"
+    hubDesc="Sequential workflow covering subfloor prep, underlayment, transitions, and shoe trim."
+    guideSlug="how-many-boxes-of-vinyl-plank-flooring"
+    guideTitle="How Many Boxes of Vinyl Plank Flooring? →"
+    guideDesc="Calculate Luxury Vinyl Plank (LVP) boxes, square footage, and doorway transition strips."
+  />
+
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Flooring Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -306,6 +319,15 @@ import Layout from '../../layouts/Layout.astro';
       </a>
     </div>
   </div>
+
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="TCNA Handbook & IRC Section R702/R703 Wall/Floor Standards"
+    lastUpdated="September 2026"
+  />
 
 </Layout>
 

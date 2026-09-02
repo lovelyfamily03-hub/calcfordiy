@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -233,7 +235,16 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
-    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="IRC 2021/2024 & ASTM International Standards"
+    lastUpdated="September 2026"
+  />
+
+  <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
         <h3 class="font-bold text-gray-900 mb-1">What size joist do I need for a 12 foot deck span?</h3>
@@ -245,6 +256,17 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="deck-building"
+    hubTitle="Deck Building Project Hub →"
+    hubDesc="Explore the full deck construction sequence from footings to railing safety code."
+    guideSlug="how-far-can-2x8-deck-joist-span"
+    guideTitle="Deck Joist Span Code Reference Guide →"
+    guideDesc="Cantilever overhang rules, beam ply sizing, and 40 PSF live load engineering."
+  />
 
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>

@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -280,6 +282,17 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <!-- Related Calculators -->
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="roofing-exterior"
+    hubTitle="Roofing & Exterior Cladding Hub →"
+    hubDesc="Plan balanced attic roof ventilation, fascia wrap, and exterior siding."
+    guideSlug="how-to-calculate-soffit-ventilation"
+    guideTitle="How to Calculate Soffit Ventilation (NFVA)? →"
+    guideDesc="1/300 attic ventilation rule, Net Free Vent Area, and balanced airflow physics."
+  />
+
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Roofing &amp; Siding Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -297,6 +310,15 @@ import Layout from '../../layouts/Layout.astro';
       </a>
     </div>
   </div>
+
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="IRC 2021/2024 & ASTM International Standards"
+    lastUpdated="September 2026"
+  />
 
 </Layout>
 

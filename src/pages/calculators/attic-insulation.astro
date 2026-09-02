@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -184,6 +186,17 @@ import Layout from '../../layouts/Layout.astro';
     </ol>
   </div>
 
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="hvac-energy-efficiency"
+    hubTitle="HVAC & Home Energy Efficiency Hub →"
+    hubDesc="4-step home performance plan: Attic air sealing, blown-in cellulose, and heat pump sizing."
+    guideSlug="how-much-attic-insulation"
+    guideTitle="How Much Attic Insulation Do I Need? →"
+    guideDesc="DOE climate zone target R-values (R-38 to R-60) and blown-in bag count math."
+  />
+
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -201,6 +214,15 @@ import Layout from '../../layouts/Layout.astro';
       </a>
     </div>
   </div>
+
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Master Electrician & Building Systems Specialist"
+    codeStandard="NEC NFPA 70 & Uniform Plumbing/Mechanical Code"
+    lastUpdated="September 2026"
+  />
 
 </Layout>
 

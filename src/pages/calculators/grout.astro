@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -262,6 +264,15 @@ import Layout from '../../layouts/Layout.astro';
     </ol>
   </div>
 
+  
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="TCNA Handbook & IRC Section R702/R703 Wall/Floor Standards"
+    lastUpdated="September 2026"
+  />
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
     <p class="text-gray-700 mb-4">This grout calculator relies on the industry-standard formula found in technical documentation from major manufacturers like Mapei and LATICRETE. Here is how the math works:</p>
@@ -302,6 +313,17 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="bathroom-remodel"
+    hubTitle="Bathroom Remodel Project Hub →"
+    hubDesc="Sequence your tile installation, thinset mortar, and grout sealing steps."
+    guideSlug="how-many-bags-of-grout-for-tile-shower"
+    guideTitle="How Many Bags of Grout for a Tile Shower? →"
+    guideDesc="Sanded vs. unsanded grout coverage charts based on tile size and joint width."
+  />
 
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>

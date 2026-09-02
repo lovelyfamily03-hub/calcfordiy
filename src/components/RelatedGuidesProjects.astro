@@ -1,0 +1,58 @@
+---
+export interface Props {
+  hubSlug?: string;
+  hubTitle?: string;
+  hubDesc?: string;
+  guideSlug?: string;
+  guideTitle?: string;
+  guideDesc?: string;
+}
+
+const {
+  hubSlug,
+  hubTitle,
+  hubDesc,
+  guideSlug,
+  guideTitle,
+  guideDesc
+} = Astro.props;
+---
+
+{(hubSlug || guideSlug) && (
+  <div class="mt-8 pt-6 border-t border-gray-200 not-prose print:hidden">
+    <h3 class="text-base font-bold text-gray-900 mb-3 flex items-center gap-2">
+      <span>📚</span> Step-by-Step Planning Guides &amp; Project Hubs
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {hubSlug && (
+        <a
+          href={`/projects/${hubSlug}`}
+          class="group block bg-gradient-to-br from-blue-50/70 to-indigo-50/50 border border-blue-200/80 hover:border-blue-400 p-4 rounded-xl transition-all shadow-2xs hover:shadow-xs"
+        >
+          <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-700 mb-1">
+            <span>🚀 Project Workflow Hub</span>
+          </div>
+          <div class="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+            {hubTitle || "Complete Project Construction Hub →"}
+          </div>
+          {hubDesc && <p class="text-xs text-gray-600 mt-1 line-clamp-2">{hubDesc}</p>}
+        </a>
+      )}
+
+      {guideSlug && (
+        <a
+          href={`/guides/${guideSlug}`}
+          class="group block bg-gradient-to-br from-emerald-50/70 to-teal-50/50 border border-emerald-200/80 hover:border-emerald-400 p-4 rounded-xl transition-all shadow-2xs hover:shadow-xs"
+        >
+          <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-700 mb-1">
+            <span>📘 Trade Editorial Guide</span>
+          </div>
+          <div class="text-sm font-bold text-gray-900 group-hover:text-emerald-700 transition-colors">
+            {guideTitle || "Read the Step-by-Step Guide →"}
+          </div>
+          {guideDesc && <p class="text-xs text-gray-600 mt-1 line-clamp-2">{guideDesc}</p>}
+        </a>
+      )}
+    </div>
+  </div>
+)}

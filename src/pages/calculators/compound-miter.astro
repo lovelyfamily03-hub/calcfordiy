@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -147,6 +149,17 @@ import Layout from '../../layouts/Layout.astro';
     </ol>
   </div>
 
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="room-accent-wall"
+    hubTitle="Room Accent Wall & Millwork Hub →"
+    hubDesc="Plan trim dimensions, wall panels, and ceiling molding layouts."
+    guideSlug="how-to-cut-crown-molding"
+    guideTitle="Compound Miter & Bevel Cutting Guide →"
+    guideDesc="Master miter table rotation and bevel blade tilt angles for non-90° corner walls."
+  />
+
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Trim Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -164,6 +177,15 @@ import Layout from '../../layouts/Layout.astro';
       </a>
     </div>
   </div>
+
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="TCNA Handbook & IRC Section R702/R703 Wall/Floor Standards"
+    lastUpdated="September 2026"
+  />
 
 </Layout>
 

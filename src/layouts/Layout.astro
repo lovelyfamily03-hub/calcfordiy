@@ -1,7 +1,15 @@
 ---
 import '../styles/global.css';
 const { title, description, noindex = false } = Astro.props;
-const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro.url.pathname !== '/calculators/' && Astro.url.pathname !== '/calculators';
+const pathname = Astro.url.pathname;
+const isCalculatorPage = pathname.startsWith('/calculators/') && pathname !== '/calculators/' && pathname !== '/calculators';
+const navLinks = [
+  { href: '/calculators', label: 'Calculators', match: '/calculators' },
+  { href: '/projects', label: 'Projects', match: '/projects' },
+  { href: '/guides', label: 'Guides', match: '/guides' },
+  { href: '/about', label: 'About', match: '/about' },
+  { href: '/contact', label: 'Contact', match: '/contact' },
+];
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -50,14 +58,39 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
     <header class="bg-white border-b border-gray-200 px-4 py-3 print:hidden">
       <div class="max-w-5xl mx-auto flex items-center justify-between">
         <a href="/" class="text-xl font-bold text-blue-600">CalcForDIY</a>
-         <nav class="text-sm text-gray-600 flex gap-5 font-medium">
-          <a href="/calculators" class="hover:text-blue-600 transition-colors">Calculators</a>
-          <a href="/projects" class="hover:text-blue-600 transition-colors text-blue-700 font-semibold">Projects</a>
-          <a href="/guides" class="hover:text-blue-600 transition-colors">Guides</a>
-          <a href="/about" class="hover:text-blue-600 transition-colors">About</a>
-          <a href="/contact" class="hover:text-blue-600 transition-colors">Contact</a>
+        <!-- Desktop nav -->
+        <nav class="hidden sm:flex text-sm text-gray-600 gap-5 font-medium">
+          {navLinks.map(link => (
+            <a
+              href={link.href}
+              class={`hover:text-blue-600 transition-colors ${pathname.startsWith(link.match) ? 'text-blue-700 font-semibold' : ''}`}
+            >{link.label}</a>
+          ))}
         </nav>
+        <!-- Mobile hamburger button -->
+        <button
+          id="mobileMenuBtn"
+          type="button"
+          class="sm:hidden flex flex-col justify-center items-center w-9 h-9 rounded-lg hover:bg-gray-100 transition-colors"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <span class="hamburger-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300"></span>
+          <span class="hamburger-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 mt-1"></span>
+          <span class="hamburger-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 mt-1"></span>
+        </button>
       </div>
+      <!-- Mobile slide-down menu -->
+      <nav id="mobileMenu" class="hidden sm:hidden max-w-5xl mx-auto pt-3 pb-1 border-t border-gray-100 mt-3">
+        <div class="flex flex-col gap-1">
+          {navLinks.map(link => (
+            <a
+              href={link.href}
+              class={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${pathname.startsWith(link.match) ? 'text-blue-700 bg-blue-50 font-semibold' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'}`}
+            >{link.label}</a>
+          ))}
+        </div>
+      </nav>
     </header>
     
     <main class="max-w-5xl mx-auto px-4 py-8">
@@ -65,7 +98,7 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
         <div class="mb-6 flex flex-wrap items-center gap-3 text-xs text-gray-600 bg-white border border-gray-200 rounded-xl px-4 py-2.5 shadow-xs print:hidden">
           <span class="flex items-center gap-1.5 font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Last Verified: July 2026
+            Last Verified: August 2026
           </span>
           <span class="text-gray-300">•</span>
           <span>Formulas Verified Against <strong>IRC, TCNA, NWFA &amp; IES Standards</strong></span>
@@ -101,26 +134,26 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
               <li><a href="/calculators/laminate-flooring" class="hover:text-blue-600">Laminate Flooring</a></li>
               <li><a href="/calculators/concrete-slab" class="hover:text-blue-600">Concrete Slab</a></li>
               <li><a href="/calculators/drywall" class="hover:text-blue-600">Drywall</a></li>
-              <li><a href="/calculators" class="text-blue-600 font-medium hover:underline">View all 93 calculators →</a></li>
+              <li><a href="/calculators" class="text-blue-600 font-medium hover:underline">View all 100 calculators →</a></li>
             </ul>
           </div>
           <div>
             <h3 class="font-semibold text-gray-900 mb-3">Categories</h3>
             <ul class="space-y-2">
-              <li><a href="/calculators" class="hover:text-blue-600">Tile &amp; Flooring</a></li>
-              <li><a href="/calculators" class="hover:text-blue-600">Carpentry &amp; Roofing</a></li>
-              <li><a href="/calculators" class="hover:text-blue-600">Millwork &amp; Trim</a></li>
-              <li><a href="/calculators" class="hover:text-blue-600">Concrete &amp; Masonry</a></li>
-              <li><a href="/calculators" class="hover:text-blue-600">Landscaping &amp; Paving</a></li>
-              <li><a href="/calculators" class="hover:text-blue-600">Electrical &amp; Solar</a></li>
-              <li><a href="/calculators" class="hover:text-blue-600">Plumbing &amp; HVAC</a></li>
-              <li><a href="/calculators" class="hover:text-blue-600">Paint &amp; Finishing</a></li>
+              <li><a href="/calculators#tile-flooring" class="hover:text-blue-600">Tile &amp; Flooring</a></li>
+              <li><a href="/calculators#carpentry-framing-roofing" class="hover:text-blue-600">Carpentry &amp; Roofing</a></li>
+              <li><a href="/calculators#millwork-trim-walls" class="hover:text-blue-600">Millwork &amp; Trim</a></li>
+              <li><a href="/calculators#concrete-masonry" class="hover:text-blue-600">Concrete &amp; Masonry</a></li>
+              <li><a href="/calculators#landscaping-hardscaping" class="hover:text-blue-600">Landscaping &amp; Paving</a></li>
+              <li><a href="/calculators#electrical-solar-lighting" class="hover:text-blue-600">Electrical &amp; Solar</a></li>
+              <li><a href="/calculators#plumbing-hvac-energy" class="hover:text-blue-600">Plumbing &amp; HVAC</a></li>
+              <li><a href="/calculators#paint-finishing" class="hover:text-blue-600">Paint &amp; Finishing</a></li>
             </ul>
           </div>
           <div>
             <h3 class="font-semibold text-gray-900 mb-3">Resources</h3>
             <ul class="space-y-2">
-              <li><a href="/projects" class="hover:text-blue-600 font-semibold text-blue-600">Project Hubs</a></li>
+              <li><a href="/projects" class="hover:text-blue-600">Project Hubs</a></li>
               <li><a href="/guides" class="hover:text-blue-600">DIY Guides</a></li>
               <li><a href="/guides/how-much-mulch-for-garden-beds" class="hover:text-blue-600">Mulch Guide</a></li>
               <li><a href="/guides/laminate-flooring-waste-factor" class="hover:text-blue-600">Waste Factor Guide</a></li>
@@ -131,7 +164,7 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
             <h3 class="font-semibold text-gray-900 mb-3">Company &amp; E-E-A-T</h3>
             <ul class="space-y-2">
               <li><a href="/about" class="hover:text-blue-600 font-medium">About CalcForDIY</a></li>
-              <li><a href="/methodology" class="hover:text-blue-600 font-semibold text-blue-600">Calculation Methodology</a></li>
+              <li><a href="/methodology" class="hover:text-blue-600">Calculation Methodology</a></li>
               <li><a href="/contact" class="hover:text-blue-600">Contact Us</a></li>
               <li><a href="/privacy" class="hover:text-blue-600">Privacy Policy</a></li>
               <li><a href="/terms" class="hover:text-blue-600">Terms of Service</a></li>
@@ -631,6 +664,26 @@ const isCalculatorPage = Astro.url.pathname.startsWith('/calculators/') && Astro
           }
         }
       });
+
+      // ── Mobile Hamburger Menu Toggle ──────────────────────────────────
+      (function() {
+        var btn = document.getElementById('mobileMenuBtn');
+        var menu = document.getElementById('mobileMenu');
+        if (!btn || !menu) return;
+
+        btn.addEventListener('click', function() {
+          var isOpen = !menu.classList.contains('hidden');
+          if (isOpen) {
+            menu.classList.add('hidden');
+            btn.setAttribute('aria-expanded', 'false');
+            btn.classList.remove('is-open');
+          } else {
+            menu.classList.remove('hidden');
+            btn.setAttribute('aria-expanded', 'true');
+            btn.classList.add('is-open');
+          }
+        });
+      })();
     </script>
   </body>
 </html>

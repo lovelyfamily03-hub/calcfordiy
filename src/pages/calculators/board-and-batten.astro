@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -201,7 +203,16 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
-    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="TCNA Handbook & IRC Section R702/R703 Wall/Floor Standards"
+    lastUpdated="September 2026"
+  />
+
+  <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
         <h3 class="font-bold text-gray-900 mb-1">How far apart should board and batten be spaced?</h3>
@@ -213,6 +224,17 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="room-accent-wall"
+    hubTitle="Room Accent Wall & Millwork Hub →"
+    hubDesc="Step-by-step DIY accent wall workflow from wall leveling to top cap trim."
+    guideSlug="how-to-cut-crown-molding"
+    guideTitle="Trim & Accent Wall Carpentry Guide →"
+    guideDesc="Equal batten gap spacing formulas down to 1/16ths of an inch."
+  />
 
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>

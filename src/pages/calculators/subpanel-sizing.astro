@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -245,7 +247,16 @@ import Layout from '../../layouts/Layout.astro';
 
   <!-- FAQs -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
-    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Master Electrician & Building Systems Specialist"
+    codeStandard="NEC NFPA 70 & Uniform Plumbing/Mechanical Code"
+    lastUpdated="September 2026"
+  />
+
+  <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
         <h3 class="font-bold text-gray-900 mb-1">What size subpanel do I need for a garage workshop?</h3>
@@ -263,6 +274,17 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <!-- Related Calculators -->
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="garage-ev-workshop"
+    hubTitle="Garage EV & Workshop Electrical Hub →"
+    hubDesc="Plan subpanel feeder ampacity, 240V breaker loads, and garage workshop lighting."
+    guideSlug="how-to-calculate-voltage-drop-for-wire-runs"
+    guideTitle="How to Calculate Voltage Drop for Long Wire Runs →"
+    guideDesc="NEC Article 215 3% voltage drop formula and circular mil wire up-sizing."
+  />
+
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">

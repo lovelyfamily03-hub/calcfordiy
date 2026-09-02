@@ -56,3 +56,14 @@ input[type="number"]::-webkit-inner-spin-button {
 .print-only {
   display: none;
 }
+
+/* Hamburger → X animation */
+#mobileMenuBtn.is-open .hamburger-line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+#mobileMenuBtn.is-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+#mobileMenuBtn.is-open .hamburger-line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}

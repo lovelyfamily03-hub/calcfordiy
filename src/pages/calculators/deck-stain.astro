@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -272,6 +274,17 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <!-- Related Calculators -->
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="deck-resurfacing-staining"
+    hubTitle="Deck Resurfacing & Staining Hub →"
+    hubDesc="4-step guide for deck cleaning, board replacement, stain gallons, and sealing."
+    guideSlug="how-much-stain-do-i-need-for-a-deck"
+    guideTitle="How Much Stain Do I Need for a Deck? →"
+    guideDesc="Coverage rates for smooth vs rough pressure-treated lumber and baluster spindles."
+  />
+
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Deck &amp; Exterior Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -289,6 +302,15 @@ import Layout from '../../layouts/Layout.astro';
       </a>
     </div>
   </div>
+
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="TCNA Handbook & IRC Section R702/R703 Wall/Floor Standards"
+    lastUpdated="September 2026"
+  />
 
 </Layout>
 

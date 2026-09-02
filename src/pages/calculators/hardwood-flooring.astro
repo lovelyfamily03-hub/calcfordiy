@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -285,6 +287,15 @@ import Layout from '../../layouts/Layout.astro';
     </ol>
   </div>
 
+  
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="TCNA Handbook & IRC Section R702/R703 Wall/Floor Standards"
+    lastUpdated="September 2026"
+  />
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
     <p class="text-gray-700 mb-4">This hardwood flooring calculator uses specific waste guidelines to ensure you buy exactly what you need. Here is the math:</p>
@@ -326,6 +337,17 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="flooring-installation"
+    hubTitle="Flooring Installation Project Hub →"
+    hubDesc="Plan subfloor leveling, underlayment rolls, and hardwood box quantities."
+    guideSlug="how-many-boxes-of-hardwood-flooring"
+    guideTitle="How Many Boxes of Hardwood Flooring? →"
+    guideDesc="Box coverage calculations, plank width guidelines, and board acclimation rules."
+  />
 
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>

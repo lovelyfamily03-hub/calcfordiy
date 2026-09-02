@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -282,6 +284,15 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </div>
 
+  
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="TCNA Handbook & IRC Section R702/R703 Wall/Floor Standards"
+    lastUpdated="September 2026"
+  />
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
     <p class="text-gray-700 mb-4">Behind the scenes, this thinset calculator uses coverage rates from major manufacturers like LATICRETE and Custom Building Products. The coverage rate per bag is dictated by the trowel notch size, which is directly determined by your tile size.</p>
@@ -323,6 +334,17 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="bathroom-remodel"
+    hubTitle="Bathroom Remodel Project Hub →"
+    hubDesc="Calculate substrate prep, membrane waterproofing, and tile mortar bags."
+    guideSlug="how-many-bags-of-grout-for-tile-shower"
+    guideTitle="Tile Setting & Grout Coverage Guide →"
+    guideDesc="Select the right trowel notch size and calculate thinset mortar bag yield."
+  />
 
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>

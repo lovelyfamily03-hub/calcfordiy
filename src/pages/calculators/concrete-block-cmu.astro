@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -298,6 +300,17 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <!-- Related Tools -->
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="cinder-block-retaining-wall"
+    hubTitle="Cinder Block Retaining Wall Hub →"
+    hubDesc="Step-by-step takeoff for concrete block walls, core grout volume, and drainage backfill."
+    guideSlug="how-many-cinder-blocks-for-retaining-wall"
+    guideTitle="Retaining Wall CMU Block Guide →"
+    guideDesc="Determine foundation footing dimensions and horizontal bond beam spacing."
+  />
+
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Concrete &amp; Masonry Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -315,6 +328,15 @@ import Layout from '../../layouts/Layout.astro';
       </a>
     </div>
   </div>
+
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="IRC 2021/2024 & ASTM International Standards"
+    lastUpdated="September 2026"
+  />
 
 </Layout>
 

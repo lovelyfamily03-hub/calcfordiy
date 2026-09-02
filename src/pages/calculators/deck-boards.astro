@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -306,6 +308,15 @@ import Layout from '../../layouts/Layout.astro';
     </ol>
   </div>
 
+  
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="IRC 2021/2024 & ASTM International Standards"
+    lastUpdated="September 2026"
+  />
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
     <p class="text-gray-700 mb-4">This deck boards calculator utilizes standard construction geometry to determine your exact material needs. Here is the math behind the scenes in plain English:</p>
@@ -349,6 +360,17 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="deck-building"
+    hubTitle="Deck Building Project Hub →"
+    hubDesc="Step-by-step workflow: Sonotube footings, beam sizing, joist spacing, and deck boards."
+    guideSlug="how-far-can-2x8-deck-joist-span"
+    guideTitle="How Far Can a 2x8 Deck Joist Span? →"
+    guideDesc="IRC Table R507.6 max span limits for Southern Pine and Douglas Fir joists."
+  />
 
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>

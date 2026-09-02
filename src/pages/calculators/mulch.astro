@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -285,6 +287,15 @@ import Layout from '../../layouts/Layout.astro';
     </ol>
   </div>
 
+  
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="IRC 2021/2024 & ASTM International Standards"
+    lastUpdated="September 2026"
+  />
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
     <p class="text-gray-700 mb-4">This mulch calculator handles all of the area and volume conversions for you. Here is the math happening behind the scenes:</p>
@@ -325,6 +336,17 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="outdoor-patio"
+    hubTitle="Outdoor Patio & Landscaping Hub →"
+    hubDesc="Calculate paver base sand, garden bed topsoil, and decorative mulch yards."
+    guideSlug="how-much-mulch-for-garden-beds"
+    guideTitle="How Much Mulch for Garden Beds? →"
+    guideDesc="Convert square footage and 3-inch depth into cubic yards and 2 cu ft store bags." into cubic yards and 2 cu ft store bags."
+  />
 
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>

@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
@@ -231,7 +233,16 @@ import Layout from '../../layouts/Layout.astro';
 
   <!-- FAQs -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
-    <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
+    
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="TCNA Handbook & IRC Section R702/R703 Wall/Floor Standards"
+    lastUpdated="September 2026"
+  />
+
+  <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
         <h3 class="font-bold text-gray-900 mb-1">What are the miter and bevel angles for a 90-degree corner with 38-degree crown molding?</h3>
@@ -249,6 +260,17 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <!-- Related Calculators -->
+  
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="room-accent-wall"
+    hubTitle="Room Accent Wall & Millwork Hub →"
+    hubDesc="Multi-step millwork plan: Shiplap, board and batten, and crown molding compound miters."
+    guideSlug="how-to-cut-crown-molding"
+    guideTitle="How to Cut Crown Molding Laid Flat →"
+    guideDesc="Compound miter saw angle charts for 52/38 and 45/45 spring angle molding."
+  />
+
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Millwork &amp; Carpentry Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">

@@ -551,6 +551,72 @@ const calculators = [
     description: "Calculate full cords (128 cu ft), face cords, ricks, total weight, and Million BTU heat output across hardwoods and softwoods.",
     href: "/calculators/firewood-cord",
     category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Cascadia Clip® & Continuous Insulation Calculator",
+    description: "Calculate Cascadia Clip fiberglass thermal spacers, sub-girt hat channels, structural fasteners, and effective R-value.",
+    href: "/calculators/cascadia-clip-insulation",
+    category: "Carpentry, Framing & Roofing"
+  },
+  {
+    title: "Board and Batten Exterior Siding Calculator",
+    description: "Calculate vertical siding boards, batten strips, Z-flashing, ring-shank nails, and exterior caulking.",
+    href: "/calculators/board-and-batten-siding",
+    category: "Carpentry, Framing & Roofing"
+  },
+  {
+    title: "Garage Door & Window Header Span Calculator",
+    description: "Calculate structural lumber header sizes (2x10, 2x12, LVL), jack studs, and king studs per IRC Table R602.7.",
+    href: "/calculators/garage-door-header",
+    category: "Carpentry, Framing & Roofing"
+  },
+  {
+    title: "Deck Stair Railing & Baluster Spacing Calculator",
+    description: "Calculate sloped handrail length, rake pitch angle, baluster count, and IRC 4-inch sphere spacing.",
+    href: "/calculators/deck-stair-railing",
+    category: "Carpentry, Framing & Roofing"
+  },
+  {
+    title: "French Cleat Wall & Cabinet Hanger Calculator",
+    description: "Calculate 45° bevel rip cuts, 3/4\" plywood sheet yield, stud anchor screws, and safe hanging load capacity.",
+    href: "/calculators/french-cleat",
+    category: "Millwork, Trim & Walls"
+  },
+  {
+    title: "Dry Well & Stormwater Runoff Calculator",
+    description: "Calculate roof downspout runoff volume, Flo-Well plastic dry well tanks, drainage stone, and geotextile fabric.",
+    href: "/calculators/drywell-stormwater",
+    category: "Landscaping & Hardscaping"
+  },
+  {
+    title: "Submersible Well Pump & Wire Sizing Calculator",
+    description: "Calculate deep well pump horsepower (HP), Total Dynamic Head (TDH), GPM, and submersible drop wire gauge (AWG).",
+    href: "/calculators/submersible-well-pump",
+    category: "Plumbing, HVAC & Energy"
+  },
+  {
+    title: "Roof Sheathing Plywood/OSB Calculator",
+    description: "Calculate 4x8 plywood or OSB sheets for roof decking with H-clips, nails, and rake cut waste factor.",
+    href: "/calculators/roof-sheathing",
+    category: "Carpentry, Framing & Roofing"
+  },
+  {
+    title: "Soffit and Fascia Calculator",
+    description: "Calculate vented aluminum or vinyl soffit panels, J-channel, and fascia wrap with NFVA attic ventilation.",
+    href: "/calculators/soffit-fascia",
+    category: "Carpentry, Framing & Roofing"
+  },
+  {
+    title: "Deck Screws, Fasteners & Joist Hanger Calculator",
+    description: "Calculate structural deck screws, joist hanger nails, carriage bolts, and hidden clip fasteners.",
+    href: "/calculators/deck-screws-hardware",
+    category: "Carpentry, Framing & Roofing"
+  },
+  {
+    title: "Baseboard and Shoe Molding Calculator",
+    description: "Calculate baseboard linear feet, quarter round / shoe molding, outside corner miters, and finish nails.",
+    href: "/calculators/baseboard-shoe-molding",
+    category: "Millwork, Trim & Walls"
   }
 ];
 
@@ -558,16 +624,16 @@ const categories = [...new Set(calculators.map(c => c.category))];
 ---
 
 <Layout
-  title="CalcForDIY — 93 Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks"
-  description="93 free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs."
+  title={`CalcForDIY — ${calculators.length} Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks`}
+  description={`${calculators.length} free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs.`}
 >
-<script type="application/ld+json" is:inline>
+<script type="application/ld+json" is:inline define:vars={{ count: calculators.length }}>
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "CalcForDIY",
   "url": "https://calcfordiy.com",
-  "description": "93 free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.",
+  "description": `${count} free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.`,
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://calcfordiy.com/calculators?q={search_term_string}",
@@ -576,7 +642,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
 }
 </script>
 
-<script type="application/ld+json" is:inline>
+<script type="application/ld+json" is:inline define:vars={{ count: calculators.length }}>
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -585,7 +651,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
   "operatingSystem": "Web Browser",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "featureList": [
-    "93 Interactive Material & Framing Calculators",
+    `${count} Interactive Material & Framing Calculators`,
     "Dynamic Vector SVG Framing & Cut Diagrams",
     "RSMeans DIY Material vs. Turnkey Contractor Cost Benchmarks",
     "One-Click Copy Shopping List Material Takeoff Export",
@@ -629,7 +695,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
   <div class="mb-8">
     <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
-      <span>✨ 93 Free Interactive Calculators</span>
+      <span>✨ {calculators.length} Free Interactive Calculators</span>
       <span>•</span>
       <span>RSMeans Cost Benchmarks &amp; SVG Diagrams</span>
     </div>
@@ -710,7 +776,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
   <div id="calcGrid" class="flex flex-col gap-6">
     {categories.map(category => (
-      <section class="calc-category" data-category={category}>
+      <section class="calc-category" data-category={category} id={category.toLowerCase().replace(/[&,]/g, '').replace(/\s+/g, '-')}>
         <h2 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-3">
           {category} Calculators
           <span class="text-sm font-medium text-gray-400 bg-gray-100 px-3 py-1 rounded-full">
