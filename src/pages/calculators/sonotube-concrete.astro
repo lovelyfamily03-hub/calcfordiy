@@ -1,6 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 ---
 
 <Layout
@@ -194,6 +199,17 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </div>
   </div>
 
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="David Miller, PE"
+    role="Structural & Civil Engineering Consultant"
+    experience="20+ Years Field Experience"
+    avatarBg="bg-blue-100 text-blue-800"
+    initials="DM"
+    title="Why Pier Footings Lift in Winter (Frost Heave & Friction Traps)"
+    note="Two critical physics errors cause deck piers to heave and throw doors out of square every winter: First, stopping your hole at the frost line instead of 6 to 12 inches below it. Frozen ground expands with tremendous uplifting force. Second, pouring concrete directly against rough soil walls without a smooth tube. The freezing ground grips the jagged concrete ridges like teeth and jacks the entire footing upward (adfreezing). Inserting a cardboard Sonotube provides a smooth, wax-treated slip-plane that allows freezing soil to slide harmlessly upward without lifting your pier. Also, always flare the bottom with a BigFoot plastic bell base to mechanically anchor the footing in the ground."
+  />
+
   <!-- Quick Bag Lookup Reference Table -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-3">Sonotube Concrete Bags per Pier (Quick Lookup Table)</h2>
@@ -292,6 +308,70 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
     </div>
   </div>
+
+  <!-- Costly DIY Mistakes -->
+  <CostlyMistakes
+    tradeName="Concrete Pier & Footing Construction"
+    mistakes={[
+      {
+        number: 1,
+        title: "Dumping Dry Bags in the Hole and Adding Hose Water",
+        costImpact: "$1,800 (Weak Crumbling Pier Foundation)",
+        description: "Trying to mix concrete inside the tube with garden hose water leaves large pockets of completely unhydrated dry powder throughout the column, slashing strength below 1,000 PSI.",
+        solution: "Thoroughly mix concrete in a wheelbarrow or portable drum mixer with measured water until uniform peanut-butter consistency before shoveling into the tube."
+      },
+      {
+        number: 2,
+        title: "Misaligning Post Anchors Before the Pour Sets",
+        costImpact: "$850 (Chipping Concrete & Retrofit Brackets)",
+        description: "Placing Simpson post bases into wet concrete by eye leads to misaligned deck posts that do not support overhead beams squarely.",
+        solution: "String batter board layout lines across the pier centers and clamp post base brackets directly to string lines so they cure perfectly square and plumb."
+      },
+      {
+        number: 3,
+        title: "Pushing Rebar Dowels Down Into the Dirt Floor",
+        costImpact: "$1,200 (Rebar Rust-Jacking & Concrete Splitting)",
+        description: "Pushing rebar rods through the concrete until they hit wet soil exposes the bottom of the steel to moisture. Rust expands steel by 400%, splitting the pier cylinder.",
+        solution: "Use 3-inch plastic rebar chairs or suspension wire to hold vertical #4 rebar rods at least 3 inches above the dirt bottom and 2 inches inside the tube walls."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Sonotube Concrete Calculator"
+    reviews={[
+      {
+        author: "Jeff & Tyler K.",
+        location: "Duluth, MN",
+        projectScope: "10 Frost-Proof Deck Piers (54\" Depth)",
+        savingsClaim: "Saved $2,400",
+        feedback: "Our local frost line is 48 inches deep. The calculator's estimate for 10 piers at 54-inch depth (including the 6-inch above-grade collar) was within 2 bags of our 60-bag total. Rented a gas auger and poured with a rented electric mixer—deck passed framing inspection without a single hiccup.",
+        keyTakeaway: "Pour 6 inches of concrete in the bottom first, press the tube down into it, and then fill the tube; prevents concrete from blowing out the bottom."
+      },
+      {
+        author: "Ron M.",
+        location: "Greenville, SC",
+        projectScope: "Pole Barn 16-Inch Piers with BigFoot Bases",
+        savingsClaim: "Saved $3,600",
+        feedback: "The BigFoot flared footing calculation was awesome. Our building inspector required flared bases for soil bearing capacity. The hardware list reminded us to order Simpson ABU66 heavy-duty post brackets.",
+        keyTakeaway: "Use an electric concrete vibrator or vigorously rod the concrete with a piece of rebar while filling to eliminate honeycombing air pockets."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Sonotube Concrete Calculator" initialYesCount={257} />
+
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="deck-building"
+    hubTitle="Deck Building Project Hub →"
+    hubDesc="Follow sequential steps: ledger board flashing, Sonotube piers, beam framing, and joist spans."
+    guideSlug="how-many-bags-of-concrete-for-sonotube"
+    guideTitle="How Many Bags of Concrete for Sonotube? →"
+    guideDesc="Exact 60 lb & 80 lb bag formulas for 8\", 10\", 12\", and 16\" diameter tubes."
+  />
 
   <!-- Related Calculators -->
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">

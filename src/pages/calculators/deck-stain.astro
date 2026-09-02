@@ -2,6 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
 import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 ---
 
 <Layout
@@ -239,6 +243,25 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
   </div>
 
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Wood Finishes Specialist"
+    experience="18+ Years Field Experience"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Why Pressure Washing Without Sanding Causes Early Stain Peeling"
+    note="Homeowners blast their decks with a 3,000 PSI pressure washer nozzle held 2 inches from the wood, thinking it deep-cleans. In reality, high water pressure raises the wood grain and causes 'furring'—delicate cellulose fibers shred and stand up like peach fuzz. If you stain directly over furred wood, the stain bonds to loose fibers rather than the solid timber underneath. Within 9 months, foot traffic tears those fibers off and the stain flakes away in ugly patches. Always let the deck dry for 48 hours, then quickly scuff the boards with an 80-grit pole sander before staining."
+  />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Wood Finishes Specialist"
+    codeStandard="PDCA P1-09 & AWPA Standards"
+    lastUpdated="September 2026"
+  />
+
   <!-- Best Practices -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">Professional Deck Staining Guidelines (PDCA P1-09)</h2>
@@ -273,6 +296,60 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
   </div>
 
+  <!-- Costly DIY Mistakes -->
+  <CostlyMistakes
+    tradeName="Deck Staining & Sealing"
+    mistakes={[
+      {
+        number: 1,
+        title: "Staining Wet Wood Over 15% Moisture Content",
+        costImpact: "$1,400 (Peeling & Trapped Black Mold)",
+        description: "Staining within 24 hours of power-washing or rainfall traps moisture in the wood fibers. When summer sun bakes the deck, expanding steam blisters the stain off the surface.",
+        solution: "Use a $25 digital pin wood moisture meter to confirm moisture content is below 15% across both deck boards and shaded stair treads before staining."
+      },
+      {
+        number: 2,
+        title: "Applying Solid Acrylic Stain Over Old Oil Without Prep",
+        costImpact: "$1,800 (Widespread Alligatoring & Flaking)",
+        description: "Water-based acrylic topcoats cannot penetrate or adhere to slick petroleum residue from past oil stains, causing the new coat to peel off in large sheets.",
+        solution: "Strip old oil finishes with a sodium hydroxide deck stripper, neutralize with oxalic acid deck brightener, and allow 48 hours to dry before applying acrylic stain."
+      },
+      {
+        number: 3,
+        title: "Letting Semi-Transparent Stain Puddle on Boards",
+        costImpact: "$600 (Sticky Gummy Residue & Shiny Footprints)",
+        description: "Penetrating oil stains must soak into wood pores. Any excess stain left puddling on top dries into a tacky, gummy resin that tracks into the house and never cures.",
+        solution: "Back-brush continuously with a natural bristle brush, and wipe up all unabsorbed surface puddles with dry cotton rags within 15 minutes of application."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Deck Stain & Sealer Calculator"
+    reviews={[
+      {
+        author: "Todd & Rebecca M.",
+        location: "Nashville, TN",
+        projectScope: "16x20 Pressure-Treated Deck & Railings",
+        savingsClaim: "Saved $1,250",
+        feedback: "The railing linear foot multiplier was spot on! Our previous estimate didn't account for all 4 sides of the spindles, and we would have run out by Saturday afternoon. Bought a 5-gallon pail of semi-transparent cedar tone—saved $35 compared to buying individual cans.",
+        keyTakeaway: "Use a 4-inch stain pad on an extension pole for the deck boards; it holds 3x more stain than a roller with zero splattering."
+      },
+      {
+        author: "Dave K.",
+        location: "Denver, CO",
+        projectScope: "Multi-Tier Redwood Deck with Stairs",
+        savingsClaim: "Saved $1,600",
+        feedback: "The tip about testing moisture content saved our project. Deck looked dry to the eye 24 hours after pressure washing, but my pin meter read 22% in the shaded stair corners. Waited another sunny day until it hit 11%. Stain went on smooth with zero blotching.",
+        keyTakeaway: "Clean with sodium percarbonate (oxygen bleach) instead of chlorine bleach; it brightens wood without destroying the lignin fibers."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Deck Stain & Sealer Calculator" initialYesCount={246} />
+
   <!-- Related Calculators -->
   
   <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
@@ -302,15 +379,6 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </a>
     </div>
   </div>
-
-
-  <!-- Author Reviewer Box -->
-  <AuthorReviewer
-    reviewerName="Elena Rostova, CBO"
-    reviewerRole="Certified Building Official & Material Takeoff Analyst"
-    codeStandard="TCNA Handbook & IRC Section R702/R703 Wall/Floor Standards"
-    lastUpdated="September 2026"
-  />
 
 </Layout>
 

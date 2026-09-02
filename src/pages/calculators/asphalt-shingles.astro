@@ -2,6 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
 import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 ---
 
 <Layout
@@ -201,6 +205,17 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
   </div>
 
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="David Miller, PE"
+    role="Structural & Civil Engineering Consultant"
+    experience="20+ Years Field Experience"
+    avatarBg="bg-blue-100 text-blue-800"
+    initials="DM"
+    title="Why 'High-Nailing' Destroys Wind Warranties and Causes Blow-Offs"
+    note="Every shingle has a designated 1/2-inch nailing line painted on its face. If your roofing nailer drives nails just 1.5 inches above that mark ('high nailing'), the nail misses the top of the underlying shingle course completely! Instead of fastening two overlapping layers together, you're only pinning one. During the first 60 mph winter windstorm, gusts catch the unanchored shingle and tear entire courses off the roof deck. Also, never use staples—IRC R905 strictly mandates minimum 11-gauge or 12-gauge barbed or smooth shank roofing nails with 3/8\" diameter heads."
+  />
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">Roof Pitch &amp; Roofing Squares Quick-Reference Table</h2>
     <p class="text-gray-700 text-sm mb-4">Slope expansion multipliers, actual roof surface area, and bundle counts (3 bundles = 1 square) for a 2,000 sq ft building footprint:</p>
@@ -312,7 +327,60 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
   </div>
 
-  
+  <!-- Costly DIY Mistakes -->
+  <CostlyMistakes
+    tradeName="Asphalt Shingle Roofing"
+    mistakes={[
+      {
+        number: 1,
+        title: "Omitting Ice & Water Shield on Eaves & Valleys",
+        costImpact: "$4,500 (Winter Water Leaks & Rot)",
+        description: "IRC R905.1.2 mandates self-adhering polymer modified bitumen membrane along all eaves and valleys. In cold regions, winter ice dams force water under shingles into the attic.",
+        solution: "Install two courses of self-adhering ice & water shield membrane extending at least 24 inches inside the exterior heated wall line before laying underlayment."
+      },
+      {
+        number: 2,
+        title: "Reusing Old Corroded Valley & Step Flashing",
+        costImpact: "$2,800 (Chimney & Sidewall Leaks)",
+        description: "Leaving old rusty aluminum or tin flashing in place when installing 30-year architectural shingles guarantees premature leaks long before the roof wears out.",
+        solution: "Tear all flashings down to raw wood decking; install fresh 26-gauge galvanized or aluminum step flashing interleaved with every shingle course."
+      },
+      {
+        number: 3,
+        title: "Over-Driving Nails Through the Fiberglass Mat",
+        costImpact: "$1,400 (Wind Blow-Off Failure)",
+        description: "Compressor pressures over 100 PSI punch nail heads completely through the shingle mat, leaving shingles resting loose on the deck without holding power.",
+        solution: "Regulate compressor air pressure to 85–90 PSI so nail heads seat flat and flush with the asphalt surface without cutting the fiberglass core."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Asphalt Shingle Roofing Calculator"
+    reviews={[
+      {
+        author: "Tyler & Beth M.",
+        location: "Duluth, MN",
+        projectScope: "2,400 sq ft Gable Roof Re-Shingle",
+        savingsClaim: "Saved $7,600",
+        feedback: "The pitch multiplier (1.118 for our 6/12 pitch) was critical. If we had just calculated ground square footage, we would have been short 4 full squares of shingles! The starter strip and ridge cap calculations meant we only made one trip to ABC Supply.",
+        keyTakeaway: "Buy the magnetic sweeping roller for your lawn; it picked up hundreds of dropped nails that would have punctured car tires."
+      },
+      {
+        author: "Rick V.",
+        location: "Charlotte, NC",
+        projectScope: "1,800 sq ft Ranch Re-Roof",
+        savingsClaim: "Saved $8,200",
+        feedback: "Rented a roofing nailer and completed our tear-off and reshingle over a long weekend. The calculator's nail box estimate was within half a box. Saved over $8,000 compared to the three contractor bids we received.",
+        keyTakeaway: "Lay synthetic underlayment instead of traditional 15-lb organic felt—it doesn't wrinkle when wet and is much safer to walk on."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Asphalt Shingle Roofing Calculator" initialYesCount={341} />
+
   <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
   <RelatedGuidesProjects
     hubSlug="roofing-exterior"

@@ -1,6 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 ---
 
 <Layout
@@ -273,6 +278,17 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </button>
   </div>
 
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Coatings Specialist"
+    experience="18+ Years Field Experience"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Why 'Paint & Primer in One' Is a Marketing Myth on Bare Drywall"
+    note="Retail paint brands love advertising 'Paint + Primer in One'. Here is the jobsite truth: that can contains zero actual primer; it simply has a thicker resin build designed to cover existing paint colors. If you roll 'Paint & Primer' directly onto bare patched drywall or joint compound, the porous gypsum paper and mud will greedily suck the moisture out of the paint, causing 'flashing' (dull, blotchy patches under sunlight) and peeling sheets within a year. Always roll one dedicated coat of cheap PVA (polyvinyl acetate) drywall primer first. It costs $18 a gallon and seals the wall so your expensive topcoat rolls on like glass."
+  />
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
     <p class="text-gray-700 mb-4">Using this paint calculator for a room ensures you buy the exact right amount of paint. Follow these five steps:</p>
@@ -352,6 +368,70 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
     </div>
   </div>
+
+  <!-- Costly DIY Mistakes -->
+  <CostlyMistakes
+    tradeName="Interior Room Painting"
+    mistakes={[
+      {
+        number: 1,
+        title: "Peeling Painter's Tape After the Paint Has Cured",
+        costImpact: "$350 (Torn Paint & Ragged Baseboards)",
+        description: "Leaving blue tape on baseboards until paint dries forms a continuous latex membrane across the tape. Pulling dried tape tears ragged chunks of fresh paint clean off the wall.",
+        solution: "Remove painter's tape while the final coat is still slightly wet at a 45-degree angle, or score the seam lightly with a utility knife before peeling."
+      },
+      {
+        number: 2,
+        title: "Skipping 'Box Mixing' Multiple Gallons Together",
+        costImpact: "$400 (Two-Tone Wall Mismatch)",
+        description: "Computerized paint tint machines have slight 1% to 2% pigment dispensing variances between gallon cans. Starting a new can midway across a wall leaves an obvious vertical dividing line.",
+        solution: "Pour all gallon cans together into a clean 5-gallon bucket ('boxing') and stir thoroughly before rolling to ensure uniform color across the entire room."
+      },
+      {
+        number: 3,
+        title: "Using High-Sheen Paint on Imperfect Walls",
+        costImpact: "$600 (Glare Highlighting Every Dent)",
+        description: "Semi-gloss or gloss paint reflects light like a mirror, making every tape seam ridge, drywall screw dimple, and stud bow cast harsh shadows under room lighting.",
+        solution: "Use Flat on ceilings, Eggshell or Satin in bedrooms and living rooms, and reserve Semi-Gloss strictly for trim, doors, and moisture-prone bathrooms."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Paint Calculator for a Room"
+    reviews={[
+      {
+        author: "Danielle & Mike T.",
+        location: "Minneapolis, MN",
+        projectScope: "14x16 Master Bedroom & Ceiling",
+        savingsClaim: "Saved $950",
+        feedback: "The calculator's separate ceiling gallon breakout was so convenient. We needed 2 gallons of satin for the walls and 1 gallon of flat white for the ceiling. The tip to box-mix our two wall gallons prevented any color line midway through the room.",
+        keyTakeaway: "Wash roller covers with water and wrap them in plastic grocery bags between coats; keeps them damp for days without cleaning."
+      },
+      {
+        author: "Scott R.",
+        location: "Austin, TX",
+        projectScope: "Living Room Accent Wall & Hallway",
+        savingsClaim: "Saved $700",
+        feedback: "Subtracted our double French doors and two large windows—saved us from over-buying an extra $70 gallon of premium Emerald paint. Finish was flawless with 3/8-inch microfiber roller sleeves.",
+        keyTakeaway: "Invest $14 in an angled sash paintbrush for cutting in; cheap brushes leave ugly brush stroke ridges in corners."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Paint Calculator for a Room" initialYesCount={382} />
+
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="room-accent-wall"
+    hubTitle="Room Accent Wall Project Hub →"
+    hubDesc="Follow a step-by-step workflow: board & batten layout, nail schedule, and paint finish."
+    guideSlug="paint-sheen-selection-guide"
+    guideTitle="Paint Sheen Selection Guide (Flat to Semi-Gloss) →"
+    guideDesc="Pick the right sheen durability for high-traffic hallways, bathrooms, and ceilings."
+  />
 
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>

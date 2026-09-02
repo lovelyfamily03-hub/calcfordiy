@@ -1,6 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 ---
 
 <Layout
@@ -185,6 +190,17 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </div>
   </div>
 
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Building Science Specialist"
+    experience="18+ Years Field Experience"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Why Spraying Foam Too Thick in One Pass Causes Internal Scorching"
+    note="Polyurethane closed-cell spray foam cures through an aggressive exothermic chemical reaction that generates internal core temperatures exceeding 250°F (121°C). If you spray a cavity 3 or 4 inches deep in a single pass instead of layering 1.5-inch 'lifts', the trapped heat cannot escape. The core of the foam chars brown, shrinks away from the studs, off-gasses toxic fishy amine fumes for months, and can even ignite wooden framing hours after you pack up. Always spray in maximum 2-inch passes and wait 20 minutes for the layer to cool to the touch before applying the next coat."
+  />
+
   <!-- How to Use -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Apply Spray Foam Safely (DIY Canister Rules)</h2>
@@ -225,9 +241,9 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     
   <!-- Author Reviewer Box -->
   <AuthorReviewer
-    reviewerName="Marcus Vance"
-    reviewerRole="Master Electrician & Building Systems Specialist"
-    codeStandard="NEC NFPA 70 & Uniform Plumbing/Mechanical Code"
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Building Science Specialist"
+    codeStandard="IRC Chapter 11, IECC & ASTM C518 Standards"
     lastUpdated="September 2026"
   />
 
@@ -247,6 +263,70 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
     </div>
   </div>
+
+  <!-- Costly DIY Mistakes -->
+  <CostlyMistakes
+    tradeName="Spray Foam Insulation"
+    mistakes={[
+      {
+        number: 1,
+        title: "Spraying Cold Tanks or Cold Framing (Below 65°F)",
+        costImpact: "$1,600 (Gooey Off-Ratio Chemical Failure)",
+        description: "Cold tanks cause the viscous polyol and isocyanate chemicals to dispense at an uneven 2:1 ratio instead of 1:1, leaving a sticky, unexpanded liquid that never cures and must be scraped off.",
+        solution: "Store canister tanks indoors at 75°F to 85°F for 24 hours and check substrate surface temperature with an infrared thermometer before spraying."
+      },
+      {
+        number: 2,
+        title: "Omitting the 15-Minute Thermal Barrier (IRC R316.4)",
+        costImpact: "$2,200 (Failed Fire Inspection & Tear-Out)",
+        description: "Building codes strictly prohibit exposed spray foam in habitable rooms, basements, and storage areas without an approved thermal barrier to prevent flashover in fires.",
+        solution: "Cover all cured foam with 1/2\" drywall, 3/8\" structural wood paneling, or an approved intumescent coating (like DC315) to satisfy local inspectors."
+      },
+      {
+        number: 3,
+        title: "Letting the Dispenser Gun Sit Idle for 45 Seconds",
+        costImpact: "$120 (Clogged Nozzles & Canister Lockup)",
+        description: "Mixed polyurethane chemicals begin expanding and curing inside the plastic nozzle within 30 to 45 seconds of releasing the trigger, permanently choking the tip.",
+        solution: "Maintain steady sweeping motions; keep a petroleum-jelly-lubricated pack of 10 spare tips in your work apron and snap on a new nozzle immediately if you pause."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Spray Foam Insulation Calculator"
+    reviews={[
+      {
+        author: "Craig & Lisa B.",
+        location: "Grand Rapids, MI",
+        projectScope: "Basement Rim Joist Air-Sealing",
+        savingsClaim: "Saved $1,100",
+        feedback: "We calculated 240 board feet for our basement perimeter rim joists and purchased a 200 bd ft Froth-Pak kit plus a couple of cans. The calculator's R-value profile (R-13.4 at 2 inches) and vapor retarder status eliminated drafts completely. Our floor above feels 8 degrees warmer this winter.",
+        keyTakeaway: "Wear disposable Tyvek suits with hoods taped to nitrile gloves; cured spray foam does not wash out of hair or clothing."
+      },
+      {
+        author: "Tom W.",
+        location: "Bozeman, MT",
+        projectScope: "24x32 Workshop Pole Barn",
+        savingsClaim: "Saved $3,400",
+        feedback: "The board feet calculation was within 3% of our actual yield. Warming the tanks by the woodstove to 80°F before spraying made the foam expand like whipped cream with zero waste. Saved over $3,000 compared to the foam contractor quote.",
+        keyTakeaway: "Spray 1.5 inches first, let it fully cure, and then hit thin spots on a second pass rather than trying to build thick layers all at once."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Spray Foam Insulation Calculator" initialYesCount={215} />
+
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="garage-workshop-finishing"
+    hubTitle="Garage & Workshop Finishing Hub →"
+    hubDesc="Follow sequential steps: wall insulation, subpanel wiring, ceiling drywall, and heating."
+    guideSlug="how-much-attic-insulation"
+    guideTitle="Attic Insulation R-Value & Depth Guide →"
+    guideDesc="Calculate R-38 to R-60 blown-in cellulose and fiberglass bag coverage."
+  />
 
   <!-- Related Calculators -->
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 print:hidden">

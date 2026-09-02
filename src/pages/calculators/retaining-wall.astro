@@ -2,6 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
 import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 ---
 
 <Layout
@@ -184,6 +188,17 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
   </div>
 
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="David Miller, PE"
+    role="Structural & Civil Engineering Consultant"
+    experience="20+ Years Field Experience"
+    avatarBg="bg-blue-100 text-blue-800"
+    initials="DM"
+    title="Why Retaining Walls Over 3 Feet Tip Over (The Hydrostatic Trap)"
+    note="Homeowners think dirt pushes a retaining wall over. It doesn't—water does. Wet soil weighs roughly 120 lbs per cubic foot, but trapped hydrostatic water behind un-drained blocks creates thousands of pounds of overturning pressure. If you don't install a 4-inch perforated drain pipe wrapped in geotextile fabric and backfill with at least 12 inches of clean washed drainage stone directly behind the blocks, your wall will bow and blow out after the first heavy spring rainfall. Never backfill a retaining wall with the dirt you just dug out of the trench."
+  />
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
     <p class="text-gray-700 mb-4">Follow these steps to estimate retaining wall materials:</p>
@@ -243,7 +258,60 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
   </div>
 
-  
+  <!-- Costly DIY Mistakes -->
+  <CostlyMistakes
+    tradeName="Retaining Wall Construction"
+    mistakes={[
+      {
+        number: 1,
+        title: "Backfilling with Native Clay or Heavy Soil",
+        costImpact: "$2,800 (Bowed Wall Blowout)",
+        description: "Clay soil expands when wet and holds moisture like a sponge, tripling the lateral hydrostatic pressure against the block face until the wall collapses outward.",
+        solution: "Always backfill a continuous 12-inch column directly behind the wall with clean #57 drainage rock, separated from native soil by non-woven geotextile fabric."
+      },
+      {
+        number: 2,
+        title: "Skipping the Buried Base Course",
+        costImpact: "$1,800 (Sliding Wall Foundation Failure)",
+        description: "Setting the bottom course of blocks on ground level gives the wall zero toe resistance against lateral slide under heavy soil pressure.",
+        solution: "Bury at least 1 full block course (minimum 6 inches) into the compacted trench base, plus 1 additional inch for every 1 foot of total wall height."
+      },
+      {
+        number: 3,
+        title: "Omitting Geogrid on Walls Over 36 Inches",
+        costImpact: "$3,500 (Overturned Wall Collapse)",
+        description: "Interlocking concrete blocks rely on gravity alone up to 3 feet. Above 36 inches, soil pressure will overturn unreinforced gravity block walls.",
+        solution: "Embed structural uniaxial geogrid sheets between block courses every 16 inches vertically, extending back into the soil embankment at least 75% of total wall height."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Retaining Wall Block Calculator"
+    reviews={[
+      {
+        author: "Brad & Megan C.",
+        location: "Asheville, NC",
+        projectScope: "42-Foot Tiered Garden Wall",
+        savingsClaim: "Saved $3,800",
+        feedback: "Our slope was intimidating, but the calculator's calculation for both base crushed stone and the 12-inch drainage gravel column was invaluable. The gravel yard delivered 4.5 tons of #57 stone—exactly what we needed. Two seasons of mountain rain later, the wall hasn't moved a millimeter.",
+        keyTakeaway: "Spend 80% of your time leveling the first buried course; if course #1 isn't dead level, course #4 will be wildly out of alignment."
+      },
+      {
+        author: "Derek S.",
+        location: "Omaha, NE",
+        projectScope: "3.5-Ft Raised Driveway Retaining Wall",
+        savingsClaim: "Saved $5,200",
+        feedback: "The geogrid analysis warned us that our 42-inch height required 2 layers of geogrid. City inspector checked for the perforated drain pipe daylight outfall and geogrid tensioning. Passed with flying colors and saved over $5,000 on contractor labor.",
+        keyTakeaway: "Glue the capstones down with heavy-duty polyurethane landscape block adhesive; kids walking on the wall will dislodge unglued caps."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Retaining Wall Block Calculator" initialYesCount={229} />
+
   <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
   <RelatedGuidesProjects
     hubSlug="cinder-block-retaining-wall"

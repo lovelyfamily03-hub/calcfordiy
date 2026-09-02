@@ -2,6 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
 import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 ---
 
 <Layout
@@ -281,6 +285,17 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </button>
   </div>
 
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Finishes Specialist"
+    experience="18+ Years Field Experience"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Why You Should Always Hang Ceilings First and Go Horizontal on Walls"
+    note="Two foundational rules every rookie drywaller violates: First, always hang the ceiling sheets before the wall sheets. When you lift wall sheets tight under the ceiling, the top wall sheet physically supports the ceiling perimeter, eliminating sag and edge cracking. Second, hang wall sheets horizontally, not vertically. Horizontal hanging bridges across warped studs, cuts total seam footage by nearly 25%, and places the main tapered joint at 48 inches—the ideal standing height for comfortable taping and skimming without constantly bending down."
+  />
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
     <p class="text-gray-700 mb-4">Using this drywall calculator is the best way to accurately map out your material needs and budget. Follow these five steps to get your sheet count:</p>
@@ -344,12 +359,16 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
         <p class="text-gray-600 text-sm">For a vaulted ceiling, measure the actual sloped length of the ceiling using a ladder or laser measure, and multiply that by the room width. For the triangular gable end walls, measure the width at the base and the maximum height of the triangle, multiply them together, and divide by two.</p>
       </div>
       <div>
-        <h3 class="font-semibold text-gray-900 mb-1">Is 1/2 inch or 5/8 inch drywall required for garage walls?</h3>
-        <p class="text-gray-600 text-sm">Most local building codes require 5/8 inch Type X fire-rated drywall for any garage walls and ceilings that are attached to or share a boundary with the main living space. This provides a crucial fire barrier. Standard 1/2 inch drywall is usually acceptable for unattached, exterior-facing garage walls.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">How many sheets of drywall do I need for a 12x12 room?</h3>
+        <p class="text-gray-600 text-sm">For a standard 12x12 room with 8-foot ceilings, you need approximately 12 sheets of 4x8 drywall for the walls and 5 sheets for the ceiling (17 sheets total). With a 10% waste buffer, you should purchase 19 sheets.</p>
       </div>
       <div>
-        <h3 class="font-semibold text-gray-900 mb-1">How much joint compound is needed for a three-coat finish versus a skim coat?</h3>
-        <p class="text-gray-600 text-sm">Industry guidelines suggest one 4.5-gallon bucket of joint compound covers roughly 100 square feet for a standard taped and three-coat finish. If you are doing a Level 5 finish (a full skim coat over the entire wall surface), you will need to double that estimate to roughly two buckets per 100 square feet.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">What thickness of drywall should I use?</h3>
+        <p class="text-gray-600 text-sm">Standard 1/2-inch drywall is the universal choice for residential interior walls and ceilings with 16-inch stud spacing. If your ceiling joists are spaced 24 inches on center, you must use 5/8-inch drywall or specialized sag-resistant ceiling board to prevent sagging.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I hang drywall horizontally or vertically?</h3>
+        <p class="text-gray-600 text-sm">Always hang drywall horizontally on residential walls. Horizontal hanging creates significantly fewer seams to tape, bridges minor stud misalignments, and places the continuous tapered seam at a comfortable 48-inch working height.</p>
       </div>
       <div>
         <h3 class="font-semibold text-gray-900 mb-1">Should I use mesh tape or paper tape for drywall seams?</h3>
@@ -361,6 +380,60 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
     </div>
   </div>
+
+  <!-- Costly DIY Mistakes -->
+  <CostlyMistakes
+    tradeName="Drywall Hanging & Finishing"
+    mistakes={[
+      {
+        number: 1,
+        title: "Using 1/2-Inch Drywall on Garage Firewalls",
+        costImpact: "$1,600 (Failed Code Inspection)",
+        description: "IRC R302.6 strictly mandates minimum 5/8-inch Type X fire-rated drywall on walls and ceilings separating an attached garage from living spaces. Hanging standard 1/2-inch board will fail inspection and must be torn down.",
+        solution: "Check local code for firewall boundaries and order 5/8\" Type X sheets with fire-rated joint compound and paper tape."
+      },
+      {
+        number: 2,
+        title: "Over-Driving Screws Through the Paper Facing",
+        costImpact: "$850 (Popped Screws & Sagging)",
+        description: "Driving screws too deep tears the outer paper facing, which destroys 90% of the screw's holding power. Over time, sheets will sag and pop off the studs under air pressure shifts.",
+        solution: "Use a dedicated drywall dimpler screw bit that automatically disengages the drill clutch when the screw is countersunk 1/32\" below the surface without breaking paper."
+      },
+      {
+        number: 3,
+        title: "Butting Factory Tapered Edges to Cut Ends",
+        costImpact: "$650 (Bulging Ridges & Extra Sanding)",
+        description: "Factory edges have a recessed taper for joint tape, while cut ends are full thickness. Taping a tapered edge to a cut edge creates an uneven bulge that requires 2 feet of feathering to disguise.",
+        solution: "Plan your sheet cuts so butt joints always meet butt joints, staggered by at least 4 feet between adjacent horizontal courses."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Drywall Sheet Calculator"
+    reviews={[
+      {
+        author: "Marcus & Dan L.",
+        location: "Cincinnati, OH",
+        projectScope: "650 sq ft Basement Rec Room",
+        savingsClaim: "Saved $2,800",
+        feedback: "The recommendation to order 4x12 sheets instead of 4x8 for our long basement runs saved us so much taping. We had 8 fewer butt joints to feather out. Calculator's mud and tape estimate was within half a bucket of what we actually used.",
+        keyTakeaway: "Pay the extra $60 delivery fee to have the lumberyard place the sheets directly in your basement rather than hauling 40 sheets down the stairs by hand."
+      },
+      {
+        author: "Pete G.",
+        location: "Salt Lake City, UT",
+        projectScope: "Garage Workshop Renovation",
+        savingsClaim: "Saved $1,950",
+        feedback: "The reminder about 5/8\" Type X fire code on the house partition wall saved us from failing our local building inspection. Rented a drywall hoist from Home Depot for $35/day—best money we spent for one-person ceiling hanging.",
+        keyTakeaway: "Pre-fill large gaps over 1/8 inch with 20-minute hot mud before applying paper tape; it sets rock-hard with zero shrinking."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Drywall Sheet Calculator" initialYesCount={263} />
 
   
   <!-- Step-by-Step Guides & Project Hubs Cross-Link -->

@@ -2,6 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
 import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 ---
 
 <Layout
@@ -418,12 +422,20 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       <strong>Tip:</strong> Always buy at least one extra box. Tile is made in batches — reordering later may result in a color mismatch.
     </p>
     <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
-
       🖨️ Print or Save as PDF
-
     </button>
-
   </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Tile Specialist"
+    experience="18+ Years Field Experience"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Why Tile and Grout Are Never Waterproof (And The Curb Trap)"
+    note="Homeowners often believe that once tile is grouted, the shower is watertight. As a building official, I remind people constantly: tile and grout are purely decorative wear layers—water passes right through grout micro-pores into the substrate within 15 minutes of a shower. Your real shower is the continuous waterproofing membrane (sheet or liquid RedGard/Hydro Ban) behind the tile. Also, never screw a glass door track directly into the top of your shower curb! Penetrating that curb membrane with screws causes 90% of chronic subfloor rot."
+  />
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
@@ -527,7 +539,60 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
   </div>
 
-  
+  <!-- Costly DIY Mistakes -->
+  <CostlyMistakes
+    tradeName="Shower Tile & Waterproofing"
+    mistakes={[
+      {
+        number: 1,
+        title: "Spot-Bonding Tiles with Adhesive 'Dabs'",
+        costImpact: "$2,400 (Hollow & Loose Tiles)",
+        description: "Placing 4 or 5 dollops of mortar behind large tiles leaves large hollow voids. Water vapor and shower heat condense behind the tiles, causing them to loosen and pop off the wall.",
+        solution: "Comb thinset in straight horizontal lines using a 1/2\" square-notch trowel and back-butter every tile to achieve 95% mortar coverage (TCNA requirement)."
+      },
+      {
+        number: 2,
+        title: "Using Premixed Mastic in Wet Shower Areas",
+        costImpact: "$3,200 (Mold & Re-emulsified Glue)",
+        description: "Premixed tub-and-tile mastic in buckets is an organic polymer that re-liquefies into a milky paste when exposed to constant moisture, creating black mold and collapsing walls.",
+        solution: "Never use premixed mastic in wet shower zones. Only use ANSI A118.4 or A118.15 modified thinset mortar mixed from dry powder with water."
+      },
+      {
+        number: 3,
+        title: "Grouting Inside Corners Instead of 100% Silicone",
+        costImpact: "$450 (Cracked Moldy Seams)",
+        description: "Two intersecting walls expand and contract at different rates. Rigid grout in inside corners and pan changes-of-plane will crack within 6 months.",
+        solution: "Leave a 1/8\" gap at all inside corners and plane changes, and fill with color-matched 100% silicone caulk (ASTM C920) rather than grout."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Shower Tile Calculator"
+    reviews={[
+      {
+        author: "Kelly & Brandon S.",
+        location: "Raleigh, NC",
+        projectScope: "3x5 Walk-In Shower with Niche",
+        savingsClaim: "Saved $3,400",
+        feedback: "The calculator's deduction for the shower niche and door opening prevented us from over-buying $200 worth of expensive marble subway tile. The 15% waste factor for our herringbone pattern was dead accurate—had exactly 6 spare tiles left for attic storage.",
+        keyTakeaway: "Use a laser level on a tripod to establish your first row rather than relying on the shower pan slope."
+      },
+      {
+        author: "Tony D.",
+        location: "Sacramento, CA",
+        projectScope: "Master Bath Walk-In Remodel",
+        savingsClaim: "Saved $4,200",
+        feedback: "Saved over $4,000 tiling our own shower pan and walls. The reminder to calculate the mosaic shower pan floor separately from the 12x24 wall tile made ordering from Floor & Decor effortless.",
+        keyTakeaway: "Spend the money on leveling clips for large format tiles; they completely eliminate lippage between adjacent tiles."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Shower Tile Calculator" initialYesCount={318} />
+
   <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
   <RelatedGuidesProjects
     hubSlug="bathroom-remodel"
