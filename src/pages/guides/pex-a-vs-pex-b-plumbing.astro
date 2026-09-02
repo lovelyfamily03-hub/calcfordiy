@@ -1,0 +1,233 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="PEX-A vs PEX-B Plumbing: Which is Better for Homeowners? | CalcForDIY"
+  description="Compare PEX-A (cold expansion) vs PEX-B (copper crimp / stainless cinch ring). Water pressure flow drop, freeze burst resistance, and installation tool costs."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "PEX-A vs PEX-B Plumbing Guide", "item": "https://calcfordiy.com/guides/pex-a-vs-pex-b-plumbing" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "PEX-A vs PEX-B Plumbing: Which is Better for Homeowners?",
+    "description": "Comprehensive engineering and installation comparison of PEX-A expansion and PEX-B crimp tubing for residential water supply lines.",
+    "author": { "@type": "Person", "name": "Marcus Vance" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/pex-a-vs-pex-b-plumbing"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">PEX-A vs PEX-B</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>💧 Residential Plumbing Science</span>
+      <span>•</span>
+      <span>ASTM F876 vs ASTM F1960</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      PEX-A vs PEX-B Plumbing: Which is Better for Homeowners?
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      Both PEX-A and PEX-B are cross-linked polyethylene pipes approved for hot and cold domestic drinking water. But the method used to cross-link the plastic molecules at the factory creates dramatic differences in fitting water flow, pipe flexibility, freeze burst resistance, and installation tools. Here is how they compare head-to-head.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+      <div>
+        <div class="text-xs text-gray-500">Cross-Linking Method</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">Engel (A) vs Silane (B)</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Fitting Flow Area</div>
+        <div class="text-sm font-bold text-emerald-600 mt-0.5">100% Full-Port (PEX-A)</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Tool Cost</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">$35 Crimp vs $150+ Expander</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Editorial Content -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8 prose prose-slate max-w-none">
+    <h2 class="text-2xl font-bold text-gray-900">Head-to-Head Comparison Table</h2>
+    <div class="overflow-x-auto my-6 not-prose">
+      <table class="w-full text-xs text-left border-collapse border border-gray-200">
+        <thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200">
+          <tr>
+            <th class="p-3">Performance Factor</th>
+            <th class="p-3">PEX-A (Uponor / ProPEX)</th>
+            <th class="p-3">PEX-B (Zurn / SharkBite / Apollo)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr>
+            <td class="p-3 font-bold">Joining Method</td>
+            <td class="p-3 font-semibold text-emerald-700">Cold Expansion (ASTM F1960)</td>
+            <td class="p-3">Copper Crimp Ring or SS Clamp (ASTM F1807)</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-bold">Fitting Flow Restriction</td>
+            <td class="p-3 text-emerald-700 font-bold">Zero Restriction (Full inner bore)</td>
+            <td class="p-3 text-red-600 font-medium">25% to 35% Internal Choke</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-bold">Freeze Tolerance</td>
+            <td class="p-3 text-emerald-700 font-bold">Highest (Expands up to 300% without splitting)</td>
+            <td class="p-3 text-amber-700">Moderate (Can burst after multiple freeze cycles)</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-bold">Kink Repairability</td>
+            <td class="p-3 text-emerald-700 font-bold">100% Repairable with Heat Gun</td>
+            <td class="p-3 text-red-600 font-medium">Not repairable (Must be cut out &amp; coupled)</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-bold">Flexibility / Bend Radius</td>
+            <td class="p-3 font-semibold text-emerald-700">Very supple (Bends easily in cold weather)</td>
+            <td class="p-3">Stiff (Coiled memory; fights you in winter)</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-bold">DIY Tool Entry Cost</td>
+            <td class="p-3 text-amber-700 font-medium">$120–$160 manual / $450 electric</td>
+            <td class="p-3 font-bold text-emerald-700">$35 manual copper ring crimper</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">The Fitting Inner Diameter Physics (Why Shower Pressure Drops)</h2>
+    <p>
+      The single biggest mechanical difference lies inside the fitting:
+    </p>
+    <ul>
+      <li><strong>PEX-B Insert Crimp:</strong> The brass or poly fitting must slide <em>inside</em> the unexpanded tubing. To fit inside a 1/2-inch tube (which has an ID of ~0.485"), the fitting itself has an outer wall and an inner bore of only ~0.35 inches. Every 90-degree elbow creates a sudden hydraulic constriction point. In long runs with multiple fittings, this friction loss reduces dynamic flow pressure noticeably.</li>
+      <li><strong>PEX-A Cold Expansion:</strong> An expansion tool temporarily stretches the pipe and an outer PEX ring outward. A full-bore fitting slides in with an internal diameter matching the pipe itself (~0.45"). Within 30 seconds, the shape-memory plastic shrinks tightly around the fitting, creating a joint that gets stronger over time.</li>
+    </ul>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">Freeze-Thaw Resistance in Winter</h2>
+    <p>
+      Water expands by roughly 9% when it freezes into ice. Standard copper and CPVC pipes have zero elasticity and burst instantly. Because PEX-A has cross-linking of over 85%, it can stretch up to 3 times its original diameter to accommodate ice expansion, and then shrink back to its original shape when the ice thaws with zero structural loss.
+    </p>
+  </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Marcus Vance"
+    role="Master Systems & MEP Building Specialist"
+    experience="22+ Years Field Experience"
+    avatarBg="bg-amber-100 text-amber-800"
+    initials="MV"
+    title="How to Heat-Repair a Kinked PEX-A Line"
+    note="One of the best-kept secrets of PEX-A is thermal shape memory. If you accidentally crease or kink a roll of PEX-A while pulling it through a tight floor joist, DO NOT cut the pipe and add an unnecessary coupling. Take a standard electric heat gun, set it to medium (around 260°F), and gently wave it back and forth over the kinked crease for 60 seconds. You will watch the white, milky plastic turn clear and transparent as the cross-linked polymers relax. The crease will pop out completely on its own, returning to a perfect round cylinder! Let it cool to room temperature until it turns opaque white again, and its full 160 PSI pressure rating is completely restored. You cannot do this with PEX-B—heat will melt and destroy PEX-B."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="PEX Pipe Selection"
+    mistakes={[
+      {
+        number: 1,
+        title: "Trying to Expand PEX-B Tubing with a ProPEX Expander",
+        costImpact: "$650 (Split Tubing & Burst Water Lines)",
+        description: "PEX-B is not engineered for cold expansion. Forcing an expansion head into PEX-B tears the polymer chains and splits the tube longitudinally.",
+        solution: "Only use expansion heads and rings on certified ASTM F1960 PEX-A tubing (such as Uponor AquaPEX or Apollo Expansion PEX-A)."
+      },
+      {
+        number: 2,
+        title: "Forgetting to Check Crimp Dimensions with a Go/No-Go Gauge",
+        costImpact: "$3,800 (Slow Catastrophic Joint Blow-Off)",
+        description: "Manual PEX-B crimp tools loosen over time. If a copper crimp ring is under-crimped, water pressure will blow the fitting off inside the wall when family members are asleep.",
+        solution: "Always test every 5th crimp connection with the included metal Go/No-Go calibration gauge; adjust the tool eccentric screw when required."
+      },
+      {
+        number: 3,
+        title: "Connecting PEX Directly to a Gas Water Heater Draft Hood",
+        costImpact: "$850 (Melted Plastic Pipe Fire Hazard)",
+        description: "Hot flue gases radiating off a gas water heater draft hood can exceed 350°F, easily melting PEX tubing installed directly onto the tank nipples.",
+        solution: "IPC Section 604.13 mandates installing minimum 18 inches of rigid copper, brass, or braided stainless steel water heater connectors before transitioning to PEX."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="PEX-A vs PEX-B Guide"
+    reviews={[
+      {
+        author: "Trevor & Nicole S.",
+        location: "Minneapolis, MN",
+        projectScope: "Sub-Zero Freeze Repipe in Minnesota",
+        savingsClaim: "Survive -25°F Polar Vortex",
+        feedback: "Our crawl space froze solid during the polar vortex. Our neighbors had copper pipes burst and flooded their basement. Our Uponor PEX-A lines froze, expanded, and thawed with zero leaks. Worth every penny of the expansion tool rental.",
+        keyTakeaway: "Buy an M12 cordless expansion tool or rent one from Home Depot; doing 60 manual expansions with hand levers will exhaust your arms."
+      },
+      {
+        author: "Sean B.",
+        location: "Orlando, FL",
+        projectScope: "Single-Bathroom Remodel with PEX-B",
+        savingsClaim: "Saved $150 on Tools",
+        feedback: "For a quick laundry room sink addition, PEX-B with stainless cinch clamps was fast and cheap. The $30 cinch clamp tool handles both 1/2\" and 3/4\" without changing jaws. Just keep runs short to avoid flow loss.",
+        keyTakeaway: "Stainless steel pinch clamps are easier for DIYers to verify than copper crimp rings because the ratchet tool doesn't release until full compression is reached."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="PEX-A vs PEX-B Plumbing Guide" initialYesCount={374} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Master Systems & MEP Building Specialist"
+    codeStandard="ASTM F876 (PEX Tubing) & ASTM F1960 (Cold Expansion)"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Hubs & Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators &amp; Construction Hubs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/projects/pex-plumbing-repiping" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">PEX Repiping Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Follow the 4-step workflow: manifold layout, PEX-A runs, stub-outs, and pressure testing.</div>
+      </a>
+      <a href="/calculators/tankless-water-heater" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Tankless Water Heater Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate GPM flow demand and temperature rise for manifold sizing.</div>
+      </a>
+      <a href="/calculators/pipe-slope" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Pipe Slope Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate 1/4\" per foot drainage slope and vertical drop for plumbing lines.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>

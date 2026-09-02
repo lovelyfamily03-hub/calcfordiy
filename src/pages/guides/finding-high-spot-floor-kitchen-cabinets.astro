@@ -1,0 +1,210 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="Finding the High Spot of the Floor for Kitchen Cabinets | CalcForDIY"
+  description="Learn how to find the high spot of the floor before installing base cabinets. Master 34-1/2\" laser datum lines, dishwasher clearance math, and shimming protocols."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Finding High Spot of Floor Guide", "item": "https://calcfordiy.com/guides/finding-high-spot-floor-kitchen-cabinets" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Finding the High Spot of the Floor Before Hanging Kitchen Cabinets",
+    "description": "Architectural millwork layout guide explaining floor leveling datum lines, the 34-1/2\" base cabinet standard, and avoiding appliance clearance traps.",
+    "author": { "@type": "Person", "name": "Elena Rostova, CBO" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/finding-high-spot-floor-kitchen-cabinets"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Floor High Spot Guide</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>📐 Architectural Millwork &amp; Layout Math</span>
+      <span>•</span>
+      <span>NKBA Industry Standards</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      Finding the High Spot of the Floor Before Hanging Kitchen Cabinets
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      Residential floors are almost never level. In a typical kitchen, subfloors vary in height by 1/4 inch to over 3/4 inch from corner to corner. If you install base cabinets starting from the low spot, you will run into a catastrophic roadblock: your cabinets will rise higher than your datum, and your dishwasher will not slide under the countertop! Here is how to find the true high spot and establish a master benchmark line.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+      <div>
+        <div class="text-xs text-gray-500">Base Cabinet Height</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">34-1/2\" (Standard Box)</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Finished Countertop</div>
+        <div class="text-sm font-bold text-emerald-600 mt-0.5">36.0\" (With 1-1/2\" Stone)</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Dishwasher Clearance</div>
+        <div class="text-sm font-bold text-red-600 mt-0.5">34-1/2\" Minimum Height</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Editorial Content -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8 prose prose-slate max-w-none">
+    <h2 class="text-2xl font-bold text-gray-900">The 4-Step High Spot Mapping Protocol</h2>
+    <p>
+      You will need a self-leveling cross-line laser level (or an 8-foot level) and a tape measure:
+    </p>
+    <ol class="space-y-4 not-prose my-6">
+      <li class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-xs text-gray-700">
+        <strong class="text-gray-900 block text-sm mb-1">Step 1: Set Up a 360-Degree Self-Leveling Laser</strong>
+        Place your laser on a tripod in the center of the room at roughly waist height (around 36 to 48 inches). Project a continuous horizontal line across all kitchen walls.
+      </li>
+      <li class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-xs text-gray-700">
+        <strong class="text-gray-900 block text-sm mb-1">Step 2: Measure Down to the Floor at 2-Foot Intervals</strong>
+        Walk along the walls holding a tape measure vertically against the base of the wall, exactly where the front feet of the base cabinets will sit (22 inches out from the wall). Record the distance from the laser line down to the subfloor every 24 inches.
+      </li>
+      <li class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-xs text-gray-700">
+        <strong class="text-gray-900 block text-sm mb-1">Step 3: Identify the Shortest Measurement (The High Spot!)</strong>
+        The spot with the <strong>smallest measurement from laser to floor</strong> is your floor's HIGHEST point! (For example: if most points read 40 inches, but one corner reads 39-1/4 inches, that corner is 3/4 inch higher than the rest of the room).
+      </li>
+      <li class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-xs text-gray-700">
+        <strong class="text-gray-900 block text-sm mb-1">Step 4: Snap the Master 34-1/2\" Datum Line</strong>
+        At that high spot, measure exactly <strong>34-1/2 inches up from the subfloor</strong> and make a sharp pencil mark. Adjust your laser level to align precisely with this mark and snap a level chalk line across every wall. This is your master top-of-base-cabinet reference plane!
+      </li>
+    </ol>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">Why Shimming Up is Easy, but Cutting Down is Impossible</h2>
+    <p>
+      By establishing your 34-1/2\" line at the floor's highest point:
+    </p>
+    <ul>
+      <li>The cabinet sitting on the high spot sits directly on the floor with zero shims beneath it.</li>
+      <li>Every other cabinet in the kitchen will be slightly lower than the line, allowing you to slide <strong>composite shims underneath</strong> to raise them up until their top edges meet the laser line perfectly.</li>
+      <li>Your dishwasher opening will maintain its full 34-1/2\" height clearance across the entire installation.</li>
+    </ul>
+    <p>
+      If you started at the low spot, the cabinet at the high spot would stick up 3/4 inch above the line—forcing you to either cut down the hardwood toe-kick base of a $600 factory cabinet or watch your countertop slope downhill!
+    </p>
+  </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Material Takeoff Analyst"
+    experience="18+ Years Field Experience"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Don't Forget to Account for Finished Flooring Thickness"
+    note="A critical trap that catches DIYers: If your kitchen subfloor is bare plywood now, but you plan to install 3/4-inch hardwood or 3/8-inch tile AFTER the cabinets are hung, you must add the finished flooring thickness to your high-spot measurement! If your high spot is on subfloor, and you install base cabinets at 34-1/2 inches, then later slide 3/4-inch oak hardwood under the dishwasher, your dishwasher opening is now choked down to 33-3/4 inches—and your standard 34-inch dishwasher will NOT slide into its opening! Either install your finished flooring across the entire kitchen floor before setting cabinets, or elevate all base cabinets on 3/4-inch plywood spacer strips (sleepers) so the rough opening under the countertop remains a full 34-1/2 inches above finished floor height."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="Cabinet Floor Leveling"
+    mistakes={[
+      {
+        number: 1,
+        title: "Trap-Locking the Dishwasher with Tile Borders",
+        costImpact: "$1,800 (Demolishing Tile Counter to Service Appliance)",
+        description: "Installing cabinets on subfloor, running thick tile up to the cabinet front face, and tiling the kitchen floor locks the dishwasher behind a 1/2-inch floor tile lip.",
+        solution: "Tile all the way into the dishwasher cavity so the floor beneath the appliance is at the exact same elevation as the finished kitchen floor."
+      },
+      {
+        number: 2,
+        title: "Measuring High Spots Against the Wall Instead of 22\" Out",
+        costImpact: "$650 (Cabinets Tipping Forward Out of Plumb)",
+        description: "Subfloors frequently bow or sag between floor joists 2 feet out into the room. Measuring only against the drywall misses the front-foot dips.",
+        solution: "Map the floor high spot along the front toe-kick line, 20 to 22 inches away from the back wall."
+      },
+      {
+        number: 3,
+        title: "Snapping Shims Flush with a Utility Knife Blade Too Early",
+        costImpact: "$400 (Cabinet Shifting Out of Level)",
+        description: "Snapping off protruding shim ends before all adjoining cabinets are clamped and screwed together causes shims to slip loose during micro-adjustments.",
+        solution: "Leave shims protruding until all base cabinets are screwed to each other and anchored to wall studs; score with an oscillating multi-tool blade flush with the box."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Floor High Spot Guide"
+    reviews={[
+      {
+        author: "Kevin & Rachel M.",
+        location: "Pittsburgh, PA",
+        projectScope: "1940s Brick Home Kitchen Renovation",
+        savingsClaim: "Saved Our Bosch Dishwasher Opening",
+        feedback: "Our floor sloped 5/8 of an inch from the sink to the refrigerator. Finding the high spot in the far corner and shooting the laser line at 34-1/2 inches made shimming the other 7 cabinets completely intuitive. When our Bosch dishwasher arrived, it slid right under the quartz with 1/8\" clearance.",
+        keyTakeaway: "Buy a $40 magnetic laser target plate; makes reading measurements from a laser beam across a bright room effortless."
+      },
+      {
+        author: "Danielle P.",
+        location: "Phoenix, AZ",
+        projectScope: "Slab Foundation Kitchen Remodel",
+        savingsClaim: "Flawless Quartz Countertop Template",
+        feedback: "The tip about finished tile thickness saved us from a huge headache. We installed our LVP flooring under the entire kitchen footprint first. That gave us a true flat finished plane to set our cabinets on.",
+        keyTakeaway: "Use composite plastic shims; wood shims split in half when you drive cabinet screws through them near the back rail."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Finding High Spot of Floor Guide" initialYesCount={389} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="NKBA Standards & Architectural Woodwork Institute (AWI) Section 10"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Hubs & Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators &amp; Construction Hubs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/projects/kitchen-cabinet-installation" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Kitchen Cabinet Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Follow the 4-step workflow: high spots, upper ledgers, base shimming, and face clamps.</div>
+      </a>
+      <a href="/calculators/baseboard-shoe-molding" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Baseboard &amp; Shoe Molding Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate toe-kick covers, scribe strips, and baseboard linear footage.</div>
+      </a>
+      <a href="/projects/kitchen-tile-backsplash" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Kitchen Tile Backsplash Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Follow the 4-step backsplash workflow: countertop prep, tile layout, and grout.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>

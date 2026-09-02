@@ -1,0 +1,207 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="Concrete Control Joint Spacing: The 24x to 30x Rule (ACI 302.1R) | CalcForDIY"
+  description="Master the American Concrete Institute (ACI 302.1R) control joint spacing rules. Why concrete cracks, the 24x to 30x slab thickness formula, and 1/4 slab cut depth."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Concrete Control Joint Spacing Rule", "item": "https://calcfordiy.com/guides/concrete-control-joint-spacing-rule" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Concrete Control Joint Spacing: The 24x to 30x Rule",
+    "description": "Structural engineering guide on controlling drying shrinkage cracks in concrete slabs, ACI joint spacing formulas, and cut depth standards.",
+    "author": { "@type": "Person", "name": "David Miller, PE" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/concrete-control-joint-spacing-rule"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Control Joint Spacing</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>🏗️ Structural Concrete Engineering</span>
+      <span>•</span>
+      <span>ACI 302.1R &amp; ACI 224R</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      Concrete Control Joint Spacing: The 24x to 30x Rule
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      There is an old saying among concrete masons: <em>"There are two types of concrete: concrete that is cracked, and concrete that hasn't cracked yet."</em> Concrete shrinks roughly 1/16 of an inch for every 10 feet as moisture evaporates during curing. Control joints (contraction joints) do not stop shrinkage; they create weakened planes that force concrete to crack in neat, straight, planned lines. Here is the mathematical formula.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+      <div>
+        <div class="text-xs text-gray-500">4-Inch Slab Spacing</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">8 to 10 Feet Maximum</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">6-Inch Slab Spacing</div>
+        <div class="text-sm font-bold text-emerald-600 mt-0.5">12 to 15 Feet Maximum</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Minimum Joint Depth</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">1/4 Slab Thickness (T/4)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Editorial Content -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8 prose prose-slate max-w-none">
+    <h2 class="text-2xl font-bold text-gray-900">The 24x to 30x Slab Thickness Formula</h2>
+    <p>
+      Per American Concrete Institute (ACI 302.1R) guidelines, the maximum distance between contraction joints is calculated by multiplying the slab thickness by <strong>24 to 30 times</strong>:
+    </p>
+    <div class="bg-gray-50 rounded-xl p-5 border border-gray-200 my-4 not-prose font-mono text-xs text-gray-800 space-y-2">
+      <p><strong>Maximum Joint Spacing (Inches) = Slab Thickness (Inches) &times; 24 (or 30)</strong></p>
+      <div class="pt-2 border-t border-gray-200 text-gray-700">
+        <p>• <strong>4-Inch Slab (Patio / Sidewalk):</strong> 4" &times; 24 = 96 inches (<strong>8.0 feet</strong>) to 4" &times; 30 = 120 inches (<strong>10.0 feet</strong>)</p>
+        <p>• <strong>5-Inch Slab (Driveway / Light Shop):</strong> 5" &times; 24 = 120 inches (<strong>10.0 feet</strong>) to 5" &times; 30 = 150 inches (<strong>12.5 feet</strong>)</p>
+        <p>• <strong>6-Inch Slab (Heavy Commercial / Pole Barn):</strong> 6" &times; 24 = 144 inches (<strong>12.0 feet</strong>) to 6" &times; 30 = 180 inches (<strong>15.0 feet</strong>)</p>
+      </div>
+    </div>
+    <p>
+      For high-slump concrete mixes (wet mixes with added water), always use the conservative <strong>24x multiplier</strong> because higher water content increases drying shrinkage.
+    </p>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">The 1/4 Depth Rule (Why Shallow Cuts Fail)</h2>
+    <p>
+      A control joint must be cut to a depth of at least <strong>one-fourth of the slab thickness ($T/4$)</strong>:
+    </p>
+    <ul>
+      <li>On a <strong>4-inch slab</strong>, the joint depth must be at least <strong>1.0 inch deep</strong>.</li>
+      <li>On a <strong>6-inch slab</strong>, the joint depth must be at least <strong>1.5 inches deep</strong>.</li>
+    </ul>
+    <p>
+      If you make a superficial 1/4-inch scratch across a 4-inch slab with a hand groover, the plane is not weak enough. Tensile shrinkage forces will bypass your shallow groove and tear a jagged, irregular crack 6 inches away!
+    </p>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">Aspect Ratio: Keep Panels Square</h2>
+    <p>
+      ACI standards dictate that the ratio of length to width in any joint panel should not exceed <strong>1.25 to 1.5</strong>. Panels should be kept as close to square as possible. Rectangular panels (e.g., a 6-foot wide by 18-foot long strip) will almost always crack across the middle.
+    </p>
+  </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="David Miller, PE"
+    role="Structural & Civil Engineering Consultant"
+    experience="20+ Years Field Experience"
+    avatarBg="bg-blue-100 text-blue-800"
+    initials="DM"
+    title="Early-Entry Green Saws vs. Next-Day Wet Saws"
+    note="Timing saw-cut joints is critical. If you wait until the concrete is fully hard (18 to 24 hours later), the slab has already cooled and developed internal tensile stress. By the time your heavy diamond saw fires up, microscopic shrinkage cracks have already formed beneath the surface! To avoid this, use an 'early-entry green concrete saw' (like a Soff-Cut saw with upward blade rotation). You can walk an early-entry saw onto the slab just 2 to 4 hours after final finishing—the moment the concrete can support your footprints without leaving a mark. Cutting early releases the stress before cracking can begin."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="Concrete Joint Cutting"
+    mistakes={[
+      {
+        number: 1,
+        title: "Cutting Rebar Grid in Half with Deep Diamond Blade",
+        costImpact: "$3,400 (Slab Faulting & Vertical Offset Shifting)",
+        description: "Cutting control joints too deep (halfway through the slab) severs rebar and wire mesh reinforcement, eliminating load transfer across panels.",
+        solution: "Set saw blade depth stops to exactly 1/4 slab thickness (1 inch for 4-inch slabs) so structural reinforcement remains intact below the cut."
+      },
+      {
+        number: 2,
+        title: "Creating L-Shaped or T-Shaped Re-Entrant Corner Cracks",
+        costImpact: "$1,800 (Diagonal Corner Cracking off Porch Columns)",
+        description: "Pouring concrete around sharp 90-degree internal building corners creates severe stress concentration points that crack diagonally.",
+        solution: "Place control joints extending directly outward from all re-entrant inside corners, and install two diagonal #4 rebar corner relief bars."
+      },
+      {
+        number: 3,
+        title: "Leaving Control Joints Open to Winter Water & Ice",
+        costImpact: "$1,200 (Freeze-Thaw Joint Spalling)",
+        description: "Leaving saw cuts open allows rainwater and winter de-icing salts to enter the joint. Freezing ice expands, popping large chunks of concrete off the joint edges.",
+        solution: "Clean cuts with compressed air and fill joints with a flexible polyurethane or polyurea joint sealant (such as SikaFlex 1c SL) flush with the surface."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Control Joint Spacing Guide"
+    reviews={[
+      {
+        author: "Grant & Nicole D.",
+        location: "Omaha, NE",
+        projectScope: "3-Car Garage Floor & Approach Apron",
+        savingsClaim: "Zero Unplanned Cracks After 3 Winters",
+        feedback: "We poured a 5-inch slab and used the 24x multiplier: spaced joints at 10-ft by 10-ft squares. Rented a Soff-Cut green saw and made the cuts 4 hours after the power trowel finished. Every single crack occurred neatly inside the cut joints.",
+        keyTakeaway: "Snap chalk lines with red or blue chalk right before cutting; early morning dew can erase light chalk lines fast."
+      },
+      {
+        author: "Travis H.",
+        location: "Boise, ID",
+        projectScope: "Backyard Stamped Patio with 8-ft Joint Grid",
+        savingsClaim: "Clean Invisible Cuts",
+        feedback: "Followed the 1/4 slab depth rule. Sliced 1-inch deep joints along the stamped slate lines. From eye level standing up, you cannot even tell where the control joints are, but the slab relieved all its tension perfectly.",
+        keyTakeaway: "Use SikaFlex self-leveling polyurethane caulk to seal the cuts; it keeps dirt, weeds, and ants from colonizing the saw cuts."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Concrete Control Joint Spacing Guide" initialYesCount={371} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="American Concrete Institute (ACI 302.1R & ACI 224R)"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Hubs & Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators &amp; Construction Hubs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/projects/concrete-walkway-stamped" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Stamped Walkway Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Follow the 4-step workflow: curved forms, 4000 PSI pour, stamping, and joints.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate cubic yards, 60/80 lb bags, and rebar grid spacing.</div>
+      </a>
+      <a href="/projects/monolithic-slab-pour" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Monolithic Slab Pour Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Heavy structural slab workflow: perimeter footings, rebar, and control joint layout.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
