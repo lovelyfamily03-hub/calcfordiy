@@ -231,9 +231,19 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <!-- RSMeans DIY vs Pro Benchmark -->
     <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-xl p-6 shadow-xs">
-      <div class="flex items-center justify-between mb-2">
-        <h3 class="font-bold text-sm text-blue-200">DIY vs Flooring Installer Cost</h3>
-        <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+        <h3 class="font-bold text-sm text-blue-200 flex items-center gap-1.5">
+          <span>💰 DIY vs Flooring Installer Cost</span>
+          <span class="text-[10px] bg-blue-500/30 text-blue-300 px-2 py-0.5 rounded font-mono">RSMeans 2026</span>
+        </h3>
+        <div class="flex items-center gap-1.5 print:hidden">
+          <label class="text-[11px] text-slate-400 font-medium shrink-0">Location:</label>
+          <select id="lvpLocSelect" onchange="calculateLVP()" class="text-xs bg-slate-800 border border-slate-700 rounded px-2 py-1 text-slate-200 focus:outline-none">
+            <option value="0.85">Rural / Low Cost (-15%)</option>
+            <option value="1.0" selected>National Avg (Base)</option>
+            <option value="1.25">Metro / High Cost (+25%)</option>
+          </select>
+        </div>
       </div>
       <p class="text-xs text-slate-300 mb-4">Retail LVP flooring ($2.75–$4.50/sq ft) vs turnkey licensed flooring contractor quote.</p>
       
@@ -249,9 +259,25 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
           <div class="text-[10px] text-slate-400 mt-1">$7.50 – $10.50 / sq ft installed</div>
         </div>
       </div>
-      <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30">
-        <span class="text-emerald-400 font-bold text-sm">💰</span>
-        <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$1,000 – $1,500 (57%)</strong></span>
+      <div class="text-xs text-slate-300 flex items-center justify-between bg-emerald-950/60 p-2.5 rounded-lg border border-emerald-500/30 mb-4">
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-400 font-bold text-sm">💵</span>
+          <span>Potential DIY Savings: <strong id="c_savings" class="text-emerald-300 font-bold">$1,000 – $1,500 (57%)</strong></span>
+        </div>
+        <span class="text-[11px] text-emerald-400 font-medium hidden sm:inline">Keep ~50% in your pocket!</span>
+      </div>
+
+      <!-- Contractor Cost Breakdown Bar -->
+      <div class="bg-slate-800/80 p-3 rounded-lg border border-slate-700/60">
+        <div class="flex justify-between items-center text-[11px] text-slate-300 font-medium mb-1.5">
+          <span>Turnkey Contractor Cost Distribution</span>
+          <span class="text-slate-400">Materials 35% • Labor 50% • Overhead 15%</span>
+        </div>
+        <div class="w-full bg-slate-700 h-2.5 rounded-full overflow-hidden flex">
+          <div class="bg-blue-400 h-full" style="width: 35%" title="Materials: 35%"></div>
+          <div class="bg-purple-500 h-full" style="width: 50%" title="Labor & Crew: 50%"></div>
+          <div class="bg-amber-400 h-full" style="width: 15%" title="Overhead & Profit: 15%"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -376,17 +402,21 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     document.getElementById('t_transitions').textContent = `${doorways} Transition Strips (${doorways * 36}" Total)`;
     document.getElementById('t_spacers').textContent = `~${Math.ceil(perimeterLinearFt / 2)} Spacers (every 2 ft)`;
 
-    // RSMeans Cost Benchmarks
-    const pricePerSqFt = 3.45; // Quality 20mil wear layer LVP avg
-    const diyCostMin = Math.round((totalBoxes * boxSqFt * pricePerSqFt) + (doorways * 28) + 45);
+    // RSMeans Cost Benchmarks with Location Multiplier
+    const locMultiplier = parseFloat(document.getElementById('lvpLocSelect')?.value) || 1.0;
+    const pricePerSqFt = 3.45 * locMultiplier; // Quality 20mil wear layer LVP avg
+    const diyCostMin = Math.round((totalBoxes * boxSqFt * pricePerSqFt) + (doorways * 28 * locMultiplier) + (45 * locMultiplier));
     const diyCostMax = Math.round(diyCostMin * 1.25);
 
-    const proCostMin = Math.round(netSqFt * 7.50);
-    const proCostMax = Math.round(netSqFt * 10.50);
+    const proCostMin = Math.round(netSqFt * 7.50 * locMultiplier);
+    const proCostMax = Math.round(netSqFt * 10.50 * locMultiplier);
+    const savingsMin = Math.max(100, proCostMin - diyCostMax);
+    const savingsMax = Math.max(200, proCostMax - diyCostMin);
+    const savingsPct = Math.round((1 - diyCostMin / proCostMin) * 100);
 
     document.getElementById('c_diyCost').textContent = `$${diyCostMin.toLocaleString()} – $${diyCostMax.toLocaleString()}`;
     document.getElementById('c_proCost').textContent = `$${proCostMin.toLocaleString()} – $${proCostMax.toLocaleString()}`;
-    document.getElementById('c_savings').textContent = `$${(proCostMin - diyCostMax).toLocaleString()} – $${(proCostMax - diyCostMin).toLocaleString()} (${Math.round((1 - diyCostMin/proCostMin)*100)}%)`;
+    document.getElementById('c_savings').textContent = `$${savingsMin.toLocaleString()} – $${savingsMax.toLocaleString()} (${savingsPct}%)`;
 
     drawLVPSvg();
   }
