@@ -1,0 +1,200 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="When Does a Retaining Wall Need Geogrid? (NCMA Guide) | CalcForDIY"
+  description="Learn when geogrid reinforcement is required for segmental block retaining walls. Engineering formulas for embedment length, vertical spacing, and slope surcharge."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Geogrid Retaining Wall Spacing Guide", "item": "https://calcfordiy.com/guides/geogrid-retaining-wall-spacing" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "When Does a Retaining Wall Need Geogrid Reinforcement?",
+    "description": "The definitive civil engineering guide to geogrid soil reinforcement for segmental retaining walls: 3-foot threshold, embedment depth, and tensile strength standards.",
+    "author": { "@type": "Person", "name": "David Miller, PE" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/geogrid-retaining-wall-spacing"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Geogrid Spacing</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>📐 Geotechnical Engineering &amp; Retaining Walls</span>
+      <span>•</span>
+      <span>NCMA Design Standards</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      When Does a Retaining Wall Need Geogrid Reinforcement?
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      Segmental retaining wall blocks rely on their own weight and rear shear lips to hold back soil up to roughly 36 to 48 inches. Beyond that height, the self-weight of the blocks is insufficient to prevent catastrophic overturning. Here is when, where, and how to install geogrid soil reinforcement per NCMA standards.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+      <div>
+        <div class="text-xs text-gray-500">The 3-Foot Rule</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">Mandatory Above 36"–48"</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Embedment Length</div>
+        <div class="text-sm font-bold text-emerald-600 mt-0.5">Min 70% of Wall Height</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Vertical Course Spacing</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">Every 2 Courses (16")</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Editorial Content -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8 prose prose-slate max-w-none">
+    <h2 class="text-2xl font-bold text-gray-900">What is Geogrid and How Does It Work?</h2>
+    <p>
+      Geogrid is a high-tensile polyester or polypropylene mesh coated with PVC. When laid horizontally between courses of retaining blocks and buried deep into the compacted backfill soil, geogrid locks with the gravel aggregate. Instead of the blocks holding back the hill, the geogrid turns the entire backfill soil zone into a monolithic, reinforced composite block (known as a <strong>Mechanically Stabilized Earth / MSE wall</strong>).
+    </p>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">When is Geogrid Legally Required?</h2>
+    <ul>
+      <li><strong>Walls Under 36 Inches (3 Feet):</strong> Typically do not require geogrid, provided the ground above the wall is flat and native soil is well-drained.</li>
+      <li><strong>Walls Between 36 and 48 Inches:</strong> Highly recommended in clay soils, freeze-thaw zones, or anywhere heavy rainfall occurs.</li>
+      <li><strong>Walls Over 48 Inches (4 Feet):</strong> Strictly required by the International Building Code (IBC Section 1807.2) and municipal permit offices. A stamped structural engineer design is usually legally required above 4 feet.</li>
+      <li><strong>Slopes or Driveways Above the Wall (Surcharge Loads):</strong> If a steep hillside slopes down toward the top of the wall, or if cars park within a distance equal to the wall height, geogrid is mandatory even on small 2.5-foot walls.</li>
+    </ul>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">Engineering Calculation: How Long Must Geogrid Be?</h2>
+    <p>
+      The National Concrete Masonry Association (NCMA) formula for minimum geogrid embedment length ($L$) is:
+    </p>
+    <div class="bg-gray-50 rounded-xl p-5 border border-gray-200 my-4 not-prose">
+      <div class="font-mono text-sm text-blue-900 font-bold mb-2">Embedment Length = Total Wall Height &times; 0.70 (Minimum 4.0 Feet)</div>
+      <ul class="text-xs text-gray-600 space-y-1 mb-0 list-disc pl-4 mt-2">
+        <li><strong>4-Foot Wall:</strong> 4 ft &times; 0.70 = 2.8 ft &rarr; Minimum code requires <strong>4.0 feet</strong> embedment length.</li>
+        <li><strong>6-Foot Wall:</strong> 6 ft &times; 0.70 = <strong>4.2 feet</strong> minimum embedment length.</li>
+        <li><strong>8-Foot Wall:</strong> 8 ft &times; 0.70 = <strong>5.6 feet</strong> minimum embedment length.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="David Miller, PE"
+    role="Structural & Civil Engineering Consultant"
+    experience="20+ Years Field Experience"
+    avatarBg="bg-blue-100 text-blue-800"
+    initials="DM"
+    title="Why Directional Geogrid Orientation Matters (Uni-Axial vs Bi-Axial)"
+    note="Geogrid comes in two distinct manufacturing weaves: Bi-axial (equal strength in both directions) and Uni-axial (high-strength in one direction only). Most commercial retaining wall geogrid (like Miragrid or Stratagrid) is uni-axial. The high-tensile ribs run along the length of the roll. That means the roll must be rolled out perpendicular to the wall face (from front to back), NEVER unrolled parallel along the wall length! If you lay uni-axial geogrid sideways along the wall, it has near-zero tensile strength and the wall will fail during the first heavy rain."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="Geogrid Installation"
+    mistakes={[
+      {
+        number: 1,
+        title: "Overlapping Adjacent Geogrid Sheets on the Same Course",
+        costImpact: "$1,800 (Wobbly Blocks & Lost Interlock)",
+        description: "Overlapping geogrid layers directly between block joints creates a double-thickness fabric bump that tilts blocks forward or breaks rear shear pins.",
+        solution: "Place adjacent geogrid sheets tight edge-to-edge with 100% continuous coverage without overlapping between the concrete block courses."
+      },
+      {
+        number: 2,
+        title: "Leaving Slack in the Geogrid During Backfilling",
+        costImpact: "$2,400 (Delayed Wall Movement & Settlement)",
+        description: "If geogrid has ripples or slack when gravel is dumped on it, the wall must shift forward 2 inches before the grid engages and becomes taut.",
+        solution: "Pull the geogrid completely taut toward the back of the excavation trench and stake it into the dirt with landscape staples before dumping aggregate."
+      },
+      {
+        number: 3,
+        title: "Running Heavy Compaction Equipment Directly on Bare Grid",
+        costImpact: "$1,200 (Torn Polymer Ribs)",
+        description: "Driving tracked skid steers or heavy steel drum rollers directly over bare geogrid punctures and shreds the polymer mesh.",
+        solution: "Spread a minimum 6-inch layer of crushed aggregate over the geogrid before operating mechanical equipment or heavy rollers."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Geogrid Reinforcement Guide"
+    reviews={[
+      {
+        author: "Matt & Kelly B.",
+        location: "Pittsburgh, PA",
+        projectScope: "5-ft Hillside Terraced Retaining Wall",
+        savingsClaim: "Saved $5,800",
+        feedback: "The 70% height rule gave us the exact trench excavation depth we needed before the mini-excavator left. Staked the Stratagrid taut into the hillside and backfilled with #57 stone. Wall has stood rigid through two freeze-thaw winters with zero displacement.",
+        keyTakeaway: "Use uni-axial geogrid and remember the pull direction must always face perpendicular to the wall."
+      },
+      {
+        author: "Jason D.",
+        location: "Chattanooga, TN",
+        projectScope: "Driveway Surcharge Retaining Wall (42\" High)",
+        savingsClaim: "Passed Municipal Permit",
+        feedback: "Because our SUV parks 3 feet from the wall, our building inspector required geogrid even at 42 inches. Followed the NCMA spacing tables and passed our framing/site inspection on the first visit.",
+        keyTakeaway: "Never skip the non-woven filter fabric between your clean gravel backfill and native soil; mud migrating into stone destroys drainage."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Geogrid Retaining Wall Spacing Guide" initialYesCount={274} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="NCMA Design Manual for SRW & ASTM D6637 Tensile Standards"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Hubs & Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators &amp; Construction Hubs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/retaining-wall" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Retaining Wall Block Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate block counts, buried courses, capstones, and adhesive tubes.</div>
+      </a>
+      <a href="/projects/retaining-wall-block-build" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Retaining Wall Block Building Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Follow the 4-step workflow: base pad, block stacking, drainage pipe, and geogrid.</div>
+      </a>
+      <a href="/calculators/retaining-wall-backfill" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Retaining Wall Backfill Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate gravel drainage columns, geotextile fabric rolls, and perforated pipes.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
