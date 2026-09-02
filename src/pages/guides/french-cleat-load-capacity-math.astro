@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="French Cleat Load Capacity & Screw Shear Math Guide | CalcForDIY"
+  description="Learn how to calculate French cleat shear load capacity, structural screw pullout resistance, plywood thickness limits, and bevel rip cutting geometry."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "French Cleat Load Capacity Guide", "item": "https://calcfordiy.com/guides/french-cleat-load-capacity-math" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "French Cleat Load Capacity & Screw Shear Math Guide",
+    "description": "Comprehensive engineering guide for calculating French cleat wall weight limits, GRK structural screw shear strength, and 45-degree plywood bevel cut optimization.",
+    "author": { "@type": "Organization", "name": "CalcForDIY" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "url": "https://calcfordiy.com" },
+    "datePublished": "2026-09-02",
+    "dateModified": "2026-09-02"
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>French Cleat Load Capacity Math</span>
+  </div>
+
+  <article class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+        <span>🪵 Workshop Woodworking &amp; Physics</span>
+        <span>•</span>
+        <span>Load Capacity Guide</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+        How Much Weight Can a French Cleat Hold? (Shear Load &amp; Screw Math)
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        French cleats are the most modular tool storage system ever invented. But before hanging heavy drill presses or heavy tool cabinets, you need to know the exact shear capacity of your plywood and wall studs.
+      </p>
+    </header>
+
+    <!-- Interactive Tool Callout -->
+    <div class="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl mb-8 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-1">Calculate your French cleat cut list and load limit</h2>
+        <p class="text-xs text-gray-600">Enter wall width, row count, and plywood sheet dimensions to generate an interactive cleat cut layout and shear load rating.</p>
+      </div>
+      <a href="/calculators/french-cleat" class="shrink-0 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shadow-2xs">
+        <span>Open French Cleat Tool</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="prose prose-blue max-w-none text-gray-700 space-y-6">
+      <h2 class="text-2xl font-bold text-gray-900">1. How the 45-Degree Wedge Creates Holding Power</h2>
+      <p>
+        A French cleat works using simple mechanical wedging. A wall-mounted cleat is ripped with a 45-degree upward-facing bevel. The matching hanger attached to your tool caddy has a downward-facing 45-degree bevel. Gravity pulls the tool caddy downward, which drives the two opposing 45-degree wedges together, clamping the tool tighter against the wall as weight increases.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900">2. Weight Capacity: Where Does Failure Occur?</h2>
+      <p>
+        In physical load testing, French cleats almost never fail at the 45-degree wood wedge itself. Failure occurs in one of two places:
+      </p>
+      <ul>
+        <li><strong>Drywall Crushing:</strong> If the cleat is screwed into drywall anchors without penetrating wall studs, the gypsum core crumbles under as little as 25 to 40 pounds.</li>
+        <li><strong>Screw Fastener Shear:</strong> Standard drywall screws are brittle and will snap under shear loads. You must use <strong>#8 or #9 structural wood screws (such as GRK R4 or Spax Cabinet Screws)</strong> embedded at least 1.5 inches into 2x4 solid wood wall studs.</li>
+      </ul>
+
+      <div class="bg-gray-50 border-l-4 border-amber-600 p-4 rounded-r-lg font-mono text-sm text-gray-800">
+        <p>Total Safe Working Load = (Number of Stud Fasteners) &times; 75 lbs per screw</p>
+        <p class="mt-1 text-xs text-gray-600">Example: An 8-foot cleat spanning across 6 studs (16" o.c.) with 2 screws per stud = 12 screws &times; 75 lbs = <strong>900 lbs safe capacity</strong>.</p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">3. Plywood Selection: 3/4" vs 1/2"</h2>
+      <p>
+        Always use <strong>3/4-inch (18mm) Baltic birch or cabinet-grade hardwood plywood</strong>. Never use MDF or particleboard for wall cleats; composite core materials lack long-grain tensile strength and will delaminate along the 45-degree bevel under cyclic shock loads.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900">4. Safe Cutting Geometry on a Table Saw</h2>
+      <p>
+        To get clean, matching bevels from a single 4x8 plywood sheet:
+      </p>
+      <ol>
+        <li>Rip strips 5 inches wide with your blade set at 90 degrees.</li>
+        <li>Tilt your table saw blade to exactly 45 degrees.</li>
+        <li>Set the fence to cut precisely in the center of the strip, yielding two interlocking 2-1/2" wide cleats from every rip.</li>
+      </ol>
+    </div>
+
+    <!-- Related Workflows & Calculators -->
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <h3 class="text-base font-bold text-gray-900 mb-4">Related Building Workflows &amp; Tools</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <a href="/calculators/french-cleat" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">INTERACTIVE TOOL</div>
+          <div class="font-bold text-gray-900 text-sm">French Cleat Calculator</div>
+          <p class="text-xs text-gray-500 mt-1">Interactive cut list and elevation SVG diagram.</p>
+        </a>
+        <a href="/projects/garage-workshop-finishing" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">PROJECT WORKFLOW</div>
+          <div class="font-bold text-gray-900 text-sm">Garage Workshop Hub</div>
+          <p class="text-xs text-gray-500 mt-1">Full workshop renovation from subpanels to tool walls.</p>
+        </a>
+        <a href="/guides/how-many-studs-for-a-wall" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-emerald-600 mb-1">TRADE GUIDE</div>
+          <div class="font-bold text-gray-900 text-sm">Stud Estimating Guide</div>
+          <p class="text-xs text-gray-500 mt-1">Locating 16" o.c. studs and anchor backing.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+</Layout>

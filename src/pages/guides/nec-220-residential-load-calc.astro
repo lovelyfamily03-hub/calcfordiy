@@ -1,0 +1,151 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="NEC 220 Residential Electrical Load Calculation Guide | CalcForDIY"
+  description="Master NEC Article 220 residential service calculations. Learn the standard and optional methods to calculate whole-home volt-amperes and determine if you need a 200A panel."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "NEC 220 Residential Load Calculation Guide", "item": "https://calcfordiy.com/guides/nec-220-residential-load-calc" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "NEC 220 Residential Electrical Load Calculation Guide",
+    "description": "Step-by-step master guide for calculating home electrical service ampacity per National Electrical Code (NEC) Article 220, including general lighting, appliance circuits, and EV loads.",
+    "author": { "@type": "Organization", "name": "CalcForDIY" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "url": "https://calcfordiy.com" },
+    "datePublished": "2026-09-02",
+    "dateModified": "2026-09-02"
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>NEC 220 Load Calculation Guide</span>
+  </div>
+
+  <article class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-yellow-50 border border-yellow-200 rounded-full text-yellow-800 text-xs font-semibold mb-3">
+        <span>⚡ NFPA 70 / NEC Code</span>
+        <span>•</span>
+        <span>Electrical Engineering Guide</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+        NEC Article 220: How to Calculate Whole-Home Electrical Load
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Before adding a Level 2 EV charger, heat pump, or hot tub, you must verify your electrical service won't overload. Here is how electricians calculate total household volt-amperes (VA) and required main service ampacity.
+      </p>
+    </header>
+
+    <!-- Interactive Tool Callout -->
+    <div class="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl mb-8 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-1">Calculate your electrical panel load automatically</h2>
+        <p class="text-xs text-gray-600">Our subpanel and service sizing tool handles NEC square footage and appliance demand factors instantly.</p>
+      </div>
+      <a href="/calculators/subpanel-sizing" class="shrink-0 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shadow-2xs">
+        <span>Open Electrical Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="prose prose-blue max-w-none text-gray-700 space-y-6">
+      <h2 class="text-2xl font-bold text-gray-900">1. Why You Cannot Simply Add Up Breakers</h2>
+      <p>
+        A common homeowner misconception is summing the numbers on the circuit breaker handles (e.g. 20A + 15A + 50A = 85A). In reality, a standard 200-amp panel often holds 300 to 400 amps of cumulative breakers. Because you never run your oven, clothes dryer, EV charger, microwave, and vacuum cleaner simultaneously at full power, the National Electrical Code permits <strong>demand factors</strong> that reflect realistic simultaneous usage.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900">2. The NEC 220 Standard Calculation Steps</h2>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs not-prose space-y-4">
+        <div class="flex items-start gap-3">
+          <span class="w-7 h-7 rounded-full bg-yellow-100 text-yellow-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+          <div>
+            <h3 class="font-bold text-gray-900 text-sm">General Lighting &amp; Receptacles (NEC 220.12)</h3>
+            <p class="text-xs text-gray-600 mt-0.5">Multiply total living square footage by <strong>3 Volt-Amperes (VA) per sq ft</strong> (e.g., a 2,500 sq ft house = 7,500 VA).</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="w-7 h-7 rounded-full bg-yellow-100 text-yellow-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+          <div>
+            <h3 class="font-bold text-gray-900 text-sm">Small Appliance &amp; Laundry Circuits (NEC 220.52)</h3>
+            <p class="text-xs text-gray-600 mt-0.5">Add <strong>1,500 VA</strong> for each required kitchen small appliance branch circuit (minimum 2 = 3,000 VA) plus <strong>1,500 VA</strong> for the dedicated laundry circuit. Subtotal = 4,500 VA.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="w-7 h-7 rounded-full bg-yellow-100 text-yellow-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+          <div>
+            <h3 class="font-bold text-gray-900 text-sm">Apply Lighting &amp; Small Appliance Demand Factor (Table 220.42)</h3>
+            <p class="text-xs text-gray-600 mt-0.5">Combine Steps 1 and 2 (7,500 + 4,500 = 12,000 VA). Take the <strong>first 3,000 VA at 100%</strong> (3,000 VA). The remaining 9,000 VA is multiplied by <strong>35%</strong> (3,150 VA). Base demand = <strong>6,150 VA</strong>.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="w-7 h-7 rounded-full bg-yellow-100 text-yellow-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
+          <div>
+            <h3 class="font-bold text-gray-900 text-sm">Add Heavy 240V Appliances at Full Nameplate</h3>
+            <p class="text-xs text-gray-600 mt-0.5">Electric Range (min. 8,000 VA), Electric Clothes Dryer (min. 5,000 VA), Water Heater (4,500 VA), Central A/C Heat Pump compressor (6,000 VA), and 40A EV Charger continuous load (40A &times; 240V &times; 1.25 = 12,000 VA).</p>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">3. Converting Total VA to Service Amps</h2>
+      <p>
+        Once all demand loads are totaled, divide by your residential nominal line-to-line voltage of <strong>240 Volts</strong>:
+      </p>
+
+      <div class="bg-gray-50 border-l-4 border-yellow-500 p-4 rounded-r-lg font-mono text-sm text-gray-800">
+        <p>Total Demand Volt-Amperes (VA) &divide; 240 Volts = Service Amps Required</p>
+        <p class="mt-1 text-xs text-gray-600">Example: 38,000 VA &divide; 240V = 158.3 Amps ➔ Exceeds a 100A/150A panel; requires a <strong>200-Amp Main Service</strong>.</p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">4. The 125% Continuous Load Multiplier (NEC 210.20)</h2>
+      <p>
+        Any electrical load operating continuously for 3 hours or more (such as electric vehicle charging, baseboard heaters, or water heaters) must have its conductor and overcurrent protection sized at <strong>125% of the continuous rating</strong>. That is why a 40-amp EV charger requires a 50-amp circuit breaker and 6 AWG copper wire.
+      </p>
+    </div>
+
+    <!-- Related Workflows & Calculators -->
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <h3 class="text-base font-bold text-gray-900 mb-4">Related Building Workflows &amp; Tools</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <a href="/projects/200a-service-upgrade" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">PROJECT WORKFLOW</div>
+          <div class="font-bold text-gray-900 text-sm">200A Electrical Service Hub</div>
+          <p class="text-xs text-gray-500 mt-1">Full sequential steps for modern service upgrades.</p>
+        </a>
+        <a href="/guides/what-gauge-wire-for-50-amp-ev-charger" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-emerald-600 mb-1">TRADE GUIDE</div>
+          <div class="font-bold text-gray-900 text-sm">50A EV Wire Sizing Guide</div>
+          <p class="text-xs text-gray-500 mt-1">Conductor rules for #6 NM-B vs #6 THHN.</p>
+        </a>
+        <a href="/calculators/subpanel-sizing" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">CALCULATOR</div>
+          <div class="font-bold text-gray-900 text-sm">Subpanel Load Calculator</div>
+          <p class="text-xs text-gray-500 mt-1">Interactive panel feeder sizing and capacity tool.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+</Layout>

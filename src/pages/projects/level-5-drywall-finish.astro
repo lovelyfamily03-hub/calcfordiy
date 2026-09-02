@@ -1,0 +1,177 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Drywall Sheet Hanging & Seam Minimization",
+    description: "Calculate 4x12 sheets to span walls horizontally, eliminating vertical butt seams and staggering end joints by at least 4 feet.",
+    calculatorName: "Drywall Sheet Calculator",
+    href: "/calculators/drywall",
+    icon: "🧱"
+  },
+  {
+    stepNumber: 2,
+    title: "Three-Coat Taping & Full Surface Skim Coat",
+    description: "Calculate 4.5-gallon buckets of joint compound for paper tape embedding, feathering joints with 12\" knives, and squeegee skim coating the entire face paper.",
+    calculatorName: "Drywall Mud Calculator",
+    href: "/calculators/drywall-mud",
+    icon: "🥣"
+  },
+  {
+    stepNumber: 3,
+    title: "High-Solids PVA Primer & Surface Equalizer",
+    description: "Determine PVA primer gallons to equalize porosity between unpainted gypsum paper and joint compound, preventing flashing under critical side-lighting.",
+    calculatorName: "Drywall Primer & Sealer Calculator",
+    href: "/calculators/drywall-primer-sealer",
+    icon: "🪣"
+  },
+  {
+    stepNumber: 4,
+    title: "Finish Paint Gallons & Sheen Uniformity",
+    description: "Calculate two topcoats of interior eggshell or satin latex paint, eliminating shadow ridges on seamless monolithic walls.",
+    calculatorName: "Paint Room Calculator",
+    href: "/calculators/paint-room",
+    icon: "🎨"
+  }
+];
+---
+
+<Layout
+  title="Level 5 Drywall Finish Hub — Step-by-Step Smooth Wall Workflow | CalcForDIY"
+  description="Follow a 4-step Level 5 drywall workflow: Sheet hanging layout, joint compound skim coating buckets, high-solids PVA primer, and finish paint gallons."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Level 5 Drywall Finish Hub", "item": "https://calcfordiy.com/projects/level-5-drywall-finish" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Achieve a Flawless Level 5 Smooth Drywall Finish",
+    "description": "A 4-step professional finishing workflow for calculating drywall sheets, joint compound skim coating volume, PVA primer sealer, and interior wall paint.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Drywall Layout & Fastening",
+        "text": "Hang sheets horizontally with proper screw depth (slight dimple without tearing the face paper)."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Level 5 Skim Coating",
+        "text": "Apply a thin, uniform skim coat of thinned joint compound across 100% of the wall surface using a paint roller and smoothing blade."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "High-Solids Primer Sealing",
+        "text": "Apply dedicated PVA primer to balance suction and absorbency across paper and mud."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Two-Coat Finish Painting",
+        "text": "Roll two coats of premium interior paint with 3/8-inch microfiber nap rollers."
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span>Level 5 Drywall Workflow</span>
+  </div>
+
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 border border-slate-300 rounded-full text-slate-800 text-xs font-semibold mb-3">
+      <span>✨ Museum-Grade Smooth Wall Finish</span>
+      <span>•</span>
+      <span>4 Integrated Calculators</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Level 5 Drywall Finish &amp; Painting Workflow</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      In areas with harsh natural side-lighting or glossy enamel paint, standard Level 4 drywall finishes will show joint photographing and flashing. Follow this 4-step trade workflow to calculate skim coat mud, high-build primer, and finish paint.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs hover:border-blue-400 transition-all">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="w-9 h-9 rounded-full bg-slate-200 text-slate-800 font-bold flex items-center justify-center text-sm shrink-0 mt-0.5">
+              {step.stepNumber}
+            </span>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-lg">{step.icon}</span>
+                <h2 class="text-lg font-bold text-gray-900">{step.title}</h2>
+              </div>
+              <p class="text-sm text-gray-600 max-w-2xl leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </div>
+          <a
+            href={step.href}
+            class="shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors shadow-2xs"
+          >
+            <span>{step.calculatorName}</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">GA-214 Gypsum Finish Levels Explained</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-2">1. Level 4 vs Level 5 Industry Definition</h3>
+        <p class="leading-relaxed">
+          Level 4 (the residential standard) has tape embedded with two wipe coats over joints, but the drywall paper is left bare. Under sunlight from patio doors, the difference in texture between paper and joint compound creates visual "banding". Level 5 applies a continuous skim coat across 100% of the wall to eliminate this texture disparity.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-2">2. Roller Skim Technique</h3>
+        <p class="leading-relaxed">
+          The fastest way to achieve a Level 5 finish is thinning all-purpose mud with water to a heavy paint consistency, rolling it onto the wall with a 1/2-inch paint roller, and immediately wiping it tight with a 24-inch or 32-inch stainless steel skimming blade.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-200 pt-8">
+    <h3 class="text-base font-bold text-gray-900 mb-4">Related Building Workflows &amp; Guides</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <a href="/projects/basement-finishing" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-blue-600 mb-1">REMODELING HUB</div>
+        <div class="font-bold text-gray-900 text-sm">Basement Finishing Hub</div>
+        <p class="text-xs text-gray-500 mt-1">Framing, hanging drywall, and installing floors.</p>
+      </a>
+      <a href="/calculators/drywall-mud" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-blue-600 mb-1">INTERACTIVE TOOL</div>
+        <div class="font-bold text-gray-900 text-sm">Drywall Mud Calculator</div>
+        <p class="text-xs text-gray-500 mt-1">Calculate buckets needed for taping vs skim coating.</p>
+      </a>
+      <a href="/calculators/drywall-primer-sealer" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-blue-600 mb-1">INTERACTIVE TOOL</div>
+        <div class="font-bold text-gray-900 text-sm">Drywall Primer Calculator</div>
+        <p class="text-xs text-gray-500 mt-1">Calculate PVA primer sealer gallons for fresh drywall.</p>
+      </a>
+    </div>
+  </div>
+
+</Layout>

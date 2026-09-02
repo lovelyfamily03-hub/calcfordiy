@@ -1,0 +1,157 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Total Dynamic Head (TDH) Math Guide for Well Pumps | CalcForDIY"
+  description="Master the Total Dynamic Head (TDH) formula for deep well submersible pumps. Learn how to calculate elevation lift, pressure head (1 PSI = 2.31 ft), and pipe friction loss."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Total Dynamic Head (TDH) Guide", "item": "https://calcfordiy.com/guides/tdh-well-pump-formula-guide" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Total Dynamic Head (TDH) Math Guide for Well Pumps",
+    "description": "Comprehensive hydraulic engineering guide explaining how to calculate Total Dynamic Head (TDH) and size submersible well pump horsepower accurately.",
+    "author": { "@type": "Organization", "name": "CalcForDIY" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "url": "https://calcfordiy.com" },
+    "datePublished": "2026-09-02",
+    "dateModified": "2026-09-02"
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>Total Dynamic Head (TDH) Math</span>
+  </div>
+
+  <article class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-sky-50 border border-sky-200 rounded-full text-sky-800 text-xs font-semibold mb-3">
+        <span>💧 Hydraulic Engineering &amp; Physics</span>
+        <span>•</span>
+        <span>Pump Sizing Guide</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+        Total Dynamic Head (TDH) Explained: The Math Behind Well Pump Sizing
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Selecting a well pump based solely on well depth leads to under-pressurized showers or burnt-out motors. To size a pump accurately, you must calculate Total Dynamic Head (TDH). Here is the exact hydraulic formula.
+      </p>
+    </header>
+
+    <!-- Interactive Tool Callout -->
+    <div class="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl mb-8 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-1">Calculate your well pump TDH and wire gauge instantly</h2>
+        <p class="text-xs text-gray-600">Enter pumping water depth, service pressure, and pipe diameter to get exact pump HP and drop cable wire size.</p>
+      </div>
+      <a href="/calculators/submersible-well-pump" class="shrink-0 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shadow-2xs">
+        <span>Open Well Pump Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="prose prose-blue max-w-none text-gray-700 space-y-6">
+      <h2 class="text-2xl font-bold text-gray-900">1. The Master TDH Equation</h2>
+      <p>
+        Total Dynamic Head represents the equivalent vertical distance (measured in feet) that a pump must push water against three distinct resistances:
+      </p>
+
+      <div class="bg-gray-50 border-l-4 border-sky-600 p-4 rounded-r-lg font-mono text-sm text-gray-800 space-y-1">
+        <p>TDH = Elevation Head + Pressure Head + Friction Loss Head</p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">2. Breaking Down the Three Components</h2>
+
+      <div class="space-y-4 not-prose">
+        <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+          <h3 class="font-bold text-gray-900 text-base mb-1">1. Elevation Head (Static Lift)</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            The vertical distance in feet from the <strong>pumping water level</strong> inside the well casing up to the highest plumbing fixture in the home (not the total well depth, but where the water rests while pumping).
+          </p>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+          <h3 class="font-bold text-gray-900 text-base mb-1">2. Pressure Head (The 2.31 Multiplier)</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            A column of water 2.31 feet high exerts exactly 1 pound per square inch (PSI) of pressure at its base. To maintain a standard 50 PSI water pressure at the surface pressure tank, the pump must push against:
+            <br />
+            <strong class="text-gray-900 font-mono mt-1 inline-block">50 PSI &times; 2.31 ft/PSI = 115.5 Feet of Head</strong>
+          </p>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs">
+          <h3 class="font-bold text-gray-900 text-base mb-1">3. Pipe Friction Loss Head</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            As water rubs against the inside walls of the drop pipe, elbows, and check valves, it creates resistance. For 10 GPM flowing through 1-inch polyethylene pipe, friction adds roughly 3.2 feet of head per 100 feet of pipe.
+          </p>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">3. Worked Real-World Example</h2>
+      <p>
+        Let's calculate the TDH for a typical residential installation:
+      </p>
+      <ul>
+        <li><strong>Pumping Water Level:</strong> 120 feet below ground level.</li>
+        <li><strong>Elevation from Wellhead to Tank:</strong> 10 feet rise up a hill.</li>
+        <li><strong>Total Elevation Head:</strong> 120 + 10 = <strong>130 feet</strong>.</li>
+        <li><strong>Pressure Tank Cut-Out:</strong> 60 PSI &times; 2.31 = <strong>138.6 feet</strong>.</li>
+        <li><strong>Pipe Friction Loss:</strong> 250 ft of 1-1/4" poly pipe @ 10 GPM = <strong>4.5 feet</strong>.</li>
+      </ul>
+
+      <div class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r-lg font-mono text-sm text-blue-950">
+        <p>TDH = 130 + 138.6 + 4.5 = <strong>273.1 Feet of Head</strong></p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">4. Determining Required Motor Horsepower (HP)</h2>
+      <p>
+        Once TDH is known, theoretical water horsepower is determined by:
+      </p>
+      <div class="bg-gray-50 p-4 rounded-lg font-mono text-sm text-gray-800">
+        <p>Water HP = (GPM &times; TDH) &divide; 3960</p>
+        <p class="mt-1 text-xs text-gray-600">For 10 GPM at 273.1 ft TDH: (10 &times; 273.1) &divide; 3960 = 0.69 HP.</p>
+        <p class="mt-1 text-xs text-gray-600">Factoring typical 60% pump impellor efficiency: 0.69 &divide; 0.60 = <strong>1.15 HP ➔ Select a 1.0 HP or 1.5 HP Submersible Pump</strong>.</p>
+      </div>
+    </div>
+
+    <!-- Related Workflows & Calculators -->
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <h3 class="text-base font-bold text-gray-900 mb-4">Related Building Workflows &amp; Tools</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <a href="/calculators/submersible-well-pump" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">CALCULATOR</div>
+          <div class="font-bold text-gray-900 text-sm">Well Pump Calculator</div>
+          <p class="text-xs text-gray-500 mt-1">Interactive TDH and drop cable wire size tool.</p>
+        </a>
+        <a href="/projects/deep-well-submersible-pump" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">PROJECT WORKFLOW</div>
+          <div class="font-bold text-gray-900 text-sm">Deep Well Replacement Hub</div>
+          <p class="text-xs text-gray-500 mt-1">4-step pump, tank, and trenching replacement workflow.</p>
+        </a>
+        <a href="/guides/how-to-calculate-voltage-drop-for-wire-runs" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-emerald-600 mb-1">TRADE GUIDE</div>
+          <div class="font-bold text-gray-900 text-sm">Voltage Drop Math Guide</div>
+          <p class="text-xs text-gray-500 mt-1">Protecting well pump motors from voltage starvation.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+</Layout>

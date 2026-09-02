@@ -1,0 +1,160 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Header Span Tables: IRC Table R602.7 Guide for Doors & Windows | CalcForDIY"
+  description="Master structural header sizing for exterior walls and garage doors. Learn how to size double 2x8, 2x10, 2x12, and engineered LVL beams per IRC Table R602.7."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Header Span Tables: IRC Table R602.7 Guide", "item": "https://calcfordiy.com/guides/header-span-tables-irc-r602-7" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Header Span Tables: IRC Table R602.7 Guide for Doors & Windows",
+    "description": "Comprehensive engineering guide for sizing structural headers in residential wood-frame construction per the International Residential Code (IRC).",
+    "author": { "@type": "Organization", "name": "CalcForDIY" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "url": "https://calcfordiy.com" },
+    "datePublished": "2026-09-02",
+    "dateModified": "2026-09-02"
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>Header Span Tables (IRC R602.7)</span>
+  </div>
+
+  <article class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+        <span>📐 Structural Framing &amp; IRC Code</span>
+        <span>•</span>
+        <span>Trade Engineering Guide</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+        Header Span Tables: How to Size Door &amp; Window Headers (IRC Table R602.7)
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        When cutting rough openings in load-bearing walls, structural headers transfer roof and floor gravity loads around the opening to the foundation. Here is how to size headers correctly and avoid sagging doors.
+      </p>
+    </header>
+
+    <!-- Interactive Tool Callout -->
+    <div class="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl mb-8 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-1">Need to calculate header depth and jack studs instantly?</h2>
+        <p class="text-xs text-gray-600">Use our interactive tool to calculate lumber plies, LVL beam equivalents, and end-bearing jack studs.</p>
+      </div>
+      <a href="/calculators/garage-door-header" class="shrink-0 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shadow-2xs">
+        <span>Open Header Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="prose prose-blue max-w-none text-gray-700 space-y-6">
+      <h2 class="text-2xl font-bold text-gray-900">1. Understanding Header Anatomy</h2>
+      <p>
+        In wood platform framing, every rough opening interrupts vertical wall studs. To prevent ceiling joists and roof trusses from sagging, a horizontal beam called a <strong>header</strong> spans across the top of the opening. The header is supported on each side by vertical <strong>jack studs (also called trimmers)</strong>, which transfer the downward load to the bottom sill plate. King studs run alongside the jacks from plate to plate to provide lateral stiffness.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900">2. IRC Table R602.7(1) Header Span Matrix</h2>
+      <p>
+        The International Residential Code specifies maximum header spans based on the building width and whether the wall supports a roof only, or a roof plus one or two stories above. For a typical 28-foot wide single-story house with a 30 PSF ground snow load, the maximum spans for #2 Douglas Fir / Southern Pine are:
+      </p>
+
+      <div class="overflow-x-auto not-prose mb-6">
+        <table class="w-full text-left border-collapse bg-white rounded-xl border border-gray-200 shadow-xs text-sm">
+          <thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200">
+            <tr>
+              <th class="py-3 px-4">Header Size</th>
+              <th class="py-3 px-4">Roof Only (Max Span)</th>
+              <th class="py-3 px-4">Roof + 1 Center Floor</th>
+              <th class="py-3 px-4">Required Jack Studs</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 text-gray-700">
+            <tr>
+              <td class="py-3 px-4 font-semibold text-gray-900">Double 2&times;6</td>
+              <td class="py-3 px-4">4 ft - 8 in</td>
+              <td class="py-3 px-4">3 ft - 1 in</td>
+              <td class="py-3 px-4 text-emerald-700 font-semibold">1 Jack</td>
+            </tr>
+            <tr class="bg-gray-50/50">
+              <td class="py-3 px-4 font-semibold text-gray-900">Double 2&times;8</td>
+              <td class="py-3 px-4">5 ft - 9 in</td>
+              <td class="py-3 px-4">3 ft - 9 in</td>
+              <td class="py-3 px-4 text-emerald-700 font-semibold">1 Jack</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-semibold text-gray-900">Double 2&times;10</td>
+              <td class="py-3 px-4">6 ft - 10 in</td>
+              <td class="py-3 px-4">4 ft - 5 in</td>
+              <td class="py-3 px-4 text-blue-700 font-semibold">2 Jacks</td>
+            </tr>
+            <tr class="bg-gray-50/50">
+              <td class="py-3 px-4 font-semibold text-gray-900">Double 2&times;12</td>
+              <td class="py-3 px-4">8 ft - 0 in</td>
+              <td class="py-3 px-4">5 ft - 2 in</td>
+              <td class="py-3 px-4 text-blue-700 font-semibold">2 Jacks</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-semibold text-gray-900">Double 1-3/4&Prime; &times; 11-7/8&Prime; LVL</td>
+              <td class="py-3 px-4 font-bold text-emerald-800">16 ft - 6 in (Garage Door)</td>
+              <td class="py-3 px-4">12 ft - 2 in</td>
+              <td class="py-3 px-4 text-purple-700 font-semibold">2 to 3 Jacks</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">3. When Must You Switch to Engineered LVL?</h2>
+      <p>
+        Standard dimension lumber tops out at a 2x12. Under typical residential roof loads, even a double 2x12 cannot safely span more than 8 to 9 feet. Therefore, for standard <strong>16-foot double-car garage doors</strong> or 12-foot multi-panel sliding glass patio doors, sawn lumber is code-prohibited. You must use engineered Laminated Veneer Lumber (LVL) or steel flitch plates.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900">4. Jack Stud Bearing Requirements</h2>
+      <p>
+        A common framing mistake is installing a heavy header on only one jack stud per side. IRC Table R602.7(1) requires a minimum 1.5 inches of end bearing (one 2x4 jack) for openings up to 5 feet. For spans exceeding 5 to 6 feet, you must install <strong>two jack studs (3 inches of solid end bearing)</strong> at each end of the header. For 16-foot garage openings carrying roof trusses, many structural engineers specify three jack studs (4.5 inches bearing).
+      </p>
+    </div>
+
+    <!-- Related Workflows & Calculators -->
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <h3 class="text-base font-bold text-gray-900 mb-4">Related Building Workflows &amp; Tools</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <a href="/projects/detached-garage-framing" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">PROJECT WORKFLOW</div>
+          <div class="font-bold text-gray-900 text-sm">Detached Garage Framing Hub</div>
+          <p class="text-xs text-gray-500 mt-1">Full 4-step workflow for 16-ft door headers and 2x6 walls.</p>
+        </a>
+        <a href="/calculators/garage-door-header" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">CALCULATOR</div>
+          <div class="font-bold text-gray-900 text-sm">Header Span Calculator</div>
+          <p class="text-xs text-gray-500 mt-1">Interactive sizing for sawn lumber vs LVL beams.</p>
+        </a>
+        <a href="/guides/how-many-studs-for-a-wall" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-emerald-600 mb-1">TRADE GUIDE</div>
+          <div class="font-bold text-gray-900 text-sm">Stud Estimating Guide</div>
+          <p class="text-xs text-gray-500 mt-1">How to calculate king, jack, and cripple stud counts.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+</Layout>

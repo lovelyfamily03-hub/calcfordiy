@@ -1,0 +1,177 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Surge Starting vs Running Wattage Calculation",
+    description: "Tally essential appliance motor surge watts (well pump, furnace blower, refrigerator, sump pump) to size generator kW output.",
+    calculatorName: "Generator Sizing Calculator",
+    href: "/calculators/generator-size",
+    icon: "🔋"
+  },
+  {
+    stepNumber: 2,
+    title: "Critical Load Emergency Subpanel",
+    description: "Size a dedicated 8 to 16 circuit transfer panel or breaker mechanical interlock kit for safe utility grid isolation.",
+    calculatorName: "Subpanel Sizing Calculator",
+    href: "/calculators/subpanel-sizing",
+    icon: "⚡"
+  },
+  {
+    stepNumber: 3,
+    title: "Generator Inlet Box & Heavy Feeder Wire",
+    description: "Determine 4-wire copper conductor gauge (10 AWG for 30A / 6 AWG for 50A) for NEMA L14-30 or CS6375 power inlet boxes.",
+    calculatorName: "EV & Feeder Wiring Calculator",
+    href: "/calculators/ev-charger-wiring",
+    icon: "🔌"
+  },
+  {
+    stepNumber: 4,
+    title: "Exterior Metal Conduit & Gas Line Clearance",
+    description: "Calculate conduit fill and distance setbacks (minimum 5 feet from windows/doors, 18\" from combustible walls per NFPA 37).",
+    calculatorName: "Conduit Fill Calculator",
+    href: "/calculators/conduit-fill",
+    icon: "🔩"
+  }
+];
+---
+
+<Layout
+  title="Whole-Home Generator Hub — Step-by-Step Emergency Backup Workflow | CalcForDIY"
+  description="Follow a 4-step generator backup workflow: Starting vs running wattage sizing, transfer switch subpanel, 50A power inlet wiring, and NFPA setbacks."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Whole-Home Generator Hub", "item": "https://calcfordiy.com/projects/whole-home-generator" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Size and Install a Home Backup Generator System",
+    "description": "A 4-step electrical workflow for calculating generator starting watts, transfer switch subpanels, 50-amp power inlet cords, and conduit fill.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Wattage Sizing",
+        "text": "Calculate running watts and 3x motor inrush starting watts for pumps and air conditioning compressors."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Transfer Switch Configuration",
+        "text": "Size critical load subpanels or main panel interlock brackets to prevent backfeeding the grid."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Power Inlet Box & Conductors",
+        "text": "Calculate 4-conductor copper wire gauge for 30A or 50A 120/240V generator connections."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Safety & Clearance Rules",
+        "text": "Verify NFPA 37 clearances from operable building openings and property lines."
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span>Generator Backup Workflow</span>
+  </div>
+
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+      <span>🔋 Emergency Power Resilience</span>
+      <span>•</span>
+      <span>4 Integrated Calculators</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Whole-Home Backup Generator Installation Hub</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      Power outages compromise well pumps, heating systems, and refrigeration. Follow this 4-step electrical engineering workflow to size your generator capacity, install a safe transfer interlock, and run code-compliant feeder cables.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs hover:border-blue-400 transition-all">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="w-9 h-9 rounded-full bg-amber-100 text-amber-800 font-bold flex items-center justify-center text-sm shrink-0 mt-0.5">
+              {step.stepNumber}
+            </span>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-lg">{step.icon}</span>
+                <h2 class="text-lg font-bold text-gray-900">{step.title}</h2>
+              </div>
+              <p class="text-sm text-gray-600 max-w-2xl leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </div>
+          <a
+            href={step.href}
+            class="shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors shadow-2xs"
+          >
+            <span>{step.calculatorName}</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">Generator Safety &amp; Electrical Code Standards</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-2">1. The Anti-Backfeed Interlock Rule (NEC 702.5)</h3>
+        <p class="leading-relaxed">
+          It is illegal and life-threatening to connect a generator without a mechanical transfer switch or breaker interlock. Backfeeding power into utility lines can electrocute lineworkers repairing storm damage blocks away.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-2">2. Floating vs Bonded Neutral Configurations</h3>
+        <p class="leading-relaxed">
+          When feeding a home breaker panel through an interlock kit that does not switch the neutral conductor, the generator MUST have a floating neutral. Having bonded neutrals at both the main panel and generator creates dangerous parallel ground return paths.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-200 pt-8">
+    <h3 class="text-base font-bold text-gray-900 mb-4">Related Building Workflows &amp; Guides</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <a href="/projects/200a-service-upgrade" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-blue-600 mb-1">SERVICE UPGRADE</div>
+        <div class="font-bold text-gray-900 text-sm">200A Electrical Service Hub</div>
+        <p class="text-xs text-gray-500 mt-1">Whole-home load calculations and modern panel wiring.</p>
+      </a>
+      <a href="/projects/offgrid-solar-backup" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-blue-600 mb-1">SOLAR WORKFLOW</div>
+        <div class="font-bold text-gray-900 text-sm">Off-Grid Solar &amp; Battery Hub</div>
+        <p class="text-xs text-gray-500 mt-1">Photovoltaic array and lithium battery backup sizing.</p>
+      </a>
+      <a href="/guides/how-to-calculate-voltage-drop-for-wire-runs" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-emerald-600 mb-1">TRADE GUIDE</div>
+        <div class="font-bold text-gray-900 text-sm">Voltage Drop Math Guide</div>
+        <p class="text-xs text-gray-500 mt-1">Sizing long generator extension cords and feeders.</p>
+      </a>
+    </div>
+  </div>
+
+</Layout>

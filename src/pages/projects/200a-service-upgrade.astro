@@ -1,0 +1,177 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Whole-Home NEC 220 Load Calculation",
+    description: "Calculate general lighting, small appliance branch circuits, HVAC heat pump, range, dryer, and EV charger loads to verify 200-amp capacity.",
+    calculatorName: "Electrical Load & Subpanel Sizing",
+    href: "/calculators/subpanel-sizing",
+    icon: "⚡"
+  },
+  {
+    stepNumber: 2,
+    title: "Dedicated 50A EV Charger Branch Circuit",
+    description: "Determine copper conductor gauge (6 AWG NM-B or 6 AWG THHN in conduit) and 50A dual-pole breaker for 40-amp continuous EV charging.",
+    calculatorName: "EV Charger Wiring Calculator",
+    href: "/calculators/ev-charger-wiring",
+    icon: "🔌"
+  },
+  {
+    stepNumber: 3,
+    title: "Service Entrance Conduit & Feeder Fill",
+    description: "Size rigid metal or PVC conduit for 2/0 copper or 4/0 aluminum service entrance conductors meeting NEC Chapter 9 40% fill limits.",
+    calculatorName: "Conduit Fill Calculator",
+    href: "/calculators/conduit-fill",
+    icon: "🔩"
+  },
+  {
+    stepNumber: 4,
+    title: "Whole-House Backup Generator Interlock",
+    description: "Calculate surge starting watts and running watts to size a portable or standby generator and 30A/50A manual transfer switch interlock.",
+    calculatorName: "Generator Sizing Calculator",
+    href: "/calculators/generator-size",
+    icon: "🔋"
+  }
+];
+---
+
+<Layout
+  title="200A Electrical Service Upgrade Hub — Step-by-Step Modernization Workflow | CalcForDIY"
+  description="Follow a 4-step 200-amp electrical service upgrade workflow: NEC 220 load calculation, 50A EV charger wiring, conduit fill sizing, and generator interlock."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "200A Service Upgrade Hub", "item": "https://calcfordiy.com/projects/200a-service-upgrade" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Plan a 200-Amp Electrical Service Modernization",
+    "description": "A 4-step electrical workflow for calculating residential NEC load, 50-amp EV circuits, service entrance conduit fill, and backup generator sizing.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "NEC 220 Load Calculation",
+        "text": "Calculate residential square footage volt-amperes, general lighting, kitchen appliance circuits, and major 240V appliances."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "EV Charging Circuit Design",
+        "text": "Calculate 6 AWG copper wire and 50A breaker ampacity under the NEC 125% continuous load rule."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Service Entrance Conduit Sizing",
+        "text": "Calculate minimum conduit diameter (2\" or 2-1/2\") for 4/0 aluminum or 2/0 copper service conductors."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Emergency Power Integration",
+        "text": "Size standby generator running and starting watts with a breaker interlock kit."
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span>200A Electrical Upgrade</span>
+  </div>
+
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-yellow-50 border border-yellow-200 rounded-full text-yellow-800 text-xs font-semibold mb-3">
+      <span>⚡ Residential Power Modernization</span>
+      <span>•</span>
+      <span>4 Integrated Calculators</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">200-Amp Electrical Service Upgrade Workflow</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      Upgrading from an obsolete 100-amp panel to a modern 200-amp service enables high-efficiency heat pumps, EV chargers, induction cooking, and backup generators. Follow this 4-step workflow to size your electrical loads per NFPA 70 (NEC).
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs hover:border-blue-400 transition-all">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="w-9 h-9 rounded-full bg-yellow-100 text-yellow-800 font-bold flex items-center justify-center text-sm shrink-0 mt-0.5">
+              {step.stepNumber}
+            </span>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-lg">{step.icon}</span>
+                <h2 class="text-lg font-bold text-gray-900">{step.title}</h2>
+              </div>
+              <p class="text-sm text-gray-600 max-w-2xl leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </div>
+          <a
+            href={step.href}
+            class="shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors shadow-2xs"
+          >
+            <span>{step.calculatorName}</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">NEC Code Requirements for 200A Services</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-2">1. Two Ground Rods Required (NEC 250.53)</h3>
+        <p class="leading-relaxed">
+          The National Electrical Code mandates two 5/8-inch copper-clad ground rods driven at least 8 feet deep into undisturbed earth, spaced at least 6 feet apart, connected by a continuous #4 bare copper grounding electrode conductor (GEC).
+        </p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-2">2. Outside Emergency Disconnect (NEC 230.85)</h3>
+        <p class="leading-relaxed">
+          The 2020 and 2023 NEC require an exterior service disconnect switch readily accessible to first responders on the outside of the home. Meter-main combo panels with an integrated 200A main breaker outdoors satisfy this requirement cleanly.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-200 pt-8">
+    <h3 class="text-base font-bold text-gray-900 mb-4">Related Building Workflows &amp; Guides</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <a href="/projects/garage-ev-workshop" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-blue-600 mb-1">ELECTRICAL WORKFLOW</div>
+        <div class="font-bold text-gray-900 text-sm">Garage EV &amp; Workshop Hub</div>
+        <p class="text-xs text-gray-500 mt-1">Plan subpanels, 240V outlets, and high-lumen workshop lighting.</p>
+      </a>
+      <a href="/guides/what-gauge-wire-for-50-amp-ev-charger" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-emerald-600 mb-1">TRADE GUIDE</div>
+        <div class="font-bold text-gray-900 text-sm">50A EV Wire Gauge Guide</div>
+        <p class="text-xs text-gray-500 mt-1">Continuous load rules for 6 AWG Romex vs THHN.</p>
+      </a>
+      <a href="/guides/how-to-calculate-voltage-drop-for-wire-runs" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-emerald-600 mb-1">TRADE GUIDE</div>
+        <div class="font-bold text-gray-900 text-sm">Voltage Drop Math Guide</div>
+        <p class="text-xs text-gray-500 mt-1">NEC 3% limits and conductor up-sizing formulas.</p>
+      </a>
+    </div>
+  </div>
+
+</Layout>

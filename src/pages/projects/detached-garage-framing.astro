@@ -1,0 +1,177 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Monolithic Slab & Stem Wall Foundation",
+    description: "Calculate concrete volume, 4000 PSI mix, #4 rebar perimeter footing reinforcement, and gravel sub-base for a heavy-vehicle garage slab.",
+    calculatorName: "Concrete Slab Calculator",
+    href: "/calculators/concrete-slab",
+    icon: "🏗️"
+  },
+  {
+    stepNumber: 2,
+    title: "Garage Door & Window Structural Headers",
+    description: "Determine header sizing (2x10, 2x12, or engineered LVL beams) and required trimmer (jack) stud counts for 16-ft double car garage doors per IRC Table R602.7.",
+    calculatorName: "Garage Door Header Calculator",
+    href: "/calculators/garage-door-header",
+    icon: "📐"
+  },
+  {
+    stepNumber: 3,
+    title: "Wall Framing Studs & Exterior Sheathing",
+    description: "Calculate 2x4 or 2x6 framing studs at 16\" o.c., pressure-treated bottom sill plates with anchor bolts, and 7/16\" OSB wall sheathing.",
+    calculatorName: "Wall Framing Calculator",
+    href: "/calculators/wall-framing",
+    icon: "🔨"
+  },
+  {
+    stepNumber: 4,
+    title: "Exterior Cladding & Weather Barrier",
+    description: "Estimate vertical board and batten or lap siding, house wrap, window flashing tape, and Z-flashing linear footage.",
+    calculatorName: "Board and Batten Siding Calculator",
+    href: "/calculators/board-and-batten-siding",
+    icon: "🏠"
+  }
+];
+---
+
+<Layout
+  title="Detached Garage Framing Hub — Step-by-Step Construction Workflow | CalcForDIY"
+  description="Follow a 4-step detached garage framing workflow: Monolithic slab foundation, structural garage door headers, 2x6 wall studs, and exterior siding takeoffs."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Detached Garage Framing Hub", "item": "https://calcfordiy.com/projects/detached-garage-framing" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Frame a Detached Garage or Workshop",
+    "description": "A 4-step structural workflow for calculating monolithic slabs, garage door headers, 2x6 wall framing, and siding materials.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Slab & Footing Foundation",
+        "text": "Calculate cubic yards of concrete, crushed gravel, and rebar for a 4-inch vehicle slab with 12-inch thickened perimeter edges."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Structural Header Engineering",
+        "text": "Calculate engineered LVL or double 2x12 header spans for 16-foot vehicle doors per IRC Table R602.7."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Wall Framing & Sill Plates",
+        "text": "Determine 2x6 stud counts, corner assemblies, and Simpson anchor bolts into the concrete foundation."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Exterior Weatherproofing & Siding",
+        "text": "Estimate board and batten vertical panels, Z-flashing, and weather-resistive barrier rolls."
+      }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span>Garage Framing Workflow</span>
+  </div>
+
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+      <span>🚗 Structural Garage Workflow</span>
+      <span>•</span>
+      <span>4 Integrated Calculators</span>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Detached Garage Framing &amp; Outfitting Workflow</h1>
+    <p class="text-lg text-gray-600 max-w-3xl">
+      Building a detached 2-car or 3-car garage requires coordinating heavy vehicle slab loads, large structural door spans, and weather-tight siding. Follow this 4-step workflow to plan your materials per IRC building code.
+    </p>
+  </div>
+
+  <div class="space-y-6 mb-12">
+    {workflowSteps.map((step) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-xs hover:border-blue-400 transition-all">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="w-9 h-9 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-sm shrink-0 mt-0.5">
+              {step.stepNumber}
+            </span>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-lg">{step.icon}</span>
+                <h2 class="text-lg font-bold text-gray-900">{step.title}</h2>
+              </div>
+              <p class="text-sm text-gray-600 max-w-2xl leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </div>
+          <a
+            href={step.href}
+            class="shrink-0 w-full md:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors shadow-2xs"
+          >
+            <span>{step.calculatorName}</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">Garage Framing Best Practices &amp; Code Tips</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+      <div>
+        <h3 class="font-bold text-gray-900 mb-2">1. Pressure-Treated Mud Sill Anchorage</h3>
+        <p class="leading-relaxed">
+          The bottom plate contacting the concrete must be preservative-treated lumber anchored by minimum 1/2-inch anchor bolts embedded at least 7 inches into concrete, spaced no more than 6 feet apart and within 12 inches of each plate end (IRC R403.1.6).
+        </p>
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 mb-2">2. Double 2x12 vs LVL for 16-Ft Openings</h3>
+        <p class="leading-relaxed">
+          Standard sawn lumber (2x10 or 2x12) cannot span 16 feet without sagging under roof truss loads. Most 16-foot vehicle doors require double or triple 1-3/4" &times; 11-7/8" laminated veneer lumber (LVL) beams supported by minimum 2 jack studs at each end.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-200 pt-8">
+    <h3 class="text-base font-bold text-gray-900 mb-4">Related Building Workflows &amp; Guides</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <a href="/projects/garage-ev-workshop" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-blue-600 mb-1">ELECTRICAL HUB</div>
+        <div class="font-bold text-gray-900 text-sm">Garage EV &amp; Workshop Electrical</div>
+        <p class="text-xs text-gray-500 mt-1">Plan subpanels, 50A EV charging, and high-lumen lighting.</p>
+      </a>
+      <a href="/projects/shed-building" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-blue-600 mb-1">FRAMING HUB</div>
+        <div class="font-bold text-gray-900 text-sm">Shed &amp; Workshop Construction</div>
+        <p class="text-xs text-gray-500 mt-1">Step-by-step outbuilding framing and truss assembly.</p>
+      </a>
+      <a href="/guides/how-many-studs-for-a-wall" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+        <div class="text-xs font-semibold text-emerald-600 mb-1">TRADE GUIDE</div>
+        <div class="font-bold text-gray-900 text-sm">How Many Studs for a Wall?</div>
+        <p class="text-xs text-gray-500 mt-1">Master corner backing and rough opening stud math.</p>
+      </a>
+    </div>
+  </div>
+
+</Layout>

@@ -1,0 +1,141 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="TCNA Subfloor Deflection Guide: L/360 vs L/720 for Tile & Stone | CalcForDIY"
+  description="Understand floor deflection standards for tile installation. Learn how to calculate L/360 for ceramic/porcelain and L/720 for natural stone per TCNA guidelines."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "TCNA Subfloor Deflection Guide", "item": "https://calcfordiy.com/guides/tcna-subfloor-deflection-guide" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "TCNA Subfloor Deflection Guide: L/360 vs L/720 for Tile & Stone",
+    "description": "Comprehensive engineering guide explaining floor deflection limits, joist span calculations, and subfloor reinforcement to prevent cracked tile and grout.",
+    "author": { "@type": "Organization", "name": "CalcForDIY" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "url": "https://calcfordiy.com" },
+    "datePublished": "2026-09-02",
+    "dateModified": "2026-09-02"
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>TCNA Subfloor Deflection Guide</span>
+  </div>
+
+  <article class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-800 text-xs font-semibold mb-3">
+        <span>📐 Tile Standards &amp; TCNA Handbook</span>
+        <span>•</span>
+        <span>Structural Subfloor Guide</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+        Subfloor Deflection for Tile: The Complete L/360 vs L/720 Engineering Guide
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Ceramic tile, porcelain, and natural stone have zero tensile elasticity. If your wood floor joists or subfloor sheathing flex underfoot, the tile and grout will crack. Here is how to measure and solve floor deflection.
+      </p>
+    </header>
+
+    <!-- Interactive Tool Callout -->
+    <div class="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl mb-8 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-1">Check your floor joist span capacity before tiling</h2>
+        <p class="text-xs text-gray-600">Calculate maximum spans for 2x8, 2x10, and 2x12 floor joists under 40 PSF live loads.</p>
+      </div>
+      <a href="/calculators/deck-joist-span" class="shrink-0 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shadow-2xs">
+        <span>Check Joist Spans</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="prose prose-blue max-w-none text-gray-700 space-y-6">
+      <h2 class="text-2xl font-bold text-gray-900">1. What is Floor Deflection?</h2>
+      <p>
+        Deflection refers to the vertical bending or "bounce" that occurs when a person walks across a floor system. In residential construction, deflection is expressed as a fraction of the joist span length (L). For example, an <strong>L/360 deflection limit</strong> means that over a given span, the center of the floor is permitted to sag no more than <strong>1/360th</strong> of the total span length under full live load (typically 40 pounds per square foot).
+      </p>
+
+      <div class="bg-gray-50 border-l-4 border-blue-600 p-4 rounded-r-lg font-mono text-sm text-gray-800">
+        <p>Span in inches &divide; 360 = Maximum Allowable Deflection</p>
+        <p class="mt-1 text-xs text-gray-600">Example: A 12-foot joist span (144 inches) allows 144 &divide; 360 = 0.40 inches (approx. 3/8") of sag.</p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">2. TCNA Standards: L/360 vs L/720</h2>
+      <p>
+        The Tile Council of North America (TCNA) and ANSI A108 dictate strict deflection maximums depending on the flooring material:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose mb-6">
+        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-xs">
+          <div class="text-xs font-bold text-blue-700 uppercase tracking-wider mb-1">STANDARD TILES</div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">L/360 Deflection Rating</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Mandatory for <strong>ceramic, porcelain, and quarry tile</strong>. For a 15-foot joist span (180 inches), the joist may deflect no more than 0.50 inches (1/2") under a 50 PSF total load (40 live + 10 dead).
+          </p>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-xs">
+          <div class="text-xs font-bold text-purple-700 uppercase tracking-wider mb-1">NATURAL STONE</div>
+          <h3 class="text-lg font-bold text-gray-900 mb-2">L/720 Deflection Rating</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Mandatory for <strong>marble, granite, limestone, slate, and travertine</strong>. Natural stone is brittle along geological fault lines; it requires twice the stiffness of porcelain (maximum 0.25 inches deflection on a 15-foot span).
+          </p>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">3. Two Types of Deflection: Joists vs Sheathing</h2>
+      <p>
+        A floor that passes joist deflection can still crack tile if the plywood sheathing bends between the joists:
+      </p>
+      <ul>
+        <li><strong>Joist Deflection:</strong> Bending along the length of the 2x8 or 2x10 lumber beams. Fixed by shortening spans, sistering joists, or adding a mid-span bearing beam.</li>
+        <li><strong>Between-Joist Deflection:</strong> Bending of the 3/4" subfloor between joist bays spaced 16" or 19.2" on-center. Fixed by adding a secondary 1/2" exterior-grade plywood underlayment sheet (screwed to the subfloor, never into the joists).</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900">4. Does Cement Board or Ditra Add Structural Rigidity?</h2>
+      <p>
+        <strong>No.</strong> This is one of the most widespread DIY myths. 1/2-inch cement backer board (Durock, HardieBacker) and uncoupling membranes (Schluter Ditra) provide moisture resistance and decoupling from lateral shear stress, but they provide <strong>zero structural bending resistance</strong>. If your joists deflect more than L/360, your tile will fail regardless of how much backer board you install.
+      </p>
+    </div>
+
+    <!-- Related Workflows & Calculators -->
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <h3 class="text-base font-bold text-gray-900 mb-4">Related Building Workflows &amp; Tools</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <a href="/projects/bathroom-remodel" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">PROJECT WORKFLOW</div>
+          <div class="font-bold text-gray-900 text-sm">Bathroom Remodel Hub</div>
+          <p class="text-xs text-gray-500 mt-1">Complete subfloor prep, waterproofing, and tiling steps.</p>
+        </a>
+        <a href="/calculators/subfloor" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">CALCULATOR</div>
+          <div class="font-bold text-gray-900 text-sm">Subfloor Calculator</div>
+          <p class="text-xs text-gray-500 mt-1">Calculate 3/4" OSB and plywood sheet counts.</p>
+        </a>
+        <a href="/calculators/shower-tile" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">CALCULATOR</div>
+          <div class="font-bold text-gray-900 text-sm">Shower Tile Calculator</div>
+          <p class="text-xs text-gray-500 mt-1">Estimate floor pan and wall tile square footage.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+</Layout>

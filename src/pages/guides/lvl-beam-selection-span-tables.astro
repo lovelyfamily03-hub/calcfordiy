@@ -1,0 +1,163 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="LVL Beam Sizing & Span Tables Guide for Load-Bearing Walls | CalcForDIY"
+  description="Master engineered Laminated Veneer Lumber (LVL) beam sizing. Learn tributary width math, double/triple ply span tables, and bearing requirements for removing load-bearing walls."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "LVL Beam Sizing & Span Tables Guide", "item": "https://calcfordiy.com/guides/lvl-beam-selection-span-tables" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "LVL Beam Sizing & Span Tables Guide for Load-Bearing Walls",
+    "description": "Comprehensive structural engineering guide explaining how to calculate tributary load width, select LVL beam plies (1.9E vs 2.0E), and size columns when removing load-bearing walls.",
+    "author": { "@type": "Organization", "name": "CalcForDIY" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "url": "https://calcfordiy.com" },
+    "datePublished": "2026-09-02",
+    "dateModified": "2026-09-02"
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span>LVL Beam Sizing &amp; Span Tables</span>
+  </div>
+
+  <article class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-3">
+        <span>📐 Structural Engineering &amp; Framing</span>
+        <span>•</span>
+        <span>Engineered Lumber Guide</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+        LVL Beam Sizing Guide: How to Size Beams When Removing Load-Bearing Walls
+      </h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Removing a central interior wall to create an open-concept living space requires replacing that wall with an engineered beam. Here is how structural engineers size Laminated Veneer Lumber (LVL) beams and calculate tributary floor and roof loads.
+      </p>
+    </header>
+
+    <!-- Interactive Tool Callout -->
+    <div class="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl mb-8 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <h2 class="text-base font-bold text-gray-900 mb-1">Need to calculate header and beam spans?</h2>
+        <p class="text-xs text-gray-600">Use our garage header and beam calculator to evaluate LVL plies vs sawn dimensional lumber.</p>
+      </div>
+      <a href="/calculators/garage-door-header" class="shrink-0 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-colors shadow-2xs">
+        <span>Open Beam Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="prose prose-blue max-w-none text-gray-700 space-y-6">
+      <h2 class="text-2xl font-bold text-gray-900">1. What is an LVL Beam?</h2>
+      <p>
+        Laminated Veneer Lumber (LVL) is an engineered wood product manufactured by bonding thin wood veneers together under heat and pressure with water-resistant adhesives. Unlike traditional sawn solid timber (which has natural knots, crowns, and grain twists), the wood grain in all LVL veneers runs parallel to the length of the member. This creates a predictable, defect-free beam with twice the bending strength and stiffness of solid Douglas Fir.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900">2. Calculating Tributary Width</h2>
+      <p>
+        Before you can select a beam size, you must determine how many square feet of floor and ceiling the new beam will support. This is called the <strong>Tributary Width</strong>:
+      </p>
+
+      <div class="bg-gray-50 border-l-4 border-amber-600 p-4 rounded-r-lg font-mono text-sm text-gray-800">
+        <p>Tributary Width = (Joist Span Left &divide; 2) + (Joist Span Right &divide; 2)</p>
+        <p class="mt-1 text-xs text-gray-600">Example: If floor joists span 12 feet from the exterior wall to the center beam, and 14 feet from the other side: (12 &divide; 2) + (14 &divide; 2) = 6 + 7 = <strong>13 Feet Tributary Width</strong>.</p>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">3. 2.0E LVL Beam Span Reference Matrix</h2>
+      <p>
+        For a 12-foot clear opening supporting a single floor load (40 PSF live + 10 PSF dead) with a 14-foot tributary width:
+      </p>
+
+      <div class="overflow-x-auto not-prose mb-6">
+        <table class="w-full text-left border-collapse bg-white rounded-xl border border-gray-200 shadow-xs text-sm">
+          <thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200">
+            <tr>
+              <th class="py-3 px-4">Beam Configuration</th>
+              <th class="py-3 px-4">Total Width</th>
+              <th class="py-3 px-4">Maximum Safe Span</th>
+              <th class="py-3 px-4">Required End Bearing</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 text-gray-700">
+            <tr>
+              <td class="py-3 px-4 font-semibold text-gray-900">Double (2) 1-3/4&Prime; &times; 9-1/2&Prime; LVL</td>
+              <td class="py-3 px-4 font-mono">3-1/2&Prime;</td>
+              <td class="py-3 px-4">10 ft - 6 in</td>
+              <td class="py-3 px-4 text-emerald-700 font-semibold">2 Jack Studs (3&Prime;)</td>
+            </tr>
+            <tr class="bg-gray-50/50">
+              <td class="py-3 px-4 font-semibold text-gray-900">Double (2) 1-3/4&Prime; &times; 11-7/8&Prime; LVL</td>
+              <td class="py-3 px-4 font-mono">3-1/2&Prime;</td>
+              <td class="py-3 px-4">13 ft - 8 in</td>
+              <td class="py-3 px-4 text-blue-700 font-semibold">2 Jack Studs (3&Prime;)</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-semibold text-gray-900">Triple (3) 1-3/4&Prime; &times; 11-7/8&Prime; LVL</td>
+              <td class="py-3 px-4 font-mono">5-1/4&Prime;</td>
+              <td class="py-3 px-4">16 ft - 2 in</td>
+              <td class="py-3 px-4 text-purple-700 font-semibold">3 Jack Studs (4-1/2&Prime;)</td>
+            </tr>
+            <tr class="bg-gray-50/50">
+              <td class="py-3 px-4 font-semibold text-gray-900">Double (2) 1-3/4&Prime; &times; 14&Prime; LVL</td>
+              <td class="py-3 px-4 font-mono">3-1/2&Prime;</td>
+              <td class="py-3 px-4">16 ft - 10 in</td>
+              <td class="py-3 px-4 text-purple-700 font-semibold">3 Jack Studs (4-1/2&Prime;)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900">4. Fastening Multi-Ply LVL Beams</h2>
+      <p>
+        Multiple plies of LVL must be fastened together so they act as a single composite unit. Follow the manufacturer's nailing schedule:
+      </p>
+      <ul>
+        <li>For <strong>top-loaded beams</strong>: Fasten plies together with 2 rows of 3-1/4" &times; 0.131" framing nails spaced 12 inches on-center.</li>
+        <li>For <strong>side-loaded beams</strong> (where joist hangers hang off one face of the beam): Use engineered structural screws (such as Simpson Strong-Drive SDWS or FastenMaster TimberLOK) driven through all plies according to the joist reaction load.</li>
+      </ul>
+    </div>
+
+    <!-- Related Workflows & Calculators -->
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <h3 class="text-base font-bold text-gray-900 mb-4">Related Building Workflows &amp; Tools</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <a href="/calculators/garage-door-header" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">CALCULATOR</div>
+          <div class="font-bold text-gray-900 text-sm">Header &amp; Beam Calculator</div>
+          <p class="text-xs text-gray-500 mt-1">Compare LVL beam plies vs dimensional lumber spans.</p>
+        </a>
+        <a href="/projects/detached-garage-framing" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-blue-600 mb-1">PROJECT WORKFLOW</div>
+          <div class="font-bold text-gray-900 text-sm">Detached Garage Framing Hub</div>
+          <p class="text-xs text-gray-500 mt-1">Framing 16-foot vehicle door headers and walls.</p>
+        </a>
+        <a href="/guides/header-span-tables-irc-r602-7" class="block p-4 rounded-lg border border-gray-200 hover:border-blue-400 bg-white hover:shadow-xs transition-all">
+          <div class="text-xs font-semibold text-emerald-600 mb-1">TRADE GUIDE</div>
+          <div class="font-bold text-gray-900 text-sm">IRC Header Span Tables</div>
+          <p class="text-xs text-gray-500 mt-1">IRC Table R602.7 rules for doors and windows.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+</Layout>
