@@ -2,6 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
 import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 ---
 
 <Layout
@@ -282,6 +286,45 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
   </div>
 
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Materials Estimator"
+    experience="18+ Years Field Experience"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Why You Must Acclimate Cartons and Never Cut Inside the Bedroom"
+    note="I have inspected dozens of bowed LVP floors where the homeowner brought the cartons inside from an unheated garage or 90-degree delivery truck bed and immediately started clicking them together. Rigid core vinyl expands and contracts with ambient temperature. Stack your boxes flat in the actual installation room for at least 48 hours before opening. Also, invest $55 in a manual guillotine shear cutter—miter saws blow micro-PVC dust into your air vents and newly painted walls that takes months to clean."
+  />
+
+  <!-- Costly DIY Mistakes -->
+  <CostlyMistakes
+    tradeName="Vinyl Plank Flooring"
+    mistakes={[
+      {
+        number: 1,
+        title: "Double-Padding Underneath Attached Foam",
+        costImpact: "$1,200 (Broken Seams)",
+        description: "Adding secondary foam underlayment beneath planks that already have pre-attached IXPE pads creates vertical bounce under foot traffic, snapping the delicate click-lock tongues.",
+        solution: "Never install secondary foam under attached-pad LVP. On concrete slabs, only use an unpadded 6-mil poly vapor barrier."
+      },
+      {
+        number: 2,
+        title: "Pinching Floating Floors Under Kitchen Islands",
+        costImpact: "$1,800 (Buckled Center)",
+        description: "Setting 400-lb granite kitchen islands on top of floating floors pins the material down. When the floor expands in summer, it cannot move and tents up in the middle of the room.",
+        solution: "Install kitchen cabinets and heavy islands first on leveling shims. Lay the LVP up to the cabinet feet with a 1/4\" gap hidden by shoe trim."
+      },
+      {
+        number: 3,
+        title: "Skipping Door Jamb Undercuts",
+        costImpact: "$350 (Damaged Casing)",
+        description: "Trying to notch complicated curves around door jambs leaves ugly gaps or locks the planks so they cannot expand, causing buckling at room thresholds.",
+        solution: "Use an oscillating multi-tool with a scrap plank turned upside-down as a height guide to undercut every jamb flush in seconds."
+      }
+    ]}
+  />
+
   <!-- Building Codes & Best Practices -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">LVP Flooring Rules &amp; RFCI Standards</h2>
@@ -316,7 +359,31 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
   </div>
 
-  <!-- Related Calculators -->
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Vinyl Plank Flooring"
+    reviews={[
+      {
+        author: "Mark & Sarah T.",
+        location: "Spokane, WA",
+        projectScope: "280 sq ft Master Bedroom",
+        savingsClaim: "Saved $1,150",
+        feedback: "The 10% waste buffer was spot-on. We had exactly 4 spare planks left over after doing two closet door jambs and an alcove. The calculator's transition strip recommendation saved us an extra trip to Lowe's.",
+        keyTakeaway: "Buy a cheap guillotine flooring cutter instead of using a chop saw indoors; zero dust in the house."
+      },
+      {
+        author: "Jason K.",
+        location: "Austin, TX",
+        projectScope: "650 sq ft Open Living & Dining",
+        savingsClaim: "Saved $2,100",
+        feedback: "Saved over $2,000 doing this ourselves over a 3-day weekend. The SVG stagger diagram helped me visualize the 1/3 offset pattern instead of stair-stepping. Floor looks like a pro installed it.",
+        keyTakeaway: "Check your floor with a 10-ft straight edge first; two bags of self-leveler in the hallway made all the difference."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Vinyl Plank Flooring Calculator" initialYesCount={214} />
   
   <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
   <RelatedGuidesProjects

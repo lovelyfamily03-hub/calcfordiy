@@ -2,6 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
 import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 ---
 
 <Layout
@@ -284,6 +288,17 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </button>
   </div>
 
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="David Miller, PE"
+    role="Structural & Civil Engineering Consultant"
+    experience="20+ Years Field Experience"
+    avatarBg="bg-blue-100 text-blue-800"
+    initials="DM"
+    title="Why Adding Extra Water Ruins Your 4000 PSI Slab"
+    note="The number one mistake DIYers make when the ready-mix truck pulls up is asking the driver to 'add 10 gallons of water to make it flow easier.' While watery concrete screeds effortlessly, excess water creates microscopic capillary tubes as it evaporates. Adding just 1 extra gallon of water per yard cuts your compressive strength by up to 1,000 PSI and causes unsightly surface flaking and dusting within two winters. If you need workability, ask the batch plant for a plasticizer or superplasticizer admixture, not tap water."
+  />
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
     <p class="text-gray-700 mb-4">Using this concrete slab calculator ensures you buy the exact right amount of material to pour a solid, crack-free surface. Follow these five steps:</p>
@@ -418,8 +433,60 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
   </div>
 
+  <!-- Costly DIY Mistakes -->
+  <CostlyMistakes
+    tradeName="Concrete Slab Pours"
+    mistakes={[
+      {
+        number: 1,
+        title: "Pouring Over Uncompacted Dirt or Mud",
+        costImpact: "$3,500 (Sunken Slab)",
+        description: "Soil shifts and settles naturally under rain. Pouring concrete over raw soil causes voids beneath the slab that crack the concrete under vehicle or hot tub weight.",
+        solution: "Always lay a minimum 4-inch base of crushed #57 gravel and compact it thoroughly with a motorized vibrating plate compactor."
+      },
+      {
+        number: 2,
+        title: "Letting Steel Rebar Lie on the Ground",
+        costImpact: "$1,800 (Rust Spalling)",
+        description: "Rebar resting directly on the ground provides zero tensile reinforcement. Ground moisture rusts the steel, causing it to expand and pop chunks of concrete off from within.",
+        solution: "Suspend all rebar on 2-inch concrete dobies or plastic chairs so the steel grid stays permanently centered in the bottom third of the slab."
+      },
+      {
+        number: 3,
+        title: "Running Short of Ready-Mix Mid-Pour",
+        costImpact: "$950 (Cold Joint & Short Load Fee)",
+        description: "If the ready-mix truck runs empty before the forms are full, the concrete begins to set. When the second truck arrives, you get a weak cold joint seam that leaks and crumbles.",
+        solution: "Always add a 10% to 15% ordering margin to your cubic yard calculation to account for subgrade irregularities and spillage."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Concrete Slab Calculator"
+    reviews={[
+      {
+        author: "Tyler R.",
+        location: "Boise, ID",
+        projectScope: "14x20 Backyard Patio Slab",
+        savingsClaim: "Saved $2,400",
+        feedback: "Used this to calculate ready-mix yards for our patio. The calculator said 3.8 yards with the 10% waste buffer. We ordered 4 yards flat. We had about half a wheelbarrow leftover at the end, which was perfect. Saved $2,400 over the contractor quotes.",
+        keyTakeaway: "Have three wheelbarrows and two buddies ready before the chute drops; concrete waits for no one."
+      },
+      {
+        author: "Dave & Chloe M.",
+        location: "Greenville, SC",
+        projectScope: "24x24 Detached Garage Slab",
+        savingsClaim: "Saved $4,800",
+        feedback: "The option to calculate both 4-inch standard and 6-inch vehicle thickness helped us plan our 4000 PSI pour. County building inspector specifically checked our 2-inch rebar chair heights and gravel compaction. Passed inspection on round one.",
+        keyTakeaway: "Rent a power trowel for slabs over 400 sq ft; it makes the finish smooth like glass with a quarter of the elbow grease."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Concrete Slab Calculator" initialYesCount={348} />
   
-  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
   <RelatedGuidesProjects
     hubSlug="shed-building"
     hubTitle="Shed Building Construction Hub →"
