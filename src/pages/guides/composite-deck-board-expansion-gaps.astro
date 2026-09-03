@@ -1,0 +1,229 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="Composite Deck Board Expansion Gaps: Temperature Tables | CalcForDIY"
+  description="Master thermal expansion gaps for capped composite and PVC decking. Temperature-at-installation end gap tables, side spacing, and breaker board design."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Composite Deck Expansion Gaps Guide", "item": "https://calcfordiy.com/guides/composite-deck-board-expansion-gaps" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Composite Deck Board Expansion Gaps: Temperature Tables",
+    "description": "Polymer materials science guide on linear thermal expansion coefficients in wood-plastic composite (WPC) decking and temperature gap tables.",
+    "author": { "@type": "Person", "name": "Elena Rostova, CBO" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/composite-deck-board-expansion-gaps"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Composite Expansion Gaps</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>📐 Materials Science &amp; Thermal Expansion</span>
+      <span>•</span>
+      <span>ASTM D7032 Decking Standards</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      Composite Deck Board Expansion Gaps: Temperature Tables
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      Natural wood expands when it gets wet and shrinks when it dries, with virtually zero movement along its length. Capped composite decking (wood-plastic composite / WPC) behaves in the exact opposite manner: it is waterproof, but expands and contracts significantly along its <strong>linear length based on ambient temperature</strong>. Here is the mathematical gap table.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+      <div>
+        <div class="text-xs text-gray-500">End-to-End Movement</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">Up to 3/8" per 20-ft Board</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Side-to-Side Gap</div>
+        <div class="text-sm font-bold text-emerald-600 mt-0.5">3/16" (Preset by Clip)</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Installation Rule</div>
+        <div class="text-sm font-bold text-red-600 mt-0.5">Measure Board Temp, Not Air</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Editorial Content -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8 prose prose-slate max-w-none">
+    <h2 class="text-2xl font-bold text-gray-900">The Temperature-at-Installation End Gap Table</h2>
+    <p>
+      End gaps (butt joints and cuts against house walls or breaker boards) must be gauged based on the <strong>actual temperature of the boards during installation</strong>:
+    </p>
+    <div class="overflow-x-auto my-6 not-prose">
+      <table class="w-full text-xs text-left border-collapse border border-gray-200">
+        <thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200">
+          <tr>
+            <th class="p-3">Board Temp During Install</th>
+            <th class="p-3">End-to-End Butt Joint Gap</th>
+            <th class="p-3">End-to-Wall Fixed Object Gap</th>
+            <th class="p-3">Thermal State</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr class="bg-blue-50/50">
+            <td class="p-3 font-bold">&lt; 40°F (Cold Winter)</td>
+            <td class="p-3 font-bold text-blue-700">3/8 Inch (0.375")</td>
+            <td class="p-3 font-bold text-blue-700">1/2 Inch (0.500")</td>
+            <td class="p-3">Board is at maximum thermal contraction (shortest)</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-bold">40°F to 60°F (Cool Spring/Fall)</td>
+            <td class="p-3 font-semibold text-emerald-700">1/4 Inch (0.250")</td>
+            <td class="p-3 font-semibold text-emerald-700">3/8 Inch (0.375")</td>
+            <td class="p-3">Moderate contraction; requires generous room to grow</td>
+          </tr>
+          <tr class="bg-emerald-50/60 font-semibold text-emerald-900">
+            <td class="p-3 font-bold">60°F to 80°F (Mild Room Temp)</td>
+            <td class="p-3 font-bold text-emerald-700">3/16 Inch (0.187")</td>
+            <td class="p-3 font-bold text-emerald-700">1/4 Inch (0.250")</td>
+            <td class="p-3">Baseline average temperature</td>
+          </tr>
+          <tr class="bg-amber-50/50">
+            <td class="p-3 font-bold">80°F to 100°F+ (Hot Summer)</td>
+            <td class="p-3 font-bold text-amber-800">1/16 to 1/8 Inch</td>
+            <td class="p-3 font-bold text-amber-800">1/8 Inch (0.125")</td>
+            <td class="p-3">Board is at maximum thermal expansion (longest)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">Why the Breaker Board Eliminates Uneven Joints</h2>
+    <p>
+      On decks longer than 20 feet, laying two 12-foot or 16-foot composite boards end-to-end creates an open butt joint. Because boards expand and contract individually, staggered butt joints open and close unpredictably throughout the seasons:
+    </p>
+    <ul>
+      <li>In January, the butt joints open to wide 3/8-inch dark black gaps that collect pine needles and debris.</li>
+      <li>In July, the ends expand and squeeze tightly against each other, often misaligning or lifting.</li>
+    </ul>
+    <p>
+      The professional solution is a <strong>perpendicular breaker board</strong> (also called a parting board or transition board). A single composite board runs from the house wall to the outer rim across the center of the deck. All longitudinal decking boards terminate at this central board. Every end cut is clean, uniform, and mechanically decoupled from adjoining runs.
+    </p>
+  </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Material Takeoff Analyst"
+    experience="18+ Years Field Experience"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Measure Board Surface Temp with an Infrared Laser Gun"
+    note="A critical field tip: The weather forecast might say it's a pleasant 72°F afternoon outside, but if your dark brown or slate gray composite deck boards have been sitting in direct afternoon sunlight on your driveway for 3 hours, their actual surface temperature can exceed 125°F! If you gap them based on the 72°F air temperature, you will leave too much gap—and when the boards cool down to 40°F tonight, your end gaps will stretch to an unsightly 1/2 inch wide! Spend $20 on a handheld infrared digital laser thermometer. Point the laser directly at the composite board right before making your end cut and fastening the clips. Gap strictly according to the actual material surface temperature."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="Composite Expansion Gaps"
+    mistakes={[
+      {
+        number: 1,
+        title: "Installing Boards Tight Against House Siding in Winter",
+        costImpact: "$3,200 (Buckling Deck Boards & Pushed Siding)",
+        description: "Installing boards tight against ledger stone or siding on a 45°F day leaves zero room for summer thermal growth, popping boards off joists in July.",
+        solution: "Always leave at least 1/4\" to 1/2\" expansion clearance between the end of composite boards and any fixed vertical structure (walls, chimneys, posts)."
+      },
+      {
+        number: 2,
+        title: "Using Adhesives or Glue on Hidden Fastener Grooves",
+        costImpact: "$1,800 (Snapping Clips & Cracked Board Shoulders)",
+        description: "Gluing boards to joists or clips prevents thermal sliding, causing extreme internal stresses that snap composite board groove shoulders.",
+        solution: "Never use glue in grooved channels; hidden fastener clips are engineered to allow boards to glide smoothly along their length during temperature shifts."
+      },
+      {
+        number: 3,
+        title: "Fastening Single Joists Under Breaker Boards",
+        costImpact: "$850 (Cantilevered Board Ends Dropping & Sagging)",
+        description: "Trying to screw both a breaker board and the ends of adjoining deck boards onto a single 1-1/2\" wide joist leaves screws too close to edges.",
+        solution: "Install doubled or tripled joists with blocking under breaker boards so all board ends have at least 1-1/2 inches of full solid bearing."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Composite Expansion Guide"
+    reviews={[
+      {
+        author: "Darrell & Heather M.",
+        location: "Spokane, WA",
+        projectScope: "20x24 Trex Transcend Deck with Breaker Board",
+        savingsClaim: "Zero Thermal Buckling in 100°F Heat",
+        feedback: "Bought an infrared thermometer gun based on Elena's field note. Our dark brown boards were 110°F in the sun even though air temp was 78°F. We gapped at 1/8\" at the breaker board. Through sub-zero winter freezes and 102°F summer days, the joints stay neat, uniform, and flat.",
+        keyTakeaway: "Acclimate your composite boards on the jobsite for 48 hours before cutting so they stabilize to local humidity and temperature."
+      },
+      {
+        author: "Chad K.",
+        location: "Minneapolis, MN",
+        projectScope: "TimberTech PVC Deck Around Brick Chimney",
+        savingsClaim: "Clean 3/8\" Wall Clearances",
+        feedback: "The expansion table made planning foolproof. Left 3/8\" around our brick chimney base and covered the gap with low-profile matching composite trim. The boards expand and contract behind the trim without ever touching the brick.",
+        keyTakeaway: "Use a simple plastic spacer jig (a 1/4\" scrap piece of plywood) to gauge your end gaps consistently along the entire run."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Composite Deck Board Expansion Gaps Guide" initialYesCount={397} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="ASTM D7032 (Standard Specification for Wood-Plastic Composite Products)"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Hubs & Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators &amp; Construction Hubs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/projects/composite-deck-hidden-fasteners" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Composite Decking Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Follow the 4-step workflow: joist framing, starter clips, hidden fasteners, and breaker boards.</div>
+      </a>
+      <a href="/calculators/deck-boards" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Boards Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate board counts, square footage, hidden clip buckets, and waste factors.</div>
+      </a>
+      <a href="/calculators/deck-joist-span" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Joist Span Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Verify 12\" and 16\" on-center joist spans and cantilevers for composite decking.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>

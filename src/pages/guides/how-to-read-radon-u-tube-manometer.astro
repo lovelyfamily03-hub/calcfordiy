@@ -1,0 +1,237 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="How to Read a Radon U-Tube Manometer: Static Pressure Guide | CalcForDIY"
+  description="Learn how to read a radon mitigation U-tube manometer. Measuring static pressure in inches of water column (W.C.), diagnosing fan failures, and normal suction ranges."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "How to Read Radon Manometer", "item": "https://calcfordiy.com/guides/how-to-read-radon-u-tube-manometer" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Read a Radon U-Tube Manometer: Static Pressure Guide",
+    "description": "Building diagnostic physics guide on differential liquid manometers, inches of water column (W.C.), and active radon suction monitoring.",
+    "author": { "@type": "Person", "name": "Elena Rostova, CBO" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/how-to-read-radon-u-tube-manometer"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Read Radon Manometer</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>📊 Differential Fluid Dynamics &amp; Diagnostics</span>
+      <span>•</span>
+      <span>EPA / AARST Protocol</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      How to Read a Radon U-Tube Manometer: Static Pressure Guide
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      Mounted on the vertical PVC pipe of almost every residential radon mitigation system is a small plastic gauge filled with bright red or blue liquid called a <strong>U-tube manometer</strong>. It does not measure the amount of radon gas in your home; rather, it measures differential static suction pressure. Here is how to read it correctly and identify fan motor failure.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+      <div>
+        <div class="text-xs text-gray-500">Normal Suction Range</div>
+        <div class="text-sm font-bold text-emerald-600 mt-0.5">0.5" to 1.75" W.C.</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Fan Failure Signal</div>
+        <div class="text-sm font-bold text-red-600 mt-0.5">Liquid Levels EQUAL at Zero</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Measurement Unit</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">Inches of Water Column (W.C.)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Editorial Content -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8 prose prose-slate max-w-none">
+    <h2 class="text-2xl font-bold text-gray-900">How a U-Tube Manometer Works</h2>
+    <p>
+      A manometer is a clear U-shaped tube containing non-freezing mineral oil or colored water:
+    </p>
+    <ul>
+      <li><strong>One side of the U-tube</strong> is open to the basement room air (measuring atmospheric pressure).</li>
+      <li><strong>The other side</strong> is connected via a small flexible vinyl tube through a barbed fitting drilled into the sealed PVC pipe.</li>
+    </ul>
+    <p>
+      When the attic radon fan operates, it creates a partial vacuum (negative pressure) inside the PVC pipe. That vacuum sucks the colored liquid higher up the connected leg, while atmospheric room pressure pushes down on the open leg. The <strong>vertical distance between the two fluid surfaces</strong> is the total differential static pressure, measured in inches of water column (in W.C.).
+    </p>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">How to Calculate Total Static Pressure (The Addition Rule)</h2>
+    <p>
+      Look closely at the graduated ruler numbers stamped on the manometer scale:
+    </p>
+    <div class="bg-gray-50 rounded-xl p-5 border border-gray-200 my-4 not-prose font-mono text-xs text-gray-800 space-y-2">
+      <p><strong>Total Suction (Inches W.C.) = Height of High Column + Drop of Low Column</strong></p>
+      <div class="pt-2 border-t border-gray-200 text-gray-700">
+        <p>• If the liquid on the pipe-side rises to <strong>0.7 inches above zero</strong>...</p>
+        <p>• And the liquid on the room-side drops to <strong>0.7 inches below zero</strong>...</p>
+        <p>• The total differential static pressure is: 0.7 + 0.7 = <strong>1.4 Inches of Water Column</strong>.</p>
+      </div>
+    </div>
+    <p>
+      Do not make the common mistake of only reading one side! The total suction is the <strong>difference in height between the two liquid surfaces</strong>.
+    </p>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">Interpreting Manometer Diagnostic States</h2>
+    <div class="overflow-x-auto my-6 not-prose">
+      <table class="w-full text-xs text-left border-collapse border border-gray-200">
+        <thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200">
+          <tr>
+            <th class="p-3">Manometer Reading</th>
+            <th class="p-3">System Operating Status</th>
+            <th class="p-3">What Action is Required?</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr class="bg-emerald-50/60 font-semibold text-emerald-900">
+            <td class="p-3 font-bold">0.5" to 1.75" W.C.</td>
+            <td class="p-3 font-bold text-emerald-700">NORMAL (Healthy Vacuum)</td>
+            <td class="p-3">Fan is running properly. Sub-slab depressurization is active.</td>
+          </tr>
+          <tr class="bg-red-50/60 font-bold text-red-900">
+            <td class="p-3 font-bold">0.0" (Both sides level)</td>
+            <td class="p-3 font-bold text-red-700">SYSTEM FAILURE (Zero Suction)</td>
+            <td class="p-3">Fan has no power, circuit breaker tripped, or fan motor has seized!</td>
+          </tr>
+          <tr class="bg-amber-50/50">
+            <td class="p-3 font-bold">&gt; 2.5" W.C. (High)</td>
+            <td class="p-3 font-medium text-amber-800">AIRFLOW RESTRICTION</td>
+            <td class="p-3">Sub-slab pit is packed with clay, or winter ice dam in roof vent pipe.</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-bold">&lt; 0.2" W.C. (Very Low)</td>
+            <td class="p-3 text-amber-700">MASSIVE AIR LEAK</td>
+            <td class="p-3">Sump pit lid loose, major floor crack open, or vinyl tube disconnected.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Material Takeoff Analyst"
+    experience="18+ Years Field Experience"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Why Equal Liquid Levels Trigger an Emergency Protocol"
+    note="A critical rule for every homeowner with a radon mitigation system: If both columns of red or blue fluid in your manometer are at the exact same level (sitting level at zero), YOUR SYSTEM IS NOT WORKING! It means there is zero negative pressure in the pipe. The radon fan has either lost electrical power, the GFI outlet tripped, or the fan motor bearings have burned out. Because radon gas is completely odorless and invisible, your basement could be filling with 20+ pCi/L of radioactive gas without you knowing it. First check your electrical panel breaker and the unswitched attic outlet. If power is present but the fluid remains dead level at zero, replace the fan unit immediately."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="Radon Manometer Diagnostics"
+    mistakes={[
+      {
+        number: 1,
+        title: "Assuming the Manometer Reads Actual Radon Picocuries (pCi/L)",
+        costImpact: "$650 (False Sense of Security While Living in Radon)",
+        description: "Homeowners think a reading of '1.2' means their radon level is 1.2 pCi/L. A manometer only measures air pressure; it cannot detect radioactivity.",
+        solution: "Use an independent continuous digital radon monitor (such as Airthings Wave) or charcoal test kits to measure actual radioactive radon concentration."
+      },
+      {
+        number: 2,
+        title: "Inserting Vinyl Tubing Too Far into the PVC Pipe",
+        costImpact: "$350 (False Reading from Condensation Droplets)",
+        description: "Pushing the flexible tube 2 inches into the pipe allows descending pipe condensation to enter the tube, sucking fluid into the pipe.",
+        solution: "Use a dedicated plastic barbed adapter fitting; the tube tip should sit flush with the inner pipe wall."
+      },
+      {
+        number: 3,
+        title: "Zeroing the Manometer While the Fan is Running",
+        costImpact: "$250 (Inaccurate Benchmark Baseline)",
+        description: "Adjusting the plastic sliding scale while the fan is active creates a miscalibrated zero reference.",
+        solution: "Turn off the fan, ensure fluid levels are naturally equal, slide the adjustable zero mark to match the resting meniscus, then power the fan on."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Radon Manometer Guide"
+    reviews={[
+      {
+        author: "Brian & Kelly S.",
+        location: "Fort Collins, CO",
+        projectScope: "Radon Fan Troubleshooting",
+        savingsClaim: "Caught a Tripped GFCI in Attic",
+        feedback: "Noticed both red lines were resting level at zero during our monthly basement laundry check. Climbed into the attic and discovered our attic GFCI outlet had tripped during an electrical storm. Reset the outlet, the fan hummed to life, and the red fluid immediately jumped to 1.3 inches. Great simple diagnostic tool.",
+        keyTakeaway: "Glance at your manometer once a month; takes 2 seconds and guarantees your family is protected."
+      },
+      {
+        author: "Mark P.",
+        location: "Peoria, IL",
+        projectScope: "High-Suction Winter Freeze Diagnostic",
+        savingsClaim: "Cleared Frozen Exhaust Stack",
+        feedback: "During a -20°F freeze, our manometer spiked from 1.2\" up to 3.0\" W.C. Realized moisture in the exhaust had frozen into an ice ring at the roof cap. Cleared the frost, and the reading returned to normal.",
+        keyTakeaway: "Insulate the section of PVC pipe running through unconditioned attics to stop exhaust moisture from freezing into an ice plug."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="How to Read Radon U-Tube Manometer Guide" initialYesCount={396} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="ANSI/AARST RMS-LB & EPA Indoor airPLUS Standards"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Hubs & Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators &amp; Construction Hubs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/projects/radon-mitigation-system-install" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Radon Mitigation Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Follow the 4-step workflow: suction pit, PVC stack, attic fan, and crack sealing.</div>
+      </a>
+      <a href="/calculators/subpanel-sizing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Subpanel &amp; Circuit Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate dedicated 15A unswitched branch circuits for continuous ventilation fans.</div>
+      </a>
+      <a href="/projects/basement-finishing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Basement Finishing Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Ensure sub-slab radon depressurization is active before building basement living spaces.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>

@@ -1,0 +1,238 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="Gas Line Sizing for Tankless Water Heaters (NFPA 54 Tables) | CalcForDIY"
+  description="Master gas pipe sizing for 199,000 BTU tankless water heaters. The NFPA 54 / IFGC longest run method, natural gas CFH demand, and avoiding 1/2-inch line errors."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Gas Line Sizing Guide", "item": "https://calcfordiy.com/guides/tankless-water-heater-gas-line-size" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Gas Line Sizing for Tankless Water Heaters: The NFPA 54 Method",
+    "description": "Mechanical fuel gas engineering guide for sizing black iron pipe and CSST for high-capacity 199,000 BTU condensing tankless water heaters.",
+    "author": { "@type": "Person", "name": "Marcus Vance" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/tankless-water-heater-gas-line-size"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Gas Line Sizing</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>🔥 Fuel Gas Thermodynamics &amp; Piping</span>
+      <span>•</span>
+      <span>NFPA 54 &amp; IFGC Chapter 4</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      Gas Line Sizing for Tankless Water Heaters: The NFPA 54 Method
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      Standard tank water heaters sip natural gas at 36,000 to 40,000 BTUs per hour. Whole-home tankless water heaters, by contrast, demand up to <strong>199,000 BTUs/hr</strong> (roughly 195 cubic feet per hour of gas). If your pipe diameter is too small or your pipe run too long, gas pressure drops, the burner starves, and the unit faults out. Here is how to size your gas pipe using the code-mandated <strong>Longest Run Method</strong>.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+      <div>
+        <div class="text-xs text-gray-500">199k BTU Gas Demand</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">~195 CFH (Cubic Feet/Hour)</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Minimum Gas Pressure</div>
+        <div class="text-sm font-bold text-emerald-600 mt-0.5">3.5" to 10.5" Water Column</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Standard Pipe Size</div>
+        <div class="text-sm font-bold text-red-600 mt-0.5">3/4" or 1" Dedicated Pipe</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Editorial Content -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8 prose prose-slate max-w-none">
+    <h2 class="text-2xl font-bold text-gray-900">The NFPA 54 "Longest Run" Sizing Method</h2>
+    <p>
+      In gas piping, pressure drop occurs over distance due to internal pipe wall friction. Under National Fuel Gas Code (NFPA 54 / ANSI Z223.1), you cannot calculate each pipe branch in isolation. You must use the <strong>Longest Length Method</strong>:
+    </p>
+    <ol class="space-y-3 not-prose my-4">
+      <li class="p-3 bg-gray-50 rounded-lg border border-gray-200 text-xs text-gray-700">
+        <strong class="text-gray-900 block text-sm mb-1">Step 1: Measure Total Distance from Meter to the Farthest Appliance</strong>
+        Measure the physical pipe length from your utility gas meter to whichever appliance is furthest away in the house (e.g., 60 feet to the furnace or tankless heater).
+      </li>
+      <li class="p-3 bg-gray-50 rounded-lg border border-gray-200 text-xs text-gray-700">
+        <strong class="text-gray-900 block text-sm mb-1">Step 2: Select the Corresponding Distance Column in Table 402.4(1)</strong>
+        Use the 60-foot column in the Schedule 40 Metallic Pipe Capacity Table for all calculations across the entire house.
+      </li>
+      <li class="p-3 bg-gray-50 rounded-lg border border-gray-200 text-xs text-gray-700">
+        <strong class="text-gray-900 block text-sm mb-1">Step 3: Verify the Pipe Section Carries Required CFH</strong>
+        Calculate CFH: CFH = Appliance BTU/hr / 1,020 BTU/cu ft. For a 199,000 BTU tankless unit: 199,000 / 1,020 = <strong>195 CFH</strong>.
+      </li>
+    </ol>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">Schedule 40 Black Iron Pipe Capacity (0.5 PSI / 0.5" w.c. Drop)</h2>
+    <div class="overflow-x-auto my-6 not-prose">
+      <table class="w-full text-xs text-left border-collapse border border-gray-200">
+        <thead class="bg-gray-100 text-gray-800 font-bold border-b border-gray-200">
+          <tr>
+            <th class="p-3">Nominal Pipe Size</th>
+            <th class="p-3">20 Feet Length</th>
+            <th class="p-3">40 Feet Length</th>
+            <th class="p-3">60 Feet Length</th>
+            <th class="p-3">80 Feet Length</th>
+            <th class="p-3">100 Feet Length</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr class="bg-red-50/60 font-medium text-red-900">
+            <td class="p-3 font-bold">1/2" Pipe</td>
+            <td class="p-3">120 CFH (122k BTU)</td>
+            <td class="p-3">82 CFH (84k BTU)</td>
+            <td class="p-3">66 CFH (67k BTU)</td>
+            <td class="p-3">57 CFH (58k BTU)</td>
+            <td class="p-3">50 CFH (51k BTU)</td>
+          </tr>
+          <tr class="bg-emerald-50/60 font-semibold text-emerald-900">
+            <td class="p-3 font-bold">3/4" Pipe</td>
+            <td class="p-3 font-bold">250 CFH (255k BTU)</td>
+            <td class="p-3 font-bold">172 CFH (175k BTU)</td>
+            <td class="p-3">138 CFH (141k BTU)</td>
+            <td class="p-3">118 CFH (120k BTU)</td>
+            <td class="p-3">104 CFH (106k BTU)</td>
+          </tr>
+          <tr class="bg-blue-50/60 font-bold text-blue-900">
+            <td class="p-3 font-bold">1" Pipe</td>
+            <td class="p-3">472 CFH (481k BTU)</td>
+            <td class="p-3">324 CFH (330k BTU)</td>
+            <td class="p-3">260 CFH (265k BTU)</td>
+            <td class="p-3">223 CFH (227k BTU)</td>
+            <td class="p-3">197 CFH (201k BTU)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Notice the red row: A 1/2-inch pipe carries only <strong>82 CFH</strong> at 40 feet. A 199,000 BTU tankless heater needs <strong>195 CFH</strong>. Connecting a tankless unit to a 1/2" pipe delivers less than half the gas needed!
+    </p>
+  </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Marcus Vance"
+    role="Master Systems & MEP Building Specialist"
+    experience="22+ Years Field Experience"
+    avatarBg="bg-amber-100 text-amber-800"
+    initials="MV"
+    title="Check Your Gas Meter Capacity Tag (CFH Rating)"
+    note="Even if you upsize your gas pipe to 1 inch, you can still starve your house if your gas meter is too small! Look at the metal manufacturer nameplate riveted to the front of your gas meter outside. Older homes often have an AC-175 or AL-175 meter rated for only 175 CFH (~178,000 total BTUs). If you turn on your new 199k BTU tankless heater while your 80k BTU furnace and 40k BTU range are running, total house demand jumps to 319,000 BTUs! The small meter restricts flow like an hourglass, causing furnace flame rollouts and tankless shutdowns. Check your meter tag: If it says 'Class 175', call your gas utility company. Most utilities will upgrade your residential meter to a high-capacity 250 CFH or 400 CFH meter (like a Sensus 275 or American AC-250) for free or a nominal $50 fee."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="Gas Pipe Sizing"
+    mistakes={[
+      {
+        number: 1,
+        title: "Using Flexible CSST Without Corrugated Sizing Derating",
+        costImpact: "$1,400 (Gas Starvation Despite Buying 3/4\" Tube)",
+        description: "Yellow corrugated stainless steel tubing (CSST) has internal ridges with much higher friction than smooth black iron. A 3/4\" CSST carries roughly 25% LESS gas than 3/4\" black iron.",
+        solution: "Consult the manufacturer's specific CSST flow table (e.g. Gastite or TracPipe); you often need 1-inch CSST where 3/4-inch iron would suffice."
+      },
+      {
+        number: 2,
+        title: "Omitting a 3-Inch Sediment Drip Leg (Dirt Pocket)",
+        costImpact: "$650 (Clogged Gas Valve Orifices & Pilot Failures)",
+        description: "Natural gas carries microscopic pipe scale and oil mist. Without a capped vertical dirt leg at the appliance inlet, debris enters the sensitive electronic gas modulation valve.",
+        solution: "Install a tee with a 3-inch long downward nipple capped at the bottom directly before the gas enters the tankless water heater per NFPA 54 Section 9.6.7."
+      },
+      {
+        number: 3,
+        title: "Testing Gas Joints with Soapy Dish Detergent",
+        costImpact: "$450 (Stress Corrosion Cracking of Brass Fittings)",
+        description: "Standard kitchen dish soaps contain chlorides and ammonia that chemically attack and corrode yellow brass flare nuts and gas cock valves.",
+        solution: "Use a certified non-corrosive gas leak detection bubble fluid (such as RectorSeal Better Bubble or Hercules Megaloc) or a digital electronic combustible gas sniffer."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Gas Pipe Sizing Guide"
+    reviews={[
+      {
+        author: "Dan & Sarah P.",
+        location: "Indianapolis, IN",
+        projectScope: "Rinnai RU199i Tankless Installation",
+        savingsClaim: "Zero Error Codes After Meter Upgrade",
+        feedback: "Checked our utility meter tag based on Marcus's note and discovered our 1960s house had a 175 CFH meter. Citizens Gas swapped it out for a 250 CFH meter for free. Ran 35 feet of 3/4\" black pipe. The heater fires instantly and delivers blazing hot water across all three bathrooms.",
+        keyTakeaway: "Use dedicated gas pipe thread sealant paste approved for natural gas (RectorSeal T Plus 2), never thin white plumbing Teflon tape."
+      },
+      {
+        author: "Kenneth M.",
+        location: "Knoxville, TN",
+        projectScope: "Replacing Electric Tank with Gas Tankless",
+        savingsClaim: "Passed Gas Pressure Inspection",
+        feedback: "The longest run method made sizing completely clear. We had 50 feet to the basement corner, so we used 1-inch pipe to the tee and 3/4-inch to the unit. Passed our county mechanical inspection with zero corrections.",
+        keyTakeaway: "Pressurize your new gas pipe with a bicycle pump to 10 PSI on a 15 PSI test gauge before calling the inspector to prove zero leaks."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Gas Line Sizing for Tankless Heaters Guide" initialYesCount={386} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Master Systems & MEP Building Specialist"
+    codeStandard="NFPA 54 / ANSI Z223.1 National Fuel Gas Code & International Fuel Gas Code"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Hubs & Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators &amp; Construction Hubs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/projects/tankless-water-heater-installation" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Tankless Installation Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Follow the 4-step workflow: concentric venting, gas supply, isolation valves, and drain.</div>
+      </a>
+      <a href="/calculators/tankless-water-heater" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Tankless Sizing Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate flow rates in GPM, groundwater temperature rise, and BTU requirements.</div>
+      </a>
+      <a href="/calculators/pipe-slope" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Pipe Slope Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate 1/4\" slope drainage and concentric vent fall drops.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>

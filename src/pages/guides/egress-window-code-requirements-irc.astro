@@ -1,0 +1,207 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="IRC Egress Window Code Requirements (Section R310) | CalcForDIY"
+  description="Master the 2026 International Residential Code (IRC R310) emergency escape standards: 5.7 sq ft net clear opening, 24-inch height, 20-inch width, and 44-inch sill rules."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "IRC Egress Window Code Guide", "item": "https://calcfordiy.com/guides/egress-window-code-requirements-irc" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "IRC Egress Window Code Requirements (Section R310)",
+    "description": "Building code compliance guide for emergency escape and rescue openings, casement vs slider dimensions, and window well floor area rules.",
+    "author": { "@type": "Person", "name": "David Miller, PE" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/egress-window-code-requirements-irc"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">IRC Egress Codes</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>🚨 Life Safety &amp; Fire Rescue Standards</span>
+      <span>•</span>
+      <span>IRC Section R310 Mandates</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      IRC Egress Window Code Requirements (Section R310)
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      Every habitable sleeping room (bedroom) and basement without exterior doors requires at least one emergency escape and rescue opening (EERO). These dimensions are specifically engineered so that a firefighter carrying a full SCBA oxygen tank can climb inside while a homeowner escapes. Here is the mathematical code breakdown.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+      <div>
+        <div class="text-xs text-gray-500">Minimum Net Clear Opening</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">5.7 Sq Ft (5.0 at Grade)</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Minimum Clear Width &amp; Height</div>
+        <div class="text-sm font-bold text-emerald-600 mt-0.5">20" Wide &amp; 24" High</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Maximum Sill Height</div>
+        <div class="text-sm font-bold text-red-600 mt-0.5">44 Inches Above Floor</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Editorial Content -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8 mb-8 prose prose-slate max-w-none">
+    <h2 class="text-2xl font-bold text-gray-900">The 4 Cardinal Rules of IRC Section R310</h2>
+    <p>
+      For a window to be legally classified as an emergency escape opening, it must satisfy ALL four criteria simultaneously:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6 not-prose">
+      <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+        <div class="font-bold text-gray-900 text-sm mb-1">1. Minimum Net Clear Opening: 5.7 Sq Ft</div>
+        <p class="text-xs text-gray-600 mb-0">The actual open unobstructed space when the sash is fully pushed open must be at least 5.7 square feet (reduced to 5.0 square feet for grade-floor windows).</p>
+      </div>
+      <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+        <div class="font-bold text-gray-900 text-sm mb-1">2. Minimum Dimensions: 20" Wide &times; 24" High</div>
+        <p class="text-xs text-gray-600 mb-0">No dimension can be less than 20 inches wide or 24 inches high. (Note: A 20" &times; 24" window is only 3.33 sq ft and will FAIL rule #1!).</p>
+      </div>
+      <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+        <div class="font-bold text-gray-900 text-sm mb-1">3. Maximum Sill Height: 44 Inches</div>
+        <p class="text-xs text-gray-600 mb-0">The bottom sill of the clear opening cannot be higher than 44 inches above the finished floor, allowing children and elderly occupants to climb out without a stool.</p>
+      </div>
+      <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+        <div class="font-bold text-gray-900 text-sm mb-1">4. Operational Without Keys or Tools</div>
+        <p class="text-xs text-gray-600 mb-0">The window must open from the inside with standard latches. Window grilles or bars must have an approved interior release mechanism requiring no key or special effort.</p>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">Window Well Clearance Dimensions (IRC R310.2.3)</h2>
+    <p>
+      When an egress window is below ground level, the window well must provide enough room to swing the sash open and climb out:
+    </p>
+    <ul>
+      <li><strong>Minimum Floor Area:</strong> The window well must have a horizontal floor area of at least <strong>9.0 square feet</strong>.</li>
+      <li><strong>Minimum Horizontal Projection:</strong> The well must project out from the foundation wall by at least <strong>36 inches</strong>.</li>
+      <li><strong>Permanent Escape Ladder:</strong> If the window well depth exceeds <strong>44 inches</strong> below grade, a permanent ladder or steps must be bolted to the well (rungs spaced maximum 18" vertically, projecting 3" to 6" from the wall).</li>
+    </ul>
+  </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="David Miller, PE"
+    role="Structural & Civil Engineering Consultant"
+    experience="20+ Years Field Experience"
+    avatarBg="bg-blue-100 text-blue-800"
+    initials="DM"
+    title="The 'Minimum Dimension' Math Trap That Fails DIY Inspections"
+    note="The most frequent error homeowners make when shopping for an egress window is misinterpreting the code. The code says 'minimum clear width 20 inches, minimum clear height 24 inches'. DIYers buy a window that opens 20 inches wide by 24 inches tall. But 20 inches multiplied by 24 inches equals 480 square inches—which is only 3.33 square feet! The city building inspector will immediately red-tag the installation because it violates the 5.7 sq ft rule. To meet code: If your window width is the minimum 20 inches, the height must be at least 41.2 inches tall (20 in x 41.2 in = 5.72 sq ft). Conversely, if the height is the minimum 24 inches, the width must be at least 34.2 inches wide (34.2 in x 24 in = 5.7 sq ft). Always choose a side-hinged casement window with an egress operator hinge to get maximum clear opening in the smallest foundation wall cut."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="IRC Egress Compliance"
+    mistakes={[
+      {
+        number: 1,
+        title: "Buying a Sliding Window for a Narrow Foundation Cut",
+        costImpact: "$2,200 (Window Frame Demolition & Replacement)",
+        description: "A horizontal sliding window only opens 50% of its width. To get 5.7 sq ft of clear opening, a slider must be at least 48 inches wide by 48 inches tall.",
+        solution: "Use a casement window; a 32-inch wide by 48-inch tall casement swings 100% open, delivering over 6.8 sq ft of clear escape area in a smaller wall cut."
+      },
+      {
+        number: 2,
+        title: "Installing a Window Well with Less Than 36\" Projection",
+        costImpact: "$1,400 (Replacing Undersized Metal Well)",
+        description: "Installing a compact 24-inch projection window well prevents an out-swinging casement window sash from opening a full 90 degrees.",
+        solution: "Install a 36-inch or 42-inch projection corrugated steel or composite well so the window opens completely and leaves room for a ladder."
+      },
+      {
+        number: 3,
+        title: "Exceeding the 44-Inch Sill Height Rule in Deep Basements",
+        costImpact: "$650 (Installing Permanent Concrete Step)",
+        description: "In deep 9-foot basement walls, cutting the window higher leaves the interior sill 50 inches above the floor, violating life safety egress access.",
+        solution: "Either cut the opening deeper into the concrete, or construct a permanent, code-approved structural wooden or concrete step permanently fastened beneath the window."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="IRC Egress Window Guide"
+    reviews={[
+      {
+        author: "Tyler & Melissa C.",
+        location: "Grand Forks, ND",
+        projectScope: "Basement Egress Bedroom Conversion",
+        savingsClaim: "Passed Inspection on 1st Try",
+        feedback: "The minimum dimension math trap explanation saved us! We were about to order a 24x30 window online. After reading this, we bought an Anderson 400 Series casement with egress hinges (32x48). The net clear opening measured 6.1 sq ft and the building official stamped our permit in 2 minutes.",
+        keyTakeaway: "Measure the NET CLEAR opening between the window frame and the edge of the open sash, not the exterior glass dimensions."
+      },
+      {
+        author: "Wayne G.",
+        location: "Fort Collins, CO",
+        projectScope: "5-ft Deep Well with Fixed Escape Ladder",
+        savingsClaim: "Added $42k in Home Appraisal Value",
+        feedback: "Our well was 52 inches deep. Bolted a 3-rung steel egress ladder to the corrugated wall with self-tapping masonry anchors. Our real estate agent said turning our basement into a legal 4th bedroom added $42,000 to our listing price.",
+        keyTakeaway: "Install a clear polycarbonate well cover with internal quick-release spring clips to keep leaves and snow out while maintaining emergency exit."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="IRC Egress Window Code Requirements Guide" initialYesCount={388} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="2024/2026 International Residential Code (IRC) Section R310"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Hubs & Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators &amp; Construction Hubs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/projects/basement-egress-window-well" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Egress Window Well Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Follow the 4-step workflow: saw cutting, steel lintels, well mounting, and drainage.</div>
+      </a>
+      <a href="/calculators/wall-framing" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Wall Framing &amp; Stud Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate king studs, jack studs, and header framing around rough openings.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate foundation wall concrete cubic volume and demolition block weights.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>

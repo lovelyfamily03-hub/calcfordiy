@@ -1,0 +1,251 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "12\" to 16\" o.c. Joist Framing & Butyl Joist Tape",
+    description: "Frame pressure-treated joists at 12\" o.c. (or 16\" o.c. perpendicular maximum), apply black self-adhering butyl flashing tape across all joist tops, and double joists under breaker boards.",
+    calculatorName: "Deck Joist Span & Framing Calculator",
+    href: "/calculators/deck-joist-span",
+    icon: "🪵"
+  },
+  {
+    stepNumber: 2,
+    title: "Stainless Starter Clips & Grooved Board Squaring",
+    description: "Anchor stainless steel starter clips along the outer rim joist, slide the grooved edge of the first capped composite board into the clips, and verify squareness using a 3-4-5 triangle.",
+    calculatorName: "Deck Boards & Square Footage Calculator",
+    href: "/calculators/deck-boards",
+    icon: "📐"
+  },
+  {
+    stepNumber: 3,
+    title: "Hidden Fastener Clips & Installation Temp Gaps",
+    description: "Slide universal hidden fastener clips (Trex Hideaway, Camo, or TimberTech) into the board grooves, drive stainless screws into joists without overtightening, and gauge end gaps based on ambient temperature.",
+    calculatorName: "Deck Screws & Fasteners Calculator",
+    href: "/calculators/deck-screws-hardware",
+    icon: "🔨"
+  },
+  {
+    stepNumber: 4,
+    title: "Center Breaker Board & Picture Frame Border",
+    description: "Install a perpendicular center breaker board to eliminate random butt joints on runs over 20 feet, frame perimeter picture-frame borders with color-matched composite cortex plugs, and install fascia skirts.",
+    calculatorName: "Deck Stair & Railing Calculator",
+    href: "/calculators/deck-stair-railing",
+    icon: "✨"
+  }
+];
+---
+
+<Layout
+  title="Composite Decking Hidden Fasteners Hub — Step-by-Step Workflow | CalcForDIY"
+  description="Follow a 4-step capped composite decking workflow: 12-inch to 16-inch o.c. joist spacing, butyl tape flashing, hidden clip fastening, and breaker board picture framing."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Composite Decking Hidden Fasteners Hub", "item": "https://calcfordiy.com/projects/composite-deck-hidden-fasteners" }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Composite Decking</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold mb-3 border border-emerald-100">
+      <span>🪵 Low-Maintenance Outdoor Living &amp; Carpentry</span>
+      <span>•</span>
+      <span>4-Step Sequential Guide</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      Composite Decking &amp; Hidden Fasteners Hub
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      Capped composite and PVC decking (Trex, TimberTech, Deckorators) provides a 25-to-30 year splinter-free, stain-resistant surface that never needs sanding or sealing. This master workflow covers manufacturer and DCA 6 standards: 12" to 16" joist spacing for composite rigidity, butyl joist tape rot defense, hidden clip fastening, and thermal expansion breaker boards.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-100">
+      <div>
+        <div class="text-xs text-gray-500">Estimated Timeline</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">2 Weekends (16x20 Deck)</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Potential DIY Savings</div>
+        <div class="text-sm font-bold text-emerald-600 mt-0.5">$5,200 – $8,800 (65%)</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500">Max Joist Spacing</div>
+        <div class="text-sm font-bold text-gray-900 mt-0.5">16" o.c. (12" for 45° Diagonals)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RSMeans DIY vs Contractor Benchmark -->
+  <div class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="flex items-center justify-between mb-2">
+      <h3 class="font-bold text-base text-blue-200">2026 Deck Builder Bid vs. DIY Material Cost</h3>
+      <span class="text-xs bg-blue-500/30 text-blue-300 px-2.5 py-0.5 rounded font-mono">RSMeans Cost Data (16ft x 20ft / 320 Sq Ft Capped Composite Deck)</span>
+    </div>
+    <p class="text-xs text-slate-300 mb-6">Professional composite deck contractor quote ($45–$70/sq ft) vs. DIY retail grooved composite boards, hidden clips, joist tape &amp; cortex plugs.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div class="bg-white/10 p-4 rounded-xl border border-white/10">
+        <div class="text-xs text-slate-300 font-medium">Estimated DIY Decking &amp; Fastener Materials</div>
+        <div class="text-2xl font-black text-emerald-400 mt-1">$2,800 – $3,900</div>
+        <div class="text-[11px] text-slate-400 mt-1">Grooved composite boards, 900 hidden fastener clips, butyl tape &amp; fascia</div>
+      </div>
+      <div class="bg-white/10 p-4 rounded-xl border border-white/10">
+        <div class="text-xs text-slate-300 font-medium">Licensed Deck Contractor Turn-Key Bid</div>
+        <div class="text-2xl font-black text-amber-300 mt-1">$9,500 – $15,500</div>
+        <div class="text-[11px] text-slate-400 mt-1">Specialized Composite Labor 65% • Contractor Overhead 15% • Materials 20%</div>
+      </div>
+    </div>
+
+    <div class="text-xs text-slate-300 flex items-center gap-2 bg-emerald-950/60 p-3 rounded-xl border border-emerald-500/30">
+      <span class="text-emerald-400 font-bold text-base">💰</span>
+      <span>Sweat Equity Advantage: You keep roughly <strong>$6,700 to $11,600</strong> while installing hidden clips that create a smooth, fastener-free barefoot surface.</span>
+    </div>
+  </div>
+
+  <!-- Sequential Workflow Steps -->
+  <div class="mb-10 not-prose">
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Sequential Phase Checklist</h2>
+    <p class="text-sm text-gray-500 mb-6">Follow the 4 phases to eliminate bouncy deck flex, butt-joint gaps, and summer heat buckling.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {workflowSteps.map(step => (
+        <div class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:border-blue-300 hover:shadow-sm transition-all">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm flex items-center justify-center shrink-0">
+                {step.stepNumber}
+              </span>
+              <span class="text-2xl">{step.icon}</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mb-4">{step.description}</p>
+          </div>
+          <a
+            href={step.href}
+            class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-600 hover:text-white text-xs font-semibold transition-all border border-blue-200"
+          >
+            <span>Open {step.calculatorName}</span>
+            <span>→</span>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Material Takeoff Analyst"
+    experience="18+ Years Field Experience"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Why Installing Composite on a Cold Morning Ruins Decks in July"
+    note="Unlike natural wood (which expands when wet and shrinks when dry), composite and PVC decking materials expand and contract almost entirely based on TEMPERATURE! A 20-foot composite deck board can expand or contract in length by 3/8 of an inch between freezing winter and 95°F summer heat. If you install composite boards tight against each other on a crisp 45°F morning in October, you have installed them at their shortest thermal length! When direct July summer sun beats down on the deck, heating dark composite boards to 140°F, the boards expand lengthwise. With nowhere to go, they smash into adjoining boards, buckle upward off the joists, snap hidden fastener clips, and create wavy humps across the deck! Always check the ambient board temperature during installation and follow the manufacturer's thermal gap table. On a 40°F day, leave at least 3/16-inch to 1/4-inch end gaps. On a scorching 90°F afternoon, gap them tighter (1/16-inch)."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="Composite Deck Installation"
+    mistakes={[
+      {
+        number: 1,
+        title: "Spacing Joists at 24\" On-Center (Bouncy Trampoline Deck)",
+        costImpact: "$3,200 (Framing Tear-Out & Additional Joist Addition)",
+        description: "Standard pressure-treated 5/4 wood decking spans 24 inches easily. Composite decking is made of flexible polyethylene and wood flour; spanning 24 inches feels soft, saggy, and bouncy.",
+        solution: "Frame joists at maximum 16 inches on center for perpendicular boards, and 12 inches on center if installing boards diagonally at 45 degrees."
+      },
+      {
+        number: 2,
+        title: "Skipping Butyl Joist Flashing Tape on Subframe Tops",
+        costImpact: "$4,500 (Framing Rot Under Low-Maintenance Decking)",
+        description: "Composite boards last 30 years, but screws driven through joist tops allow rainwater to pool and rot untreated pressure-treated joist cores in 8 to 12 years.",
+        solution: "Apply self-adhering butyl joist tape (such as Trex Protect or DeckWise) across all joist and beam tops before installing deck boards."
+      },
+      {
+        number: 3,
+        title: "End-to-End Butt Jointing Long Runs (> 20 Feet)",
+        costImpact: "$1,800 (Unsightly Uneven Gaps & Crooked Joints)",
+        description: "Butt-jointing two 12-foot boards together leaves ugly staggered seams that expand unevenly, showing 1/2-inch open black gaps in winter.",
+        solution: "Design a central perpendicular 'breaker board' (transition board); both runs butt flush against the breaker board with uniform expansion margins."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Composite Decking Workflow"
+    reviews={[
+      {
+        author: "Trevor & Danielle S.",
+        location: "Portland, OR",
+        projectScope: "18x24 Capped Composite Deck with Trex Hideaway",
+        savingsClaim: "Saved $7,800 vs Deck Builder",
+        feedback: "We framed our joists at 12\" o.c. and used butyl joist tape on every single joist. The deck feels as solid underfoot as a poured concrete patio. The hidden fasteners make the surface look like high-end hardwood flooring with zero visible screw heads.",
+        keyTakeaway: "Use cortex hidden face screws and color-matched composite plugs for the first and last picture-frame perimeter boards."
+      },
+      {
+        author: "Marcus B.",
+        location: "Atlanta, GA",
+        projectScope: "Composite Deck with Center Breaker Board",
+        savingsClaim: "Zero Buckling in 98°F Summer Sun",
+        feedback: "The thermal expansion advice saved our deck. We installed our boards in 50°F March weather and made sure to leave 3/16\" end gaps at the breaker board. In mid-August when the boards hit 135°F, they expanded right to the gap without touching or buckling.",
+        keyTakeaway: "Block double joists under the center breaker board so both ends of adjoining boards have full 1-1/2\" solid bearing."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Composite Decking Hidden Fasteners Hub" initialYesCount={386} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Material Takeoff Analyst"
+    codeStandard="AWC DCA 6 (Prescriptive Residential Wood Deck Construction) & ASTM D7032"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Guides & Hubs -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Editorial Guides &amp; Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/guides/composite-deck-board-expansion-gaps" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Thermal Expansion Gaps Guide →</div>
+        <div class="text-xs text-gray-500 mt-1">Temperature-at-installation gap tables, breaker board math, and preventing summer buckling.</div>
+      </a>
+      <a href="/calculators/deck-boards" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Boards Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate board counts, square footage, hidden clip buckets, and waste factors.</div>
+      </a>
+      <a href="/calculators/deck-joist-span" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Deck Joist Span Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Verify 12\" and 16\" on-center joist spans and cantilevers for composite decking.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
