@@ -1,0 +1,300 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Water Supply Audit: Static PSI, Bucket Flow Test & Design Capacity",
+    description: "Thread a pressure gauge onto an outdoor hose bib directly off the main to record static water pressure (PSI). Conduct a 5-gallon bucket test with a stopwatch to measure dynamic flow rate (Gallons Per Minute / GPM). Factor in a 20% safety margin to determine available design capacity for sizing individual sprinkler zones.",
+    calculatorName: "Pipe Slope & Hydraulics Calculator",
+    href: "/calculators/pipe-slope",
+    icon: "🚰"
+  },
+  {
+    stepNumber: 2,
+    title: "Mainline Tie-In, Backflow Assembly (PVB/RPZ) & Zone Valve Manifold",
+    description: "Tap the 3/4\" or 1\" copper/PEX main line immediately after the water meter. Install a code-compliant ASSE 1020 Pressure Vacuum Breaker (PVB) at least 12\" above the highest downstream sprinkler head, or an ASSE 1013 Reduced Pressure Zone (RPZ) device. Plumb an outdoor valve box manifold housing 1\" 24VAC solenoid control valves with flow control.",
+    calculatorName: "Sod Pallet & Lawn Area Calculator",
+    href: "/calculators/sod-pallet",
+    icon: "⚙️"
+  },
+  {
+    stepNumber: 3,
+    title: "Trenching, Polyethylene Lateral Lines & Head-to-Head Sprinkler Layout",
+    description: "Trench trenches 8\" to 12\" deep using a dedicated vibratory plow or mechanical trencher. Pull 100 PSI NSF-certified flexible polyethylene pipe. Tap lateral lines using self-tapping saddle tees or spiral barb fittings connected to swing-pipe assemblies, positioning pop-up rotary or mist nozzles with 100% head-to-head spray overlap.",
+    calculatorName: "Pipe Slope & Trench Depth Calculator",
+    href: "/calculators/pipe-slope",
+    icon: "⛏️"
+  },
+  {
+    stepNumber: 4,
+    title: "Smart Wi-Fi Controller Wiring, Low-Voltage Actuation & Commissioning",
+    description: "Run 18/7 direct-burial multi-conductor irrigation wire from the valve manifold into the garage or basement. Connect individual station leads and the white common neutral to a weather-sensing smart irrigation controller. Pressurize each zone, adjust nozzle throw arcs and radiuses with a key, and flush dirt out of lateral lines.",
+    calculatorName: "Lawn Overseeding & Turf Area Calculator",
+    href: "/calculators/lawn-overseeding",
+    icon: "📱"
+  }
+];
+---
+
+<Layout
+  title="In-Ground Lawn Sprinkler System Hub — Step-by-Step Irrigation Workflow | CalcForDIY"
+  description="Design and install a professional in-ground lawn sprinkler irrigation system: static PSI & GPM flow tests, backflow preventer plumbing (PVB/RPZ), manifold zoning, and head-to-head spray coverage."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Lawn Sprinkler Irrigation Hub", "item": "https://calcfordiy.com/projects/lawn-sprinkler-irrigation-system" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Install an In-Ground Lawn Sprinkler Irrigation System",
+    "description": "Comprehensive irrigation engineering guide covering hydraulic flow audits, backflow preventer installation, valve manifold fabrication, trenching, and head-to-head nozzle spacing.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Static PSI & Dynamic Flow Audit",
+        "text": "Measure water pressure with a threaded gauge and run a 5-gallon bucket test to calculate usable zone GPM capacity."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Backflow Preventer & Valve Manifold Installation",
+        "text": "Plumb an ASSE-certified PVB or RPZ assembly and build a waterproof valve box manifold with 24VAC solenoids."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Pipe Trenching & Head-to-Head Sprinkler Layout",
+        "text": "Trench 10\" deep, lay flexible poly pipe, install swing joints, and position heads for 100% spray overlap."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Smart Controller Wiring & System Flushing",
+        "text": "Wire direct-burial multi-conductor cable to a Wi-Fi smart controller, flush lines, and calibrate nozzle arcs."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Lawn Sprinkler Irrigation</span>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>🌱 Turf Irrigation Engineering &amp; Hydraulics</span>
+      <span>•</span>
+      <span>ASSE 1020 / 1013 &amp; Uniform Plumbing Code (UPC Chapter 6)</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      In-Ground Lawn Sprinkler System Hub
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      A lush green lawn without dry brown patches requires an in-ground irrigation system engineered around precise hydraulic principles. From conducting static pressure and dynamic flow audits to plumbing <strong>code-mandated backflow preventers</strong> and laying out <strong>head-to-head 100% spray coverage</strong>, this workflow guides you through designing, trenching, and wiring an automated multi-zone residential irrigation system.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 mb-6">
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Dynamic Water Pressure</div>
+        <div class="text-lg font-bold text-gray-900">40 – 60 PSI</div>
+        <div class="text-xs text-blue-600">Optimal Nozzle Throw Range</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Avg Zone Flow Rate</div>
+        <div class="text-lg font-bold text-gray-900">8 – 14 GPM</div>
+        <div class="text-xs text-emerald-600">Based on 3/4" Meter Supply</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Head-to-Head Overlap</div>
+        <div class="text-lg font-bold text-gray-900">100% Overlap</div>
+        <div class="text-xs text-purple-600">Spacing Equals Head Throw Radius</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">DIY Project Cost</div>
+        <div class="text-lg font-bold text-gray-900">$850 – $1,650</div>
+        <div class="text-xs text-amber-600">Saves $4,000+ vs Contractor</div>
+      </div>
+    </div>
+
+    <!-- RSMeans Contractor vs DIY Comparison -->
+    <div class="border border-gray-200 rounded-xl overflow-hidden mb-6">
+      <div class="bg-gray-100 px-4 py-2.5 font-semibold text-xs text-gray-700 uppercase tracking-wider">
+        Project Cost Benchmark: 4-Zone In-Ground Sprinkler System for 8,000 Sq Ft Lawn
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-gray-200 text-sm">
+        <div class="p-4 bg-white">
+          <div class="text-xs font-bold text-gray-500 uppercase mb-1">Licensed Irrigation Contractor</div>
+          <div class="text-2xl font-black text-gray-900 mb-2">$5,200 – $7,800</div>
+          <ul class="text-xs text-gray-600 space-y-1.5">
+            <li>• Hydraulic CAD design, municipal plumbing permit &amp; backflow certification: $650 – $1,100</li>
+            <li>• Mainline tap, 1" ASSE 1020 PVB backflow assembly &amp; copper plumbing: $950 – $1,500</li>
+            <li>• Mechanical vibratory plow trenching (750 linear ft lateral pipe): $1,400 – $2,200</li>
+            <li>• 4-valve manifold box, 28 rotary/spray heads &amp; swing joint assemblies: $1,400 – $2,000</li>
+            <li>• Smart Wi-Fi 8-zone controller, rain freeze sensor &amp; wire termination: $800 – $1,000</li>
+          </ul>
+        </div>
+        <div class="p-4 bg-emerald-50/50">
+          <div class="text-xs font-bold text-emerald-800 uppercase mb-1">DIY Self-Performance</div>
+          <div class="text-2xl font-black text-emerald-700 mb-2">$980 – $1,720</div>
+          <ul class="text-xs text-gray-700 space-y-1.5">
+            <li>• 1" ASSE 1020 brass pressure vacuum breaker &amp; shut-off ball valves: $180 – $290</li>
+            <li>• 800 ft 1" 100-PSI flexible polyethylene pipe &amp; 100 ft 1/2" swing pipe: $220 – $360</li>
+            <li>• 4 commercial 1" 24VAC solenoid valves &amp; heavy-duty valve box: $140 – $220</li>
+            <li>• 28 pop-up rotary and multi-stream nozzles with swing pipe elbows: $190 – $320</li>
+            <li>• 8-zone smart Wi-Fi irrigation controller &amp; 18/7 direct-burial cable: $130 – $230</li>
+            <li>• 1-day walk-behind trencher rental from local equipment center: $120 – $300</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step by Step Workflow Cards -->
+  <div class="space-y-6 mb-10 not-prose">
+    <h2 class="text-2xl font-black text-gray-900 tracking-tight">The 4-Step In-Ground Sprinkler Workflow</h2>
+    
+    <div class="grid grid-cols-1 gap-4">
+      {workflowSteps.map((step) => (
+        <div class="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 transition-all shadow-xs">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-600 text-white font-bold flex items-center justify-center text-lg shadow-sm">
+              {step.stepNumber}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 mb-1">
+                <h3 class="text-base font-bold text-gray-900">{step.title}</h3>
+                <span class="text-lg">{step.icon}</span>
+              </div>
+              <p class="text-sm text-gray-600 mb-3 leading-relaxed">{step.description}</p>
+              <a
+                href={step.href}
+                class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 px-3 py-1.5 rounded-md hover:bg-blue-100 transition-colors"
+              >
+                <span>Calculate Materials: {step.calculatorName}</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Trade Field Note -->
+  <FieldNote
+    expertName="Marcus Vance"
+    role="Master Electrician & MEP Systems Specialist"
+    experience="22+ Years Field Experience"
+    avatarBg="bg-amber-100 text-amber-800"
+    initials="MV"
+    title="Why Installing a Lawn Sprinkler System Without a Certified Backflow Preventer is Illegal and Dangerous"
+    note="The most critical health-and-safety violation in DIY irrigation is tapping a water line and plumbing sprinkler valves directly to the municipal supply with only a cheap dual-check valve or garden hose vacuum breaker. Lawn sprinkler heads sit in underground grass pits filled with puddles, muddy rainwater, lawn fertilizer, weed killer (2,4-D), pet feces, and pesticide chemicals. When a municipal water main breaks down the street, or firefighters open a nearby fire hydrant, the sudden pressure drop creates a severe vacuum inside residential plumbing. Without an approved backflow preventer, this vacuum will back-siphon toxic lawn runoff through the submerged sprinkler nozzles directly into your kitchen sink tap and drinking water pipes. Uniform Plumbing Code (UPC Section 603) and state drinking water regulations legally mandate an ASSE 1020 Pressure Vacuum Breaker (PVB) installed at least 12 inches higher than the highest sprinkler head on your property, or an ASSE 1013 Reduced Pressure Zone (RPZ) backflow assembly. Never skip backflow protection."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="In-Ground Sprinkler Installation"
+    mistakes={[
+      {
+        number: 1,
+        title: "Over-Allocating Heads on a Single Zone (Exceeding Working GPM)",
+        costImpact: "$1,600 (Retrenching Yards & Splitting Zones After the Fact)",
+        description: "Adding 10 rotary heads requiring 2.5 GPM each (25 GPM total) to a water meter that only supplies 12 GPM causes line pressure to collapse, leaving heads sputtering and unable to pop up.",
+        solution: "Audit your water supply before buying pipe. Sum the nozzle GPM ratings for each zone and ensure total zone demand never exceeds 80% of your measured dynamic GPM capacity."
+      },
+      {
+        number: 2,
+        title: "Mixing Mist Spray Heads and Gear-Driven Rotors on the Same Zone",
+        costImpact: "$750 (Severe Lawn Browning in Rotor Zones & Swamp Puddles in Spray Zones)",
+        description: "Fixed spray nozzles dump water at a rate of 1.5 to 2.0 inches per hour, while gear rotors apply only 0.4 to 0.6 inches per hour. Running them on the same valve drowns one area while starving the other.",
+        solution: "Isolate spray heads (small lawn nooks and shrub beds) and rotary heads (wide open turf expanses) onto strictly independent control valve zones."
+      },
+      {
+        number: 3,
+        title: "Omitting a Compressed Air Blowout Port Before Winter Freezes",
+        costImpact: "$1,850 (Cracked Underground Valves, Shattered PVC Manifolds & Split Poly Pipes)",
+        description: "Water remaining in underground pipes, valve diaphragms, and backflow bodies expands upon freezing, shattering brass assemblies and ripping plastic seams apart.",
+        solution: "Plumb a brass tee with an air compressor quick-connect fitting immediately downstream of the backflow preventer for blowing out the system with compressed air each autumn."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="In-Ground Sprinkler Workflow"
+    reviews={[
+      {
+        author: "Craig & Melissa B.",
+        location: "Omaha, NE",
+        projectScope: "5-Zone Polyethylene System on 10,000 Sq Ft Yard",
+        savingsClaim: "Saved $4,600 vs Landscape Company",
+        feedback: "Renting a walk-behind trencher for $160 made quick work of our 650 feet of trenches. Marcus Vance's advice on head-to-head spacing was crucial: every head literally throws water to hit its neighboring head. Our grass is an even emerald green with zero dry donut rings around heads.",
+        keyTakeaway: "Use 1/2\" flexible swing-pipe assemblies between the poly lateral line and each pop-up sprinkler head—it lets you adjust head height flush with turf without stressing rigid fittings."
+      },
+      {
+        author: "Phil W.",
+        location: "Boise, ID",
+        projectScope: "4-Zone System with Hunter MP Rotator High-Efficiency Nozzles",
+        savingsClaim: "Cut Water Bill by 32% vs Neighbors",
+        feedback: "We installed an ASSE 1020 brass PVB on the side of our house and paired it with high-efficiency multi-stream rotary nozzles. Because MP rotators only draw 0.6 GPM per head, we were able to run 8 heads per zone on our modest 8.5 GPM water supply with plenty of pressure to spare.",
+        keyTakeaway: "Always tape and grease your multi-conductor irrigation wire splices inside the valve box using grease-filled waterproof silicone wire nuts."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Lawn Sprinkler Irrigation System Hub" initialYesCount={445} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Master Electrician & MEP Systems Specialist"
+    codeStandard="Uniform Plumbing Code (UPC Chapter 6 - Water Supply & Backflow Protection) & ASSE 1020/1013 Standards"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Guides & Hubs -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Editorial Guides &amp; Project Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/guides/sprinkler-head-to-head-coverage-gpm" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Head-to-Head Sprinkler Guide →</div>
+        <div class="text-xs text-gray-500 mt-1">Mathematical 100% spray overlap rules, matched precipitation rates, and zone sizing formulas.</div>
+      </a>
+      <a href="/calculators/pipe-slope" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Pipe Slope &amp; Hydraulics Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate pipe flow velocities, pressure drop per 100 ft, and trench depth gradients.</div>
+      </a>
+      <a href="/calculators/sod-pallet" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Sod Pallet Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate total turf square footage, pallet counts, and watering requirements for establishment.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>

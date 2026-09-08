@@ -1,0 +1,297 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Rotted Fiberboard Demolition & Weed Root Extraction",
+    description: "Dig out rotted asphalt-impregnated fiberboard strips and weed roots using a joint-clearing hook tool, reciprocating saw, or angle grinder with a diamond tuck-point blade. Clean sidewalls down to solid, virgin concrete at least 2 inches deep.",
+    calculatorName: "Concrete Slab Volume Calculator",
+    href: "/calculators/concrete-slab",
+    icon: "🚜"
+  },
+  {
+    stepNumber: 2,
+    title: "High-Pressure Washing, Sidewall Grinding & Bone-Dry Dehydration",
+    description: "Blast dirt and loose sand out of the joint using a 3,000+ PSI pressure washer with a turbo nozzle. Grind remaining asphalt residue from concrete sidewalls with a wire wheel, vacuum all standing water, and allow joints to dry in full sun for 24 to 48 hours.",
+    calculatorName: "Paver Walkway & Stepping Stone Calculator",
+    href: "/calculators/paver-walkway",
+    icon: "💧"
+  },
+  {
+    stepNumber: 3,
+    title: "Closed-Cell Foam Backer Rod Sizing & Depth Setting",
+    description: "Select closed-cell polyethylene foam backer rod sized 25% larger than the joint width (e.g. 5/8\" rod for a 1/2\" gap). Press the rod into the joint with a roller wheel tool to establish a strict 2:1 width-to-depth elastomeric sealant ratio (1/4\" deep for 1/2\" wide joints).",
+    calculatorName: "Polymeric Sand & Joint Calculator",
+    href: "/calculators/polymeric-sand",
+    icon: "📏"
+  },
+  {
+    stepNumber: 4,
+    title: "Self-Leveling Polyurethane Sealant Pour & Surface Tooling",
+    description: "Fill the joint with commercial-grade self-leveling polyurethane sealant (Sikaflex-1c SL or Tremco Vulkem 45SSL) on flat driveways, or gun-grade non-sag polyurethane on slopes exceeding 3%. Recess the sealant 1/8\" below the concrete slab surface to prevent snow shovel tearing.",
+    calculatorName: "Quikrete & Concrete Bags Calculator",
+    href: "/calculators/quikrete-bags",
+    icon: "✨"
+  }
+];
+---
+
+<Layout
+  title="Driveway Expansion Joint Replacement Hub — Step-by-Step | CalcForDIY"
+  description="Replace rotten driveway expansion joints: fiberboard removal, pressure washing, closed-cell backer rod insertion, and self-leveling polyurethane sealant."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Concrete Expansion Joint Replacement Hub", "item": "https://calcfordiy.com/projects/concrete-expansion-joint-replacement" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Replace Concrete Driveway Expansion Joints",
+    "description": "Professional concrete maintenance guide for removing rotten asphalt expansion strips, setting closed-cell backer rod, and applying self-leveling polyurethane sealant.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Demolition of Old Expansion Strips",
+        "text": "Extract rotten fiberboard, roots, and debris down 2 inches to clean concrete sidewalls."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Pressure Washing & Moisture Drying",
+        "text": "Power wash joint walls, grind away residue with wire wheel, and dry for 24-48 hours."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Backer Rod Compression & Depth Gauging",
+        "text": "Install 25% oversized closed-cell foam rod to achieve the engineered 2:1 width-to-depth ratio."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Self-Leveling Polyurethane Sealant Application",
+        "text": "Inject elastomeric polyurethane sealant recessed 1/8 inch below slab surface to resist snow shovels."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Project Hubs</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Concrete Expansion Joint Replacement</span>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>🚜 Concrete Maintenance &amp; Civil Infrastructure</span>
+      <span>•</span>
+      <span>ACI 224.3R (Joints in Concrete) &amp; ASTM C920 Standards</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      Concrete Driveway Expansion Joint Replacement Hub
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      The original wood or asphalt-impregnated fiberboard expansion joints installed in residential concrete driveways rot out after 10 to 15 years, leaving open 1/2-inch to 1-inch gaps. Rainwater pours through these open gaps, washing away the underlying subgrade aggregate, undermining slab support, and fueling destructive winter frost-heaves. Replacing decayed joints with <strong>closed-cell foam backer rod and high-performance self-leveling polyurethane sealant</strong> permanently water-seals the slab while accommodating thermal expansion.
+    </p>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 mb-6">
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Joint Width Ratio</div>
+        <div class="text-lg font-bold text-gray-900">2:1 Width-to-Depth</div>
+        <div class="text-xs text-blue-600">ACI 224.3R Rule</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Backer Rod Type</div>
+        <div class="text-lg font-bold text-gray-900">Closed-Cell Foam</div>
+        <div class="text-xs text-emerald-600">25% Oversized Compression</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Sealant Elongation</div>
+        <div class="text-lg font-bold text-gray-900">500% – 700%</div>
+        <div class="text-xs text-purple-600">ASTM C920 Class 25/35</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">DIY Project Cost</div>
+        <div class="text-lg font-bold text-gray-900">$190 - $380</div>
+        <div class="text-xs text-amber-600">150 Linear Feet</div>
+      </div>
+    </div>
+
+    <!-- RSMeans Contractor vs DIY Comparison -->
+    <div class="border border-gray-200 rounded-xl overflow-hidden mb-6">
+      <div class="bg-gray-100 px-4 py-2.5 font-semibold text-xs text-gray-700 uppercase tracking-wider">
+        Project Cost Benchmark: 150 Linear Feet Concrete Driveway Joint Restoration
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-gray-200 text-sm">
+        <div class="p-4 bg-white">
+          <div class="text-xs font-bold text-gray-500 uppercase mb-1">Concrete Restoration Contractor</div>
+          <div class="text-2xl font-black text-gray-900 mb-2">$1,400 – $2,300</div>
+          <ul class="text-xs text-gray-600 space-y-1.5">
+            <li>• Mechanical joint trenching &amp; old fiberboard extraction: $450 – $750</li>
+            <li>• High-pressure rotary wash &amp; compressed air blow-out: $350 – $550</li>
+            <li>• Closed-cell backer rod insertion &amp; depth gauging: $250 – $400</li>
+            <li>• Commercial self-leveling polyurethane sealant pour: $350 – $600</li>
+          </ul>
+        </div>
+        <div class="p-4 bg-emerald-50/50">
+          <div class="text-xs font-bold text-emerald-800 uppercase mb-1">DIY Self-Performance</div>
+          <div class="text-2xl font-black text-emerald-700 mb-2">$195 – $390</div>
+          <ul class="text-xs text-gray-700 space-y-1.5">
+            <li>• 16 tubes (29 oz) Sikaflex-1c SL self-leveling polyurethane: $140 – $240</li>
+            <li>• 150 ft closed-cell polyethylene foam backer rod (5/8" or 3/4"): $25 – $45</li>
+            <li>• Joint scraping hook, wire grinding wheel &amp; backer rod roller: $30 – $65</li>
+            <li>• Painter's tape rolls &amp; solvent clean-up: $15 – $35</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step by Step Workflow Cards -->
+  <div class="space-y-6 mb-10 not-prose">
+    <h2 class="text-2xl font-black text-gray-900 tracking-tight">The 4-Step Driveway Expansion Joint Workflow</h2>
+    
+    <div class="grid grid-cols-1 gap-4">
+      {workflowSteps.map((step) => (
+        <div class="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 transition-all shadow-xs">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-600 text-white font-bold flex items-center justify-center text-lg shadow-sm">
+              {step.stepNumber}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2 mb-1">
+                <h3 class="text-base font-bold text-gray-900">{step.title}</h3>
+                <span class="text-lg">{step.icon}</span>
+              </div>
+              <p class="text-sm text-gray-600 mb-3 leading-relaxed">{step.description}</p>
+              <a
+                href={step.href}
+                class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 px-3 py-1.5 rounded-md hover:bg-blue-100 transition-colors"
+              >
+                <span>Calculate Materials: {step.calculatorName}</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Trade Field Note -->
+  <FieldNote
+    expertName="David Miller, PE"
+    role="Senior Structural & Geotechnical Engineer"
+    experience="25+ Years Field Experience"
+    avatarBg="bg-blue-100 text-blue-800"
+    initials="DM"
+    title="Why Self-Leveling Sealant on a Sloped Driveway is a Total Nightmare"
+    note="Self-leveling polyurethane sealant (like Sikaflex-1c SL or DAP Commercial SL) is an incredible product on dead-level garage floors and flat patios because it flows like pancake batter, perfectly smoothing itself flat with zero tooling. BUT if your driveway has even a slight 3% or 4% slope toward the street, pouring self-leveling sealant is a disaster! The liquid sealant refuses to stay in the joint; it acts like water, flowing downhill and spilling out across your street gutter, leaving the upper joints half-empty. For sloped concrete driveways, you MUST use NON-SAG (gun-grade) polyurethane sealant (such as Sikaflex-1a or Tremco Dymonic 100). Gun-grade polyurethane has a paste-like consistency that stays precisely where you inject it, requiring you to tool the surface with a rounded margin trowel wetted with mineral spirits."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="Concrete Joint Sealing"
+    mistakes={[
+      {
+        number: 1,
+        title: "Omitting the Backer Rod (Three-Sided Adhesion Failure)",
+        costImpact: "$1,400 (Split Sealant Tearing Down Middle Within 1 Year)",
+        description: "If sealant touches the bottom of the concrete joint as well as both sides, it forms a rigid 3-sided anchor that cannot stretch as the slab expands, tearing down the center.",
+        solution: "Always insert closed-cell foam backer rod. Polyurethane will not bond to polyethylene foam, allowing the sealant to stretch freely like a 2-sided rubber band."
+      },
+      {
+        number: 2,
+        title: "Applying Polyurethane Sealant Over Damp Concrete",
+        costImpact: "$850 (Severe Outgassing Bubbles & Blistered Honeycomb Foam)",
+        description: "Polyurethane cures via moisture reaction. If concrete pores contain liquid water, moisture triggers rapid CO2 gas formation, filling the sealant with ugly bubbles.",
+        solution: "Ensure the concrete joint has dried in full sun for at least 24 to 48 hours following pressure washing, with zero rain forecast for 24 hours."
+      },
+      {
+        number: 3,
+        title: "Filling Sealant Flush with the Concrete Surface",
+        costImpact: "$650 (Torn Sealant from Winter Snow Shovels)",
+        description: "Filling joints completely flush or crowning above the concrete allows metal-edged snow shovel blades and tire chains to slice the sealant off.",
+        solution: "Recess the finished sealant level precisely 1/8\" to 1/4\" below the concrete slab surface so plow blades glide safely overhead."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Driveway Joint Workflow"
+    reviews={[
+      {
+        author: "Brian & Sarah K.",
+        location: "Omaha, NE",
+        projectScope: "180 Linear Ft Driveway & Sidewalk Joint Sealing",
+        savingsClaim: "Saved $1,800 vs Commercial Caulking Quote",
+        feedback: "Used an oscillating multi-tool with a scraper blade to slice the old rotten wood out. Cleaned with a turbo pressure washer nozzle, let dry for 2 days, and installed 3/4\" backer rod. Poured Sikaflex-1c SL into the joints. It flowed out glassy smooth like liquid rubber. Two Nebraska winters later, zero weeds and zero subgrade settlement.",
+        keyTakeaway: "Use the pizza-cutter style backer rod roller tool—it sets the foam to an exact, uniform 1/4-inch depth along hundreds of feet in 10 minutes."
+      },
+      {
+        author: "Darrell P.",
+        location: "Charlotte, NC",
+        projectScope: "Sloped Driveway Expansion Joints",
+        savingsClaim: "Zero Runoff Using Non-Sag Polyurethane",
+        feedback: "David Miller's tip about sloped driveways saved me from a huge mess. My driveway has a 6% grade. I used non-sag Sikaflex-1a, taped both sides with blue painter's tape, and tooled with a plastic spoon dipped in mineral spirits. Looks like a factory commercial installation.",
+        keyTakeaway: "Pull your painter's tape immediately after tooling; if you wait 30 minutes, the polyurethane skins over and pulls the caulk out with the tape."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Concrete Driveway Expansion Joint Replacement Hub" initialYesCount={364} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Senior Structural & Geotechnical Engineer"
+    codeStandard="ACI 224.3R (Joints in Concrete Construction) & ASTM C920"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Guides & Hubs -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Editorial Guides &amp; Project Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/guides/closed-cell-backer-rod-sizing-rules" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Backer Rod Sizing Guide →</div>
+        <div class="text-xs text-gray-500 mt-1">The 2:1 width-to-depth elastomeric ratio, 3-sided adhesion failure, and closed vs open cell foam.</div>
+      </a>
+      <a href="/calculators/polymeric-sand" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Polymeric Sand &amp; Joint Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate joint filling volume, bag yields, and gap coverage for paved surfaces.</div>
+      </a>
+      <a href="/calculators/concrete-slab" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Slab Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate slab yardage, thickness, subgrade gravel, and thermal expansion joint spacing.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>

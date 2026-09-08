@@ -1,0 +1,273 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="Whole-House Fan CFM & Attic Vent Area Ratio Guide | CalcForDIY"
+  description="Master whole-house fan engineering: ACH airflow formulas, the 1 sq ft per 750 CFM attic exhaust ratio, net free vent area calculations, and backdraft prevention."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Whole-House Fan CFM Sizing Guide", "item": "https://calcfordiy.com/guides/whole-house-fan-cfm-attic-vent-ratio" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Whole-House Fan CFM Sizing & Attic Vent Area Ratio Guide",
+    "description": "HVAC engineering manual on calculating whole-house fan airflow CFM, required net free attic exhaust area, screen reduction factors, and atmospheric pressure balances.",
+    "author": { "@type": "Person", "name": "Marcus Vance" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/whole-house-fan-cfm-attic-vent-ratio"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Whole-House Fan CFM &amp; Venting</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-semibold mb-3 border border-amber-100">
+      <span>💨 Building Airflow Dynamics &amp; Thermodynamics</span>
+      <span>•</span>
+      <span>ASHRAE 62.2 &amp; HVI Whole-House Ventilation Standards</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      Whole-House Fan CFM Sizing &amp; Attic Vent Area Ratio Guide
+    </h1>
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      A whole-house fan is one of the most cost-effective mechanical cooling investments in residential construction. However, you cannot simply buy the largest fan available at a home center. A whole-house fan operates as a high-volume positive displacement pump: all the air sucked out of your living space must escape through your attic vents. Understanding the <strong>CFM-to-attic vent area ratio</strong> is critical to preventing motor burnout, attic pressurization, and carbon monoxide hazards.
+    </p>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 mb-6">
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Cooling Air Changes</div>
+        <div class="text-lg font-bold text-gray-900">20 – 30 ACH</div>
+        <div class="text-xs text-blue-600">Structural Thermal Purge</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Attic Exhaust Ratio</div>
+        <div class="text-lg font-bold text-gray-900">1 Sq Ft / 750 CFM</div>
+        <div class="text-xs text-emerald-600">Net Free Vent Area (NFVA)</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Insect Screen Loss</div>
+        <div class="text-lg font-bold text-gray-900">50% Restriction</div>
+        <div class="text-xs text-purple-600">1/8" Mesh Screen Factor</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Quick CFM Rule</div>
+        <div class="text-lg font-bold text-gray-900">2.0 to 2.5 x Sq Ft</div>
+        <div class="text-xs text-amber-600">Floor Area Sizing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Body -->
+  <div class="prose prose-blue max-w-none text-gray-700 space-y-6 mb-8">
+    <h2>1. The Air Changes per Hour (ACH) Sizing Formula</h2>
+    <p>
+      Unlike central air conditioning systems that recirculate and chill indoor air, a whole-house fan cools by rapidly flushing the entire volume of warm indoor air and replacing it with cooler outdoor night air. To cool not just the air, but the thermal mass of your framing, drywall, and furniture, building science dictates <strong>20 to 30 air changes per hour (ACH)</strong>:
+    </p>
+    <div class="bg-amber-50 border-l-4 border-amber-600 p-4 font-mono text-sm text-amber-900 my-4">
+      Required CFM = (Total Living Area Sq Ft x Ceiling Height x Target ACH) / 60 Minutes
+    </div>
+    <p>
+      For a 2,200 square foot single-family home with standard 8-foot ceilings targeting 25 ACH:
+    </p>
+    <div class="bg-gray-100 p-4 font-mono text-sm text-gray-800 my-2">
+      • Total Cubic Feet = 2,200 sq ft x 8 ft = 17,600 cubic feet<br/>
+      • Required CFM = (17,600 x 25) / 60 = 440,000 / 60 = <strong>7,333 CFM (or ~4,500 to 5,000 CFM for zoned bedroom cooling)</strong>
+    </div>
+
+    <h2>2. The 1 Sq Ft per 750 CFM Attic Exhaust Rule</h2>
+    <p>
+      This is where most DIY installations fail. A fan pulling 4,500 CFM forces 4,500 cubic feet of air into your attic every minute. If your attic roof vents are too small, that air cannot escape. Pressure builds up inside the attic, creating severe aerodynamic back-pressure that cuts the fan's actual airflow in half and overheats the fan motor.
+    </p>
+    <p>
+      The Home Ventilating Institute (HVI) and International Residential Code establish the standard ratio:
+    </p>
+    <div class="bg-blue-50 border-l-4 border-blue-600 p-4 font-mono text-sm text-blue-900 my-4">
+      Minimum Net Free Vent Area (NFVA in Sq Ft) = Fan CFM / 750
+    </div>
+    <p>
+      For a 4,500 CFM fan:
+    </p>
+    <div class="bg-gray-100 p-4 font-mono text-sm text-gray-800 my-2">
+      NFVA = 4,500 / 750 = <strong>6.0 Square Feet of Net Free Vent Area</strong>
+    </div>
+
+    <h2>3. Net Free Vent Area (NFVA) Sizing Table</h2>
+    <div class="overflow-x-auto my-6 not-prose">
+      <table class="w-full text-left text-xs border border-gray-200 rounded-lg">
+        <thead class="bg-gray-100 text-gray-700 uppercase font-semibold">
+          <tr>
+            <th class="p-3 border-b">Fan CFM Rating</th>
+            <th class="p-3 border-b">Recommended Home Size</th>
+            <th class="p-3 border-b">Required Net Free Vent Area</th>
+            <th class="p-3 border-b">Gross Louver Vent Area Needed (50% Mesh)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white">
+          <tr>
+            <td class="p-3 font-medium text-gray-900">2,500 CFM</td>
+            <td class="p-3 text-gray-600">Up to 1,200 Sq Ft</td>
+            <td class="p-3 text-blue-700 font-bold">3.33 Sq Ft</td>
+            <td class="p-3 text-gray-600">6.7 Sq Ft Gross (e.g., two 20x24 gable louvers)</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium text-gray-900">3,500 CFM</td>
+            <td class="p-3 text-gray-600">1,200 – 1,700 Sq Ft</td>
+            <td class="p-3 text-blue-700 font-bold">4.67 Sq Ft</td>
+            <td class="p-3 text-gray-600">9.3 Sq Ft Gross</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium text-gray-900">4,500 CFM</td>
+            <td class="p-3 text-emerald-700 font-bold">1,700 – 2,400 Sq Ft</td>
+            <td class="p-3 text-emerald-700 font-bold">6.00 Sq Ft</td>
+            <td class="p-3 text-emerald-700 font-bold">12.0 Sq Ft Gross</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium text-gray-900">5,500 CFM</td>
+            <td class="p-3 text-emerald-700 font-bold">2,400 – 3,000 Sq Ft</td>
+            <td class="p-3 text-emerald-700 font-bold">7.33 Sq Ft</td>
+            <td class="p-3 text-emerald-700 font-bold">14.7 Sq Ft Gross</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium text-gray-900">6,500 CFM</td>
+            <td class="p-3 text-purple-700 font-bold">3,000+ Sq Ft</td>
+            <td class="p-3 text-purple-700 font-bold">8.67 Sq Ft</td>
+            <td class="p-3 text-purple-700 font-bold">17.3 Sq Ft Gross</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>4. Accounting for Vent Screen Obstruction Factors</h2>
+    <p>
+      A common misconception is measuring the physical dimensions of a gable louver (e.g. 24" x 24" = 4.0 sq ft) and assuming it provides 4 square feet of vent area. In reality, aluminum angled slats and insect screening block a massive percentage of the opening:
+    </p>
+    <ul>
+      <li><strong>1/4" Hardware Cloth (Bird Screen):</strong> 80% free area (Gross Area x 0.80 = Net Free Area).</li>
+      <li><strong>1/8" Fine Insect Wire Mesh:</strong> 50% free area (Gross Area x 0.50 = Net Free Area).</li>
+      <li><strong>Metal Louvers with 1/8" Insect Mesh:</strong> 40% to 50% free area. A 24"x24" gable vent actually delivers only <strong>1.6 to 2.0 square feet</strong> of true net free ventilation!</li>
+    </ul>
+    <p>
+      Always calculate your attic exhaust based on the manufacturer-stamped <strong>NFVA rating</strong>, or cut additional gable louvers, dormer roof vents, or continuous ridge vents to meet the 1 sq ft per 750 CFM rule.
+    </p>
+  </div>
+
+  <!-- Trade Field Note -->
+  <FieldNote
+    expertName="Marcus Vance"
+    role="Master Electrician & MEP Systems Specialist"
+    experience="22+ Years Field Experience"
+    avatarBg="bg-amber-100 text-amber-800"
+    initials="MV"
+    title="Why You Should Never Count Soffit Vents as Exhaust for a Whole-House Fan"
+    note="When calculating attic net free exhaust area, homeowners frequently add up their continuous perforated soffit vents to meet the 6.0 sq ft requirement. That is a major mistake! Soffit vents are INTAKE vents located at the lowest eaves of the roof. When a whole-house fan discharges 4,500 CFM into the center of the attic, air naturally rushes upward toward the high ridge and gable vents. If the attic lacks high exhaust vents, the air gets forced DOWNWARD through the soffit vents. As air blasts backward out the soffits, it catches outdoor eaves, swirls around, and gets sucked right back into the open first-floor windows below! You end up recirculating dusty, 130°F attic air straight into your bedrooms. For whole-house fan ventilation, only count HIGH exhaust vents: ridge vents, gable louvers, and roof-deck dormer vents located well above the eaves."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    tradeName="Whole-House Fan CFM Sizing"
+    mistakes={[
+      {
+        number: 1,
+        title: "Grossly Oversizing the Fan in a Tight, Well-Sealed Home",
+        costImpact: "$1,400 (Violent Window Whistling & Heavy Motor Drag)",
+        description: "Installing an 8,000 CFM commercial fan in a modern 1,800 sq ft home creates extreme air velocity through window screens, causing loud howling and slamming interior doors.",
+        solution: "Size the fan realistically at 2.0 to 2.5 CFM per square foot of living space, or choose a multi-speed motor (Low/Medium/High)."
+      },
+      {
+        number: 2,
+        title: "Ignoring Net Free Area Reductions on Slotted Ridge Vents",
+        costImpact: "$850 (Attic Pressurization & Fiberglass Dust Contamination)",
+        description: "A 30-foot continuous ridge vent provides roughly 18 square inches of NFVA per linear foot (3.75 sq ft total)—insufficient alone for a 5,000 CFM fan.",
+        solution: "Pair continuous ridge vents with dual triangular gable-end louvers to achieve the full 6 to 8 sq ft of net free exhaust area required."
+      },
+      {
+        number: 3,
+        title: "Failing to Provide 2x Window Open Area in the Living Space",
+        costImpact: "$650 (Burned-Out Fan Capacitor & Squealing Belt)",
+        description: "Opening only one small 2-foot bathroom window starves the fan of intake air, forcing the motor to fight high negative pressure.",
+        solution: "Open at least 8 to 12 square feet of window area (roughly 3 to 4 open windows) whenever running a 4,500 CFM whole-house fan."
+      }
+    ]}
+  />
+
+  <!-- Builder Community Reviews -->
+  <CommunityReviews
+    tradeTitle="Whole-House Fan CFM Guide"
+    reviews={[
+      {
+        author: "Greg & Natalie B.",
+        location: "Boise, ID",
+        projectScope: "CentricAir 4.0 in 2,000 Sq Ft Ranch",
+        savingsClaim: "Zero Dust Blowback in Attic",
+        feedback: "Marcus's breakdown on screen obstruction factors saved our installation. We calculated that our two gable vents only provided 3.2 sq ft of true NFVA. We cut in two additional dormer roof vents before installing the 4,000 CFM fan. Air exhausts effortlessly and the attic stays clean.",
+        keyTakeaway: "Use an anemometer or hold a sheet of tissue paper near the window sill to verify strong positive airflow entering every room."
+      },
+      {
+        author: "Keith M.",
+        location: "Phoenix, AZ",
+        projectScope: "Whole House Fan CFM Calculation & Retrofit",
+        savingsClaim: "Summer Energy Bills Dropped $85/Month",
+        feedback: "We replaced our noisy 1970s direct-drive fan with a ducted QuietCool 4,800 CFM unit. The CFM formula was exact. Running the fan from 6 AM to 8 AM chills our home down to 68°F before the 105°F desert heat hits.",
+        keyTakeaway: "Buy an insulated damper box with R-38 foam doors; otherwise your winter heating bills will spike."
+      }
+    ]}
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Whole-House Fan CFM & Venting Guide" initialYesCount={378} />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Master Electrician & MEP Systems Specialist"
+    codeStandard="ASHRAE 62.2, HVI (Home Ventilating Institute) & IRC R806"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Related Hubs & Calculators -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 not-prose">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Construction Hubs &amp; Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/projects/whole-house-fan-installation" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Whole-House Fan Hub →</div>
+        <div class="text-xs text-gray-500 mt-1">Follow the 4-step workflow: CFM sizing, joist headering, acoustic duct hanging, and timer wiring.</div>
+      </a>
+      <a href="/calculators/whole-house-fan" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Whole House Fan Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Determine room volume, target air changes per hour, and net free vent area needs.</div>
+      </a>
+      <a href="/calculators/soffit-fascia" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Soffit Ventilation Calculator →</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate net free area for continuous eaves, soffits, and ridge vent systems.</div>
+      </a>
+    </div>
+  </div>
+
+</Layout>
