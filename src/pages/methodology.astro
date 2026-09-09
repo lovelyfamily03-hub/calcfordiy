@@ -30,48 +30,90 @@ import Layout from '../layouts/Layout.astro';
 
     <section>
       <h2 class="text-2xl font-semibold text-gray-900 mb-4">1. Primary Building Codes &amp; Industry Standards</h2>
-      <p>Our calculation engines cite and adhere to established industry reference standards:</p>
+      <p>Our calculation engines cite and adhere to established statutory codes, trade association technical manuals, and federal standards:</p>
 
       <div class="space-y-4 mt-4">
         <div class="border-l-4 border-blue-600 pl-4 py-1">
           <h3 class="font-bold text-gray-900">International Residential Code (IRC 2021 / 2024)</h3>
           <p class="text-sm text-gray-600 mt-1">
-            Used for wall framing stud spacing (16" and 24" o.c. rules), roof pitch and rafter span equations (Section R802), stair riser/tread proportion formulas (Section R311.7), and deck joist/beam allowable spans (Table R507.5).
+            Governs residential structural framing: wall stud spacing (16" and 24" o.c. rules per Section R602), roof pitch and rafter span equations (Section R802), stair riser/tread geometry (Section R311.7: maximum 7-3/4" rise, minimum 10" run), deck joist/beam allowable spans and ledger attachment (Section R507), and guardrail 4-inch sphere baluster rules (Section R312.1).
           </p>
         </div>
 
         <div class="border-l-4 border-blue-600 pl-4 py-1">
-          <h3 class="font-bold text-gray-900">Tile Council of North America (TCNA Handbook)</h3>
+          <h3 class="font-bold text-gray-900">National Electrical Code (NEC / NFPA 70 — 2023 / 2026)</h3>
           <p class="text-sm text-gray-600 mt-1">
-            Governs tile layout calculations, grout joint volume consumption rates, thinset mortar trowel coverage rates, and pattern waste factor multipliers (10% straight, 15% diagonal/offset, 20% herringbone).
+            Governs residential electrical calculations: Chapter 9 Table 1 conduit fill limits (40% maximum for 3 or more conductors), Article 210.20 &amp; 625 continuous demand load rules (125% breaker sizing for Level 2 EV chargers), Table 310.16 allowable conductor ampacities, Article 220 feeder/subpanel load calculations, Article 590 temporary lighting, and outdoor GFCI protection mandates (Article 210.8).
           </p>
         </div>
 
         <div class="border-l-4 border-blue-600 pl-4 py-1">
-          <h3 class="font-bold text-gray-900">National Electrical Code (NEC / NFPA 70)</h3>
+          <h3 class="font-bold text-gray-900">Tile Council of North America (TCNA Handbook 2024) &amp; ANSI A108/A118</h3>
           <p class="text-sm text-gray-600 mt-1">
-            Used for Chapter 9 Table 1 conduit fill limits (40% maximum for 3 or more conductors), Article 220 continuous demand load rules (80% continuous breaker sizing for EV chargers per NEC 210.20), and wire gauge voltage drop math.
+            Governs ceramic, porcelain, and stone installations: substrate deflection limits (L/360 for ceramic, L/720 for natural stone), thinset mortar transfer coverage (minimum 80% dry interior, 95% wet/exterior per ANSI A108.5), movement accommodation joint rules (Method EJ171), and pattern waste allowances (10% running bond, 15% diagonal, 20% herringbone).
           </p>
         </div>
 
         <div class="border-l-4 border-blue-600 pl-4 py-1">
-          <h3 class="font-bold text-gray-900">Illuminating Engineering Society (IES Lighting Handbook)</h3>
+          <h3 class="font-bold text-gray-900">American Concrete Institute (ACI 318-19 &amp; ACI 332-20)</h3>
           <p class="text-sm text-gray-600 mt-1">
-            Determines recommended foot-candle (lumens per sq ft) targets by room function — living rooms (20 FC), kitchens (50 FC), hallways (10 FC), and workshop environments (75+ FC).
+            Governs residential concrete slabs, footings, and structural masonry: minimum compressive strength (3,500–4,000 PSI air-entrained mix for freeze-thaw exposure), contraction/control joint spacing (maximum 24 to 30 times slab thickness in feet), and rebar chair clearance (1.5" minimum clearance from earth).
           </p>
         </div>
 
         <div class="border-l-4 border-blue-600 pl-4 py-1">
-          <h3 class="font-bold text-gray-900">National Wood Flooring Association (NWFA)</h3>
+          <h3 class="font-bold text-gray-900">National Wood Flooring Association (NWFA) &amp; NALFA Guidelines</h3>
           <p class="text-sm text-gray-600 mt-1">
-            Establishes square-footage carton rounding, expansion perimeter gap requirements, and subfloor plywood thickness rules for hardwood and laminate installations.
+            Establishes subfloor flatness tolerances (3/16" in 10 ft or 1/8" in 6 ft), subfloor moisture content differential limits (&lt;2% for plank &gt;3" wide, &lt;4% for strip &le;3"), perimeter expansion gap formulas (equal to plank thickness), and carton square-footage rounding algorithms.
           </p>
         </div>
 
         <div class="border-l-4 border-blue-600 pl-4 py-1">
-          <h3 class="font-bold text-gray-900">ASHRAE 90.1 &amp; International Energy Conservation Code (IECC 2021/2024)</h3>
+          <h3 class="font-bold text-gray-900">Illuminating Engineering Society (IES LP-2-20 &amp; LP-3 Lighting Practice)</h3>
           <p class="text-sm text-gray-600 mt-1">
-            Governs continuous exterior insulation (ci) requirements, thermal bridging degradation factors (e.g., steel Z-girt vs. fiberglass thermal clip efficiency), and climate zone R-value minimums.
+            Determines recommended residential foot-candle (lumens per sq ft) targets: living rooms &amp; bedrooms (10–20 FC), kitchen ambient (30–50 FC), kitchen active food-prep task zones (70–100 FC), circulation corridors &amp; hallways (5–10 FC), and workshop/garage workbenches (50–75+ FC).
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">Interlocking Concrete Pavement Institute (ICPI Tech Specs 2 &amp; 9)</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Governs interlocking paver and patio installations: structural subbase aggregate thickness (4–6" ASTM D2940 for pedestrian walkways; 8–12" for vehicular driveways), 1-inch uncompacted bedding sand layer (ASTM C33 concrete sand), and ASTM C144 / polymeric joint sand stabilization.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">Uniform Plumbing Code (UPC) &amp; International Plumbing Code (IPC)</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Governs sanitary and stormwater drainage: gravity drain pipe slope minimums (1/4" per foot for pipes 2-1/2" or smaller; 1/8" per foot for pipes 3" to 6" per IPC Section 704 / UPC Table 702.1), Sump and Sewage Pump Manufacturers Association (SSPMA) total dynamic head formulas, and Water Supply Fixture Unit (WSFU) sizing.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">ASHRAE 62.2, IECC 2024 &amp; ACCA Manual J / S (HVAC &amp; Energy)</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Governs thermal envelope performance, whole-house ventilation airflow (CFM equations based on floor area and bedroom count), continuous exterior insulation (ci) thermal clip efficiency, Department of Energy (DOE 2023) regional SEER2/HSPF2 heat pump mandates, and condensing furnace AFUE ratings (80% non-condensing vs 96% high-efficiency).
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">Master Painters Institute (MPI) &amp; PDCA / PCA Architectural Standards</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Establishes architectural coating coverage rates: 350–400 sq ft/gal on sealed, smooth interior drywall; 200–250 sq ft/gal on textured or masonry surfaces; and PDCA Standard P1-04 surface preparation and dry-film thickness requirements.
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">Architectural Woodwork Institute (AWI) &amp; Classical Trim Proportions</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Governs interior finish carpentry: wainscoting height ratios (Rule of Thirds / 32" to 36" heights for 8-ft ceilings), coffered ceiling box beam layout and ceiling dead load engineering, and crown molding compound miter angles (spring angle trigonometric calculations).
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-600 pl-4 py-1">
+          <h3 class="font-bold text-gray-900">NIST Handbook 130 &amp; USDA / NRCS Agricultural Standards</h3>
+          <p class="text-sm text-gray-600 mt-1">
+            Legal metrology and soil science standards: National Institute of Standards and Technology (NIST Handbook 130 Section 2.4) method of sale for firewood (128 cubic feet tightly stacked per cord); USDA Natural Resources Conservation Service soil bulk densities; and AAPFCO fertilizer nutrient application limits.
           </p>
         </div>
       </div>
@@ -102,14 +144,29 @@ import Layout from '../layouts/Layout.astro';
               <td class="p-3 text-xs text-gray-500">ASTM D2940 Standard</td>
             </tr>
             <tr>
+              <td class="p-3 font-medium">Concrete Sand Bedding (Pavers)</td>
+              <td class="p-3 font-mono">1.35 Tons / Cu Yd (2,700 lbs)</td>
+              <td class="p-3 text-xs text-gray-500">ASTM C33 Fine Aggregate Specs</td>
+            </tr>
+            <tr>
               <td class="p-3 font-medium">Wet Ready-Mix Concrete</td>
               <td class="p-3 font-mono">1.98 Tons / Cu Yd (145 lbs/cu ft)</td>
               <td class="p-3 text-xs text-gray-500">American Concrete Institute (ACI)</td>
             </tr>
             <tr>
+              <td class="p-3 font-medium">Screened Topsoil (Moist Loam)</td>
+              <td class="p-3 font-mono">1.10–1.25 Tons / Cu Yd (2,200–2,500 lbs)</td>
+              <td class="p-3 text-xs text-gray-500">USDA NRCS Soil Mechanics</td>
+            </tr>
+            <tr>
               <td class="p-3 font-medium">Shredded Bark Mulch</td>
               <td class="p-3 font-mono">800–1,000 lbs / Cu Yd</td>
               <td class="p-3 text-xs text-gray-500">Mulch &amp; Soil Council</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium">Firewood Cord (Stacked 4x4x8 ft)</td>
+              <td class="p-3 font-mono">128 Cu Ft Stacked (~2,200–2,800 lbs dry)</td>
+              <td class="p-3 text-xs text-gray-500">NIST Handbook 130 Legal Metrology</td>
             </tr>
           </tbody>
         </table>
