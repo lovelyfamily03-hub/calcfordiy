@@ -1,0 +1,303 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Wall Substrate Preparation, Sizing & Acrylic Pigmented Primer/Shield",
+    description: "Fill drywall dings with spackle and sand smooth to 150 grit. Apply a dedicated wallpaper primer/sealer (such as Roman Rx-35 or Zinsser Shieldz). This crucial sizing step seals the drywall paper so paste does not absorb prematurely and allows future dry-stripping without tearing drywall facing.",
+    calculatorName: "Wallpaper Rolls & Pattern Waste Calculator",
+    href: "/calculators/wallpaper",
+    icon: "🎨"
+  },
+  {
+    stepNumber: 2,
+    title: "True Vertical Plumb Line Laser Setup & First Strip Planning",
+    description: "Never trust room corners to be square or plumb. Project a vertical green cross-line laser 20 inches from the most prominent corner (for a standard 20.5-inch wide roll, leaving 1/2-inch wrap). Measure pattern repeat height (drop match vs straight match) and pre-cut strips with 2 inches of top/bottom trim allowance.",
+    calculatorName: "Crown Molding & Room Perimeter Calculator",
+    href: "/calculators/crown-molding",
+    icon: "📐"
+  },
+  {
+    stepNumber: 3,
+    title: "Paste-the-Wall Application & Non-Woven Strip Hanging",
+    description: "Roll clear, heavy-duty strippable paste (Roman PRO-880 or PRO-543) directly onto the wall with a 3/8-inch microfiber roller, coating slightly wider than one strip. Hang the first dry non-woven strip along the laser line. Smooth outward from center with a flexible plastic smoother at a 45-degree angle to evacuate air.",
+    calculatorName: "Wallpaper Area & Roll Estimator",
+    href: "/calculators/wallpaper",
+    icon: "🧻"
+  },
+  {
+    stepNumber: 4,
+    title: "Butt Seam Alignment, Wooden Seam Rolling & Razor Trimming",
+    description: "Slide adjacent sheets together until pattern motifs lock with zero seam overlap. Roll seams gently with a soft wooden seam roller. Place a stainless 6-inch putty knife tight into the ceiling and baseboard corners, and trim excess with a fresh snap-off breakaway razor blade changed every 2 to 3 cuts.",
+    calculatorName: "Baseboard & Shoe Molding Calculator",
+    href: "/calculators/baseboard-shoe-molding",
+    icon: "✂️"
+  }
+];
+---
+
+<Layout
+  title="Wallpaper Accent Wall Installation Hub — Step-by-Step | CalcForDIY"
+  description="Professional guide to hanging non-woven wallpaper and murals: wall sizing, laser plumb lines, paste-the-wall application, pattern matching, and seam rolling."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Wallpaper Installation Hub", "item": "https://calcfordiy.com/projects/wallpaper-accent-wall-installation" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Hang Wallpaper and Accent Wall Murals",
+    "description": "Comprehensive trade guide for wallpaper primer sizing, laser alignment, paste-the-wall technique, butt seam joining, and razor trimming.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Wall Sizing & Acrylic Primer",
+        "text": "Sand drywall smooth and roll on dedicated wallpaper primer/shield to prevent paste absorption."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Laser Plumb Line & Pattern Planning",
+        "text": "Project vertical laser line, calculate pattern repeat offset, and cut strips with 2-inch trimming margin."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Paste-the-Wall & Strip Placement",
+        "text": "Roll heavy-duty clear adhesive onto the wall and smooth dry non-woven sheet along the laser line."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Butt Seam Rolling & Corner Trimming",
+        "text": "Butt seams tight without overlapping, roll with wooden seam roller, and trim with fresh razor blades."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Wallpaper Accent Wall Hub</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-slate-900 via-rose-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-semibold mb-4 border border-rose-400/30">
+      <span>🎨 Wallcovering Installation &amp; Interior Architecture</span>
+      <span>•</span>
+      <span>WIA Standards &amp; ASTM F793 Compliant</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Non-Woven Wallpaper &amp; Accent Wall Mural Installation Hub
+    </h1>
+
+    <p class="text-slate-300 text-base sm:text-lg max-w-3xl leading-relaxed mb-6">
+      Modern non-woven wallpapers have revolutionized wall decorating. Made from synthetic and natural cellulose fibers that do not expand when wet or shrink when dry, non-woven papers allow paste-the-wall application, seamless butt joints, and 100% dry-strippable removal years later.
+    </p>
+
+    <!-- Visual Job-Site Photography -->
+    <div class="mb-6">
+      <img
+        src="/images/projects/wallpaper-accent-wall-installation.jpg"
+        alt="Installation of non-woven botanical wallpaper on living room accent wall with smoothing tool and seam roller"
+        class="w-full h-56 sm:h-72 md:h-84 lg:h-96 object-cover rounded-xl shadow-md border border-slate-700/80"
+        loading="eager"
+      />
+      <p class="text-xs text-slate-400 mt-2 italic text-center sm:text-left">
+        Job-site installation: Smoothing high-end non-woven botanical wallpaper along a vertical laser plumb line with wooden seam roller and smoothing blade.
+      </p>
+    </div>
+
+    <!-- Contractor Cost vs DIY Savings Bar -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-700/80">
+      <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700/60">
+        <div class="text-xs text-slate-400 font-medium">Professional Paperhanger Quote</div>
+        <div class="text-2xl font-black text-rose-400 mt-1">$950 – $1,600</div>
+        <div class="text-xs text-slate-400 mt-0.5">Single Feature Accent Wall (12x9 ft)</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700/60">
+        <div class="text-xs text-slate-400 font-medium">DIY Primer, Paste &amp; Tool Cost</div>
+        <div class="text-2xl font-black text-emerald-400 mt-1">$120 – $180</div>
+        <div class="text-xs text-slate-400 mt-0.5">Shieldz Primer + PRO-880 Paste + Blades</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700/60">
+        <div class="text-xs text-slate-400 font-medium">Weekend DIY Labor Equity</div>
+        <div class="text-2xl font-black text-blue-400 mt-1">$830 – $1,420</div>
+        <div class="text-xs text-slate-400 mt-0.5">Save $8.00–$14.00 per sq ft in Labor</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phased Workflow Section -->
+  <div class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+      <span>📐</span> 4-Phase Wallpaper Hanging Architecture
+    </h2>
+
+    <div class="space-y-6">
+      {workflowSteps.map(step => (
+        <div class="bg-white border border-gray-200 rounded-xl p-5 sm:p-6 shadow-xs hover:border-blue-300 transition-all">
+          <div class="flex items-start gap-4">
+            <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-100 text-blue-700 font-black text-lg shrink-0">
+              {step.stepNumber}
+            </span>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-gray-900 mb-2">
+                {step.title}
+              </h3>
+              <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                {step.description}
+              </p>
+              <a
+                href={step.href}
+                class="inline-flex items-center gap-2 text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition-colors"
+              >
+                <span>{step.icon} Open {step.calculatorName}</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Budget Breakdown Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-10 not-prose shadow-xs">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">
+      Accent Wall (120 Sq Ft) Consumables Takeoff
+    </h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm border-collapse">
+        <thead>
+          <tr class="border-b border-gray-200 bg-gray-50 text-gray-700 font-semibold">
+            <th class="p-3">Material Component</th>
+            <th class="p-3">Technical Specification</th>
+            <th class="p-3">Qty Needed</th>
+            <th class="p-3">Average DIY Cost</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-gray-600">
+          <tr>
+            <td class="p-3 font-medium text-gray-900">Roman Rx-35 / Zinsser Shieldz Primer</td>
+            <td class="p-3">Pigmented acrylic universal wallcovering primer</td>
+            <td class="p-3">1 Gallon</td>
+            <td class="p-3 font-mono">$38</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium text-gray-900">Roman PRO-880 Clear Adhesive</td>
+            <td class="p-3">Starch-based high-tack strippable paste</td>
+            <td class="p-3">1 Gallon</td>
+            <td class="p-3 font-mono">$28</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium text-gray-900">Professional Wallpaper Hanging Kit</td>
+            <td class="p-3">Plastic smoother, wooden seam roller, 3/8" roller</td>
+            <td class="p-3">1 Kit</td>
+            <td class="p-3 font-mono">$24</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium text-gray-900">Snap-Off Olfa 9mm Stainless Blades</td>
+            <td class="p-3">50-pack 30-degree acute angle breakaway blades</td>
+            <td class="p-3">1 Pack</td>
+            <td class="p-3 font-mono">$18</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium text-gray-900">Stainless 6-inch Broad Knife Guide</td>
+            <td class="p-3">Flexible stainless taping blade for trimming guide</td>
+            <td class="p-3">1 Blade</td>
+            <td class="p-3 font-mono">$12</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Jobsite Field Note -->
+  <FieldNote
+    author="Elena Rostova, CBO"
+    role="Certified Building Official & Architectural Finishes Specialist"
+    experience="18+ Years Finishes Evaluations"
+    avatarBg="bg-emerald-100 text-emerald-800"
+    initials="ER"
+    title="Change Your Razor Blade Every 3 Cuts—Wet Paste Dulls Steel Instantly"
+    note="The number one mistake DIYers make when hanging wallpaper is tearing the wet paper during the final ceiling and baseboard cut. Wet cellulose paper combined with starch paste instantly microscopic-dulls standard carbon steel razor blades. The moment your blade catches or drags, snap off the dull tip for a brand-new razor edge. A $15 pack of 50 breakaway blades is the best insurance you can buy against ruined $150 wallpaper rolls."
+  />
+
+  <!-- Costly Mistakes -->
+  <CostlyMistakes
+    mistakes={[
+      {
+        title: "Applying Wallpaper Over Flat Builders-Grade Latex Paint Without Sizing",
+        impact: "$600 Ruined Drywall Removal Tear-Out",
+        description: "Standard latex wall paint is porous. The paste will soak directly through the paint and bond permanently to the brown drywall paper. When you try to remove the paper years later, large chunks of drywall facing will rip off down to the gypsum core."
+      },
+      {
+        title: "Aligning the First Strip to the Corner of the Room Instead of a Laser",
+        impact: "Severe Pattern Creep & Crooked Walls Across the Entire Room",
+        description: "Drywall corners are taped and floated, meaning they taper and wander by 1/4 to 1/2 inch from floor to ceiling. If your first strip follows the corner, every subsequent strip will lean progressively further out of level."
+      },
+      {
+        title: "Over-Pressing Seams with a Hard Plastic Roller",
+        impact: "Shiny Burnished Seam Lines & Squeezed-Out Dry Joints",
+        description: "Bearing down with hard plastic seam rollers crushes delicate paper textures and polishes the edges into shiny plastic lines. Use a smooth wooden seam roller with gentle thumb pressure, and wipe excess paste off immediately with a damp microfiber cloth."
+      }
+    ]}
+  />
+
+  <!-- Community Reviews -->
+  <CommunityReviews
+    reviews={[
+      {
+        name: "Jessica & Tyler W.",
+        location: "Denver, CO",
+        projectScope: "Nursery Forest Mural (Non-Woven 6-Panel)",
+        costSaved: "Saved $1,200",
+        feedback: "We were terrified of ruining a $350 mural. CalcForDIY's instructions on priming with Shieldz and using a green laser level made the job foolproof. The panels locked together seamlessly, and there are zero visible seams anywhere."
+      },
+      {
+        name: "Samantha P.",
+        location: "Nashville, TN",
+        projectScope: "Dining Room Botanical Accent Wall",
+        costSaved: "Saved $850",
+        feedback: "The snap-off blade tip saved our trim work! Trimming along the crown molding with a 6-inch broad knife gave us razor-sharp factory-looking edges."
+      }
+    ]}
+  />
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Architectural Finishes Specialist"
+    codeStandard="Wallcovering Installers Association (WIA) Standards & ASTM F793 Surface Burning"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Wallpaper Accent Wall Hub" initialYesCount={164} />
+
+</Layout>

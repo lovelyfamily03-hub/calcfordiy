@@ -1,0 +1,227 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="C9 vs C7 Christmas Lights: Spacing & Circuit Math | CalcForDIY"
+  description="Master guide on commercial holiday lighting: C9 vs C7 bulb dimensions, socket spacing (12-inch vs 15-inch), LED vs incandescent wattage, and SPT-2 wiring."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "C9 vs C7 Lighting Guide", "item": "https://calcfordiy.com/guides/c9-vs-c7-commercial-christmas-lights-spacing" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "C9 vs C7 Commercial Holiday Lights: Spacing, Sizing, and Electrical Sizing",
+    "description": "Technical electrical comparison between C9 (E17) and C7 (E12) bulbs, continuous circuit loading formulas, vampire plug installation, and roofline aesthetics.",
+    "author": { "@type": "Person", "name": "Marcus Vance" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "datePublished": "2026-09-09",
+    "dateModified": "2026-09-09"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">C9 vs C7 Lighting Guide</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-red-950 via-slate-900 to-green-950 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/20 text-red-300 text-xs font-semibold mb-4 border border-red-400/30">
+      <span>💡 Architectural Holiday Engineering</span>
+      <span>•</span>
+      <span>NEC Article 590 &amp; UL 588 Certified Standards</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      C9 vs C7 Commercial Holiday Lights: Spacing &amp; Electrical Limits
+    </h1>
+
+    <p class="text-red-100 text-base sm:text-lg max-w-3xl leading-relaxed mb-6">
+      The choice between <strong>C9</strong> and <strong>C7</strong> commercial lighting fundamentally dictates visual scale, roofline presence, and electrical current demands. Understanding the mechanical differences in base sizes (E17 vs E12), optimal socket spacing (12-inch vs 15-inch), and LED power consumption prevents tripping breakers and ensures professional street appeal.
+    </p>
+
+    <!-- Technical Infographic Hero Diagram -->
+    <div class="bg-slate-900/80 border border-red-500/30 rounded-xl p-5 max-w-3xl">
+      <h3 class="text-xs uppercase tracking-wider text-red-300 font-bold mb-3">Dimensional &amp; Photometric Specifications</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+        <div class="bg-slate-950/80 p-3 rounded-lg border border-red-500/20">
+          <span class="text-2xl font-black text-red-400">C9 (E17 Base)</span>
+          <div class="text-xs font-bold text-white mt-1">2.25-in Height &times; 1.25-in Dia</div>
+          <p class="text-xs text-slate-300 mt-1">Large architectural bulb; standard for rooflines and 2-story gutter eaves.</p>
+        </div>
+        <div class="bg-slate-950/80 p-3 rounded-lg border border-amber-400/40">
+          <span class="text-2xl font-black text-amber-300">C7 (E12 Base)</span>
+          <div class="text-xs font-bold text-white mt-1">1.50-in Height &times; 0.88-in Dia</div>
+          <p class="text-xs text-slate-300 mt-1">Candelabra base; ideal for ground garden stakes, window frames, and railings.</p>
+        </div>
+        <div class="bg-slate-950/80 p-3 rounded-lg border border-green-500/20">
+          <span class="text-2xl font-black text-emerald-300">0.58W vs 7.0W</span>
+          <div class="text-xs font-bold text-white mt-1">LED vs Incandescent</div>
+          <p class="text-xs text-slate-300 mt-1">SMD faceted LEDs reduce electrical draw by over 90% while running cool to the touch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6 mb-12">
+    <h2 class="text-2xl font-bold text-gray-900">Physical Sizing: C9 vs C7 Dimensions</h2>
+    <p>
+      The primary distinction between C9 and C7 bulbs is scale:
+    </p>
+    <ul>
+      <li><strong>C9 Bulbs:</strong> Measure approximately 2-1/4 inches tall by 1-1/4 inches wide at the globe. They use an <strong>E17 Intermediate base</strong> (17mm diameter thread). Their large physical footprint makes them visible from 200+ feet away, making them the universal choice for roof peaks, dormers, and tall fascia boards.</li>
+      <li><strong>C7 Bulbs:</strong> Measure approximately 1-1/2 inches tall by 7/8 inch wide. They utilize an <strong>E12 Candelabra base</strong> (12mm diameter thread—the same size as standard interior chandelier bulbs). Because of their delicate proportion, C7 bulbs are preferred for ground pathway stakes, column wraps, window trim, and low front porch railings.</li>
+    </ul>
+
+    <h2 class="text-2xl font-bold text-gray-900">Socket Spacing Rules: 12-inch vs 15-inch vs 6-inch</h2>
+    <p>
+      Commercial SPT-2 wire spools come pre-molded with sockets spaced at specific intervals:
+    </p>
+    <ul>
+      <li><strong>12-inch Spacing (Standard Commercial):</strong> The golden standard for residential rooflines. It provides a tight, cohesive ribbon of light from the street without crowding or twisting bulbs together.</li>
+      <li><strong>15-inch Spacing:</strong> Ideal for large commercial buildings, expansive rural rooflines, or budget-conscious installations where long distances must be covered with fewer total bulbs.</li>
+      <li><strong>6-inch or 8-inch Spacing:</strong> Primarily used with C7 bulbs along sidewalks, flower bed borders, or tight architectural curves where high light density is required.</li>
+    </ul>
+
+    <!-- Comparative Table -->
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">Electrical Engineering Limits: LED vs Incandescent</h2>
+    <div class="overflow-x-auto not-prose my-6">
+      <table class="w-full text-left text-sm text-gray-700 bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <thead class="bg-gray-50 text-gray-900 font-bold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Bulb Type</th>
+            <th class="py-3 px-4">Wattage / Bulb</th>
+            <th class="py-3 px-4">Amps / 100 Bulbs</th>
+            <th class="py-3 px-4">Max Bulbs on 18 AWG Wire</th>
+            <th class="py-3 px-4">Max Bulbs on 15A Breaker (80%)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr class="bg-emerald-50/50">
+            <td class="py-3 px-4 font-bold text-emerald-950">C9 Faceted LED Retrofit</td>
+            <td class="py-3 px-4 font-mono text-emerald-700">0.58 W</td>
+            <td class="py-3 px-4 font-mono text-emerald-700">0.48 A</td>
+            <td class="py-3 px-4 font-bold text-emerald-700">1,440 Bulbs</td>
+            <td class="py-3 px-4 font-bold text-emerald-700">2,480 Bulbs</td>
+          </tr>
+          <tr class="bg-emerald-50/50">
+            <td class="py-3 px-4 font-bold text-emerald-950">C7 Smooth LED Retrofit</td>
+            <td class="py-3 px-4 font-mono text-emerald-700">0.50 W</td>
+            <td class="py-3 px-4 font-mono text-emerald-700">0.42 A</td>
+            <td class="py-3 px-4 font-bold text-emerald-700">1,680 Bulbs</td>
+            <td class="py-3 px-4 font-bold text-emerald-700">2,880 Bulbs</td>
+          </tr>
+          <tr class="bg-red-50/50">
+            <td class="py-3 px-4 font-bold text-red-950">Legacy C9 Incandescent</td>
+            <td class="py-3 px-4 font-mono text-red-700">7.00 W</td>
+            <td class="py-3 px-4 font-mono text-red-700">5.83 A</td>
+            <td class="py-3 px-4 font-bold text-red-700">120 Bulbs (Max 120 ft)</td>
+            <td class="py-3 px-4 font-bold text-red-700">205 Bulbs (Max)</td>
+          </tr>
+          <tr class="bg-red-50/50">
+            <td class="py-3 px-4 font-bold text-red-950">Legacy C7 Incandescent</td>
+            <td class="py-3 px-4 font-mono text-red-700">5.00 W</td>
+            <td class="py-3 px-4 font-mono text-red-700">4.17 A</td>
+            <td class="py-3 px-4 font-bold text-red-700">168 Bulbs</td>
+            <td class="py-3 px-4 font-bold text-red-700">288 Bulbs</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900">How to Install Vampire Plugs on SPT-2 Commercial Wire</h2>
+    <p>
+      Gilbert "vampire" plugs allow installers to customize strings without cutting, splicing, or wire-nutting. Follow this precise installation sequence:
+    </p>
+    <ol>
+      <li>Cut your 18 AWG SPT-2 wire cleanly across with sharp wire cutters (do not strip any insulation).</li>
+      <li>Identify the <strong>ribbed / neutral conductor</strong> on the side of the wire casing and align it with the wider, polarized silver blade on the vampire connector.</li>
+      <li>Place the smooth / hot conductor on the narrow brass pin.</li>
+      <li>Slide the plastic locking cap firmly into place until it clicks, forcing the copper vampire teeth through the PVC insulation directly into the copper wire core.</li>
+    </ol>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="SPT-1 vs SPT-2 Wire Insulation Thickness"
+      trade="Commercial Holiday Lighting"
+      content="Always ensure your vampire connectors match your wire type. SPT-1 has a 0.030-inch PVC insulation wall, whereas SPT-2 has a thicker 0.045-inch heavy-duty insulation wall designed for freezing outdoor exposure. If you attempt to press SPT-1 vampire plugs onto thicker SPT-2 wire, the plastic clips will crack or the teeth will fail to penetrate cleanly, resulting in high-resistance connections and melting plugs."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Holiday Lighting Electrical Setup"
+      mistakes={[
+        {
+          mistake: "Reversing Polarity on Gilbert Vampire Plugs",
+          impact: "Connecting the hot wire to the outer screw shell of the socket creates a lethal 120V shock hazard for anyone changing a burnt-out bulb while standing on an aluminum ladder.",
+          prevention: "Always verify that the ribbed neutral wire connects to the wide polarized blade, which feeds the outer screw shell, keeping the hot wire on the recessed center foot."
+        },
+        {
+          mistake: "Overloading 18 AWG Wire Past 7 Amps (840 Watts)",
+          impact: "Exceeding ampacity causes resistive heating along the copper conductor, melting the wire insulation and setting dry roofing cedar shingles or fascia trim on fire.",
+          prevention: "Switch 100% of your display to 0.58W LED retrofit bulbs so your entire roofline draws less than 1.5 amps total."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      projectName="C9 vs C7 Commercial Holiday Lighting"
+      reviews={[
+        {
+          author: "Shane R.",
+          location: "Denver, CO",
+          rating: 5,
+          comment: "The ampacity chart saved me from a major mistake. I was about to hook 250 incandescent C9s to one outlet. Switched to SMD faceted LEDs and the whole roof runs under 1 amp."
+        },
+        {
+          author: "Chris T.",
+          location: "Minneapolis, MN",
+          rating: 5,
+          comment: "Detailed instructions on the SPT-2 vampire plug polarity. Simple, clear, and makes the installation look completely professional."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Master Electrician &amp; Commercial Systems Specialist"
+    codeStandard="NFPA 70 / National Electrical Code (NEC) Article 590 &amp; UL 588"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

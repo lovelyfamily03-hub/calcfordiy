@@ -1,0 +1,171 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="Canless Wafer vs. Traditional Recessed Cans Analysis | CalcForDIY"
+  description="Engineering comparison of canless LED wafers vs traditional remodel housing cans: thermal air leakage (ASTM E283), beam spread (110° vs 40°), glare, and IC ratings."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Canless Wafer vs Traditional Cans", "item": "https://calcfordiy.com/guides/canless-wafer-vs-traditional-recessed-cans" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Canless LED Wafers vs. Traditional Remodel Cans: IC Rating, Air Leakage & Glare",
+    "description": "Architectural and electrical engineering analysis comparing modern canless LED wafer downlights against traditional sheet metal recessed cans.",
+    "author": { "@type": "Person", "name": "Marcus Vance" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/canless-wafer-vs-traditional-recessed-cans"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Canless Wafer vs. Traditional Cans</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>💡 Architectural Lighting Engineering &amp; Photometrics</span>
+      <span>•</span>
+      <span>IES LP-2-20 &amp; ASTM E283 Air Leakage Standards</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      Canless LED Wafers vs. Traditional Remodel Cans: IC Rating, Air Leakage &amp; Glare
+    </h1>
+
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      Canless LED wafers have captured over 80% of the residential remodeling market because they require zero ceiling clearance and install in 10 minutes. However, traditional recessed cans with deep-set baffles still have specific advantages in glare reduction. Here is the photometric and energy-code comparison.
+    </p>
+
+    <!-- Visual Job-Site Photography -->
+    <div class="mb-6">
+      <img
+        src="/images/guides/canless-wafer-vs-traditional-recessed-cans.jpg"
+        alt="Comparison of canless LED wafer fixture and ceiling drywall opening"
+        class="w-full h-56 sm:h-72 md:h-84 lg:h-96 object-cover rounded-xl shadow-md border border-gray-200"
+        loading="eager"
+      />
+    </div>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 mb-6">
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Wafer Profile Thickness</div>
+        <div class="text-lg font-bold text-emerald-600">1/2-Inch Thin</div>
+        <div class="text-xs text-gray-500">Fits Under Joists &amp; Pipes</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Traditional Can Depth</div>
+        <div class="text-lg font-bold text-amber-600">5.5" – 7.5" Deep</div>
+        <div class="text-xs text-gray-500">Requires Clear Joist Bay</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Beam Angle Spread</div>
+        <div class="text-lg font-bold text-gray-900">110° vs 40°</div>
+        <div class="text-xs text-blue-600">Wide Flood vs Controlled Spot</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Air Leakage (ASTM E283)</div>
+        <div class="text-lg font-bold text-purple-600">&lt;0.5 CFM (Gasketed)</div>
+        <div class="text-xs text-gray-500">100% Air-Tight Envelope</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deep Dive Content -->
+  <div class="prose max-w-none text-gray-700 space-y-6">
+    <h2 class="text-2xl font-bold text-gray-900">Photometric Comparison: Flood Spread vs Regressed Glare Control</h2>
+    <p>
+      The fundamental difference between a canless wafer and a traditional can lies in the <strong>optical focal plane</strong>:
+    </p>
+    <ul>
+      <li>
+        <strong>Flat Canless Wafers (110°–120° Beam Angle):</strong> The frosted acrylic lens sits flush with the drywall ceiling. This creates a wide, uniform wash of ambient light that brightens the room efficiently. However, because the illuminated diode surface is visible from anywhere in the room, it creates higher peripheral glare when you look across a long open-concept room.
+      </li>
+      <li>
+        <strong>Regressed Baffle Cans (40°–60° Beam Angle):</strong> The light source is recessed 2 to 3 inches inside an aluminum cylinder lined with black or white anti-glare ridges (baffles). When standing 10 feet away, the light source is hidden from direct line-of-sight. The light shines straight downward, creating clean pools of light with zero eye glare.
+      </li>
+    </ul>
+
+    <!-- Side-by-Side Comparison Table -->
+    <div class="overflow-x-auto my-4">
+      <table class="w-full text-left border-collapse border border-gray-200 text-sm">
+        <thead>
+          <tr class="bg-gray-100 border-b border-gray-200 text-gray-800 font-semibold">
+            <th class="p-3">Specification</th>
+            <th class="p-3 text-emerald-800">Canless LED Wafer</th>
+            <th class="p-3 text-blue-800">Traditional Remodel Can</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="p-3 font-medium">Ceiling Clearance Needed</td>
+            <td class="p-3 font-semibold text-emerald-700">1/2 Inch (Under Joists OK)</td>
+            <td class="p-3 text-rose-700">6 to 8 Inches Clear Bay</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">Installation Time per Light</td>
+            <td class="p-3 font-mono font-bold text-emerald-700">10 – 15 Minutes</td>
+            <td class="p-3 font-mono text-amber-700">30 – 45 Minutes</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">Attic Air Leakage</td>
+            <td class="p-3 font-semibold text-emerald-700">ASTM E283 Airtight Foam Gasket</td>
+            <td class="p-3 text-rose-700">High Stack-Effect Leaks (Unless Sealed)</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">Glare Control (Direct Line of Sight)</td>
+            <td class="p-3">Moderate (Flush Lens)</td>
+            <td class="p-3 font-semibold text-blue-700">Superior (Deep Regressed Baffle)</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">Bulb / Diode Replaceability</td>
+            <td class="p-3">Replace Whole Wafer ($15)</td>
+            <td class="p-3">Swap Standard PAR20/BR30 Bulb ($5)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900">Why Regressed Canless Wafers Are the Best of Both Worlds</h2>
+    <p>
+      Manufacturers now produce <strong>deep-regressed canless wafers</strong>. These units require only 2 to 3 inches of ceiling clearance (fitting easily below standard 2x6, 2x8, or 2x10 joists), feature a snap-in remote junction box, but recess the LED chip 1.5 inches up into a baffled trim. If you are retrofitting living rooms, home theaters, or master bedrooms where glare control is critical, regressed wafers deliver professional architectural optics with DIY ease of installation.
+    </p>
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Licensed Master Electrician & MEP Systems Specialist"
+    codeStandard="IES LP-2 Living Room Foot-Candle Guidelines (15-20 FC) & NEC Article 210-inch
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Canless Wafer Guide" initialYesCount={168} />
+
+</Layout>

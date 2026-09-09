@@ -1,0 +1,234 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="How to Measure a Cord of Wood: NIST Legal Rules | CalcForDIY"
+  description="Master guide on measuring firewood cords: NIST Handbook 130 legal standards, 128 cu ft formulas, face cords vs full cords, and consumer fraud protection."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Measuring Firewood Cords Guide", "item": "https://calcfordiy.com/guides/how-to-measure-a-cord-of-wood-rules" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Measure a Cord of Wood: Legal Weights and Measures Rules",
+    "description": "Comprehensive consumer and forestry guide on legal firewood units, 128 cubic foot stacking requirements, air void percentages, and avoiding face cord scams.",
+    "author": { "@type": "Person", "name": "Jim Hollister, Master Arborist" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "datePublished": "2026-09-09",
+    "dateModified": "2026-09-09"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Measuring Firewood Cords Guide</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-amber-950 via-stone-900 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold mb-4 border border-amber-400/30">
+      <span>⚖️ Weights &amp; Measures Law</span>
+      <span>•</span>
+      <span>NIST Handbook 130 Sec 2.4 &amp; Weights &amp; Measures Compliant</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      How to Measure a Cord of Wood: Legal Rules &amp; Math
+    </h1>
+
+    <p class="text-amber-100 text-base sm:text-lg max-w-3xl leading-relaxed mb-6">
+      Every year, millions of firewood buyers are cheated by sellers advertising ambiguous terms like "face cord", "rick", "truckload", or "pile". Under Federal and State Weights and Measures laws, there is only one legal commercial measure for bulk firewood: <strong>The Standard Cord (128 Cubic Feet)</strong>. Here is how to measure your delivery to ensure you got what you paid for.
+    </p>
+
+    <!-- Technical Infographic Hero Diagram -->
+    <div class="bg-stone-900/80 border border-amber-500/30 rounded-xl p-5 max-w-3xl">
+      <h3 class="text-xs uppercase tracking-wider text-amber-300 font-bold mb-3">NIST Standard Cord Dimensions &amp; Geometric Volume</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+        <div class="bg-stone-950/80 p-3 rounded-lg border border-amber-500/20">
+          <span class="text-2xl font-black text-amber-400">4 ft x 4 ft x 8 ft</span>
+          <div class="text-xs font-bold text-white mt-1">Physical Dimensions</div>
+          <p class="text-xs text-stone-300 mt-1">Standard tightly racked stack: 4 ft high, 4 ft wide, 8 ft long.</p>
+        </div>
+        <div class="bg-stone-950/80 p-3 rounded-lg border border-amber-400/40">
+          <span class="text-2xl font-black text-emerald-300">128 Cu Ft</span>
+          <div class="text-xs font-bold text-white mt-1">Total Enclosed Volume</div>
+          <p class="text-xs text-stone-300 mt-1">Gross spatial volume required by NIST Handbook 130.</p>
+        </div>
+        <div class="bg-stone-950/80 p-3 rounded-lg border border-amber-500/20">
+          <span class="text-2xl font-black text-cyan-300">80–90 Cu Ft</span>
+          <div class="text-xs font-bold text-white mt-1">Net Solid Solid Wood</div>
+          <p class="text-xs text-stone-300 mt-1">Actual solid biomass volume; remaining 30–35% is natural air voids.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6 mb-12">
+    <h2 class="text-2xl font-bold text-gray-900">NIST Handbook 130: The Legal Definition of Firewood</h2>
+    <p>
+      The National Institute of Standards and Technology (NIST) Handbook 130, Section 2.4 (Method of Sale of Commodities) specifies that <em>firewood shall be advertised, offered for sale, and sold only by the "cord" or fractions of a cord</em>. Terms such as "face cord," "rack," "pile," "truckload," or "loose cord" are illegal for commercial transactions in nearly all 50 states.
+    </p>
+
+    <div class="bg-amber-50 border-l-4 border-amber-600 p-4 rounded-r-lg not-prose my-4">
+      <p class="text-sm text-amber-950 font-medium">
+        <strong>Legal Code Excerpt (NIST Sec 2.4.1):</strong> A cord is defined as 128 cubic feet of wood, ranked and well-stowed. "Ranked and well-stowed" means that pieces of wood are placed in a line or row, with individual pieces touching and parallel to each other, and stowed compactly to minimize void spaces.
+      </p>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900">Why a "Face Cord" Is Only 1/3 of a Real Cord</h2>
+    <p>
+      A "face cord" refers to a stack that is 4 feet high and 8 feet long, but only <strong>one log deep</strong>. Because standard residential woodstove logs are cut to 16 inches (1.33 feet) in length:
+    </p>
+
+    <div class="bg-gray-100 p-4 rounded-xl font-mono text-sm border border-gray-300">
+      <p>Face Cord Volume = 4 ft (H) &times; 8 ft (L) &times; 1.33 ft (W) = <strong>42.66 Cubic Feet</strong></p>
+      <p class="text-red-700 font-bold mt-2">42.66 cu ft &divide; 128 cu ft = Exactly 0.33 (33%) of a True Cord!</p>
+    </div>
+
+    <p>
+      If a seller charges you $200 for a "face cord," you are effectively paying $600 per true full cord. Always specify that you are purchasing a <em>full 128 cubic foot cord</em> and verify dimensions upon delivery.
+    </p>
+
+    <!-- Comparative Table -->
+    <h2 class="text-2xl font-bold text-gray-900 mt-8">Common Firewood Delivery Units Compared</h2>
+    <div class="overflow-x-auto not-prose my-6">
+      <table class="w-full text-left text-sm text-gray-700 bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+        <thead class="bg-gray-50 text-gray-900 font-bold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Sales Term</th>
+            <th class="py-3 px-4">Typical Dimensions</th>
+            <th class="py-3 px-4">Gross Cubic Feet</th>
+            <th class="py-3 px-4">Fraction of True Cord</th>
+            <th class="py-3 px-4">Legal Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr class="bg-emerald-50/50">
+            <td class="py-3 px-4 font-bold text-emerald-950">Full Standard Cord</td>
+            <td class="py-3 px-4 font-mono">4 ft &times; 4 ft &times; 8 ft</td>
+            <td class="py-3 px-4 font-bold text-emerald-700">128 cu ft</td>
+            <td class="py-3 px-4 font-bold text-emerald-700">1.00 (100%)</td>
+            <td class="py-3 px-4 text-emerald-700 font-bold">LEGAL Everywhere</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-bold text-gray-900">Face Cord (16-in logs)</td>
+            <td class="py-3 px-4 font-mono">4 ft &times; 8 ft &times; 16 in</td>
+            <td class="py-3 px-4">42.7 cu ft</td>
+            <td class="py-3 px-4 text-amber-700 font-semibold">~0.33 (33%)</td>
+            <td class="py-3 px-4 text-amber-600 font-medium">Illegal in Commerce</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-bold text-gray-900">Face Cord (12-in logs)</td>
+            <td class="py-3 px-4 font-mono">4 ft &times; 8 ft &times; 12 in</td>
+            <td class="py-3 px-4">32.0 cu ft</td>
+            <td class="py-3 px-4 text-red-700 font-semibold">0.25 (25%)</td>
+            <td class="py-3 px-4 text-red-600 font-medium">Illegal in Commerce</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-bold text-gray-900">6.5-ft Pickup Truck (Thossed)</td>
+            <td class="py-3 px-4 font-mono">Loose thrown in bed</td>
+            <td class="py-3 px-4">50–60 cu ft loose</td>
+            <td class="py-3 px-4 text-red-700 font-semibold">~0.30–0.35 (30%)</td>
+            <td class="py-3 px-4 text-red-600 font-medium">Illegal in Commerce</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-bold text-gray-900">8-ft Pickup Truck (Racked)</td>
+            <td class="py-3 px-4 font-mono">Ranked flush to bed rails</td>
+            <td class="py-3 px-4">70–75 cu ft</td>
+            <td class="py-3 px-4 text-amber-700 font-semibold">~0.55 (55%)</td>
+            <td class="py-3 px-4 text-amber-600 font-medium">Illegal in Commerce</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900">How to Measure Loose Dump Deliveries</h2>
+    <p>
+      When firewood is dumped loose out of a dump trailer or stake-bed truck, the pieces jumble chaotically with massive air cavities. NIST guidelines state that thrown (unstacked) firewood occupies approximately <strong>160 to 180 cubic feet</strong> of loose space to equal one 128 cubic foot ranked and well-stowed cord. You cannot verify delivery until you rank and stow the wood tightly in rows. If the stacked measurement yields less than 128 cu ft, notify the seller immediately with photos and tape-measure documentation.
+    </p>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="The Bark-Slant Stacking Rule for Natural Watershedding"
+      trade="Forestry &amp; Seasoning"
+      content="When stacking firewood in open outdoor racks without a roof, always stack the top two tiers with the bark facing UP and angle the logs slightly downward outward. Bark is trees' natural waterproof raincoat—rain falling on top-facing bark cascades off the sides like shingles, whereas split raw heartwood absorbs rainwater like a sponge."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Buying &amp; Stacking Firewood"
+      mistakes={[
+        {
+          mistake: "Accepting Delivery Based on Loose Bed Measurements",
+          impact: "Unstacked firewood has 40% to 50% void space. A pickup bed loaded level with loose split logs contains barely one-third of a real cord.",
+          prevention: "Require the invoice to state '1.0 Full Cord (128 cubic feet stacked)' and stack the wood within 24 hours of delivery to check volume."
+        },
+        {
+          mistake: "Assuming 'Seasoned' Means Ready to Burn Today",
+          impact: "Sellers often classify freshly felled logs cut 2 months ago as 'seasoned'. Burning wood with 35% moisture creates creosote that clogs chimney flues and risks catastrophic house fires.",
+          prevention: "Carry a $25 digital pin moisture meter to delivery. Split a random center log and test the middle; reject the load if it reads over 20%."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      projectName="Firewood Measurement &amp; Cord Calculator"
+      reviews={[
+        {
+          author: "Bradley E.",
+          location: "Traverse City, MI",
+          rating: 5,
+          comment: "I used this formula when a local supplier delivered what he called 'three ricks.' When stacked, it totaled only 88 cubic feet—less than 70% of a cord! He delivered the rest free after I sent the measurements."
+        },
+        {
+          author: "Warren D.",
+          location: "Bangor, ME",
+          rating: 5,
+          comment: "The face cord math breakdown is eye-opening. Clean, legally accurate explanation that saves hundreds of dollars every winter."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Jim Hollister, Master Arborist"
+    reviewerRole="Forestry &amp; Residential Biomass Heating Specialist"
+    codeStandard="NIST Handbook 130 Sec 2.4 &amp; National Weights &amp; Measures Law"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

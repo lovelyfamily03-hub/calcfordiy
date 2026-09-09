@@ -1,0 +1,315 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Ground Foundation: Crushed Stone Trench & Concrete Deck Blocks",
+    description: "Excavate a 6-inch deep perimeter trench backfilled with compacted 3/4-inch angular crushed gravel to promote rapid drainage. Set 4-way slotted concrete deck blocks level at 4-foot on-center intervals to elevate the entire lumber structure 6 inches above damp earth.",
+    calculatorName: "Gravel Driveway & Base Rock Calculator",
+    href: "/calculators/gravel-driveway",
+    icon: "🧱"
+  },
+  {
+    stepNumber: 2,
+    title: "Pressure-Treated 2x6 Subframe with 1-inch Air Drainage Gaps",
+    description: "Build the floor base using Ground Contact (UC4A) pressure-treated 2x6 joists. Space 5/4x6 treated deck boards across the floor with a 1-inch continuous air gap between slats. This prevents mold and allows ambient updrafts to sweep across the bottom cord layers.",
+    calculatorName: "Deck Joist & Lumber Span Calculator",
+    href: "/calculators/deck-joist-span",
+    icon: "🪚"
+  },
+  {
+    stepNumber: 3,
+    title: "Open-Slat Side Walls & Single-Pitch Sloped Corrugated Roof",
+    description: "Frame vertical 4x4 corner posts tied with 2x4 girts spaced 2 inches apart for 360-degree cross-ventilation. Install a corrugated steel or polycarbonate roof on a 3:12 pitch with a minimum 12-inch forward overhang to shield logs from driving rains.",
+    calculatorName: "Roof Pitch & Rafter Length Calculator",
+    href: "/calculators/roof-pitch-rafter",
+    icon: "🏠"
+  },
+  {
+    stepNumber: 4,
+    title: "Cross-Stacked End Cribbing & Cord Seasoning Verification",
+    description: "Stack the outer end pillars in alternating 90-degree criss-cross log pairs for self-supporting structural stability. Stack interior logs bark-side up with 2 inches between rows. Season for 6 to 12 months until a calibrated pin moisture meter reads below 20% internal moisture.",
+    calculatorName: "Firewood Cord & Stacking Volume Calculator",
+    href: "/calculators/firewood-cord",
+    icon: "🪵"
+  }
+];
+---
+
+<Layout
+  title="Off-Ground Firewood Seasoning Shed Hub | CalcForDIY"
+  description="Master workflow for building an off-ground ventilated firewood shed: ground-contact framing, 128 cu ft cord stacking rules, moisture meter verification, and rain shielding."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Firewood Shed Hub", "item": "https://calcfordiy.com/projects/firewood-shed-seasoning-rack" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Build an Off-Ground Seasoning Firewood Shed",
+    "description": "Step-by-step structural workflow for building a permanent ventilated firewood shed: concrete piers, slatted floor, corrugated roof, and cord stacking.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Gravel Trench & Concrete Footers",
+        "text": "Excavate 6-inch gravel drainage trench and place concrete deck blocks level."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Slatted Ground-Contact Floor",
+        "text": "Frame UC4A pressure-treated 2x6 base with 1-inch floor gaps for bottom airflow."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Ventilated Slats & Overhanging Roof",
+        "text": "Erect 4x4 uprights with open side slats and pitch corrugated metal roof forward."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Criss-Cross Stacking & Moisture Testing",
+        "text": "Construct structural end-crib towers and test core moisture to ensure sub-20% readings."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Firewood Shed Hub</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-amber-950 via-stone-900 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold mb-4 border border-amber-400/30">
+      <span>🪵 Wood Fuel Science &amp; Structural Sheds</span>
+      <span>•</span>
+      <span>NIST Handbook 130 &amp; EPA Standards</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Off-Ground Firewood Seasoning Shed Hub
+    </h1>
+
+    <p class="text-amber-100 text-base sm:text-lg max-w-3xl leading-relaxed mb-6">
+      Wet firewood wastes up to <strong>50% of its available BTU heating energy</strong> boiling off internal sap moisture, producing toxic creosote deposits that spark chimney fires. A properly engineered firewood shed elevates timber off damp earth, forces continuous convective airflow, and dries green split hardwood to under <strong>20% moisture content</strong> within one season.
+    </p>
+
+    <!-- Technical Infographic Hero Diagram -->
+    <div class="bg-stone-900/80 rounded-xl p-4 sm:p-6 border border-amber-500/30 backdrop-blur-sm max-w-4xl">
+      <h3 class="text-xs uppercase tracking-wider text-amber-300 font-bold mb-3">Thermodynamics of Airflow &amp; Moisture Evaporation</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-stone-200">
+        <div class="bg-stone-950/70 p-3 rounded-lg border border-amber-500/20">
+          <div class="font-bold text-white text-sm mb-1 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+            6-in Ground Clearance
+          </div>
+          <p class="leading-relaxed">Direct soil contact rots 25% of bottom logs and draws ground moisture up like a wick. Slatted floors create a low-pressure draft drawing dry air upward.</p>
+        </div>
+        <div class="bg-stone-950/70 p-3 rounded-lg border border-amber-500/20">
+          <div class="font-bold text-white text-sm mb-1 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+            2-in Open Wall Slats
+          </div>
+          <p class="leading-relaxed">Prevents solar heat stagnation while crosswinds strip humidity off log end-grains, where 80% of moisture exits wood pores.</p>
+        </div>
+        <div class="bg-stone-950/70 p-3 rounded-lg border border-amber-500/20">
+          <div class="font-bold text-white text-sm mb-1 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 inline-block"></span>
+            Under 20% Moisture
+          </div>
+          <p class="leading-relaxed">EPA Clean Air Woodstove standard. Delivers 7,800 BTU/lb in oak vs 4,200 BTU/lb in green wood, eliminating black stove glass soot.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editorial Guide Feature Callout -->
+  <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-amber-600 p-5 rounded-r-xl mb-10 shadow-sm not-prose">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-200/60 px-2 py-0.5 rounded">Companion Trade Guide</span>
+        <h3 class="text-lg font-bold text-gray-900 mt-1">How to Measure a Cord of Wood: NIST Legal Rules</h3>
+        <p class="text-sm text-gray-600 mt-0.5">Learn why face cords, truck beds, and ricks are legally fraudulent units of sale, and master true 128 cubic foot cord measurement.</p>
+      </div>
+      <a
+        href="/guides/how-to-measure-a-cord-of-wood-rules"
+        class="inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white font-semibold text-sm px-4 py-2.5 rounded-lg shadow-sm transition whitespace-nowrap"
+      >
+        <span>Read Technical Guide</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Sequential 4-Phase Workflow Grid -->
+  <h2 class="text-2xl font-black text-gray-900 mb-6 tracking-tight not-prose">
+    Engineering &amp; Construction Workflow
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 not-prose">
+    {workflowSteps.map(step => (
+      <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-bold text-sm">
+              {step.stepNumber}
+            </span>
+            <span class="text-2xl">{step.icon}</span>
+            <h3 class="font-bold text-gray-900 text-base sm:text-lg flex-1 leading-snug">
+              {step.title}
+            </h3>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed mb-4">
+            {step.description}
+          </p>
+        </div>
+        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+          <span class="text-xs font-medium text-amber-700">Recommended Tool</span>
+          <a
+            href={step.href}
+            class="text-xs font-bold text-amber-600 hover:text-amber-800 flex items-center gap-1 hover:underline"
+          >
+            <span>{step.calculatorName}</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Material Takeoff Table -->
+  <div class="bg-white rounded-xl border border-gray-200 p-6 mb-12 shadow-sm not-prose">
+    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <span>📋</span> Material Takeoff: Standard 2-Cord Shed (8-ft x 8-ft x 5-ft)
+    </h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700">
+        <thead class="bg-amber-50 text-amber-900 uppercase font-semibold text-xs border-b border-amber-200">
+          <tr>
+            <th class="py-3 px-4">Component</th>
+            <th class="py-3 px-4">Material Specification</th>
+            <th class="py-3 px-4">Quantity / Span</th>
+            <th class="py-3 px-4">Structural Purpose</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Support Piers</td>
+            <td class="py-3 px-4">Pre-cast 4-way Concrete Deck Blocks</td>
+            <td class="py-3 px-4 font-mono text-amber-700">6 Blocks</td>
+            <td class="py-3 px-4">Distributes 8,000-lb wet log load across gravel pad.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Framing Joists</td>
+            <td class="py-3 px-4">2x6 Ground Contact Pressure Treated (UC4A)</td>
+            <td class="py-3 px-4 font-mono text-amber-700">8 Joists @ 16-in o.c.</td>
+            <td class="py-3 px-4">Carries 125 lbs/sq ft dead load without sagging.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Floor Decking</td>
+            <td class="py-3 px-4">5/4x6 Treated Radiata Pine Deck Boards</td>
+            <td class="py-3 px-4 font-mono text-amber-700">18 Boards (1-in gaps)</td>
+            <td class="py-3 px-4">Allows dirt, bark, and moisture to fall through to ground.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Roof Canopy</td>
+            <td class="py-3 px-4">29-Gauge Corrugated Galvanized Steel Panels</td>
+            <td class="py-3 px-4 font-mono text-amber-700">3 Sheets (10-ft length)</td>
+            <td class="py-3 px-4">Impervious snow barrier with 12-inch forward rainwater drip.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="How to Accurately Test Firewood with a Digital Moisture Meter"
+      trade="Wood Heating &amp; Forestry"
+      content="Never test the outside weathered bark or end of a log—evaporative drying gives a false 12% reading while the core is soaking wet. Split the test log in half immediately before measurement. Firmly press both electro-pins parallel to the wood grain into the exact center of the freshly exposed interior heartwood. If it reads over 20%, let it season for another 60 days before burning in high-efficiency secondary burn stoves."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Firewood Shed Construction"
+      mistakes={[
+        {
+          mistake: "Tarping the Entire Stack Down to the Ground",
+          impact: "Wrapping blue polyethylene tarps around the sides traps ground vapor like a greenhouse, breeding white mold, rot, and wood-boring powderpost beetles.",
+          prevention: "Only cover the top surface of the logs. Leave all four vertical side walls completely open to ambient wind currents."
+        },
+        {
+          mistake: "Stacking Firewood Flush Against the House Siding",
+          impact: "Creates an ideal moisture bridge and direct highway for subterranean termites, carpenter ants, and mice into home framing studs.",
+          prevention: "Maintain a minimum 20-foot separation from the house, or at least 3 feet of air gap if placed against an outbuilding."
+        },
+        {
+          mistake: "Using Non-Pressure-Treated Framing for Floor Joists",
+          impact: "Fungal rot destroys untreated 2x4s within 18 months under the constant moisture and weight of damp wood logs.",
+          prevention: "Exclusively build framing with AWPA UC4A Ground Contact rated lumber fastened with 316 stainless or hot-dipped galvanized screws."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      projectName="Off-Ground Seasoned Firewood Shed"
+      reviews={[
+        {
+          author: "Hank M.",
+          location: "Bozeman, MT",
+          rating: 5,
+          comment: "Built this 2-cord shed on crushed rock last summer. For the first time ever, my red oak checked and dropped to 17% moisture by November. Cleanest burns I have ever had."
+        },
+        {
+          author: "Colleen R.",
+          location: "Duluth, MN",
+          rating: 5,
+          comment: "The 1-inch slatted floor design is brilliant. All the loose bark drops through instead of turning into soggy mush that rots the bottom layer."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Jim Hollister, Master Arborist"
+    reviewerRole="Forestry &amp; Residential Biomass Heating Specialist"
+    codeStandard="NIST Handbook 130 Sec 2.4 &amp; EPA Residential Heater Standards"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

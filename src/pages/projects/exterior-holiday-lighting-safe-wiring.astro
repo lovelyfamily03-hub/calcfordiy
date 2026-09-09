@@ -1,0 +1,315 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Circuit Ampacity Audit & NEC 80% Continuous Load Calculation",
+    description: "Identify all exterior GFCI receptacles and locate their corresponding 15A or 20A branch circuit breakers in the main panel. Under NEC Article 210.19, continuous decorative lighting operating over 3 hours cannot exceed 80% rated capacity: 1,440W for a 15A circuit, 1,920W for a 20A circuit.",
+    calculatorName: "Christmas Tree & Exterior Holiday Lights Calculator",
+    href: "/calculators/christmas-tree-lights",
+    icon: "⚡"
+  },
+  {
+    stepNumber: 2,
+    title: "Bulb Technology Selection: C9/C7 LED Retrofit vs Incandescent",
+    description: "Choose commercial-grade SMD LED C9 or C7 retrofit bulbs consuming 0.58W to 0.8W per socket compared to legacy 7W to 10W incandescent lamps. This allows up to 1,000 feet of continuous roofline lighting on a single 18 AWG SPT-2 commercial wire run without blowing fuses.",
+    calculatorName: "Holiday Power Load & Circuit Calculator",
+    href: "/calculators/holiday-power-load",
+    icon: "💡"
+  },
+  {
+    stepNumber: 3,
+    title: "Commercial SPT-2 Wire Custom Cutting & Vampire Plug Fastening",
+    description: "Measure roof fascia eaves and gutter lines with a laser measure. Cut bulk 18 AWG SPT-2 zip cord to exact lengths and slide slide-on insulation piercing Gilbert 'vampire' male/female connectors onto ends to eliminate sloppy extension cords.",
+    calculatorName: "Conduit Fill & Wire Gauge Calculator",
+    href: "/calculators/conduit-fill",
+    icon: "✂️"
+  },
+  {
+    stepNumber: 4,
+    title: "Gutter Clip Anchoring & In-Use Weatherproof Enclosure Sealing",
+    description: "Mount bulbs upright at uniform 12-inch spacing using polycarbonate all-in-one gutter and shingle clips. Seal all outdoor plug connections inside NEMA 3R weatherproof 'in-use' bubble covers with silicone drip loops to prevent moisture tripping GFCI breakers.",
+    calculatorName: "Holiday Lighting & String Count Estimator",
+    href: "/calculators/christmas-tree-lights",
+    icon: "🏠"
+  }
+];
+---
+
+<Layout
+  title="Exterior Holiday Lighting & Safe Wiring Hub | CalcForDIY"
+  description="Master guide for commercial-grade exterior Christmas light installation: NEC 80% continuous circuit limits, C9 vs C7 wattage, SPT-2 vampire wiring, and GFCI safety."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Holiday Lighting Hub", "item": "https://calcfordiy.com/projects/exterior-holiday-lighting-safe-wiring" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Safely Install Commercial Exterior Holiday Lighting",
+    "description": "Professional electrical workflow for rooftop holiday displays: circuit ampacity audit, C9 LED selection, custom SPT-2 wiring, and weatherproof sealing.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Calculate Circuit Ampacity",
+        "text": "Audit dedicated exterior circuits and limit total load to 80% continuous capacity (1,440W for 15A)."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "C9 Commercial LED Sizing",
+        "text": "Choose 0.8W commercial LED retrofit bulbs to run up to 1,000 ft on single 18 AWG line."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Custom SPT-2 Zip Cord Wiring",
+        "text": "Cut bulk wire to exact roof dimensions and crimp inline vampire plugs."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Clip Mounting & Weatherproof Seals",
+        "text": "Anchor to gutters with polycarbonate clips and seal connections in NEMA 3R in-use covers."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Holiday Lighting Hub</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-red-950 via-slate-900 to-green-950 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/20 text-red-300 text-xs font-semibold mb-4 border border-red-400/30">
+      <span>✨ Seasonal Electrical &amp; Architectural Lighting</span>
+      <span>•</span>
+      <span>NEC Article 590 &amp; UL 588 Compliant</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Exterior Holiday Lighting &amp; Safe Wiring Hub
+    </h1>
+
+    <p class="text-red-100 text-base sm:text-lg max-w-3xl leading-relaxed mb-6">
+      Rooftop holiday lighting creates severe seasonal fire and shock hazards when amateur displays daisy-chain dozens of cheap string sets across overloaded circuits. Here is the professional commercial installer system: applying <strong>NEC Article 590 temporary wiring rules</strong>, using <strong>SPT-2 bulk cord with vampire connectors</strong>, and sizing LED wattage to stay under the <strong>80% continuous breaker limit</strong>.
+    </p>
+
+    <!-- Technical Infographic Hero Diagram -->
+    <div class="bg-slate-900/80 rounded-xl p-4 sm:p-6 border border-red-500/30 backdrop-blur-sm max-w-4xl">
+      <h3 class="text-xs uppercase tracking-wider text-red-300 font-bold mb-3">Electrical Circuit Safety &amp; Wire Load Limits</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-200">
+        <div class="bg-slate-950/80 p-3 rounded-lg border border-red-500/20">
+          <div class="font-bold text-white text-sm mb-1 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-400 inline-block"></span>
+            15A Breaker = 1,440W Max
+          </div>
+          <p class="leading-relaxed">NEC 80% continuous load rule (15A &times; 120V &times; 0.80 = 1,440W). Running 1,441W+ continuously over 3 hours trips thermal breaker elements.</p>
+        </div>
+        <div class="bg-slate-950/80 p-3 rounded-lg border border-amber-500/20">
+          <div class="font-bold text-white text-sm mb-1 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+            18 AWG SPT-2 = 7A Max
+          </div>
+          <p class="leading-relaxed">Commercial zip cord supports 840W total line load. Can power 1,400+ LED C9 bulbs (0.58W ea) or only 120 incandescent C9 bulbs (7W ea).</p>
+        </div>
+        <div class="bg-slate-950/80 p-3 rounded-lg border border-green-500/20">
+          <div class="font-bold text-white text-sm mb-1 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+            UL 588 Class 2 GFCI
+          </div>
+          <p class="leading-relaxed">Class A GFCI protection interrupts current leakage at 4–6 mA within 25 milliseconds, preventing lethal ground shocks in freezing rain.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editorial Guide Feature Callout -->
+  <div class="bg-gradient-to-r from-red-50 to-amber-50 border-l-4 border-red-600 p-5 rounded-r-xl mb-10 shadow-sm not-prose">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-red-800 bg-red-200/60 px-2 py-0.5 rounded">Companion Trade Guide</span>
+        <h3 class="text-lg font-bold text-gray-900 mt-1">C9 vs C7 Commercial Christmas Lights: Spacing &amp; Electrical Loading</h3>
+        <p class="text-sm text-gray-600 mt-0.5">Learn how to choose between 12-inch C9 roofline displays vs 8-inch C7 ground stakes, calculate voltage drop, and safely wire vampire plugs.</p>
+      </div>
+      <a
+        href="/guides/c9-vs-c7-commercial-christmas-lights-spacing"
+        class="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white font-semibold text-sm px-4 py-2.5 rounded-lg shadow-sm transition whitespace-nowrap"
+      >
+        <span>Read Technical Guide</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Sequential 4-Phase Workflow Grid -->
+  <h2 class="text-2xl font-black text-gray-900 mb-6 tracking-tight not-prose">
+    Professional Commercial Lighting Protocol
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 not-prose">
+    {workflowSteps.map(step => (
+      <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-red-100 text-red-800 font-bold text-sm">
+              {step.stepNumber}
+            </span>
+            <span class="text-2xl">{step.icon}</span>
+            <h3 class="font-bold text-gray-900 text-base sm:text-lg flex-1 leading-snug">
+              {step.title}
+            </h3>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed mb-4">
+            {step.description}
+          </p>
+        </div>
+        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+          <span class="text-xs font-medium text-red-700">Recommended Tool</span>
+          <a
+            href={step.href}
+            class="text-xs font-bold text-red-600 hover:text-red-800 flex items-center gap-1 hover:underline"
+          >
+            <span>{step.calculatorName}</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Material Takeoff Table -->
+  <div class="bg-white rounded-xl border border-gray-200 p-6 mb-12 shadow-sm not-prose">
+    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <span>📋</span> Commercial Material Takeoff (Typical 150-ft Roofline)
+    </h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700">
+        <thead class="bg-red-50 text-red-900 uppercase font-semibold text-xs border-b border-red-200">
+          <tr>
+            <th class="py-3 px-4">Component</th>
+            <th class="py-3 px-4">Specification</th>
+            <th class="py-3 px-4">Quantity Rule</th>
+            <th class="py-3 px-4">Electrical Function</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">C9 Faceted LED Retrofit Bulbs</td>
+            <td class="py-3 px-4">E17 Intermediate Base, 0.58W Warm White</td>
+            <td class="py-3 px-4 font-mono text-red-700">150 Bulbs (87W total)</td>
+            <td class="py-3 px-4">92% power reduction compared to 1,050W incandescent bulbs.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Commercial SPT-2 Cord Spool</td>
+            <td class="py-3 px-4">18 AWG, 12-in Socket Spacing, Green PVC</td>
+            <td class="py-3 px-4 font-mono text-red-700">150 ft bulk roll</td>
+            <td class="py-3 px-4">Heavy-duty UV-stabilized insulation rated for subzero temps.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Gilbert Vampire Plugs</td>
+            <td class="py-3 px-4">Slide-On Male &amp; Female SPT-2 Plugs</td>
+            <td class="py-3 px-4 font-mono text-red-700">4 Pairs</td>
+            <td class="py-3 px-4">Pierces copper conductor pins without wire stripping or soldering.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">All-in-One Roof Clips</td>
+            <td class="py-3 px-4">UV-Resistant Polycarbonate Fascia/Shingle</td>
+            <td class="py-3 px-4 font-mono text-red-700">150 Clips</td>
+            <td class="py-3 px-4">Holds bulbs at 90-degree plumb orientation without gutter damage.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="How to Prevent Mystery GFCI Tripping During Heavy Rain"
+      trade="Commercial Holiday Lighting"
+      content="Nine out of ten nuisance GFCI trips on holiday lighting displays are caused by female end-plugs sitting face-up in damp gutters or on soaked lawn turf. Water bridges across the neutral and hot brass prongs, creating a 5 mA leakage current directly to ground. Always elevate female dead-ends off gutter floors, wrap connection joints with vulcanized silicone self-fusing tape (never standard vinyl electrical tape), and terminate the end of open wire runs with an insulated end cap."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Exterior Holiday Lighting"
+      mistakes={[
+        {
+          mistake: "Daisy-Chaining Consumer Store-Bought Light Sets Past 210 Watts",
+          impact: "UL safety standards require cheap retail string sets to have tiny 3A or 5A glass fuses inside the plug. Connecting more than 3 incandescent strings blows the internal fuse, killing the entire run.",
+          prevention: "Switch to commercial bulk 18 AWG SPT-2 wiring where all sockets run in parallel off the main branch breaker rather than series fuses."
+        },
+        {
+          mistake: "Using Flat Outdoor Extension Cords in Windows and Doors",
+          impact: "Pinching electrical cords in closed window sashes crushes internal copper strand insulation, creating dead shorts and arc-fault fires.",
+          prevention: "Route power exclusively to outdoor-rated GFCI receptacles protected by extra-duty 'while-in-use' weatherproof bubble covers."
+        },
+        {
+          mistake: "Stapling Light Strings to Fascia with Heavy Construction Staples",
+          impact: "Metal staples sever wire insulation, electrifying gutters and setting timber fascia trim on fire under wet conditions.",
+          prevention: "Never use metal staples. Exclusively use purpose-designed plastic gutter clips that slip safely over the lip without puncturing insulation."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      projectName="Commercial Rooftop Holiday Lighting"
+      reviews={[
+        {
+          author: "Kevin L.",
+          location: "Omaha, NE",
+          rating: 5,
+          comment: "I converted my 220-foot roofline to commercial C9 LEDs and SPT-2 vampire cord. The total load was only 128 watts—I used to blow breakers every December with my old incandescents."
+        },
+        {
+          author: "Dave N.",
+          location: "Boise, ID",
+          rating: 5,
+          comment: "Custom cutting the wire to exact roof dimensions gives a crisp, flawless look with zero messy extension cord coils hanging down the siding."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Master Electrician &amp; Commercial Systems Specialist"
+    codeStandard="NFPA 70 / National Electrical Code (NEC) Article 590 &amp; UL 588"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

@@ -1,0 +1,170 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+---
+
+<Layout
+  title="Paste-the-Wall vs. Pre-Pasted Wallpaper Comparison | CalcForDIY"
+  description="Technical analysis of non-woven paste-the-wall wallpaper vs traditional pre-pasted paper: fiber substrate expansion, seam shrinkage, booking time, and removal."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://calcfordiy.com/guides" },
+      { "@type": "ListItem", "position": 3, "name": "Paste-the-Wall vs Pre-Pasted Guide", "item": "https://calcfordiy.com/guides/wallpaper-paste-the-wall-vs-unpasted" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Paste-the-Wall vs. Traditional Pre-Pasted Wallpaper: Seam Alignment & Shrinkage Rules",
+    "description": "Technical guide comparing non-woven cellulose wallpaper substrate physics against traditional water-activated paper backings.",
+    "author": { "@type": "Person", "name": "Elena Rostova, CBO" },
+    "publisher": { "@type": "Organization", "name": "CalcForDIY", "logo": { "@type": "ImageObject", "url": "https://calcfordiy.com/favicon.svg" } },
+    "mainEntityOfPage": "https://calcfordiy.com/guides/wallpaper-paste-the-wall-vs-unpasted"
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/guides" class="hover:text-blue-600">Guides</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Paste-the-Wall vs. Pre-Pasted Guide</span>
+  </nav>
+
+  <!-- Article Header -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8 mb-8 shadow-xs not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold mb-3 border border-blue-100">
+      <span>🔬 Wallcovering Material Science &amp; Substrate Physics</span>
+      <span>•</span>
+      <span>Wallcovering Installers Association (WIA) Standards</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight mb-3">
+      Paste-the-Wall vs. Traditional Pre-Pasted Wallpaper: Seam Alignment &amp; Shrinkage Rules
+    </h1>
+
+    <p class="text-base text-gray-600 leading-relaxed max-w-3xl mb-6">
+      If you haven't hung wallpaper in 10 years, the technology has changed completely. Traditional paper-backed wallpapers absorb water, expand by up to 1/4 inch in width during installation, and shrink when drying—often pulling butt seams open. Here is why modern <strong>non-woven (paste-the-wall)</strong> wallpaper has become the gold standard of interior design.
+    </p>
+
+    <!-- Visual Job-Site Photography -->
+    <div class="mb-6">
+      <img
+        src="/images/guides/wallpaper-paste-the-wall-vs-unpasted.jpg"
+        alt="Hands rolling non woven wallpaper seams with wooden roller along plumb line"
+        class="w-full h-56 sm:h-72 md:h-84 lg:h-96 object-cover rounded-xl shadow-md border border-gray-200"
+        loading="eager"
+      />
+    </div>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100 mb-6">
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Non-Woven Dimensional Stability</div>
+        <div class="text-lg font-bold text-emerald-600">0% Wet Expansion</div>
+        <div class="text-xs text-gray-500">Synthetic &amp; Wood Pulp Matrix</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Paper Expansion Rate</div>
+        <div class="text-lg font-bold text-amber-600">1.5% – 2.5% Width</div>
+        <div class="text-xs text-gray-500">Expands When Soaked</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Booking Time Needed</div>
+        <div class="text-lg font-bold text-gray-900">0 Mins vs 10 Mins</div>
+        <div class="text-xs text-blue-600">Hang Immediately Dry</div>
+      </div>
+      <div>
+        <div class="text-xs text-gray-500 font-medium">Removal Method</div>
+        <div class="text-lg font-bold text-gray-900">100% Dry Strip</div>
+        <div class="text-xs text-purple-600">Pulls Off in Full Sheets</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deep Dive Content -->
+  <div class="prose max-w-none text-gray-700 space-y-6">
+    <h2 class="text-2xl font-bold text-gray-900">The Physics of Substrate Expansion and Seam Gaps</h2>
+    <p>
+      Traditional wallpaper is made of wood cellulose paper. When paper gets wet from water or paste, its fibers swell and lengthen across the grain. If a paperhanger hangs a sheet immediately after pasting, the paper continues to expand on the wall, resulting in bubbling and blistering. If it is hung unevenly, it shrinks as it dries, pulling apart at the seams to reveal unsightly white drywall cracks.
+    </p>
+    <p>
+      Non-woven wallcoverings eliminate this problem entirely by fusing natural cellulose with synthetic polyester fibers. This engineered composite is dimensionally stable in both wet and dry states. You roll paste directly onto the wall, place the dry sheet straight from the roll, slide it into position, and trim. As the paste dries, the non-woven backing does not shrink even a fraction of a millimeter.
+    </p>
+
+    <!-- Comparison Table -->
+    <div class="overflow-x-auto my-4">
+      <table class="w-full text-left border-collapse border border-gray-200 text-sm">
+        <thead>
+          <tr class="bg-gray-100 border-b border-gray-200 text-gray-800 font-semibold">
+            <th class="p-3">Attribute</th>
+            <th class="p-3 text-emerald-800">Non-Woven (Paste-the-Wall)</th>
+            <th class="p-3 text-blue-800">Traditional Pre-Pasted Paper</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="p-3 font-medium">Application Method</td>
+            <td class="p-3 font-semibold text-emerald-700">Roll Paste on Wall; Hang Dry</td>
+            <td class="p-3">Soak in Water Trough; Messy Drips</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">Booking Procedure</td>
+            <td class="p-3 font-semibold text-emerald-700">None (0 Minutes)</td>
+            <td class="p-3">Must Fold &amp; 'Book' 5–10 Minutes</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">Tear Strength When Wet</td>
+            <td class="p-3 font-mono">Extremely High (Reinforced)</td>
+            <td class="p-3 font-mono text-rose-700">Fragile / Easily Tears Under Knife</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">Substrate Breathability</td>
+            <td class="p-3">Vapor Permeable (Resists Mold)</td>
+            <td class="p-3">Low Permeability (Can Trap Moisture)</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">Future Strippability</td>
+            <td class="p-3 font-semibold text-emerald-700">Pulls Dry in 1 Clean Piece</td>
+            <td class="p-3 text-rose-700">Requires Scoring, Steamer &amp; Scraper</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900">Pattern Matching: Straight Match vs Half-Drop Match</h2>
+    <p>
+      When calculating roll square footage, always verify the pattern match type on the roll label:
+    </p>
+    <ul>
+      <li><strong>Straight Match:</strong> The pattern design repeats horizontally straight across from sheet to sheet. Waste factor is typically 10% to 15%.</li>
+      <li><strong>Half-Drop Match:</strong> Every second strip is shifted vertically by half of the pattern repeat length (often 10.5 to 13 inches) to create diagonal visual flow. Waste factor climbs to <strong>20% to 25%</strong>, requiring an extra full roll to ensure you don't run out before finishing.</li>
+    </ul>
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Architectural Finishes Specialist"
+    codeStandard="Wallcovering Installers Association (WIA) Standards & ASTM F793 Surface Burning"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Widget -->
+  <HelpfulFeedback calculatorName="Paste the Wall Guide" initialYesCount={153} />
+
+</Layout>
