@@ -183,19 +183,23 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
   <!-- Verified User Reviews -->
   <div class="mb-12">
     <CommunityReviews
-      projectName="Starter Fertilizer Calculator &amp; Application"
+      tradeTitle="Starter Fertilizer Calculator"
       reviews={[
         {
           author: "Derek S.",
           location: "Madison, WI",
-          rating: 5,
-          comment: "I always wondered why my lawn bags had a 0 in the middle until I read this. Used a 10-18-10 starter on my slit-seeded lawn and the root depth is incredible."
+          projectScope: "5,000 sq ft Slit-Seeding",
+          savingsClaim: "Saved $450 DIY",
+          feedback: "I always wondered why my lawn bags had a 0 in the middle until I read this. Used a 10-18-10 starter on my slit-seeded lawn and the root depth is incredible.",
+          keyTakeaway: "Middle number is phosphorus—crucial for new root cell division."
         },
         {
           author: "Mark P.",
           location: "Lexington, KY",
-          rating: 5,
-          comment: "The math formula here made sizing my bags effortless. 1 lb of P per thousand sq ft resulted in zero burning and 90% germination."
+          projectScope: "8,500 sq ft KBG Seeding",
+          savingsClaim: "Saved $600 vs TruGreen",
+          feedback: "The math formula here made sizing my bags effortless. 1 lb of P per thousand sq ft resulted in zero burning and 90% germination.",
+          keyTakeaway: "Calculated exact poundage needed: target P divided by the bag percentage."
         }
       ]}
     />

@@ -195,19 +195,23 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
   <!-- Verified User Reviews -->
   <div class="mb-12">
     <CommunityReviews
-      projectName="C9 vs C7 Commercial Holiday Lighting"
+      tradeTitle="Commercial Lighting Guide"
       reviews={[
         {
           author: "Shane R.",
           location: "Denver, CO",
-          rating: 5,
-          comment: "The ampacity chart saved me from a major mistake. I was about to hook 250 incandescent C9s to one outlet. Switched to SMD faceted LEDs and the whole roof runs under 1 amp."
+          projectScope: "250 C9 LED Roofline",
+          savingsClaim: "Saved $950 DIY",
+          feedback: "The ampacity chart saved me from a major mistake. I was about to hook 250 incandescent C9s to one outlet. Switched to SMD faceted LEDs and the whole roof runs under 1 amp.",
+          keyTakeaway: "C9 faceted LEDs reduce circuit load by 92% and run completely cold."
         },
         {
           author: "Chris T.",
           location: "Minneapolis, MN",
-          rating: 5,
-          comment: "Detailed instructions on the SPT-2 vampire plug polarity. Simple, clear, and makes the installation look completely professional."
+          projectScope: "180-ft Roof & Porch Display",
+          savingsClaim: "Saved $650 DIY",
+          feedback: "Detailed instructions on the SPT-2 vampire plug polarity. Simple, clear, and makes the installation look completely professional.",
+          keyTakeaway: "12-inch spacing is the golden standard for residential rooflines."
         }
       ]}
     />

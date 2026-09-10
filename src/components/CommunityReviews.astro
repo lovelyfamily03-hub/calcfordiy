@@ -2,12 +2,14 @@
 interface ReviewItem {
   author: string;
   location: string;
-  projectScope: string;
+  projectScope?: string;
   rating?: number;
   savingsClaim?: string;
   verifiedBuyer?: boolean;
   date?: string;
-  feedback: string;
+  feedback?: string;
+  comment?: string;
+  review?: string;
   keyTakeaway?: string;
 }
 
@@ -50,8 +52,12 @@ const {
               <h4 class="font-bold text-gray-900 text-sm">{r.author}</h4>
               <div class="text-[11px] text-gray-500 flex items-center gap-1 mt-0.5">
                 <span>📍 {r.location}</span>
-                <span>•</span>
-                <span class="font-medium text-blue-600">{r.projectScope}</span>
+                {r.projectScope && (
+                  <>
+                    <span>•</span>
+                    <span class="font-medium text-blue-600">{r.projectScope}</span>
+                  </>
+                )}
               </div>
             </div>
             {r.savingsClaim && (
@@ -62,7 +68,7 @@ const {
           </div>
 
           <p class="text-xs text-gray-700 leading-relaxed my-3">
-            "{r.feedback}"
+            "{r.feedback || (r as any).comment || (r as any).review || ''}"
           </p>
         </div>
 

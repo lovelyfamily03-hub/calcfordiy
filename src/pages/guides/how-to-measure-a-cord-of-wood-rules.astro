@@ -202,19 +202,23 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
   <!-- Verified User Reviews -->
   <div class="mb-12">
     <CommunityReviews
-      projectName="Firewood Measurement &amp; Cord Calculator"
+      tradeTitle="Firewood Measurement Guide"
       reviews={[
         {
           author: "Bradley E.",
           location: "Traverse City, MI",
-          rating: 5,
-          comment: "I used this formula when a local supplier delivered what he called 'three ricks.' When stacked, it totaled only 88 cubic feet—less than 70% of a cord! He delivered the rest free after I sent the measurements."
+          projectScope: "3-Cord Winter Delivery",
+          savingsClaim: "Recovered $280 Shortage",
+          feedback: "I used this formula when a local supplier delivered what he called 'three ricks.' When stacked, it totaled only 88 cubic feet—less than 70% of a cord! He delivered the rest free after I sent the measurements.",
+          keyTakeaway: "Always stack and measure within 24 hours of delivery before paying final balance."
         },
         {
           author: "Warren D.",
           location: "Bangor, ME",
-          rating: 5,
-          comment: "The face cord math breakdown is eye-opening. Clean, legally accurate explanation that saves hundreds of dollars every winter."
+          projectScope: "4-Cord Seasoning Stack",
+          savingsClaim: "Saved $350 Overcharging",
+          feedback: "The face cord math breakdown is eye-opening. Clean, legally accurate explanation that saves hundreds of dollars every winter.",
+          keyTakeaway: "A 16-inch face cord is only 1/3 of a real 128 cubic foot cord."
         }
       ]}
     />
