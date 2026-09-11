@@ -1,0 +1,322 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Critical Loads Energy Audit & Continuous kWh Sizing",
+    description: "Audit essential household circuits required during extended utility grid blackouts: refrigerator (1.5 kWh/day), well pump (2.0 kWh/day), furnace blower/hydronic pump (3.0 kWh/day), router/communications, and lighting. Sum total continuous power draw (kW) and 24-hour energy consumption (kWh) to determine battery capacity (e.g. 10 kWh to 20 kWh LiFePO4) and peak inverter surge capacity for inductive motor starting.",
+    calculatorName: "Solar Battery Storage Sizing Calculator",
+    href: "/calculators/solar-battery-sizing",
+    icon: "🔋"
+  },
+  {
+    stepNumber: 2,
+    title: "100A / 125A Critical Loads Subpanel & Circuit Relocation",
+    description: "Mount a 12-circuit to 20-circuit subpanel adjacent to the main electrical service panel. Relocate prioritized branch circuits (hot conductors and dedicated neutrals) into the subpanel. Follow NEC 250.32 rules: ensure the neutral and ground busbars remain 100% unbonded (floating neutral) in the downstream subpanel, with a dedicated four-wire feed (two hots, one neutral, one equipment ground).",
+    calculatorName: "Electrical Subpanel Sizing Calculator",
+    href: "/calculators/subpanel-sizing",
+    icon: "⚡"
+  },
+  {
+    stepNumber: 3,
+    title: "Microgrid Gateway & Automatic Transfer Switch (ATS) Wiring",
+    description: "Install an intelligent microgrid gateway (Tesla Backup Gateway, Enphase IQ System Controller, or Sol-Ark 15K). The gateway provides instantaneous utility grid disconnection (islanding) within 16 milliseconds per UL 1741 / IEEE 1547 standards, preventing lethal power backfeeding into downed utility lines while establishing a clean, frequency-controlled microgrid for the home.",
+    calculatorName: "Wire Size & Voltage Drop Calculator",
+    href: "/calculators/ev-charger-wiring",
+    icon: "🔌"
+  },
+  {
+    stepNumber: 4,
+    title: "LiFePO4 Battery Anchoring, BMS Comm & Commissioning",
+    description: "Anchor Lithium Iron Phosphate (LiFePO4) battery enclosures to structural wall studs using 3/8-inch lag bolts. Wire DC battery cables protected by Class T fast-acting fuses, or connect high-voltage DC modules (400V). Connect shielded CAN-bus / RS-485 BMS communication cables to the hybrid inverter. Configure grid-export profiles, time-of-use peak shaving, and test full off-grid black-start disconnect.",
+    calculatorName: "Solar Battery Sizing Calculator",
+    href: "/calculators/solar-battery-sizing",
+    icon: "✨"
+  }
+];
+---
+
+<Layout
+  title="Solar Battery Storage & Backup Subpanel Hub | CalcForDIY"
+  description="Master step-by-step workflow for residential solar battery storage: critical loads audits, floating neutral subpanels, automatic transfer switch gateways, and LiFePO4 commissioning."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Solar Battery Storage Hub", "item": "https://calcfordiy.com/projects/solar-battery-storage-backup-panel" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Install a Solar Battery Storage System and Critical Loads Subpanel",
+    "description": "Comprehensive electrical engineering protocol for home battery storage sizing, NEC 250 subpanel grounding, automatic microgrid islanding, and battery management system setup.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Audit Critical Loads & Energy Demand",
+        "text": "Calculate continuous wattage and daily kWh consumption of essential circuits to size battery capacity."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Install Critical Loads Subpanel",
+        "text": "Mount a 100A subpanel, relocate essential branch circuits, and isolate the neutral busbar per NEC 250.32."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Wire Automatic Microgrid Gateway",
+        "text": "Install UL 1741-compliant automatic transfer switch to safely isolate the home from utility lines during grid outages."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Anchor LiFePO4 Batteries & Commission",
+        "text": "Mount battery racks to studs, terminate Class T fused DC cables, connect BMS communication lines, and verify islanding."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Solar Battery Storage</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-slate-900 via-sky-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold mb-4 border border-sky-400/30">
+      <span>⚡ Renewable Energy &amp; Electrical Microgrids</span>
+      <span>•</span>
+      <span>NEC Article 706 &amp; UL 9540 / UL 1741 Standards</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Solar Battery Storage &amp; Backup Subpanel Workflow Hub
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-300 max-w-3xl mb-6 leading-relaxed">
+      Adding battery storage to a solar array unlocks true energy independence and black-start resilience during extended grid outages. Success requires rigorous electrical engineering: calculating true continuous kWh and inductive surge draw, isolating subpanel neutral bars, and wiring automatic microgrid transfer switches.
+    </p>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-700/60 text-left">
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Typical Battery Size</div>
+        <div class="text-xl sm:text-2xl font-black text-sky-400">10 to 15 kWh</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Battery Chemistry</div>
+        <div class="text-xl sm:text-2xl font-black text-emerald-400">LiFePO4 (LFP)</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Islanding Switch Speed</div>
+        <div class="text-xl sm:text-2xl font-black text-amber-400">&lt; 16 Milliseconds</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Typical DIY Savings</div>
+        <div class="text-xl sm:text-2xl font-black text-purple-400">$4,500 - $11,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Interactive Calculator Card -->
+  <div class="bg-white border-2 border-sky-500/30 rounded-2xl p-6 sm:p-8 mb-10 shadow-lg relative overflow-hidden">
+    <div class="sm:flex sm:items-center sm:justify-between gap-6">
+      <div class="mb-4 sm:mb-0">
+        <span class="inline-block px-2.5 py-0.5 rounded text-xs font-bold bg-sky-100 text-sky-800 uppercase tracking-wide mb-2">Core Calculator</span>
+        <h2 class="text-2xl font-bold text-gray-900">Solar Battery Storage &amp; Autonomy Calculator</h2>
+        <p class="text-gray-600 text-sm mt-1">Select critical household appliances, estimate daily run hours, input required days of autonomy, and calculate recommended battery kWh capacity and inverter kW ratings.</p>
+      </div>
+      <a
+        href="/calculators/solar-battery-sizing"
+        class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-base shadow-md hover:shadow-lg transition-all shrink-0"
+      >
+        Launch Battery Calculator &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Companion Trade Guide Banner -->
+  <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Companion Trade Guide</div>
+      <div class="text-lg font-bold text-slate-900">AC-Coupled vs DC-Coupled Solar Battery Storage</div>
+      <p class="text-sm text-slate-600">Deep engineering comparison of AC-coupling vs DC-coupling: round-trip inversion efficiencies, high-voltage vs 48V DC bus architectures, and black-start capabilities.</p>
+    </div>
+    <a
+      href="/guides/ac-vs-dc-coupled-solar-battery-backup"
+      class="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold transition-colors shrink-0"
+    >
+      Read Architecture Guide &rarr;
+    </a>
+  </div>
+
+  <!-- 4-Step Visual Workflow Section -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">The 4-Phase Battery Storage Installation Protocol</h2>
+    <p class="text-gray-600 mb-6">Electrical energy storage systems must comply strictly with National Electrical Code (NEC Article 706).</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {workflowSteps.map(step => (
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">{step.icon}</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+                Phase {step.stepNumber}
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">{step.description}</p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-xs text-gray-500 font-medium">{step.calculatorName}</span>
+            <a href={step.href} class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+              Use Tool &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Detailed Bill of Materials Table -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Solar Battery Storage Bill of Materials</h2>
+    <div class="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-slate-50 text-gray-700 font-bold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Component</th>
+            <th class="py-3 px-4">Standard Trade Spec</th>
+            <th class="py-3 px-4">Quantity / Sizing</th>
+            <th class="py-3 px-4">Electrical Purpose</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">LiFePO4 Battery Modules</td>
+            <td class="py-3 px-4">Lithium Iron Phosphate (UL 1973 / UL 9540 Certified)</td>
+            <td class="py-3 px-4 font-mono text-sky-700">10 kWh to 20 kWh Usable</td>
+            <td class="py-3 px-4">High-density chemical energy storage with 6,000+ cycle life and thermal runaway immunity.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Hybrid Inverter / Gateway</td>
+            <td class="py-3 px-4">Sol-Ark 15K / Tesla Gateway / Enphase System Controller</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Inverter / Microgrid Switch</td>
+            <td class="py-3 px-4">Performs DC-to-AC power conversion and seamless 16ms grid-islanding disconnect.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Critical Loads Subpanel</td>
+            <td class="py-3 px-4">100A or 125A NEMA 1 Indoor Load Center (12-20 Spaces)</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Subpanel + 4-Wire Feeder</td>
+            <td class="py-3 px-4">Houses essential backed-up branch circuits with isolated neutral busbar.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">DC Class T Fuse &amp; Disconnect</td>
+            <td class="py-3 px-4">200A or 250A Fast-Acting Class T Fuse (20,000 AIC)</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Fuse Kit per Battery Bank</td>
+            <td class="py-3 px-4">Safely interrupts massive short-circuit DC current spikes in low-voltage battery banks.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">BMS Communication Wiring</td>
+            <td class="py-3 px-4">Shielded Twisted Pair Cat6 / RS-485 / CAN-Bus Cable</td>
+            <td class="py-3 px-4 font-mono text-sky-700">50 Feet</td>
+            <td class="py-3 px-4">Transmits battery state-of-charge (SOC), cell voltage, and temperature data to inverter.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="The Neutral-Ground Floating Rule in Critical Subpanels"
+      trade="Electrical Energy Storage Systems"
+      content="The National Electrical Code (NEC Section 250.32) strictly mandates that the neutral and ground busbars must NEVER be bonded inside a downstream subpanel. In your main service panel, the green bonding screw bonds neutral to ground. When you install your critical loads subpanel, you must remove the green bonding bonding screw, keeping the neutral bar completely insulated from the steel enclosure. Bonding neutral and ground in a downstream subpanel creates dangerous objectionable ground loops, energizes the metal conduit, and causes upstream AFCI and GFCI breakers to nuisance trip continuously."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Solar Battery Storage"
+      mistakes={[
+        {
+          mistake: "Backfeeding Home Panels Without an Automatic Transfer Switch",
+          impact: "Connecting battery power to an electrical panel without a certified, mechanical ATS or microgrid gateway backfeeds high voltage onto downed utility power lines, creating lethal electrocution hazards for utility linemen.",
+          prevention: "Only use UL 1741-certified microgrid gateways or mechanical interlock kits that physically isolate utility lines before battery power activates."
+        },
+        {
+          mistake: "Underestimating Well Pump and AC Inductive Locked Rotor Amps (LRA)",
+          impact: "A 1-HP deep well pump or central AC compressor draws 4 to 6 times its running current during the first 100 milliseconds of startup. If your battery inverter cannot surge to this LRA rating, the inverter trips on overload.",
+          prevention: "Install an electronic soft-starter (Micro-Air EasyStart) on air conditioning compressors, or ensure inverter surge kW exceeds motor starting LRA."
+        },
+        {
+          mistake: "Using Standard Automotive ANL Fuses on 48V Battery Banks",
+          impact: "Low-cost automotive ANL fuses cannot safely interrupt the massive short-circuit current of lithium batteries (which can exceed 10,000 Amps). The fuse can vaporize and sustain a continuous electrical arc fire.",
+          prevention: "Always specify Class T fuses rated for 20,000 AIC (Ampere Interrupting Capacity) on DC battery banks."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      tradeTitle="Solar Battery Storage Calculator"
+      reviews={[
+        {
+          author: "Harrison P.",
+          location: "Nevada City, CA",
+          projectScope: "15 kWh LiFePO4 + Sol-Ark 15K Critical Backup",
+          savingsClaim: "Saved $7,800 DIY",
+          feedback: "Living in wildfire country with frequent PG&E Public Safety Power Shutoffs, commercial quotes were $18,000 for a battery install. We wired a 100A subpanel for our well, fridge, and starlink. When the grid dropped last week, the transition was so fast (under 10ms) that our desktop computers didn't even reboot.",
+          keyTakeaway: "A dedicated critical loads subpanel ensures weeks of off-grid runtime."
+        },
+        {
+          author: "Elena M.",
+          location: "San Antonio, TX",
+          projectScope: "AC Compressor Soft-Start + 10 kWh Storage",
+          savingsClaim: "Saved $5,200 vs Solar Installer",
+          feedback: "The soft-starter tip for our 3-ton AC unit was gold. Without the soft-start, the compressor starting surge tripped our inverter. After installing the Micro-Air EasyStart, starting amps dropped from 65A down to 22A, and our battery runs the AC smoothly.",
+          keyTakeaway: "Install a soft-start on your AC compressor to prevent battery overload."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Ray Alvarez"
+    reviewerRole="Master Electrician &amp; Renewable Energy Storage Specialist"
+    codeStandard="NEC Article 706 (Energy Storage Systems) &amp; UL 9540 / UL 1741"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

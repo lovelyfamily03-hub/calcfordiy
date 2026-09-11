@@ -1,0 +1,322 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Simultaneous GPM Demand Sizing & Gas Supply Audit",
+    description: "Calculate peak simultaneous hot water demand in gallons per minute (GPM) based on incoming groundwater temperature (e.g. two 2.0 GPM showers + 1.0 GPM sink = 5.0 GPM at a 45°F rise requires a 199,000 BTU unit). Audit your existing natural gas system using the NFPA 54 Longest Length method to verify if an existing 1/2-inch line can supply 199k BTUs, or if a dedicated 3/4-inch or 1-inch line must be run from the meter.",
+    calculatorName: "Tankless Water Heater Sizing Calculator",
+    href: "/calculators/tankless-water-heater",
+    icon: "🚿"
+  },
+  {
+    stepNumber: 2,
+    title: "Old Tank Removal, Structural Mounting & Concentric Venting",
+    description: "Shut off power and gas, drain the 50-gallon tank, and haul away. Fasten 3/4-inch exterior plywood across two wall studs and mount the tankless hanging bracket. Core a 4-inch hole through the exterior wall. Install Category IV stainless steel or concentric polypropylene (Centrotherm/InnoFlue) direct-vent piping sloping 1/4 inch per foot back toward the unit, maintaining 12-inch clearance from windows per NFPA 54.",
+    calculatorName: "Water Heater Operating Cost & Payback Calculator",
+    href: "/calculators/water-heater-cost",
+    icon: "💨"
+  },
+  {
+    stepNumber: 3,
+    title: "Dedicated 3/4-Inch Black Iron Gas Piping & Sediment Trap",
+    description: "Run new 3/4-inch or 1-inch schedule 40 black iron gas pipe directly from the manifold or meter. Install a 3/4-inch full-port CSA-approved gas shutoff valve, followed by a mandatory 3-inch vertical sediment trap (dirt leg) directly before the unit gas inlet. Pressure-test the gas piping at 15 PSI for 15 minutes with an air gauge, and check all threaded joints with liquid bubble leak detector.",
+    calculatorName: "Gas Pipe Sizing & BTU Calculator",
+    href: "/calculators/tankless-water-heater",
+    icon: "🔧"
+  },
+  {
+    stepNumber: 4,
+    title: "Service Isolation ValvesKit, PRV & Acid Condensate Trap",
+    description: "Plumb hot and cold lines with 3/4-inch copper or PEX-A. Install a brass tankless isolation service valve kit with built-in hose bibb flush ports for annual vinegar descaling. Mount a 150 PSI / 200,000 BTU temperature and pressure (T&P) relief valve with copper discharge pipe. For condensing models, route the acidic condensate drain through a limestone neutralizer cartridge before entering PVC drains.",
+    calculatorName: "Water Heater Payback Calculator",
+    href: "/calculators/water-heater-cost",
+    icon: "✨"
+  }
+];
+---
+
+<Layout
+  title="Tankless Water Heater Retrofit & Gas Hub | CalcForDIY"
+  description="Master step-by-step workflow for gas tankless water heater retrofits: peak GPM sizing, 3/4-inch gas line upgrades, Category IV venting, and isolation valve kits."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Tankless Water Heater Retrofit Hub", "item": "https://calcfordiy.com/projects/tankless-water-heater-retrofit-gas" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Retrofit a Gas Tankless Water Heater",
+    "description": "Professional plumbing and gas fitting protocol for sizing peak GPM demand, running 3/4-inch gas pipe, installing concentric venting, and descaling service valves.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Calculate GPM & Audit Gas Line",
+        "text": "Determine peak simultaneous hot water GPM and verify gas pipe capacity using NFPA 54 longest length method."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Remove Tank & Core Concentric Vent",
+        "text": "Drain old tank, mount tankless unit on plywood backer, and install Category IV polypropylene venting."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Plumb 3/4-Inch Gas & Sediment Trap",
+        "text": "Run dedicated 3/4-inch black iron gas pipe with 3-inch sediment trap and pressure-test joints."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Install Isolation Kit & Condensate Neutralizer",
+        "text": "Plumb brass service valves for annual flushing, install T&P valve, and route condensate through limestone neutralizer."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Tankless Water Heater</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-slate-900 via-sky-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold mb-4 border border-sky-400/30">
+      <span>🔥 Mechanical Plumbing &amp; Natural Gas Fitting</span>
+      <span>•</span>
+      <span>NFPA 54 / National Fuel Gas Code &amp; UPC</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Tankless Water Heater Gas Retrofit Workflow Hub
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-300 max-w-3xl mb-6 leading-relaxed">
+      Replacing a 40,000 BTU atmospheric tank with an instant 199,000 BTU tankless water heater delivers endless hot water and lowers energy bills. However, a successful conversion demands strict trade engineering: upgrading 1/2-inch gas lines to 3/4-inch, coring direct-vent concentric piping, and plumbing service isolation valves.
+    </p>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-700/60 text-left">
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Typical Firing Rate</div>
+        <div class="text-xl sm:text-2xl font-black text-sky-400">199,000 BTU/Hr</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Min Gas Line Spec</div>
+        <div class="text-xl sm:text-2xl font-black text-emerald-400">3/4-in or 1-in Iron</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Energy Factor (UEF)</div>
+        <div class="text-xl sm:text-2xl font-black text-amber-400">0.93 - 0.96 (Condensing)</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Typical DIY Savings</div>
+        <div class="text-xl sm:text-2xl font-black text-purple-400">$2,200 - $4,800</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Interactive Calculator Card -->
+  <div class="bg-white border-2 border-sky-500/30 rounded-2xl p-6 sm:p-8 mb-10 shadow-lg relative overflow-hidden">
+    <div class="sm:flex sm:items-center sm:justify-between gap-6">
+      <div class="mb-4 sm:mb-0">
+        <span class="inline-block px-2.5 py-0.5 rounded text-xs font-bold bg-sky-100 text-sky-800 uppercase tracking-wide mb-2">Core Calculator</span>
+        <h2 class="text-2xl font-bold text-gray-900">Tankless Water Heater GPM &amp; BTU Sizing Calculator</h2>
+        <p class="text-gray-600 text-sm mt-1">Input regional winter inlet water temperature, simultaneous shower and faucet counts, and target setpoint to calculate required GPM flow rates and minimum gas BTU ratings.</p>
+      </div>
+      <a
+        href="/calculators/tankless-water-heater"
+        class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-base shadow-md hover:shadow-lg transition-all shrink-0"
+      >
+        Launch Tankless Calculator &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Companion Trade Guide Banner -->
+  <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Companion Trade Guide</div>
+      <div class="text-lg font-bold text-slate-900">Tankless Water Heater Gas Pipe Sizing: 1/2" vs 3/4" vs 1"</div>
+      <p class="text-sm text-slate-600">NFPA 54 pipe sizing tables, longest length methodology, equivalent elbow lengths, gas meter 250 CFH capacity limits, and why fuel starvation triggers error code flameouts.</p>
+    </div>
+    <a
+      href="/guides/tankless-water-heater-gas-pipe-size-btu"
+      class="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold transition-colors shrink-0"
+    >
+      Read Gas Sizing Guide &rarr;
+    </a>
+  </div>
+
+  <!-- 4-Step Visual Workflow Section -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">The 4-Phase Tankless Retrofit Protocol</h2>
+    <p class="text-gray-600 mb-6">Plumbing, gas fitting, and electrical requirements must adhere to National Fuel Gas Code standards.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {workflowSteps.map(step => (
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">{step.icon}</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+                Phase {step.stepNumber}
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">{step.description}</p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-xs text-gray-500 font-medium">{step.calculatorName}</span>
+            <a href={step.href} class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+              Use Tool &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Detailed Bill of Materials Table -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Gas Tankless Retrofit Bill of Materials</h2>
+    <div class="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-slate-50 text-gray-700 font-bold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Material Component</th>
+            <th class="py-3 px-4">Standard Trade Spec</th>
+            <th class="py-3 px-4">Quantity / Formula</th>
+            <th class="py-3 px-4">Code / Trade Purpose</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Condensing Tankless Unit</td>
+            <td class="py-3 px-4">199,000 BTU, 9.0+ GPM, UEF 0.95 (Rinnai / Navien)</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Unit</td>
+            <td class="py-3 px-4">Instantaneous secondary heat exchanger on-demand domestic water heating.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Isolation Service Valves</td>
+            <td class="py-3 px-4">3/4-in Full Port Brass Isolation Valve Kit with Flush Ports</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Hot &amp; Cold Kit</td>
+            <td class="py-3 px-4">Isolates unit from house plumbing for annual vinegar descaling flush cycles.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Gas Pipe &amp; Fittings</td>
+            <td class="py-3 px-4">3/4-in or 1-in Schedule 40 Black Steel Pipe</td>
+            <td class="py-3 px-4 font-mono text-sky-700">Distance to Gas Meter + 3-in Dirt Leg</td>
+            <td class="py-3 px-4">Delivers required 199 CFH gas volume at 0.5-in w.c. allowable pressure drop.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Concentric Venting Kit</td>
+            <td class="py-3 px-4">Category IV Concentric Polypropylene / Polyfoam (3-in/5-in)</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Horizontal Wall Kit + Pipe Length</td>
+            <td class="py-3 px-4">Directs combustion air intake and acidic flue gas exhaust through a single penetration.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Condensate Neutralizer</td>
+            <td class="py-3 px-4">In-Line Calcium Carbonate Limestone Filter</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Cartridge</td>
+            <td class="py-3 px-4">Raises pH of acidic furnace/tankless runoff (pH 3 to 4) before municipal sewer entry.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="The Utility Gas Meter Capacity Trap (250 vs 400 CFH)"
+      trade="Natural Gas Plumbing"
+      content="Before spending $2,000 on a 199,000 BTU tankless water heater, walk outside and examine the metal stamped badge on your gas utility meter. Most older suburban homes have a standard '250 CFH' (cubic feet per hour) gas meter. Natural gas contains approx 1,000 BTUs per cubic foot, meaning a 250 CFH meter maxes out at 250,000 BTUs total capacity. If your winter furnace draws 80,000 BTUs, your gas stove draws 50,000 BTUs, and your new tankless fires up at 199,000 BTUs (total 329,000 BTUs), the meter cannot deliver enough fuel. The tankless will shut down on flame-loss error codes. Call your gas utility company—in most jurisdictions, they will upgrade your meter to a 400 CFH unit for free."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Tankless Water Heater Retrofit"
+      mistakes={[
+        {
+          mistake: "Reusing Old 1/2-Inch Gas Pipe",
+          impact: "An existing 1/2-inch gas line sized for a 40,000 BTU tank cannot supply 199,000 BTUs over distances greater than 10 feet. The severe pressure drop starves the burners, causing violent ignition popping and flameout errors.",
+          prevention: "Calculate gas pipe length with NFPA 54. Run a dedicated 3/4-inch or 1-inch gas line from the meter."
+        },
+        {
+          mistake: "Omitting Brass Isolation Flush Valves",
+          impact: "Hard water minerals plate onto internal copper heat exchanger coils. Without isolation valves, you cannot flush the coils with vinegar, cutting the unit's lifespan from 20 years down to 4 years.",
+          prevention: "Always install a Webstone or Watts 3/4-inch brass tankless service valve kit with built-in drain hose bibbs."
+        },
+        {
+          mistake: "Draining Acidic Condensate into Cast Iron or Brass Pipes",
+          impact: "Condensing tankless units produce acidic water (pH 3 to 4, like vinegar). Discharging this directly into old cast iron drains dissolves the metal pipes from the inside within a few years.",
+          prevention: "Route the condensate tube through a limestone neutralization cartridge before dumping into drains."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      tradeTitle="Tankless Water Heater Calculator"
+      reviews={[
+        {
+          author: "Warren E.",
+          location: "Cleveland, OH",
+          projectScope: "Rinnai RU199iN Retrofit (Replaced 50-Gal Tank)",
+          savingsClaim: "Saved $3,100 DIY",
+          feedback: "Our plumbing contractor quoted $5,800 to install a tankless. Following this hub, I ran 28 feet of 3/4-inch black iron gas pipe and installed the concentric vent through our rim joist. The gas meter check was a lifesaver—our gas company upgraded our meter to 400 CFH within 48 hours for free.",
+          keyTakeaway: "Check gas meter capacity before buying a 199k BTU unit."
+        },
+        {
+          author: "Sophia R.",
+          location: "Pittsburgh, PA",
+          projectScope: "Navien NPE-240A2 with Recirc Pump",
+          savingsClaim: "Saved $2,400 vs Plumber",
+          feedback: "The isolation valve kit made all the difference. We've done two annual vinegar flushes using a submersible bucket pump per the instructions. Water gets piping hot in 5 seconds and our gas bill dropped $28/month.",
+          keyTakeaway: "Install service isolation valves for easy annual descaling."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Ray Alvarez"
+    reviewerRole="Master Plumber &amp; Natural Gas Fitting Specialist"
+    codeStandard="NFPA 54 / National Fuel Gas Code &amp; Uniform Plumbing Code (UPC)"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

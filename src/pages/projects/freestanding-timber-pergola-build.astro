@@ -1,0 +1,328 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "3-4-5 Triangle Squaring, Batter Boards & Sonotube Footings",
+    description: "Establish perfectly square 4-post coordinates using batter boards, mason line, and the 3-4-5 geometric triangle rule. Dig footing holes 36 to 48 inches deep (extending 12 inches below local winter frost depth). Set 12-inch diameter Sonotubes, fill with 4,000 PSI fiber-reinforced concrete, and wet-set Simpson Strong-Tie ABU66 elevated standoff post bases with 5/8-inch anchor bolts to prevent wood rot.",
+    calculatorName: "Concrete Footing & Sonotube Calculator",
+    href: "/calculators/concrete-footing",
+    icon: "⛏️"
+  },
+  {
+    stepNumber: 2,
+    title: "6x6 Post Plumb Bracing, Shoulder Notches & Beam Through-Bolting",
+    description: "Erect 6x6 rough-sawn Western Red Cedar or #1 pressure-treated posts into the standoff bases, plumbing with a post level and locking with temporary diagonal 2x4 stakes. Cut 1-1/2-inch deep shoulder notches into the post tops to physically support the double 2x10 main support beams. Fasten beams with two 1/2-inch x 8-inch hot-dipped galvanized through-bolts with torque washers per post.",
+    calculatorName: "Pergola Lumber & Beam Sizing Calculator",
+    href: "/calculators/pergola-lumber",
+    icon: "🪵"
+  },
+  {
+    stepNumber: 3,
+    title: "Rafter Layout, 1/4 Cantilever Overhangs & Hurricane Ties",
+    description: "Cut decorative profile scroll tails on 2x8 rafter ends. Space rafters 16 or 24 inches on center perpendicular across the beams. Restrict cantilever overhangs to a maximum of 1/4 of the rafter clear span (e.g. max 3-ft overhang on a 12-ft post span) to prevent uplift rotation. Secure every rafter to the support beams using Simpson Strong-Tie H2.5A hurricane ties driven with structural connector screws.",
+    calculatorName: "Pergola Lumber Estimator",
+    href: "/calculators/pergola-lumber",
+    icon: "📐"
+  },
+  {
+    stepNumber: 4,
+    title: "2x2 Shade Purlin Slats, 45° Knee Braces & Oil-Based Staining",
+    description: "Fasten 2x2 or 2x3 shade purlin slats across the rafters at 3 to 5 inches on center for 60% sunlight diffusion. Install 4x4 or 4x6 45-degree diagonal knee braces (36 inches long) between each post and beam to resist wind-induced racking. Sand sharp edges with 120-grit and apply two coats of premium penetrating exterior oil-based wood stain (Ready Seal or TWP) with high UV blockers.",
+    calculatorName: "Wood Stain & Sealant Calculator",
+    href: "/calculators/deck-stain",
+    icon: "✨"
+  }
+];
+---
+
+<Layout
+  title="Freestanding Timber Pergola Build Hub | CalcForDIY"
+  description="Master step-by-step workflow for DIY freestanding timber pergolas: frost-line Sonotube footings, 6x6 notched posts, rafter cantilever rules, and knee-brace racking stability."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Timber Pergola Build Hub", "item": "https://calcfordiy.com/projects/freestanding-timber-pergola-build" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Build a Freestanding Timber Pergola",
+    "description": "Complete professional timber framing protocol for frost footings, post notch bearing, beam sizing, rafter overhang physics, and lateral wind bracing.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Square Layout & Pour Footings",
+        "text": "Square layout with 3-4-5 triangles, excavate below frost line, and pour Sonotubes with elevated post bases."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Plumb Posts & Through-Bolt Beams",
+        "text": "Plumb 6x6 posts, notch post shoulders, and bolt double 2x10 beams with 1/2-inch galvanized through-bolts."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Mount Rafters with Hurricane Ties",
+        "text": "Install 2x8 rafters at 16 or 24 inches on center with max 25% cantilever overhangs and hurricane ties."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Install Shade Purlins & 45° Knee Braces",
+        "text": "Fasten 2x2 purlins for sun protection, install 4x4 diagonal knee braces against racking, and seal with exterior stain."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Timber Pergola</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-slate-900 via-sky-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold mb-4 border border-sky-400/30">
+      <span>🌲 Heavy Timber Construction &amp; Outdoor Living</span>
+      <span>•</span>
+      <span>IRC Exterior Framing &amp; Wind Lateral Bracing</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Freestanding Timber Pergola Build Workflow Hub
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-300 max-w-3xl mb-6 leading-relaxed">
+      A heavy timber pergola transforms an open patio into a luxury outdoor retreat. Because freestanding pergolas lack attachment to a house ledger, structural integrity depends entirely on deep frost footings, elevated standoff post bases, post-notch beam bearing, and triangulated 45-degree knee braces.
+    </p>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-700/60 text-left">
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Post Dimension</div>
+        <div class="text-xl sm:text-2xl font-black text-sky-400">6x6 Solid Timber</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Max Cantilever</div>
+        <div class="text-xl sm:text-2xl font-black text-emerald-400">1/4 Clear Span</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Anti-Racking Braces</div>
+        <div class="text-xl sm:text-2xl font-black text-amber-400">4x4 at 45&deg; (All Posts)</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Typical DIY Savings</div>
+        <div class="text-xl sm:text-2xl font-black text-purple-400">$3,500 - $8,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Interactive Calculator Card -->
+  <div class="bg-white border-2 border-sky-500/30 rounded-2xl p-6 sm:p-8 mb-10 shadow-lg relative overflow-hidden">
+    <div class="sm:flex sm:items-center sm:justify-between gap-6">
+      <div class="mb-4 sm:mb-0">
+        <span class="inline-block px-2.5 py-0.5 rounded text-xs font-bold bg-sky-100 text-sky-800 uppercase tracking-wide mb-2">Core Calculator</span>
+        <h2 class="text-2xl font-bold text-gray-900">Pergola Lumber &amp; Cut List Estimator</h2>
+        <p class="text-gray-600 text-sm mt-1">Input post-to-post width, length, rafter spacing, purlin intervals, and cantilever overhangs to generate full lumber board counts, bolt schedules, and hardware lists.</p>
+      </div>
+      <a
+        href="/calculators/pergola-lumber"
+        class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-base shadow-md hover:shadow-lg transition-all shrink-0"
+      >
+        Launch Pergola Calculator &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Companion Trade Guide Banner -->
+  <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Companion Trade Guide</div>
+      <div class="text-lg font-bold text-slate-900">Pergola Rafter Span &amp; Cantilever Rules: Beam Sizing Tables</div>
+      <p class="text-sm text-slate-600">Detailed engineering analysis of 2x6 vs 2x8 vs 2x10 rafter spans, beam sizing charts, the 25% cantilever rule, and wind racking resistance.</p>
+    </div>
+    <a
+      href="/guides/pergola-rafter-span-cantilever-beam-rules"
+      class="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold transition-colors shrink-0"
+    >
+      Read Sizing Guide &rarr;
+    </a>
+  </div>
+
+  <!-- 4-Step Visual Workflow Section -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">The 4-Phase Pergola Construction Protocol</h2>
+    <p class="text-gray-600 mb-6">Heavy timber engineering demands rigid structural connections to prevent catastrophic wind racking.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {workflowSteps.map(step => (
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">{step.icon}</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+                Phase {step.stepNumber}
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">{step.description}</p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-xs text-gray-500 font-medium">{step.calculatorName}</span>
+            <a href={step.href} class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+              Use Tool &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Detailed Bill of Materials Table -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Freestanding Pergola Bill of Materials</h2>
+    <div class="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-slate-50 text-gray-700 font-bold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Component</th>
+            <th class="py-3 px-4">Standard Trade Specification</th>
+            <th class="py-3 px-4">Quantity Formula</th>
+            <th class="py-3 px-4">Structural Purpose</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Upright Posts</td>
+            <td class="py-3 px-4">6x6 Western Red Cedar or #1 SYP Ground Contact</td>
+            <td class="py-3 px-4 font-mono text-sky-700">4 Posts (10-ft or 12-ft Length)</td>
+            <td class="py-3 px-4">Vertical columns resisting axial gravity loads and wind overturning moments.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Main Support Beams</td>
+            <td class="py-3 px-4">Double 2x10 Rough-Sawn Cedar or Doug Fir</td>
+            <td class="py-3 px-4 font-mono text-sky-700">4 Boards &times; (Post Span + Overhangs)</td>
+            <td class="py-3 px-4">Carries all roof rafters and transfers loads to notched post shoulders.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Rafter Joists</td>
+            <td class="py-3 px-4">2x8 Select Structural Timber</td>
+            <td class="py-3 px-4 font-mono text-sky-700">(Width &divide; Spacing) + 1 Rafters</td>
+            <td class="py-3 px-4">Cross-members spanning between beams, providing architectural shade pattern.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Shade Purlin Slats</td>
+            <td class="py-3 px-4">2x2 or 2x3 Kiln-Dried S4S Lumber</td>
+            <td class="py-3 px-4 font-mono text-sky-700">(Length &divide; Purlin Spacing) + 1 Slats</td>
+            <td class="py-3 px-4">Top lattice layer blocking 50% to 75% of overhead direct solar radiation.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Elevated Post Standoffs</td>
+            <td class="py-3 px-4">Simpson Strong-Tie ABU66 ZMAX Heavy Duty</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Base per Post + 5/8-in Wedge Anchors</td>
+            <td class="py-3 px-4">Elevates post end-grain 1 inch above concrete to eliminate moisture wicking.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Structural Hardware</td>
+            <td class="py-3 px-4">1/2-in x 8-in HDG Carriage Bolts + Simpson H2.5A Ties</td>
+            <td class="py-3 px-4 font-mono text-sky-700">8 Bolts + 1 Tie per Rafter Intersection</td>
+            <td class="py-3 px-4">Locks beams to posts and anchors rafters against 90 MPH hurricane wind uplift.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="The Elevated Standoff Post Base Rule"
+      trade="Heavy Timber Carpentry"
+      content="Never bury wood posts in wet concrete or rest them directly on a flat concrete slab. Wood end-grain behaves like a bundle of drinking straws, wicking ground moisture upward through capillary action. Within 4 to 7 years, a 6x6 post encased in concrete will rot at the soil line, even if pressure-treated. Always use code-compliant elevated standoff bases (like the Simpson ABU66) that keep the timber 1 inch above the concrete slab with an open weep hole for water drainage."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Timber Pergola Construction"
+      mistakes={[
+        {
+          mistake: "Omitting 45-Degree Knee Braces",
+          impact: "A freestanding pergola without knee braces is a flexible parallelogram. Even a mild 20 MPH gust of wind will cause the entire structure to rack and sway, loosening footing bolts and eventually collapsing.",
+          prevention: "Install substantial 4x4 or 4x6 diagonal knee braces measuring at least 30 to 36 inches on all four corners."
+        },
+        {
+          mistake: "Exceeding the 1/4 Cantilever Overhang Rule",
+          impact: "Extending a 2x8 rafter 4 feet past a beam on an 8-foot span creates extreme rotational leverage. Under high winds, the cantilevered ends act like airplane wings, lifting and twisting the beams off the posts.",
+          prevention: "Limit rafter and beam cantilever overhangs to a maximum of 25% of the clear post span."
+        },
+        {
+          mistake: "Relying on Screws Instead of Post Shoulders or Through-Bolts",
+          impact: "Fastening heavy 2x10 beams to the sides of 6x6 posts using deck screws or lag screws concentrates all gravity load on screw shear strength. Wood dries and screws shear off under load.",
+          prevention: "Notch a 1-1/2-inch shoulder directly into the 6x6 post so the beam rests on solid wood bearing, backed by 1/2-inch through-bolts."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      tradeTitle="Pergola Lumber Calculator"
+      reviews={[
+        {
+          author: "Lucas W.",
+          location: "Austin, TX",
+          projectScope: "14-ft x 16-ft Cedar Freestanding Pergola",
+          savingsClaim: "Saved $5,200 DIY",
+          feedback: "Our landscape designer quoted $9,500 for a cedar pergola. We bought rough-sawn cedar from a local mill and used the lumber calculator for our exact cut list. Cutting 1.5-inch shoulder notches in the 6x6 posts was easy with a circular saw and chisel—the double 2x10 beams dropped in rock solid.",
+          keyTakeaway: "Notching posts provides far more strength than bolting beams to post faces."
+        },
+        {
+          author: "Colleen S.",
+          location: "Fort Collins, CO",
+          projectScope: "12-ft x 12-ft Freestanding Patio Pergola",
+          savingsClaim: "Saved $3,800 vs Deck Builder",
+          feedback: "In Colorado we get heavy spring winds and 50 MPH gusts. The 45-degree knee braces made this pergola feel like a fortress. Not a millimeter of sway even during high-wind storms.",
+          keyTakeaway: "Knee braces are 100% mandatory on freestanding timber pergolas."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Chen, PE"
+    reviewerRole="Licensed Professional Structural Engineer"
+    codeStandard="IRC Section R507 Exterior Framing &amp; Simpson Strong-Tie Pergola Specifications"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

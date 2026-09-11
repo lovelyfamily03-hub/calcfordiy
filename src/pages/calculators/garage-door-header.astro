@@ -1,4 +1,5 @@
 ---
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
 ---
@@ -501,4 +502,15 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     });
   })();
   </script>
+
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="garage-door-header-replacement"
+    hubTitle="Garage Door Header Replacement Hub →"
+    hubDesc="Structural replacement workflow: temporary shoring walls, LVL beam sizing, jack stud bearing, and IRC R602.7 compliance."
+    guideSlug="garage-door-header-size-span-table-irc-r602"
+    guideTitle="Garage Door Header Size & Span Table (IRC R602.7 & LVL) Guide →"
+    guideDesc="Decoding IRC Table R602.7(1), why double 2x12s fail on 16-ft double doors, tributary load math, and deflection limits."
+  />
+
 </Layout>

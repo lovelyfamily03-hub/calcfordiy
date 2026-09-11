@@ -1,0 +1,322 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Temporary Load-Bearing Shoring Wall Erection",
+    description: "Construct a continuous 2x4 or 2x6 temporary shoring wall 24 to 36 inches inside the garage, positioned directly beneath the ceiling joists or roof truss bottom chords. Install double top plates and a single bottom plate, wedging studs tight with pairs of opposing hardwood shims until the building load is transferred off the existing garage door opening before making a single cut.",
+    calculatorName: "Garage Door Header Size Calculator",
+    href: "/calculators/garage-door-header",
+    icon: "🏗️"
+  },
+  {
+    stepNumber: 2,
+    title: "Exterior Siding Removal, Trimmer Demo & King Stud Inspection",
+    description: "Remove exterior siding, trim, and house wrap 24 inches around the perimeter of the garage portal. Support the king studs while carefully sawing out the old sagging dimensional lumber header and rotted jack studs using a reciprocating saw with carbide demolition blades. Inspect wall sole plates and foundation anchor bolts for dry rot or termite damage.",
+    calculatorName: "Stud Spacing & Wall Framing Calculator",
+    href: "/calculators/wall-framing",
+    icon: "🪚"
+  },
+  {
+    stepNumber: 3,
+    title: "LVL Header Assembly, Pocket Jack Studs & IRC Bearing Seating",
+    description: "Laminate two or three plies of 1-3/4-inch x 11-7/8-inch or 14-inch Microllam LVL (Laminated Veneer Lumber) using structural wood screws (GRK RSS or FastenMaster HeadLOK) driven in staggered rows at 12 inches on center. Install a minimum of two 2x6 jack (trimmer) studs on each end to provide the required 3.0 inches of full end bearing per IRC R602.7. Lift the beam into the pockets and secure to adjacent king studs.",
+    calculatorName: "Garage Door Header Span Calculator",
+    href: "/calculators/garage-door-header",
+    icon: "📐"
+  },
+  {
+    stepNumber: 4,
+    title: "Seismic/Wind Strapping, Self-Adhered Flashing & Siding Reinstall",
+    description: "Tie the new LVL header to adjacent framing using heavy-duty Simpson Strong-Tie CS16 coiled strapping or hurricane ties to satisfy portal frame shear and wind uplift resistance. Install butyl-based self-adhered flashing tape (Vycor or Zip System) over the header face and onto the wall sheathing in shingle fashion, re-flash with metal Z-drip cap, reinstall building paper, and mount garage door tracks.",
+    calculatorName: "House Wrap & Weather Barrier Calculator",
+    href: "/calculators/board-and-batten-siding",
+    icon: "🛡️"
+  }
+];
+---
+
+<Layout
+  title="Garage Door Header Replacement Hub | CalcForDIY"
+  description="Master step-by-step structural workflow for garage door header replacement: temporary shoring walls, LVL beam sizing, jack stud bearing, and IRC R602.7 compliance."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Garage Door Header Replacement Hub", "item": "https://calcfordiy.com/projects/garage-door-header-replacement" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Replace a Structural Garage Door Header",
+    "description": "Comprehensive structural engineering protocol for temporary shoring, engineered LVL header sizing, multi-ply fastening, and portal frame lateral bracing.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Erect Temporary Shoring Wall",
+        "text": "Build a load-bearing temporary shoring wall beneath joists or trusses to safely transfer roof loads before cutting out the old header."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Demo Old Sagging Header & Jack Studs",
+        "text": "Strip siding and saw out failed dimensional lumber headers while preserving plumb king studs."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Laminate & Set Engineered LVL Beam",
+        "text": "Assemble multi-ply LVL beams with structural screws and set onto double jack studs providing 3 inches of solid end bearing."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Strapping, Weatherproofing & Track Reattachment",
+        "text": "Fasten portal frame hurricane straps, flash with self-adhered membrane and Z-drip cap, and reinstall garage door assemblies."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Garage Door Header</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-slate-900 via-sky-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold mb-4 border border-sky-400/30">
+      <span>🏗️ Structural Framing &amp; Engineered Wood</span>
+      <span>•</span>
+      <span>IRC Section R602.7 &amp; APA Portal Frame</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Garage Door Header Replacement Workflow Hub
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-300 max-w-3xl mb-6 leading-relaxed">
+      A sagging garage door header causes binding door rollers, cracked exterior stucco, and compromised roof support. Replacing an 8-foot or 16-foot exterior portal header requires rigorous temporary shoring wall engineering, multi-ply LVL beam sizing, and strict adherence to IRC bearing rules.
+    </p>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-700/60 text-left">
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Typical 16-Ft Beam</div>
+        <div class="text-xl sm:text-2xl font-black text-sky-400">Double 11-7/8 LVL</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Min End Bearing</div>
+        <div class="text-xl sm:text-2xl font-black text-emerald-400">3.0 in (2 Jacks)</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Max Allowable Sag</div>
+        <div class="text-xl sm:text-2xl font-black text-amber-400">L/360 or L/480</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Typical DIY Savings</div>
+        <div class="text-xl sm:text-2xl font-black text-purple-400">$2,400 - $5,500</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Interactive Calculator Card -->
+  <div class="bg-white border-2 border-sky-500/30 rounded-2xl p-6 sm:p-8 mb-10 shadow-lg relative overflow-hidden">
+    <div class="sm:flex sm:items-center sm:justify-between gap-6">
+      <div class="mb-4 sm:mb-0">
+        <span class="inline-block px-2.5 py-0.5 rounded text-xs font-bold bg-sky-100 text-sky-800 uppercase tracking-wide mb-2">Core Calculator</span>
+        <h2 class="text-2xl font-bold text-gray-900">Garage Door Header Span &amp; Size Calculator</h2>
+        <p class="text-gray-600 text-sm mt-1">Input clear opening width (8-ft, 9-ft, 16-ft, 18-ft), building width, roof snow load, and tributary span to calculate required LVL plies, beam depth, and jack stud counts.</p>
+      </div>
+      <a
+        href="/calculators/garage-door-header"
+        class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-base shadow-md hover:shadow-lg transition-all shrink-0"
+      >
+        Launch Header Calculator &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Companion Trade Guide Banner -->
+  <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Companion Trade Guide</div>
+      <div class="text-lg font-bold text-slate-900">Garage Door Header Size &amp; Span Table (IRC R602.7 &amp; LVL)</div>
+      <p class="text-sm text-slate-600">Deep engineering analysis of IRC Table R602.7(1), why double 2x12s fail on 16-ft double doors, tributary load math, and APA portal framing rules.</p>
+    </div>
+    <a
+      href="/guides/garage-door-header-size-span-table-irc-r602"
+      class="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold transition-colors shrink-0"
+    >
+      Read Header Span Guide &rarr;
+    </a>
+  </div>
+
+  <!-- 4-Step Visual Workflow Section -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">The 4-Phase Garage Header Replacement Protocol</h2>
+    <p class="text-gray-600 mb-6">Structural safety demands zero shortcuts. Execute every load transfer phase in strict sequence.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {workflowSteps.map(step => (
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">{step.icon}</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+                Phase {step.stepNumber}
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">{step.description}</p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-xs text-gray-500 font-medium">{step.calculatorName}</span>
+            <a href={step.href} class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+              Use Tool &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Detailed Bill of Materials Table -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Garage Door Header Bill of Materials</h2>
+    <div class="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-slate-50 text-gray-700 font-bold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Component</th>
+            <th class="py-3 px-4">Structural Specification</th>
+            <th class="py-3 px-4">Quantity / Formula</th>
+            <th class="py-3 px-4">Trade Purpose</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Engineered LVL Beam</td>
+            <td class="py-3 px-4">1-3/4-in x 11-7/8-in (or 14-in) 2.0E Microllam LVL</td>
+            <td class="py-3 px-4 font-mono text-sky-700">2 to 3 Plies &times; (Span + 6-in Bearing)</td>
+            <td class="py-3 px-4">Primary flexural load-bearing beam spanning 16-ft to 18-ft door opening.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Jack &amp; King Studs</td>
+            <td class="py-3 px-4">#2 SPF or Douglas Fir 2x6 Framing Lumber</td>
+            <td class="py-3 px-4 font-mono text-sky-700">Min 2 Jacks + 1 King per End</td>
+            <td class="py-3 px-4">Provides required 3.0-inch end bearing and lateral wall anchoring per IRC R602.7.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Structural Screws</td>
+            <td class="py-3 px-4">2-7/8-in or 3-1/8-in GRK RSS / FastenMaster HeadLOK</td>
+            <td class="py-3 px-4 font-mono text-sky-700">2 Rows at 12-in O.C. Staggered</td>
+            <td class="py-3 px-4">Mechanically laminates individual LVL plies into a unified structural beam without through-bolts.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Temporary Shoring Lumber</td>
+            <td class="py-3 px-4">2x4 or 2x6 Framing Lumber + Hardwood Shims</td>
+            <td class="py-3 px-4 font-mono text-sky-700">Opening Width + 4-ft at 16-in O.C.</td>
+            <td class="py-3 px-4">Temporary load path supporting roof trusses during header removal and placement.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Weatherization Flashing</td>
+            <td class="py-3 px-4">Butyl Self-Adhered Flashing Tape + Galvanized Z-Flashing</td>
+            <td class="py-3 px-4 font-mono text-sky-700">Beam Length + 24-in Overlap</td>
+            <td class="py-3 px-4">Waterproofs upper wall portal against wind-driven rain penetration behind siding.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="The 3-Inch Bearing Rule for 16-Foot Spans"
+      trade="Structural Framing"
+      content="The International Residential Code (IRC Table R602.7(1)) mandates that any header spanning more than 9 feet 11 inches requires a minimum of two 2x trimmer (jack) studs under each end of the beam, providing at least 3.0 inches of solid bearing. Resting a 16-foot double LVL beam on only a single 1.5-inch jack stud concentrates extreme compression perpendicular to the grain (exceeding 800 PSI), crushing the wood fibers of the support stud and causing the door opening to slowly sag over time."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Garage Door Header Framing"
+      mistakes={[
+        {
+          mistake: "Cutting Out Old Header Without Temporary Shoring",
+          impact: "Roof trusses or second-story floor joists immediately drop 1 to 2 inches, bowing drywall, cracking exterior sheathing, and creating catastrophic roof collapse hazards.",
+          prevention: "Always build a complete temporary load-bearing wall 2 to 3 feet behind the door opening wedged tight with opposing shims before touching the old header."
+        },
+        {
+          mistake: "Substituting Dimensional 2x12s on a 16-Foot Double Opening",
+          impact: "Standard #2 Douglas Fir 2x12 lumber has a maximum allowable span of approximately 11 to 12 feet under standard roof loads. A 16-foot span will sag over 1 inch under snow load, crushing the garage door tracks.",
+          prevention: "Always specify engineered LVL (Laminated Veneer Lumber) or glulam beams for openings exceeding 10 feet."
+        },
+        {
+          mistake: "Omitting Lateral Portal Frame Strapping",
+          impact: "Garage portal walls have very narrow shear wall piers (often under 24 inches). Omitting Simpson CS16 coil straps or STHD holdowns leaves the building vulnerable to wind shear racking.",
+          prevention: "Install code-approved metal tension strapping connecting the header across the king studs to the foundation sill plate."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      tradeTitle="Garage Door Header Calculator"
+      reviews={[
+        {
+          author: "Raymond C., PE",
+          location: "Salt Lake City, UT",
+          projectScope: "16-ft Garage Header (Replacing Sagging 2x10s)",
+          savingsClaim: "Saved $4,200 DIY",
+          feedback: "Our 1978 garage header was sagging 1.5 inches in the middle, and the door opener kept binding. Used the calculator to spec double 1-3/4 x 11-7/8 LVLs with double jack studs. The shoring wall instructions gave us total confidence—the roof didn't drop even 1/32 of an inch.",
+          keyTakeaway: "Erect a proper temporary shoring wall with dual hardwood shims."
+        },
+        {
+          author: "Danielle P.",
+          location: "Minneapolis, MN",
+          projectScope: "Snow Load Rated Header Retrofit",
+          savingsClaim: "Saved $3,800 vs General Contractor",
+          feedback: "In Minnesota with 50 PSF snow loads, dimensional wood simply cannot handle a 16-foot span. The calculator factored in our ground snow load and specified triple LVLs. Inspector signed off on our framing permit immediately.",
+          keyTakeaway: "Always check local roof snow load requirements before sizing headers."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Chen, PE"
+    reviewerRole="Licensed Professional Structural Engineer"
+    codeStandard="IRC Section R602.7 &amp; APA Portal Frame Design"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

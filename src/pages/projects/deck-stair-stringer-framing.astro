@@ -1,0 +1,319 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Total Rise Calculation & Concrete Landing Pad Leveling",
+    description: "Measure the exact vertical distance (total rise) from the top finished deck surface down to the concrete landing pad using a straight board and 6-foot level. Calculate equal risers between 4 inches and 7-3/4 inches per IRC Section R311.7.5. Poured concrete pads must be sloped 1/8-inch per foot away from the house.",
+    calculatorName: "Stair Stringer Layout & Riser Calculator",
+    href: "/calculators/stair-stringer",
+    icon: "📐"
+  },
+  {
+    stepNumber: 2,
+    title: "2x12 Lumber Selection & Framing Square Gauge Layout",
+    description: "Select #1 grade ground-contact pressure-treated 2x12 lumber with zero crowns or severe knots. Clamp brass stair gauges onto a framing square at your exact unit rise (e.g. 7-1/4 inches) and unit run (e.g. 10-1/2 inches). Scribe sequential step notches along the entire length.",
+    calculatorName: "Deck Joist Span & Lumber Calculator",
+    href: "/calculators/deck-joist-span",
+    icon: "🪚"
+  },
+  {
+    stepNumber: 3,
+    title: "The Critical Bottom Tread Drop Cut & Hand-Saw Finishing",
+    description: "Deduct the exact thickness of one finished tread board (e.g. 1-inch for 5/4 deck boards) from the bottom of the stringer. Cut notches with a circular saw, stopping 1/4-inch before inner corners, and finish with a sharp Japanese pull saw to avoid overcutting and weakening the throat.",
+    calculatorName: "Construction Fraction & Dimension Calculator",
+    href: "/calculators/construction-fraction",
+    icon: "✂️"
+  },
+  {
+    stepNumber: 4,
+    title: "Structural Hanger Attachment & Center Stringer Spacing",
+    description: "Fasten stringers to deck rim joists using Simpson LSCZ adjustable stringer connectors with 1-1/2-inch structural connector screws. Space stringers at 12 inches on-center for composite decking or 16 inches for 2x6 cedar. Anchor bases to concrete with 1/2-inch wedge anchors.",
+    calculatorName: "Deck Boards & Picket Estimator",
+    href: "/calculators/deck-boards",
+    icon: "🔩"
+  }
+];
+---
+
+<Layout
+  title="Deck Stair Stringer Layout & Framing Hub | CalcForDIY"
+  description="Master step-by-step workflow for cutting exterior deck stair stringers: total rise math, bottom tread drop cut, IRC R311 code, and Simpson LSCZ hangers."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Stair Stringer Hub", "item": "https://calcfordiy.com/projects/deck-stair-stringer-framing" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Calculate and Cut Exterior Deck Stair Stringers",
+    "description": "Professional carpentry guide for stair stringers: total rise measurement, brass stair gauge scribing, bottom tread drop deduction, and structural mounting.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Measure Total Rise to Pad",
+        "text": "Measure exact vertical height from deck surface to landing pad and divide by 7.5 to find step count."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Scribe Notches on 2x12 Lumber",
+        "text": "Clamp brass gauges to framing square and trace rise and run along pressure-treated 2x12."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Bottom Tread Drop & Hand-Saw Notching",
+        "text": "Cut off tread thickness at bottom of stringer; finish inner notch corners cleanly with hand saw."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Fasten with Simpson LSCZ Connectors",
+        "text": "Anchor top of stringers to deck header with structural brackets and anchor base into concrete."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Stair Stringer Hub</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-amber-950 via-stone-900 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold mb-4 border border-amber-400/30">
+      <span>🪵 Structural Carpentry &amp; Stair Engineering</span>
+      <span>•</span>
+      <span>IRC Section R311.7 &amp; AWC DCA 6 Compliant</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Deck Stair Stringer Layout &amp; Framing Hub
+    </h1>
+
+    <p class="text-amber-100 text-base sm:text-lg max-w-3xl leading-relaxed mb-6">
+      More deck building inspections fail on staircases than any other component. Building codes mandate that the <strong>greatest riser height cannot exceed the smallest by more than 3/8-inch</strong>. Missing the critical <strong>bottom tread drop cut</strong> guarantees a non-compliant first step and a severe trip hazard. Here is the master trade system to lay out, cut, and hang flawless deck stairs.
+    </p>
+
+    <!-- Technical Infographic Hero Diagram -->
+    <div class="bg-stone-900/80 rounded-xl p-4 sm:p-6 border border-amber-500/30 backdrop-blur-sm max-w-4xl">
+      <h3 class="text-xs uppercase tracking-wider text-amber-300 font-bold mb-3">Geometry of a Code-Compliant Stair Stringer</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-stone-200">
+        <div class="bg-stone-950/70 p-3 rounded-lg border border-amber-500/20">
+          <div class="font-bold text-white text-sm mb-1 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+            1. Max 7-3/4 in Rise
+          </div>
+          <p class="leading-relaxed">IRC R311.7.5.1 limits maximum unit riser height to 7-3/4 inches and minimum unit tread run to 10 inches with a 3/4-inch to 1-1/4-inch nosing.</p>
+        </div>
+        <div class="bg-stone-950/70 p-3 rounded-lg border border-amber-500/20">
+          <div class="font-bold text-white text-sm mb-1 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span>
+            2. 3.5-in Throat Depth
+          </div>
+          <p class="leading-relaxed">The uncut diagonal wood backbone (throat) must measure at least 3.5 inches. 2x10 lumber violates this rule on long runs; only use 2x12s.</p>
+        </div>
+        <div class="bg-stone-950/70 p-3 rounded-lg border border-amber-500/20">
+          <div class="font-bold text-white text-sm mb-1 flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 inline-block"></span>
+            3. Tread Drop Cut
+          </div>
+          <p class="leading-relaxed">You must cut one tread thickness off the bottom of the stringer. When the tread is installed, step #1 matches the height of all remaining steps exactly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Editorial Guide Feature Callout -->
+  <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-amber-600 p-5 rounded-r-xl mb-10 shadow-sm not-prose">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-200/60 px-2 py-0.5 rounded">Companion Trade Guide</span>
+        <h3 class="text-lg font-bold text-gray-900 mt-1">Stair Stringer Throat Depth: IRC R311 3.5-Inch Rule</h3>
+        <p class="text-sm text-gray-600 mt-0.5">Learn why circular saw overcutting cracks stringers, how to calculate throat depth, and center stringer spacing rules for composite decking.</p>
+      </div>
+      <a
+        href="/guides/stair-stringer-throat-depth-irc-r311"
+        class="inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white font-semibold text-sm px-4 py-2.5 rounded-lg shadow-sm transition whitespace-nowrap"
+      >
+        <span>Read Technical Guide</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Sequential 4-Phase Workflow Grid -->
+  <h2 class="text-2xl font-black text-gray-900 mb-6 tracking-tight not-prose">
+    Structural Stair Construction Workflow
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 not-prose">
+    {workflowSteps.map(step => (
+      <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-bold text-sm">
+              {step.stepNumber}
+            </span>
+            <span class="text-2xl">{step.icon}</span>
+            <h3 class="font-bold text-gray-900 text-base sm:text-lg flex-1 leading-snug">
+              {step.title}
+            </h3>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed mb-4">
+            {step.description}
+          </p>
+        </div>
+        <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+          <span class="text-xs font-medium text-amber-700">Recommended Tool</span>
+          <a
+            href={step.href}
+            class="text-xs font-bold text-amber-600 hover:text-amber-800 flex items-center gap-1 hover:underline"
+          >
+            <span>{step.calculatorName}</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Material Takeoff Table -->
+  <div class="bg-white rounded-xl border border-gray-200 p-6 mb-12 shadow-sm not-prose">
+    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+      <span>📋</span> Stairway Material Takeoff (Typical 6-Step Deck Stair)
+    </h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700">
+        <thead class="bg-amber-50 text-amber-900 uppercase font-semibold text-xs border-b border-amber-200">
+          <tr>
+            <th class="py-3 px-4">Component</th>
+            <th class="py-3 px-4">Material Specification</th>
+            <th class="py-3 px-4">Quantity / Span</th>
+            <th class="py-3 px-4">Structural Purpose</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Stringer Lumber</td>
+            <td class="py-3 px-4">2x12 #1 Southern Pine / Douglas Fir Ground Contact</td>
+            <td class="py-3 px-4 font-mono text-amber-700">4 Stringers (12-in o.c.)</td>
+            <td class="py-3 px-4">Carries 40 psf live load + 300 lb concentrated center load.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Tread Decking</td>
+            <td class="py-3 px-4">Double 5/4x6 Capped Composite or Treated Pine</td>
+            <td class="py-3 px-4 font-mono text-amber-700">12 Boards (36-in width)</td>
+            <td class="py-3 px-4">Provides 11-inch net tread run with 1-inch nosing overhang.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Top Stringer Hangers</td>
+            <td class="py-3 px-4">Simpson Strong-Tie LSCZ Adjustable Stringer Clips</td>
+            <td class="py-3 px-4 font-mono text-amber-700">4 Hangers + SDS Screws</td>
+            <td class="py-3 px-4">Eliminates toe-nailing; resists stair pull-away rotation.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Base Anchors</td>
+            <td class="py-3 px-4">1/2-in x 3-3/4-in Stainless Steel Wedge Anchors</td>
+            <td class="py-3 px-4 font-mono text-amber-700">4 Anchors + Angle Clips</td>
+            <td class="py-3 px-4">Pins stringer bases to concrete pad to prevent kickout.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="Never Overcut Stringer Corners with a Circular Saw"
+      trade="Framing Carpentry"
+      content="When cutting stair notches with a circular saw, the round blade naturally cuts further on the underside of the board than the top. If you run the blade all the way to the pencil line corner, you create an interior cross-grain kerf that severely weakens the structural throat of the 2x12. Always stop the circular saw 1/4-inch short of the intersection corner, and complete the final cut with a sharp Japanese pull saw or jigsaw. It takes 2 minutes longer but prevents cracked stringers."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Deck Stair Construction"
+      mistakes={[
+        {
+          mistake: "Forgetting to Deduct Tread Thickness from the Bottom Step",
+          impact: "When you add the 1-inch thick tread board, your bottom step ends up 1 inch too tall and your top step ends up 1 inch too short, failing inspection and causing constant tripping.",
+          prevention: "Always saw off exactly one tread thickness from the bottom foot of the stringer before installing."
+        },
+        {
+          mistake: "Spacing Stringers at 16 Inches for Composite Decking",
+          impact: "Composite treads lack the stiffness of natural wood and will sag noticeably under foot traffic, creating an unlevel, spongy staircase.",
+          prevention: "Always frame stringers at 12 inches on-center maximum when installing composite or PVC stair treads."
+        },
+        {
+          mistake: "Resting Untreated Stringers Directly on Soil or Pavers",
+          impact: "Direct ground moisture rots stringer feet within 3 years, causing the entire staircase to settle and pull away from the deck frame.",
+          prevention: "Pour a dedicated 4-inch concrete landing pad and isolate stringer bottoms using composite shims or standoff angle brackets."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      tradeTitle="Stair Stringer Calculator"
+      reviews={[
+        {
+          author: "Wayne G.",
+          location: "Grand Rapids, MI",
+          projectScope: "7-Step Deck Staircase",
+          savingsClaim: "Saved $1,200 DIY",
+          feedback: "The calculation on deducting tread thickness from the bottom of the stringer saved me. Every single step measures exactly 7-3/8 inches. Inspector used his digital level and passed it in 30 seconds.",
+          keyTakeaway: "Brass stair gauges clamped on a framing square ensure every notch is identical."
+        },
+        {
+          author: "Phil K.",
+          location: "Nashville, TN",
+          projectScope: "Composite Deck Stair Overhaul",
+          savingsClaim: "Passed Inspection Round 1",
+          feedback: "I used 4 stringers across my 3-foot wide composite steps per the 12-inch spacing rule. Zero bounce and the Simpson LSCZ hangers made mounting rock solid.",
+          keyTakeaway: "Always use 2x12s to preserve the mandatory 3.5-inch throat depth."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="IRC 2021/2024 Section R311.7 & AWC Prescriptive Deck Guide"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

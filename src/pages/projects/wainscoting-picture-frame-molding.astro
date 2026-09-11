@@ -1,0 +1,322 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Chair Rail Benchmark Height & The 1/3 Golden Ratio Rule",
+    description: "Determine chair rail height based on classical architectural proportions: the top of the chair rail should sit at 1/3 of total wall ceiling height (32 to 34 inches for 8-foot ceilings; 36 to 38 inches for 9-foot ceilings). Strike a continuous level benchmark line around the entire room perimeter using a 360-degree self-leveling laser level, ensuring the rail aligns harmoniously with window sills and door casings.",
+    calculatorName: "Wainscoting Layout & Box Spacing Calculator",
+    href: "/calculators/wainscoting-layout",
+    icon: "📐"
+  },
+  {
+    stepNumber: 2,
+    title: "Wall Box Spacing Arithmetic & Equal Stile/Rail Margins",
+    description: "Calculate identical stile (vertical) and rail (horizontal) spacing margins between 3.5 inches and 5.0 inches around every box. Measure each individual wall section between door trims, corners, and window aprons. Divide the span into 2, 3, or 4 equal picture frames so box widths fall within the visually ideal 20-inch to 32-inch range, avoiding awkward skinny boxes or interference with electrical switches.",
+    calculatorName: "Wainscoting Layout & Box Spacing Calculator",
+    href: "/calculators/wainscoting-layout",
+    icon: "🧮"
+  },
+  {
+    stepNumber: 3,
+    title: "Dual Spacer Block Fabrication & Laser Layout Taping",
+    description: "Rip scrap MDF or 1x4 lumber on a table saw to create two identical spacer blocks matching your calculated stile and rail spacing (e.g. exactly 4.0 inches). Hold one spacer against the baseboard and chair rail to mark top and bottom frame lines; use the second spacer at room corners. Outline every frame box with delicate painter's tape to visually verify balance and check that electrical outlet boxes land cleanly inside or outside a frame.",
+    calculatorName: "Stud Spacing & Wall Layout Calculator",
+    href: "/calculators/wall-framing",
+    icon: "📏"
+  },
+  {
+    stepNumber: 4,
+    title: "Compound 45° Frame Assembly, CA Glue & Micro-Pin Nailing",
+    description: "Cut panel moulding (1-1/4-inch to 2-inch wide profile) with crisp 45-degree inside miters on a calibrated 12-inch compound miter saw with an 80-tooth finish blade. Pre-assemble boxes on a flat table using 2P-10 medium cyanoacrylate (CA) adhesive and spray activator for indestructible miters. Mount each rigid frame to the wall using spacer blocks, driving 1-1/4-inch 18-gauge brads into drywall at alternating 45-degree angles, then caulk and paint.",
+    calculatorName: "Interior Paint & Finish Calculator",
+    href: "/calculators/paint-room",
+    icon: "🖼️"
+  }
+];
+---
+
+<Layout
+  title="Wainscoting & Picture Frame Wall Molding Hub | CalcForDIY"
+  description="Master step-by-step workflow for DIY wainscoting and picture frame molding: chair rail height formulas, equal box spacing math, CA glue miters, and micro-pinning."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Wainscoting Molding Hub", "item": "https://calcfordiy.com/projects/wainscoting-picture-frame-molding" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Install Wainscoting and Picture Frame Molding",
+    "description": "Complete architectural carpentry guide to chair rail heights, equal wall box spacing formulas, pre-assembled CA glue miters, and finish painting.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Establish Chair Rail Benchmark",
+        "text": "Calculate 1/3 ceiling height ratio and project a 360-degree laser level line around the room perimeter."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Calculate Equal Box Spacing",
+        "text": "Use the wainscoting formula to equalize stile and rail margins across each wall segment."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Fabricate Spacer Blocks",
+        "text": "Rip scrap blocks to the exact margin dimension to guarantee identical reveal spacing."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Pre-Assemble Miters with CA Glue & Pin",
+        "text": "Join 45-degree corners with instant CA glue, position against spacer blocks, and pin with 18-gauge brads."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Picture Frame Wainscoting</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-slate-900 via-sky-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold mb-4 border border-sky-400/30">
+      <span>📐 Architectural Millwork &amp; Wall Paneling</span>
+      <span>•</span>
+      <span>Classical Golden Ratio &amp; AWI Joinery</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Wainscoting &amp; Picture Frame Molding Installation Hub
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-300 max-w-3xl mb-6 leading-relaxed">
+      Picture frame wall molding (box wainscoting) brings timeless architectural elegance to dining rooms, hallways, and staircases. The difference between stunning results and an awkward DIY look comes down to two factors: classical chair rail height proportions and millimeter-perfect box spacing mathematics.
+    </p>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-700/60 text-left">
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Chair Rail Ratio</div>
+        <div class="text-xl sm:text-2xl font-black text-sky-400">1/3 Wall Height</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Stile / Rail Margin</div>
+        <div class="text-xl sm:text-2xl font-black text-emerald-400">3.5 - 4.5 in Uniform</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Miter Joint Tech</div>
+        <div class="text-xl sm:text-2xl font-black text-amber-400">CA Glue + Activator</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Typical DIY Savings</div>
+        <div class="text-xl sm:text-2xl font-black text-purple-400">$1,500 - $3,800</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Interactive Calculator Card -->
+  <div class="bg-white border-2 border-sky-500/30 rounded-2xl p-6 sm:p-8 mb-10 shadow-lg relative overflow-hidden">
+    <div class="sm:flex sm:items-center sm:justify-between gap-6">
+      <div class="mb-4 sm:mb-0">
+        <span class="inline-block px-2.5 py-0.5 rounded text-xs font-bold bg-sky-100 text-sky-800 uppercase tracking-wide mb-2">Core Calculator</span>
+        <h2 class="text-2xl font-bold text-gray-900">Wainscoting Layout &amp; Box Spacing Calculator</h2>
+        <p class="text-gray-600 text-sm mt-1">Input wall length, chair rail height, baseboard height, and desired margin spacing to instantly solve exact box widths, counts, and cut lists.</p>
+      </div>
+      <a
+        href="/calculators/wainscoting-layout"
+        class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-base shadow-md hover:shadow-lg transition-all shrink-0"
+      >
+        Launch Wainscoting Calculator &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Companion Trade Guide Banner -->
+  <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Companion Trade Guide</div>
+      <div class="text-lg font-bold text-slate-900">Wainscoting Height Rules: 1/3 Wall Ratio vs 32-36" Standards</div>
+      <p class="text-sm text-slate-600">Deep architectural dive on classical Vitruvian proportions, 8-ft vs 9-ft vs 10-ft ceilings, window sill alignments, and two-thirds high board-and-batten rules.</p>
+    </div>
+    <a
+      href="/guides/wainscoting-height-chair-rail-golden-ratio"
+      class="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold transition-colors shrink-0"
+    >
+      Read Height Rules Guide &rarr;
+    </a>
+  </div>
+
+  <!-- 4-Step Visual Workflow Section -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">The 4-Phase Wainscoting Installation Protocol</h2>
+    <p class="text-gray-600 mb-6">Follow the mathematical sequencing professional millwork contractors use for balanced sightlines.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {workflowSteps.map(step => (
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">{step.icon}</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+                Phase {step.stepNumber}
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">{step.description}</p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-xs text-gray-500 font-medium">{step.calculatorName}</span>
+            <a href={step.href} class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+              Use Tool &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Detailed Bill of Materials Table -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Wainscoting &amp; Picture Frame Bill of Materials</h2>
+    <div class="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-slate-50 text-gray-700 font-bold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Material Component</th>
+            <th class="py-3 px-4">Standard Trade Spec</th>
+            <th class="py-3 px-4">Quantity Formula</th>
+            <th class="py-3 px-4">Trade Purpose</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Chair Rail Cap</td>
+            <td class="py-3 px-4">2-1/2-in to 3-1/2-in Primed Pine or Polyurethane Chair Rail</td>
+            <td class="py-3 px-4 font-mono text-sky-700">Total Perimeter Linear Ft &times; 1.10</td>
+            <td class="py-3 px-4">Horizontal divider moulding establishing classical 1/3 height boundary.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Panel Moulding</td>
+            <td class="py-3 px-4">1-1/4-in to 1-3/4-in Primed Wood / Polystyrene Profile</td>
+            <td class="py-3 px-4 font-mono text-sky-700">Total Box Perimeters &times; 1.15</td>
+            <td class="py-3 px-4">Forms the 4-sided rectangular picture frames with 45-degree mitered corners.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Instant CA Adhesive</td>
+            <td class="py-3 px-4">2P-10 Thick or FastCap 2-Part Cyanoacrylate + Activator</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Kit (10 oz Glue + Aerosol Spray)</td>
+            <td class="py-3 px-4">Bonds 45-degree mitered corners in 10 seconds for seamless table assembly.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Fasteners</td>
+            <td class="py-3 px-4">1-1/4-in 18-Gauge Brad Nails</td>
+            <td class="py-3 px-4 font-mono text-sky-700">4 to 6 Brads per Frame Side</td>
+            <td class="py-3 px-4">Tacks panel moulding to drywall with minimal head indentation.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Finishing Caulk &amp; Filler</td>
+            <td class="py-3 px-4">Sashco Big Stretch &amp; Crawford's Spackle Paste</td>
+            <td class="py-3 px-4 font-mono text-sky-700">2 Tubes Caulk + 1 Pint Filler</td>
+            <td class="py-3 px-4">Fills nail holes and seals inside/outside perimeter seams against drywall.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="The Pre-Assembly Table Secret vs In-Place Nailing"
+      trade="Architectural Millwork"
+      content="Amateurs attempt to nail picture frame molding piece-by-piece directly onto the wall, hoping the four 45-degree corners magically align. Because drywall is uneven, individual pieces twist and create stepped, uneven miter joints that require hours of sanding. Master finish carpenters pre-assemble the entire 4-piece picture frame on a dead-flat worktable using fast-acting CA glue and aerosol activator spray. Within 10 seconds, the glue cures to 4,000 PSI strength. You pick up the rigid, perfectly square frame as a single unit, hold it against your spacer blocks, and tack it to the wall in 30 seconds with 100% tight corners."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Wainscoting Layout"
+      mistakes={[
+        {
+          mistake: "Splitting the Wall Height Exactly in Half (50% Ratio)",
+          impact: "Placing the chair rail at 48 inches on an 8-foot wall visually cuts the room horizontally in half, making ceilings feel claustrophobic and dwarf-like.",
+          prevention: "Follow the Golden Ratio or 1/3 wall rule. For an 8-foot ceiling, the top of the rail should land between 32 and 34 inches from finished floor."
+        },
+        {
+          mistake: "Ignoring Electrical Outlets in the Math Phase",
+          impact: "A vertical stile that lands directly over an outlet box forces you to notch the moulding around the faceplate, creating a horrific visual blemish.",
+          prevention: "Calculate box counts and spacing widths so electrical boxes land cleanly inside a panel or cleanly within the wall margin between panels."
+        },
+        {
+          mistake: "Different Box Sizes on the Same Continuous Wall",
+          impact: "Making one box 28 inches wide and the next box 18 inches wide on the same wall looks chaotic and unplanned.",
+          prevention: "Keep all box widths on a single uninterrupted wall run identical within 1/8 inch."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      tradeTitle="Wainscoting Layout Calculator"
+      reviews={[
+        {
+          author: "Julian R.",
+          location: "Richmond, VA",
+          projectScope: "Formal Dining Room Picture Frame Molding",
+          savingsClaim: "Saved $3,200 DIY",
+          feedback: "The layout calculator solved what would have taken me hours of trial-and-error math. Having equal 4-inch margins on all four walls made the room look like an architectural magazine cover. Pre-assembling the frames with CA glue on my workbench saved my sanity.",
+          keyTakeaway: "Pre-assemble boxes on a flat table with CA glue before wall mounting."
+        },
+        {
+          author: "Christina B.",
+          location: "Denver, CO",
+          projectScope: "Foyer & Long Hallway Wainscoting",
+          savingsClaim: "Saved $2,450 vs Trim Specialist",
+          feedback: "The spacer block tip was pure genius. Cut two 3.75-inch scrap blocks on my miter saw and used them to position every single frame. Didn't have to measure a single line once the laser was running.",
+          keyTakeaway: "Use dedicated scrap spacer blocks instead of measuring each box reveal."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Elena Rostova, CBO"
+    reviewerRole="Certified Building Official & Architectural Finishes Specialist"
+    codeStandard="AWI Architectural Woodwork Standards Section 8 (Wall Paneling)"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

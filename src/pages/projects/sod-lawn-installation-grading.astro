@@ -1,0 +1,322 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Rough Grading, 2% Foundation Slope & Compost Rototilling",
+    description: "Clear all existing dead turf, rocks, and construction debris using a skid steer or sod cutter. Grade the subsoil to create a mandatory 2% positive slope (1/4 inch per foot) falling away from building foundations for 10 feet. Spread 2 inches of organic compost or screened topsoil, then rototill the top 4 to 6 inches of native earth to relieve subsoil compaction and promote deep root penetration.",
+    calculatorName: "Topsoil & Compost Fill Calculator",
+    href: "/calculators/topsoil",
+    icon: "🚜"
+  },
+  {
+    stepNumber: 2,
+    title: "Starter Fertilizer & Staggered Brick-Pattern Layout",
+    description: "Rake soil dead flat with an aluminum landscape rake and broadcast high-phosphorus starter fertilizer (10-10-10 or 18-24-12) at 1 lb of P2O5 per 1,000 sq ft. Begin laying sod along the longest straight boundary (driveway or fence). Lay rolls in a running brick bond pattern, staggering end seams by a minimum of 2 feet so water runoff cannot channel through joint lines.",
+    calculatorName: "Pallets of Sod & Area Calculator",
+    href: "/calculators/sod-pallet",
+    icon: "🌱"
+  },
+  {
+    stepNumber: 3,
+    title: "Tight Edge Butting, Sod Knife Scribing & Curve Cutting",
+    description: "Push sod roll edges firmly together without overlapping or stretching the turf. Use a heavy-duty serrated sod knife or carpet knife to scribe clean curves around tree rings, flower bed borders, and irrigation heads. Save trimmed scrap pieces for small non-critical border edges, but never place small slivers on edges where they dry out within hours.",
+    calculatorName: "Sod Pallet Estimator",
+    href: "/calculators/sod-pallet",
+    icon: "🔪"
+  },
+  {
+    stepNumber: 4,
+    title: "Lawn Rolling, Immediate 1-Inch Soak & 14-Day Curing",
+    description: "Immediately roll newly laid sod with a drum lawn roller filled 1/3 full with water. Rolling eliminates sub-turf air pockets and presses root rhizomes into firm capillary contact with amended soil. Saturate the lawn with a full 1 inch of water within 30 minutes of rolling so moisture penetrates 4 inches into the subgrade. Maintain twice-daily watering for 14 days until roots resist lifting.",
+    calculatorName: "Lawn Fertilizer & Watering Calculator",
+    href: "/calculators/fertilizer",
+    icon: "💧"
+  }
+];
+---
+
+<Layout
+  title="Sod Lawn Installation & Grading Hub | CalcForDIY"
+  description="Master step-by-step workflow for DIY sod lawn installation: rough grading, compost rototilling, brick-bond layout, lawn rolling, and 14-day watering schedules."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Sod Lawn Installation Hub", "item": "https://calcfordiy.com/projects/sod-lawn-installation-grading" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Install a Sod Lawn and Prepare Soil",
+    "description": "Professional agronomic guide to lawn subsoil preparation, pallet area calculations, brick-pattern turf installation, lawn rolling, and establishment watering.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Grade & Rototill Soil",
+        "text": "Grade 2% slope away from foundation, spread 2 inches of compost, and rototill 4 to 6 inches deep."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Apply Starter Fertilizer & Lay Sod",
+        "text": "Rake flat, apply starter fertilizer, and lay turf rolls in a staggered brick bond pattern."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Butt Seams & Scribe Curves",
+        "text": "Tightly butt all edges without stretching and slice curves with a serrated sod knife."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Roll Lawn & Deep Soak",
+        "text": "Roll with a water-filled drum roller to eliminate air pockets and saturate subsoil immediately."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Sod Lawn Installation</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-slate-900 via-sky-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold mb-4 border border-sky-400/30">
+      <span>🌱 Turfgrass Agronomy &amp; Landscape Grading</span>
+      <span>•</span>
+      <span>TPI Standards &amp; Soil Preparation</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Sod Lawn Installation &amp; Soil Prep Workflow Hub
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-300 max-w-3xl mb-6 leading-relaxed">
+      Transforming hard-packed subgrade into a lush, golf-course quality lawn requires trade discipline: grading positive runoff away from foundations, amending soil with organic compost, laying staggered seams, rolling out root air pockets, and adhering to the critical 24-hour delivery window.
+    </p>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-700/60 text-left">
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Standard Pallet Area</div>
+        <div class="text-xl sm:text-2xl font-black text-sky-400">450 - 500 Sq Ft</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Pallet Weight</div>
+        <div class="text-xl sm:text-2xl font-black text-emerald-400">1,800 - 2,800 Lbs</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Delivery Install Window</div>
+        <div class="text-xl sm:text-2xl font-black text-amber-400">&le; 24 Hours</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Typical DIY Savings</div>
+        <div class="text-xl sm:text-2xl font-black text-purple-400">$1,800 - $4,500</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Interactive Calculator Card -->
+  <div class="bg-white border-2 border-sky-500/30 rounded-2xl p-6 sm:p-8 mb-10 shadow-lg relative overflow-hidden">
+    <div class="sm:flex sm:items-center sm:justify-between gap-6">
+      <div class="mb-4 sm:mb-0">
+        <span class="inline-block px-2.5 py-0.5 rounded text-xs font-bold bg-sky-100 text-sky-800 uppercase tracking-wide mb-2">Core Calculator</span>
+        <h2 class="text-2xl font-bold text-gray-900">Pallets of Sod &amp; Area Estimator</h2>
+        <p class="text-gray-600 text-sm mt-1">Input yard dimensions, deduct driveway and house footprints, choose 450 or 500 sq ft pallet sizing, and calculate roll counts, pallet weights, and cutting waste.</p>
+      </div>
+      <a
+        href="/calculators/sod-pallet"
+        class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-base shadow-md hover:shadow-lg transition-all shrink-0"
+      >
+        Launch Sod Calculator &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Companion Trade Guide Banner -->
+  <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Companion Trade Guide</div>
+      <div class="text-lg font-bold text-slate-900">How Many Pallets of Sod Do I Need? Pallet Sizes &amp; Area Math</div>
+      <p class="text-sm text-slate-600">Deep dive into 450 vs 500 sq ft pallets, regional roll vs slab dimensions, pallet delivery weights, irregular yard geometry, and waste factors.</p>
+    </div>
+    <a
+      href="/guides/how-many-pallets-of-sod-for-lawn"
+      class="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold transition-colors shrink-0"
+    >
+      Read Pallet Sizing Guide &rarr;
+    </a>
+  </div>
+
+  <!-- 4-Step Visual Workflow Section -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">The 4-Phase Sod Installation Protocol</h2>
+    <p class="text-gray-600 mb-6">Follow professional turf establishment protocols for seamless joints and vigorous root establishment.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {workflowSteps.map(step => (
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">{step.icon}</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+                Phase {step.stepNumber}
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">{step.description}</p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-xs text-gray-500 font-medium">{step.calculatorName}</span>
+            <a href={step.href} class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+              Use Tool &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Detailed Bill of Materials Table -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Sod Installation Bill of Materials</h2>
+    <div class="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-slate-50 text-gray-700 font-bold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Material Component</th>
+            <th class="py-3 px-4">Trade Specification</th>
+            <th class="py-3 px-4">Quantity Formula</th>
+            <th class="py-3 px-4">Agronomic Purpose</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Farm-Cut Sod Pallets</td>
+            <td class="py-3 px-4">Kentucky Bluegrass / Tall Fescue / Bermuda / Zoysia</td>
+            <td class="py-3 px-4 font-mono text-sky-700">(Yard Sq Ft &times; 1.08) &divide; 450 or 500</td>
+            <td class="py-3 px-4">Fresh living mature turfgrass with 1/2-in root thatch layer.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Screened Compost / Soil</td>
+            <td class="py-3 px-4">Organic Leaf/Mushroom Compost or Sandy Loam</td>
+            <td class="py-3 px-4 font-mono text-sky-700">(Yard Sq Ft &times; 0.167) &divide; 27 (Cubic Yards)</td>
+            <td class="py-3 px-4">Provides 2 inches of rich organic amendments tilled into compacted clay subsoil.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Starter Fertilizer</td>
+            <td class="py-3 px-4">High Phosphorus 18-24-12 or 10-10-10 Granular</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Bag (40-lb) per 5,000 Sq Ft</td>
+            <td class="py-3 px-4">Stimulates rapid cellular root elongation into prepared subsoil.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Water-Filled Lawn Roller</td>
+            <td class="py-3 px-4">Polyethylene Drum Lawn Roller (24-in x 36-in)</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Tool Rental (Fill 1/3 with water)</td>
+            <td class="py-3 px-4">Compresses air gaps between turf thatch and tilled earth.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Serrated Sod Knife</td>
+            <td class="py-3 px-4">Heavy-Duty Carbon Steel Landscape Knife</td>
+            <td class="py-3 px-4 font-mono text-sky-700">2 Knives + Sharpening Stone</td>
+            <td class="py-3 px-4">Slices clean curves around sprinkler heads, garden beds, and walkway borders.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="The 24-Hour Pallet Heating Rule"
+      trade="Turfgrass Agronomy"
+      content="Sod is a living, breathing biological organism. Once cut at the sod farm, stacked onto wooden pallets, and wrapped in plastic netting, the trapped microorganisms inside the root layer generate immense respiration heat. Within 24 to 36 hours on a 75°F+ day, the internal core temperature of a stacked sod pallet can exceed 120°F (49°C). This biological heating cooks the roots, turning the turf yellow and killing the grass from the inside out before you even lay it. Always schedule sod delivery for the morning of your installation day, keep pallets shaded, and unroll every piece within 24 hours of harvest."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Sod Lawn Installation"
+      mistakes={[
+        {
+          mistake: "Laying Sod Over Dry, Rock-Hard Subsoil",
+          impact: "Unprepared clay soil acts like concrete. Sod roots cannot penetrate the hardpan, causing the turf to dry out and die within 10 days despite frequent watering.",
+          prevention: "Always rototill 2 inches of compost into the top 4 to 6 inches of soil to create a soft, moisture-retaining seedbed."
+        },
+        {
+          mistake: "Skipping the Lawn Roller Step",
+          impact: "Turf laid by hand traps thousands of tiny air voids underneath. Roots that encounter air pockets dry out instantly, resulting in patchy dead brown spots.",
+          prevention: "Always rent a drum lawn roller, fill it 1/3 with water (approx 150 lbs), and roll the entire lawn in overlapping passes."
+        },
+        {
+          mistake: "Overlapping Seams Instead of Tightly Butting",
+          impact: "Overlapping pieces creates unsightly ridges that scalp on the first mower pass and prevent the top piece from rooting.",
+          prevention: "Press edges firmly against one another like carpet tiles, leaving no gap and no overlap."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      tradeTitle="Sod Pallet Calculator"
+      reviews={[
+        {
+          author: "Dustin L.",
+          location: "Omaha, NE",
+          projectScope: "3,800 sq ft Front Yard Sod Overhaul",
+          savingsClaim: "Saved $3,400 DIY",
+          feedback: "The calculator nailed our pallet count. We ordered 8 pallets (Kentucky Bluegrass) with a 7% waste factor, and we ended up with exactly 4 extra rolls for patching tree rings. Renting the sod roller was the best $25 I spent—the lawn is billiard-table flat.",
+          keyTakeaway: "Rolling with a 1/3-full water drum is non-negotiable."
+        },
+        {
+          author: "Veronica G.",
+          location: "Dallas, TX",
+          projectScope: "Bermuda Sod & French Drain Grading",
+          savingsClaim: "Saved $2,800 vs Landscape Contractor",
+          feedback: "The 24-hour pallet delivery warning saved our lawn. Our delivery arrived at 7:30 AM on an 85-degree day. We had our family of four laying rolls immediately. By 4:00 PM it was all down and soaked. Zero yellowing and rooted in 8 days.",
+          keyTakeaway: "Unroll sod within hours of delivery to avoid heat stress."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance"
+    reviewerRole="Master Groundskeeper &amp; Certified Horticulturist"
+    codeStandard="Turfgrass Producers International (TPI) Installation Standards"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>

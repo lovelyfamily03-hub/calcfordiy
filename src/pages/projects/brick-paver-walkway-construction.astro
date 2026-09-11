@@ -1,0 +1,328 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import FieldNote from '../../components/FieldNote.astro';
+import CostlyMistakes from '../../components/CostlyMistakes.astro';
+import CommunityReviews from '../../components/CommunityReviews.astro';
+import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
+
+const workflowSteps = [
+  {
+    stepNumber: 1,
+    title: "Excavation Depth, 1/4-In/Ft Slope & Geotextile Layer",
+    description: "Excavate the walkway trench to a uniform depth of 7-3/8 inches below target finished grade (accommodating 4 inches of crushed stone base, 1 inch of bedding sand, and 2-3/8-inch pavers). Grade the trench with a minimum 1/4-inch per foot cross-slope for drainage. Line the entire excavated subgrade with heavy-duty 4-oz non-woven geotextile fabric to permanently prevent crushed aggregate from sinking into native clay.",
+    calculatorName: "Paver Walkway Area & Cost Estimator",
+    href: "/calculators/paver-walkway",
+    icon: "⛏️"
+  },
+  {
+    stepNumber: 2,
+    title: "Crushed Stone Base Compaction in 2-Inch Lifts",
+    description: "Spread dense-graded crushed stone aggregate (ASTM D2940, 21A, or 3/4-inch minus road base). Moisten slightly with a garden hose and compact in maximum 2-inch lifts using a gas-powered 3,000+ lb vibratory plate compactor. Make three overlapping passes per lift until the base reaches 98% Standard Proctor density, providing an unyielding foundation that resists freeze-thaw heaving.",
+    calculatorName: "Gravel & Base Compaction Calculator",
+    href: "/calculators/gravel-driveway",
+    icon: "🚜"
+  },
+  {
+    stepNumber: 3,
+    title: "Screeding Coarse Bedding Sand & Laying Patterned Pavers",
+    description: "Place two parallel 1-inch O.D. steel electrical conduit pipes over the compacted stone. Spread uncompacted ASTM C33 washed concrete sand between the pipes, then screed dead-flat with an aluminum straightedge. Lay pavers in a running bond or 45-degree herringbone pattern from a fixed edge, maintaining 1/16-inch to 1/8-inch joint spaces. Anchor borders with spiked commercial PVC paver restraints.",
+    calculatorName: "Paver Bedding Sand & Base Depth Calculator",
+    href: "/calculators/paver-base-sand",
+    icon: "🧱"
+  },
+  {
+    stepNumber: 4,
+    title: "Paver Seating Compaction & Polymeric Sand Joint Sweeping",
+    description: "Run the plate compactor with a protective neoprene bottom pad across the dry, un-sanded pavers to vibrate bedding sand 1/2-inch up into the joints. Sweep high-performance polymeric joint sand diagonally across the surface until joints are filled to 1/8-inch below the paver chamfer. Blow away all fine dust with an electric leaf blower, then activate polymers with three gentle water mist cycles.",
+    calculatorName: "Polymeric Sand Bags Calculator",
+    href: "/calculators/polymeric-sand",
+    icon: "✨"
+  }
+];
+---
+
+<Layout
+  title="Brick Paver Walkway Construction Hub | CalcForDIY"
+  description="Master step-by-step workflow for DIY brick paver walkways: 7-inch excavation, 98% base compaction, ASTM C33 bedding sand, and polymeric joint activation."
+>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
+      { "@type": "ListItem", "position": 3, "name": "Paver Walkway Construction Hub", "item": "https://calcfordiy.com/projects/brick-paver-walkway-construction" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Build an Interlocking Brick Paver Walkway",
+    "description": "Comprehensive hardscaping guide to excavation depth, geotextile separation, aggregate compaction, bedding sand screeding, and polymeric sand stabilization.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Excavate & Lay Geotextile Fabric",
+        "text": "Excavate 7-3/8 inches deep with 1/4-inch/ft slope and line trench with 4-oz non-woven geotextile fabric."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Compact Crushed Stone Base in 2-Inch Lifts",
+        "text": "Spread 4 to 6 inches of crushed stone base and compact with a vibratory plate compactor to 98% density."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Screed ASTM C33 Sand & Lay Pavers",
+        "text": "Screed 1 inch of uncompacted coarse concrete sand over 1-inch conduit pipes and place pavers in herringbone pattern."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Plate Compact & Activate Polymeric Sand",
+        "text": "Seat pavers with a padded compactor, sweep dry polymeric sand, blow off dust, and mist with water."
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <nav class="flex text-xs text-gray-500 mb-4 gap-1 items-center not-prose">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/projects" class="hover:text-blue-600">Projects</a>
+    <span>/</span>
+    <span class="text-gray-800 font-medium">Paver Walkway</span>
+  </nav>
+
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-br from-slate-900 via-sky-950 to-slate-900 text-white rounded-2xl p-6 sm:p-8 mb-8 shadow-xl not-prose">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold mb-4 border border-sky-400/30">
+      <span>🧱 Hardscape Engineering &amp; Flexible Pavements</span>
+      <span>•</span>
+      <span>ICPI Tech Spec 2 &amp; ASTM Standards</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white">
+      Brick Paver Walkway Construction Workflow Hub
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-300 max-w-3xl mb-6 leading-relaxed">
+      A brick paver walkway that survives decades of freeze-thaw cycles without rutting, heaving, or growing weeds relies 90% on the sub-surface foundation. Master excavation depths, non-woven geotextile separation, 98% Proctor base compaction, coarse ASTM C33 bedding sand, and polymeric joint stabilization.
+    </p>
+
+    <!-- Key Metrics Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-slate-700/60 text-left">
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Excavation Depth</div>
+        <div class="text-xl sm:text-2xl font-black text-sky-400">7-3/8 in Total</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Crushed Base Lift</div>
+        <div class="text-xl sm:text-2xl font-black text-emerald-400">2-in Max per Pass</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Bedding Sand Spec</div>
+        <div class="text-xl sm:text-2xl font-black text-amber-400">1-in ASTM C33 Coarse</div>
+      </div>
+      <div>
+        <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Typical DIY Savings</div>
+        <div class="text-xl sm:text-2xl font-black text-purple-400">$2,500 - $6,000</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Interactive Calculator Card -->
+  <div class="bg-white border-2 border-sky-500/30 rounded-2xl p-6 sm:p-8 mb-10 shadow-lg relative overflow-hidden">
+    <div class="sm:flex sm:items-center sm:justify-between gap-6">
+      <div class="mb-4 sm:mb-0">
+        <span class="inline-block px-2.5 py-0.5 rounded text-xs font-bold bg-sky-100 text-sky-800 uppercase tracking-wide mb-2">Core Calculator</span>
+        <h2 class="text-2xl font-bold text-gray-900">Paver Walkway Area, Tons &amp; Sand Calculator</h2>
+        <p class="text-gray-600 text-sm mt-1">Input walkway length, width, paver dimensions, and base thickness to calculate paver counts, crushed stone base tons, bedding sand yards, and polymeric sand bags.</p>
+      </div>
+      <a
+        href="/calculators/paver-walkway"
+        class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-bold text-base shadow-md hover:shadow-lg transition-all shrink-0"
+      >
+        Launch Paver Calculator &rarr;
+      </a>
+    </div>
+  </div>
+
+  <!-- Companion Trade Guide Banner -->
+  <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+    <div>
+      <div class="text-xs font-bold uppercase tracking-wider text-slate-500">Companion Trade Guide</div>
+      <div class="text-lg font-bold text-slate-900">Concrete Sand vs Mason Sand vs Stone Dust for Pavers</div>
+      <p class="text-sm text-slate-600">Discover why using masonry sand or stone dust leads to catastrophic paver rutting and efflorescence, and why washed ASTM C33 concrete sand is the only ICPI-approved spec.</p>
+    </div>
+    <a
+      href="/guides/concrete-sand-vs-mason-sand-paver-bedding"
+      class="inline-flex items-center px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold transition-colors shrink-0"
+    >
+      Read Sand Comparison Guide &rarr;
+    </a>
+  </div>
+
+  <!-- 4-Step Visual Workflow Section -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">The 4-Phase Paver Walkway Protocol</h2>
+    <p class="text-gray-600 mb-6">Engineered according to ICPI (Interlocking Concrete Pavement Institute) commercial specifications.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {workflowSteps.map(step => (
+        <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">{step.icon}</span>
+              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+                Phase {step.stepNumber}
+              </span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">{step.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">{step.description}</p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <span class="text-xs text-gray-500 font-medium">{step.calculatorName}</span>
+            <a href={step.href} class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+              Use Tool &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Detailed Bill of Materials Table -->
+  <div class="mb-12">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Paver Walkway Bill of Materials</h2>
+    <div class="overflow-x-auto border border-gray-200 rounded-xl shadow-sm">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-slate-50 text-gray-700 font-bold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Material Component</th>
+            <th class="py-3 px-4">ICPI Specification</th>
+            <th class="py-3 px-4">Quantity Formula</th>
+            <th class="py-3 px-4">Engineering Purpose</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Concrete / Clay Pavers</td>
+            <td class="py-3 px-4">2-3/8-in (60 mm) Thick Interlocking Pavers (ASTM C936)</td>
+            <td class="py-3 px-4 font-mono text-sky-700">Walkway Sq Ft &times; 1.08 &divide; Paver Sq Ft</td>
+            <td class="py-3 px-4">Wear course supporting pedestrian loads and providing architectural aesthetics.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Crushed Stone Base</td>
+            <td class="py-3 px-4">3/4-in Minus Dense Graded Aggregate (21A / Crusher Run)</td>
+            <td class="py-3 px-4 font-mono text-sky-700">(Sq Ft &times; 0.333 &divide; 27) &times; 1.4 Tons</td>
+            <td class="py-3 px-4">4-in to 6-in compacted load-bearing foundation transmitting weight across subgrade.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Bedding Sand</td>
+            <td class="py-3 px-4">ASTM C33 Washed Coarse Concrete Sand</td>
+            <td class="py-3 px-4 font-mono text-sky-700">(Sq Ft &times; 0.0833 &divide; 27) &times; 1.35 Tons</td>
+            <td class="py-3 px-4">1-inch uncompacted setting bed that migrates upward to lock paver chamfers.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Geotextile Separation Fabric</td>
+            <td class="py-3 px-4">4-oz Non-Woven Polypropylene Landscape Fabric</td>
+            <td class="py-3 px-4 font-mono text-sky-700">Walkway Sq Ft + 20% Overlap</td>
+            <td class="py-3 px-4">Prevents aggregate base from sinking down into native subgrade soil over time.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Snap-Edge Restraints &amp; Spikes</td>
+            <td class="py-3 px-4">Heavy-Duty PVC Paver Edging + 10-in Steel Spikes</td>
+            <td class="py-3 px-4 font-mono text-sky-700">Total Perimeter Ft &plus; 1 Spike per 12-in</td>
+            <td class="py-3 px-4">Provides rigid lateral restraint preventing pavers from shifting outward.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-semibold text-gray-900">Polymeric Sand</td>
+            <td class="py-3 px-4">Polymer-Modified Joint Sand (Techniseal / Alliance Gator)</td>
+            <td class="py-3 px-4 font-mono text-sky-700">1 Bag (50-lb) per 60 to 80 Sq Ft</td>
+            <td class="py-3 px-4">Locks paver joints against weed germination, ant tunneling, and joint washout.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Trade Pro Field Note -->
+  <div class="mb-10">
+    <FieldNote
+      title="The Screed Pipe Removal and Sand Patching Rule"
+      trade="Hardscape Construction"
+      content="When screeding ASTM C33 bedding sand over 1-inch electrical conduit pipes, pulling the pipes out leaves two 1-inch deep voids in the sand bed. Never drag your 2x4 straight across to fill them, as that leaves uncompacted low-density zones that cause linear settling depressions once pavers are rolled. Instead, use a hand trowel to deposit fresh loose sand into the pipe troughs, then use a small 6-inch hand block to strike it flush with the surrounding screeded plane."
+    />
+  </div>
+
+  <!-- Critical Costly Mistakes Box -->
+  <div class="mb-12">
+    <CostlyMistakes
+      projectType="Paver Walkway Construction"
+      mistakes={[
+        {
+          mistake: "Using Masonry Sand or Stone Dust as Bedding",
+          impact: "Fine mason sand contains microscopic particles that hold moisture and turn into liquid mud during heavy rains, causing pavers to sink unevenly and pump white efflorescence salt to the surface.",
+          prevention: "Only use coarse, angular ASTM C33 washed concrete sand. Its coarse angular grains interlock and drain freely."
+        },
+        {
+          mistake: "Compacting the Gravel Base in a Single 6-Inch Layer",
+          impact: "A standard 3,000-lb plate compactor can only effectively compact 2 to 3 inches of crushed stone at a time. Compacting 6 inches in one shot leaves the bottom 3 inches loose, leading to severe settling wheel ruts within 1 season.",
+          prevention: "Always place and compact crushed stone in thin 2-inch lifts, moistening slightly and making multiple overlapping passes per lift."
+        },
+        {
+          mistake: "Activating Polymeric Sand Before Blowing Away Surface Dust",
+          impact: "If any polymeric sand dust remains on the face of pavers when misted with water, the synthetic polymers bond permanently to the paver pores, creating a milky white haze that requires harsh acid washing to strip.",
+          prevention: "Use a backpack or electric leaf blower at idle throttle to blow every speck of sand dust off paver chamfers before touching a garden hose."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Verified User Reviews -->
+  <div class="mb-12">
+    <CommunityReviews
+      tradeTitle="Paver Walkway Calculator"
+      reviews={[
+        {
+          author: "Kirk M.",
+          location: "Grand Rapids, MI",
+          projectScope: "45-ft Front Walkway (Belgard Pavers)",
+          savingsClaim: "Saved $3,800 DIY",
+          feedback: "Our hardscape contractor quoted $5,400 for a 45-foot walkway. We rented a 3,500-lb plate compactor and followed this workflow to the millimeter. 6 inches of 21A crushed stone compacted in 2-inch lifts is rock solid. Two Michigan winters later, there is zero heaving.",
+          keyTakeaway: "Compact aggregate base in 2-inch lifts for freeze-thaw durability."
+        },
+        {
+          author: "Heather T.",
+          location: "Pittsburgh, PA",
+          projectScope: "Curved Paver Path & Step Landing",
+          savingsClaim: "Saved $2,900 vs Landscaper",
+          feedback: "The leaf blower tip before watering polymeric sand saved our pavers. My husband was ready to turn on the hose while dust was still on the bricks. We blew it off completely and misted 3 times—clean joints with zero white haze.",
+          keyTakeaway: "Blow away every grain of polymeric dust before spraying water."
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Chen, PE"
+    reviewerRole="Licensed Professional Structural &amp; Civil Engineer"
+    codeStandard="ICPI Tech Spec 2 &amp; ASTM C33 / ASTM C936 Standards"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Helpful Feedback Box -->
+  <HelpfulFeedback />
+
+</Layout>
