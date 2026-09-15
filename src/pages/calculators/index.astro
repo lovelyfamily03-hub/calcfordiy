@@ -627,20 +627,37 @@ const categories = [...new Set(calculators.map(c => c.category))];
   title={`All ${calculators.length} Free DIY Construction Calculators — CalcForDIY`}
   description={`Browse all ${calculators.length} free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.`}
 >
-<script type="application/ld+json" is:inline define:vars={{ count: calculators.length }}>
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "CalcForDIY Calculators Directory",
-  "url": "https://calcfordiy.com/calculators",
-  "description": `Directory of ${count} free DIY construction & material calculators with SVG diagrams and RSMeans contractor cost benchmarks.`,
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://calcfordiy.com/calculators?q={search_term_string}",
-    "query-input": "required name=search_term_string"
+  "@type": "CollectionPage",
+  "name": `All ${calculators.length} Free DIY Construction Calculators — CalcForDIY`,
+  "url": "https://calcfordiy.com/calculators/",
+  "description": `Directory of ${calculators.length} free DIY construction & material calculators with SVG diagrams and RSMeans contractor cost benchmarks.`,
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CalcForDIY",
+    "url": "https://calcfordiy.com"
   }
-}
-</script>
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://calcfordiy.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://calcfordiy.com/calculators/"
+    }
+  ]
+})} />
 
   <div class="mb-8">
     <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">

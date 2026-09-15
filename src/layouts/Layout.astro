@@ -10,6 +10,7 @@ const navLinks = [
   { href: '/about', label: 'About', match: '/about' },
   { href: '/contact', label: 'Contact', match: '/contact' },
 ];
+const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com${Astro.url.pathname}` : `https://calcfordiy.com${Astro.url.pathname}/`;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +26,7 @@ const navLinks = [
   <meta name="description" content={description} />
   {noindex && <meta name="robots" content="noindex, follow" />}
   <title>{title}</title>
-  <link rel="canonical" href={`https://calcfordiy.com${Astro.url.pathname}`} />
+  <link rel="canonical" href={canonicalUrl} />
   
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SK11L47SS5" is:inline></script>
@@ -41,18 +42,22 @@ const navLinks = [
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6410565511961171" crossorigin="anonymous" is:inline></script>
 
   <!-- Open Graph Meta Tags -->
+  <meta property="og:site_name" content="CalcForDIY" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content={`https://calcfordiy.com${Astro.url.pathname}`} />
+  <meta property="og:url" content={canonicalUrl} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content="https://calcfordiy.com/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="CalcForDIY — 100 Free DIY Construction & Material Takeoff Calculators" />
   
   <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://calcfordiy.com/og-image.jpg" />
+  <meta name="twitter:image:alt" content="CalcForDIY — 100 Free DIY Construction & Material Takeoff Calculators" />
 </head>
   <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
     <header class="bg-white border-b border-gray-200 px-4 py-3 print:hidden">

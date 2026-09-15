@@ -627,23 +627,29 @@ const categories = [...new Set(calculators.map(c => c.category))];
   title={`CalcForDIY — ${calculators.length} Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks`}
   description={`${calculators.length} free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs.`}
 >
-<script type="application/ld+json" is:inline define:vars={{ count: calculators.length }}>
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "CalcForDIY",
   "url": "https://calcfordiy.com",
-  "description": `${count} free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.`,
+  "description": `${calculators.length} free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.`,
   "potentialAction": {
     "@type": "SearchAction",
     "target": "https://calcfordiy.com/calculators?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
-}
-</script>
+})} />
 
-<script type="application/ld+json" is:inline define:vars={{ count: calculators.length }}>
-{
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CalcForDIY",
+  "url": "https://calcfordiy.com",
+  "logo": "https://calcfordiy.com/favicon.svg",
+  "description": "CalcForDIY provides 100 free construction, framing, and home improvement material takeoffs with trade editorial guides, visual diagrams, and contractor cost benchmarks."
+})} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "CalcForDIY Construction & Home Improvement Suite",
@@ -651,14 +657,13 @@ const categories = [...new Set(calculators.map(c => c.category))];
   "operatingSystem": "Web Browser",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "featureList": [
-    `${count} Interactive Material & Framing Calculators`,
+    `${calculators.length} Interactive Material & Framing Calculators`,
     "Dynamic Vector SVG Framing & Cut Diagrams",
     "RSMeans DIY Material vs. Turnkey Contractor Cost Benchmarks",
     "One-Click Copy Shopping List Material Takeoff Export",
     "Multi-Step Sequential Project Construction Hubs"
   ]
-}
-</script>
+})} />
 
 <script type="application/ld+json" is:inline>
 {

@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout
   title="Page Not Found — CalcForDIY"
   description="The page you are looking for doesn't exist. Browse our 100 free DIY calculators instead."
+  noindex={true}
 >
   <div class="text-center py-16 max-w-lg mx-auto">
     <div class="text-8xl font-black text-gray-200 mb-4">404</div>
@@ -13,15 +14,18 @@ import Layout from '../layouts/Layout.astro';
       The page you are looking for doesn't exist or may have been moved. Try one of these instead:
     </p>
     
-    <div class="space-y-3">
-      <a href="/" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <a href="/" class="block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-center">
         ← Back to Homepage
       </a>
-      <a href="/calculators" class="block bg-white border border-gray-200 hover:border-blue-400 text-gray-900 font-semibold py-3 px-6 rounded-lg transition-all">
-        Browse All Calculators
+      <a href="/calculators" class="block bg-white border border-gray-200 hover:border-blue-400 text-gray-900 font-semibold py-3 px-4 rounded-lg transition-all text-center">
+        All 100 Calculators
       </a>
-      <a href="/guides" class="block bg-white border border-gray-200 hover:border-blue-400 text-gray-900 font-semibold py-3 px-6 rounded-lg transition-all">
-        Read Our Guides
+      <a href="/projects" class="block bg-white border border-gray-200 hover:border-blue-400 text-gray-900 font-semibold py-3 px-4 rounded-lg transition-all text-center">
+        100 Project Hubs
+      </a>
+      <a href="/guides" class="block bg-white border border-gray-200 hover:border-blue-400 text-gray-900 font-semibold py-3 px-4 rounded-lg transition-all text-center">
+        107 Trade Guides
       </a>
     </div>
   </div>
