@@ -4,11 +4,11 @@ const { title, description, noindex = false } = Astro.props;
 const pathname = Astro.url.pathname;
 const isCalculatorPage = pathname.startsWith('/calculators/') && pathname !== '/calculators/' && pathname !== '/calculators';
 const navLinks = [
+  { href: '/journal', label: 'Journal', match: '/journal' },
   { href: '/calculators', label: 'Calculators', match: '/calculators' },
   { href: '/projects', label: 'Projects', match: '/projects' },
   { href: '/guides', label: 'Guides', match: '/guides' },
   { href: '/about', label: 'About', match: '/about' },
-  { href: '/contact', label: 'Contact', match: '/contact' },
 ];
 const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com${Astro.url.pathname}` : `https://calcfordiy.com${Astro.url.pathname}/`;
 ---
@@ -170,6 +170,7 @@ const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com$
           <div>
             <h3 class="font-semibold text-gray-900 mb-3">Resources</h3>
             <ul class="space-y-2">
+              <li><a href="/journal" class="hover:text-blue-600 font-semibold text-blue-700">The Field Journal</a></li>
               <li><a href="/projects" class="hover:text-blue-600">Project Hubs</a></li>
               <li><a href="/guides" class="hover:text-blue-600">DIY Guides</a></li>
               <li><a href="/guides/how-much-mulch-for-garden-beds" class="hover:text-blue-600">Mulch Guide</a></li>

@@ -1,0 +1,214 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const articles = [
+  {
+    title: "The $4,800 Sump Pump Mistake: What Three Days of Relentless Rain Taught Me About Hydrostatic Pressure",
+    slug: "the-4800-dollar-sump-pump-mistake-hydrostatic-pressure",
+    excerpt: "At 2:14 AM on a Tuesday, I woke up to the smell of damp concrete and the low, hollow humming of a pump that was spinning without moving an ounce of water. Here is what happens when builder-grade plumbing meets a rising water table.",
+    author: "Marcus Vance",
+    authorRole: "Master Plumber & Field Contributor",
+    publishDate: "September 15, 2026",
+    readTime: "9 min read",
+    category: "Field Investigation",
+    tag: "Water & Drainage",
+    companionTool: "Sump Pump Sizing Calculator",
+    companionHref: "/calculators/sump-pump-sizing",
+    featured: true
+  },
+  {
+    title: "Tearing Down an 80-Year-Old Plaster Ceiling: The Dust, the Framing Realities, and Why We Went with Level 5 Drywall",
+    slug: "tearing-down-80-year-old-plaster-ceiling-level-5-drywall",
+    excerpt: "Before you touch a crowbar to 1940s horsehair plaster, you imagine a clean demo. In reality, it is 3,200 pounds of caustic lime debris, bowed joists that haven't been straight since Truman was in office, and the delicate art of skim-coating.",
+    author: "Elena Rostova",
+    authorRole: "Historic Renovation Specialist",
+    publishDate: "September 8, 2026",
+    readTime: "11 min read",
+    category: "Renovation Diary",
+    tag: "Interiors & Finishes",
+    companionTool: "Drywall Mud Calculator",
+    companionHref: "/calculators/drywall-mud",
+    featured: false
+  },
+  {
+    title: "When the Inspector Arrives: The Anatomy of a Deck Stair Stringer Rejection (and the Geometry That Saved It)",
+    slug: "anatomy-of-deck-stair-stringer-rejection-irc-r311",
+    excerpt: "The building inspector didn't even look at our joist hangers. He walked straight to the bottom stair riser, pulled out a brass-tipped tape measure, and shook his head. Here is the math that failed our framing—and the LVL redesign that fixed it.",
+    author: "David Miller, PE",
+    authorRole: "Senior Structural Contributor",
+    publishDate: "September 1, 2026",
+    readTime: "8 min read",
+    category: "Code & Craft",
+    tag: "Structural Carpentry",
+    companionTool: "Stair Stringer Calculator",
+    companionHref: "/calculators/stair-stringer",
+    featured: false
+  }
+];
+
+const featuredArticle = articles.find(a => a.featured) || articles[0];
+const regularArticles = articles.filter(a => a !== featuredArticle);
+---
+
+<Layout
+  title="The CalcForDIY Journal — Field Reports, Code Analysis & Remodeling Narratives"
+  description="Honest, humanized renovation narratives, trade investigations, and structural engineering case studies from homeowners and licensed tradespeople."
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "The CalcForDIY Journal",
+    "description": "Field reports, remodeling narratives, and construction trade investigations.",
+    "url": "https://calcfordiy.com/journal/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" }
+    ]
+  })} />
+
+  <!-- Journal Masthead -->
+  <header class="border-b-2 border-gray-900 pb-6 mb-10 pt-2">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 pb-3 mb-4">
+      <div>
+        <span class="text-xs font-mono font-bold tracking-widest text-blue-700 uppercase">Volume 1 • Issue 1 • Fall 2026</span>
+        <h1 class="text-4xl md:text-6xl font-black text-gray-950 tracking-tight mt-1 font-serif">CALCFORDIY JOURNAL</h1>
+      </div>
+      <div class="text-xs text-gray-700 font-mono text-left md:text-right">
+        <div>Field Dispatches &amp; Trade Narratives</div>
+        <div>Published Weekly • Free Engineering Access</div>
+      </div>
+    </div>
+    <p class="text-base text-gray-700 max-w-3xl leading-relaxed">
+      A publication dedicated to the realities of residential building, hands-on remodeling, building code friction, and material science. Written by tradespeople, structural engineers, and homeowners who have lived through the dust.
+    </p>
+  </header>
+
+  <!-- Lead Story (Featured Dispatch) -->
+  <section class="mb-14">
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-10 shadow-xs hover:border-gray-400 transition-all">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="px-3 py-1 bg-amber-100 text-amber-900 text-xs font-bold rounded-full uppercase tracking-wider">
+          {featuredArticle.category}
+        </span>
+        <span class="text-xs text-gray-600 font-medium">{featuredArticle.publishDate}</span>
+        <span class="text-gray-300">•</span>
+        <span class="text-xs text-gray-600 font-medium">{featuredArticle.readTime}</span>
+      </div>
+
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-950 tracking-tight font-serif mb-4 leading-snug">
+        <a href={`/journal/${featuredArticle.slug}`} class="hover:text-blue-700 transition-colors">
+          {featuredArticle.title}
+        </a>
+      </h2>
+
+      <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-6 max-w-4xl">
+        {featuredArticle.excerpt}
+      </p>
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-gray-100">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-bold flex items-center justify-center font-serif text-sm border border-blue-200">
+            {featuredArticle.author.split(' ').map(n => n[0]).join('')}
+          </div>
+          <div>
+            <div class="text-sm font-bold text-gray-900">{featuredArticle.author}</div>
+            <div class="text-xs text-gray-600">{featuredArticle.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <a
+            href={featuredArticle.companionHref}
+            class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-lg transition-colors"
+          >
+            <span>Companion: {featuredArticle.companionTool}</span>
+            <span>↗</span>
+          </a>
+          <a
+            href={`/journal/${featuredArticle.slug}`}
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl transition-colors shadow-xs"
+          >
+            <span>Read Field Story</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Editorial Wire (Recent Dispatches Grid) -->
+  <section class="mb-14">
+    <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200">
+      <h3 class="text-xl font-bold text-gray-950 font-serif">Recent Field Dispatches</h3>
+      <span class="text-xs font-mono text-gray-600">Updated Weekly</span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {regularArticles.map(article => (
+        <article class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:border-gray-400 transition-all">
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2.5 py-0.5 bg-gray-100 text-gray-800 text-xs font-semibold rounded-md">
+                {article.category}
+              </span>
+              <span class="text-xs text-gray-600">{article.readTime}</span>
+            </div>
+
+            <h4 class="text-xl font-bold text-gray-950 font-serif mb-3 leading-snug">
+              <a href={`/journal/${article.slug}`} class="hover:text-blue-700 transition-colors">
+                {article.title}
+              </a>
+            </h4>
+
+            <p class="text-sm text-gray-700 leading-relaxed mb-6">
+              {article.excerpt}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold text-gray-900">{article.author}</div>
+              <div class="text-[11px] text-gray-600">{article.publishDate}</div>
+            </div>
+            <a
+              href={`/journal/${article.slug}`}
+              class="text-xs font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1"
+            >
+              <span>Read Article</span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- From the Editor's Desk -->
+  <section class="bg-stone-50 border border-stone-200 rounded-2xl p-6 sm:p-8 mb-12">
+    <div class="max-w-3xl">
+      <span class="text-xs font-mono uppercase tracking-widest text-stone-600 font-bold block mb-2">Editorial Policy</span>
+      <h3 class="text-xl font-bold text-gray-900 font-serif mb-3">Why We Write Real Field Stories</h3>
+      <p class="text-sm text-gray-700 leading-relaxed mb-3">
+        Most construction advice online is sanitized. Step-by-step guides assume perfect 90-degree corners, brand-new studs without crowns, and weather that never drops below 65 degrees. 
+      </p>
+      <p class="text-sm text-gray-700 leading-relaxed mb-4">
+        The <em>CalcForDIY Journal</em> exists to tell the truth about what happens between the blueprint and the final inspection: the unforeseen dry rot, the inspector who quotes an IRC clause you've never heard of, and the mathematics that actually keep water out of your basement.
+      </p>
+      <div class="flex items-center gap-3 pt-2">
+        <a href="/about" class="text-xs font-bold text-blue-700 hover:underline">Meet the Editorial Staff →</a>
+        <span class="text-stone-300">•</span>
+        <a href="/methodology" class="text-xs font-bold text-blue-700 hover:underline">Our Engineering Methodology →</a>
+      </div>
+    </div>
+  </section>
+</Layout>

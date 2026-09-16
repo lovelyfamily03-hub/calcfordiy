@@ -1,0 +1,249 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const article = {
+  title: "When the Inspector Arrives: The Anatomy of a Deck Stair Stringer Rejection (and the Geometry That Saved It)",
+  slug: "anatomy-of-deck-stair-stringer-rejection-irc-r311",
+  description: "An honest breakdown of why our deck stairs failed municipal inspection by 3/8 of an inch, the IRC R311 throat depth rule, and the LVL redesign that created an unshakeable staircase.",
+  author: "David Miller, PE",
+  authorRole: "Senior Structural Contributor",
+  reviewer: "Marcus Vance",
+  reviewerRole: "Code Compliance Reviewer",
+  publishDate: "September 1, 2026",
+  readTime: "8 min read",
+  category: "Code & Craft",
+  companionCalculator: {
+    name: "Stair Stringer Calculator",
+    href: "/calculators/stair-stringer",
+    desc: "Calculate precise total rise, individual riser height, run, and cut throat depth."
+  },
+  companionHub: {
+    name: "Deck Stair Stringer Framing Hub",
+    href: "/projects/deck-stair-stringer-framing",
+    desc: "Complete 4-phase framing walkthrough with IRC code checklists and tension tie brackets."
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-09-01T08:00:00+00:00",
+    "dateModified": "2026-09-01T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-3xl mx-auto pt-2 pb-16">
+    <div class="flex items-center gap-2 text-xs text-gray-500 mb-4 font-mono">
+      <a href="/journal" class="text-blue-600 hover:underline">Journal</a>
+      <span>/</span>
+      <span class="text-emerald-800 font-bold uppercase">{article.category}</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-5xl font-extrabold text-gray-950 font-serif tracking-tight leading-tight mb-4">
+      {article.title}
+    </h1>
+
+    <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-gray-200 text-xs text-gray-600 mb-8">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center font-serif">
+          DM
+        </div>
+        <div>
+          <span class="font-bold text-gray-900 block">{article.author}</span>
+          <span>{article.authorRole}</span>
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="block font-semibold text-gray-900">{article.publishDate} • {article.readTime}</span>
+        <span class="text-gray-500">Reviewed by {article.reviewer}</span>
+      </div>
+    </div>
+
+    <div class="prose prose-stone max-w-none text-gray-800 leading-relaxed space-y-6 text-base sm:text-lg">
+      <p class="text-xl sm:text-2xl text-gray-900 font-serif leading-relaxed italic text-stone-700">
+        "The building inspector didn't even tap our ledger board. He stepped out of his white city pickup, walked straight to the bottom step of our new 14-foot composite deck, knelt down on the grass, and pulled out his folding rule."
+      </p>
+
+      <p>
+        <em>"Seven and seven-eighths,"</em> he muttered aloud, pointing his pencil at the bottom step. He walked up to the top deck transition and measured the final riser: <em>"Seven and one-quarter."</em>
+      </p>
+
+      <p>
+        He flipped his clipboard over and handed me a bright yellow inspection correction notice. Red ink: <strong>FAIL — Violation IRC R311.7.5.1 (Riser Height Discrepancy Exceeds 3/8"). Re-inspection fee: $120.</strong>
+      </p>
+
+      <p>
+        I was a licensed structural engineer. I had spent two weekends meticulously cutting 2x12 pressure-treated stringers on sawhorses using a framing square and brass stair gauges. How could my stairs have failed inspection by a margin less than the thickness of a pencil?
+      </p>
+
+      <div class="my-8 p-6 bg-stone-100 border-l-4 border-emerald-600 rounded-r-xl">
+        <h4 class="text-base font-bold text-gray-900 font-serif mb-2">The 3/8-Inch Rule: Why Building Code Is Ruthless Here</h4>
+        <p class="text-sm text-gray-700 leading-relaxed mb-0">
+          The human brain calculates stair rhythm subconsciously within the first two steps. If a riser varies by more than <strong>3/8 inch (9.5 mm)</strong> from any other step in the flight, a person descending the stairs in low light will catch their heel on the unexpectedly tall tread and tumble forward. It is the #1 cause of residential stairway injuries in the United States.
+        </p>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        The Rookie Geometry Mistake: Forgetting Tread Thickness
+      </h2>
+
+      <p>
+        When I sat down with my framing square that afternoon, the mistake was immediately obvious.
+      </p>
+
+      <p>
+        I had calculated the total vertical rise from the top of our concrete pad to the top of our deck decking as 60 inches. Dividing 60 by 8 gave me 7.5 inches per riser. I dutifully laid out eight 7.5-inch notches along my 2x12 stringers.
+      </p>
+
+      <p>
+        What did I forget? <strong>The thickness of the tread material.</strong>
+      </p>
+
+      <p>
+        When you add a 1-inch composite deck board to the top step, the rise increases by 1 inch. But on the very bottom step, you are stepping <em>off</em> the concrete landing <em>onto</em> the first 1-inch tread—which means the bottom riser is now 8.5 inches tall, while the middle risers remain 7.5 inches!
+      </p>
+
+      <p>
+        To make all risers mathematically identical, <strong>you must cut the bottom of the stringer by the exact thickness of one tread</strong>. I hadn't made that cut. The bottom riser was 5/8-inch taller than the rest of the flight. Code violation: open and shut.
+      </p>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        The Second Failure: The Hidden "Throat Depth" Danger
+      </h2>
+
+      <p>
+        While pulling off the treads to remake the stairs, I inspected the cut stringers from the side. That's when I noticed an even bigger structural hazard that the inspector hadn't even tagged yet: <strong>throat depth</strong>.
+      </p>
+
+      <p>
+        When you cut deep 10-inch runs and 7.5-inch rises out of a standard nominal 2x12 (which only measures 11-1/4 inches wide), the remaining continuous triangular spine of wood underneath the notches is called the <em>effective throat depth</em>.
+      </p>
+
+      <p>
+        On my stringers, because I had used a traditional hand-held circular saw that slightly overcut into the inside corners to clear the notch, the remaining throat depth was barely <strong>3-1/4 inches</strong>!
+      </p>
+
+      <p>
+        Under IRC R311, cut stringers must maintain a minimum of <strong>5.0 inches of solid, uncut wood</strong> along the spine. With a 3-1/4" throat, three adults walking down that staircase simultaneously during a Fourth of July barbecue would have generated enough dynamic shear load to split the stringer straight along the wood grain.
+      </p>
+
+      <!-- Embedded Companion Calculator Callout Card -->
+      <div class="my-10 bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-2xl p-6 sm:p-8">
+        <div class="flex items-center gap-2 text-xs font-bold font-mono text-emerald-700 uppercase mb-2">
+          <span>🛠️ Interactive Engineering Companion</span>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 font-serif mb-2">
+          Calculate Your Exact Riser Height &amp; Stringer Throat Depth
+        </h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">
+          Avoid failing your deck inspection. Our interactive tool calculates your exact total rise, uniform riser height, and verifies that your cut stringer retains the mandatory 5-inch IRC throat depth before you make a single cut.
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href={article.companionCalculator.href}
+            class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors shadow-xs"
+          >
+            <span>Open {article.companionCalculator.name}</span>
+            <span>→</span>
+          </a>
+          <a
+            href={article.companionHub.href}
+            class="text-xs font-semibold text-emerald-700 hover:underline"
+          >
+            Read the Deck Stair Stringer Framing Hub
+          </a>
+        </div>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        The Rebuild: Engineered LVL and Precision Hand-Sawing
+      </h2>
+
+      <p>
+        I scrapped all three 2x12 stringers. For the rebuild, I didn't use standard dimensional lumber. I ordered three 1-3/4" × 14" <strong>exterior-rated Laminated Veneer Lumber (LVL)</strong> beams.
+      </p>
+
+      <p>
+        LVL has no natural knots, voids, or grain splits. Its cross-laminated veneer structure delivers over 2.5 times the bending strength of Southern Pine or Douglas Fir. With a 14-inch starting depth, even after cutting 10.5-inch runs and 7.5-inch rises, my remaining throat depth was a massive <strong>6-1/4 inches</strong>—well above the 5-inch code mandate.
+      </p>
+
+      <p>
+        When cutting the notches, I stopped the circular saw blade 1/2 inch before the inside corner and finished every cut by hand with a Japanese pull-saw. Zero overcuts. Zero stress-concentration notches where wood can fracture under cyclic loads.
+      </p>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        The Re-Inspection
+      </h2>
+
+      <p>
+        On Friday morning, the white city pickup pulled back into the driveway. The inspector stepped out with his folding ruler.
+      </p>
+
+      <p>
+        Bottom riser: 7-3/8 inches.  
+        Step two through six: 7-3/8 inches.  
+        Top riser: 7-3/8 inches.
+      </p>
+
+      <p>
+        He looked down the solid 6-inch spine of the LVL stringers, saw the heavy Simpson DTT2Z tension ties anchoring the top stringers directly into the deck rim joist, and smiled.
+      </p>
+
+      <p>
+        <em>"Now that,"</em> he said, signing his initials in green ink across the permit card, <em>"is how stairs are supposed to be built."</em>
+      </p>
+
+      <p>
+        The $120 re-inspection fee stung my pride, but it made me a better engineer. In carpentry, 3/8 of an inch isn't a hair—it's the difference between a lawsuit and a staircase that will stand for forty years.
+      </p>
+    </div>
+
+    <div class="mt-12 pt-8 border-t-2 border-gray-200 bg-gray-50 rounded-2xl p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center font-serif text-xl">
+          DM
+        </div>
+        <div>
+          <h4 class="text-base font-bold text-gray-950">{article.author}</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            David Miller, PE is a licensed structural engineer and principal editor for CalcForDIY. He specializes in timber framing, residential foundation mechanics, and building code compliance under the IRC and IBC.
+          </p>
+        </div>
+      </div>
+      <div class="text-xs text-gray-500 border-t border-gray-200 pt-3 flex items-center justify-between">
+        <span>Code compliance verified under IRC Section R311.7</span>
+        <a href="/journal" class="font-bold text-blue-700 hover:underline">Browse All Dispatches →</a>
+      </div>
+    </div>
+  </article>
+</Layout>

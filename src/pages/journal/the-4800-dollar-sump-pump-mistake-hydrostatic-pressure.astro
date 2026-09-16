@@ -1,0 +1,218 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const article = {
+  title: "The $4,800 Sump Pump Mistake: What Three Days of Relentless Rain Taught Me About Hydrostatic Pressure",
+  slug: "the-4800-dollar-sump-pump-mistake-hydrostatic-pressure",
+  description: "A first-person account of waking up to a flooded basement at 2:00 AM, the failure of a builder-grade pump against an 8-foot head, and the math required to install a flood-proof dual basin system.",
+  author: "Marcus Vance",
+  authorRole: "Master Plumber & Field Contributor",
+  reviewer: "David Miller, PE",
+  reviewerRole: "Senior Structural Reviewer",
+  publishDate: "September 15, 2026",
+  readTime: "9 min read",
+  category: "Field Investigation",
+  companionCalculator: {
+    name: "Sump Pump Sizing Calculator",
+    href: "/calculators/sump-pump-sizing",
+    desc: "Calculate dynamic head loss, required GPM, and HP rating based on your basement elevation."
+  },
+  companionHub: {
+    name: "Basement Sump Pump & Battery Backup Hub",
+    href: "/projects/basement-sump-pump-backup",
+    desc: "Complete 4-phase contractor installation blueprint with dual basin check valve schematics."
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-09-15T08:00:00+00:00",
+    "dateModified": "2026-09-15T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-3xl mx-auto pt-2 pb-16">
+    <!-- Breadcrumb & Tag -->
+    <div class="flex items-center gap-2 text-xs text-gray-500 mb-4 font-mono">
+      <a href="/journal" class="text-blue-600 hover:underline">Journal</a>
+      <span>/</span>
+      <span class="text-amber-800 font-bold uppercase">{article.category}</span>
+    </div>
+
+    <!-- Title & Subtitle -->
+    <h1 class="text-3xl sm:text-5xl font-extrabold text-gray-950 font-serif tracking-tight leading-tight mb-4">
+      {article.title}
+    </h1>
+
+    <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-gray-200 text-xs text-gray-600 mb-8">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-800 font-bold flex items-center justify-center font-serif">
+          MV
+        </div>
+        <div>
+          <span class="font-bold text-gray-900 block">{article.author}</span>
+          <span>{article.authorRole}</span>
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="block font-semibold text-gray-900">{article.publishDate} • {article.readTime}</span>
+        <span class="text-gray-500">Peer Reviewed by {article.reviewer}</span>
+      </div>
+    </div>
+
+    <!-- Article Narrative Body -->
+    <div class="prose prose-stone max-w-none text-gray-800 leading-relaxed space-y-6 text-base sm:text-lg">
+      <p class="text-xl sm:text-2xl text-gray-900 font-serif leading-relaxed italic text-stone-700">
+        "At 2:14 AM on a Tuesday, I woke up to a sound that every homeowner with a below-grade living space dreads: the steady, low, metallic hum of a motor that was running continuously, but completely failing to pump."
+      </p>
+
+      <p>
+        The spring storm had dumped three inches of rain over twenty-four hours across the Ohio Valley. Outside, the clay soil around our foundation had reached total saturation. When earth can no longer absorb rainwater, the physics change from simple gravity drainage to <strong>hydrostatic pressure</strong>. Millions of gallons of trapped groundwater sought the path of least resistance—and that path was the cold joint where my basement slab met the perimeter poured concrete walls.
+      </p>
+
+      <p>
+        I grabbed a flashlight and ran downstairs barefoot. The water was already four inches deep in the utility room, silently soaking into the bottom two inches of finished drywall in the adjacent guest bedroom. In the corner pit, our 1/3-horsepower thermoplastic sump pump—installed by the original builder eight years earlier—was humming hot to the touch. 
+      </p>
+
+      <p>
+        It wasn't clogged. The impeller was spinning. But it couldn't lift the water. It was suffering from a fatal flaw that costs homeowners thousands every rainy season: <em>insufficient horsepower under static discharge head</em>.
+      </p>
+
+      <!-- Visual Callout Box -->
+      <div class="my-8 p-6 bg-stone-100 border-l-4 border-amber-600 rounded-r-xl">
+        <h4 class="text-base font-bold text-gray-900 font-serif mb-2">The Physics of Head Loss (The Math We Ignored)</h4>
+        <p class="text-sm text-gray-700 leading-relaxed mb-0">
+          A 1/3 HP pump advertised at "3,200 Gallons Per Hour" only delivers that rating at <strong>zero feet of lift</strong>. When lifting water 9 feet vertically up to the rim joist, pushing through two 90-degree elbows, and forcing open a spring check valve, friction loss cuts real output by over 60%. My 1/3 HP unit was delivering less than 1,100 GPH against an inflow of 1,600 GPH.
+        </p>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        The Frantic Bucket Brigade and the First $2,000 in Damage
+      </h2>
+
+      <p>
+        For the next four hours, my spouse and I ran a two-person bucket brigade, hauling five-gallon buckets up the bulkhead stairs into the pouring rain while the basement water crept toward the furnace circuit board. We saved the HVAC equipment, but by morning, the damage was tallied:
+      </p>
+
+      <ul class="list-disc pl-6 space-y-2 text-base text-gray-700">
+        <li><strong>Baseboard and Trim Removal:</strong> 120 linear feet of swollen MDF trim had to be ripped out immediately.</li>
+        <li><strong>Drywall Flood Cuts:</strong> 24 inches cut up from the slab across three walls to prevent black mold colonization ($1,400).</li>
+        <li><strong>Commercial Drying Rental:</strong> Two commercial LGR dehumidifiers and six air movers running continuously for 96 hours ($1,250).</li>
+        <li><strong>Wasted builder pump:</strong> Direct replacement needed immediately ($150).</li>
+      </ul>
+
+      <p>
+        Total unexpected check written that week: <strong>$4,820</strong>. And the worst part? Nothing about the plumbing had actually been fixed to prevent it from happening again the following month.
+      </p>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        Engineering the Remedy: Two Basins, Iron Pumps, and AGM Storage
+      </h2>
+
+      <p>
+        As a licensed plumber, the embarrassment cut deep. I had treated my own home's drainage as an afterthought. That weekend, I rented an electric demo hammer and went to war with my utility room floor.
+      </p>
+
+      <p>
+        Instead of replacing the cheap pump with another cheap pump, I engineered a proper redundancy system:
+      </p>
+
+      <ol class="list-decimal pl-6 space-y-3 text-base text-gray-700">
+        <li><strong>Upsizing to a Cast-Iron 1/2 HP Primary Pump:</strong> Cast iron acts as a natural heat sink. Thermoplastic pumps overheat and thermally trip when cycling every 40 seconds; heavy cast-iron housings dissipate motor heat directly into the circulating cold water, extending duty cycles indefinitely.</li>
+        <li><strong>Replacing 1-1/4" Line with 1-1/2" Schedule 40 PVC:</strong> Moving from 1-1/4" to 1-1/2" pipe reduces velocity friction by 42%, allowing the pump to hit 3,100 GPH at a 10-foot head.</li>
+        <li><strong>Installing a Dual Quiet Check Valve:</strong> Standard flapper check valves slam shut with a violent water-hammer rattle that shakes foundation framing. A spring-loaded silent check valve stops reverse backflow without noise.</li>
+        <li><strong>A 12V Deep-Cycle AGM Battery Backup:</strong> During extreme weather, lightning frequently knocks out grid power. A primary pump is worthless without electricity. A dedicated 100Ah AGM battery backup with an automated smart switch guarantees 48 hours of continuous pumping even in a total blackout.</li>
+      </ol>
+
+      <!-- Embedded Companion Calculator Callout Card -->
+      <div class="my-10 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-6 sm:p-8">
+        <div class="flex items-center gap-2 text-xs font-bold font-mono text-blue-700 uppercase mb-2">
+          <span>🛠️ Interactive Engineering Companion</span>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 font-serif mb-2">
+          Calculate Your Home's Exact Sump Dynamic Head
+        </h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">
+          Never guess pump horsepower. Use our free calculator to input your vertical discharge lift, pipe diameter, and 90-degree elbow count to find your exact required GPM flow rate and HP threshold.
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href={article.companionCalculator.href}
+            class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors shadow-xs"
+          >
+            <span>Open {article.companionCalculator.name}</span>
+            <span>→</span>
+          </a>
+          <a
+            href={article.companionHub.href}
+            class="text-xs font-semibold text-blue-700 hover:underline"
+          >
+            View Full 4-Phase Installation Blueprint
+          </a>
+        </div>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        The Final Takeaway: Water Will Always Test Your Weakest Link
+      </h2>
+
+      <p>
+        Two months after installing the dual cast-iron system, another storm swept through. The power flickered and went out at 11:30 PM. From my bed upstairs, I listened. I didn't hear a panic alarm. I heard the quiet hum of the AGM inverter engaging, followed by the muffled rush of water being ejected ten feet up and twenty feet away from our foundation into the daylight ditch.
+      </p>
+
+      <p>
+        The basement stayed bone-dry. The $4,800 mistake was painful, but the math doesn't lie: when you engineer for peak hydrostatic capacity instead of minimum builder cost, you buy the rarest commodity in homeownership—uninterrupted sleep during a rainstorm.
+      </p>
+    </div>
+
+    <!-- Author Bio & Reviewer Footer -->
+    <div class="mt-12 pt-8 border-t-2 border-gray-200 bg-gray-50 rounded-2xl p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center font-serif text-xl">
+          MV
+        </div>
+        <div>
+          <h4 class="text-base font-bold text-gray-950">{article.author}</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Marcus Vance is a licensed Master Plumber with over 18 years of residential mechanical and hydronic drainage experience. He writes practical field narratives and plumbing diagnostics for CalcForDIY.
+          </p>
+        </div>
+      </div>
+      <div class="text-xs text-gray-500 border-t border-gray-200 pt-3 flex items-center justify-between">
+        <span>Technical verification by David Miller, PE (IRC/IPC Standards)</span>
+        <a href="/journal" class="font-bold text-blue-700 hover:underline">Browse All Dispatches →</a>
+      </div>
+    </div>
+  </article>
+</Layout>

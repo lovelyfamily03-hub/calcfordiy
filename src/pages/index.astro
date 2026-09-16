@@ -620,6 +620,52 @@ const calculators = [
   }
 ];
 
+
+const journalDispatches = [
+  {
+    title: "The $4,800 Sump Pump Mistake: What Three Days of Relentless Rain Taught Me About Hydrostatic Pressure",
+    slug: "the-4800-dollar-sump-pump-mistake-hydrostatic-pressure",
+    excerpt: "At 2:14 AM on a Tuesday, I woke up to the smell of damp concrete and the low, hollow humming of a pump that was spinning without moving an ounce of water. Here is what happens when builder-grade plumbing meets a rising water table.",
+    author: "Marcus Vance",
+    authorRole: "Master Plumber & Field Contributor",
+    publishDate: "September 15, 2026",
+    readTime: "9 min read",
+    category: "Field Investigation",
+    companionTool: "Sump Pump Sizing Calculator",
+    companionHref: "/calculators/sump-pump-sizing",
+    featured: true
+  },
+  {
+    title: "Tearing Down an 80-Year-Old Plaster Ceiling: The Dust, the Framing Realities, and Why We Went with Level 5 Drywall",
+    slug: "tearing-down-80-year-old-plaster-ceiling-level-5-drywall",
+    excerpt: "Before you touch a crowbar to 1940s horsehair plaster, you imagine a clean demo. In reality, it is 3,200 pounds of caustic lime debris, bowed joists that haven't been straight since Truman was in office, and the delicate art of skim-coating.",
+    author: "Elena Rostova",
+    authorRole: "Historic Renovation Specialist",
+    publishDate: "September 8, 2026",
+    readTime: "11 min read",
+    category: "Renovation Diary",
+    companionTool: "Drywall Mud Calculator",
+    companionHref: "/calculators/drywall-mud",
+    featured: false
+  },
+  {
+    title: "When the Inspector Arrives: The Anatomy of a Deck Stair Stringer Rejection (and the Geometry That Saved It)",
+    slug: "anatomy-of-deck-stair-stringer-rejection-irc-r311",
+    excerpt: "The building inspector didn't even look at our joist hangers. He walked straight to the bottom stair riser, pulled out a brass-tipped tape measure, and shook his head. Here is the math that failed our framing—and the LVL redesign that fixed it.",
+    author: "David Miller, PE",
+    authorRole: "Senior Structural Contributor",
+    publishDate: "September 1, 2026",
+    readTime: "8 min read",
+    category: "Code & Craft",
+    companionTool: "Stair Stringer Calculator",
+    companionHref: "/calculators/stair-stringer",
+    featured: false
+  }
+];
+
+const featuredDispatch = journalDispatches[0];
+const recentDispatches = journalDispatches.slice(1);
+
 const categories = [...new Set(calculators.map(c => c.category))];
 ---
 
@@ -698,19 +744,147 @@ const categories = [...new Set(calculators.map(c => c.category))];
 }
 </script>
 
-  <div class="mb-8">
-    <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-3">
-      <span>✨ {calculators.length} Free Interactive Calculators</span>
-      <span>•</span>
-      <span>RSMeans Cost Benchmarks &amp; SVG Diagrams</span>
+  <!-- Journal Masthead & Front Cover Header -->
+  <header class="border-b-2 border-gray-900 pb-6 mb-8 pt-2">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 pb-3 mb-4">
+      <div>
+        <span class="text-xs font-mono font-bold tracking-widest text-blue-700 uppercase">Volume 1 • Issue 1 • Fall 2026</span>
+        <h1 class="text-4xl md:text-6xl font-black text-gray-950 tracking-tight mt-1 font-serif">CALCFORDIY JOURNAL</h1>
+      </div>
+      <div class="text-xs text-gray-600 font-mono text-left md:text-right">
+        <div>Field Dispatches &amp; Renovation Narratives</div>
+        <div>Backed by 100 Engineering Calculators</div>
+      </div>
     </div>
-    <h1 class="text-4xl font-bold text-gray-900 mb-3">Free DIY Construction &amp; Material Calculators</h1>
-    <p class="text-lg text-gray-600 max-w-3xl">
-      Calculate exact material takeoffs, view dynamic SVG framing diagrams, export 1-click shopping lists, and compare raw DIY costs against professional contractor quotes.
-    </p>
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-sm md:text-base text-gray-700 max-w-2xl leading-relaxed">
+        A publication exploring the unfiltered realities of residential construction, building code geometry, and structural takeoffs. Written by tradespeople, engineers, and homeowners.
+      </p>
+      <a href="/journal" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800 bg-blue-50 px-3.5 py-2 rounded-lg border border-blue-200 shrink-0">
+        <span>Browse All Field Dispatches</span>
+        <span>→</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Lead Editorial Feature (Story of the Week) -->
+  <section class="mb-10">
+    <div class="bg-white border-2 border-gray-900/10 rounded-2xl p-6 sm:p-8 shadow-sm hover:border-gray-900/30 transition-all">
+      <div class="flex flex-wrap items-center gap-3 mb-3">
+        <span class="px-2.5 py-0.5 bg-amber-100 text-amber-900 text-xs font-bold rounded-full uppercase tracking-wider">
+          {featuredDispatch.category}
+        </span>
+        <span class="text-xs text-gray-500 font-medium">{featuredDispatch.publishDate}</span>
+        <span class="text-gray-300">•</span>
+        <span class="text-xs text-gray-500 font-medium">{featuredDispatch.readTime}</span>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-950 font-serif tracking-tight mb-3 leading-snug">
+        <a href={`/journal/${featuredDispatch.slug}`} class="hover:text-blue-700 transition-colors">
+          {featuredDispatch.title}
+        </a>
+      </h2>
+
+      <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-6 max-w-4xl">
+        {featuredDispatch.excerpt}
+      </p>
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-gray-100">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-800 font-bold flex items-center justify-center font-serif text-xs border border-blue-200">
+            {featuredDispatch.author.split(' ').map(n => n[0]).join('')}
+          </div>
+          <div>
+            <div class="text-xs font-bold text-gray-900">{featuredDispatch.author}</div>
+            <div class="text-[11px] text-gray-500">{featuredDispatch.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a
+            href={featuredDispatch.companionHref}
+            class="hidden md:inline-flex items-center gap-1.5 text-xs font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-lg transition-colors"
+          >
+            <span>Companion: {featuredDispatch.companionTool}</span>
+            <span>↗</span>
+          </a>
+          <a
+            href={`/journal/${featuredDispatch.slug}`}
+            class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-colors shadow-xs"
+          >
+            <span>Read Field Story</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Editorial Dispatches Grid -->
+  <section class="mb-12">
+    <div class="flex items-center justify-between mb-4 pb-2 border-b border-gray-200">
+      <h3 class="text-lg font-bold text-gray-950 font-serif">Recent Field Dispatches</h3>
+      <a href="/journal" class="text-xs font-semibold text-blue-700 hover:underline">View Journal Archive →</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {recentDispatches.map(article => (
+        <article class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between hover:border-gray-400 transition-all">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="px-2 py-0.5 bg-gray-100 text-gray-800 text-xs font-semibold rounded-md">
+                {article.category}
+              </span>
+              <span class="text-xs text-gray-500">{article.readTime}</span>
+            </div>
+
+            <h4 class="text-lg font-bold text-gray-950 font-serif mb-2 leading-snug">
+              <a href={`/journal/${article.slug}`} class="hover:text-blue-700 transition-colors">
+                {article.title}
+              </a>
+            </h4>
+
+            <p class="text-xs text-gray-600 leading-relaxed mb-4">
+              {article.excerpt}
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold text-gray-900">{article.author}</div>
+              <div class="text-[11px] text-gray-500">{article.publishDate}</div>
+            </div>
+            <a
+              href={`/journal/${article.slug}`}
+              class="text-xs font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1"
+            >
+              <span>Read Story</span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- THE WORKSHOP / 100-CALCULATOR SUITE SECTION -->
+  <div class="border-t-2 border-gray-900 pt-8 mb-8" id="workshop">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-2">
+          <span>⚙️ The CalcForDIY Workshop</span>
+          <span>•</span>
+          <span>{calculators.length} Free Engineering Calculators</span>
+        </div>
+        <h2 class="text-3xl font-extrabold text-gray-950 font-serif tracking-tight">Interactive Calculator Suite</h2>
+      </div>
+      <p class="text-xs text-gray-600 max-w-md">
+        Instant material takeoffs, live SVG framing diagrams, 1-click shopping lists, and turnkey contractor cost comparisons.
+      </p>
+    </div>
 
     <!-- Moats & Differentiators Showcase Feature Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 mb-8">
       <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-4">
         <div class="text-2xl mb-1">📐</div>
         <h3 class="font-bold text-gray-900 text-sm">Dynamic SVG Diagrams</h3>

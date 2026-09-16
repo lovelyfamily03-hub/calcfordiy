@@ -1,0 +1,231 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const article = {
+  title: "Tearing Down an 80-Year-Old Plaster Ceiling: The Dust, the Framing Realities, and Why We Went with Level 5 Drywall",
+  slug: "tearing-down-80-year-old-plaster-ceiling-level-5-drywall",
+  description: "What happens when you tear down 3,200 lbs of horsehair plaster, discover joists bowed 1-1/4 inches out of plane, and choose a full Level 5 skim coat over an easy drywall overlay.",
+  author: "Elena Rostova",
+  authorRole: "Historic Renovation Specialist",
+  reviewer: "David Miller, PE",
+  reviewerRole: "Senior Structural Reviewer",
+  publishDate: "September 8, 2026",
+  readTime: "11 min read",
+  category: "Renovation Diary",
+  companionCalculator: {
+    name: "Drywall Mud & Compound Calculator",
+    href: "/calculators/drywall-mud",
+    desc: "Calculate joint compound buckets, topping mix, paper tape, and skim coat coverage."
+  },
+  companionHub: {
+    name: "Level 5 Drywall Finish Project Hub",
+    href: "/projects/level-5-drywall-finish",
+    desc: "Step-by-step sequential skimming and raking-light inspection guide."
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-09-08T08:00:00+00:00",
+    "dateModified": "2026-09-08T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-3xl mx-auto pt-2 pb-16">
+    <div class="flex items-center gap-2 text-xs text-gray-500 mb-4 font-mono">
+      <a href="/journal" class="text-blue-600 hover:underline">Journal</a>
+      <span>/</span>
+      <span class="text-purple-800 font-bold uppercase">{article.category}</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-5xl font-extrabold text-gray-950 font-serif tracking-tight leading-tight mb-4">
+      {article.title}
+    </h1>
+
+    <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-gray-200 text-xs text-gray-600 mb-8">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-purple-100 text-purple-800 font-bold flex items-center justify-center font-serif">
+          ER
+        </div>
+        <div>
+          <span class="font-bold text-gray-900 block">{article.author}</span>
+          <span>{article.authorRole}</span>
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="block font-semibold text-gray-900">{article.publishDate} • {article.readTime}</span>
+        <span class="text-gray-500">Reviewed by {article.reviewer}</span>
+      </div>
+    </div>
+
+    <div class="prose prose-stone max-w-none text-gray-800 leading-relaxed space-y-6 text-base sm:text-lg">
+      <p class="text-xl sm:text-2xl text-gray-900 font-serif leading-relaxed italic text-stone-700">
+        "There is a moment right before you pull down an old lath-and-plaster ceiling where common sense begs you to turn around, nail up a sheet of 3/8-inch drywall over it, and pretend you never saw the crack."
+      </p>
+
+      <p>
+        In our 1944 craftsman bungalow, that crack started in the northwest corner of the living room and meandered across sixteen feet of ceiling plaster like a lightning bolt. If you pressed your palm against the center, you could feel a terrifying half-inch of spongey deflection. The plaster "keys"—the globs of lime mortar forced through the wood lath that anchor the entire weight of the ceiling—had sheared off over eight decades of seasonal humidity cycles.
+      </p>
+
+      <p>
+        Every contractor who gave us an estimate suggested an overlay: <em>"Just screw strapping through the plaster into the joists and hang 3/8 drywall. You'll save three grand on disposal."</em>
+      </p>
+
+      <p>
+        It was tempting. But strapping over broken plaster traps thousands of pounds of unstable dead weight overhead, reduces already-modest eight-foot ceilings by over an inch, and guarantees that your crown molding will never sit flush against the wave. We decided to do it the hard way: full teardown down to raw joists, followed by a flawless <strong>Level 5 drywall finish</strong>.
+      </p>
+
+      <div class="my-8 p-6 bg-stone-100 border-l-4 border-purple-600 rounded-r-xl">
+        <h4 class="text-base font-bold text-gray-900 font-serif mb-2">The Disposal Reality: Weight Tonnage</h4>
+        <p class="text-sm text-gray-700 leading-relaxed mb-0">
+          Traditional three-coat lime plaster weighs approximately <strong>8 to 10 pounds per square foot</strong>. Our 340-square-foot living room ceiling represented roughly <strong>3,060 pounds</strong> of material—over 1.5 tons of debris that had to be shoveled into heavy-duty contractor bags and carried down the front steps.
+        </p>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        Day One: The Black Blizzard of 1940s Coal Dust
+      </h2>
+
+      <p>
+        We taped plastic air barriers over every doorway, set a negative-air HEPA scrubber in the window, and geared up with full-face respirators and Tyvek bunny suits.
+      </p>
+
+      <p>
+        When you strike the first blow into wire lath with a flat pry bar, it does not crumble politely. It crashes down in twenty-pound jagged sheets, unleashing eighty years of pulverized horsehair, oxidized lime, and the fine black soot of the old coal furnace that had drifted between the second-floor joists before electric heat was installed. Within five minutes, visibility inside the room dropped to three feet.
+      </p>
+
+      <p>
+        By hour six, our arms burned from overhead demolition, we had filled sixty-two contractor sacks, and our hands were shredded from pulling thousands of tiny 3d lath nails with end-cutting nippers. But when the dust finally settled and the bare 2x8 joists were exposed, we were confronted by the real reason the plaster had failed.
+      </p>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        The Joist Bow: Why You Cannot Just Hang Sheetrock on Old Wood
+      </h2>
+
+      <p>
+        We set up a rotary laser level on a tripod in the center of the room. When the green beam hit the bottom edges of the exposed joists, the truth was revealed: the ceiling framing bowed downward by <strong>1-1/4 inches</strong> in the center of the span.
+      </p>
+
+      <p>
+        If we had screwed drywall directly to those joists, the ceiling would have looked like a swayback horse. Modern flat ceiling paint reflects glancing light across large planes; under afternoon window sunlight, every dip, shadow, and hump would be magnified.
+      </p>
+
+      <p>
+        We spent the next two days "sistering" fresh, kiln-dried 2x6s alongside the existing bowed joists. We aligned each new board to the laser plane, clamped them securely, and shot two rows of structural screws every 12 inches. In seventy-two hours of hard carpentry, we transformed an undulating, sagging frame into a laser-flat plane within 1/16-inch across the entire room.
+      </p>
+
+      <!-- Embedded Companion Calculator Callout Card -->
+      <div class="my-10 bg-gradient-to-br from-purple-50 to-indigo-50 border-2 border-purple-200 rounded-2xl p-6 sm:p-8">
+        <div class="flex items-center gap-2 text-xs font-bold font-mono text-purple-700 uppercase mb-2">
+          <span>🛠️ Interactive Engineering Companion</span>
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 font-serif mb-2">
+          Estimate Joint Compound, Tape &amp; Skim Coats
+        </h3>
+        <p class="text-sm text-gray-700 leading-relaxed mb-4">
+          A true Level 5 finish requires three times the mud of a standard Level 3 taped wall. Use our calculator to calculate buckets of heavy-duty taping compound vs. lightweight skim topping, plus corner beads and paper tape rolls.
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href={article.companionCalculator.href}
+            class="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm px-5 py-2.5 rounded-xl transition-colors shadow-xs"
+          >
+            <span>Open {article.companionCalculator.name}</span>
+            <span>→</span>
+          </a>
+          <a
+            href={article.companionHub.href}
+            class="text-xs font-semibold text-purple-700 hover:underline"
+          >
+            Explore the Level 5 Drywall Project Hub
+          </a>
+        </div>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        The Art of the Level 5 Skim Coat
+      </h2>
+
+      <p>
+        We hung 5/8-inch drywall perpendicular to the joists using a rented drywall lift. Why 5/8" instead of 1/2"? Because 5/8" Type X is significantly stiffer and will never sag between 16-inch joists, even when heavy joint compound is applied.
+      </p>
+
+      <p>
+        Most residential builders stop at <strong>Level 4</strong>: tape embedded, screws spotted, two finish coats over seams, and sanded flat. But Level 4 leaves an inherent texture discrepancy between the slick paper of the drywall face and the microscopic porosity of the sanded joint compound. When primed and painted, the seams "flash" in raking natural light.
+      </p>
+
+      <p>
+        <strong>Level 5 demands a skim coat over the entire ceiling.</strong> We thinned lightweight topping compound with clean water until it reached the consistency of warm pancake batter. Using a 1/2-inch nap paint roller, we rolled the compound directly across the ceiling in 4-foot sections, followed immediately with a 32-inch stainless steel skimming blade wiped at a 30-degree angle.
+      </p>
+
+      <p>
+        It took three passes and three days of careful drying. We inspected the ceiling with a 500-lumen halogen work light held flush against the drywall at an extreme 5-degree angle—a merciless test that reveals every burr, ridge, or air pocket.
+      </p>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif pt-4 mb-3">
+        The Morning Light Verdict
+      </h2>
+
+      <p>
+        Three weeks after we drove the first pry bar into the horsehair ceiling, we rolled two coats of dead-flat ceiling paint and pulled down the doorway plastic.
+      </p>
+
+      <p>
+        The next morning at 8:00 AM, low autumn sunlight beamed through the west windows across the ceiling. There was not a single seam visible. No shadows. No dips. Just a single, unbroken architectural plane that looked like it had been poured from liquid porcelain.
+      </p>
+
+      <p>
+        Was it worth the 3,000 pounds of dust, the black boogers, and the aching shoulders? Every single penny. When you take the time to fix the underlying bones, the finish work ceases to be a cover-up—it becomes art.
+      </p>
+    </div>
+
+    <div class="mt-12 pt-8 border-t-2 border-gray-200 bg-gray-50 rounded-2xl p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center font-serif text-xl">
+          ER
+        </div>
+        <div>
+          <h4 class="text-base font-bold text-gray-950">{article.author}</h4>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            Elena Rostova specializes in historic preservation and modern plaster restoration across early 20th-century residential structures. She oversees finish carpentry and interior wall engineering for CalcForDIY.
+          </p>
+        </div>
+      </div>
+      <div class="text-xs text-gray-500 border-t border-gray-200 pt-3 flex items-center justify-between">
+        <span>Reviewed by David Miller, PE (ASTM C840 Standards)</span>
+        <a href="/journal" class="font-bold text-blue-700 hover:underline">Browse All Dispatches →</a>
+      </div>
+    </div>
+  </article>
+</Layout>

@@ -19,9 +19,15 @@ export default defineConfig({
         if (url === 'https://calcfordiy.com/' || url === 'https://calcfordiy.com') {
           item.changefreq = 'daily';
           item.priority = 1.0;
+        } else if (url.endsWith('/journal/') || url.endsWith('/journal')) {
+          item.changefreq = 'daily';
+          item.priority = 0.95;
         } else if (url.endsWith('/calculators/') || url.endsWith('/projects/') || url.endsWith('/guides/')) {
           item.changefreq = 'daily';
           item.priority = 0.9;
+        } else if (url.includes('/journal/')) {
+          item.changefreq = 'weekly';
+          item.priority = 0.85;
         } else if (url.includes('/calculators/') || url.includes('/projects/')) {
           item.changefreq = 'weekly';
           item.priority = 0.8;
