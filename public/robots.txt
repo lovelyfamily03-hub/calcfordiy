@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 
+User-agent: Mediapartners-Google
+Allow: /
+
 # Content-Signal: ai-train=no, search=yes, ai-input=no
 
 User-agent: GPTBot
