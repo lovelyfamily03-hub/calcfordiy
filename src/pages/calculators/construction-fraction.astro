@@ -70,15 +70,15 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-3 gap-3 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Feet</label>
+        <label for="m1_ft" class="block text-xs font-medium text-gray-600 mb-1">Feet</label>
         <input type="number" id="m1_ft" placeholder="0" value="8" min="0" max="1000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Inches</label>
-        <input type="number" id="m1_in" placeholder="0" value="5" min="0" max="11" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <label for="m1_in" class="block text-xs font-medium text-gray-600 mb-1">Inches</label>
+        <input type="number" id="m1_in" placeholder="0" value="5" min="0" max="11" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" aria-label="M1 Inches" />
       </div>
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Fraction</label>
+        <label for="m1_frac" class="block text-xs font-medium text-gray-600 mb-1">Fraction</label>
         <select id="m1_frac" class="w-full border border-gray-300 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="0">0</option>
           <option value="0.0625">1/16"</option>
@@ -101,7 +101,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </div>
 
     <div class="mb-5 flex justify-center">
-      <select id="operation" class="border-2 border-blue-500 rounded-lg px-4 py-2 font-bold text-blue-700 bg-blue-50 text-base focus:outline-none">
+      <select id="operation" aria-label="Arithmetic Operation (Add or Subtract)" class="border-2 border-blue-500 rounded-lg px-4 py-2 font-bold text-blue-700 bg-blue-50 text-base focus:outline-none">
         <option value="add" selected>➕ ADD (+)</option>
         <option value="subtract">➖ SUBTRACT (-)</option>
       </select>
@@ -114,15 +114,15 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-3 gap-3 mb-6 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Feet</label>
+        <label for="m2_ft" class="block text-xs font-medium text-gray-600 mb-1">Feet</label>
         <input type="number" id="m2_ft" placeholder="0" value="4" min="0" max="1000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Inches</label>
-        <input type="number" id="m2_in" placeholder="0" value="9" min="0" max="11" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <label for="m2_in" class="block text-xs font-medium text-gray-600 mb-1">Inches</label>
+        <input type="number" id="m2_in" placeholder="0" value="9" min="0" max="11" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" aria-label="M2 Inches" />
       </div>
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Fraction</label>
+        <label for="m2_frac" class="block text-xs font-medium text-gray-600 mb-1">Fraction</label>
         <select id="m2_frac" class="w-full border border-gray-300 rounded-lg px-2 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="0">0</option>
           <option value="0.0625">1/16"</option>

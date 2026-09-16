@@ -87,15 +87,15 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Main Roofline &amp; Gutters (ft)</label>
+        <label for="roofline" class="block text-sm font-medium text-gray-700 mb-1">Main Roofline &amp; Gutters (ft)</label>
         <input type="number" id="roofline" placeholder="e.g. 80" value="80" min="0" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Peaks / Gables (ft)</label>
+        <label for="peaks" class="block text-sm font-medium text-gray-700 mb-1">Peaks / Gables (ft)</label>
         <input type="number" id="peaks" placeholder="e.g. 30" value="30" min="0" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Windows &amp; Door Outlines (ft)</label>
+        <label for="openings" class="block text-sm font-medium text-gray-700 mb-1">Windows &amp; Door Outlines (ft)</label>
         <input type="number" id="openings" placeholder="e.g. 40" value="0" min="0" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
     </div>
@@ -109,7 +109,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Bulb Style &amp; Size</label>
+        <label for="bulbStyle" class="block text-sm font-medium text-gray-700 mb-2">Bulb Style &amp; Size</label>
         <select id="bulbStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="c9-led" selected>C9 LED (Classic Roofline, ~0.6W / bulb)</option>
           <option value="c7-led">C7 LED (Slightly Smaller, ~0.5W / bulb)</option>
@@ -118,7 +118,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Bulb Spacing on Strand</label>
+        <label for="spacing" class="block text-sm font-medium text-gray-700 mb-2">Bulb Spacing on Strand</label>
         <select id="spacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="6">6 inches (Dense Roofline)</option>
           <option value="8">8 inches (Standard Commercial)</option>

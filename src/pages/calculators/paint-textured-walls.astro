@@ -117,36 +117,36 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <div class="p-4 bg-gray-50 rounded-lg mb-5">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Room Length</label>
+          <label for="r_len_ft" class="block text-xs text-gray-500 mb-1">Room Length</label>
           <div class="flex items-center gap-2">
             <input type="number" id="r_len_ft" placeholder="14" min="0" max="200"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="r_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Room Width</label>
+          <label for="r_wid_ft" class="block text-xs text-gray-500 mb-1">Room Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="r_wid_ft" placeholder="12" min="0" max="200"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="r_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
       </div>
       <div>
-        <label class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
+        <label for="r_ceil_ft" class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
         <div class="flex items-center gap-2">
           <input type="number" id="r_ceil_ft" placeholder="8" min="0" max="20"
             class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-xs text-gray-500 shrink-0">ft</span>
           <input type="number" id="r_ceil_in" placeholder="0" min="0" max="11"
-            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Ceil Inches" />
           <span class="text-xs text-gray-500 shrink-0">in</span>
         </div>
       </div>
@@ -156,12 +156,12 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <p class="text-xs text-gray-500 mb-3">Standard door = 21 sq ft. Standard window = 15 sq ft. Subtracted automatically.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Number of Doors</label>
+          <label for="num_doors" class="block text-xs text-gray-500 mb-1">Number of Doors</label>
           <input type="number" id="num_doors" placeholder="1" min="0" max="20"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Number of Windows</label>
+          <label for="num_windows" class="block text-xs text-gray-500 mb-1">Number of Windows</label>
           <input type="number" id="num_windows" placeholder="2" min="0" max="20"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
@@ -176,11 +176,11 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </h2>
 
     <div class="mb-5">
-      <label class="block text-sm font-medium text-gray-700 mb-3">Select Your Wall Texture</label>
+      <label for="wall_coats" class="block text-sm font-medium text-gray-700 mb-3">Select Your Wall Texture</label>
       <div class="grid grid-cols-1 gap-3">
 
-        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
-          <input type="radio" name="texture" value="0.10" class="mt-0.5 text-blue-600" onchange="calculate()" />
+        <label for="texture_010" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
+          <input type="radio" id="texture_010" name="texture" value="0.10" class="mt-0.5 text-blue-600" onchange="calculate()" />
           <div>
             <div class="text-sm font-medium text-gray-800">Light Orange Peel</div>
             <div class="text-xs text-gray-500">Subtle bumpy texture like the skin of an orange. Very common in new construction. Uses ~10% more paint than smooth.</div>
@@ -188,8 +188,8 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           </div>
         </label>
 
-        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
-          <input type="radio" name="texture" value="0.20" class="mt-0.5 text-blue-600" onchange="calculate()" checked />
+        <label for="texture_020" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
+          <input type="radio" id="texture_020" name="texture" value="0.20" class="mt-0.5 text-blue-600" onchange="calculate()" checked />
           <div>
             <div class="text-sm font-medium text-gray-800">Medium Orange Peel / Knockdown</div>
             <div class="text-xs text-gray-500">More pronounced texture, slightly flattened peaks. The most common texture in homes built after 1980. Uses ~20% more paint than smooth.</div>
@@ -197,8 +197,8 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           </div>
         </label>
 
-        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
-          <input type="radio" name="texture" value="0.30" class="mt-0.5 text-blue-600" onchange="calculate()" />
+        <label for="texture_030" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
+          <input type="radio" id="texture_030" name="texture" value="0.30" class="mt-0.5 text-blue-600" onchange="calculate()" />
           <div>
             <div class="text-sm font-medium text-gray-800">Heavy Knockdown / Skip Trowel</div>
             <div class="text-xs text-gray-500">Thick, irregular flattened peaks applied by trowel. Mediterranean or Tuscan style homes. Uses ~30% more paint than smooth.</div>
@@ -206,8 +206,8 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           </div>
         </label>
 
-        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
-          <input type="radio" name="texture" value="0.40" class="mt-0.5 text-blue-600" onchange="calculate()" />
+        <label for="texture_040" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50">
+          <input type="radio" id="texture_040" name="texture" value="0.40" class="mt-0.5 text-blue-600" onchange="calculate()" />
           <div>
             <div class="text-sm font-medium text-gray-800">Popcorn / Acoustic (Ceilings)</div>
             <div class="text-xs text-gray-500">The heavily bumpy ceiling texture common in homes built before 1990. Extremely porous — uses ~40% more paint. Spray application strongly recommended.</div>
@@ -227,24 +227,24 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Coats</label>
+        <label for="wall_coats" class="block text-sm font-medium text-gray-700 mb-2">Number of Coats</label>
         <select id="wall_coats"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="1">1 coat — same color touch-up</option>
           <option value="2" selected>2 coats — standard</option>
           <option value="3">3 coats — drastic color change</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Textured walls often need 3 coats for dark-to-light color changes</p>
+        <p class="text-xs text-gray-500 mt-1">Textured walls often need 3 coats for dark-to-light color changes</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Application Method</label>
+        <label for="method" class="block text-sm font-medium text-gray-700 mb-2">Application Method</label>
         <select id="method"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="1.0">Roller — standard thick-nap roller</option>
           <option value="1.15">Roller — extra thick nap (3/4" or 1" nap)</option>
           <option value="0.85">Sprayer — airless sprayer</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Sprayer uses less paint but requires more prep. Thick nap rollers reach into texture valleys better.</p>
+        <p class="text-xs text-gray-500 mt-1">Sprayer uses less paint but requires more prep. Thick nap rollers reach into texture valleys better.</p>
       </div>
     </div>
 

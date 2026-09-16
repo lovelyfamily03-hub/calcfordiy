@@ -88,7 +88,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="p-4 bg-gray-50 rounded-lg mb-5">
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-700 mb-2">System Type</label>
+        <label for="sys_type" class="block text-sm font-medium text-gray-700 mb-2">System Type</label>
         <select id="sys_type" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="gas" selected>Natural Gas Furnace</option>
           <option value="electric">Electric Furnace / Space Heater</option>
@@ -99,41 +99,41 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <!-- GAS INPUTS -->
       <div id="gas_inputs" class="grid grid-cols-1 gap-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Input Capacity (BTU/hr)</label>
+          <label for="gas_btu" class="block text-sm font-medium text-gray-700 mb-2">Input Capacity (BTU/hr)</label>
           <div class="flex items-center gap-2">
             <input type="number" id="gas_btu" placeholder="80000" min="10000" max="250000" step="5000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">BTU</span>
           </div>
-          <p class="text-xs text-gray-400 mt-1">Look for "Input BTU" on the furnace nameplate sticker. Common sizes: 40k, 60k, 80k, 100k.</p>
+          <p class="text-xs text-gray-500 mt-1">Look for "Input BTU" on the furnace nameplate sticker. Common sizes: 40k, 60k, 80k, 100k.</p>
         </div>
       </div>
 
       <!-- ELECTRIC INPUTS -->
       <div id="electric_inputs" class="hidden grid grid-cols-1 gap-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Heating Capacity (kW)</label>
+          <label for="elec_kw" class="block text-sm font-medium text-gray-700 mb-2">Heating Capacity (kW)</label>
           <div class="flex items-center gap-2">
             <input type="number" id="elec_kw" placeholder="10" min="0.5" max="50" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">kW</span>
           </div>
-          <p class="text-xs text-gray-400 mt-1">Standard plug-in space heater = 1.5 kW. Electric baseboard = ~1 kW per 4ft. Central electric furnace = 10kW to 20kW.</p>
+          <p class="text-xs text-gray-500 mt-1">Standard plug-in space heater = 1.5 kW. Electric baseboard = ~1 kW per 4ft. Central electric furnace = 10kW to 20kW.</p>
         </div>
       </div>
 
       <!-- HEAT PUMP INPUTS -->
       <div id="heatpump_inputs" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Heating Capacity (BTU/hr)</label>
+          <label for="hp_btu" class="block text-sm font-medium text-gray-700 mb-2">Heating Capacity (BTU/hr)</label>
           <div class="flex items-center gap-2">
             <input type="number" id="hp_btu" placeholder="36000" min="9000" max="60000" step="1000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">BTU</span>
           </div>
-          <p class="text-xs text-gray-400 mt-1">Usually 12,000 BTU per "Ton" of size.</p>
+          <p class="text-xs text-gray-500 mt-1">Usually 12,000 BTU per "Ton" of size.</p>
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">HSPF Rating</label>
+          <label for="hp_hspf" class="block text-sm font-medium text-gray-700 mb-2">HSPF Rating</label>
           <input type="number" id="hp_hspf" placeholder="8.5" min="6.5" max="15" step="0.1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <p class="text-xs text-gray-400 mt-1">Found on the EnergyGuide sticker (Average is 8.0 - 9.5).</p>
+          <p class="text-xs text-gray-500 mt-1">Found on the EnergyGuide sticker (Average is 8.0 - 9.5).</p>
         </div>
       </div>
     </div>
@@ -147,15 +147,15 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Hours Run Per Day</label>
+        <label for="usage_hrs" class="block text-sm font-medium text-gray-700 mb-2">Hours Run Per Day</label>
         <div class="flex items-center gap-2">
           <input type="number" id="usage_hrs" placeholder="8" value="8" min="0.5" max="24" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-xs text-gray-500 shrink-0">hrs/day</span>
         </div>
-        <p class="text-xs text-gray-400 mt-1">Typically 4-6 hrs in mild winters, 8-12 hrs in freezing climates.</p>
+        <p class="text-xs text-gray-500 mt-1">Typically 4-6 hrs in mild winters, 8-12 hrs in freezing climates.</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Heating Season Length</label>
+        <label for="usage_mos" class="block text-sm font-medium text-gray-700 mb-2">Heating Season Length</label>
         <div class="flex items-center gap-2">
           <input type="number" id="usage_mos" placeholder="5" value="5" min="1" max="12" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-xs text-gray-500 shrink-0">months</span>
@@ -164,7 +164,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-700 mb-2" id="rate_label">Natural Gas Rate ($ per Therm)</label>
+      <label for="rate_val" class="block text-sm font-medium text-gray-700 mb-2" id="rate_label">Natural Gas Rate ($ per Therm)</label>
       <div class="flex items-center gap-2 max-w-sm">
         <span class="text-sm text-gray-500 shrink-0">$</span>
         <input type="number" id="rate_val" placeholder="1.40" value="1.40" min="0.01" max="10.00" step="0.01" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -181,13 +181,13 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </h2>
 
     <div class="mb-5">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="new_sys_type" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="compareToggle" class="w-4 h-4 rounded text-blue-600" />
         <span class="text-sm text-gray-700">Compare with a new system</span>
       </label>
       <div id="compareSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
         <div class="mb-4">
-          <label class="block text-sm font-medium text-gray-700 mb-2">New System Type</label>
+          <label for="new_sys_type" class="block text-sm font-medium text-gray-700 mb-2">New System Type</label>
           <select id="new_sys_type" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
             <option value="heatpump" selected>High-Efficiency Heat Pump</option>
             <option value="gas">New Gas Furnace</option>
@@ -197,11 +197,11 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <!-- NEW GAS INPUTS -->
         <div id="new_gas_inputs" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">New Input (BTU/hr)</label>
+            <label for="new_gas_btu" class="block text-xs text-gray-500 mb-1">New Input (BTU/hr)</label>
             <input type="number" id="new_gas_btu" placeholder="80000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Gas Rate ($/Therm)</label>
+            <label for="new_gas_rate" class="block text-xs text-gray-500 mb-1">Gas Rate ($/Therm)</label>
             <input type="number" id="new_gas_rate" placeholder="1.40" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
           </div>
         </div>
@@ -209,15 +209,15 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <!-- NEW HEAT PUMP INPUTS -->
         <div id="new_heatpump_inputs" class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">New Capacity (BTU)</label>
+            <label for="new_hp_btu" class="block text-xs text-gray-500 mb-1">New Capacity (BTU)</label>
             <input type="number" id="new_hp_btu" placeholder="36000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">New HSPF</label>
+            <label for="new_hp_hspf" class="block text-xs text-gray-500 mb-1">New HSPF</label>
             <input type="number" id="new_hp_hspf" placeholder="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Electric Rate ($/kWh)</label>
+            <label for="new_elec_rate" class="block text-xs text-gray-500 mb-1">Electric Rate ($/kWh)</label>
             <input type="number" id="new_elec_rate" placeholder="0.16" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
           </div>
         </div>

@@ -87,22 +87,22 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Room Length (ft)</label>
+        <label for="roomLength" class="block text-xs font-medium text-gray-600 mb-1">Room Length (ft)</label>
         <input type="number" id="roomLength" placeholder="18" value="18" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Room Width (ft)</label>
+        <label for="roomWidth" class="block text-xs font-medium text-gray-600 mb-1">Room Width (ft)</label>
         <input type="number" id="roomWidth" placeholder="14" value="14" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Ceiling Height (ft)</label>
+        <label for="ceilingHeight" class="block text-xs font-medium text-gray-600 mb-1">Ceiling Height (ft)</label>
         <input type="number" id="ceilingHeight" placeholder="9" value="9" min="6" max="30" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Include Ceiling in Calculation?</label>
+        <label for="includeCeiling" class="block text-xs font-medium text-gray-600 mb-1">Include Ceiling in Calculation?</label>
         <select id="includeCeiling" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="yes" selected>Yes (Prime Walls &amp; Ceiling)</option>
           <option value="no">No (Prime Walls Only)</option>
@@ -117,7 +117,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Drywall Surface State</label>
+        <label for="surfaceState" class="block text-xs font-medium text-gray-600 mb-1">Drywall Surface State</label>
         <select id="surfaceState" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="bare" selected>Fresh Bare Drywall &amp; Taped Mud Joints (Porous)</option>
           <option value="skimmed">Full Level 5 Skim Coat (High Absorption)</option>
@@ -127,7 +127,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Primer Type</label>
+        <label for="primerType" class="block text-xs font-medium text-gray-600 mb-1">Primer Type</label>
         <select id="primerType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="pva" selected>PVA Drywall Primer &amp; Sealer (Standard Base)</option>
           <option value="high_build">High-Build Primer / Surfacer (Level 5 Equalizer)</option>
@@ -137,7 +137,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Doors &amp; Windows Subtraction</label>
+        <label for="openings" class="block text-xs font-medium text-gray-600 mb-1">Doors &amp; Windows Subtraction</label>
         <select id="openings" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="40" selected>2 Standard Doors / Windows (-40 sq ft)</option>
           <option value="80">4 Doors / Windows (-80 sq ft)</option>
@@ -186,7 +186,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <span class="text-xs text-gray-500 font-mono">Gypsum Association GA-214 Standard</span>
     </div>
     <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
-      <svg id="primerSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+      <svg id="primerSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;" role="img" aria-label="Calculation Diagram"></svg>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
       <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-300 rounded-xs"></span> Raw Gypsum Paper</div>

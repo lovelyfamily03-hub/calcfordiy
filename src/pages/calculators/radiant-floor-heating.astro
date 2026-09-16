@@ -102,7 +102,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Total Heated Room Area</label>
+        <label for="heatedSqFt" class="block text-xs font-medium text-gray-600 mb-1">Total Heated Room Area</label>
         <div class="flex items-center gap-2">
           <input type="number" id="heatedSqFt" placeholder="400" value="400" min="20" max="5000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">sq ft</span>
@@ -110,7 +110,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">PEX Tubing Spacing (On-Center)</label>
+        <label for="pexSpacingIn" class="block text-xs font-medium text-gray-600 mb-1">PEX Tubing Spacing (On-Center)</label>
         <select id="pexSpacingIn" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="6">6 Inches (High Heat / Bathrooms / Tile)</option>
           <option value="9" selected>9 Inches (Standard Residential)</option>
@@ -119,7 +119,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Distance to Manifold Location</label>
+        <label for="manifoldDistanceFt" class="block text-xs font-medium text-gray-600 mb-1">Distance to Manifold Location</label>
         <div class="flex items-center gap-2">
           <input type="number" id="manifoldDistanceFt" placeholder="15" value="15" min="2" max="100" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">ft</span>
@@ -129,7 +129,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Finished Flooring Material</label>
+        <label for="flooringMat" class="block text-xs font-medium text-gray-600 mb-1">Finished Flooring Material</label>
         <select id="flooringMat" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="tile_stone" selected>Ceramic Tile / Porcelain / Natural Stone (High Thermal Conduction)</option>
           <option value="wood_laminate">Engineered Wood / Luxury Vinyl Plank (Medium Conduction)</option>
@@ -138,7 +138,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">PEX Tubing Diameter</label>
+        <label for="pexDiameter" class="block text-xs font-medium text-gray-600 mb-1">PEX Tubing Diameter</label>
         <select id="pexDiameter" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="half_inch" selected>1/2" PEX-a Oxygen Barrier (Standard, 300' max loop)</option>
           <option value="five_eighths">5/8" PEX-a Oxygen Barrier (Large Areas, 400' max loop)</option>
@@ -379,7 +379,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     const width = 600;
     const height = 220;
 
-    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
     
     // Subfloor Base
     svg += `<rect x="30" y="160" width="540" height="40" fill="#D1D5DB" stroke="#6B7280" stroke-width="2" />`;

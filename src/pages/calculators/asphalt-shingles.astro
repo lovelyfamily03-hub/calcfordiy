@@ -91,19 +91,19 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Building Base Length (Feet)</label>
+        <label for="baseLength" class="block text-sm font-medium text-gray-700 mb-1">Building Base Length (Feet)</label>
         <input type="number" id="baseLength" placeholder="e.g. 40" value="40" min="1" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-xs text-gray-400 mt-1">Ground length including eave overhang</p>
+        <p class="text-xs text-gray-500 mt-1">Ground length including eave overhang</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Building Base Width (Feet)</label>
+        <label for="baseWidth" class="block text-sm font-medium text-gray-700 mb-1">Building Base Width (Feet)</label>
         <input type="number" id="baseWidth" placeholder="e.g. 30" value="30" min="1" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-xs text-gray-400 mt-1">Ground width including eave overhang</p>
+        <p class="text-xs text-gray-500 mt-1">Ground width including eave overhang</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Roof Pitch Slope (X / 12)</label>
+        <label for="roofPitch" class="block text-sm font-medium text-gray-700 mb-1">Roof Pitch Slope (X / 12)</label>
         <select id="roofPitch" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.031">3 / 12 pitch (Low slope — 1.031x)</option>
           <option value="1.054">4 / 12 pitch (Standard — 1.054x)</option>
@@ -125,7 +125,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Roof Type &amp; Waste Factor</label>
+        <label for="wasteFactor" class="block text-sm font-medium text-gray-700 mb-1">Roof Type &amp; Waste Factor</label>
         <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.10" selected>Simple Gable Roof (10% waste)</option>
           <option value="1.15">Hip Roof or Valleys (15% waste)</option>
@@ -134,7 +134,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Underlayment Type</label>
+        <label for="underlaymentType" class="block text-sm font-medium text-gray-700 mb-1">Underlayment Type</label>
         <select id="underlaymentType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1000" selected>Synthetic Underlayment (1,000 sq ft/roll)</option>
           <option value="432">15 lb Felt Paper (432 sq ft/roll)</option>
@@ -143,7 +143,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">High-Wind Fastening?</label>
+        <label for="nailRate" class="block text-sm font-medium text-gray-700 mb-1">High-Wind Fastening?</label>
         <select id="nailRate" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="320" selected>Standard Fastening (4 nails / shingle)</option>
           <option value="480">High Wind Zone (6 nails / shingle)</option>

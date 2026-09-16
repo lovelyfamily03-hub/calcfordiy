@@ -87,17 +87,17 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Lawn Length (Feet)</label>
+        <label for="lawnLength" class="block text-sm font-medium text-gray-700 mb-1">Lawn Length (Feet)</label>
         <input type="number" id="lawnLength" placeholder="e.g. 50" value="50" min="1" max="1000" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Lawn Width (Feet)</label>
+        <label for="lawnWidth" class="block text-sm font-medium text-gray-700 mb-1">Lawn Width (Feet)</label>
         <input type="number" id="lawnWidth" placeholder="e.g. 30" value="30" min="1" max="1000" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Trimming &amp; Curve Waste</label>
+        <label for="wasteFactor" class="block text-sm font-medium text-gray-700 mb-1">Trimming &amp; Curve Waste</label>
         <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.05">5% Waste (Simple Square Lawn)</option>
           <option value="1.10" selected>10% Waste (Standard Rectangle / Edges)</option>
@@ -113,7 +113,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Pallet Size Coverage</label>
+        <label for="palletSize" class="block text-sm font-medium text-gray-700 mb-1">Pallet Size Coverage</label>
         <select id="palletSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="450" selected>450 Sq Ft Pallet (168 slabs @ 16"×24" — Standard)</option>
           <option value="500">500 Sq Ft Pallet (Large format)</option>
@@ -122,7 +122,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Topsoil Sub-Base Depth</label>
+        <label for="topsoilDepth" class="block text-sm font-medium text-gray-700 mb-1">Topsoil Sub-Base Depth</label>
         <select id="topsoilDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1">1 Inch Topsoil Prep Layer</option>
           <option value="2" selected>2 Inches Topsoil Prep Layer (Recommended)</option>

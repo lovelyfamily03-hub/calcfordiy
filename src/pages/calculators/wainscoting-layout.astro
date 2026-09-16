@@ -88,14 +88,14 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Wall Length (Inches)</label>
+        <label for="wallLength" class="block text-sm font-medium text-gray-700 mb-1">Wall Length (Inches)</label>
         <input type="number" id="wallLength" placeholder="e.g. 144" value="144" min="24" step="0.25" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-xs text-gray-400 mt-1">12 ft = 144 inches</p>
+        <p class="text-xs text-gray-500 mt-1">12 ft = 144 inches</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Section Height for Boxes (Inches)</label>
+        <label for="sectionHeight" class="block text-sm font-medium text-gray-700 mb-1">Section Height for Boxes (Inches)</label>
         <input type="number" id="sectionHeight" placeholder="e.g. 28" value="28" min="12" max="120" step="0.25" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-xs text-gray-400 mt-1">Distance between top of baseboard &amp; bottom of chair rail</p>
+        <p class="text-xs text-gray-500 mt-1">Distance between top of baseboard &amp; bottom of chair rail</p>
       </div>
     </div>
 
@@ -108,15 +108,15 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Picture Frame Boxes</label>
+        <label for="boxCount" class="block text-sm font-medium text-gray-700 mb-2">Number of Picture Frame Boxes</label>
         <input type="number" id="boxCount" value="3" min="1" max="15" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Side Gap / Margin Between Boxes (Inches)</label>
+        <label for="sideGap" class="block text-sm font-medium text-gray-700 mb-2">Side Gap / Margin Between Boxes (Inches)</label>
         <input type="number" id="sideGap" value="4" min="2" max="12" step="0.25" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Top &amp; Bottom Gap Margin (Inches)</label>
+        <label for="topBottomGap" class="block text-sm font-medium text-gray-700 mb-2">Top &amp; Bottom Gap Margin (Inches)</label>
         <input type="number" id="topBottomGap" value="4" min="2" max="12" step="0.25" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
     </div>
@@ -338,7 +338,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     }
 
     const svgHTML = `
-      <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg">
+      <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
             <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>

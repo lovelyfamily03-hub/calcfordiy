@@ -96,14 +96,14 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <div class="mb-4 p-4 bg-gray-50 rounded-lg">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Trim Type</label>
+          <label for="trim_type" class="block text-sm font-medium text-gray-700 mb-2">Trim Type</label>
           <select id="trim_type" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
             <option value="baseboard" selected>Baseboard / Chair Rail</option>
             <option value="crown">Crown Molding</option>
           </select>
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Purchase Board Length</label>
+          <label for="board_length" class="block text-sm font-medium text-gray-700 mb-2">Purchase Board Length</label>
           <select id="board_length" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
             <option value="8">8 ft boards</option>
             <option value="10">10 ft boards</option>
@@ -123,23 +123,23 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="mb-4 p-4 bg-gray-50 rounded-lg">
       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Total Room Perimeter <span class="font-normal text-gray-500 text-xs">(Measure all walls continuously)</span></label>
+        <label for="len_ft" class="block text-sm font-medium text-gray-700 mb-2">Total Room Perimeter <span class="font-normal text-gray-500 text-xs">(Measure all walls continuously)</span></label>
         <div class="flex items-center gap-2 max-w-sm">
           <input type="number" id="len_ft" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="40" min="0" />
           <span class="text-xs text-gray-500 shrink-0">ft</span>
-          <input type="number" id="len_in" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0" min="0" max="11" />
+          <input type="number" id="len_in" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="0" min="0" max="11" aria-label="Len Inches" />
           <span class="text-xs text-gray-500 shrink-0">in</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Total Doors & Openings</label>
+          <label for="doors" class="block text-sm font-medium text-gray-700 mb-2">Total Doors & Openings</label>
           <input type="number" id="doors" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="1" min="0" />
           <p class="text-xs text-gray-500 mt-1">Subtracts 3ft per opening.</p>
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Total Corners</label>
+          <label for="corners" class="block text-sm font-medium text-gray-700 mb-2">Total Corners</label>
           <input type="number" id="corners" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="4" min="0" />
           <p class="text-xs text-gray-500 mt-1">Inside + outside corners combined.</p>
         </div>

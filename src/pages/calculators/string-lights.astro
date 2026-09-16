@@ -112,24 +112,24 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <div class="p-4 bg-gray-50 rounded-lg mb-5 print:bg-white print:border print:border-gray-200">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Length</label>
+          <label for="d_len_ft" class="block text-xs text-gray-500 mb-1">Length</label>
           <div class="flex items-center gap-2">
             <input type="number" id="d_len_ft" placeholder="20" min="0" max="500"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="d_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="D Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Width</label>
+          <label for="d_wid_ft" class="block text-xs text-gray-500 mb-1">Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="d_wid_ft" placeholder="14" min="0" max="500"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="d_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="D Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
@@ -145,32 +145,32 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="space-y-3 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
 
-      <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
-        <input type="radio" name="layout" value="crisscross" class="mt-0.5 text-blue-600" onchange="updateLayout()" checked />
+      <label for="run_spacing" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+        <input type="radio" id="layout_crisscross" name="layout" value="crisscross" class="mt-0.5 text-blue-600" onchange="updateLayout()" checked />
         <div class="flex-1">
           <div class="text-sm font-medium text-gray-800">Crisscross / Grid</div>
           <div class="text-xs text-gray-500 mt-0.5">Strands run back and forth across the full space in both directions creating a grid overhead. The most popular patio look. Requires mounting points on all four sides.</div>
         </div>
       </label>
 
-      <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
-        <input type="radio" name="layout" value="straight" class="mt-0.5 text-blue-600" onchange="updateLayout()" />
+      <label for="layout_straight" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+        <input type="radio" id="layout_straight" name="layout" value="straight" class="mt-0.5 text-blue-600" onchange="updateLayout()" />
         <div class="flex-1">
           <div class="text-sm font-medium text-gray-800">Straight Runs (Pergola Style)</div>
           <div class="text-xs text-gray-500 mt-0.5">Parallel strands running in one direction only, like a pergola roof. Cleaner look than crisscross. Only needs mounting points on two sides.</div>
         </div>
       </label>
 
-      <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
-        <input type="radio" name="layout" value="perimeter" class="mt-0.5 text-blue-600" onchange="updateLayout()" />
+      <label for="layout_perimeter" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+        <input type="radio" id="layout_perimeter" name="layout" value="perimeter" class="mt-0.5 text-blue-600" onchange="updateLayout()" />
         <div class="flex-1">
           <div class="text-sm font-medium text-gray-800">Perimeter Border</div>
           <div class="text-xs text-gray-500 mt-0.5">Lights run along the edges only — fence, railing, or eave line. Defines the space without overhead coverage. Less light overall but very easy to install.</div>
         </div>
       </label>
 
-      <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
-        <input type="radio" name="layout" value="starburst" class="mt-0.5 text-blue-600" onchange="updateLayout()" />
+      <label for="layout_starburst" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+        <input type="radio" id="layout_starburst" name="layout" value="starburst" class="mt-0.5 text-blue-600" onchange="updateLayout()" />
         <div class="flex-1">
           <div class="text-sm font-medium text-gray-800">Starburst / Canopy (from center point)</div>
           <div class="text-xs text-gray-500 mt-0.5">Strands radiate from a central mounting point outward to the perimeter. Dramatic canopy effect. Requires a strong center anchor like a post or tree.</div>
@@ -181,7 +181,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div id="spacingSection" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2" id="spacingLabel">Spacing Between Runs</label>
+        <label for="run_spacing" class="block text-sm font-medium text-gray-700 mb-2" id="spacingLabel">Spacing Between Runs</label>
         <select id="run_spacing"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="1">1 ft apart — dense, very bright</option>
@@ -191,14 +191,14 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Sag / Drape Allowance</label>
+        <label for="sag" class="block text-sm font-medium text-gray-700 mb-2">Sag / Drape Allowance</label>
         <select id="sag"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="1.05">Tight / taut (5% extra)</option>
           <option value="1.10" selected>Slight drape (10% extra)</option>
           <option value="1.20">Relaxed drape (20% extra)</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1 print:hidden">String lights look best with a slight drape rather than pulled tight</p>
+        <p class="text-xs text-gray-500 mt-1 print:hidden">String lights look best with a slight drape rather than pulled tight</p>
       </div>
     </div>
 
@@ -211,7 +211,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Strand Length</label>
+        <label for="strand_length" class="block text-sm font-medium text-gray-700 mb-2">Strand Length</label>
         <select id="strand_length"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="25" selected>25 ft strand (most common)</option>
@@ -222,7 +222,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         </select>
       </div>
       <div id="customStrandDiv" class="hidden">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Custom Strand Length</label>
+        <label for="custom_strand" class="block text-sm font-medium text-gray-700 mb-2">Custom Strand Length</label>
         <div class="flex items-center gap-2">
           <input type="number" id="custom_strand" placeholder="30" min="5" max="300"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -233,7 +233,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Bulb Type / Watts Per Strand</label>
+        <label for="strand_watts" class="block text-sm font-medium text-gray-700 mb-2">Bulb Type / Watts Per Strand</label>
         <select id="strand_watts"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="5">LED G40 / G50 — ~5 watts per 25 ft strand</option>
@@ -241,7 +241,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           <option value="25" selected>Incandescent G40 — ~25 watts per 25 ft strand</option>
           <option value="40">Incandescent large globe — ~40 watts per 25 ft strand</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1 print:hidden">Used to calculate how many strands per outlet. Check your strand packaging.</p>
+        <p class="text-xs text-gray-500 mt-1 print:hidden">Used to calculate how many strands per outlet. Check your strand packaging.</p>
       </div>
       <div class="flex items-end print:hidden">
         <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 w-full">

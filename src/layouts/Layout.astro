@@ -22,7 +22,11 @@ const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com$
   <link rel="apple-touch-icon" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  </noscript>
   <meta name="description" content={description} />
   {noindex && <meta name="robots" content="noindex, follow" />}
   <title>{title}</title>
@@ -60,11 +64,19 @@ const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com$
   <meta name="twitter:image:alt" content="CalcForDIY — 100 Free DIY Construction & Material Takeoff Calculators" />
 </head>
   <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
+    <!-- Accessible Skip to Content Link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-blue-600 focus:text-white focus:text-sm focus:font-semibold focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+    >
+      Skip to main content
+    </a>
+
     <header class="bg-white border-b border-gray-200 px-4 py-3 print:hidden">
       <div class="max-w-5xl mx-auto flex items-center justify-between">
         <a href="/" class="text-xl font-bold text-blue-600">CalcForDIY</a>
         <!-- Desktop nav -->
-        <nav class="hidden sm:flex text-sm text-gray-600 gap-5 font-medium">
+        <nav class="hidden sm:flex text-sm text-gray-600 gap-5 font-medium" aria-label="Main Navigation">
           {navLinks.map(link => (
             <a
               href={link.href}
@@ -76,7 +88,7 @@ const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com$
         <button
           id="mobileMenuBtn"
           type="button"
-          class="sm:hidden flex flex-col justify-center items-center w-9 h-9 rounded-lg hover:bg-gray-100 transition-colors"
+          class="sm:hidden flex flex-col justify-center items-center w-11 h-11 p-2 rounded-lg hover:bg-gray-100 transition-colors"
           aria-label="Toggle navigation menu"
           aria-expanded="false"
         >
@@ -86,7 +98,7 @@ const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com$
         </button>
       </div>
       <!-- Mobile slide-down menu -->
-      <nav id="mobileMenu" class="hidden sm:hidden max-w-5xl mx-auto pt-3 pb-1 border-t border-gray-100 mt-3">
+      <nav id="mobileMenu" class="hidden sm:hidden max-w-5xl mx-auto pt-3 pb-1 border-t border-gray-100 mt-3" aria-label="Mobile Navigation">
         <div class="flex flex-col gap-1">
           {navLinks.map(link => (
             <a
@@ -98,7 +110,7 @@ const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com$
       </nav>
     </header>
     
-    <main class="max-w-5xl mx-auto px-4 py-8">
+    <main id="main-content" class="max-w-5xl mx-auto px-4 py-8">
       {isCalculatorPage && (
         <div class="mb-6 flex flex-wrap items-center gap-3 text-xs text-gray-600 bg-white border border-gray-200 rounded-xl px-4 py-2.5 shadow-xs print:hidden">
           <span class="flex items-center gap-1.5 font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
@@ -178,22 +190,22 @@ const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com$
         </div>
         <div class="border-t border-gray-200 pt-6 text-center text-xs text-gray-500 space-y-1.5">
           <p>© 2026 CalcForDIY • Built for Homeowners &amp; Tradespeople • Sourced from IRC, TCNA, NWFA &amp; IES Building Standards.</p>
-          <p class="text-gray-400">Created &amp; Maintained by CalcForDIY Engineering • <a href="/about" class="hover:underline text-gray-500">About</a> • <a href="/methodology" class="hover:underline text-gray-500">Methodology &amp; Code Standards</a> • <a href="/contact" class="hover:underline text-gray-500">Contact Us</a> • <a href="/privacy" class="hover:underline text-gray-500">Privacy Policy</a> • <a href="/terms" class="hover:underline text-gray-500">Terms of Service</a></p>
-          <p class="text-gray-400">All calculations are planning estimates. Always verify quantities with specific product data sheets and your local AHJ before installation.</p>
+          <p class="text-gray-500">Created &amp; Maintained by CalcForDIY Engineering • <a href="/about" class="hover:underline text-gray-600 font-medium">About</a> • <a href="/methodology" class="hover:underline text-gray-600 font-medium">Methodology &amp; Code Standards</a> • <a href="/contact" class="hover:underline text-gray-600 font-medium">Contact Us</a> • <a href="/privacy" class="hover:underline text-gray-600 font-medium">Privacy Policy</a> • <a href="/terms" class="hover:underline text-gray-600 font-medium">Terms of Service</a></p>
+          <p class="text-gray-500">All calculations are planning estimates. Always verify quantities with specific product data sheets and your local AHJ before installation.</p>
         </div>
       </div>
     </footer>
 
     <!-- Embed Calculator Modal (Moat 5) -->
     {isCalculatorPage && (
-      <div id="embedModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 print:hidden">
+      <div id="embedModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 print:hidden" role="dialog" aria-modal="true" aria-labelledby="embedModalTitle">
         <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-gray-200">
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center gap-2">
-              <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-md font-mono text-xs font-bold">&lt;/&gt;</span>
-              <h3 class="text-base font-bold text-gray-900">Embed this Calculator on Your Website</h3>
+              <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded-md font-mono text-xs font-bold" aria-hidden="true">&lt;/&gt;</span>
+              <h3 id="embedModalTitle" class="text-base font-bold text-gray-900">Embed this Calculator on Your Website</h3>
             </div>
-            <button type="button" onclick="document.getElementById('embedModal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600 text-2xl font-bold leading-none">&times;</button>
+            <button type="button" onclick="document.getElementById('embedModal').classList.add('hidden')" class="text-gray-500 hover:text-gray-700 text-2xl font-bold leading-none p-1 rounded-md" aria-label="Close modal">&times;</button>
           </div>
           <p class="text-xs text-gray-600 mb-3">Add this free interactive calculation tool to your blog, carpentry website, or contractor portal. Copy and paste the HTML snippet below:</p>
           <div class="relative mb-4">

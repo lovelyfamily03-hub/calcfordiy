@@ -87,15 +87,15 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Room Length (Feet)</label>
+        <label for="roomLength" class="block text-sm font-medium text-gray-700 mb-1">Room Length (Feet)</label>
         <input type="number" id="roomLength" placeholder="e.g. 20" value="20" min="6" max="100" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Room Width (Feet)</label>
+        <label for="roomWidth" class="block text-sm font-medium text-gray-700 mb-1">Room Width (Feet)</label>
         <input type="number" id="roomWidth" placeholder="e.g. 20" value="20" min="6" max="100" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Ceiling Height (Feet)</label>
+        <label for="ceilingHeight" class="block text-sm font-medium text-gray-700 mb-1">Ceiling Height (Feet)</label>
         <select id="ceilingHeight" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="8" selected>8 ft Ceiling (Standard)</option>
           <option value="9">9 ft Ceiling</option>
@@ -115,7 +115,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Insulation Quality</label>
+        <label for="insulation" class="block text-sm font-medium text-gray-700 mb-2">Insulation Quality</label>
         <select id="insulation" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.0" selected>Average Insulation</option>
           <option value="0.85">Good / Well-Insulated Modern Build</option>
@@ -123,7 +123,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Sun Exposure &amp; Windows</label>
+        <label for="sunExposure" class="block text-sm font-medium text-gray-700 mb-2">Sun Exposure &amp; Windows</label>
         <select id="sunExposure" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="0" selected>Moderate / Average Sunlight</option>
           <option value="-1000">Heavy Shade / North Facing</option>
@@ -132,7 +132,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Room Function</label>
+        <label for="roomType" class="block text-sm font-medium text-gray-700 mb-2">Room Function</label>
         <select id="roomType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="0" selected>Bedroom / Living Room</option>
           <option value="4000">Kitchen (+4,000 BTU cooking heat)</option>

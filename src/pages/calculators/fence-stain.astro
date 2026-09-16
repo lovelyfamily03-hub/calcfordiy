@@ -88,12 +88,12 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Fence Total Length (ft)</label>
+        <label for="fenceLength" class="block text-xs font-medium text-gray-600 mb-1">Fence Total Length (ft)</label>
         <input type="number" id="fenceLength" placeholder="150" value="150" min="1" max="2000" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Fence Height (ft)</label>
+        <label for="fenceHeight" class="block text-xs font-medium text-gray-600 mb-1">Fence Height (ft)</label>
         <select id="fenceHeight" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="4">4 ft Tall (Picket / Garden)</option>
           <option value="5">5 ft Tall (Pool Code Barrier)</option>
@@ -103,7 +103,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Fence Construction Style</label>
+        <label for="fenceStyle" class="block text-xs font-medium text-gray-600 mb-1">Fence Construction Style</label>
         <select id="fenceStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="privacy" selected>Solid Dog-Ear Privacy (Standard 1.1x Picket Factor)</option>
           <option value="shadowbox">Shadowbox / Board-on-Board (+35% Surface Area)</option>
@@ -113,7 +113,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Stain Sides</label>
+        <label for="sides" class="block text-xs font-medium text-gray-600 mb-1">Stain Sides</label>
         <select id="sides" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="2" selected>Both Sides (Front &amp; Back — 2x Area)</option>
           <option value="1">One Side Only (Facing Yard Only)</option>
@@ -128,7 +128,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Application Method</label>
+        <label for="appMethod" class="block text-xs font-medium text-gray-600 mb-1">Application Method</label>
         <select id="appMethod" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="sprayer" selected>Airless Paint Sprayer (+20% Overspray Allowance)</option>
           <option value="roller">Roller &amp; Brush (+10% Tray/Spill Buffer)</option>
@@ -137,7 +137,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Wood Condition &amp; Porosity</label>
+        <label for="woodCondition" class="block text-xs font-medium text-gray-600 mb-1">Wood Condition &amp; Porosity</label>
         <select id="woodCondition" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="new" selected>New Planed Cedar / Pine (200 sq ft/gal)</option>
           <option value="aged">Aged Dry Weathered Gray Wood (150 sq ft/gal)</option>
@@ -146,7 +146,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Number of Coats</label>
+        <label for="coatCount" class="block text-xs font-medium text-gray-600 mb-1">Number of Coats</label>
         <select id="coatCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1" selected>1 Saturated Coat (Standard Penetrating Oil)</option>
           <option value="2">2 Full Coats (Solid Color / Maximum Protection)</option>
@@ -193,7 +193,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <span class="text-xs text-gray-500 font-mono">Dog-Ear Pickets • 2x4 Stringers • 4x4 Posts</span>
     </div>
     <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
-      <svg id="fenceSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+      <svg id="fenceSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;" role="img" aria-label="Calculation Diagram"></svg>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
       <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-700 rounded-xs"></span> Stained Cedar/Pine Pickets</div>

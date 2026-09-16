@@ -87,17 +87,17 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Building Length (ft)</label>
+        <label for="roofLength" class="block text-xs font-medium text-gray-600 mb-1">Building Length (ft)</label>
         <input type="number" id="roofLength" placeholder="40" value="40" min="1" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Building Width / Span (ft)</label>
+        <label for="roofWidth" class="block text-xs font-medium text-gray-600 mb-1">Building Width / Span (ft)</label>
         <input type="number" id="roofWidth" placeholder="28" value="28" min="1" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Roof Pitch (Slope)</label>
+        <label for="roofPitch" class="block text-xs font-medium text-gray-600 mb-1">Roof Pitch (Slope)</label>
         <select id="roofPitch" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.054">4/12 Pitch (Multiplier 1.054)</option>
           <option value="1.083">5/12 Pitch (Multiplier 1.083)</option>
@@ -111,7 +111,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Roof Geometry Style</label>
+        <label for="roofStyle" class="block text-xs font-medium text-gray-600 mb-1">Roof Geometry Style</label>
         <select id="roofStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="gable" selected>Gable Roof (2 Slopes)</option>
           <option value="hip">Hip Roof (4 Slopes — +5% Angle Cuts)</option>
@@ -127,7 +127,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Panel Material &amp; Thickness</label>
+        <label for="sheathingType" class="block text-xs font-medium text-gray-600 mb-1">Panel Material &amp; Thickness</label>
         <select id="sheathingType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="osb_716" selected>7/16" OSB Sheathing (Standard 24/16 span)</option>
           <option value="ply_12">1/2" CDX Plywood (Exterior Grade)</option>
@@ -137,7 +137,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Rafter / Truss Spacing</label>
+        <label for="rafterSpacing" class="block text-xs font-medium text-gray-600 mb-1">Rafter / Truss Spacing</label>
         <select id="rafterSpacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="24" selected>24" on-center (Standard Roof Trusses)</option>
           <option value="16">16" on-center (Stick-Built Heavy Rafters)</option>
@@ -145,7 +145,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Eaves Overhang Extension</label>
+        <label for="eavesOverhang" class="block text-xs font-medium text-gray-600 mb-1">Eaves Overhang Extension</label>
         <select id="eavesOverhang" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.0">12" Overhang (+1 ft each side)</option>
           <option value="1.33" selected>16" Overhang (+1.33 ft each side)</option>
@@ -155,7 +155,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Trimming Waste Buffer</label>
+        <label for="wasteFactor" class="block text-xs font-medium text-gray-600 mb-1">Trimming Waste Buffer</label>
         <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.08">8% Waste (Simple Gable Roof)</option>
           <option value="1.10" selected>10% Waste (Standard DIY with Gables)</option>
@@ -203,7 +203,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <span class="text-xs text-gray-500 font-mono">Perpendicular to Rafters • 1/8" Expansion Gaps</span>
     </div>
     <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
-      <svg id="sheathingSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+      <svg id="sheathingSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;" role="img" aria-label="Calculation Diagram"></svg>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
       <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-700 rounded-xs"></span> 4x8 Sheathing Panel</div>

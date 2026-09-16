@@ -117,36 +117,36 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <div class="p-4 bg-gray-50 rounded-lg mb-5 print:bg-white print:border print:border-gray-200">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Kitchen Length</label>
+          <label for="k_len_ft" class="block text-xs text-gray-500 mb-1">Kitchen Length</label>
           <div class="flex items-center gap-2">
             <input type="number" id="k_len_ft" placeholder="14" min="0" max="100"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="k_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="K Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Kitchen Width</label>
+          <label for="k_wid_ft" class="block text-xs text-gray-500 mb-1">Kitchen Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="k_wid_ft" placeholder="12" min="0" max="100"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="k_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="K Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
       </div>
       <div>
-        <label class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
+        <label for="k_ceil_ft" class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
         <div class="flex items-center gap-2">
           <input type="number" id="k_ceil_ft" placeholder="9" min="6" max="20"
             class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-xs text-gray-500 shrink-0">ft</span>
           <input type="number" id="k_ceil_in" placeholder="0" min="0" max="11"
-            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="K Ceil Inches" />
           <span class="text-xs text-gray-500 shrink-0">in</span>
         </div>
       </div>
@@ -161,16 +161,16 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Ambient Target</label>
+        <label for="ambient_fc" class="block text-sm font-medium text-gray-700 mb-2">Ambient Target</label>
         <select id="ambient_fc"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="30">30 FC — moderate, task lights handle the rest</option>
           <option value="50" selected>50 FC — standard kitchen ambient</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1 print:hidden">IES recommendation for kitchen general lighting</p>
+        <p class="text-xs text-gray-500 mt-1 print:hidden">IES recommendation for kitchen general lighting</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Ambient Fixture Lumens</label>
+        <label for="ambient_lumens" class="block text-sm font-medium text-gray-700 mb-2">Ambient Fixture Lumens</label>
         <select id="ambient_lumens"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="650">650 lm — 6" LED standard</option>
@@ -188,7 +188,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </h2>
 
     <div class="mb-4 print:hidden">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="counter_len_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="counterToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('counterSection', this.checked)" />
         <span class="text-sm text-gray-700">Include counter / perimeter task lighting</span>
       </label>
@@ -196,16 +196,16 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <p class="text-xs text-gray-500 mb-3">Position task lights 24 inches from the wall and centered over the counter, not along the perimeter wall itself.</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Total Counter Length</label>
+            <label for="counter_len_ft" class="block text-xs text-gray-500 mb-1">Total Counter Length</label>
             <div class="flex items-center gap-2">
               <input type="number" id="counter_len_ft" placeholder="12" min="0" max="100"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
             </div>
-            <p class="text-xs text-gray-400 mt-1">Add all counter sections together</p>
+            <p class="text-xs text-gray-500 mt-1">Add all counter sections together</p>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Task Fixture Lumens</label>
+            <label for="task_lumens" class="block text-xs text-gray-500 mb-1">Task Fixture Lumens</label>
             <select id="task_lumens"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option value="650">650 lm — standard</option>
@@ -218,7 +218,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </div>
 
     <div class="mb-5 print:hidden">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="island_len_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="islandToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('islandSection', this.checked)" />
         <span class="text-sm text-gray-700">Include kitchen island task lighting</span>
       </label>
@@ -226,18 +226,18 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <p class="text-xs text-gray-500 mb-3">Island lights are typically spaced every 24-36 inches along the island length, centered over the work surface.</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Island Length</label>
+            <label for="island_len_ft" class="block text-xs text-gray-500 mb-1">Island Length</label>
             <div class="flex items-center gap-2">
               <input type="number" id="island_len_ft" placeholder="4" min="0" max="20"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="island_len_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Island Len Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Island Fixture Spacing</label>
+            <label for="island_spacing" class="block text-xs text-gray-500 mb-1">Island Fixture Spacing</label>
             <select id="island_spacing"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option value="2">Every 24" — maximum coverage</option>

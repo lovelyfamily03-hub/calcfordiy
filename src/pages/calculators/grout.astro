@@ -123,7 +123,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       <p class="text-xs text-gray-500 mb-3">Enter all measurements in inches. For example: a 12x24 tile is 12 and 24.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Tile Length</label>
+          <label for="tile_len" class="block text-xs text-gray-500 mb-1">Tile Length</label>
           <div class="flex items-center gap-1">
             <input type="number" id="tile_len" placeholder="12" min="0.5" max="96" step="0.25"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -131,7 +131,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Tile Width</label>
+          <label for="tile_wid" class="block text-xs text-gray-500 mb-1">Tile Width</label>
           <div class="flex items-center gap-1">
             <input type="number" id="tile_wid" placeholder="12" min="0.5" max="96" step="0.25"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -139,22 +139,22 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Tile Thickness</label>
+          <label for="tile_thick" class="block text-xs text-gray-500 mb-1">Tile Thickness</label>
           <div class="flex items-center gap-1">
             <input type="number" id="tile_thick" placeholder="0.375" min="0.1" max="2" step="0.125"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
-          <p class="text-xs text-gray-400 mt-1">Common: 3/8" = 0.375</p>
+          <p class="text-xs text-gray-500 mt-1">Common: 3/8" = 0.375</p>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Grout Joint Width</label>
+          <label for="joint_wid" class="block text-xs text-gray-500 mb-1">Grout Joint Width</label>
           <div class="flex items-center gap-1">
             <input type="number" id="joint_wid" placeholder="0.125" min="0.0625" max="1" step="0.0625"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
-          <p class="text-xs text-gray-400 mt-1">1/16"=0.0625, 1/8"=0.125, 3/16"=0.1875</p>
+          <p class="text-xs text-gray-500 mt-1">1/16"=0.0625, 1/8"=0.125, 3/16"=0.1875</p>
         </div>
       </div>
     </div>
@@ -168,16 +168,16 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Total Tile Area</label>
+        <label for="total_area" class="block text-sm font-medium text-gray-700 mb-2">Total Tile Area</label>
         <div class="flex items-center gap-2">
           <input type="number" id="total_area" placeholder="60" min="1" max="10000"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-sm text-gray-500 shrink-0">sq ft</span>
         </div>
-        <p class="text-xs text-gray-400 mt-1">Use our <a href="/calculators/shower-tile" class="text-blue-500 hover:underline">shower tile calculator</a> to find this</p>
+        <p class="text-xs text-gray-500 mt-1">Use our <a href="/calculators/shower-tile" class="text-blue-500 hover:underline">shower tile calculator</a> to find this</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Grout Type</label>
+        <label for="grout_type" class="block text-sm font-medium text-gray-700 mb-2">Grout Type</label>
         <select id="grout_type"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="sanded">Sanded grout (joints wider than 1/8")</option>
@@ -185,7 +185,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Bag Size</label>
+        <label for="bag_size" class="block text-sm font-medium text-gray-700 mb-2">Bag Size</label>
         <select id="bag_size"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="25">25 lb bag</option>

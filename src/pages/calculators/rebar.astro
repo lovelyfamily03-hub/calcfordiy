@@ -111,24 +111,24 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <div class="p-4 bg-gray-50 rounded-lg mb-5">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Slab Length</label>
+          <label for="s_len_ft" class="block text-xs text-gray-500 mb-1">Slab Length</label>
           <div class="flex items-center gap-2">
             <input type="number" id="s_len_ft" placeholder="12" min="0" max="500"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="s_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="S Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Slab Width</label>
+          <label for="s_wid_ft" class="block text-xs text-gray-500 mb-1">Slab Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="s_wid_ft" placeholder="10" min="0" max="500"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="s_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="S Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
@@ -144,7 +144,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Rebar Spacing</label>
+        <label for="spacing" class="block text-sm font-medium text-gray-700 mb-2">Rebar Spacing</label>
         <select id="spacing"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="12" selected>12 inches on center — standard patio or walkway</option>
@@ -153,10 +153,10 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           <option value="8">8 inches on center — heavy load or driveway</option>
           <option value="6">6 inches on center — structural or high-load</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">ACI 318 recommends 12-18" for residential slabs</p>
+        <p class="text-xs text-gray-500 mt-1">ACI 318 recommends 12-18" for residential slabs</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Rebar Size</label>
+        <label for="rebar_size" class="block text-sm font-medium text-gray-700 mb-2">Rebar Size</label>
         <select id="rebar_size"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="0.376">#3 rebar — 3/8" diameter — 0.376 lbs/ft</option>
@@ -164,13 +164,13 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           <option value="1.043">#5 rebar — 5/8" diameter — 1.043 lbs/ft</option>
           <option value="1.502">#6 rebar — 3/4" diameter — 1.502 lbs/ft</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">#4 rebar is standard for most residential concrete slabs</p>
+        <p class="text-xs text-gray-500 mt-1">#4 rebar is standard for most residential concrete slabs</p>
       </div>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Standard Bar Length</label>
+        <label for="bar_length" class="block text-sm font-medium text-gray-700 mb-2">Standard Bar Length</label>
         <select id="bar_length"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="20" selected>20 ft bars (standard)</option>
@@ -180,13 +180,13 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Grid Pattern</label>
+        <label for="grid_pattern" class="block text-sm font-medium text-gray-700 mb-2">Grid Pattern</label>
         <select id="grid_pattern"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="both" selected>Two-way grid — bars in both directions (standard)</option>
           <option value="one">One-way — bars in one direction only</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Two-way grid is standard for slabs exposed to freezing or heavy loads</p>
+        <p class="text-xs text-gray-500 mt-1">Two-way grid is standard for slabs exposed to freezing or heavy loads</p>
       </div>
     </div>
 
@@ -470,7 +470,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     }
 
     var svgHTML = `
-      <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg">
+      <svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
             <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>

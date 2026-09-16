@@ -111,34 +111,34 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <div class="p-4 bg-gray-50 rounded-lg mb-4">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Bed Length</label>
+          <label for="b_len_ft" class="block text-xs text-gray-500 mb-1">Bed Length</label>
           <div class="flex items-center gap-2">
             <input type="number" id="b_len_ft" placeholder="8" min="0" max="200"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="b_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="B Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Bed Width</label>
+          <label for="b_wid_ft" class="block text-xs text-gray-500 mb-1">Bed Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="b_wid_ft" placeholder="4" min="0" max="200"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="b_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="B Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
       </div>
       <div>
-        <label class="block text-xs text-gray-500 mb-1">Number of identical beds</label>
+        <label for="num_beds" class="block text-xs text-gray-500 mb-1">Number of identical beds</label>
         <div class="flex items-center gap-3">
           <input type="number" id="num_beds" value="1" min="1" max="50"
             class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <span class="text-xs text-gray-400">Multiply for several same-size beds</span>
+          <span class="text-xs text-gray-500">Multiply for several same-size beds</span>
         </div>
       </div>
     </div>
@@ -151,7 +151,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </h2>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-700 mb-2">Quick Select a Common Vegetable</label>
+      <label for="plantPreset" class="block text-sm font-medium text-gray-700 mb-2">Quick Select a Common Vegetable</label>
       <select id="plantPreset"
         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         onchange="applyPreset()">
@@ -186,26 +186,26 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          Plant Spacing <span class="text-gray-400 font-normal text-xs">(within row)</span>
+        <label for="plant_spacing" class="block text-sm font-medium text-gray-700 mb-2">
+          Plant Spacing <span class="text-gray-500 font-normal text-xs">(within row)</span>
         </label>
         <div class="flex items-center gap-2">
           <input type="number" id="plant_spacing" placeholder="12" min="1" max="96" step="0.5"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-sm text-gray-500 shrink-0">inches</span>
         </div>
-        <p class="text-xs text-gray-400 mt-1">Distance between plants in the same row</p>
+        <p class="text-xs text-gray-500 mt-1">Distance between plants in the same row</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          Row Spacing <span class="text-gray-400 font-normal text-xs">(between rows)</span>
+        <label for="row_spacing" class="block text-sm font-medium text-gray-700 mb-2">
+          Row Spacing <span class="text-gray-500 font-normal text-xs">(between rows)</span>
         </label>
         <div class="flex items-center gap-2">
           <input type="number" id="row_spacing" placeholder="18" min="1" max="96" step="0.5"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-sm text-gray-500 shrink-0">inches</span>
         </div>
-        <p class="text-xs text-gray-400 mt-1">Distance between rows</p>
+        <p class="text-xs text-gray-500 mt-1">Distance between rows</p>
       </div>
     </div>
 
@@ -218,16 +218,16 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Planting Pattern</label>
+        <label for="pattern" class="block text-sm font-medium text-gray-700 mb-2">Planting Pattern</label>
         <select id="pattern"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="square">Square grid — standard rows</option>
           <option value="triangular">Triangular offset — fits ~15% more plants</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Triangular offset staggers alternate rows for denser planting</p>
+        <p class="text-xs text-gray-500 mt-1">Triangular offset staggers alternate rows for denser planting</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Germination Buffer</label>
+        <label for="germ_buffer" class="block text-sm font-medium text-gray-700 mb-2">Germination Buffer</label>
         <select id="germ_buffer"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="0">No buffer — transplants or high germination seeds</option>

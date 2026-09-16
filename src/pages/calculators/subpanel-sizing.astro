@@ -107,7 +107,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Subpanel Location</label>
+        <label for="subpanelLocation" class="block text-xs font-medium text-gray-600 mb-1">Subpanel Location</label>
         <select id="subpanelLocation" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="attached_garage" selected>Attached Garage / Workshop</option>
           <option value="detached_shed">Detached Shed / Outbuilding (Requires Ground Rods)</option>
@@ -116,7 +116,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Feeder Run One-Way Length</label>
+        <label for="feederLengthFt" class="block text-xs font-medium text-gray-600 mb-1">Feeder Run One-Way Length</label>
         <div class="flex items-center gap-2">
           <input type="number" id="feederLengthFt" placeholder="40" value="40" min="5" max="300" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">ft</span>
@@ -124,7 +124,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Preferred Feeder Conductor Type</label>
+        <label for="conductorMat" class="block text-xs font-medium text-gray-600 mb-1">Preferred Feeder Conductor Type</label>
         <select id="conductorMat" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="aluminum_ser" selected>Aluminum SER Cable (Most Cost Effective)</option>
           <option value="copper_thhn">Copper THHN Conductors in Conduit</option>
@@ -138,32 +138,32 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
       <h3 class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Check All Planned Circuits to Power from Subpanel:</h3>
       
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm text-gray-700">
-        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+        <label for="load_ev" class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
           <input type="checkbox" id="load_ev" class="w-4 h-4 text-blue-600 rounded" checked />
           <span>Level 2 EV Charger (50A / 40A Cont.)</span>
         </label>
 
-        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+        <label for="load_compressor" class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
           <input type="checkbox" id="load_compressor" class="w-4 h-4 text-blue-600 rounded" checked />
           <span>240V Air Compressor (30A)</span>
         </label>
 
-        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+        <label for="load_tablesaw" class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
           <input type="checkbox" id="load_tablesaw" class="w-4 h-4 text-blue-600 rounded" checked />
           <span>240V Table Saw / Welder (30A)</span>
         </label>
 
-        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+        <label for="load_dust" class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
           <input type="checkbox" id="load_dust" class="w-4 h-4 text-blue-600 rounded" />
           <span>Dust Collector / Machinery (20A)</span>
         </label>
 
-        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+        <label for="load_minisplit" class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
           <input type="checkbox" id="load_minisplit" class="w-4 h-4 text-blue-600 rounded" checked />
           <span>Mini-Split Heat Pump (20A / 240V)</span>
         </label>
 
-        <label class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
+        <label for="load_lighting" class="flex items-center gap-2 cursor-pointer bg-white p-2.5 rounded-lg border border-gray-200 hover:border-blue-300">
           <input type="checkbox" id="load_lighting" class="w-4 h-4 text-blue-600 rounded" checked />
           <span>LED Shop Lighting &amp; 120V Outlets (20A)</span>
         </label>
@@ -505,7 +505,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     const width = 600;
     const height = 220;
 
-    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
     
     // Main Panel Box
     svg += `<rect x="30" y="30" width="140" height="160" fill="#F3F4F6" stroke="#374151" stroke-width="2" rx="6" />`;

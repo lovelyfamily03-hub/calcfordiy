@@ -103,7 +103,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Basement Floor Area</label>
+        <label for="basementSqft" class="block text-xs font-medium text-gray-600 mb-1">Basement Floor Area</label>
         <div class="flex items-center gap-2">
           <input type="number" id="basementSqft" placeholder="1500" value="1500" min="200" max="10000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">sq ft</span>
@@ -111,7 +111,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Water Inflow &amp; Water Table Severity</label>
+        <label for="waterSeverity" class="block text-xs font-medium text-gray-600 mb-1">Water Inflow &amp; Water Table Severity</label>
         <select id="waterSeverity" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="light">Light (Sandy soil, low water table, minor seepage)</option>
           <option value="moderate" selected>Moderate (Standard clay/loam soil, storm runoff)</option>
@@ -120,7 +120,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Vertical Lift (Basement Floor to Exit)</label>
+        <label for="verticalLift" class="block text-xs font-medium text-gray-600 mb-1">Vertical Lift (Basement Floor to Exit)</label>
         <div class="flex items-center gap-2">
           <input type="number" id="verticalLift" placeholder="9" value="9" min="3" max="25" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">feet</span>
@@ -130,7 +130,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Horizontal Discharge Pipe Length</label>
+        <label for="horizontalRun" class="block text-xs font-medium text-gray-600 mb-1">Horizontal Discharge Pipe Length</label>
         <div class="flex items-center gap-2">
           <input type="number" id="horizontalRun" placeholder="25" value="25" min="0" max="200" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">feet of 1.5" PVC</span>
@@ -138,7 +138,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Number of 90&deg; Elbow Fittings</label>
+        <label for="elbowCount" class="block text-xs font-medium text-gray-600 mb-1">Number of 90&deg; Elbow Fittings</label>
         <select id="elbowCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1">1 Elbow (Direct upward &amp; out)</option>
           <option value="2" selected>2 Elbows (Standard basement rim joist exit)</option>
@@ -381,7 +381,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     const width = 560;
     const height = 230;
 
-    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
     
     // Foundation Wall & Floor
     svg += `<rect x="20" y="20" width="160" height="20" fill="#9CA3AF" />`;

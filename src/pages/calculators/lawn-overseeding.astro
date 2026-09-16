@@ -87,7 +87,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Yard Size Presets</label>
+        <label for="yardPreset" class="block text-xs font-medium text-gray-600 mb-1">Yard Size Presets</label>
         <select id="yardPreset" onchange="applyYardPreset()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="custom">Custom Area (Sq Ft)</option>
           <option value="small">Small Townhome Yard (2,500 sq ft)</option>
@@ -98,12 +98,12 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Lawn Square Footage</label>
+        <label for="lawnSqFt" class="block text-xs font-medium text-gray-600 mb-1">Lawn Square Footage</label>
         <input type="number" id="lawnSqFt" placeholder="5000" value="5000" min="100" max="500000" step="250" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Project Type</label>
+        <label for="seedingMode" class="block text-xs font-medium text-gray-600 mb-1">Project Type</label>
         <select id="seedingMode" onchange="calculateLawn()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="overseed" selected>Overseeding Existing Lawn (Thickening Turf)</option>
           <option value="new_lawn">New Lawn Seeding (Bare Dirt / 2x Seed Rate)</option>
@@ -111,7 +111,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Grass Species (Turf Type)</label>
+        <label for="grassType" class="block text-xs font-medium text-gray-600 mb-1">Grass Species (Turf Type)</label>
         <select id="grassType" onchange="calculateLawn()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="ttf" selected>Turf-Type Tall Fescue (TTTF — 5 lbs/1,000 sq ft)</option>
           <option value="kbg">Kentucky Bluegrass (KBG — 2.5 lbs/1,000 sq ft)</option>
@@ -130,7 +130,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Mechanical Core Aeration</label>
+        <label for="includeAeration" class="block text-xs font-medium text-gray-600 mb-1">Mechanical Core Aeration</label>
         <select id="includeAeration" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="yes" selected>Yes (Double Pass Core Aerator — Recommended)</option>
           <option value="no">No (Slit-Seeding or Liquid Aeration)</option>
@@ -138,7 +138,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Starter Fertilizer (High Phosphorus)</label>
+        <label for="includeFertilizer" class="block text-xs font-medium text-gray-600 mb-1">Starter Fertilizer (High Phosphorus)</label>
         <select id="includeFertilizer" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="yes" selected>Yes (18-24-12 Starter Fertilizer for Root Growth)</option>
           <option value="no">No Fertilizer</option>
@@ -146,7 +146,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Peat Moss / Compost Topdressing</label>
+        <label for="includeTopdress" class="block text-xs font-medium text-gray-600 mb-1">Peat Moss / Compost Topdressing</label>
         <select id="includeTopdress" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="spot" selected>Spot Treatment (Bare Patches Only — 2 Bales)</option>
           <option value="full">Full 1/8" Lawn Blanket Topdressing</option>
@@ -194,7 +194,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <span class="text-xs text-gray-500 font-mono">2.5" Core Depth • Seed Germination Bed</span>
     </div>
     <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
-      <svg id="lawnSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+      <svg id="lawnSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;" role="img" aria-label="Calculation Diagram"></svg>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
       <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-800 rounded-xs"></span> Soil Horizon</div>

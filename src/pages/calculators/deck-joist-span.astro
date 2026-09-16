@@ -87,19 +87,19 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Deck Length / Projection (Feet)</label>
+        <label for="deckLength" class="block text-sm font-medium text-gray-700 mb-1">Deck Length / Projection (Feet)</label>
         <input type="number" id="deckLength" placeholder="e.g. 14" value="14" min="1" max="100" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-xs text-gray-400 mt-1">Distance out from ledger to beam line</p>
+        <p class="text-xs text-gray-500 mt-1">Distance out from ledger to beam line</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Deck Width (Feet)</label>
+        <label for="deckWidth" class="block text-sm font-medium text-gray-700 mb-1">Deck Width (Feet)</label>
         <input type="number" id="deckWidth" placeholder="e.g. 20" value="20" min="1" max="100" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-xs text-gray-400 mt-1">Parallel width along house wall</p>
+        <p class="text-xs text-gray-500 mt-1">Parallel width along house wall</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Joist Lumber Size</label>
+        <label for="joistSize" class="block text-sm font-medium text-gray-700 mb-1">Joist Lumber Size</label>
         <select id="joistSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="2x6">2x6 Treated Pressure Lumber</option>
           <option value="2x8" selected>2x8 Treated Pressure Lumber (Standard)</option>
@@ -116,7 +116,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Joist Spacing On-Center</label>
+        <label for="joistSpacing" class="block text-sm font-medium text-gray-700 mb-1">Joist Spacing On-Center</label>
         <select id="joistSpacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="16" selected>16" On-Center (Standard Wood / Composite)</option>
           <option value="12">12" On-Center (45° Diagonal Decking / Composite)</option>
@@ -125,7 +125,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Wood Species Type</label>
+        <label for="woodSpecies" class="block text-sm font-medium text-gray-700 mb-1">Wood Species Type</label>
         <select id="woodSpecies" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="SYP" selected>Southern Yellow Pine (Highest Strength)</option>
           <option value="DF">Douglas Fir / Larch</option>
@@ -134,7 +134,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Design Live Load</label>
+        <label for="liveLoad" class="block text-sm font-medium text-gray-700 mb-1">Design Live Load</label>
         <select id="liveLoad" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="40" selected>40 PSF Live Load (Standard Residential IRC)</option>
           <option value="50">50 PSF Live Load (Heavy Snow / Commercial)</option>
@@ -365,7 +365,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     const planW = W - (padX * 2);
     const planH = 200;
 
-    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" class="font-sans" aria-hidden="true">
       <defs>
         <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
           <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#edf2f7" stroke-width="1" />

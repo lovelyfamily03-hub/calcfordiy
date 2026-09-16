@@ -103,7 +103,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Average Daily Electricity Usage</label>
+        <label for="dailyKwh" class="block text-xs font-medium text-gray-600 mb-1">Average Daily Electricity Usage</label>
         <div class="flex items-center gap-2">
           <input type="number" id="dailyKwh" placeholder="30" value="30" min="2" max="250" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">kWh / day</span>
@@ -111,7 +111,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Regional Peak Sun Hours</label>
+        <label for="peakSunHours" class="block text-xs font-medium text-gray-600 mb-1">Regional Peak Sun Hours</label>
         <select id="peakSunHours" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="5.5">5.5 Hours (Sunbelt / Southwest / CA / AZ)</option>
           <option value="4.5" selected>4.5 Hours (Midwest / Central US / SE)</option>
@@ -120,7 +120,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Desired Emergency Backup Autonomy</label>
+        <label for="backupDays" class="block text-xs font-medium text-gray-600 mb-1">Desired Emergency Backup Autonomy</label>
         <select id="backupDays" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1" selected>1 Day Backup (Essential Outage Protection)</option>
           <option value="2">2 Days Backup (Extended Storm Outage)</option>
@@ -131,7 +131,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Individual Solar Panel Rating</label>
+        <label for="panelWattage" class="block text-xs font-medium text-gray-600 mb-1">Individual Solar Panel Rating</label>
         <select id="panelWattage" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="400" selected>400 Watt Premium Monocrystalline Panel</option>
           <option value="350">350 Watt Standard Monocrystalline Panel</option>
@@ -140,7 +140,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Battery Chemistry Type</label>
+        <label for="batteryChem" class="block text-xs font-medium text-gray-600 mb-1">Battery Chemistry Type</label>
         <select id="batteryChem" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="lifepo4" selected>LiFePO4 Lithium Iron Phosphate (90% DOD, 6,000 Cycles)</option>
           <option value="lead_acid">AGM Sealed Lead-Acid (50% DOD Limit)</option>
@@ -387,7 +387,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     const width = 600;
     const height = 220;
 
-    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
     
     // Solar Panel Grid (Left)
     svg += `<rect x="30" y="30" width="130" height="90" fill="#1E3A8A" stroke="#3B82F6" stroke-width="2" rx="4" />`;

@@ -112,37 +112,37 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <div class="p-4 bg-gray-50 rounded-lg mb-5">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Room Length</label>
+          <label for="r_len_ft" class="block text-xs text-gray-500 mb-1">Room Length</label>
           <div class="flex items-center gap-2">
             <input type="number" id="r_len_ft" placeholder="14" min="0" max="100"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="r_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Room Width</label>
+          <label for="r_wid_ft" class="block text-xs text-gray-500 mb-1">Room Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="r_wid_ft" placeholder="12" min="0" max="100"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="r_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
       </div>
 
       <div>
-        <label class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
+        <label for="r_ceil_ft" class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
         <div class="flex items-center gap-2">
           <input type="number" id="r_ceil_ft" placeholder="8" min="6" max="20"
             class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-xs text-gray-500 shrink-0">ft</span>
           <input type="number" id="r_ceil_in" placeholder="0" min="0" max="11"
-            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Ceil Inches" />
           <span class="text-xs text-gray-500 shrink-0">in</span>
         </div>
       </div>
@@ -157,17 +157,17 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Lighting Mood</label>
+        <label for="purpose" class="block text-sm font-medium text-gray-700 mb-2">Lighting Mood</label>
         <select id="purpose"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="20">Relaxed / ambient (20 foot-candles)</option>
           <option value="30" selected>General bedroom use (30 foot-candles)</option>
           <option value="50">Bright / reading or dressing area (50 foot-candles)</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">IES recommended levels for residential bedrooms</p>
+        <p class="text-xs text-gray-500 mt-1">IES recommended levels for residential bedrooms</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Fixture Lumens</label>
+        <label for="lumens" class="block text-sm font-medium text-gray-700 mb-2">Fixture Lumens</label>
         <select id="lumens"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="450">450 lm — 4" LED, subtle</option>
@@ -175,7 +175,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           <option value="750">750 lm — 6" LED, bright</option>
           <option value="1000">1000 lm — 6" LED, high output</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Check your fixture packaging for exact lumens</p>
+        <p class="text-xs text-gray-500 mt-1">Check your fixture packaging for exact lumens</p>
       </div>
     </div>
 

@@ -102,7 +102,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Total Pipe Run Length</label>
+        <label for="pipeLength" class="block text-xs font-medium text-gray-600 mb-1">Total Pipe Run Length</label>
         <div class="flex items-center gap-2">
           <input type="number" id="pipeLength" placeholder="40" value="40" min="1" max="500" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">feet</span>
@@ -110,7 +110,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Pipe Diameter &amp; Code Standard</label>
+        <label for="pipeSize" class="block text-xs font-medium text-gray-600 mb-1">Pipe Diameter &amp; Code Standard</label>
         <select id="pipeSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="0.25">1-1/2" to 2" Pipe (1/4" per ft — Standard Sink/Shower)</option>
           <option value="0.125" selected>3" to 4" Pipe (1/8" per ft — Main Building Sewer / Toilet)</option>
@@ -120,7 +120,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Starting Invert Depth (Trench Top of Pipe)</label>
+        <label for="startDepth" class="block text-xs font-medium text-gray-600 mb-1">Starting Invert Depth (Trench Top of Pipe)</label>
         <div class="flex items-center gap-2">
           <input type="number" id="startDepth" placeholder="24" value="24" min="0" max="240" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">inches deep</span>
@@ -130,7 +130,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div id="customSlopeRow" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Custom Slope (Inches of Drop per Foot)</label>
+        <label for="customSlope" class="block text-xs font-medium text-gray-600 mb-1">Custom Slope (Inches of Drop per Foot)</label>
         <input type="number" id="customSlope" placeholder="0.25" value="0.25" step="0.01" min="0.01" max="1.0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
     </div>
@@ -357,7 +357,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     const width = 560;
     const height = 210;
 
-    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
     
     // Ground Surface Line
     svg += `<line x1="30" y1="40" x2="530" y2="40" stroke="#16A34A" stroke-width="4" />`;

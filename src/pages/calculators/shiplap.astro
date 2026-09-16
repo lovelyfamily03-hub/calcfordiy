@@ -89,7 +89,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <div class="mb-4 p-4 bg-gray-50 rounded-lg">
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Board Profile (Nominal)</label>
+          <label for="board_profile" class="block text-sm font-medium text-gray-700 mb-2">Board Profile (Nominal)</label>
           <select id="board_profile" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
             <option value="3">1x4 (Exposed Face: ~3")</option>
             <option value="4.875" selected>1x6 (Exposed Face: ~4 7/8")</option>
@@ -98,11 +98,11 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           </select>
         </div>
         <div id="custom_face_div" class="hidden">
-          <label class="block text-sm font-medium text-gray-700 mb-2">Custom Face (inches)</label>
+          <label for="custom_face" class="block text-sm font-medium text-gray-700 mb-2">Custom Face (inches)</label>
           <input type="number" id="custom_face" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="5.0" step="0.125" min="1" />
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Spacing Gap</label>
+          <label for="gap_size" class="block text-sm font-medium text-gray-700 mb-2">Spacing Gap</label>
           <select id="gap_size" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
             <option value="0" selected>Flush / Built-in Gap (0")</option>
             <option value="0.125">Nickel Gap (1/8")</option>
@@ -110,7 +110,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           </select>
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Purchase Board Length</label>
+          <label for="board_length" class="block text-sm font-medium text-gray-700 mb-2">Purchase Board Length</label>
           <select id="board_length" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
             <option value="8" selected>8 ft boards</option>
             <option value="10">10 ft boards</option>
@@ -130,23 +130,23 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </h2>
 
     <div class="mb-4 p-4 bg-gray-50 rounded-lg">
-      <p class="text-sm font-medium text-gray-700 mb-3">Wall 1 <span class="text-xs text-gray-400 font-normal">(required)</span></p>
+      <p class="text-sm font-medium text-gray-700 mb-3">Wall 1 <span class="text-xs text-gray-500 font-normal">(required)</span></p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Height</label>
+          <label for="w1h_ft" class="block text-xs text-gray-500 mb-1">Height</label>
           <div class="flex items-center gap-2">
             <input type="number" id="w1h_ft" placeholder="8" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="w1h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input type="number" id="w1h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W1H Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Width</label>
+          <label for="w1w_ft" class="block text-xs text-gray-500 mb-1">Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="w1w_ft" placeholder="10" min="0" max="100" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="w1w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input type="number" id="w1w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W1W Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
@@ -154,7 +154,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </div>
 
     <div class="mb-3">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="w2h_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="wall2Toggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('wall2Section', this.checked)" />
         <span class="text-sm text-gray-700">+ Add Wall 2</span>
       </label>
@@ -162,20 +162,20 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <p class="text-sm font-medium text-gray-700 mb-3">Wall 2</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <label for="w2h_ft" class="block text-xs text-gray-500 mb-1">Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w2h_ft" placeholder="8" min="0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="w2h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="w2h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W2H Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <label for="w2w_ft" class="block text-xs text-gray-500 mb-1">Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w2w_ft" placeholder="10" min="0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="w2w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="w2w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W2W Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -184,7 +184,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </div>
 
     <div class="mb-3">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="w3h_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="wall3Toggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('wall3Section', this.checked)" />
         <span class="text-sm text-gray-700">+ Add Wall 3</span>
       </label>
@@ -192,20 +192,20 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <p class="text-sm font-medium text-gray-700 mb-3">Wall 3</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <label for="w3h_ft" class="block text-xs text-gray-500 mb-1">Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w3h_ft" placeholder="8" min="0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="w3h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="w3h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W3H Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <label for="w3w_ft" class="block text-xs text-gray-500 mb-1">Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w3w_ft" placeholder="10" min="0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="w3w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="w3w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W3W Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -221,27 +221,27 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </h2>
 
     <div class="mb-3">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="dh_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="doorToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('doorSection', this.checked)" />
         <span class="text-sm text-gray-700">Subtract door opening</span>
       </label>
       <div id="doorSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Door Height</label>
+            <label for="dh_ft" class="block text-xs text-gray-500 mb-1">Door Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="dh_ft" placeholder="6" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="dh_in" placeholder="8" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="dh_in" placeholder="8" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Dh Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Door Width</label>
+            <label for="dw_ft" class="block text-xs text-gray-500 mb-1">Door Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="dw_ft" placeholder="2" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="dw_in" placeholder="8" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="dw_in" placeholder="8" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Dw Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -250,27 +250,27 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </div>
 
     <div class="mb-5">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="wh_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="windowToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('windowSection', this.checked)" />
         <span class="text-sm text-gray-700">Subtract window opening</span>
       </label>
       <div id="windowSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Window Height</label>
+            <label for="wh_ft" class="block text-xs text-gray-500 mb-1">Window Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="wh_ft" placeholder="4" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="wh_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="wh_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Wh Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Window Width</label>
+            <label for="ww_ft" class="block text-xs text-gray-500 mb-1">Window Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="ww_ft" placeholder="3" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="ww_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="ww_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Ww Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -528,7 +528,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     const rowsCount = Math.max(5, Math.min(10, Math.floor(wallH / 20)));
     const boardH = wallH / rowsCount;
 
-    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="240" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="240" xmlns="http://www.w3.org/2000/svg" class="font-sans" aria-hidden="true">
       <rect x="0" y="0" width="${W}" height="${H}" fill="#f7fafc" />
 
       <!-- Top Trim / Crown -->

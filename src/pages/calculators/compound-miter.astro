@@ -79,13 +79,13 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Measured Wall Corner Angle (Degrees)</label>
+        <label for="cornerAngle" class="block text-sm font-medium text-gray-700 mb-1">Measured Wall Corner Angle (Degrees)</label>
         <input type="number" id="cornerAngle" placeholder="e.g. 90" value="90" min="45" max="175" step="0.1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-xs text-gray-400 mt-1">Standard square corner is 90.0° (use angle finder for out-of-square walls)</p>
+        <p class="text-xs text-gray-500 mt-1">Standard square corner is 90.0° (use angle finder for out-of-square walls)</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Crown Molding Spring Angle</label>
+        <label for="springAngle" class="block text-sm font-medium text-gray-700 mb-1">Crown Molding Spring Angle</label>
         <select id="springAngle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="38" selected>38° / 52° Spring Angle (Standard US Crown)</option>
           <option value="45">45° / 45° Spring Angle (Modern / Equal Angle Crown)</option>

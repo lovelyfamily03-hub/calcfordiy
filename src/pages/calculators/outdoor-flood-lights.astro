@@ -117,38 +117,38 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <div class="p-4 bg-gray-50 rounded-lg mb-5 print:bg-white print:border print:border-gray-200">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Area Length</label>
+          <label for="a_len_ft" class="block text-xs text-gray-500 mb-1">Area Length</label>
           <div class="flex items-center gap-2">
             <input type="number" id="a_len_ft" placeholder="40" min="0" max="1000"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="a_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="A Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Area Width</label>
+          <label for="a_wid_ft" class="block text-xs text-gray-500 mb-1">Area Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="a_wid_ft" placeholder="30" min="0" max="1000"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="a_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="A Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
       </div>
 
       <div>
-        <label class="block text-xs text-gray-500 mb-1">Mounting Height</label>
+        <label for="mount_height" class="block text-xs text-gray-500 mb-1">Mounting Height</label>
         <div class="flex items-center gap-2">
           <input type="number" id="mount_height" placeholder="10" min="4" max="40"
             class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-sm text-gray-500 shrink-0">ft</span>
-          <span class="text-xs text-gray-400 print:hidden">Height of fixture from ground. Higher = wider spread but less intensity.</span>
+          <span class="text-xs text-gray-500 print:hidden">Height of fixture from ground. Higher = wider spread but less intensity.</span>
         </div>
-        <p class="text-xs text-gray-400 mt-1 print:hidden">Typical: eave mount 8-12 ft, pole mount 12-20 ft, wall mount 8-10 ft</p>
+        <p class="text-xs text-gray-500 mt-1 print:hidden">Typical: eave mount 8-12 ft, pole mount 12-20 ft, wall mount 8-10 ft</p>
       </div>
     </div>
 
@@ -160,11 +160,11 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </h2>
 
     <div class="mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
-      <label class="block text-sm font-medium text-gray-700 mb-3">Select Your Primary Use</label>
+      <label for="lumens" class="block text-sm font-medium text-gray-700 mb-3">Select Your Primary Use</label>
       <div class="grid grid-cols-1 gap-3">
 
-        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
-          <input type="radio" name="purpose" value="0.5" class="mt-0.5 text-blue-600" onchange="calculate()" />
+        <label for="purpose_security" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+          <input type="radio" id="purpose_security" name="purpose" value="0.5" class="mt-0.5 text-blue-600" onchange="calculate()" />
           <div>
             <div class="text-sm font-medium text-gray-800">Security / Perimeter Lighting</div>
             <div class="text-xs text-gray-500">Minimum deterrent lighting along fence lines, property edges. Target: 0.5 FC.</div>
@@ -172,8 +172,8 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           </div>
         </label>
 
-        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
-          <input type="radio" name="purpose" value="2" class="mt-0.5 text-blue-600" onchange="calculate()" checked />
+        <label for="purpose_general" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+          <input type="radio" id="purpose_general" name="purpose" value="2" class="mt-0.5 text-blue-600" onchange="calculate()" checked />
           <div>
             <div class="text-sm font-medium text-gray-800">Driveway / Pathway</div>
             <div class="text-xs text-gray-500">Safe navigation lighting for driveways, walkways, and entry areas. Target: 2 FC.</div>
@@ -181,8 +181,8 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           </div>
         </label>
 
-        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
-          <input type="radio" name="purpose" value="5" class="mt-0.5 text-blue-600" onchange="calculate()" />
+        <label for="purpose_task" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+          <input type="radio" id="purpose_task" name="purpose" value="5" class="mt-0.5 text-blue-600" onchange="calculate()" />
           <div>
             <div class="text-sm font-medium text-gray-800">Backyard / Patio General</div>
             <div class="text-xs text-gray-500">Comfortable outdoor living, entertaining, and general backyard use. Target: 5 FC.</div>
@@ -190,8 +190,8 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           </div>
         </label>
 
-        <label class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
-          <input type="radio" name="purpose" value="10" class="mt-0.5 text-blue-600" onchange="calculate()" />
+        <label for="purpose_commercial" class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer hover:bg-gray-50 has-[:checked]:border-blue-400 has-[:checked]:bg-blue-50 print:border-none print:p-0">
+          <input type="radio" id="purpose_commercial" name="purpose" value="10" class="mt-0.5 text-blue-600" onchange="calculate()" />
           <div>
             <div class="text-sm font-medium text-gray-800">Outdoor Work Area / Shop</div>
             <div class="text-xs text-gray-500">Detailed outdoor work, garages, workshops, and sports areas. Target: 10 FC.</div>
@@ -211,7 +211,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 print:bg-gray-50 print:p-4 print:rounded-lg print:border print:border-gray-200">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Fixture Lumens</label>
+        <label for="lumens" class="block text-sm font-medium text-gray-700 mb-2">Fixture Lumens</label>
         <select id="lumens"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="1500">1,500 lm — small flood light</option>
@@ -220,17 +220,17 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           <option value="10000">10,000 lm — high output / commercial</option>
           <option value="20000">20,000 lm — stadium / large area</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1 print:hidden">Find on fixture packaging. Most residential flood lights: 2,500-5,000 lm.</p>
+        <p class="text-xs text-gray-500 mt-1 print:hidden">Find on fixture packaging. Most residential flood lights: 2,500-5,000 lm.</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Beam Angle</label>
+        <label for="beam_angle" class="block text-sm font-medium text-gray-700 mb-2">Beam Angle</label>
         <select id="beam_angle"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="0.15">Narrow — 15-30° (spotlighting, long-range)</option>
           <option value="0.25" selected>Medium — 45-60° (standard flood light)</option>
           <option value="0.35">Wide — 90-120° (area flood, broad coverage)</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1 print:hidden">Wider beam covers more area but lower intensity. Check fixture spec sheet.</p>
+        <p class="text-xs text-gray-500 mt-1 print:hidden">Wider beam covers more area but lower intensity. Check fixture spec sheet.</p>
       </div>
     </div>
 

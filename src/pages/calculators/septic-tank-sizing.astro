@@ -78,7 +78,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Number of Bedrooms</label>
+        <label for="bedroomCount" class="block text-sm font-medium text-gray-700 mb-1">Number of Bedrooms</label>
         <select id="bedroomCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1">1 Bedroom (150 GPD)</option>
           <option value="2">2 Bedrooms (300 GPD)</option>
@@ -90,7 +90,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Garbage Disposal / Heavy Water Fixtures</label>
+        <label for="garbageDisposal" class="block text-sm font-medium text-gray-700 mb-1">Garbage Disposal / Heavy Water Fixtures</label>
         <select id="garbageDisposal" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.0" selected>Standard Fixtures</option>
           <option value="1.25">Includes Kitchen Garbage Disposal (+25% capacity)</option>
@@ -98,7 +98,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Soil Percolation Rate (Perc Test)</label>
+        <label for="soilPerc" class="block text-sm font-medium text-gray-700 mb-1">Soil Percolation Rate (Perc Test)</label>
         <select id="soilPerc" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="0.8">Coarse Sand / Gravel (Fast perc rate)</option>
           <option value="0.6" selected>Sandy Loam / Medium Soil (Standard perc rate)</option>

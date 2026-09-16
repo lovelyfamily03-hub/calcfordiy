@@ -102,7 +102,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Patio or Walkway Area</label>
+        <label for="patioSqft" class="block text-xs font-medium text-gray-600 mb-1">Patio or Walkway Area</label>
         <div class="flex items-center gap-2">
           <input type="number" id="patioSqft" placeholder="400" value="400" min="20" max="10000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">sq ft</span>
@@ -110,7 +110,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Paver Size &amp; Style</label>
+        <label for="paverStyle" class="block text-xs font-medium text-gray-600 mb-1">Paver Size &amp; Style</label>
         <select id="paverStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="4x8" selected>Standard 4" &times; 8" Holland Pavers (2-3/8" thick)</option>
           <option value="6x9">6" &times; 9" Cobblestone / Mega Pavers (2-3/8" thick)</option>
@@ -120,7 +120,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Joint Gap Width</label>
+        <label for="jointWidth" class="block text-xs font-medium text-gray-600 mb-1">Joint Gap Width</label>
         <select id="jointWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="0.125" selected>1/8" (Standard Tight Interlocking Joint)</option>
           <option value="0.25">1/4" (Medium Joint)</option>
@@ -338,7 +338,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     const width = 560;
     const height = 190;
 
-    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
     
     // Crushed Stone Sub-Base Layer (Bottom)
     svg += `<rect x="30" y="135" width="500" height="40" fill="#94A3B8" />`;

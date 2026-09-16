@@ -92,19 +92,19 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <div>
         <label for="pumpDepth" class="block text-xs font-medium text-gray-600 mb-1">Pump Setting Depth (ft)</label>
         <input type="number" id="pumpDepth" placeholder="180" value="180" min="20" max="1200" step="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-[11px] text-gray-400 mt-0.5">Depth pump hangs in casing</p>
+        <p class="text-[11px] text-gray-500 mt-0.5">Depth pump hangs in casing</p>
       </div>
 
       <div>
         <label for="pumpingLevel" class="block text-xs font-medium text-gray-600 mb-1">Pumping Water Level (ft)</label>
         <input type="number" id="pumpingLevel" placeholder="120" value="120" min="10" max="1000" step="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-[11px] text-gray-400 mt-0.5">Water level during continuous pumping</p>
+        <p class="text-[11px] text-gray-500 mt-0.5">Water level during continuous pumping</p>
       </div>
 
       <div>
         <label for="elevationRise" class="block text-xs font-medium text-gray-600 mb-1">Elevation Rise to House (ft)</label>
         <input type="number" id="elevationRise" placeholder="15" value="15" min="0" max="300" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-[11px] text-gray-400 mt-0.5">Wellhead to highest fixture</p>
+        <p class="text-[11px] text-gray-500 mt-0.5">Wellhead to highest fixture</p>
       </div>
 
       <div>
@@ -136,7 +136,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <div>
         <label for="wireDistance" class="block text-xs font-medium text-gray-600 mb-1">Panel-to-Pump Wire Distance (ft)</label>
         <input type="number" id="wireDistance" placeholder="250" value="250" min="20" max="2000" step="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-[11px] text-gray-400 mt-0.5">Drop wire depth + trench distance</p>
+        <p class="text-[11px] text-gray-500 mt-0.5">Drop wire depth + trench distance</p>
       </div>
 
       <div>
@@ -200,10 +200,10 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2">
           <span>📐</span> Deep Well Casing &amp; Submersible Pump Installation Diagram
         </h3>
-        <span class="text-xs text-gray-400 font-mono">Wellhead to Pump Setting</span>
+        <span class="text-xs text-gray-500 font-mono">Wellhead to Pump Setting</span>
       </div>
       <div class="overflow-x-auto bg-gray-50 rounded-lg p-2 border border-gray-200 flex justify-center">
-        <svg id="wellSvg" viewBox="0 0 600 240" class="w-full max-w-xl h-auto font-sans">
+        <svg id="wellSvg" viewBox="0 0 600 240" class="w-full max-w-xl h-auto font-sans" role="img" aria-label="Calculation Diagram">
           <!-- Dynamic SVG populated by JS -->
         </svg>
       </div>
@@ -218,7 +218,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 text-center">
           <div class="text-xs text-gray-500 font-medium">🛠️ DIY Equipment &amp; Wire</div>
           <div id="c_diy" class="text-xl sm:text-2xl font-extrabold text-gray-900 mt-1">$950 – $1,400</div>
-          <div class="text-[11px] text-gray-400 mt-0.5">Stainless pump, drop wire, control box</div>
+          <div class="text-[11px] text-gray-500 mt-0.5">Stainless pump, drop wire, control box</div>
         </div>
 
         <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">

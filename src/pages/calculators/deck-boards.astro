@@ -113,37 +113,37 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     <div class="p-4 bg-gray-50 rounded-lg mb-5">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Deck Length</label>
+          <label for="d_len_ft" class="block text-xs text-gray-500 mb-1">Deck Length</label>
           <div class="flex items-center gap-2">
             <input type="number" id="d_len_ft" placeholder="20" min="0" max="500"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="d_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="D Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
-          <p class="text-xs text-gray-400 mt-1">Direction boards run across</p>
+          <p class="text-xs text-gray-500 mt-1">Direction boards run across</p>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Deck Width</label>
+          <label for="d_wid_ft" class="block text-xs text-gray-500 mb-1">Deck Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="d_wid_ft" placeholder="12" min="0" max="500"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="d_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="D Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
-          <p class="text-xs text-gray-400 mt-1">Direction boards span</p>
+          <p class="text-xs text-gray-500 mt-1">Direction boards span</p>
         </div>
       </div>
 
       <div>
-        <label class="block text-xs text-gray-500 mb-1">Number of identical deck sections</label>
+        <label for="num_sections" class="block text-xs text-gray-500 mb-1">Number of identical deck sections</label>
         <div class="flex items-center gap-3">
           <input type="number" id="num_sections" value="1" min="1" max="20"
             class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <span class="text-xs text-gray-400">For multi-level or detached decks</span>
+          <span class="text-xs text-gray-500">For multi-level or detached decks</span>
         </div>
       </div>
     </div>
@@ -157,7 +157,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Board Size</label>
+        <label for="board_size" class="block text-sm font-medium text-gray-700 mb-2">Board Size</label>
         <select id="board_size"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           onchange="applyBoardSize()">
@@ -170,7 +170,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
         </select>
       </div>
       <div id="customWidthDiv" class="hidden">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Custom Board Width</label>
+        <label for="custom_width" class="block text-sm font-medium text-gray-700 mb-2">Custom Board Width</label>
         <div class="flex items-center gap-2">
           <input type="number" id="custom_width" placeholder="5.5" min="1" max="12" step="0.25"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -181,7 +181,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Board Length</label>
+        <label for="board_length" class="block text-sm font-medium text-gray-700 mb-2">Board Length</label>
         <select id="board_length"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="8">8 ft boards</option>
@@ -190,10 +190,10 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
           <option value="16" selected>16 ft boards (most common)</option>
           <option value="20">20 ft boards</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Choose the longest board that minimizes splices</p>
+        <p class="text-xs text-gray-500 mt-1">Choose the longest board that minimizes splices</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Gap Between Boards</label>
+        <label for="gap" class="block text-sm font-medium text-gray-700 mb-2">Gap Between Boards</label>
         <select id="gap"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="0.25" selected>1/4" gap — standard for pressure treated</option>
@@ -201,13 +201,13 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
           <option value="0.375">3/8" gap — wide gap for drainage</option>
           <option value="0">No gap — composite tongue and groove</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Wet/green lumber should be installed tight — it will shrink to 1/4" as it dries</p>
+        <p class="text-xs text-gray-500 mt-1">Wet/green lumber should be installed tight — it will shrink to 1/4" as it dries</p>
       </div>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Installation Pattern</label>
+        <label for="pattern" class="block text-sm font-medium text-gray-700 mb-2">Installation Pattern</label>
         <select id="pattern"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="0.10">Straight — parallel to house (10% waste)</option>
@@ -217,14 +217,14 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Include Picture Frame Border?</label>
+        <label for="picture_frame" class="block text-sm font-medium text-gray-700 mb-2">Include Picture Frame Border?</label>
         <select id="picture_frame"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="no">No border</option>
           <option value="single">Single board border</option>
           <option value="double">Double board border</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Picture frame border runs perpendicular to field boards</p>
+        <p class="text-xs text-gray-500 mt-1">Picture frame border runs perpendicular to field boards</p>
       </div>
     </div>
 

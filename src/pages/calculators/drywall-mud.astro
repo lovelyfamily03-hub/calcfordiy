@@ -103,7 +103,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Total Drywall Surface Area</label>
+        <label for="drywallSqft" class="block text-xs font-medium text-gray-600 mb-1">Total Drywall Surface Area</label>
         <div class="flex items-center gap-2">
           <input type="number" id="drywallSqft" placeholder="1000" value="1000" min="50" max="25000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">sq ft</span>
@@ -111,7 +111,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Finishing Level (Gypsum Standard)</label>
+        <label for="finishLevel" class="block text-xs font-medium text-gray-600 mb-1">Finishing Level (Gypsum Standard)</label>
         <select id="finishLevel" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="4" selected>Level 4 (Standard 3 Coats — Ready for flat/eggshell paint)</option>
           <option value="5">Level 5 (Premium Full Surface Skim Coat — Critical lighting)</option>
@@ -120,7 +120,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Outside Corner Count (8 ft Corners)</label>
+        <label for="cornerBeadCount" class="block text-xs font-medium text-gray-600 mb-1">Outside Corner Count (8 ft Corners)</label>
         <div class="flex items-center gap-2">
           <input type="number" id="cornerBeadCount" placeholder="4" value="4" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">corners</span>
@@ -351,7 +351,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     const width = 560;
     const height = 180;
 
-    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
     
     // Left Drywall Sheet with Tapered Edge
     svg += `<path d="M 30 50 L 220 50 L 250 65 L 250 130 L 30 130 Z" fill="#E2E8F0" stroke="#94A3B8" stroke-width="2" />`;

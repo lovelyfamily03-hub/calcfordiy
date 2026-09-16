@@ -116,36 +116,36 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     <div class="p-4 bg-gray-50 rounded-lg mb-5">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Room Length</label>
+          <label for="r_len_ft" class="block text-xs text-gray-500 mb-1">Room Length</label>
           <div class="flex items-center gap-2">
             <input type="number" id="r_len_ft" placeholder="14" min="0" max="200"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="r_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Room Width</label>
+          <label for="r_wid_ft" class="block text-xs text-gray-500 mb-1">Room Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="r_wid_ft" placeholder="12" min="0" max="200"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="r_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
       </div>
       <div>
-        <label class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
+        <label for="r_ceil_ft" class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
         <div class="flex items-center gap-2">
           <input type="number" id="r_ceil_ft" placeholder="8" min="0" max="20"
             class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-xs text-gray-500 shrink-0">ft</span>
           <input type="number" id="r_ceil_in" placeholder="0" min="0" max="11"
-            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Ceil Inches" />
           <span class="text-xs text-gray-500 shrink-0">in</span>
         </div>
       </div>
@@ -162,12 +162,12 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
       <p class="text-xs text-gray-500 mb-3">Standard door = 21 sq ft. Standard window = 15 sq ft. These are subtracted from your wall area automatically.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Number of Doors</label>
+          <label for="num_doors" class="block text-xs text-gray-500 mb-1">Number of Doors</label>
           <input type="number" id="num_doors" placeholder="1" min="0" max="20"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Number of Windows</label>
+          <label for="num_windows" class="block text-xs text-gray-500 mb-1">Number of Windows</label>
           <input type="number" id="num_windows" placeholder="2" min="0" max="20"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
@@ -183,7 +183,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Coats — Walls</label>
+        <label for="wall_coats" class="block text-sm font-medium text-gray-700 mb-2">Number of Coats — Walls</label>
         <select id="wall_coats"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="1">1 coat — touching up same color</option>
@@ -192,7 +192,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Paint Coverage Rate</label>
+        <label for="coverage" class="block text-sm font-medium text-gray-700 mb-2">Paint Coverage Rate</label>
         <select id="coverage"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="400">400 sq ft/gal — standard flat or eggshell</option>
@@ -200,13 +200,13 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
           <option value="300">300 sq ft/gal — textured or porous walls</option>
           <option value="450">450 sq ft/gal — premium self-priming paint</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Check your specific paint can for exact coverage</p>
+        <p class="text-xs text-gray-500 mt-1">Check your specific paint can for exact coverage</p>
       </div>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Include Ceiling?</label>
+        <label for="include_ceiling" class="block text-sm font-medium text-gray-700 mb-2">Include Ceiling?</label>
         <select id="include_ceiling"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="yes_same">Yes — same paint as walls</option>
@@ -215,7 +215,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Ceiling Coats</label>
+        <label for="ceil_coats" class="block text-sm font-medium text-gray-700 mb-2">Ceiling Coats</label>
         <select id="ceil_coats"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="1">1 coat</option>

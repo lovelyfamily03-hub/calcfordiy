@@ -120,24 +120,24 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <p class="text-sm font-medium text-gray-700 mb-3">Wall 1 (Front)</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <label for="w1_wid_ft" class="block text-xs text-gray-500 mb-1">Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w1_wid_ft" placeholder="40" min="0" max="500"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="w1_wid_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W1 Wid Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Height (eave to foundation)</label>
+            <label for="w1_hgt_ft" class="block text-xs text-gray-500 mb-1">Height (eave to foundation)</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w1_hgt_ft" placeholder="10" min="0" max="60"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="w1_hgt_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W1 Hgt Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -148,24 +148,24 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <p class="text-sm font-medium text-gray-700 mb-3">Wall 2 (Back)</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <label for="w2_wid_ft" class="block text-xs text-gray-500 mb-1">Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w2_wid_ft" placeholder="40" min="0" max="500"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="w2_wid_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W2 Wid Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <label for="w2_hgt_ft" class="block text-xs text-gray-500 mb-1">Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w2_hgt_ft" placeholder="10" min="0" max="60"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="w2_hgt_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W2 Hgt Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -176,24 +176,24 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <p class="text-sm font-medium text-gray-700 mb-3">Wall 3 (Left Side)</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Width (depth of house)</label>
+            <label for="w3_wid_ft" class="block text-xs text-gray-500 mb-1">Width (depth of house)</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w3_wid_ft" placeholder="30" min="0" max="500"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="w3_wid_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W3 Wid Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <label for="w3_hgt_ft" class="block text-xs text-gray-500 mb-1">Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w3_hgt_ft" placeholder="10" min="0" max="60"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="w3_hgt_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W3 Hgt Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -204,24 +204,24 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <p class="text-sm font-medium text-gray-700 mb-3">Wall 4 (Right Side)</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Width (depth of house)</label>
+            <label for="w4_wid_ft" class="block text-xs text-gray-500 mb-1">Width (depth of house)</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w4_wid_ft" placeholder="30" min="0" max="500"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="w4_wid_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W4 Wid Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <label for="w4_hgt_ft" class="block text-xs text-gray-500 mb-1">Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w4_hgt_ft" placeholder="10" min="0" max="60"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="w4_hgt_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W4 Hgt Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -232,7 +232,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <!-- Gable ends optional -->
     <div class="mb-5">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="gab_wid_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="gableToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('gableSection', this.checked)" />
         <span class="text-sm text-gray-700">Include gable ends (triangular area under roof peaks)</span>
       </label>
@@ -240,7 +240,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <p class="text-xs text-gray-500 mb-3">For each gable: width is the wall width, height is from eave to peak. Area = 0.5 × width × height.</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-3">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Gable Width</label>
+            <label for="gab_wid_ft" class="block text-xs text-gray-500 mb-1">Gable Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="gab_wid_ft" placeholder="40" min="0" max="200"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -248,7 +248,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Gable Height (eave to peak)</label>
+            <label for="gab_hgt_ft" class="block text-xs text-gray-500 mb-1">Gable Height (eave to peak)</label>
             <div class="flex items-center gap-2">
               <input type="number" id="gab_hgt_ft" placeholder="6" min="0" max="30"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -257,7 +257,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Number of Gable Ends</label>
+          <label for="num_gables" class="block text-xs text-gray-500 mb-1">Number of Gable Ends</label>
           <input type="number" id="num_gables" value="2" min="1" max="8"
             class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
@@ -275,17 +275,17 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <p class="text-xs text-gray-500 mb-3">Standard exterior door = 21 sq ft. Standard window = 15 sq ft. Garage door = 160 sq ft (16×10).</p>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Exterior Doors</label>
+          <label for="num_doors" class="block text-xs text-gray-500 mb-1">Exterior Doors</label>
           <input type="number" id="num_doors" placeholder="2" min="0" max="20"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Windows</label>
+          <label for="num_windows" class="block text-xs text-gray-500 mb-1">Windows</label>
           <input type="number" id="num_windows" placeholder="8" min="0" max="50"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Garage Doors</label>
+          <label for="num_garage_doors" class="block text-xs text-gray-500 mb-1">Garage Doors</label>
           <input type="number" id="num_garage_doors" placeholder="1" min="0" max="4"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
@@ -301,7 +301,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Siding Type</label>
+        <label for="siding" class="block text-sm font-medium text-gray-700 mb-2">Siding Type</label>
         <select id="siding"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="350">Smooth wood or fiber cement siding — 350 sq ft/gal</option>
@@ -311,10 +311,10 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           <option value="200">Rough stucco or masonry — 200 sq ft/gal</option>
           <option value="400">Previously painted smooth surface — 400 sq ft/gal</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Coverage rates from Sherwin-Williams exterior paint technical data</p>
+        <p class="text-xs text-gray-500 mt-1">Coverage rates from Sherwin-Williams exterior paint technical data</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Coats</label>
+        <label for="coats" class="block text-sm font-medium text-gray-700 mb-2">Number of Coats</label>
         <select id="coats"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="1">1 coat — same color refresh</option>
@@ -326,19 +326,19 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Include Trim Paint?</label>
+        <label for="trim" class="block text-sm font-medium text-gray-700 mb-2">Include Trim Paint?</label>
         <select id="trim"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="yes">Yes — estimate trim separately</option>
           <option value="no">No — body paint only</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Trim typically uses 10-15% of body paint volume</p>
+        <p class="text-xs text-gray-500 mt-1">Trim typically uses 10-15% of body paint volume</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Shutters</label>
+        <label for="num_shutters" class="block text-sm font-medium text-gray-700 mb-2">Number of Shutters</label>
         <input type="number" id="num_shutters" placeholder="0" min="0" max="30"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        <p class="text-xs text-gray-400 mt-1">Each standard shutter ≈ 6 sq ft</p>
+        <p class="text-xs text-gray-500 mt-1">Each standard shutter ≈ 6 sq ft</p>
       </div>
     </div>
 

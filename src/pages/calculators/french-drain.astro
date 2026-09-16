@@ -92,11 +92,11 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Trench Length (Feet)</label>
+        <label for="trenchLength" class="block text-sm font-medium text-gray-700 mb-1">Trench Length (Feet)</label>
         <input type="number" id="trenchLength" placeholder="e.g. 50" value="50" min="5" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Trench Width (Inches)</label>
+        <label for="trenchWidth" class="block text-sm font-medium text-gray-700 mb-1">Trench Width (Inches)</label>
         <select id="trenchWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="12" selected>12 inches (Standard Residential)</option>
           <option value="18">18 inches (Heavy Water Flow)</option>
@@ -105,7 +105,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Average Depth (Inches)</label>
+        <label for="trenchDepth" class="block text-sm font-medium text-gray-700 mb-1">Average Depth (Inches)</label>
         <select id="trenchDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="18">18 inches (Standard Depth)</option>
           <option value="24" selected>24 inches (Deep Drainage - Recommended)</option>
@@ -124,7 +124,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Perforated Drain Pipe Diameter</label>
+        <label for="pipeDiameter" class="block text-sm font-medium text-gray-700 mb-2">Perforated Drain Pipe Diameter</label>
         <select id="pipeDiameter" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="4" selected>4-inch Perforated Pipe (Standard Residential)</option>
           <option value="6">6-inch Perforated Pipe (High Volume Drainage)</option>
@@ -412,7 +412,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     const pipeX = W / 2;
     const pipeY = y1 + trenchH - 25 - pipeRadius;
 
-    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="260" xmlns="http://www.w3.org/2000/svg" class="font-sans" aria-hidden="true">
       <defs>
         <pattern id="soilPattern" width="10" height="10" patternUnits="userSpaceOnUse">
           <circle cx="2" cy="2" r="1" fill="#cbd5e0" />

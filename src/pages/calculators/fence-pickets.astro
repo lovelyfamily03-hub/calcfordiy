@@ -87,13 +87,13 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Total Fence Line Length (Feet)</label>
+        <label for="fenceLength" class="block text-sm font-medium text-gray-700 mb-1">Total Fence Line Length (Feet)</label>
         <input type="number" id="fenceLength" placeholder="e.g. 150" value="150" min="1" max="2000" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-xs text-gray-400 mt-1">Total linear feet of fence perimeter</p>
+        <p class="text-xs text-gray-500 mt-1">Total linear feet of fence perimeter</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Picket Width (Actual Inches)</label>
+        <label for="picketWidth" class="block text-sm font-medium text-gray-700 mb-1">Picket Width (Actual Inches)</label>
         <select id="picketWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="3.5">1x4 Picket (3.5" actual width)</option>
           <option value="5.5" selected>1x6 Picket (5.5" actual width — standard)</option>
@@ -102,7 +102,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Picket Gap Spacing (Inches)</label>
+        <label for="picketGap" class="block text-sm font-medium text-gray-700 mb-1">Picket Gap Spacing (Inches)</label>
         <select id="picketGap" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="0" selected>0" Gap — Full Privacy Fence (Butt Joint)</option>
           <option value="0.5">0.5" Gap — Semi-Privacy</option>
@@ -119,7 +119,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Post Spacing</label>
+        <label for="postSpacing" class="block text-sm font-medium text-gray-700 mb-1">Post Spacing</label>
         <select id="postSpacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="8" selected>8 Feet On-Center (Standard)</option>
           <option value="6">6 Feet On-Center (High-Wind / Heavy)</option>
@@ -127,7 +127,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Fence Height &amp; Rail Count</label>
+        <label for="railCount" class="block text-sm font-medium text-gray-700 mb-1">Fence Height &amp; Rail Count</label>
         <select id="railCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="3" selected>6 Feet Tall Privacy (3 Horizontal 2x4 Rails)</option>
           <option value="2">4 Feet Tall Picket (2 Horizontal 2x4 Rails)</option>
@@ -136,9 +136,9 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Number of Gates</label>
+        <label for="gateCount" class="block text-sm font-medium text-gray-700 mb-1">Number of Gates</label>
         <input type="number" id="gateCount" placeholder="1" value="1" min="0" max="10" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
-        <p class="text-xs text-gray-400 mt-1">+2 heavy posts per gate opening</p>
+        <p class="text-xs text-gray-500 mt-1">+2 heavy posts per gate opening</p>
       </div>
     </div>
 
@@ -345,7 +345,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     const postX2 = W - 60;
     const spanW = postX2 - (postX1 + postW);
 
-    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" class="font-sans" aria-hidden="true">
       <defs>
         <pattern id="soil" width="10" height="10" patternUnits="userSpaceOnUse">
           <circle cx="3" cy="3" r="1.2" fill="#a0aec0" />

@@ -87,7 +87,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Masonry Unit Type</label>
+        <label for="masonryType" class="block text-xs font-medium text-gray-600 mb-1">Masonry Unit Type</label>
         <select id="masonryType" onchange="adjustDefaults()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="brick" selected>Standard Modular Brick (3/8" Joint)</option>
           <option value="cmu8">8" × 8" × 16" CMU Cinder Blocks</option>
@@ -98,12 +98,12 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label id="countLabel" class="block text-xs font-medium text-gray-600 mb-1">Number of Bricks</label>
+        <label for="unitCount" id="countLabel" class="block text-xs font-medium text-gray-600 mb-1">Number of Bricks</label>
         <input type="number" id="unitCount" placeholder="500" value="500" min="1" max="100000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Mortar Grade (ASTM C270)</label>
+        <label for="mortarGrade" class="block text-xs font-medium text-gray-600 mb-1">Mortar Grade (ASTM C270)</label>
         <select id="mortarGrade" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="typeN" selected>Type N (750 PSI — Above-Grade Brick / Chimney)</option>
           <option value="typeS">Type S (1,800 PSI — Retaining Wall / Foundation)</option>
@@ -113,7 +113,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Waste &amp; Droppings Factor</label>
+        <label for="wasteFactor" class="block text-xs font-medium text-gray-600 mb-1">Waste &amp; Droppings Factor</label>
         <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.10">10% Waste (Experienced Mason)</option>
           <option value="1.15" selected>15% Waste (Standard DIY Project)</option>
@@ -161,7 +161,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <span class="text-xs text-gray-500 font-mono">ASTM C270 Proportion Specification</span>
     </div>
     <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
-      <svg id="mortarSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+      <svg id="mortarSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;" role="img" aria-label="Calculation Diagram"></svg>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
       <div class="flex items-center gap-2"><span class="w-3 h-3 bg-amber-600 rounded-xs"></span> Brick / CMU Unit</div>

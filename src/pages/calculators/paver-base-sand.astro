@@ -88,15 +88,15 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Patio Length (Feet)</label>
+        <label for="patioLength" class="block text-sm font-medium text-gray-700 mb-1">Patio Length (Feet)</label>
         <input type="number" id="patioLength" placeholder="e.g. 15" value="15" min="2" max="200" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Patio Width (Feet)</label>
+        <label for="patioWidth" class="block text-sm font-medium text-gray-700 mb-1">Patio Width (Feet)</label>
         <input type="number" id="patioWidth" placeholder="e.g. 10" value="10" min="2" max="200" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Project Load Type</label>
+        <label for="projectType" class="block text-sm font-medium text-gray-700 mb-1">Project Load Type</label>
         <select id="projectType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="4" selected>Walkway / Patio (4" Gravel Base)</option>
           <option value="8">Driveway / Vehicle Access (8" Gravel Base)</option>
@@ -114,7 +114,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Paver Thickness</label>
+        <label for="paverThick" class="block text-sm font-medium text-gray-700 mb-1">Paver Thickness</label>
         <select id="paverThick" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="2.375" selected>2-3/8 in (60mm Standard Concrete Paver)</option>
           <option value="1.5">1-1/2 in (Stepping Stone / Thin Brick)</option>
@@ -122,7 +122,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Bedding Sand Layer Depth</label>
+        <label for="sandDepth" class="block text-sm font-medium text-gray-700 mb-1">Bedding Sand Layer Depth</label>
         <select id="sandDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.0" selected>1.0 inch Coarse Concrete Sand (Standard)</option>
           <option value="0.75">3/4 inch Bedding Sand</option>
@@ -325,7 +325,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     const yBase = ySand + sandH;
     const ySoil = yBase + baseH;
 
-    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+    let svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="250" xmlns="http://www.w3.org/2000/svg" class="font-sans" aria-hidden="true">
       <defs>
         <pattern id="paverPattern" width="60" height="30" patternUnits="userSpaceOnUse">
           <rect width="58" height="28" fill="#dd6b20" rx="3" />

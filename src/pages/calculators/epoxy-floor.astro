@@ -87,7 +87,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Standard Bay Presets</label>
+        <label for="garagePreset" class="block text-xs font-medium text-gray-600 mb-1">Standard Bay Presets</label>
         <select id="garagePreset" onchange="applyPreset()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="custom">Custom Dimensions</option>
           <option value="1car">1-Car Garage (12' × 20' — 240 sq ft)</option>
@@ -98,17 +98,17 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Floor Length (ft)</label>
+        <label for="floorLength" class="block text-xs font-medium text-gray-600 mb-1">Floor Length (ft)</label>
         <input type="number" id="floorLength" placeholder="22" value="22" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Floor Width (ft)</label>
+        <label for="floorWidth" class="block text-xs font-medium text-gray-600 mb-1">Floor Width (ft)</label>
         <input type="number" id="floorWidth" placeholder="20" value="20" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Concrete Porosity / Profile</label>
+        <label for="concreteProfile" class="block text-xs font-medium text-gray-600 mb-1">Concrete Porosity / Profile</label>
         <select id="concreteProfile" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="smooth" selected>Smooth Troweled (CSP 1-2 — 200 sq ft/gal)</option>
           <option value="etched">Acid Etched / Diamond Ground (CSP 2-3 — 175 sq ft/gal)</option>
@@ -124,7 +124,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Epoxy System Grade</label>
+        <label for="epoxyGrade" class="block text-xs font-medium text-gray-600 mb-1">Epoxy System Grade</label>
         <select id="epoxyGrade" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="solids100" selected>100% Solids Commercial Epoxy (8–10 mils high build)</option>
           <option value="waterbased">Water-Based 2-Part DIY Kit (2–3 mils thin coat)</option>
@@ -133,7 +133,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Decorative Color Flake Density</label>
+        <label for="flakeDensity" class="block text-xs font-medium text-gray-600 mb-1">Decorative Color Flake Density</label>
         <select id="flakeDensity" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="none">No Flakes (Solid Monolithic Color)</option>
           <option value="light">Light Random Broadcast (1 lb / 250 sq ft)</option>
@@ -144,7 +144,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Protective Clear Topcoat</label>
+        <label for="topcoatType" class="block text-xs font-medium text-gray-600 mb-1">Protective Clear Topcoat</label>
         <select id="topcoatType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="polyaspartic" selected>Clear Polyaspartic (UV-Stable, Non-Yellowing)</option>
           <option value="urethane">Moisture-Cure Polyurethane Topcoat</option>
@@ -154,7 +154,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Moisture Vapor Barrier Primer</label>
+        <label for="vaporBarrier" class="block text-xs font-medium text-gray-600 mb-1">Moisture Vapor Barrier Primer</label>
         <select id="vaporBarrier" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="yes" selected>Yes (Epoxy Vapor Barrier Primer — Recommended)</option>
           <option value="no">No (Dry Concrete with Zero Vapor Pressure)</option>
@@ -201,7 +201,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <span class="text-xs text-gray-500 font-mono">100% Solids System • Flake Matrix</span>
     </div>
     <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
-      <svg id="epoxySvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+      <svg id="epoxySvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;" role="img" aria-label="Calculation Diagram"></svg>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
       <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-500 rounded-xs"></span> Concrete Substrate</div>

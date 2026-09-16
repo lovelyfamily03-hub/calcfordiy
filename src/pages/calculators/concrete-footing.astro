@@ -87,7 +87,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Footing Type</label>
+        <label for="footingType" class="block text-xs font-medium text-gray-600 mb-1">Footing Type</label>
         <select id="footingType" onchange="toggleFootingType()" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="continuous" selected>Continuous Strip / Trench Footing (Wall Base)</option>
           <option value="isolated">Isolated Spread Pad (Deck Post / Column Pier)</option>
@@ -95,12 +95,12 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label id="lengthLabel" class="block text-xs font-medium text-gray-600 mb-1">Total Trench Run Length (ft)</label>
+        <label for="footingLength" id="lengthLabel" class="block text-xs font-medium text-gray-600 mb-1">Total Trench Run Length (ft)</label>
         <input type="number" id="footingLength" placeholder="80" value="80" min="1" max="1000" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Footing Width (Inches)</label>
+        <label for="footingWidth" class="block text-xs font-medium text-gray-600 mb-1">Footing Width (Inches)</label>
         <select id="footingWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="12">12" Width (Light Non-Bearing / 4" Wall)</option>
           <option value="16" selected>16" Width (Standard 8" CMU / 1-Story Frame)</option>
@@ -113,7 +113,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Footing Thickness / Depth (Inches)</label>
+        <label for="footingThickness" class="block text-xs font-medium text-gray-600 mb-1">Footing Thickness / Depth (Inches)</label>
         <select id="footingThickness" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="8">8" Deep (Standard Minimum per IRC R403)</option>
           <option value="10" selected>10" Deep (Standard 1-2 Story Residential)</option>
@@ -130,7 +130,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Continuous Longitudinal Rebar</label>
+        <label for="rebarLines" class="block text-xs font-medium text-gray-600 mb-1">Continuous Longitudinal Rebar</label>
         <select id="rebarLines" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="2" selected>2 Continuous Runs #4 Rebar (Standard)</option>
           <option value="3">3 Continuous Runs #4 Rebar (Heavy Load)</option>
@@ -140,7 +140,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Trench Over-Dig &amp; Spillage Factor</label>
+        <label for="wasteFactor" class="block text-xs font-medium text-gray-600 mb-1">Trench Over-Dig &amp; Spillage Factor</label>
         <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.08">8% Buffer (Formed Clean Wood Trench)</option>
           <option value="1.12" selected>12% Buffer (Standard Earth-Formed Trench)</option>
@@ -188,7 +188,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <span class="text-xs text-gray-500 font-mono">IRC R403 Foundation Specification</span>
     </div>
     <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
-      <svg id="footingSvg" viewBox="0 0 600 220" class="w-full max-w-2xl h-auto" style="min-height: 170px;"></svg>
+      <svg id="footingSvg" viewBox="0 0 600 220" class="w-full max-w-2xl h-auto" style="min-height: 170px;" role="img" aria-label="Calculation Diagram"></svg>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
       <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-400 rounded-xs"></span> Poured Concrete Footing (3,000 PSI)</div>

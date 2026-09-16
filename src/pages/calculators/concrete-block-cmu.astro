@@ -88,17 +88,17 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Total Wall Length (ft)</label>
+        <label for="wallLength" class="block text-xs font-medium text-gray-600 mb-1">Total Wall Length (ft)</label>
         <input type="number" id="wallLength" placeholder="30" value="30" min="1" max="500" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Total Wall Height (ft)</label>
+        <label for="wallHeight" class="block text-xs font-medium text-gray-600 mb-1">Total Wall Height (ft)</label>
         <input type="number" id="wallHeight" placeholder="6" value="6" min="0.67" max="30" step="0.67" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Block Nominal Dimensions</label>
+        <label for="blockSize" class="block text-xs font-medium text-gray-600 mb-1">Block Nominal Dimensions</label>
         <select id="blockSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="8x8x16" selected>8" × 8" × 16" (Standard Structural CMU)</option>
           <option value="6x8x16">6" × 8" × 16" (Lightweight / Partition Wall)</option>
@@ -109,7 +109,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Waste &amp; Cutting Factor</label>
+        <label for="wasteFactor" class="block text-xs font-medium text-gray-600 mb-1">Waste &amp; Cutting Factor</label>
         <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.05">5% Waste (Straight Simple Wall)</option>
           <option value="1.10" selected>10% Waste (Standard Corners &amp; Steps)</option>
@@ -125,7 +125,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Vertical Rebar Core Spacing</label>
+        <label for="rebarSpacing" class="block text-xs font-medium text-gray-600 mb-1">Vertical Rebar Core Spacing</label>
         <select id="rebarSpacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="solid">Solidly Grouted (Every Core Filled)</option>
           <option value="16">Grout &amp; Rebar @ 16" On-Center (Every 2nd Core)</option>
@@ -137,7 +137,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Rebar Steel Size</label>
+        <label for="rebarSize" class="block text-xs font-medium text-gray-600 mb-1">Rebar Steel Size</label>
         <select id="rebarSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="#4" selected>#4 Rebar (1/2" Diameter Steel)</option>
           <option value="#5">#5 Rebar (5/8" Diameter Steel)</option>
@@ -145,7 +145,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Top Bond Beam Course</label>
+        <label for="bondBeam" class="block text-xs font-medium text-gray-600 mb-1">Top Bond Beam Course</label>
         <select id="bondBeam" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="yes" selected>Yes (Grout-Filled U-Block Bond Beam with 2 Bars)</option>
           <option value="no">No Bond Beam</option>
@@ -192,7 +192,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       <span class="text-xs text-gray-500 font-mono">Running Bond • 3/8" Mortar Bed</span>
     </div>
     <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
-      <svg id="cmuSvg" viewBox="0 0 600 240" class="w-full max-w-2xl h-auto" style="min-height: 180px;"></svg>
+      <svg id="cmuSvg" viewBox="0 0 600 240" class="w-full max-w-2xl h-auto" style="min-height: 180px;" role="img" aria-label="Calculation Diagram"></svg>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
       <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-400 rounded-xs"></span> Standard CMU Stretcher</div>

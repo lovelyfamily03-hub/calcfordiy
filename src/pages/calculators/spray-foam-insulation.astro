@@ -107,7 +107,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Total Wall / Cavity Surface Area</label>
+        <label for="foamSqft" class="block text-xs font-medium text-gray-600 mb-1">Total Wall / Cavity Surface Area</label>
         <div class="flex items-center gap-2">
           <input type="number" id="foamSqft" placeholder="250" value="250" min="10" max="10000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">sq ft</span>
@@ -115,7 +115,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Target Foam Thickness (Inches)</label>
+        <label for="foamThickness" class="block text-xs font-medium text-gray-600 mb-1">Target Foam Thickness (Inches)</label>
         <div class="flex items-center gap-2">
           <input type="number" id="foamThickness" placeholder="2" value="2" min="0.5" max="12" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">inches depth</span>
@@ -123,7 +123,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Spray Foam Formulation</label>
+        <label for="foamType" class="block text-xs font-medium text-gray-600 mb-1">Spray Foam Formulation</label>
         <select id="foamType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="closed" selected>Closed-Cell Foam (R-6.7 / inch — Vapor Barrier &amp; Rigid)</option>
           <option value="open">Open-Cell Foam (R-3.7 / inch — Acoustic &amp; High Expansion)</option>
@@ -133,7 +133,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Application Project Location</label>
+        <label for="projectLocation" class="block text-xs font-medium text-gray-600 mb-1">Application Project Location</label>
         <select id="projectLocation" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="rim_joist" selected>Basement Rim Joists &amp; Sill Plates</option>
           <option value="crawlspace">Crawlspace Walls / Underfloor</option>
@@ -144,7 +144,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Overspray &amp; Uneven Cavity Buffer</label>
+        <label for="wasteBuffer" class="block text-xs font-medium text-gray-600 mb-1">Overspray &amp; Uneven Cavity Buffer</label>
         <select id="wasteBuffer" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.10">10% Standard Waste Buffer</option>
           <option value="1.15" selected>15% Recommended (Uneven studs / framing)</option>
@@ -456,7 +456,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     const w = 560;
     const h = 200;
 
-    let svg = `<svg viewBox="0 0 ${w} ${h}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    let svg = `<svg viewBox="0 0 ${w} ${h}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
     
     // Wood Studs (Left and Right)
     svg += `<rect x="50" y="30" width="30" height="140" fill="#D97706" stroke="#92400E" stroke-width="2" />`;

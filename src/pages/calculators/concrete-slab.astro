@@ -120,31 +120,31 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     <div class="p-4 bg-gray-50 rounded-lg mb-4">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Slab Length</label>
+          <label for="s_len_ft" class="block text-xs text-gray-500 mb-1">Slab Length</label>
           <div class="flex items-center gap-2">
             <input type="number" id="s_len_ft" placeholder="12" min="0" max="500"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="s_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="S Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Slab Width</label>
+          <label for="s_wid_ft" class="block text-xs text-gray-500 mb-1">Slab Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="s_wid_ft" placeholder="10" min="0" max="500"
               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
             <input type="number" id="s_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="S Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
       </div>
 
       <div class="mb-4">
-        <label class="block text-xs text-gray-500 mb-1">Slab Thickness</label>
+        <label for="thickness_preset" class="block text-xs text-gray-500 mb-1">Slab Thickness</label>
         <div class="flex items-center gap-3">
           <select id="thickness_preset"
             class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -158,24 +158,24 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
         </div>
         <div class="flex items-center gap-2 mt-2">
           <input type="number" id="s_thick_in" placeholder="4" min="1" max="24" step="0.5"
-            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="S Thick Inches" />
           <span class="text-sm text-gray-500">inches thick</span>
         </div>
       </div>
 
       <div>
-        <label class="block text-xs text-gray-500 mb-1">Number of identical slabs</label>
+        <label for="num_slabs" class="block text-xs text-gray-500 mb-1">Number of identical slabs</label>
         <div class="flex items-center gap-3">
           <input type="number" id="num_slabs" value="1" min="1" max="50"
             class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <span class="text-xs text-gray-400">Multiply for several same-size pads</span>
+          <span class="text-xs text-gray-500">Multiply for several same-size pads</span>
         </div>
       </div>
     </div>
 
     <!-- Additional slab section -->
     <div class="mb-5">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="s2_len_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="extraSlabToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('extraSlabSection', this.checked)" />
         <span class="text-sm text-gray-700">Add a second slab area (for L-shaped or irregular slabs)</span>
       </label>
@@ -183,24 +183,24 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
         <p class="text-xs text-gray-500 mb-3">Enter the additional area. Same thickness as above is assumed.</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Length</label>
+            <label for="s2_len_ft" class="block text-xs text-gray-500 mb-1">Length</label>
             <div class="flex items-center gap-2">
               <input type="number" id="s2_len_ft" placeholder="6" min="0" max="500"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="s2_len_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="S2 Len Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <label for="s2_wid_ft" class="block text-xs text-gray-500 mb-1">Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="s2_wid_ft" placeholder="4" min="0" max="500"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
               <input type="number" id="s2_wid_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="S2 Wid Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -217,17 +217,17 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Buying Method</label>
+        <label for="buy_method" class="block text-sm font-medium text-gray-700 mb-2">Buying Method</label>
         <select id="buy_method"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="both">Show both — bags and cubic yards</option>
           <option value="bags">Bagged concrete only</option>
           <option value="readymix">Ready-mix delivery only</option>
         </select>
-        <p class="text-xs text-gray-400 mt-1">Ready-mix is more economical above roughly 1 cubic yard</p>
+        <p class="text-xs text-gray-500 mt-1">Ready-mix is more economical above roughly 1 cubic yard</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Bag Size</label>
+        <label for="bag_size" class="block text-sm font-medium text-gray-700 mb-2">Bag Size</label>
         <select id="bag_size"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="0.45">60 lb bag — 0.45 cu ft</option>

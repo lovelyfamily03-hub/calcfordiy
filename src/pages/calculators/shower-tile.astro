@@ -124,23 +124,23 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     </h2>
 
     <div class="mb-4 p-4 bg-gray-50 rounded-lg">
-      <p class="text-sm font-medium text-gray-700 mb-3">Back Wall <span class="text-xs text-gray-400 font-normal">(required)</span></p>
+      <p class="text-sm font-medium text-gray-700 mb-3">Back Wall <span class="text-xs text-gray-500 font-normal">(required)</span></p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Height</label>
+          <label for="w1h_ft" class="block text-xs text-gray-500 mb-1">Height</label>
           <div class="flex items-center gap-2">
             <input type="number" id="w1h_ft" placeholder="7" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="w1h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input type="number" id="w1h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W1H Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Width</label>
+          <label for="w1w_ft" class="block text-xs text-gray-500 mb-1">Width</label>
           <div class="flex items-center gap-2">
             <input type="number" id="w1w_ft" placeholder="4" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="w1w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input type="number" id="w1w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W1W Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
@@ -148,23 +148,23 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     </div>
 
     <div class="mb-4 p-4 bg-gray-50 rounded-lg">
-      <p class="text-sm font-medium text-gray-700 mb-3">Left Side Wall <span class="text-xs text-gray-400 font-normal">(required)</span></p>
+      <p class="text-sm font-medium text-gray-700 mb-3">Left Side Wall <span class="text-xs text-gray-500 font-normal">(required)</span></p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Height</label>
+          <label for="w2h_ft" class="block text-xs text-gray-500 mb-1">Height</label>
           <div class="flex items-center gap-2">
             <input type="number" id="w2h_ft" placeholder="7" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="w2h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input type="number" id="w2h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W2H Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
         <div>
-          <label class="block text-xs text-gray-500 mb-1">Width (Depth)</label>
+          <label for="w2w_ft" class="block text-xs text-gray-500 mb-1">Width (Depth)</label>
           <div class="flex items-center gap-2">
             <input type="number" id="w2w_ft" placeholder="3" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
             <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="w2w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input type="number" id="w2w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W2W Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
         </div>
@@ -172,7 +172,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     </div>
 
     <div class="mb-3">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="w3h_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="wall3Toggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('wall3Section', this.checked)" />
         <span class="text-sm text-gray-700">+ Add right side wall</span>
       </label>
@@ -180,20 +180,20 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
         <p class="text-sm font-medium text-gray-700 mb-3">Right Side Wall</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <label for="w3h_ft" class="block text-xs text-gray-500 mb-1">Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w3h_ft" placeholder="7" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="w3h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="w3h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W3H Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Width (Depth)</label>
+            <label for="w3w_ft" class="block text-xs text-gray-500 mb-1">Width (Depth)</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w3w_ft" placeholder="3" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="w3w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="w3w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W3W Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -202,7 +202,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     </div>
 
     <div class="mb-5">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="w4h_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="wall4Toggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('wall4Section', this.checked)" />
         <span class="text-sm text-gray-700">+ Add fourth wall (fully enclosed showers)</span>
       </label>
@@ -210,20 +210,20 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
         <p class="text-sm font-medium text-gray-700 mb-3">Fourth Wall</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Height</label>
+            <label for="w4h_ft" class="block text-xs text-gray-500 mb-1">Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w4h_ft" placeholder="7" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="w4h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="w4h_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W4H Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Width</label>
+            <label for="w4w_ft" class="block text-xs text-gray-500 mb-1">Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="w4w_ft" placeholder="4" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="w4w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="w4w_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="W4W Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -239,7 +239,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     </h2>
 
     <div class="mb-5">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="fl_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="floorToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('floorSection', this.checked)" />
         <span class="text-sm text-gray-700">Include shower floor in estimate</span>
       </label>
@@ -247,20 +247,20 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
         <p class="text-xs text-gray-500 mb-3">Only include if using the same tile on the floor. Many showers use a different mosaic tile for grip.</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Floor Length</label>
+            <label for="fl_ft" class="block text-xs text-gray-500 mb-1">Floor Length</label>
             <div class="flex items-center gap-2">
               <input type="number" id="fl_ft" placeholder="4" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="fl_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="fl_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Fl Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Floor Width</label>
+            <label for="fw_ft" class="block text-xs text-gray-500 mb-1">Floor Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="fw_ft" placeholder="3" min="0" max="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="fw_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="fw_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Fw Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -276,27 +276,27 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     </h2>
 
     <div class="mb-3">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="dh_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="doorToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('doorSection', this.checked)" />
         <span class="text-sm text-gray-700">Subtract door opening</span>
       </label>
       <div id="doorSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Door Height</label>
+            <label for="dh_ft" class="block text-xs text-gray-500 mb-1">Door Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="dh_ft" placeholder="6" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="dh_in" placeholder="8" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="dh_in" placeholder="8" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Dh Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Door Width</label>
+            <label for="dw_ft" class="block text-xs text-gray-500 mb-1">Door Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="dw_ft" placeholder="2" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="dw_in" placeholder="6" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="dw_in" placeholder="6" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Dw Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -305,27 +305,27 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     </div>
 
     <div class="mb-3">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="wh_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="windowToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('windowSection', this.checked)" />
         <span class="text-sm text-gray-700">Subtract window</span>
       </label>
       <div id="windowSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Window Height</label>
+            <label for="wh_ft" class="block text-xs text-gray-500 mb-1">Window Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="wh_ft" placeholder="1" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="wh_in" placeholder="6" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="wh_in" placeholder="6" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Wh Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Window Width</label>
+            <label for="ww_ft" class="block text-xs text-gray-500 mb-1">Window Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="ww_ft" placeholder="2" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="ww_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="ww_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Ww Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -334,27 +334,27 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
     </div>
 
     <div class="mb-5">
-      <label class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+      <label for="nh_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
         <input type="checkbox" id="nicheToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('nicheSection', this.checked)" />
         <span class="text-sm text-gray-700">Subtract shower niche / shelf</span>
       </label>
       <div id="nicheSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Niche Height</label>
+            <label for="nh_ft" class="block text-xs text-gray-500 mb-1">Niche Height</label>
             <div class="flex items-center gap-2">
               <input type="number" id="nh_ft" placeholder="0" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="nh_in" placeholder="12" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="nh_in" placeholder="12" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Nh Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
           <div>
-            <label class="block text-xs text-gray-500 mb-1">Niche Width</label>
+            <label for="nw_ft" class="block text-xs text-gray-500 mb-1">Niche Width</label>
             <div class="flex items-center gap-2">
               <input type="number" id="nw_ft" placeholder="1" min="0" max="20" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
               <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="nw_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="number" id="nw_in" placeholder="0" min="0" max="11" class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Nw Inches" />
               <span class="text-xs text-gray-500 shrink-0">in</span>
             </div>
           </div>
@@ -371,7 +371,7 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Installation Pattern</label>
+        <label for="pattern" class="block text-sm font-medium text-gray-700 mb-2">Installation Pattern</label>
         <select id="pattern" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="straight">Straight / Brick (10% waste)</option>
           <option value="diagonal">Diagonal / Offset (15% waste)</option>
@@ -379,12 +379,12 @@ import HelpfulFeedback from '../../components/HelpfulFeedback.astro';
         </select>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Box Coverage <span class="text-gray-400 font-normal text-xs">(from your tile box)</span></label>
+        <label for="boxCoverage" class="block text-sm font-medium text-gray-700 mb-2">Box Coverage <span class="text-gray-500 font-normal text-xs">(from your tile box)</span></label>
         <div class="flex items-center gap-2">
           <input type="number" id="boxCoverage" placeholder="e.g. 15.6" min="0.1" step="0.1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-sm text-gray-500 shrink-0">sq ft/box</span>
         </div>
-        <p class="text-xs text-gray-400 mt-1">Leave blank to skip box count</p>
+        <p class="text-xs text-gray-500 mt-1">Leave blank to skip box count</p>
       </div>
     </div>
 

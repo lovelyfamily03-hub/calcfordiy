@@ -87,11 +87,11 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-gray-50 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Number of Bulbs to Replace</label>
+        <label for="qty" class="block text-sm font-medium text-gray-700 mb-2">Number of Bulbs to Replace</label>
         <input type="number" id="qty" placeholder="10" value="10" min="1" max="500" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Wattage per Old Bulb</label>
+        <label for="old_watts" class="block text-sm font-medium text-gray-700 mb-2">Wattage per Old Bulb</label>
         <select id="old_watts" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="40">40W (Standard Incandescent)</option>
           <option value="60" selected>60W (Standard Incandescent)</option>
@@ -102,7 +102,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           <option value="custom">Custom Wattage...</option>
         </select>
         <div id="custom_old_div" class="hidden mt-2">
-          <input type="number" id="custom_old" placeholder="e.g. 60" min="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <input type="number" id="custom_old" aria-label="Custom Wattage per Old Bulb" placeholder="e.g. 60" min="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
       </div>
     </div>
@@ -116,7 +116,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5 bg-blue-50 border border-blue-100 p-4 rounded-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Wattage per New LED Bulb</label>
+        <label for="new_watts" class="block text-sm font-medium text-gray-700 mb-2">Wattage per New LED Bulb</label>
         <div class="flex items-center gap-2">
           <input type="number" id="new_watts" placeholder="9" value="9" min="1" max="100" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">Watts</span>
@@ -124,7 +124,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <p class="text-xs text-blue-800 mt-1">A typical 60W equivalent LED uses about 9 Watts.</p>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Cost to Buy One LED Bulb</label>
+        <label for="bulb_cost" class="block text-sm font-medium text-gray-700 mb-2">Cost to Buy One LED Bulb</label>
         <div class="flex items-center gap-2">
           <span class="text-sm text-gray-500 shrink-0">$</span>
           <input type="number" id="bulb_cost" placeholder="2.50" value="2.50" min="0.50" step="0.10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
@@ -142,19 +142,19 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Hours Used Per Day</label>
+        <label for="hrs" class="block text-sm font-medium text-gray-700 mb-2">Hours Used Per Day</label>
         <div class="flex items-center gap-2">
           <input type="number" id="hrs" placeholder="4" value="4" min="0.5" max="24" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
           <span class="text-xs text-gray-500 shrink-0">hrs/day</span>
         </div>
       </div>
       <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">Electric Rate ($ per kWh)</label>
+        <label for="rate" class="block text-sm font-medium text-gray-700 mb-2">Electric Rate ($ per kWh)</label>
         <div class="flex items-center gap-2">
           <span class="text-sm text-gray-500 shrink-0">$</span>
           <input type="number" id="rate" placeholder="0.16" value="0.16" min="0.01" step="0.01" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
         </div>
-        <p class="text-xs text-gray-400 mt-1">US average is ~$0.16/kWh. Check your bill.</p>
+        <p class="text-xs text-gray-500 mt-1">US average is ~$0.16/kWh. Check your bill.</p>
       </div>
     </div>
 

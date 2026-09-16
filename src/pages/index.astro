@@ -771,10 +771,10 @@ const categories = [...new Set(calculators.map(c => c.category))];
   <!-- Search Filter -->
   <div class="mb-6 print:hidden">
     <div class="relative">
-      <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
-      <input type="text" id="calcSearch" placeholder="Search calculators... (e.g. tile, paint, furnace)" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm" />
+      <input type="text" id="calcSearch" placeholder="Search calculators... (e.g. tile, paint, furnace)" aria-label="Search all 100 calculators" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm" />
     </div>
     <p id="searchStatus" class="hidden text-sm text-gray-500 mt-2 ml-1"></p>
   </div>
@@ -784,7 +784,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
       <section class="calc-category" data-category={category} id={category.toLowerCase().replace(/[&,]/g, '').replace(/\s+/g, '-')}>
         <h2 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-3">
           {category} Calculators
-          <span class="text-sm font-medium text-gray-400 bg-gray-100 px-3 py-1 rounded-full">
+          <span class="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
             {calculators.filter(c => c.category === category).length} tools
           </span>
         </h2>
@@ -812,7 +812,7 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
   <div id="noResults" class="hidden text-center py-12">
     <p class="text-gray-500 text-lg">No calculators found matching your search.</p>
-    <p class="text-gray-400 text-sm mt-1">Try a different keyword like "paint", "tile", or "concrete".</p>
+    <p class="text-gray-500 text-sm mt-1">Try a different keyword like "paint", "tile", or "concrete".</p>
   </div>
 
   <AboutCalculators />

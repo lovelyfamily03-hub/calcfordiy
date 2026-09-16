@@ -88,17 +88,17 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Room Length (ft)</label>
+        <label for="roomLength" class="block text-xs font-medium text-gray-600 mb-1">Room Length (ft)</label>
         <input type="number" id="roomLength" placeholder="18" value="18" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Room Width (ft)</label>
+        <label for="roomWidth" class="block text-xs font-medium text-gray-600 mb-1">Room Width (ft)</label>
         <input type="number" id="roomWidth" placeholder="14" value="14" min="1" max="200" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Standard Interior Doors (32"-36")</label>
+        <label for="doorCount" class="block text-xs font-medium text-gray-600 mb-1">Standard Interior Doors (32"-36")</label>
         <select id="doorCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="0">0 Doors (Full Perimeter)</option>
           <option value="1">1 Door (-3 Linear Feet)</option>
@@ -109,7 +109,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Closet / Bifold Openings (60"-72")</label>
+        <label for="closetCount" class="block text-xs font-medium text-gray-600 mb-1">Closet / Bifold Openings (60"-72")</label>
         <select id="closetCount" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="0">0 Closets</option>
           <option value="1" selected>1 Bifold Closet (-6 Linear Feet)</option>
@@ -125,7 +125,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Stock Board Length</label>
+        <label for="stockLength" class="block text-xs font-medium text-gray-600 mb-1">Stock Board Length</label>
         <select id="stockLength" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="16" selected>16-Foot Contractor Sticks (Fewer Seams)</option>
           <option value="12">12-Foot Boards</option>
@@ -134,7 +134,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Include Base Shoe / Quarter Round?</label>
+        <label for="includeShoe" class="block text-xs font-medium text-gray-600 mb-1">Include Base Shoe / Quarter Round?</label>
         <select id="includeShoe" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="yes" selected>Yes (Baseboard + Matching Shoe Molding)</option>
           <option value="no">No (Baseboard Only)</option>
@@ -142,7 +142,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Baseboard Profile &amp; Height</label>
+        <label for="trimProfile" class="block text-xs font-medium text-gray-600 mb-1">Baseboard Profile &amp; Height</label>
         <select id="trimProfile" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="craftsman" selected>Craftsman Flat Stock (1x4 / 1x6 Square Edge)</option>
           <option value="colonial">Colonial Ogee (3-1/4" to 5-1/4" Moulded)</option>
@@ -151,7 +151,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Cutting &amp; Miter Waste</label>
+        <label for="wasteFactor" class="block text-xs font-medium text-gray-600 mb-1">Cutting &amp; Miter Waste</label>
         <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="1.10" selected>10% Waste (Standard Rectangular Room)</option>
           <option value="1.15">15% Waste (Many Corners, Bump-Outs, Scarf Cuts)</option>
@@ -198,7 +198,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <span class="text-xs text-gray-500 font-mono">45° Scarf Joint • 45° Shoe Fastening</span>
     </div>
     <div class="w-full overflow-x-auto bg-slate-900 rounded-lg p-4 flex items-center justify-center">
-      <svg id="trimSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;"></svg>
+      <svg id="trimSvg" viewBox="0 0 600 200" class="w-full max-w-2xl h-auto" style="min-height: 160px;" role="img" aria-label="Calculation Diagram"></svg>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-6 mt-3 text-xs text-gray-600">
       <div class="flex items-center gap-2"><span class="w-3 h-3 bg-slate-400 rounded-xs"></span> Drywall &amp; Sole Plate Stud</div>

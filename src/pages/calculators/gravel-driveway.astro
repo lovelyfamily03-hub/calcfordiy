@@ -103,7 +103,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Driveway Total Length</label>
+        <label for="drivewayLength" class="block text-xs font-medium text-gray-600 mb-1">Driveway Total Length</label>
         <div class="flex items-center gap-2">
           <input type="number" id="drivewayLength" placeholder="100" value="100" min="10" max="5000" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">feet</span>
@@ -111,7 +111,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Driveway Width</label>
+        <label for="drivewayWidth" class="block text-xs font-medium text-gray-600 mb-1">Driveway Width</label>
         <div class="flex items-center gap-2">
           <input type="number" id="drivewayWidth" placeholder="12" value="12" min="8" max="100" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
           <span class="text-xs text-gray-500 shrink-0">feet wide</span>
@@ -119,7 +119,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
 
       <div>
-        <label class="block text-xs font-medium text-gray-600 mb-1">Driveway Project Scope</label>
+        <label for="drivewayScope" class="block text-xs font-medium text-gray-600 mb-1">Driveway Project Scope</label>
         <select id="drivewayScope" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
           <option value="new_3layer" selected>Brand New Driveway (Full 8" 3-Layer System)</option>
           <option value="topcoat_3in">Resurfacing Existing Driveway (3" Top Coat)</option>
@@ -130,7 +130,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     </div>
 
     <div id="customDepthBox" class="hidden mb-5">
-      <label class="block text-xs font-medium text-gray-600 mb-1">Custom Total Gravel Depth (Inches)</label>
+      <label for="customDepth" class="block text-xs font-medium text-gray-600 mb-1">Custom Total Gravel Depth (Inches)</label>
       <div class="flex items-center gap-2 max-w-xs">
         <input type="number" id="customDepth" placeholder="6" value="6" min="1" max="24" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
         <span class="text-xs text-gray-500 shrink-0">inches total</span>
@@ -365,7 +365,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     const w = 560;
     const h = 200;
 
-    let svg = `<svg viewBox="0 0 ${w} ${h}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg">`;
+    let svg = `<svg viewBox="0 0 ${w} ${h}" class="w-full max-w-lg h-auto" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
     
     // Subgrade Soil Base
     svg += `<rect x="30" y="130" width="500" height="55" fill="#78716C" />`;
