@@ -1,2 +1,45 @@
-# Cloudflare Pages 301 Redirect Rules
-# Legacy redirects can be added here
+# Cloudflare Pages 301 Permanent Redirect Rules
+# Resolves 404s and legacy URLs identified in Google Search Console
+
+# 1. Outdoor string lights -> string lights calculator
+/calculators/outdoor-string-lights /calculators/string-lights/ 301
+/calculators/outdoor-string-lights/ /calculators/string-lights/ 301
+
+# 2. AC operating cost -> AC cost calculator
+/calculators/ac-operating-cost /calculators/ac-cost/ 301
+/calculators/ac-operating-cost/ /calculators/ac-cost/ 301
+
+# 3. Exterior paint -> Paint exterior calculator
+/calculators/exterior-paint /calculators/paint-exterior/ 301
+/calculators/exterior-paint/ /calculators/paint-exterior/ 301
+
+# 4. Concrete mix -> Concrete slab calculator
+/calculators/concrete-mix /calculators/concrete-slab/ 301
+/calculators/concrete-mix/ /calculators/concrete-slab/ 301
+
+# 5. /yr relative fragment -> homepage
+/yr / 301
+/yr/ / 301
+
+# 6. Baseboard -> Baseboard & shoe molding calculator
+/calculators/baseboard /calculators/baseboard-shoe-molding/ 301
+/calculators/baseboard/ /calculators/baseboard-shoe-molding/ 301
+
+# 7. Cloudflare email obfuscation route -> About page
+/cdn-cgi/l/email-protection /about/ 301
+/cdn-cgi/l/email-protection/* /about/ 301
+
+# 8. Pipe slope canonical redirect
+/calculators/pipe-slope /calculators/pipe-slope/ 301
+
+# 9. /day relative fragment -> homepage
+/day / 301
+/day/ / 301
+
+# 10. Raised bed -> Raised bed soil calculator
+/calculators/raised-bed /calculators/raised-bed-soil/ 301
+/calculators/raised-bed/ /calculators/raised-bed-soil/ 301
+
+# 11. Sump pump size -> Sump pump sizing calculator
+/calculators/sump-pump-size /calculators/sump-pump-sizing/ 301
+/calculators/sump-pump-size/ /calculators/sump-pump-sizing/ 301
