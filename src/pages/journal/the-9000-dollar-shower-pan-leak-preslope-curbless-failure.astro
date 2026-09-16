@@ -1,0 +1,218 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: 'The $9,000 Shower Pan Leak: Why Preslope Matters More Than Tile Choice',
+  slug: 'the-9000-dollar-shower-pan-leak-preslope-curbless-failure',
+  description: 'An investigative breakdown of a catastrophic curbless walk-in shower failure in a custom bathroom. Why a flat subfloor clamping ring caused toxic mold, rotted dimensional floor joists, and a complete subfloor rebuild 14 months after installation.',
+  author: 'Elena Rostova',
+  authorRole: 'Historic Renovation Specialist & Tile Artisan',
+  reviewer: 'David Miller, PE',
+  reviewerRole: 'Senior Structural Reviewer',
+  publishDate: 'September 16, 2026',
+  readTime: '11 min read',
+  category: 'Field Investigation',
+  tag: 'Tile & Waterproofing',
+  companionCalculator: {
+    name: 'Shower Tile & Mortar Takeoff Calculator',
+    href: '/calculators/shower-tile/',
+    desc: 'Calculate shower pan square footage, wall tile coverage, and TCNA waste factors.'
+  },
+  companionHub: {
+    name: 'Curbless Walk-In Shower Construction Hub',
+    href: '/projects/curbless-walk-in-shower/',
+    desc: 'Complete 4-phase waterproofing, joist sistering, and bonded linear drain installation guide.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-09-16T08:00:00+00:00",
+    "dateModified": "2026-09-16T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            ER
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-gray-500 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200">
+          <div>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Published</span>
+            <span class="font-mono text-gray-800">{article.publishDate}</span>
+          </div>
+          <div class="border-l border-gray-200 pl-4">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="font-semibold text-gray-800">{article.reviewer}</span>
+            <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Companion Tool Callout (Top) -->
+    <div class="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-5 rounded-r-xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-0.5">Companion Engineering Tool</div>
+        <div class="font-bold text-gray-900 text-base">{article.companionCalculator.name}</div>
+        <div class="text-xs text-gray-600 mt-0.5">{article.companionCalculator.desc}</div>
+      </div>
+      <a
+        href={article.companionCalculator.href}
+        class="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors flex items-center gap-1.5"
+      >
+        <span>Open Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Article Narrative Body -->
+    <div class="prose prose-lg max-w-none text-gray-800 leading-relaxed font-serif space-y-8">
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Watermark on the Dining Room Ceiling</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">The text message arrived with a single photo: a subtle, ring-shaped amber stain blossoming across a dining room ceiling directly beneath a second-story master bathroom. Fourteen months earlier, the homeowners had completed an $18,000 designer bathroom remodel featuring 24x48-inch imported Italian porcelain, brass thermostatic controls, and a sleek curbless entry with a center drain.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">The tile looked impeccable. Not a single grout joint was cracked. The silicone bead along the glass enclosure was pristine. To the untrained eye, the installation was showroom quality. But when I brought a calibrated moisture meter to the first row of perimeter tile, the reading spiked past 99% saturation.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">Within three hours of cutting out the ceiling drywall below, the structural reality became horrifying: two 2x10 Douglas Fir floor joists had blackened from active wood-decay fungus, the subfloor plywood had delaminated into spongy wafers, and stagnant, foul-smelling gray water was dripping from the clamping ring assembly at a rate of one drop every twelve seconds.</p>
+      </section>
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Forensic Autopsy: The Fatal Flat Liner Mistake</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">To understand how a shower with zero cracked tiles can destroy a house's framing, you must understand a fundamental rule of ceramic tile: <strong>tile and grout are decorative wear surfaces, not waterproofing membranes</strong>.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">Grout is porous. Water passes through microscopic cementitious capillaries with every shower taken. In a traditional three-piece clamping ring shower system, water that permeates the tile and thinset is designed to seep down through a dry-pack sand-cement mortar bed, hit a flexible PVC or CPE pan liner, flow down the sloped liner into the clamping ring's weep holes, and exit into the sanitary sewer.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">Here is where the original installer committed a fatal code violation under <strong>TCNA Handbook Method B415</strong> and <strong>IRC Section P2709.2</strong>: he laid the PVC pan liner completely flat on the plywood subfloor. He then dumped 2 inches of dry-pack mortar on top of the flat liner, sculpted the slope entirely on the top layer, and tiled over it.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">Think about the physics: when water penetrated the tile, it sank to the bottom of the mortar bed. Because the rubber liner was completely flat, the water had zero gravity gradient to guide it toward the weep holes. Instead, it pooled inside the sand-mortar bed like a saturated sponge. Over 14 months, the unsloped water sat stagnant, fermented with soap scum and skin cells, and eventually crested over the liner's stapled perimeter folds, rotting the subfloor from the inside out.</p>
+      </section>
+      <AdSlot type="in-feed" />
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Anatomy of a TCNA-Compliant Pre-Slope</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">The Tile Council of North America does not suggest a pre-slope; it mandates it. Under TCNA Method B415, a mortar bed shower pan requires two distinct layers of dry-pack mortar:</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">1. <strong>The Pre-Slope (Pitch Layer):</strong> Before the waterproof liner ever touches the floor, a base mortar bed must be floated across the subfloor with a strict minimum pitch of <strong>1/4 inch per linear foot</strong> from the perimeter walls down to the drain flange. If your shower is 4 feet wide, the mortar at the wall must be 1 inch higher than the mortar at the drain throat.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">2. <strong>The Pan Liner:</strong> The waterproof membrane (40-mil PVC or CPE) is then laid directly over this sloped mortar bed. Because the floor beneath the membrane is pitched, any subsurface water that ever touches the liner is mechanically forced by gravity toward the weep holes.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">3. <strong>Pea Gravel Weep Protection:</strong> The installer had also committed mistake number two: he smeared thinset mortar directly against the clamping ring weep holes, sealing them shut like concrete caps. A compliant installation requires a ring of clean crushed pea gravel or a plastic weep hole protector ring around the drain body to ensure mortar never chokes the drainage path.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">4. <strong>The Final Mortar Bed:</strong> Only after the pre-slope and liner pass a 24-hour standing water flood test (filling the shower pan to the threshold with a test plug installed) is the final 1.25-inch reinforcing mortar bed installed to receive tile.</p>
+      </section>
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Modern Alternative: Why Bonded Surface Waterproofing Won</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">Rebuilding the bathroom required $9,200: sistering three structural joists with structural engineered lumber, replacing subfloor decking, and demoing the entire tiled floor and bottom two feet of wall tile.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">Rather than rebuilding a multi-layer clamping ring assembly, we migrated the installation to modern <strong>bonded sheet waterproofing (ANSI A118.10)</strong> using an integrated bonding flange (such as Schluter Kerdi, Laticrete Hydro Ban, or Wedi).</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">In a bonded system, the waterproof membrane sits immediately beneath the tile—not under two inches of wet mortar. Water never penetrates into a subterranean mud bed because the waterproofing is right on top. Furthermore, bonded linear drains eliminate the need for complicated four-way compound mortar pitching, enabling a single, clean directional slope.</p>
+      </section>
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Key Takeaways for Homeowners and Builders</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• Never accept a shower pan installation that does not perform a mandatory <strong>24-hour flood test</strong> before tile installation begins.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• If your contractor uses a rubber liner, inspect it before they pour mortar. If the liner is lying flat on raw plywood, stop work immediately.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• For walk-in curbless showers, prefer integrated topical foam or sheet systems over multi-layer dry-pack pans to minimize vertical stack height and human error.</p>
+      </section>
+    </div>
+
+    <!-- Editorial Signoff & Methodology Note -->
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-xl space-y-3 font-sans text-xs text-gray-600">
+      <div class="font-bold text-gray-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>CalcForDIY Editorial Standards &amp; Safety Disclaimer</span>
+      </div>
+      <p>
+        Field Investigations published in the CalcForDIY Journal chronicle real-world trade installations, forensics, and job-site inspections. Construction practices, building codes, and safety requirements vary significantly by municipality, climate zone, and local Authority Having Jurisdiction (AHJ).
+      </p>
+      <p>
+        Always consult with licensed master tradespeople and obtain required municipal permits prior to executing structural carpentry, electrical service alterations, gas piping, or foundation modifications.
+      </p>
+    </div>
+
+    <!-- Bottom Companion Hub Recommendation -->
+    <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-md">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider font-bold text-blue-400 mb-1">Related Project Workflow Hub</div>
+        <div class="text-lg font-bold text-white mb-1">{article.companionHub.name}</div>
+        <div class="text-xs text-gray-300 max-w-xl">{article.companionHub.desc}</div>
+      </div>
+      <a
+        href={article.companionHub.href}
+        class="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-2"
+      >
+        <span>Explore Full Hub</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Back to Journal Hub Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between font-sans text-xs">
+      <a href="/journal/" class="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+        <span>← Back to All Journal Stories</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-900">
+        Home
+      </a>
+    </div>
+  </article>
+</Layout>

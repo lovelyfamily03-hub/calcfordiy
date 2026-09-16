@@ -1,0 +1,214 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: 'Why My Luxury Vinyl Plank Separated: Acclimation and Subfloor Flatness Realities',
+  slug: 'why-luxury-vinyl-plank-separated-subfloor-flatness-acclimation',
+  description: 'The physics behind locking mechanism failures in floating vinyl floors. How thermal expansion, lack of perimeter gaps, and subfloor dips exceeding 3/16 inch over 10 feet turned a high-end waterproof flooring job into an unlocked, buckled mess.',
+  author: 'Elena Rostova',
+  authorRole: 'Historic Renovation Specialist',
+  reviewer: 'David Miller, PE',
+  reviewerRole: 'Senior Structural Reviewer',
+  publishDate: 'September 16, 2026',
+  readTime: '9 min read',
+  category: 'Field Investigation',
+  tag: 'Flooring & Interiors',
+  companionCalculator: {
+    name: 'Luxury Vinyl Plank (LVP) Flooring Calculator',
+    href: '/calculators/vinyl-plank-flooring/',
+    desc: 'Calculate plank box counts, square footage, transition moldings, and 10% waste allowances.'
+  },
+  companionHub: {
+    name: 'Floating Vinyl Plank Installation Project Hub',
+    href: '/projects/floating-vinyl-plank/',
+    desc: 'Subfloor leveling tolerance checks, underlayment guidelines, and expansion gap trim details.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-09-16T08:00:00+00:00",
+    "dateModified": "2026-09-16T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            ER
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-gray-500 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200">
+          <div>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Published</span>
+            <span class="font-mono text-gray-800">{article.publishDate}</span>
+          </div>
+          <div class="border-l border-gray-200 pl-4">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="font-semibold text-gray-800">{article.reviewer}</span>
+            <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Companion Tool Callout (Top) -->
+    <div class="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-5 rounded-r-xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-0.5">Companion Engineering Tool</div>
+        <div class="font-bold text-gray-900 text-base">{article.companionCalculator.name}</div>
+        <div class="text-xs text-gray-600 mt-0.5">{article.companionCalculator.desc}</div>
+      </div>
+      <a
+        href={article.companionCalculator.href}
+        class="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors flex items-center gap-1.5"
+      >
+        <span>Open Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Article Narrative Body -->
+    <div class="prose prose-lg max-w-none text-gray-800 leading-relaxed font-serif space-y-8">
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The '100% Waterproof' Marketing Illusion</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">Few building products have experienced a more meteoric rise in residential remodeling than Luxury Vinyl Plank (LVP) and Stone Plastic Composite (SPC) flooring. Marketed as '100% waterproof,' 'pet-proof,' and 'virtually indestructible,' homeowners frequently assume that click-lock floating floors can be snapped together over any existing surface with the ease of children's plastic building blocks.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">Last July, I was called to inspect a 1,400 sq ft main-floor renovation in Boise, Idaho. The homeowner had purchased premium 8mm rigid-core SPC flooring with attached acoustic pad. She had hired an installer who laid the entire floor in two days. Three months later, as the summer sun began heating the south-facing living room through 8-foot sliding glass doors, disaster struck.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">Along the main hallway, end joints between planks had unclicked, opening up 1/8-inch gaps that exposed the subfloor beneath. In the living room, walking across the floor felt like walking on bubble wrap—spongy, clicking hollow spots echoed with every footstep. Near the kitchen island, two planks had tented into an inverted 'V', buckled three-quarters of an inch off the floor.</p>
+      </section>
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Root Cause: The Strict 3/16-Inch Flatness Rule</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">The primary culprit in 95% of all floating floor failures is not defective material; it is subfloor deflection. Flooring manufacturers specify a strict industry tolerance that almost every rushed installer ignores: <strong>subfloors must be flat within 3/16 inch over a 10-foot radius (or 1/8 inch over a 6-foot radius)</strong>, as codified in <strong>ASTM F710</strong>.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">Notice the terminology: <em>flat</em>, not <em>level</em>. A floor can be out of level (sloping gradually downhill) and still support floating vinyl. But it cannot have undulations, high spots, or hollow dips. Luxury vinyl planks click together using microscopic, precision-milled tongues and grooves made of PVC and limestone composite.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">When a 48-inch rigid plank bridges over a 1/4-inch low spot in the subfloor, that plank becomes a miniature suspension bridge. Every time an adult steps on the center of that plank, the material flexes downward to make contact with the subfloor. This vertical deflection exerts immense shear stress on the click-lock tongue. After 5,000 footfalls, the brittle composite tongue simply fractures. Once the locking mechanism snaps, the planks drift apart horizontally, opening ugly gaps.</p>
+      </section>
+      <AdSlot type="in-feed" />
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Thermal Dynamics and the Pinned Floor Trap</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">The second catastrophic error was the treatment of perimeter expansion gaps and heavy fixtures. While vinyl does not absorb water, it has a high coefficient of thermal expansion. A 30-foot run of vinyl flooring will expand and contract by as much as 1/4 to 3/8 of an inch between winter heating conditions and direct summer sun exposure.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">To accommodate this movement, floating floors must be allowed to 'float' unhindered. Manufacturers mandate a minimum <strong>1/4-inch to 3/8-inch perimeter gap</strong> along every single drywall edge, door casing, and cabinet toe-kick, concealed by baseboards and shoe molding.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">In this Boise home, the installer had made two fatal pinning errors:</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">1. He had installed the kitchen island <em>on top</em> of the floating floor. A 900-pound quartz-topped kitchen island acts as an immovable anchor, pinning the planks securely to the subfloor.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">2. He had driven 18-gauge brad nails through the shoe molding directly into the vinyl planks rather than into the baseboard wall framing.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">When the summer sun heated the living room, the vinyl expanded. But because the kitchen island pinned one side of the floor and the nailed shoe molding pinned the perimeter, the expanding floor had nowhere to go. The compressive pressure built until the floor physically buckled upward into the air.</p>
+      </section>
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Engineering Cure: How to Do It Right</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">To fix the floor, we had to dismantle the installation back to the subfloor. Here is the non-negotiable process required for a lifetime installation:</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>The 10-Foot Straightedge Audit:</strong> Take a rigid 10-foot aluminum straightedge and slide it across the subfloor in a radial pattern. Measure any light passing under the straightedge with a taper gauge. If the gap exceeds 3/16 inch, mark it with a pencil.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>Grind High Spots, Fill Dips:</strong> For concrete subfloors, grind down concrete ridges with a diamond cup wheel and HEPA shroud. For plywood subfloors, plane down proud joist seams. Fill all low spots with an acrylic-modified self-leveling underlayment (SLU) preceded by a dedicated primer.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>48-Hour Acclimation:</strong> Store flooring boxes flat in the installation room for a full 48 hours with HVAC operating at living temperature (65°F–75°F) before opening cartons.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>Never Pin the Floor:</strong> Always install cabinets and islands directly on the subfloor first, bringing the floating floor up to the cabinet feet with an expansion gap covered by toe-kicks. Always nail baseboards into the wall studs—never into the flooring.</p>
+      </section>
+    </div>
+
+    <!-- Editorial Signoff & Methodology Note -->
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-xl space-y-3 font-sans text-xs text-gray-600">
+      <div class="font-bold text-gray-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>CalcForDIY Editorial Standards &amp; Safety Disclaimer</span>
+      </div>
+      <p>
+        Field Investigations published in the CalcForDIY Journal chronicle real-world trade installations, forensics, and job-site inspections. Construction practices, building codes, and safety requirements vary significantly by municipality, climate zone, and local Authority Having Jurisdiction (AHJ).
+      </p>
+      <p>
+        Always consult with licensed master tradespeople and obtain required municipal permits prior to executing structural carpentry, electrical service alterations, gas piping, or foundation modifications.
+      </p>
+    </div>
+
+    <!-- Bottom Companion Hub Recommendation -->
+    <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-md">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider font-bold text-blue-400 mb-1">Related Project Workflow Hub</div>
+        <div class="text-lg font-bold text-white mb-1">{article.companionHub.name}</div>
+        <div class="text-xs text-gray-300 max-w-xl">{article.companionHub.desc}</div>
+      </div>
+      <a
+        href={article.companionHub.href}
+        class="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-2"
+      >
+        <span>Explore Full Hub</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Back to Journal Hub Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between font-sans text-xs">
+      <a href="/journal/" class="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+        <span>← Back to All Journal Stories</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-900">
+        Home
+      </a>
+    </div>
+  </article>
+</Layout>

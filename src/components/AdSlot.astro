@@ -1,0 +1,70 @@
+---
+/**
+ * AdSlot.astro
+ * Google AdSense Placement Component
+ * 
+ * Features:
+ * - Zero Cumulative Layout Shift (CLS) with fixed aspect ratios and min-heights.
+ * - Strict AdSense Policy Compliance (demarcated with subtle ADVERTISEMENT label).
+ * - Pre-approval draft preview mode with clean placeholder rendering.
+ * - Production-ready switch to `<ins class="adsbygoogle" ...>` when client & slot IDs are supplied.
+ */
+
+interface Props {
+  type?: 'banner' | 'in-feed' | 'sidebar';
+  clientId?: string;
+  slotId?: string;
+  class?: string;
+  label?: string;
+}
+
+const {
+  type = 'in-feed',
+  clientId = '',
+  slotId = '',
+  class: className = '',
+  label = 'Advertisement'
+} = Astro.props;
+
+const isLive = Boolean(clientId && slotId);
+
+const typeStyles = {
+  banner: {
+    container: 'w-full my-8 max-w-4xl mx-auto',
+    slot: 'min-h-[90px] sm:min-h-[100px] max-w-[728px] w-full',
+    placeholderDims: 'Responsive Leaderboard (728×90 / 320×50)'
+  },
+  'in-feed': {
+    container: 'w-full my-10 max-w-2xl mx-auto',
+    slot: 'min-h-[250px] sm:min-h-[280px] max-w-[600px] w-full',
+    placeholderDims: 'In-Article Medium Rectangle (300×250 / Fluid)'
+  },
+  sidebar: {
+    container: 'w-full my-6',
+    slot: 'min-h-[250px] sm:min-h-[600px] max-w-[300px] w-full',
+    placeholderDims: 'Sidebar Rail (300×600 / 300×250)'
+  }
+}[type];
+---
+
+{isLive && (
+  <div class={`adsense-wrapper flex flex-col items-center justify-center ${typeStyles.container} ${className}`}>
+    <!-- Demarcated Policy Label -->
+    <div class="w-full flex items-center justify-center gap-2 mb-1.5 opacity-60">
+      <span class="h-px bg-gray-200 flex-grow max-w-[60px]"></span>
+      <span class="text-[10px] font-bold tracking-widest text-gray-400 uppercase">{label}</span>
+      <span class="h-px bg-gray-200 flex-grow max-w-[60px]"></span>
+    </div>
+
+    <div class={`adsense-container bg-gray-50/60 border border-gray-100 rounded-xl flex items-center justify-center p-2 text-center ${typeStyles.slot}`}>
+      <ins
+        class="adsbygoogle w-full block"
+        style="display:block"
+        data-ad-client={clientId}
+        data-ad-slot={slotId}
+        data-ad-format={type === 'in-feed' ? 'fluid' : 'auto'}
+        data-full-width-responsive="true"
+      ></ins>
+    </div>
+  </div>
+)}

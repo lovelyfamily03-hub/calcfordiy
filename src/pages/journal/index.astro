@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
 
 const articles = [
   {
@@ -11,10 +12,66 @@ const articles = [
     publishDate: "September 15, 2026",
     readTime: "9 min read",
     category: "Field Investigation",
-    tag: "Water & Drainage",
+    tag: "Plumbing & Drainage",
     companionTool: "Sump Pump Sizing Calculator",
-    companionHref: "/calculators/sump-pump-sizing",
+    companionHref: "/calculators/sump-pump-sizing/",
     featured: true
+  },
+  {
+    title: "The 100-Amp Reality Check: Why Adding an EV Charger and Heat Pump Broke My Service Panel Budget",
+    slug: "the-100-amp-reality-check-ev-charger-heat-pump-subpanel",
+    excerpt: "Under NEC Article 220, electric vehicle chargers are continuous loads calculated at 125%. When combined with a cold-climate heat pump, this homeowner faced an unexpected $8,500 utility trench until smart energy management saved the day.",
+    author: "Greg Larson",
+    authorRole: "Licensed Master Electrician",
+    publishDate: "September 16, 2026",
+    readTime: "10 min read",
+    category: "Field Investigation",
+    tag: "Electrical & Energy",
+    companionTool: "EV Charger Wire Sizing Calculator",
+    companionHref: "/calculators/ev-charger-wiring/",
+    featured: false
+  },
+  {
+    title: "The $9,000 Shower Pan Leak: Why Preslope Matters More Than Tile Choice",
+    slug: "the-9000-dollar-shower-pan-leak-preslope-curbless-failure",
+    excerpt: "A custom walk-in curbless shower with zero cracked tiles leaked gray water into the dining room ceiling below. Forensic inspection revealed the fatal error: laying a rubber pan liner completely flat on a plywood subfloor.",
+    author: "Elena Rostova",
+    authorRole: "Historic Renovation Specialist",
+    publishDate: "September 16, 2026",
+    readTime: "11 min read",
+    category: "Field Investigation",
+    tag: "Tile & Waterproofing",
+    companionTool: "Shower Tile & Mortar Takeoff Calculator",
+    companionHref: "/calculators/shower-tile/",
+    featured: false
+  },
+  {
+    title: "When 4 Inches Isn't Enough: Concrete Driveway Spalling and the Frost Line Mistake",
+    slug: "when-4-inches-isnt-enough-concrete-driveway-frost-heave",
+    excerpt: "After a single winter thaw, an $16,000 Minneapolis concrete driveway peeled away in powdery sheets. How missing air entrainment, excessive bleed water finishing, and uncompacted clay sub-base crushed a homeowner's investment.",
+    author: "David Miller, PE",
+    authorRole: "Senior Structural Contributor",
+    publishDate: "September 16, 2026",
+    readTime: "12 min read",
+    category: "Field Investigation",
+    tag: "Concrete & Earthwork",
+    companionTool: "Concrete Slab Volume Calculator",
+    companionHref: "/calculators/concrete-slab/",
+    featured: false
+  },
+  {
+    title: "Why My Luxury Vinyl Plank Separated: Acclimation and Subfloor Flatness Realities",
+    slug: "why-luxury-vinyl-plank-separated-subfloor-flatness-acclimation",
+    excerpt: "Marketed as 100% waterproof and indestructible, rigid-core vinyl planks buckled and separated within 90 days. The physics of microscopic click-lock tongues bridging over 1/4-inch subfloor dips and pinned perimeter moldings.",
+    author: "Elena Rostova",
+    authorRole: "Historic Renovation Specialist",
+    publishDate: "September 16, 2026",
+    readTime: "9 min read",
+    category: "Field Investigation",
+    tag: "Flooring & Interiors",
+    companionTool: "Vinyl Plank Flooring Calculator",
+    companionHref: "/calculators/vinyl-plank-flooring/",
+    featured: false
   },
   {
     title: "Tearing Down an 80-Year-Old Plaster Ceiling: The Dust, the Framing Realities, and Why We Went with Level 5 Drywall",
@@ -27,7 +84,7 @@ const articles = [
     category: "Renovation Diary",
     tag: "Interiors & Finishes",
     companionTool: "Drywall Mud Calculator",
-    companionHref: "/calculators/drywall-mud",
+    companionHref: "/calculators/drywall-mud/",
     featured: false
   },
   {
@@ -41,13 +98,15 @@ const articles = [
     category: "Code & Craft",
     tag: "Structural Carpentry",
     companionTool: "Stair Stringer Calculator",
-    companionHref: "/calculators/stair-stringer",
+    companionHref: "/calculators/stair-stringer/",
     featured: false
   }
 ];
 
 const featuredArticle = articles.find(a => a.featured) || articles[0];
 const regularArticles = articles.filter(a => a !== featuredArticle);
+
+const allCategories = ["All", "Electrical & Energy", "Plumbing & Drainage", "Tile & Waterproofing", "Concrete & Earthwork", "Flooring & Interiors", "Structural Carpentry"];
 ---
 
 <Layout
@@ -77,10 +136,10 @@ const regularArticles = articles.filter(a => a !== featuredArticle);
   })} />
 
   <!-- Journal Masthead -->
-  <header class="border-b-2 border-gray-900 pb-6 mb-10 pt-2">
+  <header class="border-b-2 border-gray-900 pb-6 mb-8 pt-2">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 pb-3 mb-4">
       <div>
-        <span class="text-xs font-mono font-bold tracking-widest text-blue-700 uppercase">Volume 1 • Issue 1 • Fall 2026</span>
+        <span class="text-xs font-mono font-bold tracking-widest text-blue-700 uppercase">Volume 1 • Issue 2 • September 2026</span>
         <h1 class="text-4xl md:text-6xl font-black text-gray-950 tracking-tight mt-1 font-serif">CALCFORDIY JOURNAL</h1>
       </div>
       <div class="text-xs text-gray-700 font-mono text-left md:text-right">
@@ -89,16 +148,48 @@ const regularArticles = articles.filter(a => a !== featuredArticle);
       </div>
     </div>
     <p class="text-base text-gray-700 max-w-3xl leading-relaxed">
-      A publication dedicated to the realities of residential building, hands-on remodeling, building code friction, and material science. Written by tradespeople, structural engineers, and homeowners who have lived through the dust.
+      A publication dedicated to the realities of residential building, hands-on remodeling, building code friction, and material science. Written by licensed tradespeople, professional engineers, and homeowners who have survived the job site.
     </p>
+
+    <!-- Search & Filter Controls -->
+    <div class="mt-6 pt-4 border-t border-gray-200 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+      <!-- Interactive Topic Filter Pills -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-1 max-w-full text-xs" id="journalFilterBar">
+        {allCategories.map((cat, idx) => (
+          <button
+            type="button"
+            data-filter={cat}
+            class={`px-3 py-1.5 rounded-full font-medium transition-colors whitespace-nowrap cursor-pointer ${idx === 0 ? 'bg-gray-900 text-white shadow-xs active-pill' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Quick Search Bar -->
+      <div class="relative w-full md:w-72">
+        <input
+          type="text"
+          id="journalSearchInput"
+          placeholder="Search dispatches & topics..."
+          class="w-full pl-9 pr-4 py-1.5 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all"
+        />
+        <svg class="w-4 h-4 text-gray-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+    </div>
   </header>
 
   <!-- Lead Story (Featured Dispatch) -->
-  <section class="mb-14">
-    <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-10 shadow-xs hover:border-gray-400 transition-all">
+  <section class="mb-12" id="featuredSection">
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-10 shadow-xs hover:border-gray-400 transition-all journal-card" data-tag={featuredArticle.tag} data-title={featuredArticle.title.toLowerCase()} data-excerpt={featuredArticle.excerpt.toLowerCase()}>
       <div class="flex items-center gap-3 mb-4">
         <span class="px-3 py-1 bg-amber-100 text-amber-900 text-xs font-bold rounded-full uppercase tracking-wider">
           {featuredArticle.category}
+        </span>
+        <span class="px-2.5 py-0.5 bg-blue-50 text-blue-800 text-xs font-semibold rounded-md border border-blue-200">
+          {featuredArticle.tag}
         </span>
         <span class="text-xs text-gray-600 font-medium">{featuredArticle.publishDate}</span>
         <span class="text-gray-300">•</span>
@@ -106,18 +197,18 @@ const regularArticles = articles.filter(a => a !== featuredArticle);
       </div>
 
       <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-950 tracking-tight font-serif mb-4 leading-snug">
-        <a href={`/journal/${featuredArticle.slug}`} class="hover:text-blue-700 transition-colors">
+        <a href={`/journal/${featuredArticle.slug}/`} class="hover:text-blue-700 transition-colors">
           {featuredArticle.title}
         </a>
       </h2>
 
-      <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-6 max-w-4xl">
+      <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-6 max-w-4xl font-serif">
         {featuredArticle.excerpt}
       </p>
 
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-gray-100">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-800 font-bold flex items-center justify-center font-serif text-sm border border-blue-200">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center font-serif text-sm shadow-inner">
             {featuredArticle.author.split(' ').map(n => n[0]).join('')}
           </div>
           <div>
@@ -135,7 +226,7 @@ const regularArticles = articles.filter(a => a !== featuredArticle);
             <span>↗</span>
           </a>
           <a
-            href={`/journal/${featuredArticle.slug}`}
+            href={`/journal/${featuredArticle.slug}/`}
             class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl transition-colors shadow-xs"
           >
             <span>Read Field Story</span>
@@ -149,54 +240,74 @@ const regularArticles = articles.filter(a => a !== featuredArticle);
   <!-- Editorial Wire (Recent Dispatches Grid) -->
   <section class="mb-14">
     <div class="flex items-center justify-between mb-6 pb-2 border-b border-gray-200">
-      <h3 class="text-xl font-bold text-gray-950 font-serif">Recent Field Dispatches</h3>
-      <span class="text-xs font-mono text-gray-600">Updated Weekly</span>
+      <h3 class="text-xl font-bold text-gray-950 font-serif">Field Dispatches &amp; Case Studies</h3>
+      <span class="text-xs font-mono text-gray-600" id="articleCountDisplay">{articles.length} Investigative Reports</span>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="journalGrid">
       {regularArticles.map(article => (
-        <article class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:border-gray-400 transition-all">
+        <article class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:border-gray-400 hover:shadow-xs transition-all journal-card" data-tag={article.tag} data-title={article.title.toLowerCase()} data-excerpt={article.excerpt.toLowerCase()}>
           <div>
-            <div class="flex items-center gap-2 mb-3">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
               <span class="px-2.5 py-0.5 bg-gray-100 text-gray-800 text-xs font-semibold rounded-md">
                 {article.category}
               </span>
-              <span class="text-xs text-gray-600">{article.readTime}</span>
+              <span class="px-2 py-0.5 bg-blue-50 text-blue-700 text-[11px] font-semibold rounded border border-blue-100">
+                {article.tag}
+              </span>
+              <span class="text-xs text-gray-500 font-mono ml-auto">{article.readTime}</span>
             </div>
 
             <h4 class="text-xl font-bold text-gray-950 font-serif mb-3 leading-snug">
-              <a href={`/journal/${article.slug}`} class="hover:text-blue-700 transition-colors">
+              <a href={`/journal/${article.slug}/`} class="hover:text-blue-700 transition-colors">
                 {article.title}
               </a>
             </h4>
 
-            <p class="text-sm text-gray-700 leading-relaxed mb-6">
+            <p class="text-sm text-gray-700 leading-relaxed mb-6 font-serif">
               {article.excerpt}
             </p>
           </div>
 
-          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div class="pt-4 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div class="text-xs font-bold text-gray-900">{article.author}</div>
-              <div class="text-[11px] text-gray-600">{article.publishDate}</div>
+              <div class="text-[11px] text-gray-500">{article.authorRole} • {article.publishDate}</div>
             </div>
-            <a
-              href={`/journal/${article.slug}`}
-              class="text-xs font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1"
-            >
-              <span>Read Article</span>
-              <span>→</span>
-            </a>
+            <div class="flex items-center gap-3">
+              <a
+                href={article.companionHref}
+                title={`Open ${article.companionTool}`}
+                class="text-[11px] text-gray-500 hover:text-blue-600 underline"
+              >
+                Calculator ↗
+              </a>
+              <a
+                href={`/journal/${article.slug}/`}
+                class="text-xs font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg transition-colors"
+              >
+                <span>Read</span>
+                <span>→</span>
+              </a>
+            </div>
           </div>
         </article>
       ))}
     </div>
+
+    <div id="noResults" class="hidden text-center py-12 bg-gray-50 border border-gray-200 rounded-xl p-6">
+      <p class="text-gray-600 text-sm font-serif">No journal dispatches match your search or filter criteria.</p>
+      <button type="button" id="resetFilters" class="mt-3 text-xs font-semibold text-blue-600 hover:underline">Clear all filters</button>
+    </div>
   </section>
+
+  <!-- Banner Placement Slot for Google AdSense Ready Setup -->
+  <AdSlot type="banner" />
 
   <!-- From the Editor's Desk -->
   <section class="bg-stone-50 border border-stone-200 rounded-2xl p-6 sm:p-8 mb-12">
     <div class="max-w-3xl">
-      <span class="text-xs font-mono uppercase tracking-widest text-stone-600 font-bold block mb-2">Editorial Policy</span>
+      <span class="text-xs font-mono uppercase tracking-widest text-stone-600 font-bold block mb-2">Editorial Policy &amp; Standards</span>
       <h3 class="text-xl font-bold text-gray-900 font-serif mb-3">Why We Write Real Field Stories</h3>
       <p class="text-sm text-gray-700 leading-relaxed mb-3">
         Most construction advice online is sanitized. Step-by-step guides assume perfect 90-degree corners, brand-new studs without crowns, and weather that never drops below 65 degrees. 
@@ -211,4 +322,93 @@ const regularArticles = articles.filter(a => a !== featuredArticle);
       </div>
     </div>
   </section>
+
+  <!-- Client-side Interactive Filter Script -->
+  <script>
+    function initJournalFilters() {
+      const searchInput = document.getElementById('journalSearchInput') as HTMLInputElement | null;
+      const filterPills = document.querySelectorAll('#journalFilterBar button');
+      const cards = document.querySelectorAll<HTMLElement>('.journal-card');
+      const featuredSec = document.getElementById('featuredSection');
+      const noResults = document.getElementById('noResults');
+      const countDisplay = document.getElementById('articleCountDisplay');
+      const resetBtn = document.getElementById('resetFilters');
+
+      let currentFilter = 'All';
+      let currentQuery = '';
+
+      function applyFilter() {
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const tag = card.getAttribute('data-tag') || '';
+          const title = card.getAttribute('data-title') || '';
+          const excerpt = card.getAttribute('data-excerpt') || '';
+
+          const matchesTag = (currentFilter === 'All') || (tag.toLowerCase() === currentFilter.toLowerCase());
+          const matchesQuery = !currentQuery || title.includes(currentQuery) || excerpt.includes(currentQuery) || tag.toLowerCase().includes(currentQuery);
+
+          if (matchesTag && matchesQuery) {
+            card.style.display = '';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (countDisplay) {
+          countDisplay.textContent = `${visibleCount} Investigative Report${visibleCount === 1 ? '' : 's'}`;
+        }
+
+        if (noResults) {
+          noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      }
+
+      filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          filterPills.forEach(p => {
+            p.classList.remove('bg-gray-900', 'text-white', 'shadow-xs', 'active-pill');
+            p.classList.add('bg-gray-100', 'text-gray-700');
+          });
+          pill.classList.add('bg-gray-900', 'text-white', 'shadow-xs', 'active-pill');
+          pill.classList.remove('bg-gray-100', 'text-gray-700');
+
+          currentFilter = pill.getAttribute('data-filter') || 'All';
+          applyFilter();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentQuery = (e.target as HTMLInputElement).value.trim().toLowerCase();
+          applyFilter();
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (searchInput) searchInput.value = '';
+          currentQuery = '';
+          currentFilter = 'All';
+          filterPills.forEach((p, idx) => {
+            if (idx === 0) {
+              p.classList.add('bg-gray-900', 'text-white', 'shadow-xs', 'active-pill');
+              p.classList.remove('bg-gray-100', 'text-gray-700');
+            } else {
+              p.classList.remove('bg-gray-900', 'text-white', 'shadow-xs', 'active-pill');
+              p.classList.add('bg-gray-100', 'text-gray-700');
+            }
+          });
+          applyFilter();
+        });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initJournalFilters);
+    } else {
+      initJournalFilters();
+    }
+  </script>
 </Layout>
