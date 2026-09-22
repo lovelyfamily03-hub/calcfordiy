@@ -1,0 +1,655 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Countersink Depth & Screw Pilot Hole Calculator (Drill Press & Stop Collar) | CalcForDIY"
+  description="Calculate exact countersink plunge depth, pilot hole diameter, shank clearance hole, and plug counterbore depth for 82-degree, 90-degree, and 100-degree flat head wood screws."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Countersink Depth and Screw Pilot Hole Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the mathematical formula for countersink plunge depth?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The plunge depth (h) for a conical countersink bit with included angle θ into a pre-drilled pilot hole of diameter d to achieve an outer chamfer diameter D is: h = (D - d) / (2 * tan(θ / 2)). For standard 82-degree US screws, tan(41°) is 0.8693, making depth h ≈ 0.575 * (D - d). For 90-degree metric screws, tan(45°) is 1.0, making depth h = 0.5 * (D - d)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between an 82-degree and a 90-degree countersink angle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An 82-degree countersink angle is the American National Standard (ASME/ANSI B18.6.1) used for virtually all standard US imperial wood screws, drywall screws, and machine screws. A 90-degree countersink is the European/ISO (DIN 7991 / ISO 10642) standard for metric fasteners. Using an 82-degree screw in a 90-degree countersunk hole creates a point-contact ridge along the top edge, preventing the screw head from seating flush."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do wood screws require both a pilot hole and a shank clearance hole?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A pilot hole matches the root (minor) diameter of the screw threads so the core enters without bursting wood fibers. A shank clearance hole matches or slightly exceeds the screw's unthreaded outer shank diameter in the top board. Without a clearance hole, the threads grip both boards simultaneously, creating screw jacking where the joint cannot pull tight."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Countersink Depth Calculator", "item": "https://calcfordiy.com/calculators/countersink-depth" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Countersink Depth Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-2">
+      <span>📐 ASME B18.6.1 &amp; ISO 10642 Precision Joinery Standards</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Countersink Depth &amp; Screw Pilot Hole Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate exact drill press quill depth, stop collar settings, pilot hole diameters, shank clearance bores, and wood plug counterbores for flush, rattle-free fastener seating.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Fastener Specification &amp; Profile Preset
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="screwPreset" class="block text-xs font-medium text-gray-600 mb-1">Screw Size Standard</label>
+        <select id="screwPreset" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="custom">Custom Dimensions</option>
+          <option value="us_4">#4 Wood Screw (Head 0.225", 82°)</option>
+          <option value="us_6">#6 Wood Screw (Head 0.279", 82°)</option>
+          <option value="us_8" selected>#8 Wood Screw (Head 0.332", 82°) [Most Common]</option>
+          <option value="us_10">#10 Wood Screw (Head 0.385", 82°)</option>
+          <option value="us_12">#12 Wood Screw (Head 0.438", 82°)</option>
+          <option value="us_14">#14 Wood Screw (Head 0.491", 82°)</option>
+          <option value="us_250">1/4" Flat Head (Head 0.531", 82°)</option>
+          <option value="m3">M3 Metric (Head 6.0 mm, 90°)</option>
+          <option value="m4">M4 Metric (Head 8.0 mm, 90°)</option>
+          <option value="m5">M5 Metric (Head 10.0 mm, 90°)</option>
+          <option value="m6">M6 Metric (Head 12.0 mm, 90°)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="cskAngle" class="block text-xs font-medium text-gray-600 mb-1">Countersink Angle (θ)</label>
+        <select id="cskAngle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="82" selected>82° (Standard US Imperial Screws)</option>
+          <option value="90">90° (Metric ISO / DIN European Standard)</option>
+          <option value="100">100° (Aerospace &amp; Sheet Metal Rivets)</option>
+          <option value="60">60° (Center Drill / Machine Lathe)</option>
+          <option value="120">120° (Sheet Metal Deburring Chamfer)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="headDiameter" class="block text-xs font-medium text-gray-600 mb-1">Screw Major Head Dia (in)</label>
+        <input type="number" id="headDiameter" value="0.332" step="0.001" min="0.05" max="2.0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label for="woodType" class="block text-xs font-medium text-gray-600 mb-1">Wood Species / Hardness</label>
+        <select id="woodType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="softwood" selected>Softwood (Pine, Cedar, Fir, SPF)</option>
+          <option value="hardwood">Hardwood (Oak, Maple, Walnut, Cherry)</option>
+          <option value="mdf">MDF / Plywood / Engineered Board</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 pt-2 border-t border-gray-100">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Pilot Hole, Fit Offset &amp; Plug Counterbore
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="pilotDiameter" class="block text-xs font-medium text-gray-600 mb-1">Pilot Hole Diameter (d, in)</label>
+        <input type="number" id="pilotDiameter" value="0.094" step="0.001" min="0.02" max="1.0" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span id="pilotFracText" class="text-[11px] text-blue-600 mt-1 block">3/32" drill bit</span>
+      </div>
+
+      <div>
+        <label for="fitTolerance" class="block text-xs font-medium text-gray-600 mb-1">Seating Margin / Fit</label>
+        <select id="fitTolerance" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="flush" selected>Flush (Chamfer Dia = Head Dia)</option>
+          <option value="recess_subtle">Sub-Flush (+0.015" for paint/filler)</option>
+          <option value="generous">Over-Chamfer (+0.031" / 1/32" margin)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="counterboreDepth" class="block text-xs font-medium text-gray-600 mb-1">Wood Plug Counterbore</label>
+        <select id="counterboreDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0" selected>None (Head at Surface)</option>
+          <option value="0.125">1/8" Shallow Plug (3/8" dia)</option>
+          <option value="0.250">1/4" Standard Plug (3/8" or 1/2" dia)</option>
+          <option value="0.375">3/8" Deep Plug (Grained Plugs)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="holeCount" class="block text-xs font-medium text-gray-600 mb-1">Total Fasteners / Holes</label>
+        <input type="number" id="holeCount" value="60" min="1" max="5000" step="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Recalculate Precision Specs
+      </button>
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold text-gray-900">Calculated Drilling &amp; Countersink Geometry</h2>
+      <span class="text-xs font-mono text-gray-500">ASME B18.6.1 Woodworking Spec</span>
+    </div>
+
+    <!-- Highlight Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Conical Chamfer Depth (h)</span>
+        <div class="text-2xl font-bold text-blue-600" id="r_cskDepth">0.137"</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_cskDepthFrac">~9/64 in (3.5 mm)</span>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Total Quill Stop Depth</span>
+        <div class="text-2xl font-bold text-emerald-600" id="r_totalPlunge">0.137"</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_totalPlungeDetail">Surface to shoulder</span>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Recommended Pilot Drill</span>
+        <div class="text-2xl font-bold text-gray-900" id="r_pilotBit">3/32"</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_pilotBitDec">0.094" (#41 / 2.4 mm)</span>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Top Board Clearance Hole</span>
+        <div class="text-2xl font-bold text-purple-600" id="r_clearanceBit">11/64"</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_clearanceBitDec">0.172" (Prevents Jacking)</span>
+      </div>
+    </div>
+
+    <!-- Detailed Dimension Breakdown -->
+    <div class="bg-white rounded-xl border border-gray-200 p-4 mb-5">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3">Complete Machining &amp; Woodworking Takeoff</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-4 text-xs">
+        <div>
+          <span class="text-gray-500">Outer Chamfer Diameter (D):</span>
+          <strong id="r_targetDia" class="text-gray-800 ml-1">0.332"</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Pre-Drilled Pilot Bore (d):</span>
+          <strong id="r_pilotBore" class="text-gray-800 ml-1">0.094"</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Included Tool Angle (θ):</span>
+          <strong id="r_toolAngle" class="text-gray-800 ml-1">82°</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Counterbore Plug Allowance:</span>
+          <strong id="r_plugDepth" class="text-gray-800 ml-1">0.000" (Flush)</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Total Holes in Project:</span>
+          <strong id="r_totalHoles" class="text-gray-800 ml-1">60 holes</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Est. Plugs Needed (+15% waste):</span>
+          <strong id="r_plugsNeeded" class="text-gray-800 ml-1">0 plugs</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Vector SVG Cut Profile Diagram -->
+    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs mb-5">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+          <span>📐</span> Cross-Sectional Countersink &amp; Pilot Hole Profile
+        </h3>
+        <span class="text-xs text-gray-500 font-mono">Dynamic Scaling Vector</span>
+      </div>
+      <div class="overflow-x-auto bg-gray-50 rounded-lg p-3 border border-gray-200 flex justify-center">
+        <svg id="cskSvg" viewBox="0 0 540 240" class="w-full max-w-lg h-auto font-sans" role="img" aria-label="Countersink Profile Diagram">
+          <!-- Dynamic SVG populated by JS -->
+        </svg>
+      </div>
+    </div>
+
+    <!-- Copy Drilling Schedule Button -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gray-200">
+      <div class="text-xs text-gray-500">
+        Stop collar setting: Set drill bit tip to collar stop distance = <strong id="r_stopCollarTip" class="text-gray-800">1.637"</strong> for 1.5" screw.
+      </div>
+      <button type="button" id="copyScheduleBtn" class="px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-xs">
+        <span>📋</span> Copy Drill &amp; Fastener Schedule
+      </button>
+    </div>
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Marcus Vance, Master Joiner"
+    reviewerRole="Cabinetmaker & Architectural Millwork Specialist"
+    codeStandard="ASME B18.6.1, AWI Architectural Woodwork Standards & ISO 10642"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Deep Editorial & Technical Documentation -->
+  <div class="prose max-w-none text-gray-700 space-y-6 mt-10">
+    <h2 class="text-2xl font-bold text-gray-900">The Geometry of Countersinking: Achieving Perfect Flush Joinery</h2>
+    <p>
+      In fine woodworking, architectural cabinetry, and mechanical assembly, driving a flat-head wood screw flush with the material surface requires balancing three interdependent drilling operations: the <strong>pilot hole</strong>, the <strong>shank clearance hole</strong>, and the <strong>countersink chamfer</strong>.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose my-4">
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+        <h3 class="font-bold text-amber-950 text-sm mb-1 flex items-center gap-1.5">
+          <span>📐</span> The Mathematical Countersink Formula
+        </h3>
+        <p class="text-xs text-amber-900 leading-relaxed font-mono mb-2">
+          Depth h = (D - d) / (2 × tan(θ / 2))
+        </p>
+        <p class="text-xs text-amber-900 leading-relaxed">
+          Where <code>D</code> is the target outer chamfer diameter, <code>d</code> is the pre-drilled pilot hole diameter, and <code>θ</code> is the countersink tool's included angle. If no pilot hole is pre-drilled (or if drilling into solid stock), <code>d = 0</code> and the full conical depth is <code>D / (2 × tan(θ/2))</code>.
+        </p>
+      </div>
+
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+        <h3 class="font-bold text-blue-950 text-sm mb-1 flex items-center gap-1.5">
+          <span>⚙️</span> The "Screw Jacking" Hazard
+        </h3>
+        <p class="text-xs text-blue-900 leading-relaxed">
+          When joining two boards with a wood screw, drilling only a pilot hole is a critical error. The aggressive screw threads will bite into both the upper and lower boards. If the two boards are separated by even a hairline fraction of an inch, the threads bridge the gap and lock the pieces apart—a defect known as <em>screw jacking</em>. An unthreaded <strong>shank clearance hole</strong> in the top board allows the screw head to draw the joint fully tight.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-bold text-gray-900 mt-6">Standard US Wood Screw Dimensions &amp; Pilot Drill Reference (ASME B18.6.1)</h3>
+    <div class="overflow-x-auto not-prose">
+      <table class="w-full text-left text-xs border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-100 text-gray-700 uppercase font-semibold">
+          <tr>
+            <th class="p-2.5">Screw Gauge</th>
+            <th class="p-2.5">Head Diameter (D)</th>
+            <th class="p-2.5">Shank Diameter</th>
+            <th class="p-2.5">Softwood Pilot (d)</th>
+            <th class="p-2.5">Hardwood Pilot (d)</th>
+            <th class="p-2.5">Clearance Drill</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-600">
+          <tr>
+            <td class="p-2.5 font-bold text-gray-900">#4</td>
+            <td class="p-2.5 font-mono">0.225"</td>
+            <td class="p-2.5 font-mono">0.112"</td>
+            <td class="p-2.5">1/16" (0.062")</td>
+            <td class="p-2.5">5/64" (0.078")</td>
+            <td class="p-2.5">1/8" (#30)</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-gray-900">#6</td>
+            <td class="p-2.5 font-mono">0.279"</td>
+            <td class="p-2.5 font-mono">0.138"</td>
+            <td class="p-2.5">5/64" (0.078")</td>
+            <td class="p-2.5">3/32" (0.094")</td>
+            <td class="p-2.5">5/32" (#26)</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-gray-900">#8</td>
+            <td class="p-2.5 font-mono">0.332"</td>
+            <td class="p-2.5 font-mono">0.164"</td>
+            <td class="p-2.5">3/32" (0.094")</td>
+            <td class="p-2.5">7/64" (0.109")</td>
+            <td class="p-2.5">11/64" (#15)</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-gray-900">#10</td>
+            <td class="p-2.5 font-mono">0.385"</td>
+            <td class="p-2.5 font-mono">0.190"</td>
+            <td class="p-2.5">7/64" (0.109")</td>
+            <td class="p-2.5">1/8" (0.125")</td>
+            <td class="p-2.5">13/64" (#7)</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-gray-900">#12</td>
+            <td class="p-2.5 font-mono">0.438"</td>
+            <td class="p-2.5 font-mono">0.216"</td>
+            <td class="p-2.5">1/8" (0.125")</td>
+            <td class="p-2.5">9/64" (0.141")</td>
+            <td class="p-2.5">15/64" (#1)</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 font-bold text-gray-900">1/4"</td>
+            <td class="p-2.5 font-mono">0.531"</td>
+            <td class="p-2.5 font-mono">0.250"</td>
+            <td class="p-2.5">5/32" (0.156")</td>
+            <td class="p-2.5">11/64" (0.172")</td>
+            <td class="p-2.5">17/64" (F drill)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="text-xl font-bold text-gray-900 mt-6">Step-by-Step Stop Collar Calibration</h3>
+    <ol class="list-decimal pl-5 space-y-2">
+      <li>
+        <strong>Select Combination Bit:</strong> Use an adjustable countersink bit with an integrated split-ring stop collar and non-marring brass or plastic contact bearing.
+      </li>
+      <li>
+        <strong>Set Pilot Depth:</strong> Loosen the setscrew and extend the center pilot drill bit so the exposed length equals the screw length minus the countersink plunge depth.
+      </li>
+      <li>
+        <strong>Set Collar Plunge Depth:</strong> Measure the total calculated plunge depth (countersink + counterbore) from the bit shoulder to the stop collar face using a digital dial caliper.
+      </li>
+      <li>
+        <strong>Perform Test Bore in Scrap:</strong> Always drill a test hole in an offcut of the identical workpiece species. Drive the screw to verify the head rests exactly dead flush without mushrooming wood fibers.
+      </li>
+    </ol>
+  </div>
+
+  <script is:inline>
+  (function() {
+    var presets = {
+      us_4: { head: 0.225, angle: 82, pilotSoft: 0.0625, pilotHard: 0.0781, clearance: 0.128 },
+      us_6: { head: 0.279, angle: 82, pilotSoft: 0.0781, pilotHard: 0.0938, clearance: 0.149 },
+      us_8: { head: 0.332, angle: 82, pilotSoft: 0.0938, pilotHard: 0.1094, clearance: 0.177 },
+      us_10: { head: 0.385, angle: 82, pilotSoft: 0.1094, pilotHard: 0.1250, clearance: 0.201 },
+      us_12: { head: 0.438, angle: 82, pilotSoft: 0.1250, pilotHard: 0.1406, clearance: 0.228 },
+      us_14: { head: 0.491, angle: 82, pilotSoft: 0.1406, pilotHard: 0.1562, clearance: 0.257 },
+      us_250: { head: 0.531, angle: 82, pilotSoft: 0.1562, pilotHard: 0.1719, clearance: 0.266 },
+      m3: { head: 0.236, angle: 90, pilotSoft: 0.0708, pilotHard: 0.0866, clearance: 0.134 },
+      m4: { head: 0.315, angle: 90, pilotSoft: 0.0945, pilotHard: 0.1102, clearance: 0.177 },
+      m5: { head: 0.394, angle: 90, pilotSoft: 0.1181, pilotHard: 0.1378, clearance: 0.216 },
+      m6: { head: 0.472, angle: 90, pilotSoft: 0.1496, pilotHard: 0.1772, clearance: 0.260 }
+    };
+
+    function toFractionStr(val) {
+      var fractions = [
+        { f: 1/64, s: '1/64"' }, { f: 1/32, s: '1/32"' }, { f: 3/64, s: '3/64"' },
+        { f: 1/16, s: '1/16"' }, { f: 5/64, s: '5/64"' }, { f: 3/32, s: '3/32"' },
+        { f: 7/64, s: '7/64"' }, { f: 1/8, s: '1/8"' },   { f: 9/64, s: '9/64"' },
+        { f: 5/32, s: '5/32"' }, { f: 11/64, s: '11/64"' }, { f: 3/16, s: '3/16"' },
+        { f: 13/64, s: '13/64"' }, { f: 7/32, s: '7/32"' }, { f: 15/64, s: '15/64"' },
+        { f: 1/4, s: '1/4"' },   { f: 17/64, s: '17/64"' }, { f: 9/32, s: '9/32"' },
+        { f: 5/16, s: '5/16"' }, { f: 11/32, s: '11/32"' }, { f: 3/8, s: '3/8"' },
+        { f: 1/2, s: '1/2"' }
+      ];
+      var closest = fractions[0];
+      var minDiff = 999;
+      for (var i = 0; i < fractions.length; i++) {
+        var diff = Math.abs(val - fractions[i].f);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closest = fractions[i];
+        }
+      }
+      return closest.s;
+    }
+
+    function onPresetChange() {
+      var presetKey = document.getElementById('screwPreset').value;
+      if (presetKey === 'custom') return;
+      var p = presets[presetKey];
+      if (!p) return;
+
+      document.getElementById('cskAngle').value = p.angle.toString();
+      document.getElementById('headDiameter').value = p.head.toFixed(3);
+
+      var wood = document.getElementById('woodType').value;
+      var pilot = (wood === 'hardwood') ? p.pilotHard : p.pilotSoft;
+      document.getElementById('pilotDiameter').value = pilot.toFixed(3);
+      document.getElementById('pilotFracText').textContent = toFractionStr(pilot) + ' bit';
+      calc();
+    }
+
+    function calc() {
+      var D = parseFloat(document.getElementById('headDiameter').value) || 0.332;
+      var d = parseFloat(document.getElementById('pilotDiameter').value) || 0.094;
+      var angle = parseFloat(document.getElementById('cskAngle').value) || 82;
+      var fit = document.getElementById('fitTolerance').value;
+      var plugDepth = parseFloat(document.getElementById('counterboreDepth').value) || 0;
+      var holes = parseInt(document.getElementById('holeCount').value) || 60;
+      var wood = document.getElementById('woodType').value;
+
+      // Fit adjustment to D
+      var effectiveD = D;
+      if (fit === 'recess_subtle') effectiveD += 0.015;
+      else if (fit === 'generous') effectiveD += 0.031;
+
+      // Ensure D > d
+      if (effectiveD <= d) effectiveD = d + 0.02;
+
+      // Half angle in radians
+      var halfRad = (angle / 2) * (Math.PI / 180);
+      var cskH = (effectiveD - d) / (2 * Math.tan(halfRad));
+      if (cskH < 0) cskH = 0;
+
+      var totalDepth = cskH + plugDepth;
+
+      // Clearance hole estimate
+      var clearanceVal = D * 0.52;
+      var presetKey = document.getElementById('screwPreset').value;
+      if (presetKey !== 'custom' && presets[presetKey]) {
+        clearanceVal = presets[presetKey].clearance;
+      }
+
+      // Update UI outputs
+      document.getElementById('r_cskDepth').textContent = cskH.toFixed(3) + '"';
+      document.getElementById('r_cskDepthFrac').textContent = '~' + toFractionStr(cskH) + ' (' + (cskH * 25.4).toFixed(1) + ' mm)';
+      document.getElementById('r_totalPlunge').textContent = totalDepth.toFixed(3) + '"';
+      document.getElementById('r_totalPlungeDetail').textContent = plugDepth > 0 ? (cskH.toFixed(3) + '" csk + ' + plugDepth.toFixed(3) + '" bore') : 'Surface to conical stop';
+
+      document.getElementById('r_pilotBit').textContent = toFractionStr(d);
+      document.getElementById('r_pilotBitDec').textContent = d.toFixed(3) + '" (' + (d * 25.4).toFixed(1) + ' mm)';
+
+      document.getElementById('r_clearanceBit').textContent = toFractionStr(clearanceVal);
+      document.getElementById('r_clearanceBitDec').textContent = clearanceVal.toFixed(3) + '" clearance';
+
+      document.getElementById('r_targetDia').textContent = effectiveD.toFixed(3) + '" (' + (effectiveD * 25.4).toFixed(1) + ' mm)';
+      document.getElementById('r_pilotBore').textContent = d.toFixed(3) + '"';
+      document.getElementById('r_toolAngle').textContent = angle + '° included';
+      document.getElementById('r_plugDepth').textContent = plugDepth > 0 ? plugDepth.toFixed(3) + '" (' + toFractionStr(plugDepth) + ')' : '0.000" (Flush)';
+      document.getElementById('r_totalHoles').textContent = holes + ' holes';
+
+      var plugs = plugDepth > 0 ? Math.ceil(holes * 1.15) : 0;
+      document.getElementById('r_plugsNeeded').textContent = plugs > 0 ? (plugs + ' plugs') : 'None (No bore)';
+
+      document.getElementById('r_stopCollarTip').textContent = (1.50 + totalDepth).toFixed(3) + '"';
+
+      drawSvg(effectiveD, d, angle, cskH, plugDepth);
+    }
+
+    function drawSvg(D, d, angle, cskH, plugDepth) {
+      var svg = document.getElementById('cskSvg');
+      if (!svg) return;
+
+      var cx = 270;
+      var topY = 40;
+      var scale = 260; // pixels per inch
+
+      var cskW = D * scale;
+      var pilotW = d * scale;
+      var plugH = plugDepth * scale;
+      var coneH = cskH * scale;
+
+      var halfCskW = cskW / 2;
+      var halfPilotW = pilotW / 2;
+
+      var boreBottomY = topY + plugH;
+      var cskBottomY = boreBottomY + coneH;
+      var pilotBottomY = cskBottomY + 90;
+
+      var html = `
+        <defs>
+          <pattern id="woodGrainCsk" width="30" height="30" patternUnits="userSpaceOnUse">
+            <rect width="30" height="30" fill="#FEF3C7" />
+            <path d="M 0 10 Q 15 8 30 10 M 0 20 Q 15 22 30 20" stroke="#FDE68A" stroke-width="1.5" fill="none" />
+          </pattern>
+          <marker id="arrowCsk" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#2563EB" />
+          </marker>
+          <marker id="arrowEmerald" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#059669" />
+          </marker>
+        </defs>
+
+        <!-- Wood Stock Block -->
+        <rect x="50" y="${topY}" width="440" height="170" fill="url(#woodGrainCsk)" stroke="#D97706" stroke-width="2" rx="4" />
+        <text x="70" y="${topY + 25}" font-size="11" font-weight="bold" fill="#92400E">Wood Stock Substrate</text>
+
+        <!-- Cutout Void Path -->
+        <path d="
+          M ${cx - halfCskW} ${topY}
+          L ${cx - halfCskW} ${boreBottomY}
+          L ${cx - halfPilotW} ${cskBottomY}
+          L ${cx - halfPilotW} ${pilotBottomY}
+          L ${cx + halfPilotW} ${pilotBottomY}
+          L ${cx + halfPilotW} ${cskBottomY}
+          L ${cx + halfCskW} ${boreBottomY}
+          L ${cx + halfCskW} ${topY}
+          Z
+        " fill="#F8FAFC" stroke="#334155" stroke-width="2" />
+
+        <!-- Plug Counterbore Zone Highlight (if active) -->
+        ${plugDepth > 0 ? `
+          <rect x="${cx - halfCskW}" y="${topY}" width="${cskW}" height="${plugH}" fill="#DBEAFE" opacity="0.6" stroke="#2563EB" stroke-dasharray="3,3" />
+          <text x="${cx}" y="${topY + plugH / 2 + 4}" text-anchor="middle" font-size="10" font-weight="bold" fill="#1D4ED8">Plug Counterbore (${plugDepth.toFixed(3)}")</text>
+        ` : ''}
+
+        <!-- Conical Chamfer Zone -->
+        <path d="
+          M ${cx - halfCskW} ${boreBottomY}
+          L ${cx - halfPilotW} ${cskBottomY}
+          L ${cx + halfPilotW} ${cskBottomY}
+          L ${cx + halfCskW} ${boreBottomY}
+          Z
+        " fill="#FEF2F2" opacity="0.5" />
+
+        <!-- Centerline -->
+        <line x1="${cx}" y1="${topY - 15}" x2="${cx}" y2="${pilotBottomY + 15}" stroke="#94A3B8" stroke-width="1" stroke-dasharray="4,4" />
+
+        <!-- Screw Outline in Phantom Blue -->
+        <path d="
+          M ${cx - halfCskW + 3} ${boreBottomY + 2}
+          L ${cx + halfCskW - 3} ${boreBottomY + 2}
+          L ${cx + halfPilotW - 2} ${cskBottomY + 2}
+          L ${cx + halfPilotW - 2} ${cskBottomY + 50}
+          L ${cx} ${cskBottomY + 65}
+          L ${cx - halfPilotW + 2} ${cskBottomY + 50}
+          L ${cx - halfPilotW + 2} ${cskBottomY + 2}
+          Z
+        " fill="#3B82F6" opacity="0.25" stroke="#1D4ED8" stroke-width="1.5" />
+
+        <!-- Dimension: Major Diameter D -->
+        <line x1="${cx - halfCskW}" y1="${topY - 12}" x2="${cx + halfCskW}" y2="${topY - 12}" stroke="#2563EB" stroke-width="1.5" marker-start="url(#arrowCsk)" marker-end="url(#arrowCsk)" />
+        <text x="${cx}" y="${topY - 18}" text-anchor="middle" font-size="10" font-weight="bold" fill="#1E40AF">Major Dia D = ${D.toFixed(3)}"</text>
+
+        <!-- Dimension: Pilot Hole d -->
+        <line x1="${cx - halfPilotW}" y1="${pilotBottomY + 14}" x2="${cx + halfPilotW}" y2="${pilotBottomY + 14}" stroke="#2563EB" stroke-width="1.5" marker-start="url(#arrowCsk)" marker-end="url(#arrowCsk)" />
+        <text x="${cx}" y="${pilotBottomY + 26}" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E40AF">Pilot d = ${d.toFixed(3)}"</text>
+
+        <!-- Dimension: Countersink Plunge Depth (Right Side) -->
+        <line x1="${cx + halfCskW + 25}" y1="${boreBottomY}" x2="${cx + halfCskW + 25}" y2="${cskBottomY}" stroke="#059669" stroke-width="1.5" marker-start="url(#arrowEmerald)" marker-end="url(#arrowEmerald)" />
+        <text x="${cx + halfCskW + 32}" y="${boreBottomY + coneH / 2 + 4}" font-size="10" font-weight="bold" fill="#047857">h = ${cskH.toFixed(3)}"</text>
+
+        <!-- Angle Annotation -->
+        <text x="${cx - halfCskW - 40}" y="${boreBottomY + coneH / 2 + 4}" font-size="11" font-weight="bold" fill="#DC2626">${angle}° Included</text>
+      `;
+
+      svg.innerHTML = html;
+    }
+
+    document.getElementById('screwPreset').addEventListener('change', onPresetChange);
+    document.getElementById('cskAngle').addEventListener('change', calc);
+    document.getElementById('headDiameter').addEventListener('input', calc);
+    document.getElementById('pilotDiameter').addEventListener('input', calc);
+    document.getElementById('woodType').addEventListener('change', onPresetChange);
+    document.getElementById('fitTolerance').addEventListener('change', calc);
+    document.getElementById('counterboreDepth').addEventListener('change', calc);
+    document.getElementById('holeCount').addEventListener('input', calc);
+    document.getElementById('calcBtn').addEventListener('click', calc);
+
+    // Initial run
+    calc();
+
+    // Copy Schedule Handler
+    document.getElementById('copyScheduleBtn').addEventListener('click', function() {
+      var cskH = document.getElementById('r_cskDepth').textContent;
+      var totalH = document.getElementById('r_totalPlunge').textContent;
+      var pilot = document.getElementById('r_pilotBit').textContent;
+      var clearance = document.getElementById('r_clearanceBit').textContent;
+      var angle = document.getElementById('r_toolAngle').textContent;
+      var holes = document.getElementById('r_totalHoles').textContent;
+
+      var text = `=== Fastener Drilling & Countersink Schedule ===
+Tool Included Angle: ${angle}
+Conical Chamfer Plunge Depth: ${cskH}
+Total Stop Collar Plunge Depth: ${totalH}
+Pilot Drill Bit Size: ${pilot}
+Shank Clearance Drill Bit: ${clearance}
+Total Fasteners: ${holes}
+Standard: ASME B18.6.1 Woodworking Precision
+Generated via CalcForDIY (https://calcfordiy.com/calculators/countersink-depth)`;
+
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyScheduleBtn');
+        btn.textContent = '✓ Copied Schedule!';
+        setTimeout(function() { btn.textContent = '📋 Copy Drill & Fastener Schedule'; }, 2500);
+      });
+    });
+  })();
+  </script>
+
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="baseboard-shoe-molding-trim"
+    hubTitle="Baseboard &amp; Shoe Molding Installation Hub →"
+    hubDesc="Precision architectural trim carpentry: nail gun sizing, coping inside corners, and flush screw concealment."
+    guideSlug="coping-inside-corners-vs-miter-baseboard"
+    guideTitle="Coping Inside Corners vs. Miter Cuts Trade Guide →"
+    guideDesc="Why coped inside joints prevent separation and seasonal gaps compared to simple 45-degree bevels."
+  />
+</Layout>

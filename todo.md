@@ -153,17 +153,47 @@ Enhanced top 10 core tools with unique, non-templated, tool-specific technical v
 
 ---
 
-## 6. 🚀 Next Priority Development Queue (Pending Next Session)
+## 6. 🚀 100-Calculator Expansion Roadmap & GSC Target Queue
 
-- [ ] **E-Commerce Material Takeoff Affiliate Integration**:
-  - Centralized affiliate config (`src/config/affiliates.js`) supporting Amazon Associates tag (`calcfordiy-20`) and Home Depot / Lowe's (Impact.com & CJ).
-  - Context-aware retail checkout buttons below calculator takeoff results (e.g., *32 Bags of 80 lb Quikrete* → `[ View on Home Depot ]` / `[ View on Amazon ]`).
-  - Required FTC affiliate disclosure banner in global footer and takeoffs.
-- [ ] **Moat 6: Dual Imperial (US) ⇄ Metric (SI) Measurement Switcher**:
-  - Global / per-calculator toggle between Feet/Inches/Lbs and Meters/Centimeters/kg to capture Canadian, UK, Australian, and European search volume.
-- [ ] **Next Batch of Search Console Long-Tail Target Guides**:
-  - `"How to Measure and Cut Crown Molding Angles (Miter & Bevel Chart)"`
-  - `"How Many Watts Does a Refrigerator Use on a Generator?"`
-  - `"How Much Topsoil Do I Need for a New Lawn?"`
-  - `"What Size Subpanel for a Detached Garage Workshop?"`
-  - `"How Many Amps Does a 3-Ton Central AC Unit Draw?"`
+### 📦 Immediate Drafts Batch (#79 – #81 - COMPLETE ✅)
+- [x] **#79 — Countersink Depth & Screw Pilot Hole Calculator** (`/calculators/countersink-depth`) — ASME B18.6.1 & ISO 10642 plunge depth & shank clearance.
+- [x] **#80 — Tyvek® & House Wrap Material Takeoff Calculator** (`/calculators/tyvek-house-wrap`) — IRC R703.2 WRB rolls, seam tape, plastic cap fasteners.
+- [x] **#81 — Trestlewood & Reclaimed Siding Calculator** (`/calculators/trestlewood-siding-lumber`) — Linear feet to board feet (BDFT) conversions for wedgelap, shiplap, and barnwood.
+
+### 🔍 GSC-Discovered Niche Calculators (#82 – #86 - COMPLETE ✅)
+- [x] **#82 — Cascadia Rainscreen & Wall Clip Calculator** (`/calculators/cascadia-clip`) — GSC Query: `cascadia clip calculator`. Fiberglass thermal isolation clips.
+- [x] **#83 — Self-Leveling Underlayment (SLU) & Deck Mud Calculator** (`/calculators/self-leveling-underlayment`) — GSC Queries: `self leveling calculator`, `deck mud calculator square feet`.
+- [x] **#84 — DRIcore® Subfloor & Tile Leveling Clip Calculator** (`/calculators/dricore-subfloor`) — GSC Query: `dricore subfloor calculator`. 2x2/2x4 OSB basement panels & tile leveling clips.
+- [x] **#85 — Epoxy Moisture Vapor Barrier (MVB) Calculator** (`/calculators/moisture-vapor-barrier`) — GSC Query: `moisture vapor barrier calculator`. MVT emissions → 2-part epoxy coverage.
+- [x] **#86 — Ice & Water Shield Roofing Roll Calculator** (`/calculators/ice-water-shield`) — GSC Query: `ice and water shield calculator`. Eave line 24" warm wall overlap + valley rolls.
+
+### 🛠️ Trade Expansion Queue (#87 – #100)
+- [x] **#87 — Pergola & Gazebo Lumber Estimator** (`/calculators/pergola-lumber`) — Post size (4x4 vs 6x6), double beam plies, rafter spacing.
+- [x] **#88 — OSB & Plywood Sheathing Calculator** (`/calculators/osb-sheathing`) — 4x8 panel count, 1/8" expansion gaps, IRC R602.3 8d nail schedule.
+- [x] **#89 — IRC Egress Window Rough Opening Calculator** (`/calculators/egress-window`) — IRC Section R310 (5.7 sq ft net opening, 44" max sill height).
+- [x] **#90 — Blown-In Attic Insulation Bag Estimator** (`/calculators/attic-insulation`) — R-30 to R-60 target upgrade, cellulose vs fiberglass bag tables.
+- [x] **#91 — Extension Cord Wire Gauge & Voltage Drop Calculator** (`/calculators/extension-cord-drop`) — 14 AWG / 12 AWG / 10 AWG voltage drop over 25–100 ft runs.
+- [ ] **#92 — Low-Voltage Landscape Lighting Transformer & Wire Calculator** (`/calculators/landscape-lighting-wire`) — 12V/15V taps, wattage headroom.
+- [ ] **#93 — Kitchen Backsplash Tile & Mosaic Takeoff** (`/calculators/kitchen-backsplash-tile`) — Outlet box subtractions, diagonal/herringbone waste.
+- [ ] **#94 — Bathroom Floor Tile & Underlayment Estimator** (`/calculators/bathroom-floor-tile`) — CBU backer board / DITRA uncoupling membrane rolls.
+- [ ] **#95 — Countertop Square Footage & Overhang Support Calculator** (`/calculators/countertop-sqft`) — Granite/quartz slab area, corbel steel bracket spacing.
+- [ ] **#96 — Sod Pallet & Lawn Roll Estimator** (`/calculators/sod-pallet`) — Pallets (450–500 sq ft), starter fertilizer bags, topsoil layer.
+- [ ] **#97 — Drip Irrigation Emitter & Line Pressure Drop Calculator** (`/calculators/drip-irrigation`) — GPH emitter count per plant zone.
+- [ ] **#98 — Topsoil & Lawn Dressing Overseeding Calculator** (`/calculators/topsoil-lawn-dressing`) — Cubic yards for 1/4"–1/2" topdressing.
+- [ ] **#99 — Split-Rail & Post-and-Rail Fence Estimator** (`/calculators/split-rail-fence`) — Line/corner/end posts, 2-rail vs 3-rail lumber.
+- [ ] **#100 — Window Replacement Energy & HVAC Savings Calculator** (`/calculators/window-replacement-energy`) — Single pane U-1.0 → double pane Low-E U-0.28 × HDD → annual savings.
+
+---
+
+## 7. ⚙️ GSC Query Feature Enhancements for Existing Tools
+- [ ] **Laminate Calculator**: Add "Box Count & Sq Ft per Box Converter" widget (`how many boxes of laminate flooring do i need calculator` - Pos 9.0).
+- [ ] **Carpet Calculator**: Add automatic "Square Feet ⇄ Square Yards" converter (`square yard calculator carpet` - Pos 16.0).
+- [ ] **Tile & Grout Calculators**: Add "Grout Joint Width & Bag Coverage Lookup Tables" (`grout coverage per bag` - Pos 54.5).
+- [ ] **Recessed Lighting Calculators**: Add preset room size quick buttons (`20x20 Garage`, `12x12 Bedroom`, `Small Kitchen`).
+
+---
+
+## 8. 💸 E-Commerce & Monetization Integrations
+- [ ] **E-Commerce Material Takeoff Affiliate Integration**: Centralized affiliate config (`src/config/affiliates.js`) for Amazon Associates (`calcfordiy-20`) and Home Depot / Lowe's (Impact.com).
+- [ ] **Dual Imperial (US) ⇄ Metric (SI) Unit Switcher**: Sitewide toggle (Feet/Inches/Lbs ⇄ Meters/Centimeters/Kg).
+

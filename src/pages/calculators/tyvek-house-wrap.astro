@@ -1,0 +1,529 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Tyvek & House Wrap Calculator (WRB Rolls, Seam Tape & Cap Fasteners) | CalcForDIY"
+  description="Calculate DuPont Tyvek HomeWrap rolls, weather barrier seam tape, plastic cap nails, and window/door flashing tape with IRC R703 overlap compliance."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tyvek and House Wrap Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much should Tyvek house wrap overlap horizontally and vertically?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Under IRC Section R703.2, water-resistive barriers must be applied horizontally with upper layers lapping over lower layers by not less than 2 inches, and vertical joints lapped not less than 6 inches. However, DuPont Tyvek manufacturer specifications mandate a minimum 6-inch horizontal overlap and 6-to-12-inch vertical overlap to ensure weather-tightness under wind-driven rain."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many square feet does a 9x100 or 9x150 roll of Tyvek actually cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard 9 ft by 100 ft roll has a gross area of 900 sq ft, but after accounting for 6-inch horizontal laps, 12-inch vertical laps, and wall corner wraps, effective net coverage is approximately 800 to 825 sq ft. A 9 ft by 150 ft roll (1,350 gross sq ft) nets approximately 1,200 to 1,230 sq ft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What fasteners are required to install house wrap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Code and manufacturer standards require large-head plastic cap nails or plastic cap staples (such as Bostitch or Stinger cap fasteners). Standard construction staples with narrow crowns tear through the membrane in high winds and create water intrusion pathways."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Tyvek House Wrap Calculator", "item": "https://calcfordiy.com/calculators/tyvek-house-wrap" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Tyvek House Wrap Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-800 text-xs font-semibold mb-2">
+      <span>🛡️ IRC Section R703.2 Water-Resistive Barrier Code Compliant</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Tyvek® &amp; House Wrap Material Takeoff Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate exact rolls of DuPont Tyvek HomeWrap, vapor-permeable WRB rolls, acrylic seam tape, plastic cap fasteners, and window sill flashing with shingle-lap geometry.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Building Exterior Wall Dimensions
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="wallPerimeter" class="block text-xs font-medium text-gray-600 mb-1">Total Wall Perimeter (Linear ft)</label>
+        <input type="number" id="wallPerimeter" value="160" min="10" max="2000" step="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-[11px] text-gray-500 mt-1 block">e.g. 40ft x 40ft house = 160 LF</span>
+      </div>
+
+      <div>
+        <label for="wallHeight" class="block text-xs font-medium text-gray-600 mb-1">Wall Height (ft)</label>
+        <select id="wallHeight" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="8">8 ft (Standard 1-Story)</option>
+          <option value="9" selected>9 ft (Modern 9-ft Ceilings)</option>
+          <option value="10">10 ft (Tall 1-Story / High Ceiling)</option>
+          <option value="18">18 ft (Standard 2-Story)</option>
+          <option value="20">20 ft (Tall 2-Story)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="rollSize" class="block text-xs font-medium text-gray-600 mb-1">Tyvek Roll Size</label>
+        <select id="rollSize" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="9x150" selected>9 ft x 150 ft (1,350 sq ft) [Contractor Roll]</option>
+          <option value="9x100">9 ft x 100 ft (900 sq ft) [Standard Roll]</option>
+          <option value="10x100">10 ft x 100 ft (1,000 sq ft) [Ideal for 9ft Walls]</option>
+          <option value="10x150">10 ft x 150 ft (1,500 sq ft) [Extra Large Roll]</option>
+          <option value="3x100">3 ft x 100 ft (300 sq ft) [Gables / Pony Walls]</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="lapFactor" class="block text-xs font-medium text-gray-600 mb-1">Overlap Specification</label>
+        <select id="lapFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0.12" selected>6" Horizontal &amp; 12" Vertical Lap (DuPont Spec)</option>
+          <option value="0.08">2" Bare Minimum Lap (IRC R703.2 Code Minimum)</option>
+          <option value="0.18">12" Overlap (High Wind / Coastal Zone)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 pt-2 border-t border-gray-100">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Rough Openings &amp; Flashing Package
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="windowCount" class="block text-xs font-medium text-gray-600 mb-1">Windows (Avg 15 sq ft each)</label>
+        <input type="number" id="windowCount" value="12" min="0" max="100" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label for="doorCount" class="block text-xs font-medium text-gray-600 mb-1">Exterior Doors (21 sq ft each)</label>
+        <input type="number" id="doorCount" value="3" min="0" max="20" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+      </div>
+
+      <div>
+        <label for="flashingPackage" class="block text-xs font-medium text-gray-600 mb-1">Window/Door Flashing Tape</label>
+        <select id="flashingPackage" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="yes" selected>Include FlexWrap &amp; StraightFlash</option>
+          <option value="no">House Wrap &amp; Seam Tape Only</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="fastenerType" class="block text-xs font-medium text-gray-600 mb-1">Fastener Spacing</label>
+        <select id="fastenerType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="12" selected>12" o.c. on Studs (High Wind / Recommended)</option>
+          <option value="18">18" o.c. on Studs (IRC Standard Spacing)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Calculate WRB Takeoff
+      </button>
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold text-gray-900">Calculated Weather Barrier &amp; Flashing Takeoff</h2>
+      <span class="text-xs font-mono text-gray-500">ASTM E2178 Air Barrier Standard</span>
+    </div>
+
+    <!-- Highlight Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Tyvek WRB Rolls</span>
+        <div class="text-3xl font-bold text-blue-600" id="r_rollCount">2 Rolls</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_rollSizeText">9 ft x 150 ft (1,350 sq ft)</span>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Seam Tape Rolls (164 ft)</span>
+        <div class="text-3xl font-bold text-emerald-600" id="r_tapeCount">2 Rolls</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_tapeLinearFt">~280 LF seams + cuts</span>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Plastic Cap Fasteners</span>
+        <div class="text-3xl font-bold text-gray-900" id="r_fastenerCount">1 Box</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_fastenerDetail">1,000-count cap nails</span>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Flashing Tape Rolls</span>
+        <div class="text-3xl font-bold text-purple-600" id="r_flashingCount">3 Rolls</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_flashingDetail">FlexWrap + StraightFlash</span>
+      </div>
+    </div>
+
+    <!-- Detailed Dimension Breakdown -->
+    <div class="bg-white rounded-xl border border-gray-200 p-4 mb-5">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3">Complete Building Envelope Schedule</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-4 text-xs">
+        <div>
+          <span class="text-gray-500">Gross Wall Area:</span>
+          <strong id="r_grossArea" class="text-gray-800 ml-1">1,440 sq ft</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Opening Deductions:</span>
+          <strong id="r_deductions" class="text-gray-800 ml-1">243 sq ft (15 openings)</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Net Wall Area:</span>
+          <strong id="r_netArea" class="text-gray-800 ml-1">1,197 sq ft</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Required WRB Material (+Laps):</span>
+          <strong id="r_requiredArea" class="text-gray-800 ml-1">1,412 sq ft</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Corner Wrap Allowance:</span>
+          <strong class="text-gray-800 ml-1">+12" per exterior corner</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Perm Rating:</span>
+          <strong class="text-gray-800 ml-1">56 Perms (Vapor Permeable)</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Vector SVG Elevation Diagram -->
+    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs mb-5">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+          <span>📐</span> Exterior Wall House Wrap &amp; Flashing Sequence
+        </h3>
+        <span class="text-xs text-gray-500 font-mono">Shingle-Lap Gravity Drainage</span>
+      </div>
+      <div class="overflow-x-auto bg-gray-50 rounded-lg p-3 border border-gray-200 flex justify-center">
+        <svg id="wrbSvg" viewBox="0 0 540 220" class="w-full max-w-lg h-auto font-sans" role="img" aria-label="House Wrap Assembly Diagram">
+          <!-- Dynamic SVG populated by JS -->
+        </svg>
+      </div>
+    </div>
+
+    <!-- RSMeans Cost Benchmark Module -->
+    <div class="bg-white rounded-xl border border-gray-200 p-4 mb-5">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">RSMeans Contractor vs. DIY Cost Benchmark</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="bg-blue-50 p-3 rounded-lg border border-blue-100">
+          <span class="text-gray-600 block">DIY Material Cost:</span>
+          <strong id="r_costDiy" class="text-base text-blue-700 font-bold">$380 - $490</strong>
+          <span class="text-[10px] text-gray-500 block mt-0.5">Rolls, tape, caps &amp; flashing</span>
+        </div>
+        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+          <span class="text-gray-600 block">Pro Turnkey Contractor:</span>
+          <strong id="r_costPro" class="text-base text-gray-800 font-bold">$1,350 - $1,850</strong>
+          <span class="text-[10px] text-gray-500 block mt-0.5">Installed with staging ($0.95-$1.30/sq ft)</span>
+        </div>
+        <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+          <span class="text-emerald-800 block">Estimated DIY Savings:</span>
+          <strong id="r_costSavings" class="text-base text-emerald-700 font-bold">$970 - $1,360</strong>
+          <span class="text-[10px] text-emerald-600 block mt-0.5">72% project cost reduction</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copy Shopping List Button -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gray-200">
+      <div class="text-xs text-gray-500">
+        Estimated installation time: <strong>4 to 6 hours</strong> for a 2-person DIY crew.
+      </div>
+      <button type="button" id="copyListBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-xs">
+        <span>📋</span> Copy Tyvek Shopping List
+      </button>
+    </div>
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="David Miller, PE"
+    reviewerRole="Structural & Civil Engineering Consultant"
+    codeStandard="IRC Section R703.2, ASTM E2178 Air Barrier & AAMA 711 Flashing"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Deep Editorial & Technical Documentation -->
+  <div class="prose max-w-none text-gray-700 space-y-6 mt-10">
+    <h2 class="text-2xl font-bold text-gray-900">Understanding Building Envelope Water-Resistive Barriers (WRBs)</h2>
+    <p>
+      A water-resistive barrier (WRB) serves as a home's secondary line of defense behind exterior cladding. While siding sheds the vast majority of rainwater, wind-driven moisture inevitably penetrates siding laps, miter joints, and fastener penetrations. Under <strong>IRC Section R703.2</strong>, an approved WRB must be installed over structural exterior sheathing to prevent liquid water from reaching plywood or oriented strand board (OSB) while allowing internal water vapor to escape outward.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose my-4">
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+        <h3 class="font-bold text-blue-950 text-sm mb-1 flex items-center gap-1.5">
+          <span>💧</span> The Shingle-Lap Gravity Rule
+        </h3>
+        <p class="text-xs text-blue-900 leading-relaxed">
+          Always begin unrolling house wrap at the base of the wall, overlapping the sill plate and foundation by at least 2 inches. Subsequent courses are installed working upward, with each upper course overlapping the lower course by at least <strong>6 inches</strong>. This shingle-style overlap ensures that any water running down the membrane flows harmlessly over the outside of the lower roll rather than draining behind it.
+        </p>
+      </div>
+
+      <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+        <h3 class="font-bold text-emerald-950 text-sm mb-1 flex items-center gap-1.5">
+          <span>🌬️</span> Vapor Permeability (Perm Rating)
+        </h3>
+        <p class="text-xs text-emerald-900 leading-relaxed">
+          DuPont Tyvek HomeWrap features a perm rating of <strong>56 perms</strong>. Because this is well above the 5-perm benchmark for vapor-permeable membranes, moisture vapor inside conditioned wall cavities can dry to the exterior, preventing mold and rot in modern insulated wall assemblies.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-bold text-gray-900 mt-6">Window Rough Opening Flashing (AAMA 711 Standard)</h3>
+    <ol class="list-decimal pl-5 space-y-2">
+      <li>
+        <strong>Modified I-Cut:</strong> Cut the house wrap at window openings with an inverted-Y or modified I-cut. Fold the side flaps into the rough opening and fasten to the interior framing.
+      </li>
+      <li>
+        <strong>Flexible Sill Pan:</strong> Install flexible sill flashing (DuPont FlexWrap NF) along the window sill, extending 6 inches up each jamb and down onto the face of the apron house wrap.
+      </li>
+      <li>
+        <strong>Jamb Flashing:</strong> After the flanged window is set in sealant, apply straight flashing tape (StraightFlash) over the exterior nailing fins on both vertical jambs.
+      </li>
+      <li>
+        <strong>Header Flashing:</strong> Install the rigid head drip flashing over the window, then fold down the upper house wrap flap and tape the diagonal seams with Tyvek seam tape.
+      </li>
+    </ol>
+  </div>
+
+  <script is:inline>
+  (function() {
+    var rollSpecs = {
+      '9x150': { sqft: 1350, width: 9, len: 150 },
+      '9x100': { sqft: 900, width: 9, len: 100 },
+      '10x100': { sqft: 1000, width: 10, len: 100 },
+      '10x150': { sqft: 1500, width: 10, len: 150 },
+      '3x100': { sqft: 300, width: 3, len: 100 }
+    };
+
+    function calc() {
+      var perim = parseFloat(document.getElementById('wallPerimeter').value) || 160;
+      var height = parseFloat(document.getElementById('wallHeight').value) || 9;
+      var rollKey = document.getElementById('rollSize').value;
+      var lapRate = parseFloat(document.getElementById('lapFactor').value) || 0.12;
+      var windows = parseInt(document.getElementById('windowCount').value) || 0;
+      var doors = parseInt(document.getElementById('doorCount').value) || 0;
+      var flashingPkg = document.getElementById('flashingPackage').value === 'yes';
+      var fastenerSpacing = parseInt(document.getElementById('fastenerType').value) || 12;
+
+      var grossArea = perim * height;
+      var openArea = (windows * 15) + (doors * 21);
+      var netArea = Math.max(0, grossArea - openArea);
+
+      // Total material needed accounting for laps and corners (+10% base waste + lapRate)
+      var totalNeeded = (netArea * (1 + lapRate + 0.08));
+
+      var rollInfo = rollSpecs[rollKey] || rollSpecs['9x150'];
+      var rolls = Math.ceil(totalNeeded / rollInfo.sqft);
+      if (rolls < 1) rolls = 1;
+
+      // Seam Tape calculation (approx 1 horizontal seam per 9ft height + vertical laps every 30-40 ft)
+      var numCourses = Math.ceil(height / rollInfo.width);
+      var horizSeamLF = (numCourses > 1) ? (perim * (numCourses - 1)) : 0;
+      var vertSeamLF = Math.ceil(perim / 35) * height;
+      var openingTapeLF = (windows * 16) + (doors * 18);
+      var totalTapeLF = Math.round(horizSeamLF + vertSeamLF + openingTapeLF);
+      var tapeRolls = Math.max(1, Math.ceil(totalTapeLF / 164));
+
+      // Fasteners: 1 fastener every 12" or 18" along 16" o.c. studs
+      // ~1 fastener per 2 sq ft (12" o.c.) or per 3 sq ft (18" o.c.)
+      var sqftPerFastener = (fastenerSpacing === 12) ? 2.0 : 3.0;
+      var totalFasteners = Math.round(grossArea / sqftPerFastener);
+      var fastenerBoxes = Math.max(1, Math.ceil(totalFasteners / 1000));
+
+      // Flashing Tape: FlexWrap for sills (3.5 LF per window, 4 LF per door) + StraightFlash (12 LF per window/door)
+      var sillFlashingLF = Math.round((windows * 4) + (doors * 4));
+      var jambHeaderLF = Math.round((windows * 14) + (doors * 16));
+      var flexWrapRolls = flashingPkg ? Math.max(1, Math.ceil(sillFlashingLF / 75)) : 0;
+      var straightFlashRolls = flashingPkg ? Math.max(1, Math.ceil(jambHeaderLF / 75)) : 0;
+      var totalFlashingRolls = flexWrapRolls + straightFlashRolls;
+
+      // RSMeans Cost Estimates
+      var rollUnitCost = (rollKey === '9x150' || rollKey === '10x150') ? 195 : 120;
+      var matCost = (rolls * rollUnitCost) + (tapeRolls * 18) + (fastenerBoxes * 32) + (flashingPkg ? (totalFlashingRolls * 55) : 0);
+      var diyLow = Math.round(matCost * 0.95);
+      var diyHigh = Math.round(matCost * 1.15);
+
+      var proLow = Math.round(grossArea * 0.95);
+      var proHigh = Math.round(grossArea * 1.35);
+
+      // Update UI outputs
+      document.getElementById('r_rollCount').textContent = rolls + (rolls === 1 ? ' Roll' : ' Rolls');
+      document.getElementById('r_rollSizeText').textContent = rollInfo.width + ' ft x ' + rollInfo.len + ' ft (' + rollInfo.sqft.toLocaleString() + ' sq ft)';
+
+      document.getElementById('r_tapeCount').textContent = tapeRolls + (tapeRolls === 1 ? ' Roll' : ' Rolls');
+      document.getElementById('r_tapeLinearFt').textContent = '~' + totalTapeLF + ' LF total seams & tape';
+
+      document.getElementById('r_fastenerCount').textContent = fastenerBoxes + (fastenerBoxes === 1 ? ' Box' : ' Boxes');
+      document.getElementById('r_fastenerDetail').textContent = totalFasteners.toLocaleString() + ' cap nails (' + fastenerSpacing + '" o.c.)';
+
+      document.getElementById('r_flashingCount').textContent = flashingPkg ? (totalFlashingRolls + ' Rolls') : '0 Rolls';
+      document.getElementById('r_flashingDetail').textContent = flashingPkg ? (flexWrapRolls + ' FlexWrap + ' + straightFlashRolls + ' StraightFlash') : 'None selected';
+
+      document.getElementById('r_grossArea').textContent = grossArea.toLocaleString() + ' sq ft';
+      document.getElementById('r_deductions').textContent = openArea.toLocaleString() + ' sq ft (' + (windows + doors) + ' openings)';
+      document.getElementById('r_netArea').textContent = netArea.toLocaleString() + ' sq ft';
+      document.getElementById('r_requiredArea').textContent = Math.round(totalNeeded).toLocaleString() + ' sq ft';
+
+      document.getElementById('r_costDiy').textContent = '$' + diyLow.toLocaleString() + ' - $' + diyHigh.toLocaleString();
+      document.getElementById('r_costPro').textContent = '$' + proLow.toLocaleString() + ' - $' + proHigh.toLocaleString();
+      document.getElementById('r_costSavings').textContent = '$' + (proLow - diyHigh).toLocaleString() + ' - $' + (proHigh - diyLow).toLocaleString();
+
+      drawSvg(height, rollInfo.width);
+    }
+
+    function drawSvg(wallHeight, rollWidth) {
+      var svg = document.getElementById('wrbSvg');
+      if (!svg) return;
+
+      var numCourses = Math.ceil(wallHeight / rollWidth);
+
+      var html = `
+        <defs>
+          <pattern id="studGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="0" x2="0" y2="40" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="3,3" />
+          </pattern>
+        </defs>
+
+        <!-- OSB Sheathing Background -->
+        <rect x="20" y="20" width="500" height="170" fill="#FEF3C7" stroke="#D97706" stroke-width="2" rx="4" />
+        <rect x="20" y="20" width="500" height="170" fill="url(#studGrid)" />
+        <text x="35" y="42" font-size="10" font-weight="bold" fill="#B45309">OSB / Plywood Sheathing</text>
+
+        <!-- Course 1 (Lower Course) -->
+        <rect x="20" y="105" width="500" height="85" fill="#DBEAFE" opacity="0.85" stroke="#2563EB" stroke-width="1.5" />
+        <text x="50" y="150" font-size="12" font-weight="bold" fill="#1E40AF">DuPont™ Tyvek® HomeWrap (Lower Course)</text>
+
+        <!-- Course 2 (Upper Course Overlapping 6") -->
+        <rect x="20" y="20" width="500" height="95" fill="#BFDBFE" opacity="0.85" stroke="#1D4ED8" stroke-width="1.5" />
+        <text x="50" y="65" font-size="12" font-weight="bold" fill="#1E40AF">DuPont™ Tyvek® HomeWrap (Upper Course)</text>
+
+        <!-- Overlap Zone Highlight & Seam Tape Line -->
+        <rect x="20" y="105" width="500" height="10" fill="#93C5FD" opacity="0.9" />
+        <line x1="20" y1="110" x2="520" y2="110" stroke="#DC2626" stroke-width="3" stroke-dasharray="6,3" />
+        <text x="270" y="125" text-anchor="middle" font-size="9" font-weight="bold" fill="#B91C1C">6" Shingle Overlap + Acrylic Seam Tape</text>
+
+        <!-- Window Cutout -->
+        <rect x="340" y="45" width="120" height="80" fill="#F8FAFC" stroke="#334155" stroke-width="2" />
+        <text x="400" y="90" text-anchor="middle" font-size="10" font-weight="bold" fill="#475569">Window Opening</text>
+
+        <!-- Window Flashing Tape Accents -->
+        <rect x="336" y="122" width="128" height="6" fill="#059669" />
+        <rect x="336" y="42" width="6" height="86" fill="#059669" />
+        <rect x="458" y="42" width="6" height="86" fill="#059669" />
+        <rect x="332" y="40" width="136" height="6" fill="#059669" />
+        <text x="400" y="140" text-anchor="middle" font-size="8" font-weight="bold" fill="#047857">AAMA 711 Sill Pan Flashing</text>
+
+        <!-- Plastic Cap Fasteners Dots -->
+        <circle cx="80" cy="80" r="3" fill="#10B981" stroke="#047857" stroke-width="1" />
+        <circle cx="120" cy="80" r="3" fill="#10B981" stroke="#047857" stroke-width="1" />
+        <circle cx="160" cy="80" r="3" fill="#10B981" stroke="#047857" stroke-width="1" />
+        <circle cx="200" cy="80" r="3" fill="#10B981" stroke="#047857" stroke-width="1" />
+        <circle cx="80" cy="150" r="3" fill="#10B981" stroke="#047857" stroke-width="1" />
+        <circle cx="120" cy="150" r="3" fill="#10B981" stroke="#047857" stroke-width="1" />
+        <circle cx="160" cy="150" r="3" fill="#10B981" stroke="#047857" stroke-width="1" />
+        <circle cx="200" cy="150" r="3" fill="#10B981" stroke="#047857" stroke-width="1" />
+      `;
+
+      svg.innerHTML = html;
+    }
+
+    document.getElementById('wallPerimeter').addEventListener('input', calc);
+    document.getElementById('wallHeight').addEventListener('change', calc);
+    document.getElementById('rollSize').addEventListener('change', calc);
+    document.getElementById('lapFactor').addEventListener('change', calc);
+    document.getElementById('windowCount').addEventListener('input', calc);
+    document.getElementById('doorCount').addEventListener('input', calc);
+    document.getElementById('flashingPackage').addEventListener('change', calc);
+    document.getElementById('fastenerType').addEventListener('change', calc);
+    document.getElementById('calcBtn').addEventListener('click', calc);
+
+    // Initial run
+    calc();
+
+    // Copy Shopping list handler
+    document.getElementById('copyListBtn').addEventListener('click', function() {
+      var rolls = document.getElementById('r_rollCount').textContent;
+      var rollSize = document.getElementById('r_rollSizeText').textContent;
+      var tape = document.getElementById('r_tapeCount').textContent;
+      var fasteners = document.getElementById('r_fastenerCount').textContent;
+      var fastenerDetail = document.getElementById('r_fastenerDetail').textContent;
+      var flashing = document.getElementById('r_flashingCount').textContent;
+      var flashingDetail = document.getElementById('r_flashingDetail').textContent;
+      var net = document.getElementById('r_netArea').textContent;
+
+      var text = `=== Tyvek® House Wrap & Flashing Shopping List ===
+Net Wall Coverage: ${net}
+House Wrap: ${rolls} (${rollSize})
+DuPont Seam Tape: ${tape} (164-ft acrylic rolls)
+Plastic Cap Fasteners: ${fasteners} (${fastenerDetail})
+Flashing Tape: ${flashing} (${flashingDetail})
+Code Compliance: IRC Section R703.2 Water-Resistive Barrier
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/tyvek-house-wrap)`;
+
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyListBtn');
+        btn.textContent = '✓ Copied to Clipboard!';
+        setTimeout(function() { btn.textContent = '📋 Copy Tyvek Shopping List'; }, 2500);
+      });
+    });
+  })();
+  </script>
+
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="exterior-continuous-insulation-rainscreen"
+    hubTitle="Exterior Continuous Insulation &amp; Rainscreen Hub →"
+    hubDesc="Step-by-step cladding workflow: weather-resistive barriers, fiberglass thermal clips, and drainage cavities."
+    guideSlug="exterior-door-pan-flashing-sill-seal"
+    guideTitle="Exterior Door Pan Flashing &amp; Sill Sealing Trade Guide →"
+    guideDesc="Prevent rot beneath exterior thresholds using flexible membrane sill pans and sub-sill drainage mats."
+  />
+</Layout>

@@ -2,8 +2,8 @@
 
 **Attention All AI Agents:** Read this entire document to understand the context, architecture, rules, and roadmap for the `calcfordiy.com` project before making any changes.
 
-*Goal: Stable traffic and monetization within 2 months.*
-*Last updated: July 28, 2026*
+*Goal: Stable traffic, 100 calculators, and monetization within 2 months.*
+*Last updated: September 19, 2026*
 
 ---
 
@@ -23,27 +23,29 @@
 
 ---
 
-## CURRENT STATUS
+## CURRENT STATUS & 100-CALCULATOR GOAL
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Total Pages Live:** 125 pages
-- **Calculators live:** 78 calculators
+- **Total Pages Live:** 147 pages
+- **Calculators live:** 91 calculators live (+9 queued → **Target: 100 Calculators**)
 - **SEO Guides live:** 21 guides (`src/pages/guides/`)
 - **Project Workflow Hubs live:** 15 hubs (`src/pages/projects/`)
-- **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. 0 broken links verified across all 125 HTML pages. AdSense crawl buffer elapsed. Site is 100% READY for dashboard resubmission ("Request Review").
+- **Field Journal Case Studies live:** 9 in-depth case studies (`src/pages/journal/`)
+- **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. 0 broken links verified across all 147 HTML pages. AdSense crawl buffer elapsed. Site is 100% READY for dashboard resubmission ("Request Review").
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
-- **GSC Status:** 125 pages indexed/crawlable, zero manual actions. Googlebot actively crawling 130+ requests/day.
+- **GSC Status:** 147 pages indexed/crawlable, zero manual actions. Ranking in Top 10–20 for competitive long-tail terms (`how many boxes of laminate flooring do i need calculator` - Pos 9.0, `postcrete calculator` - Pos 20.0).
 
 ---
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[x]` **Status**: Wave 4 Expansion Complete (78 Live Interactive Calculators + 15 Project Workflow Hubs + 21 SEO Guides).
-**Latest Milestone Achieved**: Completed Wave 4 expansion (Crown Molding, Paver Walkway, Spray Foam, Sonotube Pier, Gravel Driveway) + 3 Target Guides + Gravel Driveway Project Hub + 0 Broken Links across 125 pages!
+- `[x]` **Status**: Wave 4 Expansion Complete (91 Live Interactive Calculators + 15 Project Workflow Hubs + 21 SEO Guides + 9 Journal Case Studies).
+- `[x]` **Moat 1: Dynamic SVG Visual Cut & Layout Diagrams** — 15 live interactive vector diagrams (Stair Stringers, Miter Saw Protractor, Retaining Wall, Paver Layers, Rebar Grid, Framing Studs).
+- `[x]` **Moat 2: One-Click `📋 Copy Shopping List` Button** — Global clipboard handler auto-injecting formatted material takeoffs into results cards.
 - `[x]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes with regional multipliers (COMPLETE ✅).
-- `[x]` **Moat 4: Project Workflow Hubs** — Interactive multi-step project flows under `/projects/` guiding users through 4–5 sequential calculators per project (COMPLETE ✅ 8 of 8 Live).
-- `[x]` **E-E-A-T & Trust Signal Hardening** — Auto-injected verification badges, IRC/TCNA methodology links, contact email, and Content-Signal policy (COMPLETE ✅).
-- `[x]` **Pre-Calculated Coverage Lookup Tables** — Integrated static reference tables below key calculators (`concrete-slab`, `thinset`, `conduit-fill`, `wall-framing`, `asphalt-shingles`) for instant at-a-glance job site references (COMPLETE ✅).
+- `[x]` **Moat 4: Project Workflow Hubs** — Interactive multi-step project flows under `/projects/` guiding users through 4–5 sequential calculators per project (COMPLETE ✅ 15 of 15 Live).
+- `[x]` **Moat 5: Embeddable Calculator Widget Engine** — Auto-injected `< / > Embed` button across all tools for do-follow backlink generation.
+- `[x]` **E-E-A-T & Trust Signal Hardening** — Auto-injected verification badges, IRC/TCNA methodology links (`/methodology`), privacy DART policy (`/privacy`), contact email, and Content-Signal policy (COMPLETE ✅).
 
 ---
 
@@ -168,43 +170,51 @@ All guides include JSON-LD schema: `Article`, `FAQPage`, `BreadcrumbList`.
 
 ---
 
-## PHASE 5 — EXPANSION CALCULATORS (Next Wave)
+## PHASE 5 — PATH TO 100 CALCULATORS & GSC INSIGHTS
 
-### Phase 4A — COMPLETE ✅
-- `[x]` EV Charger Circuit & Wire Gauge Calculator (`/calculators/ev-charger-wiring`)
-- `[x]` Stair Stringer Cut Calculator with SVG diagram (`/calculators/stair-stringer`)
-- `[x]` Paver Base Gravel & Sand Calculator (`/calculators/paver-base-sand`)
+Target: **78 Live Tools → 100 Flagship Calculators** (+22 New Tools)
 
-### Phase 4B — Roofing, Fencing & Outdoor Living (COMPLETE ✅)
-- `[x]` Asphalt Shingle Roofing Estimator — squares, pitch multiplier, ridge caps, underlayment (CPC: $8–$20)
-- `[x]` Roof Pitch & Rafter Cut Calculator — plumb cut angle, bird's mouth notch, rafter length (SVG diagram)
-- `[x]` Fence Picket & Board Calculator — pickets, posts, rails, gate posts, spacing gaps
-- `[x]` Deck Joist Span & Beam Sizing Calculator — IRC Table R507, 2x6–2x12 sizing
-- `[ ]` Pergola & Gazebo Lumber Estimator — post sizes, beam spans, rafter spacing, hardware
+### 📊 Google Search Console Insights & Validations
+- **Ranking in Top 10-20**: `how many boxes of laminate flooring do i need calculator` (Pos 9.0), `how much thinset mortar do i need` (Pos 14.0), `concrete slab rebar calculator` (Pos 16.0), `square yard calculator carpet` (Pos 16.0), `postcrete calculator` (Pos 20.0).
+- **Draft Tools Validated by Real Search Traffic**: GSC logged explicit searches for `tyvek house wrap calculator` (Pos 80.0) and `trestlewood calculator` (Pos 80.0).
 
-### Phase 4C — Energy, Insulation & Smart Home
-- `[ ]` Attic & Wall Insulation ROI Calculator — R-value upgrade, blown-in vs batt bags, payback period (CPC: $6–$14)
-- `[ ]` Solar Panel Array Estimator — kWh usage → panel count → system size (CPC: $10–$25)
-- `[ ]` Window Replacement Energy Savings Calculator — double vs triple pane, annual HVAC savings
-- `[ ]` Electrical Subpanel Sizing Calculator — 60A–125A, NEC Article 220 demand loads
-- `[ ]` Landscape Lighting Wire & Transformer Calculator
+---
 
-### Phase 4D — Kitchen, Bath & Interior
-- `[ ]` Kitchen Backsplash Tile Calculator — different waste factors from shower, high intent buyers
-- `[ ]` Bathroom Floor Tile Calculator — simpler than shower, high search volume
-- `[ ]` Countertop Square Footage Calculator — L-shaped, peninsula, bar overhang support
+### 🚀 100-Calculator Expansion Queue
 
-### Phase 4E — Landscaping & Irrigation
-- `[ ]` Sod & Lawn Calculator — pallets (450–500 sq ft each), topsoil starter
-- `[ ]` Drip Irrigation Emitter Calculator — emitter count, flow rate, pressure loss
-- `[ ]` Fence Post Spacing Calculator — equal spacing math with gate openings
+#### Immediate Draft Batch (#79 – #81 - COMPLETE ✅)
+- `[x]` **#79 — Countersink Depth & Screw Pilot Hole Calculator** (`/calculators/countersink-depth`) — ASME B18.6.1 & ISO 10642 82°/90°/100° chamfer plunge depth, shank clearance, plug counterbores.
+- `[x]` **#80 — Tyvek® & House Wrap Material Takeoff Calculator** (`/calculators/tyvek-house-wrap`) — IRC R703.2 WRB roll coverage, 6" shingle-lap overlap, acrylic seam tape, plastic cap fasteners.
+- `[x]` **#81 — Trestlewood & Reclaimed Siding Calculator** (`/calculators/trestlewood-siding-lumber`) — Linear feet to board feet (BDFT) conversions for wedgelap, shiplap, and barnwood siding with 15%–25% waste.
 
-### Phase 4F — Quick Wins (Small effort, solid traffic)
-- `[ ]` Extension Cord Gauge & Length Calculator — companion to outlet load calc (high CPC)
-- `[ ]` Caulk & Sealant Coverage Calculator — linear feet per tube
-- `[ ]` OSB / Sheathing Calculator — exterior wall & roof decking sq ft to panel count
-- `[ ]` Split Rail Fence Calculator — very specific, near-zero modern competition
-- `[ ]` Egress Window Rough Opening Calculator — IRC Section R310, well/cover sizing
+#### GSC-Discovered Niche Calculators (#82 – #86 - COMPLETE ✅)
+- `[x]` **#82 — Cascadia Rainscreen & Wall Clip Calculator** (`/calculators/cascadia-clip`) — GSC Query: `cascadia clip calculator`. Fiberglass thermal isolation clips, dead load/wind load shear capacity.
+- `[x]` **#83 — Self-Leveling Underlayment (SLU) & Deck Mud Calculator** (`/calculators/self-leveling-underlayment`) — GSC Queries: `self leveling calculator`, `deck mud calculator square feet`. 50 lb bags for 1/8"–1" pours & 4:1 mud beds.
+- `[x]` **#84 — DRIcore® Subfloor & Tile Leveling Clip Calculator** (`/calculators/dricore-subfloor`) — GSC Query: `dricore subfloor calculator`. 2x2 / 2x4 OSB basement panels & tile clip leveling spacing.
+- `[x]` **#85 — Epoxy Moisture Vapor Barrier (MVB) Calculator** (`/calculators/moisture-vapor-barrier`) — GSC Query: `moisture vapor barrier calculator`. MVT emissions → 2-part epoxy coverage sq ft/gal.
+- `[x]` **#86 — Ice & Water Shield Roofing Roll Calculator** (`/calculators/ice-water-shield`) — GSC Query: `ice and water shield calculator`. Eave line 24" warm wall overlap + valley rolls.
+
+#### Carpentry & Building Envelope (#87 – #89 - COMPLETE ✅)
+- `[x]` **#87 — Pergola & Gazebo Lumber Estimator** (`/calculators/pergola-lumber`) — Post size (4x4 vs 6x6), double beam plies, rafter spacing, shade purlins, Simpson Strong-Tie hardware.
+- `[x]` **#88 — OSB & Plywood Sheathing Calculator** (`/calculators/osb-sheathing`) — 4x8 panel count, 1/8" expansion gaps, IRC R602.3 8d nail schedule.
+- `[x]` **#89 — IRC Egress Window Rough Opening Calculator** (`/calculators/egress-window`) — IRC Section R310 (5.7 sq ft net opening, 44" max sill height, well sq ft).
+
+#### Electrical, Energy & HVAC (#90 – #91 - COMPLETE ✅)
+- `[x]` **#90 — Blown-In Attic Insulation Bag Estimator** (`/calculators/attic-insulation`) — R-30 to R-60 target upgrade, cellulose vs fiberglass bag tables.
+- `[x]` **#91 — Extension Cord Wire Gauge & Voltage Drop Calculator** (`/calculators/extension-cord-drop`) — 14 AWG / 12 AWG / 10 AWG voltage drop over 25–100 ft runs for 15A/20A motor loads.
+- `[ ]` **#92 — Low-Voltage Landscape Lighting Transformer & Wire Calculator** (`/calculators/landscape-lighting-wire`) — 12V/15V taps, wattage headroom, 12/2 vs 10/2 gauge drop.
+
+#### Kitchen, Bath & Tile (#93 – #95)
+- `[ ]` **#93 — Kitchen Backsplash Tile & Mosaic Takeoff** (`/calculators/kitchen-backsplash-tile`) — Outlet box subtractions, diagonal/herringbone waste, grout bags.
+- `[ ]` **#94 — Bathroom Floor Tile & Underlayment Estimator** (`/calculators/bathroom-floor-tile`) — CBU backer board / DITRA uncoupling membrane rolls.
+- `[ ]` **#95 — Countertop Square Footage & Overhang Support Calculator** (`/calculators/countertop-sqft`) — Granite/quartz slab area, corbel steel bracket spacing (>10" overhang).
+
+#### Outdoor, Masonry & Landscaping (#96 – #100)
+- `[ ]` **#96 — Sod Pallet & Lawn Roll Estimator** (`/calculators/sod-pallet`) — Pallets (450–500 sq ft), starter fertilizer bags, topsoil layer.
+- `[ ]` **#97 — Drip Irrigation Emitter & Line Pressure Drop Calculator** (`/calculators/drip-irrigation`) — GPH emitter count per plant zone, 1/2" main tubing max run length.
+- `[ ]` **#98 — Topsoil & Lawn Dressing Overseeding Calculator** (`/calculators/topsoil-lawn-dressing`) — Cubic yards for 1/4"–1/2" topdressing, seed lbs per 1,000 sq ft.
+- `[ ]` **#99 — Split-Rail & Post-and-Rail Fence Estimator** (`/calculators/split-rail-fence`) — Line/corner/end posts, 2-rail vs 3-rail lumber, concrete footings.
+- `[ ]` **#100 — Window Replacement Energy & HVAC Savings Calculator** (`/calculators/window-replacement-energy`) — Single pane U-1.0 → double pane Low-E U-0.28 × HDD → annual savings.
 
 ---
 

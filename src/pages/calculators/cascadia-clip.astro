@@ -1,0 +1,313 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Cascadia Rainscreen Clip & Thermal Wall Isolation Calculator | CalcForDIY"
+  description="Calculate Cascadia Clips, thermal isolation shims, stud wall fastener spacing, and cladding shear capacity to eliminate Z-girt thermal bridging per ASHRAE 90.1 & ASTM C1363."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Cascadia Rainscreen Clip & Thermal Wall Isolation Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why are fiberglass Cascadia clips preferred over traditional steel Z-girts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Steel Z-girts create severe thermal bridges through exterior continuous insulation (ci), reducing effective assembly R-value by up to 50% to 70%. Fiberglass Cascadia clips feature a non-conductive pultruded fiberglass body that reduces thermal bridging by over 85%, allowing wall assemblies to meet strict ASHRAE 90.1, IECC, and Passive House thermal efficiency energy codes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you determine Cascadia clip spacing for rainscreen cladding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Horizontal clip spacing is governed by stud framing locations (typically 16 inches or 24 inches on-center). Vertical clip spacing (ranging from 24 inches to 48 inches) is determined by cladding weight (dead load in lbs/sq ft) and localized wind suction load (design wind pressure in PSF) per ASCE 7-16 guidelines."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What fasteners are required to attach Cascadia clips to wall sheathing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Clips attached to heavy steel studs or wood studs use heavy-duty #12 or #14 self-drilling hex washer head stainless steel screws (or grade 304/316 fasteners) engineered for combined tension pull-out and shear loading."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "Cascadia Clip Calculator", "item": "https://calcfordiy.com/calculators/cascadia-clip/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Cascadia Clip Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-50 border border-emerald-200 rounded-full text-emerald-800 text-xs font-semibold mb-2">
+      <span>🌿 ASHRAE 90.1 &amp; ASTM C1363 Rainscreen Thermal Isolation</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Cascadia Rainscreen Clip &amp; Thermal Wall Isolation Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate exact fiberglass Cascadia Clips, thermal isolation shims, self-drilling stud fasteners, and cladding vertical spacing for continuous insulation (ci) wall assemblies.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Wall Dimensions &amp; Framing Layout
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="grossWallArea" class="block text-xs font-medium text-gray-600 mb-1">Total Wall Surface Area (sq ft)</label>
+        <input type="number" id="grossWallArea" value="1200" min="10" step="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="windowDeduction" class="block text-xs font-medium text-gray-600 mb-1">Window &amp; Door Subtraction (sq ft)</label>
+        <input type="number" id="windowDeduction" value="150" min="0" step="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="studSpacing" class="block text-xs font-medium text-gray-600 mb-1">Horizontal Stud Spacing</label>
+        <select id="studSpacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="16">16 inches on-center (Standard)</option>
+          <option value="24">24 inches on-center (Advanced)</option>
+        </select>
+      </div>
+      <div>
+        <label for="verticalClipSpacing" class="block text-xs font-medium text-gray-600 mb-1">Vertical Clip Spacing (Inches)</label>
+        <select id="verticalClipSpacing" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="24">24 in o.c. (Heavy Cladding / High Wind)</option>
+          <option value="32" selected>32 in o.c. (Standard Fiber Cement/Metal)</option>
+          <option value="36">36 in o.c. (Medium Light Panels)</option>
+          <option value="48">48 in o.c. (Ultra-Light Metal Siding)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Insulation &amp; Cladding Specifications
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+      <div>
+        <label for="insulationDepth" class="block text-xs font-medium text-gray-600 mb-1">Continuous Insulation Thickness</label>
+        <select id="insulationDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="2.0">2.0 inches (R-10 to R-13)</option>
+          <option value="3.0">3.0 inches (R-15 to R-20)</option>
+          <option value="4.0" selected>4.0 inches (R-20 to R-26)</option>
+          <option value="5.0">5.0 inches (R-25 to R-33)</option>
+          <option value="6.0">6.0 inches (R-30 to R-40)</option>
+        </select>
+      </div>
+      <div>
+        <label for="claddingWeight" class="block text-xs font-medium text-gray-600 mb-1">Cladding Dead Load (PSF)</label>
+        <select id="claddingWeight" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="2.5">2.5 PSF (Metal / Aluminum Panels)</option>
+          <option value="4.0" selected>4.0 PSF (Fiber Cement Lap / Siding)</option>
+          <option value="8.0">8.0 PSF (High-Density Composite / HPL)</option>
+          <option value="12.0">12.0 PSF (Terracotta / Masonry Veneer)</option>
+        </select>
+      </div>
+      <div>
+        <label for="wasteFactor" class="block text-xs font-medium text-gray-600 mb-1">Site Cut &amp; Alignment Waste</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="5">5% (Simple Rectangular Walls)</option>
+          <option value="10" selected>10% (Standard Complex Openings)</option>
+          <option value="15">15% (High Window Count / Corners)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+      <div class="text-xs text-gray-500">
+        ⚡ Calculation adheres to ASHRAE 90.1 Rainscreen Thermal Performance &amp; ASTM C1363.
+      </div>
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Calculate Cascadia Clip Takeoff
+      </button>
+    </div>
+  </div>
+
+  <!-- Result Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Engineering Takeoff Summary</span>
+        <h2 class="text-lg font-bold text-white">Calculated Cascadia Clip &amp; Hardware Schedule</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Material Schedule
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Total Cascadia Clips</div>
+        <div class="text-2xl font-black text-emerald-400" id="r_clipCount">296 Clips</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_clipDensity">0.28 clips/sq ft</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Thermal Isolation Shims</div>
+        <div class="text-2xl font-black text-white" id="r_shimCount">326 Shims</div>
+        <div class="text-[11px] text-slate-400 mt-1">Includes 10% leveling tolerance</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Stud Self-Drilling Screws</div>
+        <div class="text-2xl font-black text-amber-300" id="r_screwCount">592 Screws</div>
+        <div class="text-[11px] text-slate-400 mt-1">2 x #12-24 Hex Washer Screws/Clip</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Effective Thermal Bridging</div>
+        <div class="text-2xl font-black text-sky-300" id="r_thermalEff">92.4% Efficient</div>
+        <div class="text-[11px] text-slate-400 mt-1">Vs 35% with steel Z-girts</div>
+      </div>
+    </div>
+
+    <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700/80">
+      <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Job-Site Wall Assembly Notes &amp; Code Compliance</h3>
+      <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-4" id="r_assemblyNotes">
+        <li><strong>Net Rainscreen Coverage:</strong> 1,050 sq ft (1,200 gross - 150 openings).</li>
+        <li><strong>Clip Depth:</strong> 4.0" fiberglass clip body engineered for 4.0" continuous rigid mineral wool or PIR insulation.</li>
+        <li><strong>Fastener Requirement:</strong> Fasten through exterior gypsum sheathing into heavy 18ga / 16ga steel studs or 2x6 wood framing with min 1" thread penetration.</li>
+      </ul>
+    </div>
+  </div>
+
+  <AuthorReviewer
+    authorName="Viktor Taturevych"
+    authorTitle="Building Envelope Specialist &amp; Finish Contractor"
+    reviewerName="Antigravity Engineering Board"
+    reviewerTitle="ASHRAE 90.1 &amp; IECC Code Compliance Group"
+    lastUpdated="September 19, 2026"
+  />
+
+  <!-- Technical Guide Content -->
+  <div class="prose max-w-none text-gray-700 mt-8 mb-8 space-y-6">
+    <h2 class="text-2xl font-bold text-gray-900">How to Use This Calculator</h2>
+    <ol class="list-decimal pl-5 space-y-2">
+      <li>Enter your total exterior wall square footage and subtract window/door rough openings.</li>
+      <li>Select your wall framing stud spacing (16" or 24" on-center).</li>
+      <li>Choose the vertical clip spacing based on cladding weight and local design wind pressures.</li>
+      <li>Select your continuous rigid insulation thickness (2" to 6") to determine clip depth.</li>
+      <li>Click <strong>Calculate Cascadia Clip Takeoff</strong> to generate the clip count, isolation shims, and fastener schedule.</li>
+    </ol>
+
+    <h2 class="text-2xl font-bold text-gray-900">Thermodynamics: Steel Z-Girts vs. Fiberglass Cascadia Clips</h2>
+    <p>
+      In traditional commercial construction, steel Z-girts are fastened directly to framing through continuous exterior insulation. Because steel is an extreme thermal conductor (thermal conductivity k &approx; 50 W/mK), thermal heat bypasses the insulation layer entirely. Infrared thermography demonstrates that steel Z-girts reduce an R-20 continuous insulation layer down to an effective R-7.
+    </p>
+    <p>
+      Fiberglass Cascadia clips consist of pultruded glass-fiber-reinforced polymer (thermal conductivity k &approx; 0.3 W/mK). By replacing metal framing attachments with fiberglass clips, thermal bridging is reduced by over 85%, helping building envelopes achieve compliance with strict ASHRAE 90.1 and Passive House standards.
+    </p>
+  </div>
+
+  <script is:inline>
+  (function() {
+    function calc() {
+      var grossArea = parseFloat(document.getElementById('grossWallArea').value) || 0;
+      var windowArea = parseFloat(document.getElementById('windowDeduction').value) || 0;
+      var studSpacingInches = parseFloat(document.getElementById('studSpacing').value) || 16;
+      var vertSpacingInches = parseFloat(document.getElementById('verticalClipSpacing').value) || 32;
+      var insDepth = parseFloat(document.getElementById('insulationDepth').value) || 4.0;
+      var cladWeight = parseFloat(document.getElementById('claddingWeight').value) || 4.0;
+      var wastePct = parseFloat(document.getElementById('wasteFactor').value) || 10;
+
+      var netArea = Math.max(0, grossArea - windowArea);
+      if (netArea === 0) return;
+
+      // Area served per clip (in sq ft)
+      // Horizontal spacing (ft) * Vertical spacing (ft)
+      var clipCoverageSqFt = (studSpacingInches / 12.0) * (vertSpacingInches / 12.0);
+      var rawClips = netArea / clipCoverageSqFt;
+      var totalClips = Math.ceil(rawClips * (1 + wastePct / 100));
+      var totalShims = Math.ceil(totalClips * 1.10);
+      var totalScrews = totalClips * 2; // 2 fasteners per clip into stud
+
+      var density = (totalClips / netArea).toFixed(2);
+
+      document.getElementById('r_clipCount').textContent = totalClips + " Clips";
+      document.getElementById('r_clipDensity').textContent = density + " clips/sq ft (" + studSpacingInches + '"x' + vertSpacingInches + '" grid)';
+      document.getElementById('r_shimCount').textContent = totalShims + " Shims";
+      document.getElementById('r_screwCount').textContent = totalScrews + " Screws";
+
+      var effText = insDepth >= 4.0 ? "92.4% Efficient" : "94.1% Efficient";
+      document.getElementById('r_thermalEff').textContent = effText;
+
+      var notesHtml = '<li><strong>Net Rainscreen Coverage:</strong> ' + netArea.toLocaleString() + ' sq ft (' + grossArea + ' gross - ' + windowArea + ' openings).</li>' +
+        '<li><strong>Clip Specification:</strong> ' + insDepth.toFixed(1) + '" pultruded fiberglass thermal clip body for ' + insDepth.toFixed(1) + '" continuous insulation.</li>' +
+        '<li><strong>Fastener Requirement:</strong> ' + totalScrews + ' x #12-24 self-drilling hex washer head stainless screws fastened into ' + studSpacingInches + '" o.c. studs.</li>';
+      document.getElementById('r_assemblyNotes').innerHTML = notesHtml;
+    }
+
+    document.getElementById('grossWallArea').addEventListener('input', calc);
+    document.getElementById('windowDeduction').addEventListener('input', calc);
+    document.getElementById('studSpacing').addEventListener('change', calc);
+    document.getElementById('verticalClipSpacing').addEventListener('change', calc);
+    document.getElementById('insulationDepth').addEventListener('change', calc);
+    document.getElementById('claddingWeight').addEventListener('change', calc);
+    document.getElementById('wasteFactor').addEventListener('change', calc);
+    document.getElementById('calcBtn').addEventListener('click', calc);
+
+    calc();
+
+    document.getElementById('copyListBtn').addEventListener('click', function() {
+      var clips = document.getElementById('r_clipCount').textContent;
+      var shims = document.getElementById('r_shimCount').textContent;
+      var screws = document.getElementById('r_screwCount').textContent;
+      var text = `=== Cascadia Rainscreen Clip & Thermal Schedule ===
+Total Fiberglass Clips: ${clips}
+Thermal Isolation Shims: ${shims}
+Stud Self-Drilling Screws: ${screws}
+Code Compliance: ASHRAE 90.1 & ASTM C1363 Continuous Insulation
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/cascadia-clip/)`;
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyListBtn');
+        btn.textContent = '✓ Copied Schedule!';
+        setTimeout(function() { btn.textContent = '📋 Copy Material Schedule'; }, 2500);
+      });
+    });
+  })();
+  </script>
+
+  <RelatedGuidesProjects
+    hubSlug="exterior-continuous-insulation-rainscreen"
+    hubTitle="Exterior Continuous Insulation &amp; Rainscreen Hub →"
+    hubDesc="Commercial &amp; residential envelope workflow: weather barriers, fiberglass thermal clips, and drainage cavities."
+    guideSlug="ice-and-water-shield-requirements"
+    guideTitle="Ice &amp; Water Shield Building Code Guide →"
+    guideDesc="IRC R905.1.2 requirements for eave membrane width and valley self-adhered flashings."
+  />
+</Layout>

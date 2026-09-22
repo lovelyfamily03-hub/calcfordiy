@@ -1,0 +1,571 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Trestlewood & Reclaimed Siding Calculator (Linear Feet, Sq Ft & Board Feet) | CalcForDIY"
+  description="Convert square feet of exterior wall coverage into linear feet and board feet (BDFT) for Trestlewood, reclaimed barnwood, wedgelap, shiplap, and timber planks."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Trestlewood and Reclaimed Siding Lumber Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do you calculate linear feet of siding from wall square footage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To convert wall square feet to linear feet of siding: Linear Feet = (Wall Square Feet * 12) / Exposed Face Width in inches. For example, covering 500 square feet with 1x6 shiplap having a 5-inch exposed face requires: (500 * 12) / 5 = 1,200 linear feet of lumber before adding waste."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you calculate board feet (BDFT) for reclaimed timber siding?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Board feet is calculated using nominal lumber dimensions: Board Feet = (Nominal Thickness in inches * Nominal Width in inches * Length in feet) / 12. For 1x6 nominal lumber (1 inch thick by 6 inches wide), every linear foot equals 0.5 board feet (1 * 6 * 1 / 12 = 0.5 BDFT)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What waste factor should be added for Trestlewood and reclaimed lumber?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because reclaimed wood features natural end checks, nail holes, knots, and weathered edges that must be squared off on site, a 15% to 20% waste factor is recommended for standard horizontal runs, and 20% to 25% for diagonal, chevron, or gable end installations."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators" },
+      { "@type": "ListItem", "position": 3, "name": "Trestlewood Siding Calculator", "item": "https://calcfordiy.com/calculators/trestlewood-siding-lumber" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Trestlewood Siding Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-2">
+      <span>🌲 Architectural Reclaimed Lumber &amp; Timber Standards</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Trestlewood® &amp; Reclaimed Siding Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Convert wall square footage into exact linear feet, board feet (BDFT), plank counts, ring-shank siding nails, and exterior protective oil finish for reclaimed timber cladding.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Wall Dimensions &amp; Net Siding Area
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="wallSqFt" class="block text-xs font-medium text-gray-600 mb-1">Total Net Wall Area (sq ft)</label>
+        <input type="number" id="wallSqFt" value="450" min="10" max="10000" step="10" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-[11px] text-gray-500 mt-1 block">Exclude windows &amp; doors</span>
+      </div>
+
+      <div>
+        <label for="sidingProfile" class="block text-xs font-medium text-gray-600 mb-1">Siding Profile / Milling Style</label>
+        <select id="sidingProfile" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="shiplap" selected>Shiplap (1/2" Rabbet Lap)</option>
+          <option value="wedgelap">Wedgelap (Tapered Bevel Lap)</option>
+          <option value="tg">Tongue &amp; Groove (V-Groove / Flush)</option>
+          <option value="square_edge">Square Edge (Butt Joint / Reveal)</option>
+          <option value="board_batten">Board &amp; Batten (Planks + 2" Battens)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="boardWidth" class="block text-xs font-medium text-gray-600 mb-1">Nominal Board Width</label>
+        <select id="boardWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="4">1x4 Nominal (3.5" Actual / 3.0" Exposed)</option>
+          <option value="6" selected>1x6 Nominal (5.5" Actual / 5.0" Exposed) [Standard]</option>
+          <option value="8">1x8 Nominal (7.25" Actual / 6.75" Exposed)</option>
+          <option value="10">1x10 Nominal (9.25" Actual / 8.75" Exposed)</option>
+          <option value="multi">Random Multi-Width Mix (1x4, 1x6, 1x8)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="boardThickness" class="block text-xs font-medium text-gray-600 mb-1">Lumber Thickness</label>
+        <select id="boardThickness" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1" selected>1x Nominal (3/4" Actual) [Standard Siding]</option>
+          <option value="1.25">5/4 Nominal (1" Actual) [Heavy Timber Cladding]</option>
+          <option value="2">2x Nominal (1.5" Actual) [Structural Plank / Timber]</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 pt-2 border-t border-gray-100">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Reclaimed Character Waste &amp; Stock Length
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="wasteFactor" class="block text-xs font-medium text-gray-600 mb-1">Reclaimed Waste Factor</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0.10">10% (Clean Kiln-Dried Virgin Lumber)</option>
+          <option value="0.15" selected>15% (Standard Trestlewood / Barnwood)</option>
+          <option value="0.20">20% (Heavy Character / High Defect Trimming)</option>
+          <option value="0.25">25% (Diagonal / Gable / Chevron Pattern)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="stockLength" class="block text-xs font-medium text-gray-600 mb-1">Specified Stock Length</label>
+        <select id="stockLength" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="random" selected>Random Lengths (6 ft to 16 ft mix)</option>
+          <option value="8">8 ft Uniform Planks</option>
+          <option value="10">10 ft Uniform Planks</option>
+          <option value="12">12 ft Uniform Planks</option>
+          <option value="16">16 ft Uniform Planks</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="lumberPrice" class="block text-xs font-medium text-gray-600 mb-1">Material Price Unit</label>
+        <div class="flex gap-2">
+          <input type="number" id="lumberPrice" value="5.50" min="0" max="100" step="0.25" class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+          <select id="priceUnit" class="border border-gray-300 rounded-lg px-2 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <option value="lf" selected>$/Linear Ft</option>
+            <option value="bdft">$/Board Ft</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="fastenerPattern" class="block text-xs font-medium text-gray-600 mb-1">Fastener Installation</label>
+        <select id="fastenerPattern" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="2" selected>2 Nails per Stud (16" o.c. Face-Nailed)</option>
+          <option value="1">1 Blind Nail per Stud (T&amp;G or Narrow Shiplap)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Calculate Reclaimed Lumber Takeoff
+      </button>
+    </div>
+  </div>
+
+  <!-- Results Section -->
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold text-gray-900">Calculated Reclaimed Timber Takeoff</h2>
+      <span class="text-xs font-mono text-gray-500">AWPA Preservative &amp; Timber Standard</span>
+    </div>
+
+    <!-- Highlight Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Total Linear Feet (LF)</span>
+        <div class="text-3xl font-bold text-amber-700" id="r_linearFt">1,242 LF</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_linearFtDetail">Includes 15% character waste</span>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Total Board Feet (BDFT)</span>
+        <div class="text-3xl font-bold text-emerald-700" id="r_boardFt">621 BDFT</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_boardFtDetail">Nominal timber volume</span>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Total Boards (Planks)</span>
+        <div class="text-3xl font-bold text-gray-900" id="r_boardCount">104 Planks</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_boardDetail">Based on 12-ft stock lengths</span>
+      </div>
+
+      <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-2xs">
+        <span class="text-xs text-gray-500 block mb-1">Stainless Siding Nails</span>
+        <div class="text-3xl font-bold text-blue-600" id="r_nailCount">1,860 Nails</div>
+        <span class="text-xs text-gray-600 mt-1 block" id="r_nailDetail">304 Stainless Ring Shank</span>
+      </div>
+    </div>
+
+    <!-- Detailed Dimension Breakdown -->
+    <div class="bg-white rounded-xl border border-gray-200 p-4 mb-5">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3">Milling Profile &amp; Finish Schedule</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-4 text-xs">
+        <div>
+          <span class="text-gray-500">Nominal Board Width:</span>
+          <strong id="r_nomWidth" class="text-gray-800 ml-1">1x6 (5.5" actual)</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Exposed Face Width:</span>
+          <strong id="r_exposedWidth" class="text-gray-800 ml-1">5.00 inches</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Overlap / Rabbet Joint:</span>
+          <strong id="r_overlapDim" class="text-gray-800 ml-1">0.50 inch rabbet</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Linear Ft Multiplier:</span>
+          <strong id="r_lfMultiplier" class="text-gray-800 ml-1">2.40 LF per sq ft</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Penetrating Oil Sealer:</span>
+          <strong id="r_sealerGallons" class="text-gray-800 ml-1">2.5 Gallons (2 coats)</strong>
+        </div>
+        <div>
+          <span class="text-gray-500">Moisture Content Target:</span>
+          <strong class="text-gray-800 ml-1">12% to 15% exterior</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Vector SVG Siding Profile Diagram -->
+    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-xs mb-5">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+          <span>📐</span> Reclaimed Siding Profile &amp; Lap Joint Geometry
+        </h3>
+        <span class="text-xs text-gray-500 font-mono">Architectural Cladding Detail</span>
+      </div>
+      <div class="overflow-x-auto bg-gray-50 rounded-lg p-3 border border-gray-200 flex justify-center">
+        <svg id="sidingSvg" viewBox="0 0 540 210" class="w-full max-w-lg h-auto font-sans" role="img" aria-label="Reclaimed Siding Profile Diagram">
+          <!-- Dynamic SVG populated by JS -->
+        </svg>
+      </div>
+    </div>
+
+    <!-- RSMeans Cost Benchmark Module -->
+    <div class="bg-white rounded-xl border border-gray-200 p-4 mb-5">
+      <h3 class="text-sm font-semibold text-gray-900 mb-2">RSMeans Contractor vs. DIY Cost Benchmark</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="bg-amber-50 p-3 rounded-lg border border-amber-100">
+          <span class="text-gray-600 block">DIY Reclaimed Material:</span>
+          <strong id="r_costDiy" class="text-base text-amber-800 font-bold">$6,830</strong>
+          <span class="text-[10px] text-gray-500 block mt-0.5">Trestlewood, nails &amp; exterior finish</span>
+        </div>
+        <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+          <span class="text-gray-600 block">Pro Turnkey Installation:</span>
+          <strong id="r_costPro" class="text-base text-gray-800 font-bold">$12,400 - $15,800</strong>
+          <span class="text-[10px] text-gray-500 block mt-0.5">Specialty timber carpenter ($28-$35/sq ft)</span>
+        </div>
+        <div class="bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+          <span class="text-emerald-800 block">Estimated DIY Savings:</span>
+          <strong id="r_costSavings" class="text-base text-emerald-700 font-bold">$5,570 - $8,970</strong>
+          <span class="text-[10px] text-emerald-600 block mt-0.5">45% to 57% project savings</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copy Shopping List Button -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gray-200">
+      <div class="text-xs text-gray-500">
+        Acclimation rule: Stack on stickers outdoors under shelter for <strong>7 to 14 days</strong> before nailing.
+      </div>
+      <button type="button" id="copyListBtn" class="px-4 py-2 bg-amber-700 hover:bg-amber-800 text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-xs">
+        <span>📋</span> Copy Reclaimed Timber Takeoff
+      </button>
+    </div>
+  </div>
+
+  <!-- Author Reviewer Box -->
+  <AuthorReviewer
+    reviewerName="Garrison Cole, Timberwright"
+    reviewerRole="Reclaimed Wood Specialist & Architectural Timber Framer"
+    codeStandard="AWPA Timber Standards, AWI Siding Specs & IRC Chapter 7 Cladding"
+    lastUpdated="September 2026"
+  />
+
+  <!-- Deep Editorial & Technical Documentation -->
+  <div class="prose max-w-none text-gray-700 space-y-6 mt-10">
+    <h2 class="text-2xl font-bold text-gray-900">Working with Trestlewood® and Historic Reclaimed Timber</h2>
+    <p>
+      Historic reclaimed timber—salvaged from 19th-century railway trestles (such as the historic Lucin Cutoff across Utah's Great Salt Lake), agricultural timber-frame barns, and industrial warehouses—offers unparalleled visual character, dense old-growth grain rings, and rich natural patinas. However, calculating lumber orders for reclaimed siding differs drastically from purchasing virgin dimensional softwoods from a retail lumber yard.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose my-4">
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+        <h3 class="font-bold text-amber-950 text-sm mb-1 flex items-center gap-1.5">
+          <span>🪵</span> Linear Feet vs. Board Feet (BDFT)
+        </h3>
+        <p class="text-xs text-amber-900 leading-relaxed">
+          While carpenters install siding by <strong>linear foot (LF)</strong>, timber mills and reclaimed lumber brokers sell stock by <strong>board foot (BDFT)</strong>. One board foot represents a nominal volume of 1 inch thick by 12 inches wide by 1 foot long (144 cubic inches). Always clarify whether a quote is priced per linear foot or per board foot.
+        </p>
+      </div>
+
+      <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+        <h3 class="font-bold text-emerald-950 text-sm mb-1 flex items-center gap-1.5">
+          <span>🔩</span> Stainless Steel Fastener Imperative
+        </h3>
+        <p class="text-xs text-emerald-900 leading-relaxed">
+          Never use electro-galvanized or standard bright framing nails on reclaimed cedar, redwood, or Douglas fir. Naturally occurring tannic acids react with zinc and carbon steel when exposed to exterior moisture, producing unsightly black chemical bleeding down the face of the boards. Always fasten with <strong>Grade 304 or 316 stainless steel ring-shank nails</strong>.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-bold text-gray-900 mt-6">Siding Profile Characteristics &amp; Exposure Rules</h3>
+    <ul class="list-disc pl-5 space-y-2">
+      <li>
+        <strong>Shiplap:</strong> Features a half-lap rabbeted joint along both edges. The overlapping lip sheds water downward. Standard reveal ranges from flush to a 1/8" nickel gap.
+      </li>
+      <li>
+        <strong>Wedgelap:</strong> Tapered cross-section resembling traditional clapboard or bevel siding, but with an interlocking bottom groove that seats over the top thin edge of the course below.
+      </li>
+      <li>
+        <strong>Tongue &amp; Groove (T&amp;G):</strong> Precision interlocking milled joint that allows blind-nailing through the tongue, eliminating visible nail heads on the wall surface.
+      </li>
+      <li>
+        <strong>Board &amp; Batten:</strong> Vertical wide face planks (typically 1x8 or 1x10) spaced 1/2" apart, with seams bridged by 1x2 or 1x3 narrow batten strips. Requires 1 nail in the batten centered between the two boards to prevent splitting as the planks expand and contract.
+      </li>
+    </ul>
+  </div>
+
+  <script is:inline>
+  (function() {
+    var profileExposures = {
+      '4': { actual: 3.5, exposed: 3.0, nomW: 4 },
+      '6': { actual: 5.5, exposed: 5.0, nomW: 6 },
+      '8': { actual: 7.25, exposed: 6.75, nomW: 8 },
+      '10': { actual: 9.25, exposed: 8.75, nomW: 10 },
+      'multi': { actual: 5.42, exposed: 4.92, nomW: 6 } // average of 4, 6, 8
+    };
+
+    function calc() {
+      var sqft = parseFloat(document.getElementById('wallSqFt').value) || 450;
+      var profile = document.getElementById('sidingProfile').value;
+      var widthKey = document.getElementById('boardWidth').value;
+      var thicknessNom = parseFloat(document.getElementById('boardThickness').value) || 1;
+      var wasteRate = parseFloat(document.getElementById('wasteFactor').value) || 0.15;
+      var stockLenVal = document.getElementById('stockLength').value;
+      var priceVal = parseFloat(document.getElementById('lumberPrice').value) || 5.50;
+      var priceUnit = document.getElementById('priceUnit').value;
+      var nailsPerStud = parseInt(document.getElementById('fastenerPattern').value) || 2;
+
+      var profInfo = profileExposures[widthKey] || profileExposures['6'];
+      var exposedW = profInfo.exposed;
+
+      // Adjust for profile nuances
+      if (profile === 'square_edge') {
+        exposedW = profInfo.actual; // No rabbet lap
+      } else if (profile === 'board_batten') {
+        exposedW = profInfo.actual + 0.5; // Gap between planks bridged by battens
+      }
+
+      // Linear Feet calculation: (sqft * 12) / exposedW * (1 + wasteRate)
+      var netLF = (sqft * 12) / exposedW;
+      var totalLF = Math.round(netLF * (1 + wasteRate));
+
+      // Board Feet calculation: (Nominal Thickness * Nominal Width * LF) / 12
+      var nomW = profInfo.nomW;
+      var totalBDFT = Math.round((thicknessNom * nomW * totalLF) / 12);
+
+      // Plank Count
+      var plankLen = (stockLenVal === 'random') ? 12 : parseFloat(stockLenVal);
+      var totalPlanks = Math.ceil(totalLF / plankLen);
+
+      // Fasteners: Siding nailed into studs at 16" o.c. (1 stud every 1.33 LF of horizontal run)
+      // Nails = (totalLF / 1.33) * nailsPerStud
+      var totalNails = Math.round((totalLF / 1.33) * nailsPerStud * 1.05);
+
+      // Finish / Sealer: Rough sawn / reclaimed coverage ~200 sq ft per gallon per coat. 2 coats recommended.
+      var totalFinishedArea = sqft * 1.15;
+      var sealerGallons = (totalFinishedArea * 2 / 200).toFixed(1);
+
+      // Cost Calculation
+      var lumberCost = 0;
+      if (priceUnit === 'lf') {
+        lumberCost = totalLF * priceVal;
+      } else {
+        lumberCost = totalBDFT * priceVal;
+      }
+      var matCost = Math.round(lumberCost + (totalNails * 0.05) + (parseFloat(sealerGallons) * 65));
+
+      var proLow = Math.round(sqft * 26);
+      var proHigh = Math.round(sqft * 35);
+
+      // Update UI outputs
+      document.getElementById('r_linearFt').textContent = totalLF.toLocaleString() + ' LF';
+      document.getElementById('r_linearFtDetail').textContent = 'Includes ' + Math.round(wasteRate * 100) + '% character waste factor';
+
+      document.getElementById('r_boardFt').textContent = totalBDFT.toLocaleString() + ' BDFT';
+      document.getElementById('r_boardFtDetail').textContent = nomW + '" nominal width @ ' + thicknessNom + '" thick';
+
+      document.getElementById('r_boardCount').textContent = totalPlanks.toLocaleString() + ' Planks';
+      document.getElementById('r_boardDetail').textContent = (stockLenVal === 'random' ? 'Avg 12-ft random lengths' : (stockLenVal + '-ft specified length planks'));
+
+      document.getElementById('r_nailCount').textContent = totalNails.toLocaleString() + ' Nails';
+      document.getElementById('r_nailDetail').textContent = '304 Stainless Ring Shank (' + nailsPerStud + '/stud)';
+
+      document.getElementById('r_nomWidth').textContent = (widthKey === 'multi' ? 'Multi-width (1x4, 1x6, 1x8)' : ('1x' + nomW + ' (' + profInfo.actual + '" actual)'));
+      document.getElementById('r_exposedWidth').textContent = exposedW.toFixed(2) + ' inches';
+      document.getElementById('r_overlapDim').textContent = (profile === 'square_edge' ? '0.00" (Butt Joint)' : '0.50" lap / rabbet');
+      document.getElementById('r_lfMultiplier').textContent = (12 / exposedW).toFixed(2) + ' LF per sq ft';
+      document.getElementById('r_sealerGallons').textContent = sealerGallons + ' Gallons (2 coats)';
+
+      document.getElementById('r_costDiy').textContent = '$' + matCost.toLocaleString();
+      document.getElementById('r_costPro').textContent = '$' + proLow.toLocaleString() + ' - $' + proHigh.toLocaleString();
+      document.getElementById('r_costSavings').textContent = '$' + Math.max(0, proLow - matCost).toLocaleString() + ' - $' + Math.max(0, proHigh - matCost).toLocaleString();
+
+      drawSvg(profile, exposedW, profInfo.actual);
+    }
+
+    function drawSvg(profile, exposedW, actualW) {
+      var svg = document.getElementById('sidingSvg');
+      if (!svg) return;
+
+      var html = `
+        <defs>
+          <pattern id="reclaimedWood" width="40" height="40" patternUnits="userSpaceOnUse">
+            <rect width="40" height="40" fill="#D97706" opacity="0.35" />
+            <path d="M 0 10 Q 20 8 40 10 M 0 20 Q 20 22 40 20 M 0 30 Q 20 28 40 30" stroke="#B45309" stroke-width="1.2" fill="none" opacity="0.6" />
+          </pattern>
+        </defs>
+
+        <!-- Wall Framing / Sheathing Substrate -->
+        <rect x="30" y="20" width="30" height="170" fill="#94A3B8" stroke="#475569" stroke-width="1.5" />
+        <text x="45" y="105" text-anchor="middle" font-size="9" font-weight="bold" fill="#1E293B" transform="rotate(-90 45 105)">OSB / WRB</text>
+
+        <!-- Siding Course 1 (Bottom Plank) -->
+        <path d="
+          M 60 180
+          L 80 180
+          L 80 120
+          L 70 120
+          L 70 110
+          L 60 110
+          Z
+        " fill="url(#reclaimedWood)" stroke="#78350F" stroke-width="2" />
+
+        <!-- Siding Course 2 (Middle Plank Overlapping Course 1) -->
+        <path d="
+          M 70 120
+          L 80 120
+          L 80 50
+          L 70 50
+          L 70 40
+          L 60 40
+          L 60 110
+          L 70 110
+          Z
+        " fill="url(#reclaimedWood)" stroke="#78350F" stroke-width="2" />
+
+        <!-- Siding Course 3 (Top Plank Overlapping Course 2) -->
+        <path d="
+          M 70 50
+          L 80 50
+          L 80 20
+          L 60 20
+          L 60 40
+          L 70 40
+          Z
+        " fill="url(#reclaimedWood)" stroke="#78350F" stroke-width="2" />
+
+        <!-- Stainless Steel Fastener Penetration -->
+        <line x1="85" y1="90" x2="45" y2="90" stroke="#2563EB" stroke-width="3" stroke-linecap="round" />
+        <circle cx="85" cy="90" r="3" fill="#1D4ED8" />
+        <text x="95" y="94" font-size="9" font-weight="bold" fill="#1D4ED8">304 Stainless Ring Shank Nail</text>
+
+        <!-- Rabbet Joint Callout -->
+        <line x1="70" y1="115" x2="160" y2="115" stroke="#DC2626" stroke-width="1" stroke-dasharray="3,2" />
+        <text x="165" y="118" font-size="9" font-weight="bold" fill="#DC2626">1/2" Interlocking Shiplap Rabbet Joint</text>
+
+        <!-- Dimension: Exposed Face Width -->
+        <line x1="90" y1="50" x2="90" y2="120" stroke="#059669" stroke-width="1.5" />
+        <line x1="86" y1="50" x2="94" y2="50" stroke="#059669" stroke-width="1.5" />
+        <line x1="86" y1="120" x2="94" y2="120" stroke="#059669" stroke-width="1.5" />
+        <text x="100" y="88" font-size="10" font-weight="bold" fill="#047857">Exposed Face = ${exposedW.toFixed(1)}"</text>
+      `;
+
+      svg.innerHTML = html;
+    }
+
+    document.getElementById('wallSqFt').addEventListener('input', calc);
+    document.getElementById('sidingProfile').addEventListener('change', calc);
+    document.getElementById('boardWidth').addEventListener('change', calc);
+    document.getElementById('boardThickness').addEventListener('change', calc);
+    document.getElementById('wasteFactor').addEventListener('change', calc);
+    document.getElementById('stockLength').addEventListener('change', calc);
+    document.getElementById('lumberPrice').addEventListener('input', calc);
+    document.getElementById('priceUnit').addEventListener('change', calc);
+    document.getElementById('fastenerPattern').addEventListener('change', calc);
+    document.getElementById('calcBtn').addEventListener('click', calc);
+
+    // Initial run
+    calc();
+
+    // Copy Shopping list handler
+    document.getElementById('copyListBtn').addEventListener('click', function() {
+      var lf = document.getElementById('r_linearFt').textContent;
+      var bdft = document.getElementById('r_boardFt').textContent;
+      var planks = document.getElementById('r_boardCount').textContent;
+      var nails = document.getElementById('r_nailCount').textContent;
+      var sealer = document.getElementById('r_sealerGallons').textContent;
+      var profile = document.getElementById('r_nomWidth').textContent;
+
+      var text = `=== Trestlewood® / Reclaimed Siding Material Takeoff ===
+Profile / Board Size: ${profile}
+Total Linear Feet: ${lf}
+Total Board Feet (BDFT): ${bdft}
+Total Individual Planks: ${planks}
+Fasteners: ${nails} (304 Stainless Ring Shank)
+Protective Sealer Finish: ${sealer}
+Recommended Acclimation: 7 to 14 days on-site
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/trestlewood-siding-lumber)`;
+
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyListBtn');
+        btn.textContent = '✓ Copied to Clipboard!';
+        setTimeout(function() { btn.textContent = '📋 Copy Reclaimed Timber Takeoff'; }, 2500);
+      });
+    });
+  })();
+  </script>
+
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Enter Project Dimensions:</strong> Input your exact measurements, area square footage, or structural spans.</li>
+      <li><strong>Configure Options &amp; Waste Factor:</strong> Select your preferred material dimensions, layout pattern, or safety waste percentage.</li>
+      <li><strong>Review Material Takeoff &amp; Costs:</strong> View exact unit quantities, shopping lists, and compare DIY material costs against contractor quotes.</li>
+    </ol>
+  </div>
+
+  <RelatedGuidesProjects
+    hubSlug="board-and-batten-siding"
+    hubTitle="Board and Batten Exterior Siding Hub →"
+    hubDesc="Vertical timber cladding workflow: stud layout, corner trim, furring strips, and weatherproofing."
+    guideSlug="nickel-gap-vs-tongue-and-groove-shiplap"
+    guideTitle="Nickel Gap vs. Tongue &amp; Groove Shiplap Guide →"
+    guideDesc="Compare shadow lines, expansion tolerances, blind vs. face-nailing, and moisture movement."
+  />
+</Layout>

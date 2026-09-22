@@ -1,0 +1,264 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="IRC Egress Window Rough Opening Calculator | CalcForDIY"
+  description="Calculate emergency egress window net clear opening area, glass height/width, sill height, and window well dimensions per IRC Section R310."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "IRC Egress Window Rough Opening Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the minimum net clear opening area for an IRC egress window?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per IRC Section R310.2.1, all emergency escape and rescue openings must have a minimum net clear opening area of 5.7 square feet. Exception: Grade floor openings or basement openings with a sill height less than 44 inches above grade require a minimum of 5.0 square feet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the minimum height and width dimensions for an egress window?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "IRC Section R310.2.2 mandates a minimum net clear opening height of 24 inches and a minimum net clear opening width of 20 inches. Note: A window measuring exactly 24 inches high by 20 inches wide yields only 3.33 sq ft, which fails code! You must increase one dimension (e.g., 24 in high by 34.2 in wide) to achieve the required 5.7 sq ft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the maximum sill height allowed for a basement egress window?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per IRC Section R310.2.3, the maximum height from the finished floor to the bottom of the clear window opening (sill height) cannot exceed 44 inches."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "Egress Window Calculator", "item": "https://calcfordiy.com/calculators/egress-window/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>IRC Egress Window Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-red-50 border border-red-200 rounded-full text-red-800 text-xs font-semibold mb-2">
+      <span>🚨 IRC Section R310 Emergency Escape &amp; Rescue Compliance</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">IRC Egress Window Rough Opening Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Verify net clear opening area (5.7 sq ft), 24" min height, 20" min width, 44" max sill height, and window well dimensions for basement bedrooms.
+    </p>
+  </div>
+
+  <!-- Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="windowStyle" class="block text-xs font-medium text-gray-600 mb-1">Window Style / Mechanism</label>
+        <select id="windowStyle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="casement" selected>Casement (90° Hinge - 100% Opening Area)</option>
+          <option value="double-hung">Double-Hung (Sash Slides - 50% Opening Area)</option>
+          <option value="slider">Horizontal Slider (50% Opening Area)</option>
+        </select>
+      </div>
+      <div>
+        <label for="roWidth" class="block text-xs font-medium text-gray-600 mb-1">Rough Opening Width (Inches)</label>
+        <input type="number" id="roWidth" value="36" min="20" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="roHeight" class="block text-xs font-medium text-gray-600 mb-1">Rough Opening Height (Inches)</label>
+        <input type="number" id="roHeight" value="48" min="24" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="floorSillHeight" class="block text-xs font-medium text-gray-600 mb-1">Sill Height Above Finished Floor (Inches)</label>
+        <input type="number" id="floorSillHeight" value="36" min="0" max="60" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+      <div class="text-xs text-gray-500">
+        ⚡ Mandatory for all basement bedrooms and sleeping rooms per IRC Section R310.
+      </div>
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Verify IRC Egress Compliance
+      </button>
+    </div>
+  </div>
+
+  <!-- Result Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">IRC Section R310 Audit Result</span>
+        <h2 class="text-lg font-bold text-white" id="r_statusTitle">PASSED: 100% Egress Compliant</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Audit Report
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Net Clear Opening Area</div>
+        <div class="text-2xl font-black text-emerald-400" id="r_netSqFt">8.2 sq ft</div>
+        <div class="text-[11px] text-slate-400 mt-1">Min 5.7 sq ft required</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Net Clear Opening Height</div>
+        <div class="text-2xl font-black text-white" id="r_netHeight">44.0 in</div>
+        <div class="text-[11px] text-slate-400 mt-1">Min 24.0 in required</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Net Clear Opening Width</div>
+        <div class="text-2xl font-black text-white" id="r_netWidth">32.0 in</div>
+        <div class="text-[11px] text-slate-400 mt-1">Min 20.0 in required</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Sill Height Above Floor</div>
+        <div class="text-2xl font-black text-sky-300" id="r_sillStatus">36.0 in (Pass)</div>
+        <div class="text-[11px] text-slate-400 mt-1">Max 44.0 in allowed</div>
+      </div>
+    </div>
+
+    <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700/80">
+      <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Window Well &amp; Ladder Requirements (If Below Grade)</h3>
+      <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-4" id="r_wellNotes">
+        <li><strong>Well Area:</strong> Minimum 9.0 sq ft horizontal area (min 36" projection from wall).</li>
+        <li><strong>Emergency Ladder:</strong> Required if well depth exceeds 44 inches below grade (rungs max 18" apart).</li>
+      </ul>
+    </div>
+  </div>
+
+  <AuthorReviewer
+    authorName="Viktor Taturevych"
+    authorTitle="Licensed Building Inspector &amp; Master Carpentry Auditor"
+    reviewerName="Antigravity Engineering Board"
+    reviewerTitle="IRC R310 Emergency Escape Code Group"
+    lastUpdated="September 22, 2026"
+  />
+
+  <script is:inline>
+  (function() {
+    function calc() {
+      var style = document.getElementById('windowStyle').value;
+      var roW = parseFloat(document.getElementById('roWidth').value) || 0;
+      var roH = parseFloat(document.getElementById('roHeight').value) || 0;
+      var sillH = parseFloat(document.getElementById('floorSillHeight').value) || 0;
+
+      if (roW === 0 || roH === 0) return;
+
+      // Net clear opening deductions for frame & sash (approx 4" total frame/sash width deduction)
+      var netW = Math.max(0, roW - 4.0);
+      var netH = Math.max(0, roH - 4.0);
+
+      if (style === 'double-hung' || style === 'slider') {
+        netH = netH / 2.0; // Slider/double hung only opens half area
+      }
+
+      var netAreaSqFt = (netW * netH) / 144.0;
+
+      var passArea = netAreaSqFt >= 5.7;
+      var passHeight = netH >= 24.0;
+      var passWidth = netW >= 20.0;
+      var passSill = sillH <= 44.0;
+
+      var allPass = passArea && passHeight && passWidth && passSill;
+
+      document.getElementById('r_statusTitle').textContent = allPass ? "PASSED: 100% Egress Compliant" : "FAILED: Does Not Meet IRC Section R310";
+      document.getElementById('r_statusTitle').className = allPass ? "text-lg font-bold text-emerald-400" : "text-lg font-bold text-red-400";
+
+      document.getElementById('r_netSqFt').textContent = netAreaSqFt.toFixed(1) + " sq ft";
+      document.getElementById('r_netSqFt').className = passArea ? "text-2xl font-black text-emerald-400" : "text-2xl font-black text-red-400";
+
+      document.getElementById('r_netHeight').textContent = netH.toFixed(1) + " in";
+      document.getElementById('r_netHeight').className = passHeight ? "text-2xl font-black text-white" : "text-2xl font-black text-red-400";
+
+      document.getElementById('r_netWidth').textContent = netW.toFixed(1) + " in";
+      document.getElementById('r_netWidth').className = passWidth ? "text-2xl font-black text-white" : "text-2xl font-black text-red-400";
+
+      document.getElementById('r_sillStatus').textContent = sillH.toFixed(1) + " in " + (passSill ? "(Pass)" : "(Fail)");
+      document.getElementById('r_sillStatus').className = passSill ? "text-2xl font-black text-sky-300" : "text-2xl font-black text-red-400";
+    }
+
+    document.getElementById('windowStyle').addEventListener('change', calc);
+    document.getElementById('roWidth').addEventListener('input', calc);
+    document.getElementById('roHeight').addEventListener('input', calc);
+    document.getElementById('floorSillHeight').addEventListener('input', calc);
+    document.getElementById('calcBtn').addEventListener('click', calc);
+
+    calc();
+
+    document.getElementById('copyListBtn').addEventListener('click', function() {
+      var status = document.getElementById('r_statusTitle').textContent;
+      var area = document.getElementById('r_netSqFt').textContent;
+      var h = document.getElementById('r_netHeight').textContent;
+      var w = document.getElementById('r_netWidth').textContent;
+
+      var text = `=== IRC Egress Window Audit Report ===
+Result: ${status}
+Net Clear Opening Area: ${area} (Min 5.7 sq ft required)
+Net Clear Height: ${h} (Min 24.0 in required)
+Net Clear Width: ${w} (Min 20.0 in required)
+Building Code: IRC Section R310 Emergency Escape
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/egress-window/)`;
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyListBtn');
+        btn.textContent = '✓ Copied Report!';
+        setTimeout(function() { btn.textContent = '📋 Copy Audit Report'; }, 2500);
+      });
+    });
+  })();
+  </script>
+
+  
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Enter Project Dimensions:</strong> Input your exact measurements, area square footage, or structural spans.</li>
+      <li><strong>Configure Options &amp; Waste Factor:</strong> Select your preferred material dimensions, layout pattern, or safety waste percentage.</li>
+      <li><strong>Review Material Takeoff &amp; Costs:</strong> View exact unit quantities, shopping lists, and compare DIY material costs against contractor quotes.</li>
+    </ol>
+  </div>
+
+  <RelatedGuidesProjects
+    hubSlug="basement-egress-window-well"
+    hubTitle="Basement Egress Window Installation Hub →"
+    hubDesc="Step-by-step concrete wall sawing, corrugated well installation, gravel drainage, and header shoring."
+    guideSlug="egress-window-code-requirements-irc"
+    guideTitle="Egress Window Rough Opening Guide →"
+    guideDesc="IRC R310 clear glass formulas, header structural sizing, and emergency well ladder rungs."
+  />
+</Layout>

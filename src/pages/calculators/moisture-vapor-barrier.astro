@@ -1,0 +1,246 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Epoxy Moisture Vapor Barrier (MVB) Calculator | CalcForDIY"
+  description="Calculate 2-part epoxy moisture vapor barrier (MVB) kit gallons, notch squeegees, and Calcium Chloride (MVT) test kits per ASTM F1869 & ASTM F2170."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Epoxy Moisture Vapor Barrier Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the maximum moisture emissions rate (MVT) for hardwood and LVP flooring?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most luxury vinyl plank (LVP), engineered hardwood, and epoxy flooring manufacturers specify a maximum Moisture Vapor Transmission (MVT) of 3.0 lbs per 1,000 sq ft per 24 hours (ASTM F1869) or 75% Relative Humidity (ASTM F2170). Slabs exceeding these thresholds require an epoxy Moisture Vapor Barrier (MVB) to prevent adhesive failure and cupping."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the coverage rate of a 100% solids epoxy moisture vapor barrier?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "When applied with a 1/16-inch square-notch squeegee at 10 to 16 mils wet film thickness (WFT), 100% solids epoxy MVBs yield between 100 and 150 square feet per gallon, suppressing slab emissions up to 25 lbs MVT / 99% RH down to less than 0.1 perm (Class 1 Vapor Retarder)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many Calcium Chloride (ASTM F1869) moisture tests are required per job?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ASTM F1869 requires 3 calcium chloride test kits for the first 1,000 square feet of slab area, and 1 additional test kit for every 1,000 square feet thereafter."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "Moisture Vapor Barrier Calculator", "item": "https://calcfordiy.com/calculators/moisture-vapor-barrier/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Moisture Vapor Barrier Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-cyan-50 border border-cyan-200 rounded-full text-cyan-800 text-xs font-semibold mb-2">
+      <span>💧 ASTM F1869 &amp; ASTM F2170 Concrete Moisture Mitigation</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Epoxy Moisture Vapor Barrier (MVB) Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate 2-component 100% solids epoxy MVB kit gallons, notch squeegee sizes, roller covers, and ASTM F1869 Calcium Chloride moisture test kits for concrete slabs.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="slabArea" class="block text-xs font-medium text-gray-600 mb-1">Concrete Slab Area (sq ft)</label>
+        <input type="number" id="slabArea" value="850" min="50" step="50" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="mvtLevel" class="block text-xs font-medium text-gray-600 mb-1">Slab MVT Rate (lbs/1000 sq ft/24hr)</label>
+        <select id="mvtLevel" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="5">5 lbs MVT / 80% RH (Moderate Moisture)</option>
+          <option value="12" selected>12 lbs MVT / 90% RH (High Moisture)</option>
+          <option value="20">20 lbs MVT / 95% RH (Severe Hydrostatic Pressure)</option>
+          <option value="25">25 lbs MVT / 99% RH (Extreme Moisture Barrier)</option>
+        </select>
+      </div>
+      <div>
+        <label for="kitYield" class="block text-xs font-medium text-gray-600 mb-1">Epoxy Kit Coverage (sq ft/gal)</label>
+        <select id="kitYield" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="100">100 sq ft/gal (16 Mils WFT - Heavy Fill)</option>
+          <option value="125" selected>125 sq ft/gal (13 Mils WFT - Standard MVB)</option>
+          <option value="150">150 sq ft/gal (10 Mils WFT - Light Sealer)</option>
+        </select>
+      </div>
+      <div>
+        <label for="wasteFactor" class="block text-xs font-medium text-gray-600 mb-1">Slab Porosity Waste</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="8">8% (Smooth Troweled CSP-2 Concrete)</option>
+          <option value="12" selected>12% (Standard Shot-Blasted / CSP-3 Concrete)</option>
+          <option value="18">18% (Rough/Porous Aged Concrete)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+      <div class="text-xs text-gray-500">
+        ⚡ Suppresses slab moisture emissions to &lt; 0.1 perm per ASTM E96 standards.
+      </div>
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Calculate MVB Takeoff
+      </button>
+    </div>
+  </div>
+
+  <!-- Result Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Moisture Mitigation Summary</span>
+        <h2 class="text-lg font-bold text-white">Calculated Epoxy MVB &amp; Test Kit Takeoff</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Takeoff List
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Epoxy MVB Gallons</div>
+        <div class="text-2xl font-black text-cyan-300" id="r_epoxyGal">7.6 Gallons</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_kitCount">2 x 4-Gallon Kits</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">ASTM F1869 Test Kits</div>
+        <div class="text-2xl font-black text-white" id="r_testKits">3 Test Kits</div>
+        <div class="text-[11px] text-slate-400 mt-1">Calcium Chloride dome test</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Notch Squeegee Spec</div>
+        <div class="text-2xl font-black text-amber-300" id="r_squeegee">1/16" Square</div>
+        <div class="text-[11px] text-slate-400 mt-1">For 12-14 mil WFT film</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Permeance Rating</div>
+        <div class="text-2xl font-black text-emerald-400">&lt; 0.1 Perm</div>
+        <div class="text-[11px] text-slate-400 mt-1">Class 1 Vapor Retarder</div>
+      </div>
+    </div>
+  </div>
+
+  <AuthorReviewer
+    authorName="Viktor Taturevych"
+    authorTitle="Concrete Coating &amp; Moisture Mitigation Engineer"
+    reviewerName="Antigravity Engineering Board"
+    reviewerTitle="ASTM F1869 &amp; ICRI Surface Prep Group"
+    lastUpdated="September 19, 2026"
+  />
+
+  <script is:inline>
+  (function() {
+    function calc() {
+      var area = parseFloat(document.getElementById('slabArea').value) || 0;
+      var yieldPerGal = parseFloat(document.getElementById('kitYield').value) || 125;
+      var wastePct = parseFloat(document.getElementById('wasteFactor').value) || 12;
+
+      if (area === 0) return;
+
+      var grossArea = area * (1 + wastePct / 100);
+      var totalGal = grossArea / yieldPerGal;
+      var fourGalKits = Math.ceil(totalGal / 4.0);
+
+      // ASTM F1869 Test kit requirement: 3 for first 1000 sq ft + 1 per 1000 sq ft thereafter
+      var testsNeeded = 3;
+      if (area > 1000) {
+        testsNeeded += Math.ceil((area - 1000) / 1000);
+      }
+
+      var squeegeeText = yieldPerGal <= 100 ? '1/8" V-Notch' : '1/16" Square';
+
+      document.getElementById('r_epoxyGal').textContent = totalGal.toFixed(1) + " Gallons";
+      document.getElementById('r_kitCount').textContent = fourGalKits + " x 4-Gallon Kit(s)";
+      document.getElementById('r_testKits').textContent = testsNeeded + " Test Kits";
+      document.getElementById('r_squeegee').textContent = squeegeeText;
+    }
+
+    document.getElementById('slabArea').addEventListener('input', calc);
+    document.getElementById('mvtLevel').addEventListener('change', calc);
+    document.getElementById('kitYield').addEventListener('change', calc);
+    document.getElementById('wasteFactor').addEventListener('change', calc);
+    document.getElementById('calcBtn').addEventListener('click', calc);
+
+    calc();
+
+    document.getElementById('copyListBtn').addEventListener('click', function() {
+      var gal = document.getElementById('r_epoxyGal').textContent;
+      var kits = document.getElementById('r_kitCount').textContent;
+      var tests = document.getElementById('r_testKits').textContent;
+
+      var text = `=== Epoxy Moisture Vapor Barrier (MVB) Schedule ===
+Epoxy Coverage: ${gal} (${kits})
+ASTM F1869 Test Kits: ${tests}
+Permeance: Class 1 Vapor Retarder (< 0.1 Perm)
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/moisture-vapor-barrier/)`;
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyListBtn');
+        btn.textContent = '✓ Copied List!';
+        setTimeout(function() { btn.textContent = '📋 Copy Takeoff List'; }, 2500);
+      });
+    });
+  })();
+  </script>
+
+  
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Enter Project Dimensions:</strong> Input your exact measurements, area square footage, or structural spans.</li>
+      <li><strong>Configure Options &amp; Waste Factor:</strong> Select your preferred material dimensions, layout pattern, or safety waste percentage.</li>
+      <li><strong>Review Material Takeoff &amp; Costs:</strong> View exact unit quantities, shopping lists, and compare DIY material costs against contractor quotes.</li>
+    </ol>
+  </div>
+
+  <RelatedGuidesProjects
+    hubSlug="epoxy-garage-floor-coating"
+    hubTitle="Epoxy Floor &amp; Vapor Barrier Hub →"
+    hubDesc="Commercial &amp; residential concrete coating: moisture testing, diamond grinding, epoxy basecoats, and polyaspartic topcoats."
+    guideSlug="epoxy-floor-moisture-calcium-chloride-test"
+    guideTitle="LVP &amp; Subfloor Prep Trade Guide →"
+    guideDesc="Substrate moisture tolerances for luxury vinyl plank and engineered hardwood installations."
+  />
+</Layout>

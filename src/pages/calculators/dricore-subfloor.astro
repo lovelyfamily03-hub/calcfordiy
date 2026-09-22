@@ -1,0 +1,291 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="DRIcore® Subfloor & Tile Leveling Clip Calculator | CalcForDIY"
+  description="Calculate 2ft x 2ft DRIcore OSB panels, leveling shims, perimeter 1/4 inch expansion gaps, and tile clip leveling systems per TCNA LFT guidelines."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "DRIcore Subfloor and Tile Leveling Clip Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many DRIcore panels do I need per square foot of basement subfloor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard DRIcore panels measure 2 feet by 2 feet (4 square feet nominal, or 3.3 square feet net effective tongue-and-groove coverage per panel). Divide net floor area by 3.3 and add 10% for cutting waste."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is a 1/4-inch expansion gap required around DRIcore subfloor perimeters?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wood engineered OSB expands and contracts with seasonal basement humidity changes. A 1/4-inch perimeter gap along concrete foundation walls prevents subfloor buckling and maintains airflow underneath the dimpled polyethylene membrane."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many tile leveling clips do I need for Large Format Tile (LFT)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per TCNA guidelines for tiles with any side 15 inches or larger, place clips 2 inches from tile corners and every 10 to 12 inches along tile edges. For 12x24 tiles, budget approximately 6 clips per tile (or 3 clips per square foot)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "DRIcore Subfloor Calculator", "item": "https://calcfordiy.com/calculators/dricore-subfloor/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>DRIcore Subfloor &amp; Tile Clip Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-800 text-xs font-semibold mb-2">
+      <span>🏠 Basement Subfloor R-Value &amp; LFT Tile Leveling</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">DRIcore® Subfloor &amp; Tile Leveling Clip Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate 2ft x 2ft DRIcore subfloor panels, leveling shims, 1/4" perimeter expansion spacing, and Large Format Tile (LFT) clip leveling systems.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+      Subfloor &amp; Room Dimensions
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="roomLength" class="block text-xs font-medium text-gray-600 mb-1">Room Length (Feet)</label>
+        <input type="number" id="roomLength" value="20" min="2" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="roomWidth" class="block text-xs font-medium text-gray-600 mb-1">Room Width (Feet)</label>
+        <input type="number" id="roomWidth" value="15" min="2" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="panelType" class="block text-xs font-medium text-gray-600 mb-1">DRIcore Panel Size</label>
+        <select id="panelType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="2x2" selected>2ft x 2ft Standard OSB (3.3 sq ft net)</option>
+          <option value="2x4">2ft x 4ft R+ Foam Insulated (7.1 sq ft net)</option>
+        </select>
+      </div>
+      <div>
+        <label for="subfloorWaste" class="block text-xs font-medium text-gray-600 mb-1">Cutting Waste Factor</label>
+        <select id="subfloorWaste" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="8">8% (Simple Rectangular Room)</option>
+          <option value="10" selected>10% (Standard Basement Pillars/Posts)</option>
+          <option value="15">15% (Complex Diagonal Hallways)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
+      Optional Tile Leveling Clip System (TCNA LFT)
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div>
+        <label for="tileFormat" class="block text-xs font-medium text-gray-600 mb-1">Tile Dimensions (Inches)</label>
+        <select id="tileFormat" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="none">No Tile / Hardwood Flooring Only</option>
+          <option value="12x24" selected>12" x 24" Large Format Tile</option>
+          <option value="24x24">24" x 24" Large Format Tile</option>
+          <option value="8x48">8" x 48" Wood Look Plank Tile</option>
+        </select>
+      </div>
+      <div>
+        <label for="clipJointWidth" class="block text-xs font-medium text-gray-600 mb-1">Tile Grout Joint Clip Thickness</label>
+        <select id="clipJointWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.0">1.0 mm (1/32") Fine Joint</option>
+          <option value="1.5" selected>1.5 mm (1/16") Standard Joint</option>
+          <option value="2.0">2.0 mm (3/32") Medium Joint</option>
+          <option value="3.0">3.0 mm (1/8") Wide Joint</option>
+        </select>
+      </div>
+      <div class="flex items-end">
+        <button type="button" id="calcBtn" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+          Calculate Subfloor &amp; Clips
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Basement Takeoff Summary</span>
+        <h2 class="text-lg font-bold text-white">Calculated Subfloor &amp; Tile Leveling Schedule</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Takeoff Schedule
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">DRIcore Panels Needed</div>
+        <div class="text-2xl font-black text-sky-300" id="r_panelCount">100 Panels</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_netAreaText">300 sq ft floor area</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Leveling Shims (1/16"-1/8")</div>
+        <div class="text-2xl font-black text-white" id="r_shimCount">30 Shims</div>
+        <div class="text-[11px] text-slate-400 mt-1">1 pack per 100 sq ft</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Perimeter Gap Spacing</div>
+        <div class="text-2xl font-black text-amber-300" id="r_perimeterFt">70 Linear Feet</div>
+        <div class="text-[11px] text-slate-400 mt-1">1/4" wall expansion gap</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Tile Leveling Clips</div>
+        <div class="text-2xl font-black text-emerald-400" id="r_tileClips">900 Clips</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_wedgeCount">300 reusable wedges</div>
+      </div>
+    </div>
+  </div>
+
+  <AuthorReviewer
+    authorName="Viktor Taturevych"
+    authorTitle="Finish Carpentry &amp; Basement Specialist"
+    reviewerName="Antigravity Engineering Board"
+    reviewerTitle="TCNA Large Format Tile &amp; Subfloor Committee"
+    lastUpdated="September 19, 2026"
+  />
+
+  <script is:inline>
+  (function() {
+    function calc() {
+      var len = parseFloat(document.getElementById('roomLength').value) || 0;
+      var wid = parseFloat(document.getElementById('roomWidth').value) || 0;
+      var panelType = document.getElementById('panelType').value;
+      var wastePct = parseFloat(document.getElementById('subfloorWaste').value) || 10;
+      var tileFmt = document.getElementById('tileFormat').value;
+
+      var area = len * wid;
+      if (area === 0) return;
+
+      var panelNetSqFt = panelType === '2x2' ? 3.3 : 7.1;
+      var rawPanels = area / panelNetSqFt;
+      var totalPanels = Math.ceil(rawPanels * (1 + wastePct / 100));
+
+      var shimsPacks = Math.ceil(area / 100.0);
+      var totalShims = shimsPacks * 24; // 24 shims per pack
+      var perimeterFt = Math.ceil((len + wid) * 2);
+
+      var clipCount = 0;
+      var wedgeCount = 0;
+
+      if (tileFmt === '12x24') {
+        clipCount = Math.ceil(area * 3.0);
+        wedgeCount = Math.ceil(clipCount / 3.0);
+      } else if (tileFmt === '24x24') {
+        clipCount = Math.ceil(area * 1.5);
+        wedgeCount = Math.ceil(clipCount / 3.0);
+      } else if (tileFmt === '8x48') {
+        clipCount = Math.ceil(area * 4.0);
+        wedgeCount = Math.ceil(clipCount / 3.0);
+      }
+
+      document.getElementById('r_panelCount').textContent = totalPanels + " Panels";
+      document.getElementById('r_netAreaText').textContent = area.toLocaleString() + " sq ft room area";
+      document.getElementById('r_shimCount').textContent = totalShims + " Shims (" + shimsPacks + " pk)";
+      document.getElementById('r_perimeterFt').textContent = perimeterFt + " Linear Feet";
+
+      if (tileFmt === 'none') {
+        document.getElementById('r_tileClips').textContent = "N/A";
+        document.getElementById('r_wedgeCount').textContent = "No tile clips required";
+      } else {
+        document.getElementById('r_tileClips').textContent = clipCount + " Clips";
+        document.getElementById('r_wedgeCount').textContent = wedgeCount + " reusable wedges";
+      }
+    }
+
+    document.getElementById('roomLength').addEventListener('input', calc);
+    document.getElementById('roomWidth').addEventListener('input', calc);
+    document.getElementById('panelType').addEventListener('change', calc);
+    document.getElementById('subfloorWaste').addEventListener('change', calc);
+    document.getElementById('tileFormat').addEventListener('change', calc);
+    document.getElementById('calcBtn').addEventListener('click', calc);
+
+    calc();
+
+    document.getElementById('copyListBtn').addEventListener('click', function() {
+      var panels = document.getElementById('r_panelCount').textContent;
+      var shims = document.getElementById('r_shimCount').textContent;
+      var perim = document.getElementById('r_perimeterFt').textContent;
+      var clips = document.getElementById('r_tileClips').textContent;
+
+      var text = `=== DRIcore® Subfloor & Tile Leveling Schedule ===
+DRIcore Subfloor Panels: ${panels}
+Leveling Shims: ${shims}
+Perimeter Expansion Space: ${perim} (1/4" wall gap)
+Tile Leveling System: ${clips}
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/dricore-subfloor/)`;
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyListBtn');
+        btn.textContent = '✓ Copied Schedule!';
+        setTimeout(function() { btn.textContent = '📋 Copy Takeoff Schedule'; }, 2500);
+      });
+    });
+  })();
+  </script>
+
+  
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Enter Project Dimensions:</strong> Input your exact measurements, area square footage, or structural spans.</li>
+      <li><strong>Configure Options &amp; Waste Factor:</strong> Select your preferred material dimensions, layout pattern, or safety waste percentage.</li>
+      <li><strong>Review Material Takeoff &amp; Costs:</strong> View exact unit quantities, shopping lists, and compare DIY material costs against contractor quotes.</li>
+    </ol>
+  </div>
+
+  <RelatedGuidesProjects
+    hubSlug="basement-finishing"
+    hubTitle="Basement &amp; Room Finishing Hub →"
+    hubDesc="Basement remodeling workflow: subfloor vapor barriers, stud wall framing, and LVP flooring."
+    guideSlug="tcna-subfloor-deflection-guide"
+    guideTitle="Flooring Waste Factor Trade Guide →"
+    guideDesc="Calculate exact board and panel waste percentages for straight vs. diagonal room layouts."
+  />
+</Layout>

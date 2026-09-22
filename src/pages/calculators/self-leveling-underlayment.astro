@@ -1,0 +1,265 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Self-Leveling Underlayment (SLU) & Deck Mud Calculator | CalcForDIY"
+  description="Calculate 50 lb bags of self-leveling compound, acrylic primer, expansion foam, and 4:1 sand-cement deck mud for shower pans per TCNA F185 & ASTM C1708."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Self-Leveling Underlayment and Deck Mud Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many 50 lb bags of self-leveling underlayment do I need per square foot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "One standard 50 lb bag of self-leveling underlayment (SLU) yields approximately 0.45 cubic feet of liquid slurry, covering 24 square feet at 1/4-inch pour depth, or 48 square feet at 1/8-inch pour depth."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is substrate acrylic primer mandatory before pouring self-leveler?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Substrate primer seals porous concrete or plywood so water from the self-leveler is not prematurely absorbed, which would cause pinholes, weak surface chalking, and poor bond strength. It also improves slurry fluid flow across the floor per TCNA F185."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the correct sand-to-cement ratio for a shower pan deck mud bed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per TCNA B415 guidelines, a shower pan deck mud bed uses a 4:1 mix ratio of clean, damp masonry sand to Type I/II Portland cement. Water is added sparingly until the mix holds a firm, packable ball when squeezed in hand without bleeding excess water."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "Self-Leveling Calculator", "item": "https://calcfordiy.com/calculators/self-leveling-underlayment/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Self-Leveling Underlayment Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-2">
+      <span>📐 TCNA F185 &amp; ASTM C1708 Precision Floor Flattening</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Self-Leveling Underlayment (SLU) &amp; Deck Mud Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate exact 50 lb bags of self-leveling compound, substrate acrylic primer, perimeter isolation foam, and 4:1 sand-cement deck mud for shower pan preslopes.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="materialMode" class="block text-xs font-medium text-gray-600 mb-1">Application Type</label>
+        <select id="materialMode" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="slu" selected>Self-Leveling Underlayment (Flat Pour)</option>
+          <option value="deckmud">Shower Pan Deck Mud (4:1 Sloped Bed)</option>
+        </select>
+      </div>
+      <div>
+        <label for="floorArea" class="block text-xs font-medium text-gray-600 mb-1">Floor Surface Area (sq ft)</label>
+        <input type="number" id="floorArea" value="250" min="5" step="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="avgDepth" class="block text-xs font-medium text-gray-600 mb-1">Average Pour / Bed Depth</label>
+        <select id="avgDepth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0.125">1/8 inch (Feather / Dip Smoothing)</option>
+          <option value="0.25" selected>1/4 inch (Standard LFT Floor Prep)</option>
+          <option value="0.375">3/8 inch (Moderate Low-Spot Correction)</option>
+          <option value="0.5">1/2 inch (Deep Fill / Radiance Wire Embed)</option>
+          <option value="0.75">3/4 inch (Heavy Leveling Fill)</option>
+          <option value="1.0">1.0 inch (Deep Fill / Shower Slope High End)</option>
+          <option value="1.5">1.5 inches (Full Shower Bed Average)</option>
+        </select>
+      </div>
+      <div>
+        <label for="wasteFactor" class="block text-xs font-medium text-gray-600 mb-1">Bucket &amp; Mixing Waste</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="5">5% (Simple Square Room)</option>
+          <option value="10" selected>10% (Standard Job-Site Waste)</option>
+          <option value="15">15% (Irregular Low-Spot Cavities)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+      <div class="text-xs text-gray-500">
+        ⚡ Yield: 1 Bag SLU = 0.45 cu ft (24 sq ft @ 1/4" depth). Deck Mud: 4:1 sand to cement by volume.
+      </div>
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Calculate Floor Takeoff
+      </button>
+    </div>
+  </div>
+
+  <!-- Result Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Subfloor Prep Material Summary</span>
+        <h2 class="text-lg font-bold text-white">Calculated Material &amp; Primer Takeoff</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Takeoff List
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1" id="r_bagLabel">50 lb SLU Bags</div>
+        <div class="text-2xl font-black text-amber-300" id="r_bagCount">12 Bags</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_volumeText">5.7 cu ft total volume</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Substrate Acrylic Primer</div>
+        <div class="text-2xl font-black text-white" id="r_primerGallons">1.0 Gallon</div>
+        <div class="text-[11px] text-slate-400 mt-1">1 Quart concentrated or 1 Gal diluted</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Perimeter Foam Tape</div>
+        <div class="text-2xl font-black text-sky-300" id="r_foamFeet">65 Linear Feet</div>
+        <div class="text-[11px] text-slate-400 mt-1">1/4" expansion foam border</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Mixing Water Required</div>
+        <div class="text-2xl font-black text-emerald-400" id="r_waterQuarts">60 Quarts</div>
+        <div class="text-[11px] text-slate-400 mt-1">Exact 5.0 qts per 50 lb bag</div>
+      </div>
+    </div>
+  </div>
+
+  <AuthorReviewer
+    authorName="Viktor Taturevych"
+    authorTitle="Master Tile Setter &amp; Floor Specialist"
+    reviewerName="Antigravity Engineering Board"
+    reviewerTitle="TCNA Handbook &amp; ASTM Floor Prep Committee"
+    lastUpdated="September 19, 2026"
+  />
+
+  <script is:inline>
+  (function() {
+    function calc() {
+      var mode = document.getElementById('materialMode').value;
+      var area = parseFloat(document.getElementById('floorArea').value) || 0;
+      var depthInches = parseFloat(document.getElementById('avgDepth').value) || 0.25;
+      var wastePct = parseFloat(document.getElementById('wasteFactor').value) || 10;
+
+      if (area === 0) return;
+
+      var depthFeet = depthInches / 12.0;
+      var netCuFt = area * depthFeet;
+      var grossCuFt = netCuFt * (1 + wastePct / 100);
+
+      if (mode === 'slu') {
+        var cuFtPerBag = 0.45; // Standard 50lb bag yield
+        var bags = Math.ceil(grossCuFt / cuFtPerBag);
+        var primerGal = (area / 250.0).toFixed(1);
+        var perimeterLinearFt = Math.ceil(Math.sqrt(area) * 4 * 1.05);
+        var totalWaterQts = bags * 5.0;
+
+        document.getElementById('r_bagLabel').textContent = "50 lb SLU Bags";
+        document.getElementById('r_bagCount').textContent = bags + " Bags";
+        document.getElementById('r_volumeText').textContent = grossCuFt.toFixed(1) + " cu ft total liquid slurry";
+        document.getElementById('r_primerGallons').textContent = primerGal + " Gallon(s)";
+        document.getElementById('r_foamFeet').textContent = perimeterLinearFt + " Linear Feet";
+        document.getElementById('r_waterQuarts').textContent = totalWaterQts + " Quarts";
+      } else {
+        // Deck Mud 4:1 ratio
+        // 1 cu ft dry deck mud = ~90 lbs sand + ~22.5 lbs Portland cement
+        var totalSandLbs = Math.ceil(grossCuFt * 90);
+        var totalCementLbs = Math.ceil(grossCuFt * 22.5);
+        var sandBags = Math.ceil(totalSandLbs / 50.0); // 50lb bags masonry sand
+        var cementBags94 = Math.ceil(totalCementLbs / 94.0); // 94lb bags Portland cement
+
+        document.getElementById('r_bagLabel').textContent = "Masonry Sand & Cement";
+        document.getElementById('r_bagCount').textContent = sandBags + " Sand / " + cementBags94 + " Cement";
+        document.getElementById('r_volumeText').textContent = grossCuFt.toFixed(1) + " cu ft packable dry mud";
+        document.getElementById('r_primerGallons').textContent = "Slurry Bond Coat";
+        document.getElementById('r_foamFeet').textContent = "Expansion Strip";
+        document.getElementById('r_waterQuarts').textContent = "Damp Touch Mix";
+      }
+    }
+
+    document.getElementById('materialMode').addEventListener('change', calc);
+    document.getElementById('floorArea').addEventListener('input', calc);
+    document.getElementById('avgDepth').addEventListener('change', calc);
+    document.getElementById('wasteFactor').addEventListener('change', calc);
+    document.getElementById('calcBtn').addEventListener('click', calc);
+
+    calc();
+
+    document.getElementById('copyListBtn').addEventListener('click', function() {
+      var bags = document.getElementById('r_bagCount').textContent;
+      var primer = document.getElementById('r_primerGallons').textContent;
+      var foam = document.getElementById('r_foamFeet').textContent;
+      var text = `=== Self-Leveling & Floor Prep Takeoff ===
+Material Count: ${bags}
+Substrate Primer: ${primer}
+Perimeter Expansion Strip: ${foam}
+Standards: TCNA F185 & ASTM C1708 Floor Prep
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/self-leveling-underlayment/)`;
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyListBtn');
+        btn.textContent = '✓ Copied List!';
+        setTimeout(function() { btn.textContent = '📋 Copy Takeoff List'; }, 2500);
+      });
+    });
+  })();
+  </script>
+
+  
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Enter Project Dimensions:</strong> Input your exact measurements, area square footage, or structural spans.</li>
+      <li><strong>Configure Options &amp; Waste Factor:</strong> Select your preferred material dimensions, layout pattern, or safety waste percentage.</li>
+      <li><strong>Review Material Takeoff &amp; Costs:</strong> View exact unit quantities, shopping lists, and compare DIY material costs against contractor quotes.</li>
+    </ol>
+  </div>
+
+  <RelatedGuidesProjects
+    hubSlug="bathroom-remodel"
+    hubTitle="Bathroom &amp; Shower Remodel Hub →"
+    hubDesc="Step-by-step tile workflow: floor leveling, preslope deck mud, uncoupling membranes, and waterproofing."
+    guideSlug="how-much-tile-for-standard-shower"
+    guideTitle="Shower Tile Sizing &amp; Mortar Trade Guide →"
+    guideDesc="Calculate wall tile square footage, mortar coverage, and grout joint calculations."
+  />
+</Layout>

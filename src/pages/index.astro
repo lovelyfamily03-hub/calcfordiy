@@ -1,631 +1,821 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import AboutCalculators from '../components/AboutCalculators.astro';
+import Layout from "../layouts/Layout.astro";
+import AboutCalculators from "../components/AboutCalculators.astro";
 
 const calculators = [
-    // 1. Tile & Flooring (10)
+  // 1. Tile & Flooring (10)
   {
     title: "Vinyl Plank Flooring Calculator",
-    description: "Calculate Luxury Vinyl Plank (LVP) boxes, square footage, transition moldings, and waste factor.",
+    description:
+      "Calculate Luxury Vinyl Plank (LVP) boxes, square footage, transition moldings, and waste factor.",
     href: "/calculators/vinyl-plank-flooring",
-    category: "Tile & Flooring"
+    category: "Tile & Flooring",
   },
   {
     title: "Epoxy Floor Coating Calculator",
-    description: "Calculate 100% solids epoxy basecoat gallons, vapor barrier primer, decorative color chips, and clear topcoat.",
+    description:
+      "Calculate 100% solids epoxy basecoat gallons, vapor barrier primer, decorative color chips, and clear topcoat.",
     href: "/calculators/epoxy-floor",
-    category: "Tile & Flooring"
+    category: "Tile & Flooring",
   },
   {
     title: "Shower Tile Calculator",
-    description: "Calculate exactly how much tile you need for shower walls and floor.",
+    description:
+      "Calculate exactly how much tile you need for shower walls and floor.",
     href: "/calculators/shower-tile",
-    category: "Tile & Flooring"
+    category: "Tile & Flooring",
   },
   {
     title: "Bathroom Wall Tile Calculator",
-    description: "Estimate tile needed for bathroom walls with waste factor included.",
+    description:
+      "Estimate tile needed for bathroom walls with waste factor included.",
     href: "/calculators/bathroom-wall-tile",
-    category: "Tile & Flooring"
+    category: "Tile & Flooring",
   },
   {
     title: "Grout Calculator",
-    description: "Find out how many bags of grout you need for any tile project.",
+    description:
+      "Find out how many bags of grout you need for any tile project.",
     href: "/calculators/grout",
-    category: "Tile & Flooring"
+    category: "Tile & Flooring",
   },
   {
     title: "Thinset Mortar Calculator",
-    description: "How many bags of thinset mortar you need, plus the right trowel size for your tile.",
+    description:
+      "How many bags of thinset mortar you need, plus the right trowel size for your tile.",
     href: "/calculators/thinset",
-    category: "Tile & Flooring"
+    category: "Tile & Flooring",
   },
   {
     title: "Hardwood Flooring Calculator",
-    description: "Estimate hardwood flooring by box coverage with waste factor.",
+    description:
+      "Estimate hardwood flooring by box coverage with waste factor.",
     href: "/calculators/hardwood-flooring",
-    category: "Tile & Flooring"
+    category: "Tile & Flooring",
   },
   {
     title: "Laminate Flooring Calculator",
     description: "Calculate boxes of laminate flooring needed including waste.",
     href: "/calculators/laminate-flooring",
-    category: "Tile & Flooring"
+    category: "Tile & Flooring",
   },
   {
     title: "Floor Underlayment Calculator",
-    description: "Calculate how many rolls of underlayment your floor project needs.",
+    description:
+      "Calculate how many rolls of underlayment your floor project needs.",
     href: "/calculators/underlayment",
-    category: "Tile & Flooring"
+    category: "Tile & Flooring",
   },
   {
     title: "Carpet & Padding Calculator",
     description: "Estimate carpet and padding in square yards for any room.",
     href: "/calculators/carpet",
-    category: "Tile & Flooring"
+    category: "Tile & Flooring",
+  },
+  {
+    title: "Self-Leveling Underlayment & Deck Mud Calculator",
+    description:
+      "Calculate 50 lb bags of self-leveling compound, acrylic primer, and 4:1 sand-cement shower pan deck mud.",
+    href: "/calculators/self-leveling-underlayment",
+    category: "Tile & Flooring",
+  },
+  {
+    title: "DRIcore® Subfloor & Tile Leveling Clip Calculator",
+    description:
+      'Calculate 2x2 DRIcore panels, leveling shims, perimeter 1/4" expansion gaps, and tile leveling clips.',
+    href: "/calculators/dricore-subfloor",
+    category: "Tile & Flooring",
+  },
+  {
+    title: "Epoxy Moisture Vapor Barrier Calculator",
+    description:
+      "Calculate 2-part epoxy MVB gallons, notch squeegees, and Calcium Chloride moisture test kits.",
+    href: "/calculators/moisture-vapor-barrier",
+    category: "Tile & Flooring",
   },
 
-  // 2. Carpentry, Framing & Roofing (10)
+  // 2. Carpentry, Framing & Roofing (12)
   {
     title: "Wall Framing Calculator",
-    description: "Calculate exactly how many studs and linear feet of plates you need for a partition wall.",
+    description:
+      "Calculate exactly how many studs and linear feet of plates you need for a partition wall.",
     href: "/calculators/wall-framing",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Drywall Sheet Calculator",
-    description: "How many sheets of drywall for walls and ceiling — joint compound and tape estimate included.",
+    description:
+      "How many sheets of drywall for walls and ceiling — joint compound and tape estimate included.",
     href: "/calculators/drywall",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Drywall Mud & Joint Compound Calculator",
-    description: "Calculate 4.5-gallon buckets of drywall joint compound (all-purpose and topping), rolls of joint tape, and corner beads.",
+    description:
+      "Calculate 4.5-gallon buckets of drywall joint compound (all-purpose and topping), rolls of joint tape, and corner beads.",
     href: "/calculators/drywall-mud",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Subfloor Plywood/OSB Calculator",
-    description: "How many sheets of plywood or OSB subfloor you need, with thickness and waste factor included.",
+    description:
+      "How many sheets of plywood or OSB subfloor you need, with thickness and waste factor included.",
     href: "/calculators/subfloor",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Roof Pitch & Rafter Calculator",
-    description: "Calculate rafter length, roof pitch angle, plumb cut, overhang, and bird's mouth notch cuts with live SVG diagram.",
+    description:
+      "Calculate rafter length, roof pitch angle, plumb cut, overhang, and bird's mouth notch cuts with live SVG diagram.",
     href: "/calculators/roof-pitch-rafter",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Asphalt Shingle Roofing Calculator",
-    description: "Calculate shingle bundles, roofing squares, underlayment rolls, starter strips, and nails.",
+    description:
+      "Calculate shingle bundles, roofing squares, underlayment rolls, starter strips, and nails.",
     href: "/calculators/asphalt-shingles",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Deck Boards Calculator",
-    description: "How many deck boards you need — straight or diagonal pattern, picture frame border included.",
+    description:
+      "How many deck boards you need — straight or diagonal pattern, picture frame border included.",
     href: "/calculators/deck-boards",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Deck Joist Span Calculator",
-    description: "Calculate max deck joist spans per IRC code, beam sizing, joist count, and rim joist lumber.",
+    description:
+      "Calculate max deck joist spans per IRC code, beam sizing, joist count, and rim joist lumber.",
     href: "/calculators/deck-joist-span",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Stair Stringer Cut Calculator",
-    description: "Calculate riser height, tread run, bottom step deduction, 2x12 board length, and view SVG cut diagram.",
+    description:
+      "Calculate riser height, tread run, bottom step deduction, 2x12 board length, and view SVG cut diagram.",
     href: "/calculators/stair-stringer",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Construction Tape Measure Fraction Calculator",
-    description: "Add or subtract feet, inches, and 16ths fractions for quick framing and woodworking takeoffs.",
+    description:
+      "Add or subtract feet, inches, and 16ths fractions for quick framing and woodworking takeoffs.",
     href: "/calculators/construction-fraction",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
+  },
+  {
+    title: "Countersink Depth & Screw Pilot Hole Calculator",
+    description:
+      "Calculate drill press plunge depth, stop collar settings, pilot hole diameters, and plug counterbores.",
+    href: "/calculators/countersink-depth",
+    category: "Carpentry, Framing & Roofing",
+  },
+  {
+    title: "Tyvek® & House Wrap Calculator",
+    description:
+      "Calculate DuPont Tyvek HomeWrap rolls, seam tape, cap fasteners, and window flashing tape.",
+    href: "/calculators/tyvek-house-wrap",
+    category: "Carpentry, Framing & Roofing",
+  },
+  {
+    title: "Trestlewood & Reclaimed Siding Calculator",
+    description:
+      "Convert wall square feet to linear feet and board feet (BDFT) for reclaimed timber siding.",
+    href: "/calculators/trestlewood-siding-lumber",
+    category: "Carpentry, Framing & Roofing",
+  },
+  {
+    title: "Cascadia Rainscreen Clip Calculator",
+    description:
+      "Calculate fiberglass Cascadia Clips, thermal shims, stud fasteners, and cladding shear capacity.",
+    href: "/calculators/cascadia-clip",
+    category: "Carpentry, Framing & Roofing",
+  },
+  {
+    title: "Ice & Water Shield Roofing Calculator",
+    description:
+      'Calculate 2-Square rolls of self-adhered ice dam membrane, eave 24" warm wall rows, and valley rolls.',
+    href: "/calculators/ice-water-shield",
+    category: "Carpentry, Framing & Roofing",
   },
 
   // 3. Millwork, Trim & Walls (8)
   {
     title: "Crown Molding Miter & Bevel Calculator",
-    description: "Calculate exact compound miter saw settings (miter & bevel) for crown molding laid flat, plus board footage and cut directions.",
+    description:
+      "Calculate exact compound miter saw settings (miter & bevel) for crown molding laid flat, plus board footage and cut directions.",
     href: "/calculators/crown-molding",
-    category: "Millwork, Trim & Walls"
+    category: "Millwork, Trim & Walls",
   },
   {
     title: "Compound Miter & Bevel Angle Calculator",
-    description: "Calculate exact miter table angle and blade bevel tilt angle for crown molding laid flat on saw table.",
+    description:
+      "Calculate exact miter table angle and blade bevel tilt angle for crown molding laid flat on saw table.",
     href: "/calculators/compound-miter",
-    category: "Millwork, Trim & Walls"
+    category: "Millwork, Trim & Walls",
   },
   {
     title: "Trim & Baseboard Molding Calculator",
-    description: "Calculate exactly how much baseboard, crown molding, or trim you need with miter waste.",
+    description:
+      "Calculate exactly how much baseboard, crown molding, or trim you need with miter waste.",
     href: "/calculators/trim-molding",
-    category: "Millwork, Trim & Walls"
+    category: "Millwork, Trim & Walls",
   },
   {
     title: "Board and Batten Spacing Calculator",
-    description: "Calculate exact spacing gaps down to 1/16ths of an inch between vertical battens for accent walls.",
+    description:
+      "Calculate exact spacing gaps down to 1/16ths of an inch between vertical battens for accent walls.",
     href: "/calculators/board-and-batten",
-    category: "Millwork, Trim & Walls"
+    category: "Millwork, Trim & Walls",
   },
   {
     title: "Wainscoting & Picture Frame Molding Calculator",
-    description: "Calculate exact box widths, heights, panel gaps, and molding linear feet for wainscoting.",
+    description:
+      "Calculate exact box widths, heights, panel gaps, and molding linear feet for wainscoting.",
     href: "/calculators/wainscoting-layout",
-    category: "Millwork, Trim & Walls"
+    category: "Millwork, Trim & Walls",
   },
   {
     title: "Coffered Ceiling Beam Layout Calculator",
-    description: "Calculate exact recessed box dimensions, beam linear feet, and crown molding for coffered ceilings.",
+    description:
+      "Calculate exact recessed box dimensions, beam linear feet, and crown molding for coffered ceilings.",
     href: "/calculators/coffered-ceiling",
-    category: "Millwork, Trim & Walls"
+    category: "Millwork, Trim & Walls",
   },
   {
     title: "Shiplap Board Calculator",
-    description: "Calculate exactly how many shiplap or tongue and groove boards you need, including true exposed face and gap waste.",
+    description:
+      "Calculate exactly how many shiplap or tongue and groove boards you need, including true exposed face and gap waste.",
     href: "/calculators/shiplap",
-    category: "Millwork, Trim & Walls"
+    category: "Millwork, Trim & Walls",
   },
   {
     title: "Wallpaper Roll Calculator",
-    description: "Calculate exact wallpaper rolls needed, accounting for straight and half-drop pattern repeats.",
+    description:
+      "Calculate exact wallpaper rolls needed, accounting for straight and half-drop pattern repeats.",
     href: "/calculators/wallpaper",
-    category: "Millwork, Trim & Walls"
+    category: "Millwork, Trim & Walls",
   },
 
-    // 4. Concrete & Masonry (10)
+  // 4. Concrete & Masonry (10)
   {
     title: "Concrete Block (CMU) Calculator",
-    description: "Calculate 8x8x16 cinder blocks, mortar bags, core grout cubic yards, and rebar for retaining walls and foundations.",
+    description:
+      "Calculate 8x8x16 cinder blocks, mortar bags, core grout cubic yards, and rebar for retaining walls and foundations.",
     href: "/calculators/concrete-block-cmu",
-    category: "Concrete & Masonry"
+    category: "Concrete & Masonry",
   },
   {
     title: "Mortar Mix & Bag Calculator",
-    description: "Calculate pre-blended 80 lb mortar bags (Type S, N, M), Portland cement, lime, and masonry sand proportions.",
+    description:
+      "Calculate pre-blended 80 lb mortar bags (Type S, N, M), Portland cement, lime, and masonry sand proportions.",
     href: "/calculators/mortar-mix",
-    category: "Concrete & Masonry"
+    category: "Concrete & Masonry",
   },
   {
     title: "Brick & Mortar Wall Calculator",
-    description: "Calculate total brick count, strapped cubes/pallets, mortar bags, and corrugated metal wall ties for brick walls.",
+    description:
+      "Calculate total brick count, strapped cubes/pallets, mortar bags, and corrugated metal wall ties for brick walls.",
     href: "/calculators/brick-calculator",
-    category: "Concrete & Masonry"
+    category: "Concrete & Masonry",
   },
   {
     title: "Concrete Footing & Trench Calculator",
-    description: "Calculate concrete cubic yards, 80 lb bags, steel rebar, and excavation spoil for continuous strip footings and isolated pads.",
+    description:
+      "Calculate concrete cubic yards, 80 lb bags, steel rebar, and excavation spoil for continuous strip footings and isolated pads.",
     href: "/calculators/concrete-footing",
-    category: "Concrete & Masonry"
+    category: "Concrete & Masonry",
   },
   {
     title: "Concrete Slab Calculator",
-    description: "Cubic yards and bag count for concrete slabs — patio, driveway, shed floor, or walkway.",
+    description:
+      "Cubic yards and bag count for concrete slabs — patio, driveway, shed floor, or walkway.",
     href: "/calculators/concrete-slab",
-    category: "Concrete & Masonry"
+    category: "Concrete & Masonry",
   },
   {
     title: "Quikrete Bags Calculator",
-    description: "Exact Quikrete bag count per fence post by hole diameter and depth — 50, 60, and 80 lb bags.",
+    description:
+      "Exact Quikrete bag count per fence post by hole diameter and depth — 50, 60, and 80 lb bags.",
     href: "/calculators/quikrete-bags",
-    category: "Concrete & Masonry"
+    category: "Concrete & Masonry",
   },
   {
     title: "Concrete for Fence Posts Calculator",
-    description: "How many bags of concrete for fence posts by hole diameter, depth, and post count.",
+    description:
+      "How many bags of concrete for fence posts by hole diameter, depth, and post count.",
     href: "/calculators/concrete-fence-post",
-    category: "Concrete & Masonry"
+    category: "Concrete & Masonry",
   },
   {
     title: "Sonotube Concrete Pier Calculator",
-    description: "Calculate concrete volume in cubic yards, 60 lb / 80 lb bag counts, Sonotube form lengths, and rebar for deck piers.",
+    description:
+      "Calculate concrete volume in cubic yards, 60 lb / 80 lb bag counts, Sonotube form lengths, and rebar for deck piers.",
     href: "/calculators/sonotube-concrete",
-    category: "Concrete & Masonry"
+    category: "Concrete & Masonry",
   },
   {
     title: "Rebar Calculator",
-    description: "How many rebar bars and linear feet for a concrete slab — spacing, bar size, and weight included.",
+    description:
+      "How many rebar bars and linear feet for a concrete slab — spacing, bar size, and weight included.",
     href: "/calculators/rebar",
-    category: "Concrete & Masonry"
+    category: "Concrete & Masonry",
   },
   {
     title: "Retaining Wall Block Calculator",
-    description: "Calculate retaining wall blocks, capstones, base gravel, backfill, adhesive, and geogrid layers.",
+    description:
+      "Calculate retaining wall blocks, capstones, base gravel, backfill, adhesive, and geogrid layers.",
     href: "/calculators/retaining-wall",
-    category: "Concrete & Masonry"
+    category: "Concrete & Masonry",
   },
 
-    // 5. Landscaping & Hardscaping (15)
+  // 5. Landscaping & Hardscaping (15)
   {
     title: "Retaining Wall Backfill & Drainage Calculator",
-    description: "Calculate #57 clean drainage gravel tons, soil backfill cubic yards, non-woven geotextile fabric, and geogrid reinforcement.",
+    description:
+      "Calculate #57 clean drainage gravel tons, soil backfill cubic yards, non-woven geotextile fabric, and geogrid reinforcement.",
     href: "/calculators/retaining-wall-backfill",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Lawn Overseeding & Grass Seed Calculator",
-    description: "Calculate grass seed pounds, starter fertilizer bags, peat moss bales, and core aeration coverage.",
+    description:
+      "Calculate grass seed pounds, starter fertilizer bags, peat moss bales, and core aeration coverage.",
     href: "/calculators/lawn-overseeding",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Gravel Driveway & Crushed Stone Calculator",
-    description: "Calculate crushed gravel tons, cubic yards, dump truck deliveries, geotextile underlayment, and multi-layer base depths.",
+    description:
+      "Calculate crushed gravel tons, cubic yards, dump truck deliveries, geotextile underlayment, and multi-layer base depths.",
     href: "/calculators/gravel-driveway",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Paver Walkway & Stepping Stone Calculator",
-    description: "Calculate pavers, crushed gravel base tons, bedding sand, edge restraints, and stepping stone spacing for walkways.",
+    description:
+      "Calculate pavers, crushed gravel base tons, bedding sand, edge restraints, and stepping stone spacing for walkways.",
     href: "/calculators/paver-walkway",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Paver Base Gravel & Sand Calculator",
-    description: "Calculate crushed stone base tons, bedding sand, polymeric sand bags, and excavation depth for patios.",
+    description:
+      "Calculate crushed stone base tons, bedding sand, polymeric sand bags, and excavation depth for patios.",
     href: "/calculators/paver-base-sand",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Polymeric Sand & Paver Joint Calculator",
-    description: "Calculate 50 lb bags of polymeric sand for paver patios, driveways, and flagstone based on paver dimensions and joint width.",
+    description:
+      "Calculate 50 lb bags of polymeric sand for paver patios, driveways, and flagstone based on paver dimensions and joint width.",
     href: "/calculators/polymeric-sand",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "French Drain Calculator",
-    description: "Calculate gravel tons, perforated pipe length, filter fabric, and dirt excavation volume.",
+    description:
+      "Calculate gravel tons, perforated pipe length, filter fabric, and dirt excavation volume.",
     href: "/calculators/french-drain",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Fence Picket & Board Calculator",
-    description: "Calculate vertical pickets, 4x4 posts, 2x4 rails, gate posts, and Quikrete concrete bags.",
+    description:
+      "Calculate vertical pickets, 4x4 posts, 2x4 rails, gate posts, and Quikrete concrete bags.",
     href: "/calculators/fence-pickets",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Pergola Lumber & Hardware Estimator",
-    description: "Calculate posts (4x4/6x6), double support beams, rafter joists, shade purlins, concrete footings, and structural hardware.",
+    description:
+      "Calculate posts (4x4/6x6), double support beams, rafter joists, shade purlins, concrete footings, and structural hardware.",
     href: "/calculators/pergola-lumber",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Mulch Calculator",
-    description: "Calculate cubic yards and bags of mulch needed for garden beds by depth and area.",
+    description:
+      "Calculate cubic yards and bags of mulch needed for garden beds by depth and area.",
     href: "/calculators/mulch",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Raised Bed Soil Calculator",
-    description: "How much soil to fill a raised garden bed, with Mel's Mix breakdown included.",
+    description:
+      "How much soil to fill a raised garden bed, with Mel's Mix breakdown included.",
     href: "/calculators/raised-bed-soil",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Topsoil Calculator",
-    description: "Cubic yards and bag count for lawn, yard, or garden topsoil coverage.",
+    description:
+      "Cubic yards and bag count for lawn, yard, or garden topsoil coverage.",
     href: "/calculators/topsoil",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Sod Pallet & Lawn Roll Calculator",
-    description: "Calculate sod pallets, individual slabs, trimming waste, and topsoil sub-base layer.",
+    description:
+      "Calculate sod pallets, individual slabs, trimming waste, and topsoil sub-base layer.",
     href: "/calculators/sod-pallet",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Fertilizer Calculator",
-    description: "How much fertilizer to apply by lawn size — works with any brand using NPK values.",
+    description:
+      "How much fertilizer to apply by lawn size — works with any brand using NPK values.",
     href: "/calculators/fertilizer",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Seed Spacing Calculator",
-    description: "How many plants fit in a garden bed and how many seeds to buy — select a vegetable to auto-fill spacing.",
+    description:
+      "How many plants fit in a garden bed and how many seeds to buy — select a vegetable to auto-fill spacing.",
     href: "/calculators/seed-spacing",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
 
-    // 6. Paint & Finishing (6)
+  // 6. Paint & Finishing (6)
   {
     title: "Deck Stain & Sealer Calculator",
-    description: "Calculate stain gallons, wood brightener, and 2.5x railing multipliers for deck boards, spindles, and stairs.",
+    description:
+      "Calculate stain gallons, wood brightener, and 2.5x railing multipliers for deck boards, spindles, and stairs.",
     href: "/calculators/deck-stain",
-    category: "Paint & Finishing"
+    category: "Paint & Finishing",
   },
   {
     title: "Drywall Primer & Sealer Calculator",
-    description: "Calculate PVA drywall primer gallons, high-build surfacer, and ceiling sealer for new sheetrock and mud joints.",
+    description:
+      "Calculate PVA drywall primer gallons, high-build surfacer, and ceiling sealer for new sheetrock and mud joints.",
     href: "/calculators/drywall-primer-sealer",
-    category: "Paint & Finishing"
+    category: "Paint & Finishing",
   },
   {
     title: "Wood Fence Stain & Sealer Calculator",
-    description: "Calculate stain gallons, 5-gallon pails, 2-sided picket multipliers, and airless sprayer overspray for wood fences.",
+    description:
+      "Calculate stain gallons, 5-gallon pails, 2-sided picket multipliers, and airless sprayer overspray for wood fences.",
     href: "/calculators/fence-stain",
-    category: "Paint & Finishing"
+    category: "Paint & Finishing",
   },
   {
     title: "Paint Calculator — Room",
-    description: "How many gallons of paint for a room including walls, ceiling, doors and windows.",
+    description:
+      "How many gallons of paint for a room including walls, ceiling, doors and windows.",
     href: "/calculators/paint-room",
-    category: "Paint & Finishing"
+    category: "Paint & Finishing",
   },
   {
     title: "Paint Calculator — Textured Walls",
-    description: "Textured walls need 10-40% more paint than smooth. Get an accurate estimate by texture type.",
+    description:
+      "Textured walls need 10-40% more paint than smooth. Get an accurate estimate by texture type.",
     href: "/calculators/paint-textured-walls",
-    category: "Paint & Finishing"
+    category: "Paint & Finishing",
   },
   {
     title: "Exterior Paint Calculator",
-    description: "How many gallons to paint a house exterior — body, trim, doors, shutters, and gable ends.",
+    description:
+      "How many gallons to paint a house exterior — body, trim, doors, shutters, and gable ends.",
     href: "/calculators/paint-exterior",
-    category: "Paint & Finishing"
+    category: "Paint & Finishing",
   },
 
   // 7. Electrical, Solar & Lighting (16)
   {
     title: "EV Charger Circuit & Wire Gauge Calculator",
-    description: "Calculate copper wire AWG gauge, breaker size (NEC 80% rule), and voltage drop for EV chargers.",
+    description:
+      "Calculate copper wire AWG gauge, breaker size (NEC 80% rule), and voltage drop for EV chargers.",
     href: "/calculators/ev-charger-wiring",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Electrical Subpanel Sizing & Feeder Calculator",
-    description: "Calculate subpanel ampacity (60A to 125A), feeder cable gauge (copper/aluminum), breaker slots, and NEC demand loads.",
+    description:
+      "Calculate subpanel ampacity (60A to 125A), feeder cable gauge (copper/aluminum), breaker slots, and NEC demand loads.",
     href: "/calculators/subpanel-sizing",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "NEC Conduit Fill & Wire Sizing Calculator",
-    description: "Calculate conduit fill percentage for EMT, PVC, and Flex conduit per NEC Chapter 9 Table 1 40% fill limits.",
+    description:
+      "Calculate conduit fill percentage for EMT, PVC, and Flex conduit per NEC Chapter 9 Table 1 40% fill limits.",
     href: "/calculators/conduit-fill",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Solar Panel & Battery Storage Calculator",
-    description: "Calculate solar panel count (400W panels), system kW size, LiFePO4 battery capacity (kWh/Ah), and hybrid inverter wattage.",
+    description:
+      "Calculate solar panel count (400W panels), system kW size, LiFePO4 battery capacity (kWh/Ah), and hybrid inverter wattage.",
     href: "/calculators/solar-battery-sizing",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Recessed Lighting Calculator — Kitchen",
-    description: "Ambient and task lighting for a kitchen calculated separately — counters and island included.",
+    description:
+      "Ambient and task lighting for a kitchen calculated separately — counters and island included.",
     href: "/calculators/recessed-lights-kitchen",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Recessed Lighting Calculator — Living Room",
-    description: "How many recessed lights for a living room — fixture count, spacing, and layout by room size.",
+    description:
+      "How many recessed lights for a living room — fixture count, spacing, and layout by room size.",
     href: "/calculators/recessed-lights-living-room",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Recessed Lighting Calculator — Bedroom",
     description: "Calculate the perfect number of can lights for a bedroom.",
     href: "/calculators/recessed-lights-bedroom",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Recessed Lighting Calculator — Hallway",
-    description: "How many lights for a hallway and exact spacing between them — positions calculated from wall to wall.",
+    description:
+      "How many lights for a hallway and exact spacing between them — positions calculated from wall to wall.",
     href: "/calculators/recessed-lights-hallway",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Recessed Lighting Calculator — Garage",
-    description: "How many recessed lights do you need for your garage workshop?",
+    description:
+      "How many recessed lights do you need for your garage workshop?",
     href: "/calculators/recessed-lights-garage",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Outdoor Flood Light Calculator",
-    description: "How many outdoor flood lights for a driveway, backyard, or security area — based on IES standards.",
+    description:
+      "How many outdoor flood lights for a driveway, backyard, or security area — based on IES standards.",
     href: "/calculators/outdoor-flood-lights",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "String Lights Calculator — Deck & Patio",
-    description: "How many strands of string lights for a deck or patio — crisscross, straight runs, or perimeter with outlet guide.",
+    description:
+      "How many strands of string lights for a deck or patio — crisscross, straight runs, or perimeter with outlet guide.",
     href: "/calculators/string-lights",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Lumens Calculator",
     description: "Find out how many lumens you need for any room size.",
     href: "/calculators/lumens",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "LED Bulb Savings Calculator",
-    description: "Calculate exactly how many months it will take for new LED bulbs to pay for themselves.",
+    description:
+      "Calculate exactly how many months it will take for new LED bulbs to pay for themselves.",
     href: "/calculators/led-savings",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Christmas Tree Lights Calculator",
-    description: "Calculate how many light strands and feet of lights you need for any Christmas tree height.",
+    description:
+      "Calculate how many light strands and feet of lights you need for any Christmas tree height.",
     href: "/calculators/christmas-tree-lights",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Exterior House Christmas Lights Calculator",
-    description: "Calculate roofline light strands, gutter clip counts, and electrical circuit amperage for holiday lights.",
+    description:
+      "Calculate roofline light strands, gutter clip counts, and electrical circuit amperage for holiday lights.",
     href: "/calculators/exterior-christmas-lights",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
   },
   {
     title: "Christmas & Halloween Power Load Calculator",
-    description: "Calculate total wattage and circuit load percentage for animatronics, fog machines, and light displays.",
+    description:
+      "Calculate total wattage and circuit load percentage for animatronics, fog machines, and light displays.",
     href: "/calculators/holiday-power-load",
-    category: "Electrical, Solar & Lighting"
+    category: "Electrical, Solar & Lighting",
+  },
+  {
+    title: "Extension Cord Voltage Drop Calculator",
+    description:
+      "Calculate voltage drop, operating voltage, continuous power loss, and min recommended AWG gauge for heavy tools over long extension cord distances.",
+    href: "/calculators/extension-cord-drop",
+    category: "Electrical, Solar & Lighting",
   },
 
   // 8. Plumbing, HVAC & Energy (14)
   {
     title: "Sump Pump Sizing & Flow Rate Calculator",
-    description: "Calculate required GPH flow rate, Total Dynamic Head (TDH), pump horsepower (1/3 HP, 1/2 HP, 3/4 HP), and battery backup runtime.",
+    description:
+      "Calculate required GPH flow rate, Total Dynamic Head (TDH), pump horsepower (1/3 HP, 1/2 HP, 3/4 HP), and battery backup runtime.",
     href: "/calculators/sump-pump-sizing",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Plumbing Pipe Slope & Sewer Fall Calculator",
-    description: "Calculate total elevation fall in inches, trench pitch percentage, and gravity drainage depth for drain and sewer pipes per IPC code.",
+    description:
+      "Calculate total elevation fall in inches, trench pitch percentage, and gravity drainage depth for drain and sewer pipes per IPC code.",
     href: "/calculators/pipe-slope",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Tankless Water Heater Sizing Calculator",
-    description: "Calculate peak GPM flow rate, temperature rise, gas BTU inputs, and electric breaker counts.",
+    description:
+      "Calculate peak GPM flow rate, temperature rise, gas BTU inputs, and electric breaker counts.",
     href: "/calculators/tankless-water-heater",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Water Heater Operating Cost Calculator",
-    description: "Monthly and annual water heater operating cost — compare gas vs electric and calculate upgrade payback.",
+    description:
+      "Monthly and annual water heater operating cost — compare gas vs electric and calculate upgrade payback.",
     href: "/calculators/water-heater-cost",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Ductless Mini-Split Sizing Calculator",
-    description: "Calculate BTU cooling/heating capacity, unit tonnage, and electrical voltage for ductless mini-splits.",
+    description:
+      "Calculate BTU cooling/heating capacity, unit tonnage, and electrical voltage for ductless mini-splits.",
     href: "/calculators/mini-split-sizing",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "AC Operating Cost Calculator",
-    description: "How much does your air conditioner cost to run per month and per year — with SEER upgrade comparison.",
+    description:
+      "How much does your air conditioner cost to run per month and per year — with SEER upgrade comparison.",
     href: "/calculators/ac-cost",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Furnace & Heating Cost Calculator",
-    description: "Calculate exactly how much it costs to run your gas furnace, electric heater, or heat pump.",
+    description:
+      "Calculate exactly how much it costs to run your gas furnace, electric heater, or heat pump.",
     href: "/calculators/furnace-cost",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Radiant Floor Heating Loop Calculator",
-    description: "Calculate linear feet of 1/2 inch PEX tubing, 300 ft loop counts, manifold port sizes, and BTU heat output.",
+    description:
+      "Calculate linear feet of 1/2 inch PEX tubing, 300 ft loop counts, manifold port sizes, and BTU heat output.",
     href: "/calculators/radiant-floor-heating",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Blown-In Attic Insulation Calculator",
-    description: "Calculate bag count for blown cellulose and AttiCat fiberglass to hit R-30, R-38, R-49, or R-60 energy code depth.",
+    description:
+      "Calculate bag count for blown cellulose and AttiCat fiberglass to hit R-30, R-38, R-49, or R-60 energy code depth.",
     href: "/calculators/attic-insulation",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Spray Foam Insulation Calculator",
-    description: "Calculate board feet, closed-cell vs. open-cell 200/600 canister kits, final R-value, and moisture vapor barrier depth.",
+    description:
+      "Calculate board feet, closed-cell vs. open-cell 200/600 canister kits, final R-value, and moisture vapor barrier depth.",
     href: "/calculators/spray-foam-insulation",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Whole-House Fan Sizing & Attic Vent Calculator",
-    description: "Calculate required fan CFM, air changes per hour (ACH), and attic Net Free Vent Area (NFVA sq ft) per HVI standards.",
+    description:
+      "Calculate required fan CFM, air changes per hour (ACH), and attic Net Free Vent Area (NFVA sq ft) per HVI standards.",
     href: "/calculators/whole-house-fan",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Generator Size Calculator",
-    description: "Calculate the exact size generator you need based on running watts and starting surge requirements.",
+    description:
+      "Calculate the exact size generator you need based on running watts and starting surge requirements.",
     href: "/calculators/generator-size",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Septic Tank & Leach Field Calculator",
-    description: "Calculate required septic tank gallon capacity and leach field drain pipe linear footage per EPA code.",
+    description:
+      "Calculate required septic tank gallon capacity and leach field drain pipe linear footage per EPA code.",
     href: "/calculators/septic-tank-sizing",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Firewood Cord & Wood Stove Heat Calculator",
-    description: "Calculate full cords (128 cu ft), face cords, ricks, total weight, and Million BTU heat output across hardwoods and softwoods.",
+    description:
+      "Calculate full cords (128 cu ft), face cords, ricks, total weight, and Million BTU heat output across hardwoods and softwoods.",
     href: "/calculators/firewood-cord",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Cascadia Clip® & Continuous Insulation Calculator",
-    description: "Calculate Cascadia Clip fiberglass thermal spacers, sub-girt hat channels, structural fasteners, and effective R-value.",
+    description:
+      "Calculate Cascadia Clip fiberglass thermal spacers, sub-girt hat channels, structural fasteners, and effective R-value.",
     href: "/calculators/cascadia-clip-insulation",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Board and Batten Exterior Siding Calculator",
-    description: "Calculate vertical siding boards, batten strips, Z-flashing, ring-shank nails, and exterior caulking.",
+    description:
+      "Calculate vertical siding boards, batten strips, Z-flashing, ring-shank nails, and exterior caulking.",
     href: "/calculators/board-and-batten-siding",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Garage Door & Window Header Span Calculator",
-    description: "Calculate structural lumber header sizes (2x10, 2x12, LVL), jack studs, and king studs per IRC Table R602.7.",
+    description:
+      "Calculate structural lumber header sizes (2x10, 2x12, LVL), jack studs, and king studs per IRC Table R602.7.",
     href: "/calculators/garage-door-header",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Deck Stair Railing & Baluster Spacing Calculator",
-    description: "Calculate sloped handrail length, rake pitch angle, baluster count, and IRC 4-inch sphere spacing.",
+    description:
+      "Calculate sloped handrail length, rake pitch angle, baluster count, and IRC 4-inch sphere spacing.",
     href: "/calculators/deck-stair-railing",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "French Cleat Wall & Cabinet Hanger Calculator",
-    description: "Calculate 45° bevel rip cuts, 3/4\" plywood sheet yield, stud anchor screws, and safe hanging load capacity.",
+    description:
+      'Calculate 45° bevel rip cuts, 3/4" plywood sheet yield, stud anchor screws, and safe hanging load capacity.',
     href: "/calculators/french-cleat",
-    category: "Millwork, Trim & Walls"
+    category: "Millwork, Trim & Walls",
   },
   {
     title: "Dry Well & Stormwater Runoff Calculator",
-    description: "Calculate roof downspout runoff volume, Flo-Well plastic dry well tanks, drainage stone, and geotextile fabric.",
+    description:
+      "Calculate roof downspout runoff volume, Flo-Well plastic dry well tanks, drainage stone, and geotextile fabric.",
     href: "/calculators/drywell-stormwater",
-    category: "Landscaping & Hardscaping"
+    category: "Landscaping & Hardscaping",
   },
   {
     title: "Submersible Well Pump & Wire Sizing Calculator",
-    description: "Calculate deep well pump horsepower (HP), Total Dynamic Head (TDH), GPM, and submersible drop wire gauge (AWG).",
+    description:
+      "Calculate deep well pump horsepower (HP), Total Dynamic Head (TDH), GPM, and submersible drop wire gauge (AWG).",
     href: "/calculators/submersible-well-pump",
-    category: "Plumbing, HVAC & Energy"
+    category: "Plumbing, HVAC & Energy",
   },
   {
     title: "Roof Sheathing Plywood/OSB Calculator",
-    description: "Calculate 4x8 plywood or OSB sheets for roof decking with H-clips, nails, and rake cut waste factor.",
+    description:
+      "Calculate 4x8 plywood or OSB sheets for roof decking with H-clips, nails, and rake cut waste factor.",
     href: "/calculators/roof-sheathing",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Soffit and Fascia Calculator",
-    description: "Calculate vented aluminum or vinyl soffit panels, J-channel, and fascia wrap with NFVA attic ventilation.",
+    description:
+      "Calculate vented aluminum or vinyl soffit panels, J-channel, and fascia wrap with NFVA attic ventilation.",
     href: "/calculators/soffit-fascia",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Deck Screws, Fasteners & Joist Hanger Calculator",
-    description: "Calculate structural deck screws, joist hanger nails, carriage bolts, and hidden clip fasteners.",
+    description:
+      "Calculate structural deck screws, joist hanger nails, carriage bolts, and hidden clip fasteners.",
     href: "/calculators/deck-screws-hardware",
-    category: "Carpentry, Framing & Roofing"
+    category: "Carpentry, Framing & Roofing",
   },
   {
     title: "Baseboard and Shoe Molding Calculator",
-    description: "Calculate baseboard linear feet, quarter round / shoe molding, outside corner miters, and finish nails.",
+    description:
+      "Calculate baseboard linear feet, quarter round / shoe molding, outside corner miters, and finish nails.",
     href: "/calculators/baseboard-shoe-molding",
-    category: "Millwork, Trim & Walls"
-  }
+    category: "Millwork, Trim & Walls",
+  },
 ];
-
 
 const journalDispatches = [
   {
-    title: "The $4,800 Sump Pump Mistake: What Three Days of Relentless Rain Taught Me About Hydrostatic Pressure",
+    title:
+      "The $6,200 Ice Dam Catastrophe: Why Standard Felt Paper Failed on a 3:12 Pitch Roof",
+    slug: "the-6200-dollar-ice-dam-roofing-failure-eave-warm-wall",
+    excerpt:
+      "Forensic inspection of a low-slope Michigan roof deck where capillary action pushed thaw water under architectural shingles. Why #15 felt paper failed, IRC R905.1.2 ice dam protection rules, and how self-adhered polymer membrane saved the master bedroom.",
+    author: "David Miller, PE",
+    authorRole: "Senior Structural Contributor",
+    publishDate: "September 22, 2026",
+    readTime: "11 min read",
+    category: "Field Investigation",
+    companionTool: "Ice & Water Shield Roofing Calculator",
+    companionHref: "/calculators/ice-water-shield",
+    featured: true,
+  },
+  {
+    title:
+      "The Thermal Bridge Trapped Inside Our Walls: How Continuous Rainscreen Cladding Slashed Heating Loads by 38%",
+    slug: "thermal-bridge-rainscreen-cladding-cascadia-clip-forensics",
+    excerpt:
+      "An infrared thermography audit of a 2x6 framed residential wall revealing why metal Z-furring fasteners drop R-21 insulation down to R-11.4. How fiberglass Cascadia Clips and continuous rainscreen cladding eliminated envelope heat loss.",
+    author: "Elena Rostova",
+    authorRole: "Historic Renovation Specialist",
+    publishDate: "September 22, 2026",
+    readTime: "10 min read",
+    category: "Building Science",
+    companionTool: "Cascadia Clip & Insulation Calculator",
+    companionHref: "/calculators/cascadia-clip",
+    featured: false,
+  },
+  {
+    title:
+      "The $4,800 Sump Pump Mistake: What Three Days of Relentless Rain Taught Me About Hydrostatic Pressure",
     slug: "the-4800-dollar-sump-pump-mistake-hydrostatic-pressure",
-    excerpt: "At 2:14 AM on a Tuesday, I woke up to the smell of damp concrete and the low, hollow humming of a pump that was spinning without moving an ounce of water. Here is what happens when builder-grade plumbing meets a rising water table.",
+    excerpt:
+      "At 2:14 AM on a Tuesday, I woke up to the smell of damp concrete and the low, hollow humming of a pump that was spinning without moving an ounce of water. Here is what happens when builder-grade plumbing meets a rising water table.",
     author: "Marcus Vance",
     authorRole: "Master Plumber & Field Contributor",
     publishDate: "September 15, 2026",
@@ -633,12 +823,14 @@ const journalDispatches = [
     category: "Field Investigation",
     companionTool: "Sump Pump Sizing Calculator",
     companionHref: "/calculators/sump-pump-sizing",
-    featured: true
+    featured: false,
   },
   {
-    title: "Tearing Down an 80-Year-Old Plaster Ceiling: The Dust, the Framing Realities, and Why We Went with Level 5 Drywall",
+    title:
+      "Tearing Down an 80-Year-Old Plaster Ceiling: The Dust, the Framing Realities, and Why We Went with Level 5 Drywall",
     slug: "tearing-down-80-year-old-plaster-ceiling-level-5-drywall",
-    excerpt: "Before you touch a crowbar to 1940s horsehair plaster, you imagine a clean demo. In reality, it is 3,200 pounds of caustic lime debris, bowed joists that haven't been straight since Truman was in office, and the delicate art of skim-coating.",
+    excerpt:
+      "Before you touch a crowbar to 1940s horsehair plaster, you imagine a clean demo. In reality, it is 3,200 pounds of caustic lime debris, bowed joists that haven't been straight since Truman was in office, and the delicate art of skim-coating.",
     author: "Elena Rostova",
     authorRole: "Historic Renovation Specialist",
     publishDate: "September 8, 2026",
@@ -646,12 +838,14 @@ const journalDispatches = [
     category: "Renovation Diary",
     companionTool: "Drywall Mud Calculator",
     companionHref: "/calculators/drywall-mud",
-    featured: false
+    featured: false,
   },
   {
-    title: "When the Inspector Arrives: The Anatomy of a Deck Stair Stringer Rejection (and the Geometry That Saved It)",
+    title:
+      "When the Inspector Arrives: The Anatomy of a Deck Stair Stringer Rejection (and the Geometry That Saved It)",
     slug: "anatomy-of-deck-stair-stringer-rejection-irc-r311",
-    excerpt: "The building inspector didn't even look at our joist hangers. He walked straight to the bottom stair riser, pulled out a brass-tipped tape measure, and shook his head. Here is the math that failed our framing—and the LVL redesign that fixed it.",
+    excerpt:
+      "The building inspector didn't even look at our joist hangers. He walked straight to the bottom stair riser, pulled out a brass-tipped tape measure, and shook his head. Here is the math that failed our framing—and the LVL redesign that fixed it.",
     author: "David Miller, PE",
     authorRole: "Senior Structural Contributor",
     publishDate: "September 1, 2026",
@@ -659,108 +853,134 @@ const journalDispatches = [
     category: "Code & Craft",
     companionTool: "Stair Stringer Calculator",
     companionHref: "/calculators/stair-stringer",
-    featured: false
-  }
+    featured: false,
+  },
 ];
 
 const featuredDispatch = journalDispatches[0];
 const recentDispatches = journalDispatches.slice(1);
 
-const categories = [...new Set(calculators.map(c => c.category))];
+const categories = [...new Set(calculators.map((c) => c.category))];
 ---
 
 <Layout
   title={`CalcForDIY — ${calculators.length} Free DIY Calculators, SVG Diagrams & Contractor Cost Benchmarks`}
   description={`${calculators.length} free DIY home improvement calculators with dynamic SVG framing diagrams, RSMeans DIY vs. contractor cost benchmarks, 1-click material shopping lists, and multi-step project workflow hubs.`}
 >
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "CalcForDIY",
-  "url": "https://calcfordiy.com",
-  "description": `${calculators.length} free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.`,
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://calcfordiy.com/calculators?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-})} />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "CalcForDIY",
+      url: "https://calcfordiy.com",
+      description: `${calculators.length} free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.`,
+      potentialAction: {
+        "@type": "SearchAction",
+        target: "https://calcfordiy.com/calculators?q={search_term_string}",
+        "query-input": "required name=search_term_string",
+      },
+    })}
+  />
 
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "CalcForDIY",
-  "url": "https://calcfordiy.com",
-  "logo": "https://calcfordiy.com/favicon.svg",
-  "description": "CalcForDIY provides 100 free construction, framing, and home improvement material takeoffs with trade editorial guides, visual diagrams, and contractor cost benchmarks."
-})} />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "CalcForDIY",
+      url: "https://calcfordiy.com",
+      logo: "https://calcfordiy.com/favicon.svg",
+      description:
+        "CalcForDIY provides 100 free construction, framing, and home improvement material takeoffs with trade editorial guides, visual diagrams, and contractor cost benchmarks.",
+    })}
+  />
 
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "CalcForDIY Construction & Home Improvement Suite",
-  "applicationCategory": "CalculatorApplication",
-  "operatingSystem": "Web Browser",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "featureList": [
-    `${calculators.length} Interactive Material & Framing Calculators`,
-    "Dynamic Vector SVG Framing & Cut Diagrams",
-    "RSMeans DIY Material vs. Turnkey Contractor Cost Benchmarks",
-    "One-Click Copy Shopping List Material Takeoff Export",
-    "Multi-Step Sequential Project Construction Hubs"
-  ]
-})} />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: "CalcForDIY Construction & Home Improvement Suite",
+      applicationCategory: "CalculatorApplication",
+      operatingSystem: "Web Browser",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      featureList: [
+        `${calculators.length} Interactive Material & Framing Calculators`,
+        "Dynamic Vector SVG Framing & Cut Diagrams",
+        "RSMeans DIY Material vs. Turnkey Contractor Cost Benchmarks",
+        "One-Click Copy Shopping List Material Takeoff Export",
+        "Multi-Step Sequential Project Construction Hubs",
+      ],
+    })}
+  />
 
-<script type="application/ld+json" is:inline>
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  <script type="application/ld+json" is:inline>
     {
-      "@type": "Question",
-      "name": "How does CalcForDIY compare DIY costs vs contractor installation quotes?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Every calculator on CalcForDIY features an RSMeans-based cost benchmarking module that compares raw DIY material costs against turnkey professional contractor quotes, including regional cost adjustments (-15% rural to +25% metro)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does CalcForDIY generate visual cut diagrams?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! CalcForDIY features dynamic vector SVG cut and layout diagrams for visual tools like stair stringers, wall framing, board and batten, wainscoting, french drains, retaining walls, deck joists, and shiplap."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I export my material takeoff into a shopping list?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! Every calculator includes a 1-click 'Copy Shopping List' button that formats plain-text material takeoffs for SMS, email, or store cart ordering at Home Depot and Lowe's."
-      }
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does CalcForDIY compare DIY costs vs contractor installation quotes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every calculator on CalcForDIY features an RSMeans-based cost benchmarking module that compares raw DIY material costs against turnkey professional contractor quotes, including regional cost adjustments (-15% rural to +25% metro)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does CalcForDIY generate visual cut diagrams?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! CalcForDIY features dynamic vector SVG cut and layout diagrams for visual tools like stair stringers, wall framing, board and batten, wainscoting, french drains, retaining walls, deck joists, and shiplap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I export my material takeoff into a shopping list?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Every calculator includes a 1-click 'Copy Shopping List' button that formats plain-text material takeoffs for SMS, email, or store cart ordering at Home Depot and Lowe's."
+          }
+        }
+      ]
     }
-  ]
-}
-</script>
+  </script>
 
   <!-- Journal Masthead & Front Cover Header -->
   <header class="border-b-2 border-gray-900 pb-6 mb-8 pt-2">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 pb-3 mb-4">
+    <div
+      class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 pb-3 mb-4"
+    >
       <div>
-        <span class="text-xs font-mono font-bold tracking-widest text-blue-700 uppercase">Volume 1 • Issue 1 • Fall 2026</span>
-        <h1 class="text-4xl md:text-6xl font-black text-gray-950 tracking-tight mt-1 font-serif">CALCFORDIY JOURNAL</h1>
+        <span
+          class="text-xs font-mono font-bold tracking-widest text-blue-700 uppercase"
+          >Volume 1 • Issue 1 • Fall 2026</span
+        >
+        <h1
+          class="text-4xl md:text-6xl font-black text-gray-950 tracking-tight mt-1 font-serif"
+        >
+          CALCFORDIY JOURNAL
+        </h1>
       </div>
       <div class="text-xs text-gray-600 font-mono text-left md:text-right">
         <div>Field Dispatches &amp; Renovation Narratives</div>
         <div>Backed by 100 Engineering Calculators</div>
       </div>
     </div>
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div
+      class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+    >
       <p class="text-sm md:text-base text-gray-700 max-w-2xl leading-relaxed">
-        A publication exploring the unfiltered realities of residential construction, building code geometry, and structural takeoffs. Written by tradespeople, engineers, and homeowners.
+        A publication exploring the unfiltered realities of residential
+        construction, building code geometry, and structural takeoffs. Written
+        by tradespeople, engineers, and homeowners.
       </p>
-      <a href="/journal/" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800 bg-blue-50 px-3.5 py-2 rounded-lg border border-blue-200 shrink-0">
+      <a
+        href="/journal/"
+        class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 hover:text-blue-800 bg-blue-50 px-3.5 py-2 rounded-lg border border-blue-200 shrink-0"
+      >
         <span>Browse All Field Dispatches</span>
         <span>→</span>
       </a>
@@ -769,34 +989,62 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
   <!-- Lead Editorial Feature (Story of the Week) -->
   <section class="mb-10">
-    <div class="bg-white border-2 border-gray-900/10 rounded-2xl p-6 sm:p-8 shadow-sm hover:border-gray-900/30 transition-all">
+    <div
+      class="bg-white border-2 border-gray-900/10 rounded-2xl p-6 sm:p-8 shadow-sm hover:border-gray-900/30 transition-all"
+    >
       <div class="flex flex-wrap items-center gap-3 mb-3">
-        <span class="px-2.5 py-0.5 bg-amber-100 text-amber-900 text-xs font-bold rounded-full uppercase tracking-wider">
+        <span
+          class="px-2.5 py-0.5 bg-amber-100 text-amber-900 text-xs font-bold rounded-full uppercase tracking-wider"
+        >
           {featuredDispatch.category}
         </span>
-        <span class="text-xs text-gray-500 font-medium">{featuredDispatch.publishDate}</span>
+        <span class="text-xs text-gray-500 font-medium"
+          >{featuredDispatch.publishDate}</span
+        >
         <span class="text-gray-300">•</span>
-        <span class="text-xs text-gray-500 font-medium">{featuredDispatch.readTime}</span>
+        <span class="text-xs text-gray-500 font-medium"
+          >{featuredDispatch.readTime}</span
+        >
       </div>
 
-      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-950 font-serif tracking-tight mb-3 leading-snug">
-        <a href={`/journal/${featuredDispatch.slug}`} class="hover:text-blue-700 transition-colors">
+      <h2
+        class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-950 font-serif tracking-tight mb-3 leading-snug"
+      >
+        <a
+          href={`/journal/${featuredDispatch.slug}`}
+          class="hover:text-blue-700 transition-colors"
+        >
           {featuredDispatch.title}
         </a>
       </h2>
 
-      <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-6 max-w-4xl">
+      <p
+        class="text-gray-700 text-sm sm:text-base leading-relaxed mb-6 max-w-4xl"
+      >
         {featuredDispatch.excerpt}
       </p>
 
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-gray-100">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-gray-100"
+      >
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-800 font-bold flex items-center justify-center font-serif text-xs border border-blue-200">
-            {featuredDispatch.author.split(' ').map(n => n[0]).join('')}
+          <div
+            class="w-9 h-9 rounded-full bg-blue-100 text-blue-800 font-bold flex items-center justify-center font-serif text-xs border border-blue-200"
+          >
+            {
+              featuredDispatch.author
+                .split(" ")
+                .map((n) => n[0])
+                .join("")
+            }
           </div>
           <div>
-            <div class="text-xs font-bold text-gray-900">{featuredDispatch.author}</div>
-            <div class="text-[11px] text-gray-500">{featuredDispatch.authorRole}</div>
+            <div class="text-xs font-bold text-gray-900">
+              {featuredDispatch.author}
+            </div>
+            <div class="text-[11px] text-gray-500">
+              {featuredDispatch.authorRole}
+            </div>
           </div>
         </div>
 
@@ -822,122 +1070,203 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
   <!-- Recent Editorial Dispatches Grid -->
   <section class="mb-12">
-    <div class="flex items-center justify-between mb-4 pb-2 border-b border-gray-200">
-      <h3 class="text-lg font-bold text-gray-950 font-serif">Recent Field Dispatches</h3>
-      <a href="/journal/" class="text-xs font-semibold text-blue-700 hover:underline">View Journal Archive →</a>
+    <div
+      class="flex items-center justify-between mb-4 pb-2 border-b border-gray-200"
+    >
+      <h3 class="text-lg font-bold text-gray-950 font-serif">
+        Recent Field Dispatches
+      </h3>
+      <a
+        href="/journal/"
+        class="text-xs font-semibold text-blue-700 hover:underline"
+        >View Journal Archive →</a
+      >
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {recentDispatches.map(article => (
-        <article class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between hover:border-gray-400 transition-all">
-          <div>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="px-2 py-0.5 bg-gray-100 text-gray-800 text-xs font-semibold rounded-md">
-                {article.category}
-              </span>
-              <span class="text-xs text-gray-500">{article.readTime}</span>
-            </div>
-
-            <h4 class="text-lg font-bold text-gray-950 font-serif mb-2 leading-snug">
-              <a href={`/journal/${article.slug}`} class="hover:text-blue-700 transition-colors">
-                {article.title}
-              </a>
-            </h4>
-
-            <p class="text-xs text-gray-600 leading-relaxed mb-4">
-              {article.excerpt}
-            </p>
-          </div>
-
-          <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+      {
+        recentDispatches.map((article) => (
+          <article class="bg-white border border-gray-200 rounded-xl p-5 flex flex-col justify-between hover:border-gray-400 transition-all">
             <div>
-              <div class="text-xs font-bold text-gray-900">{article.author}</div>
-              <div class="text-[11px] text-gray-500">{article.publishDate}</div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2 py-0.5 bg-gray-100 text-gray-800 text-xs font-semibold rounded-md">
+                  {article.category}
+                </span>
+                <span class="text-xs text-gray-500">{article.readTime}</span>
+              </div>
+
+              <h4 class="text-lg font-bold text-gray-950 font-serif mb-2 leading-snug">
+                <a
+                  href={`/journal/${article.slug}`}
+                  class="hover:text-blue-700 transition-colors"
+                >
+                  {article.title}
+                </a>
+              </h4>
+
+              <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                {article.excerpt}
+              </p>
             </div>
-            <a
-              href={`/journal/${article.slug}`}
-              class="text-xs font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1"
-            >
-              <span>Read Story</span>
-              <span>→</span>
-            </a>
-          </div>
-        </article>
-      ))}
+
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <div>
+                <div class="text-xs font-bold text-gray-900">
+                  {article.author}
+                </div>
+                <div class="text-[11px] text-gray-500">
+                  {article.publishDate}
+                </div>
+              </div>
+              <a
+                href={`/journal/${article.slug}`}
+                class="text-xs font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1"
+              >
+                <span>Read Story</span>
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
     </div>
   </section>
 
   <!-- THE WORKSHOP / 100-CALCULATOR SUITE SECTION -->
   <div class="border-t-2 border-gray-900 pt-8 mb-8" id="workshop">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4">
+    <div
+      class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-4"
+    >
       <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-2">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs font-semibold mb-2"
+        >
           <span>⚙️ The CalcForDIY Workshop</span>
           <span>•</span>
           <span>{calculators.length} Free Engineering Calculators</span>
         </div>
-        <h2 class="text-3xl font-extrabold text-gray-950 font-serif tracking-tight">Interactive Calculator Suite</h2>
+        <h2
+          class="text-3xl font-extrabold text-gray-950 font-serif tracking-tight"
+        >
+          Interactive Calculator Suite
+        </h2>
       </div>
       <p class="text-xs text-gray-600 max-w-md">
-        Instant material takeoffs, live SVG framing diagrams, 1-click shopping lists, and turnkey contractor cost comparisons.
+        Instant material takeoffs, live SVG framing diagrams, 1-click shopping
+        lists, and turnkey contractor cost comparisons.
       </p>
     </div>
 
     <!-- Moats & Differentiators Showcase Feature Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 mb-8">
-      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-4">
+      <div
+        class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-4"
+      >
         <div class="text-2xl mb-1">📐</div>
         <h3 class="font-bold text-gray-900 text-sm">Dynamic SVG Diagrams</h3>
-        <p class="text-xs text-gray-600 mt-1">Live vector graphics for stair stringers, wall framing, deck joists, and retaining walls.</p>
+        <p class="text-xs text-gray-600 mt-1">
+          Live vector graphics for stair stringers, wall framing, deck joists,
+          and retaining walls.
+        </p>
       </div>
 
-      <div class="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-4">
+      <div
+        class="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-xl p-4"
+      >
         <div class="text-2xl mb-1">💰</div>
-        <h3 class="font-bold text-gray-900 text-sm">DIY vs. Contractor Costs</h3>
-        <p class="text-xs text-gray-600 mt-1">RSMeans cost benchmarks comparing DIY materials vs. turnkey contractor quotes.</p>
+        <h3 class="font-bold text-gray-900 text-sm">
+          DIY vs. Contractor Costs
+        </h3>
+        <p class="text-xs text-gray-600 mt-1">
+          RSMeans cost benchmarks comparing DIY materials vs. turnkey contractor
+          quotes.
+        </p>
       </div>
 
-      <div class="bg-gradient-to-br from-purple-50 to-fuchsia-50 border border-purple-200 rounded-xl p-4">
+      <div
+        class="bg-gradient-to-br from-purple-50 to-fuchsia-50 border border-purple-200 rounded-xl p-4"
+      >
         <div class="text-2xl mb-1">📋</div>
         <h3 class="font-bold text-gray-900 text-sm">1-Click Shopping Lists</h3>
-        <p class="text-xs text-gray-600 mt-1">Copy instant plain-text material takeoffs formatted for Home Depot &amp; Lowe's carts.</p>
+        <p class="text-xs text-gray-600 mt-1">
+          Copy instant plain-text material takeoffs formatted for Home Depot
+          &amp; Lowe's carts.
+        </p>
       </div>
 
-      <div class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-4">
+      <div
+        class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-xl p-4"
+      >
         <div class="text-2xl mb-1">🗺️</div>
         <h3 class="font-bold text-gray-900 text-sm">Project Workflow Hubs</h3>
-        <p class="text-xs text-gray-600 mt-1">Guided multi-step calculator flows for decks, drainage, basements, and accent walls.</p>
+        <p class="text-xs text-gray-600 mt-1">
+          Guided multi-step calculator flows for decks, drainage, basements, and
+          accent walls.
+        </p>
       </div>
     </div>
   </div>
 
   <!-- E-E-A-T Site Mission & Methodology Summary -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-8 shadow-xs">
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4 pb-4 border-b border-gray-100">
+    <div
+      class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-4 pb-4 border-b border-gray-100"
+    >
       <div>
-        <h2 class="text-xl font-bold text-gray-900 mb-1">Home Improvement &amp; Material Takeoff Engineering</h2>
-        <p class="text-xs text-gray-500">Sourced from IRC 2021/2024, TCNA Handbook, NEC (NFPA 70), and IES Standards.</p>
+        <h2 class="text-xl font-bold text-gray-900 mb-1">
+          Home Improvement &amp; Material Takeoff Engineering
+        </h2>
+        <p class="text-xs text-gray-500">
+          Sourced from IRC 2021/2024, TCNA Handbook, NEC (NFPA 70), and IES
+          Standards.
+        </p>
       </div>
-      <a href="/methodology/" class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-2 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors shrink-0">
+      <a
+        href="/methodology/"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 bg-blue-50 px-3 py-2 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors shrink-0"
+      >
         <span>Read Our Full Calculation Methodology</span>
         <span>→</span>
       </a>
     </div>
     <p class="text-sm text-gray-700 leading-relaxed mb-3">
-      CalcForDIY provides free, professional-grade material takeoff estimators designed for homeowners, DIY builders, and remodeling contractors. Every calculator on this site is engineered using primary published trade standards—including the <strong>International Residential Code (IRC)</strong> for wall framing and stair geometry, the <strong>Tile Council of North America (TCNA)</strong> for mortar and tile cut waste, and the <strong>National Electrical Code (NEC)</strong> for continuous circuit breaker and conduit fill limits.
+      CalcForDIY provides free, professional-grade material takeoff estimators
+      designed for homeowners, DIY builders, and remodeling contractors. Every
+      calculator on this site is engineered using primary published trade
+      standards—including the <strong
+        >International Residential Code (IRC)</strong
+      > for wall framing and stair geometry, the <strong
+        >Tile Council of North America (TCNA)</strong
+      > for mortar and tile cut waste, and the <strong
+        >National Electrical Code (NEC)</strong
+      > for continuous circuit breaker and conduit fill limits.
     </p>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-gray-600 pt-2">
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-gray-600 pt-2"
+    >
       <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
-        <strong class="text-gray-900 block mb-1">1. Measure &amp; Verify</strong>
-        <span>Always measure job-site dimensions twice and verify against architectural blueprints before placing material orders.</span>
+        <strong class="text-gray-900 block mb-1">1. Measure &amp; Verify</strong
+        >
+        <span
+          >Always measure job-site dimensions twice and verify against
+          architectural blueprints before placing material orders.</span
+        >
       </div>
       <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
-        <strong class="text-gray-900 block mb-1">2. Account for Cut Waste</strong>
-        <span>Select realistic waste factors based on your project layout (10% straight cuts, 15% diagonal, 20% herringbone).</span>
+        <strong class="text-gray-900 block mb-1"
+          >2. Account for Cut Waste</strong
+        >
+        <span
+          >Select realistic waste factors based on your project layout (10%
+          straight cuts, 15% diagonal, 20% herringbone).</span
+        >
       </div>
       <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
         <strong class="text-gray-900 block mb-1">3. Local AHJ Approval</strong>
-        <span>All calculations are planning estimates. Verify structural and electrical plans with your local building department.</span>
+        <span
+          >All calculations are planning estimates. Verify structural and
+          electrical plans with your local building department.</span
+        >
       </div>
     </div>
   </div>
@@ -945,105 +1274,140 @@ const categories = [...new Set(calculators.map(c => c.category))];
   <!-- Search Filter -->
   <div class="mb-6 print:hidden">
     <div class="relative">
-      <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      <svg
+        class="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
       </svg>
-      <input type="text" id="calcSearch" placeholder="Search calculators... (e.g. tile, paint, furnace)" aria-label="Search all 100 calculators" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm" />
+      <input
+        type="text"
+        id="calcSearch"
+        placeholder="Search calculators... (e.g. tile, paint, furnace)"
+        aria-label="Search all 100 calculators"
+        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm"
+      />
     </div>
     <p id="searchStatus" class="hidden text-sm text-gray-500 mt-2 ml-1"></p>
   </div>
 
   <div id="calcGrid" class="flex flex-col gap-6">
-    {categories.map(category => (
-      <section class="calc-category" data-category={category} id={category.toLowerCase().replace(/[&,]/g, '').replace(/\s+/g, '-')}>
-        <h2 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-3">
-          {category} Calculators
-          <span class="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
-            {calculators.filter(c => c.category === category).length} tools
-          </span>
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {calculators
-            .filter(c => c.category === category)
-            .map(calc => (
-              <a
-                href={calc.href}
-                class="calc-card block p-5 bg-white rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all flex flex-col h-full"
-                data-title={calc.title.toLowerCase()}
-              >
-                <h3 class="font-semibold text-gray-900 mb-2">{calc.title}</h3>
-                <p class="text-sm text-gray-600 flex-grow">{calc.description}</p>
-                <span class="inline-block mt-4 text-sm text-blue-600 font-semibold">
-                  Use calculator →
-                </span>
-              </a>
-            ))
-          }
-        </div>
-      </section>
-    ))}
+    {
+      categories.map((category) => (
+        <section
+          class="calc-category"
+          data-category={category}
+          id={category.toLowerCase().replace(/[&,]/g, "").replace(/\s+/g, "-")}
+        >
+          <h2 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+            {category} Calculators
+            <span class="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+              {calculators.filter((c) => c.category === category).length} tools
+            </span>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {calculators
+              .filter((c) => c.category === category)
+              .map((calc) => (
+                <a
+                  href={calc.href}
+                  class="calc-card block p-5 bg-white rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all flex flex-col h-full"
+                  data-title={calc.title.toLowerCase()}
+                >
+                  <h3 class="font-semibold text-gray-900 mb-2">{calc.title}</h3>
+                  <p class="text-sm text-gray-600 flex-grow">
+                    {calc.description}
+                  </p>
+                  <span class="inline-block mt-4 text-sm text-blue-600 font-semibold">
+                    Use calculator →
+                  </span>
+                </a>
+              ))}
+          </div>
+        </section>
+      ))
+    }
   </div>
 
   <div id="noResults" class="hidden text-center py-12">
-    <p class="text-gray-500 text-lg">No calculators found matching your search.</p>
-    <p class="text-gray-500 text-sm mt-1">Try a different keyword like "paint", "tile", or "concrete".</p>
+    <p class="text-gray-500 text-lg">
+      No calculators found matching your search.
+    </p>
+    <p class="text-gray-500 text-sm mt-1">
+      Try a different keyword like "paint", "tile", or "concrete".
+    </p>
   </div>
 
   <AboutCalculators />
 </Layout>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    var searchInput = document.getElementById('calcSearch');
-    var cards = document.querySelectorAll('.calc-card');
-    var categories = document.querySelectorAll('.calc-category');
-    var noResults = document.getElementById('noResults');
-    var searchStatus = document.getElementById('searchStatus');
+  document.addEventListener("DOMContentLoaded", function () {
+    var searchInput = document.getElementById("calcSearch");
+    var cards = document.querySelectorAll(".calc-card");
+    var categories = document.querySelectorAll(".calc-category");
+    var noResults = document.getElementById("noResults");
+    var searchStatus = document.getElementById("searchStatus");
 
     if (!searchInput) return;
 
-    searchInput.addEventListener('input', function() {
+    searchInput.addEventListener("input", function () {
       var query = this.value.toLowerCase().trim();
       var visibleCount = 0;
 
-      if (query === '') {
-        cards.forEach(function(card) { card.classList.remove('hidden'); });
-        categories.forEach(function(cat) { cat.classList.remove('hidden'); });
-        noResults.classList.add('hidden');
-        searchStatus.classList.add('hidden');
+      if (query === "") {
+        cards.forEach(function (card) {
+          card.classList.remove("hidden");
+        });
+        categories.forEach(function (cat) {
+          cat.classList.remove("hidden");
+        });
+        noResults.classList.add("hidden");
+        searchStatus.classList.add("hidden");
         return;
       }
 
-      cards.forEach(function(card) {
-        var title = card.getAttribute('data-title');
-        var desc = card.querySelector('p').textContent.toLowerCase();
+      cards.forEach(function (card) {
+        var title = card.getAttribute("data-title");
+        var desc = card.querySelector("p").textContent.toLowerCase();
         if (title.includes(query) || desc.includes(query)) {
-          card.classList.remove('hidden');
+          card.classList.remove("hidden");
           visibleCount++;
         } else {
-          card.classList.add('hidden');
+          card.classList.add("hidden");
         }
       });
 
       // Hide empty categories
-      categories.forEach(function(cat) {
-        var visibleCards = cat.querySelectorAll('.calc-card:not(.hidden)');
+      categories.forEach(function (cat) {
+        var visibleCards = cat.querySelectorAll(".calc-card:not(.hidden)");
         if (visibleCards.length === 0) {
-          cat.classList.add('hidden');
+          cat.classList.add("hidden");
         } else {
-          cat.classList.remove('hidden');
+          cat.classList.remove("hidden");
         }
       });
 
       if (visibleCount === 0) {
-        noResults.classList.remove('hidden');
-        searchStatus.classList.add('hidden');
+        noResults.classList.remove("hidden");
+        searchStatus.classList.add("hidden");
       } else {
-        noResults.classList.add('hidden');
-        searchStatus.classList.remove('hidden');
-        searchStatus.textContent = visibleCount + ' calculator' + (visibleCount !== 1 ? 's' : '') + ' found';
+        noResults.classList.add("hidden");
+        searchStatus.classList.remove("hidden");
+        searchStatus.textContent =
+          visibleCount +
+          " calculator" +
+          (visibleCount !== 1 ? "s" : "") +
+          " found";
       }
     });
   });
 </script>
-

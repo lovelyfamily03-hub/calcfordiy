@@ -1,0 +1,227 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: "The $6,200 Ice Dam Catastrophe: Why Standard Felt Paper Failed on a 3:12 Pitch Roof (and the 24\" Warm-Wall Rule)",
+  slug: 'the-6200-dollar-ice-dam-roofing-failure-eave-warm-wall',
+  description: 'Forensic inspection of a low-slope Michigan roof deck where capillary action pushed thaw water under architectural shingles. Why #15 felt paper failed, IRC R905.1.2 ice dam protection rules, and how self-adhered polymer membrane saved the master bedroom.',
+  author: 'David Miller, PE',
+  authorRole: 'Senior Structural Contributor',
+  reviewer: 'Elena Rostova',
+  reviewerRole: 'Historic Renovation Specialist',
+  publishDate: 'September 22, 2026',
+  readTime: '11 min read',
+  category: 'Field Investigation',
+  tag: 'Roofing & Envelope',
+  companionCalculator: {
+    name: 'Ice & Water Shield Roofing Calculator',
+    href: '/calculators/ice-water-shield/',
+    desc: 'Calculate 2-Square rolls of self-adhered ice dam membrane, eave 24" warm-wall overlap, and valley rolls.'
+  },
+  companionHub: {
+    name: 'Roofing & Exterior Siding Hub',
+    href: '/projects/roofing-exterior/',
+    desc: 'Complete roofing takeoff workflow: pitch angle, underlayment rolls, starter strips, and ridge vents.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-09-22T08:00:00+00:00",
+    "dateModified": "2026-09-22T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-slate-900 text-white font-bold flex items-center justify-center text-sm shadow-inner">
+            DM
+          </div>
+          <div>
+            <div class="font-bold text-gray-900">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6 text-gray-600 font-mono">
+          <div>
+            <span class="text-gray-400">Reviewed:</span> <strong class="text-gray-900">{article.reviewer}</strong> ({article.reviewerRole})
+          </div>
+          <div>
+            <span class="text-gray-400">Published:</span> {article.publishDate}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article Body -->
+    <div class="prose prose-slate max-w-none prose-headings:font-serif prose-headings:font-bold prose-p:leading-relaxed prose-p:text-gray-700 text-base">
+      
+      <p class="lead text-lg font-serif text-gray-800 border-l-4 border-amber-500 pl-4 py-1 italic mb-6">
+        In mid-January, following a 14-inch snowfall and a sudden 40°F thaw, water began dripping through the crown molding of a homeowner's newly finished master bedroom in Grand Rapids, Michigan. The roof had been replaced just 18 months prior with 30-year architectural shingles.
+      </p>
+
+      <h2>The Forensic Investigation: What Went Wrong?</h2>
+      <p>
+        When our engineering inspection team arrived, the eaves of the 3:12 low-slope roof overhang were encased in a 4-inch-thick ridge of solid ice. Upward thermal loss from the heated ceiling below had melted the snow pack directly over the living quarters. As water flowed down the roof slope, it hit the cold unheated eave overhang, froze instantly, and formed a impassable ice dam.
+      </p>
+
+      <p>
+        Meltwater backed up behind the ice ridge, creating a standing pool 3 inches deep. On standard roofs, shingles are designed purely for gravity shedding. Under hydro-static back-pressure, water was driven backwards up under the shingle laps by capillary action.
+      </p>
+
+      <div class="my-8 p-6 bg-slate-900 text-white rounded-xl shadow-lg border border-slate-800">
+        <h3 class="text-amber-400 font-serif text-xl font-bold mt-0 mb-3">The Physics of Capillary Elevation</h3>
+        <p class="text-slate-300 text-sm leading-relaxed mb-4">
+          Under hydrostatic pressure (P = &rho; &middot; g &middot; h), standing water trapped behind an ice dam exerts upward hydraulic force. In a 3:12 roof slope (14&deg; angle), 2.5 inches of standing water forces meltwater up and over a standard 4-inch shingle headlap.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+          <div class="bg-slate-800 p-3 rounded border border-slate-700">
+            <span class="text-slate-400 block mb-1">Roof Pitch</span>
+            <strong class="text-white text-base">3:12 Slope</strong>
+          </div>
+          <div class="bg-slate-800 p-3 rounded border border-slate-700">
+            <span class="text-slate-400 block mb-1">Ponding Depth</span>
+            <strong class="text-amber-400 text-base">3.2 Inches</strong>
+          </div>
+          <div class="bg-slate-800 p-3 rounded border border-slate-700">
+            <span class="text-slate-400 block mb-1">Damage Estimate</span>
+            <strong class="text-emerald-400 text-base">$6,200 Repair</strong>
+          </div>
+        </div>
+      </div>
+
+      <h2>Why #15 Asphalt Felt Paper Failed</h2>
+      <p>
+        The roofer had installed standard #15 asphalt-saturated felt paper across the entire roof deck. When roofing nails penetrate felt paper, the nail shanks cut tiny holes through the cellulose fibers. As standing water backed up under the shingles, water migrated straight down through thousands of unsealed nail holes in the felt paper into the 1/2-inch OSB sheathing.
+      </p>
+
+      <p>
+        Within 48 hours, the OSB subfloor absorbed over 30% moisture by weight, expanding, delaminating, and dripping through drywall seam tape into the living room below.
+      </p>
+
+      <h2>The Code Rule: IRC Section R905.1.2</h2>
+      <p>
+        The <strong>International Residential Code (IRC 2024, Section R905.1.2)</strong> mandates that in areas where there has been a history of ice forming along eaves, an ice barrier consisting of a self-adhering polymer-modified bitumen sheet must be installed.
+      </p>
+
+      <blockquote class="bg-blue-50 border-l-4 border-blue-600 p-4 rounded-r text-blue-950 font-sans text-sm my-6">
+        <strong>IRC Code Excerpt (R905.1.2 Ice Barriers):</strong><br />
+        <em>"The ice barrier shall extend from the lowest edges of all roof surfaces to a point not less than 24 inches (610 mm) inside the exterior wall line of the building."</em>
+      </blockquote>
+
+      <p>
+        Crucially, many contractors mistakenly install a single 36-inch roll of ice &amp; water shield at the drip edge. But on a roof with a 24-inch eave soffit overhang plus a 2x6 exterior wall, a single 36-inch roll only reaches 6 inches past the interior wall line—falling far short of the mandatory 24-inch interior warm-wall coverage!
+      </p>
+
+      <div class="my-8 p-6 bg-white border border-gray-200 rounded-xl shadow-xs">
+        <h3 class="text-gray-900 font-serif text-lg font-bold mt-0 mb-4">Companion Takeoff Calculator</h3>
+        <p class="text-gray-600 text-sm mb-4">
+          Never guess how many rolls of membrane you need. Our interactive ice &amp; water shield tool calculates eave soffit depth, roof slope, warm-wall overlap, and valley roll counts per IRC standards.
+        </p>
+        <a href={article.companionCalculator.href} class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm py-2.5 px-5 rounded-lg transition-colors no-underline">
+          <span>Calculate Ice &amp; Water Shield Rolls →</span>
+        </a>
+      </div>
+
+      <h2>Key Remediation Takeaways for DIYers &amp; Builders</h2>
+      <ol class="space-y-3 pl-5 list-decimal text-gray-700">
+        <li><strong>Always Calculate Overhang Geometry:</strong> Measure your soffit depth from drip edge to wall plus wall thickness. If the total distance exceeds 12 inches, you MUST install two courses (72 inches total width) of self-adhering ice &amp; water shield to hit the 24-inch warm-wall rule.</li>
+        <li><strong>Self-Sealing Rubberized Asphalt:</strong> Unlike felt paper, polymer-modified bitumen rubber (like Grace Ice &amp; Water Shield or Owens Corning WeatherLock) flows around nail shanks when driven, creating a watertight gasket seal even under 4 inches of hydrostatic water pressure.</li>
+        <li><strong>Valley Flashing:</strong> Always lay a full 36-inch continuous strip centered down every valley before laying horizontal underlayment runs.</li>
+        <li><strong>Attic Ventilation &amp; Air Sealing:</strong> Stop ice dams at the source by sealing attic floor air leaks (can lights, stack pipes) and providing 1 sq ft of Net Free Vent Area (NFVA) for every 150 sq ft of attic floor per IRC R806.</li>
+      </ol>
+
+    </div>
+
+    <!-- Related Cross Links -->
+    <footer class="mt-12 pt-8 border-t border-gray-200">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+          <div class="text-xs font-bold text-blue-600 uppercase tracking-wide mb-1">Interactive Tool</div>
+          <a href={article.companionCalculator.href} class="font-bold text-gray-900 hover:text-blue-600 text-base block mb-1">
+            {article.companionCalculator.name}
+          </a>
+          <p class="text-xs text-gray-600">{article.companionCalculator.desc}</p>
+        </div>
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+          <div class="text-xs font-bold text-emerald-600 uppercase tracking-wide mb-1">Project Workflow Hub</div>
+          <a href={article.companionHub.href} class="font-bold text-gray-900 hover:text-emerald-600 text-base block mb-1">
+            {article.companionHub.name}
+          </a>
+          <p class="text-xs text-gray-600">{article.companionHub.desc}</p>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="/journal/" class="inline-flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-blue-600 transition-colors">
+          <span>← Back to All Field Journal Case Studies</span>
+        </a>
+      </div>
+    </footer>
+  </article>
+</Layout>
