@@ -26,20 +26,20 @@
 ## CURRENT STATUS & 100-CALCULATOR GOAL
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Total Pages Live:** 147 pages
-- **Calculators live:** 91 calculators live (+9 queued → **Target: 100 Calculators**)
+- **Total Pages Live:** 167 pages (338 static route outputs built)
+- **Calculators live:** 111 calculators live (Target of 100 Calculators ACHIEVED & SURPASSED ✅)
 - **SEO Guides live:** 21 guides (`src/pages/guides/`)
 - **Project Workflow Hubs live:** 15 hubs (`src/pages/projects/`)
 - **Field Journal Case Studies live:** 9 in-depth case studies (`src/pages/journal/`)
-- **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. 0 broken links verified across all 147 HTML pages. AdSense crawl buffer elapsed. Site is 100% READY for dashboard resubmission ("Request Review").
+- **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. 0 broken links verified across all 167 HTML pages. AdSense crawl buffer elapsed. Site is 100% READY for dashboard resubmission ("Request Review").
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
-- **GSC Status:** 147 pages indexed/crawlable, zero manual actions. Ranking in Top 10–20 for competitive long-tail terms (`how many boxes of laminate flooring do i need calculator` - Pos 9.0, `postcrete calculator` - Pos 20.0).
+- **GSC Status:** 167 pages indexed/crawlable, zero manual actions. Ranking in Top 10–20 for competitive long-tail terms (`how many boxes of laminate flooring do i need calculator` - Pos 9.0, `postcrete calculator` - Pos 20.0).
 
 ---
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[x]` **Status**: Wave 4 Expansion Complete (91 Live Interactive Calculators + 15 Project Workflow Hubs + 21 SEO Guides + 9 Journal Case Studies).
+- `[x]` **Status**: Wave 4 Expansion Complete (111 Live Interactive Calculators + 15 Project Workflow Hubs + 21 SEO Guides + 9 Journal Case Studies).
 - `[x]` **Moat 1: Dynamic SVG Visual Cut & Layout Diagrams** — 15 live interactive vector diagrams (Stair Stringers, Miter Saw Protractor, Retaining Wall, Paver Layers, Rebar Grid, Framing Studs).
 - `[x]` **Moat 2: One-Click `📋 Copy Shopping List` Button** — Global clipboard handler auto-injecting formatted material takeoffs into results cards.
 - `[x]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes with regional multipliers (COMPLETE ✅).
