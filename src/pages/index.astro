@@ -798,6 +798,7 @@ const journalDispatches = [
     title:
       "The $6,200 Ice Dam Catastrophe: Why Standard Felt Paper Failed on a 3:12 Pitch Roof",
     slug: "the-6200-dollar-ice-dam-roofing-failure-eave-warm-wall",
+    image: "/images/journal/ice-dam-roofing-failure.jpg",
     excerpt:
       "Forensic inspection of a low-slope Michigan roof deck where capillary action pushed thaw water under architectural shingles. Why #15 felt paper failed, IRC R905.1.2 ice dam protection rules, and how self-adhered polymer membrane saved the master bedroom.",
     author: "David Miller, PE",
@@ -813,6 +814,7 @@ const journalDispatches = [
     title:
       "The Thermal Bridge Trapped Inside Our Walls: How Continuous Rainscreen Cladding Slashed Heating Loads by 38%",
     slug: "thermal-bridge-rainscreen-cladding-cascadia-clip-forensics",
+    image: "/images/journal/cascadia-clip-rainscreen.jpg",
     excerpt:
       "An infrared thermography audit of a 2x6 framed residential wall revealing why metal Z-furring fasteners drop R-21 insulation down to R-11.4. How fiberglass Cascadia Clips and continuous rainscreen cladding eliminated envelope heat loss.",
     author: "Elena Rostova",
@@ -828,6 +830,7 @@ const journalDispatches = [
     title:
       "The $4,800 Sump Pump Mistake: What Three Days of Relentless Rain Taught Me About Hydrostatic Pressure",
     slug: "the-4800-dollar-sump-pump-mistake-hydrostatic-pressure",
+    image: "/images/journal/basement-sump-pump-pit.jpg",
     excerpt:
       "At 2:14 AM on a Tuesday, I woke up to the smell of damp concrete and the low, hollow humming of a pump that was spinning without moving an ounce of water. Here is what happens when builder-grade plumbing meets a rising water table.",
     author: "Marcus Vance",
@@ -843,6 +846,7 @@ const journalDispatches = [
     title:
       "Tearing Down an 80-Year-Old Plaster Ceiling: The Dust, the Framing Realities, and Why We Went with Level 5 Drywall",
     slug: "tearing-down-80-year-old-plaster-ceiling-level-5-drywall",
+    image: "/images/journal/plaster-ceiling-demolition.jpg",
     excerpt:
       "Before you touch a crowbar to 1940s horsehair plaster, you imagine a clean demo. In reality, it is 3,200 pounds of caustic lime debris, bowed joists that haven't been straight since Truman was in office, and the delicate art of skim-coating.",
     author: "Elena Rostova",
@@ -858,6 +862,7 @@ const journalDispatches = [
     title:
       "When the Inspector Arrives: The Anatomy of a Deck Stair Stringer Rejection (and the Geometry That Saved It)",
     slug: "anatomy-of-deck-stair-stringer-rejection-irc-r311",
+    image: "/images/journal/deck-stair-stringer-framing.jpg",
     excerpt:
       "The building inspector didn't even look at our joist hangers. He walked straight to the bottom stair riser, pulled out a brass-tipped tape measure, and shook his head. Here is the math that failed our framing—and the LVL redesign that fixed it.",
     author: "David Miller, PE",
@@ -1108,6 +1113,17 @@ const categories = [...new Set(calculators.map((c) => c.category))];
                 </span>
                 <span class="text-xs text-gray-500">{article.readTime}</span>
               </div>
+
+              
+            <!-- Dispatch Card Photo -->
+            <a href={`/journal/${article.slug}`} class="block mb-3 rounded-lg overflow-hidden shadow-2xs hover:opacity-95 transition-opacity">
+              <img
+                src={article.image}
+                alt={article.title}
+                class="w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+            </a>
 
               <h4 class="text-lg font-bold text-gray-950 font-serif mb-2 leading-snug">
                 <a

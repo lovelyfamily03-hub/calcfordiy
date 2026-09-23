@@ -6,6 +6,7 @@ const articles = [
   {
     title: "The $6,200 Ice Dam Catastrophe: Why Standard Felt Paper Failed on a 3:12 Pitch Roof",
     slug: "the-6200-dollar-ice-dam-roofing-failure-eave-warm-wall",
+    image: "/images/journal/ice-dam-roofing-failure.jpg",
     excerpt: "Forensic inspection of a low-slope Michigan roof deck where capillary action pushed thaw water under architectural shingles. Why #15 felt paper failed, IRC R905.1.2 ice dam protection rules, and how self-adhered polymer membrane saved the master bedroom.",
     author: "David Miller, PE",
     authorRole: "Senior Structural Contributor",
@@ -20,6 +21,7 @@ const articles = [
   {
     title: "The Thermal Bridge Trapped Inside Our Walls: How Continuous Rainscreen Cladding Slashed Heating Loads by 38%",
     slug: "thermal-bridge-rainscreen-cladding-cascadia-clip-forensics",
+    image: "/images/journal/cascadia-clip-rainscreen.jpg",
     excerpt: "An infrared thermography audit of a 2x6 framed residential wall revealing why metal Z-furring fasteners drop R-21 insulation down to R-11.4. How fiberglass Cascadia Clips and continuous rainscreen cladding eliminated envelope heat loss.",
     author: "Elena Rostova",
     authorRole: "Historic Renovation Specialist",
@@ -34,6 +36,7 @@ const articles = [
   {
     title: "The $4,800 Sump Pump Mistake: What Three Days of Relentless Rain Taught Me About Hydrostatic Pressure",
     slug: "the-4800-dollar-sump-pump-mistake-hydrostatic-pressure",
+    image: "/images/journal/basement-sump-pump-pit.jpg",
     excerpt: "At 2:14 AM on a Tuesday, I woke up to the smell of damp concrete and the low, hollow humming of a pump that was spinning without moving an ounce of water. Here is what happens when builder-grade plumbing meets a rising water table.",
     author: "Marcus Vance",
     authorRole: "Master Plumber & Field Contributor",
@@ -48,6 +51,7 @@ const articles = [
   {
     title: "The 100-Amp Reality Check: Why Adding an EV Charger and Heat Pump Broke My Service Panel Budget",
     slug: "the-100-amp-reality-check-ev-charger-heat-pump-subpanel",
+    image: "/images/journal/ev-charger-panel-install.jpg",
     excerpt: "Under NEC Article 220, electric vehicle chargers are continuous loads calculated at 125%. When combined with a cold-climate heat pump, this homeowner faced an unexpected $8,500 utility trench until smart energy management saved the day.",
     author: "Greg Larson",
     authorRole: "Licensed Master Electrician",
@@ -62,6 +66,7 @@ const articles = [
   {
     title: "The $9,000 Shower Pan Leak: Why Preslope Matters More Than Tile Choice",
     slug: "the-9000-dollar-shower-pan-leak-preslope-curbless-failure",
+    image: "/images/journal/shower-pan-preslope-leak.jpg",
     excerpt: "A custom walk-in curbless shower with zero cracked tiles leaked gray water into the dining room ceiling below. Forensic inspection revealed the fatal error: laying a rubber pan liner completely flat on a plywood subfloor.",
     author: "Elena Rostova",
     authorRole: "Historic Renovation Specialist",
@@ -76,6 +81,7 @@ const articles = [
   {
     title: "When 4 Inches Isn't Enough: Concrete Driveway Spalling and the Frost Line Mistake",
     slug: "when-4-inches-isnt-enough-concrete-driveway-frost-heave",
+    image: "/images/journal/concrete-driveway-spalling.jpg",
     excerpt: "After a single winter thaw, an $16,000 Minneapolis concrete driveway peeled away in powdery sheets. How missing air entrainment, excessive bleed water finishing, and uncompacted clay sub-base crushed a homeowner's investment.",
     author: "David Miller, PE",
     authorRole: "Senior Structural Contributor",
@@ -90,6 +96,7 @@ const articles = [
   {
     title: "Why My Luxury Vinyl Plank Separated: Acclimation and Subfloor Flatness Realities",
     slug: "why-luxury-vinyl-plank-separated-subfloor-flatness-acclimation",
+    image: "/images/journal/lvp-flooring-gap-subfloor.jpg",
     excerpt: "Marketed as 100% waterproof and indestructible, rigid-core vinyl planks buckled and separated within 90 days. The physics of microscopic click-lock tongues bridging over 1/4-inch subfloor dips and pinned perimeter moldings.",
     author: "Elena Rostova",
     authorRole: "Historic Renovation Specialist",
@@ -104,6 +111,7 @@ const articles = [
   {
     title: "Tearing Down an 80-Year-Old Plaster Ceiling: The Dust, the Framing Realities, and Why We Went with Level 5 Drywall",
     slug: "tearing-down-80-year-old-plaster-ceiling-level-5-drywall",
+    image: "/images/journal/plaster-ceiling-demolition.jpg",
     excerpt: "Before you touch a crowbar to 1940s horsehair plaster, you imagine a clean demo. In reality, it is 3,200 pounds of caustic lime debris, bowed joists that haven't been straight since Truman was in office, and the delicate art of skim-coating.",
     author: "Elena Rostova",
     authorRole: "Historic Renovation Specialist",
@@ -118,6 +126,7 @@ const articles = [
   {
     title: "When the Inspector Arrives: The Anatomy of a Deck Stair Stringer Rejection (and the Geometry That Saved It)",
     slug: "anatomy-of-deck-stair-stringer-rejection-irc-r311",
+    image: "/images/journal/deck-stair-stringer-framing.jpg",
     excerpt: "The building inspector didn't even look at our joist hangers. He walked straight to the bottom stair riser, pulled out a brass-tipped tape measure, and shook his head. Here is the math that failed our framing—and the LVL redesign that fixed it.",
     author: "David Miller, PE",
     authorRole: "Senior Structural Contributor",
@@ -224,6 +233,17 @@ const allCategories = ["All", "Electrical & Energy", "Plumbing & Drainage", "Til
         <span class="text-xs text-gray-600 font-medium">{featuredArticle.readTime}</span>
       </div>
 
+      
+      <!-- Featured Editorial Photo -->
+      <a href={`/journal/${featuredArticle.slug}/`} class="block mb-6 rounded-xl overflow-hidden shadow-xs hover:opacity-95 transition-opacity">
+        <img
+          src={featuredArticle.image}
+          alt={featuredArticle.title}
+          class="w-full h-auto object-cover max-h-[380px]"
+          loading="eager"
+        />
+      </a>
+
       <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-950 tracking-tight font-serif mb-4 leading-snug">
         <a href={`/journal/${featuredArticle.slug}/`} class="hover:text-blue-700 transition-colors">
           {featuredArticle.title}
@@ -285,6 +305,17 @@ const allCategories = ["All", "Electrical & Energy", "Plumbing & Drainage", "Til
               </span>
               <span class="text-xs text-gray-500 font-mono ml-auto">{article.readTime}</span>
             </div>
+
+            
+          <!-- Dispatch Card Photo -->
+          <a href={`/journal/${article.slug}/`} class="block mb-4 rounded-lg overflow-hidden shadow-2xs hover:opacity-95 transition-opacity">
+            <img
+              src={article.image}
+              alt={article.title}
+              class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          </a>
 
             <h4 class="text-xl font-bold text-gray-950 font-serif mb-3 leading-snug">
               <a href={`/journal/${article.slug}/`} class="hover:text-blue-700 transition-colors">
