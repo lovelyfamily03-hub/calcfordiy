@@ -186,10 +186,11 @@ Enhanced top 10 core tools with unique, non-templated, tool-specific technical v
 ---
 
 ## 7. ⚙️ GSC Query Feature Enhancements for Existing Tools
-- [ ] **Laminate Calculator**: Add "Box Count & Sq Ft per Box Converter" widget (`how many boxes of laminate flooring do i need calculator` - Pos 9.0).
-- [ ] **Carpet Calculator**: Add automatic "Square Feet ⇄ Square Yards" converter (`square yard calculator carpet` - Pos 16.0).
+- [x] **Laminate Calculator**: Added "Box Count & Sq Ft per Box Converter" widget with brand carton coverage presets (Pergo, LifeProof, Mohawk, TrafficMaster), attic stock reserve, and lookup table (`how many boxes of laminate flooring do i need calculator` - Pos 9.0).
+- [x] **Carpet Calculator**: Added automatic bidirectional "Square Feet ⇄ Square Yards" converter, 12ft/15ft broadloom roll linear cut estimator, pricing comparison converter, and lookup table (`square yard calculator carpet` - Pos 16.0).
+- [x] **Garage Lighting Calculator**: Added preset room size quick buttons (`20x20 Garage`, `24x24 Workshop`, `32x24 3-Car`), IES LP-2 standard foot-candles (20-75 FC), 20x20 layout guide, and symmetrical grid visualizer (`how many garage lights do i need for a 20x20 space?` - Pos 18.0).
 - [ ] **Tile & Grout Calculators**: Add "Grout Joint Width & Bag Coverage Lookup Tables" (`grout coverage per bag` - Pos 54.5).
-- [ ] **Recessed Lighting Calculators**: Add preset room size quick buttons (`20x20 Garage`, `12x12 Bedroom`, `Small Kitchen`).
+- [ ] **Recessed Lighting Interior Calculators**: Add preset room size quick buttons (`12x12 Bedroom`, `Small Kitchen`, `Hallway`).
 
 ---
 

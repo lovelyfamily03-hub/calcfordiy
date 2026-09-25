@@ -175,7 +175,11 @@ All guides include JSON-LD schema: `Article`, `FAQPage`, `BreadcrumbList`.
 Target: **78 Live Tools → 100 Flagship Calculators** (+22 New Tools)
 
 ### 📊 Google Search Console Insights & Validations
-- **Ranking in Top 10-20**: `how many boxes of laminate flooring do i need calculator` (Pos 9.0), `how much thinset mortar do i need` (Pos 14.0), `concrete slab rebar calculator` (Pos 16.0), `square yard calculator carpet` (Pos 16.0), `postcrete calculator` (Pos 20.0).
+- **Ranking in Top 10-20**: `how many boxes of laminate flooring do i need calculator` (Pos 9.0), `how much thinset mortar do i need` (Pos 14.0), `concrete slab rebar calculator` (Pos 16.0), `square yard calculator carpet` (Pos 16.0), `postcrete calculator` (Pos 20.0), `how many garage lights do i need for a 20x20 space?` (Pos 18.0).
+- **High-Intent GSC Enhancements Deployed (COMPLETE ✅)**:
+  - `laminate-flooring`: Added Instant Sq Ft to Box Count Converter, brand carton presets (Pergo, LifeProof, Mohawk, TrafficMaster), attic stock calculation, and reference table.
+  - `carpet`: Added bidirectional Sq Ft ⇄ Sq Yd converter, 12-ft/15-ft broadloom roll cut math, $/sq yd ⇄ $/sq ft pricing calculator, and lookup table.
+  - `recessed-lights-garage`: Added quick presets (`20x20 Garage`, `24x24 Workshop`, `32x24 3-Car`), calibrated IES LP-2 standard foot-candles (20–75 FC), 20x20 layout guide, and symmetrical grid visualizer.
 - **Draft Tools Validated by Real Search Traffic**: GSC logged explicit searches for `tyvek house wrap calculator` (Pos 80.0) and `trestlewood calculator` (Pos 80.0).
 
 ---

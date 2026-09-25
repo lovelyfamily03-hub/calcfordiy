@@ -6,15 +6,15 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
 <Layout
   title="Laminate Flooring Calculator — How Many Boxes Do I Need? | CalcForDIY"
-  description="Calculate exactly how many boxes of laminate flooring you need. Enter room dimensions, choose your installation direction, and get an instant box count with waste included. Free, no signup."
+  description="Calculate exactly how many boxes of laminate flooring you need. Enter room dimensions or total square footage, choose brand carton sizes, and get an instant box count with waste included."
 >
 
   <script type="application/ld+json" is:inline>
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Laminate Flooring Calculator",
-    "description": "Free calculator that estimates how many boxes of laminate flooring you need including waste factor.",
+    "name": "Laminate Flooring Calculator — How Many Boxes Do I Need?",
+    "description": "Free laminate flooring calculator that estimates exact box counts and square footage needed based on room dimensions, carton coverage, and waste factor.",
     "applicationCategory": "CalculatorApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -27,50 +27,50 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     "mainEntity": [
     {
       "@type": "Question",
+      "name": "How many boxes of laminate flooring do I need for a 500 sq ft room?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a 500 sq ft room, add 10% waste for standard straight installation (500 × 1.10 = 550 sq ft to buy). If your chosen flooring covers 19.83 sq ft per box, you divide 550 by 19.83 = 27.73, which rounds up to 28 full boxes. If your flooring covers 24.17 sq ft per box, you need 23 boxes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many square feet are in a standard box of laminate flooring?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no single universal box size. Most residential laminate cartons range between 18 and 25 square feet per box. Common brand standards include Pergo Outlast (18.14 sq ft), LifeProof / Home Decorators (19.83 sq ft), Mohawk RevWood (21.26 sq ft), and TrafficMaster (24.17 sq ft). Always verify the exact carton coverage on the manufacturer box label."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "How much waste should I add for laminate flooring?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Add 10% for standard straight installations. If you are installing the planks diagonally or have a room with many curved walls and obstacles, add 15% to account for complex cuts."
+        "text": "The National Wood Flooring Association (NWFA) and NALFA recommend adding 10% for standard rectangular rooms installed parallel to the longest wall. Add 15% for diagonal installations, rooms with angled walls, or layouts with numerous door casings and radiator pipes. Add 20% for herringbone or chevron patterns."
       }
     },
     {
       "@type": "Question",
-      "name": "What does box coverage mean and where do I find it?",
+      "name": "Why must I always round UP to the nearest full box?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Box coverage is the exact amount of surface area a single carton of flooring will cover. It is always printed on the outside of the box packaging and listed in the product specifications online. Every brand and plank width has a different box coverage."
+        "text": "Flooring manufacturers and home improvement retailers sell laminate exclusively by unopened carton. You cannot purchase partial boxes or loose planks. Furthermore, purchasing all required boxes from the same production run or dye lot prevents noticeable color and sheen variations."
       }
     },
     {
       "@type": "Question",
-      "name": "Should I install flooring under my appliances?",
+      "name": "Should I purchase an extra box for attic stock?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. It is highly recommended to run flooring completely under refrigerators, dishwashers, and standard ranges. This maintains a level surface, makes the appliances easier to pull out for maintenance, and prevents them from being trapped behind the lip of the new floor."
+        "text": "Yes. It is strong industry practice to keep at least 1 unopened box of flooring in climate-controlled storage (attic stock). If a plank is damaged by water, deep scratches, or appliance leaks years later, click-lock planks can be individually replaced without replacing the entire floor."
       }
     },
     {
       "@type": "Question",
-      "name": "Should I include closets in my measurements?",
+      "name": "Should I install laminate flooring under kitchen appliances and cabinets?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, if you plan to run the same flooring seamlessly into the closet space. You can either measure the closet as part of the room's total width or treat it as a separate room in a calculator for flooring to ensure you have enough material."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What should I do with leftover planks?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Keep them. Store any leftover planks flat in a climate-controlled area (not a damp garage or hot attic). If a plank gets damaged by water or heavy impact in the future, you will have an exact color-matched replacement ready to swap in."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does the installation direction affect how much I need to buy?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. A Floor calculator adjusts for direction because diagonal patterns require significantly more angled cuts at the walls. These offcuts are often unusable elsewhere, which increases your necessary waste factor from 10% to 15%."
+        "text": "Install laminate under freestanding appliances like refrigerators and slide-in ranges so they sit level and slide out easily. However, never install floating laminate under heavy permanent kitchen base cabinets or kitchen islands; doing so pins the floor and prevents necessary seasonal thermal expansion, causing buckling and joint separation."
       }
     }
     ]
@@ -108,237 +108,438 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
   </div>
 
   <div class="mb-6">
-    <h1 class="text-3xl font-bold text-gray-900 mb-3">Laminate Flooring Calculator</h1>
-    <p class="text-gray-600 text-lg">Enter your room dimensions to find out how many boxes of laminate flooring to buy — waste factor included based on your installation direction.</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Laminate Flooring Calculator — How Many Boxes Do I Need?</h1>
+    <p class="text-gray-600 text-lg">Calculate exactly how many boxes of laminate flooring to buy. Enter your room dimensions or total square footage, select your brand carton coverage, and get an instant box count with waste factor included.</p>
   </div>
 
+  <!-- Input Mode Selector -->
   <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
 
-    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
-      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
-      Room Dimensions
-    </h2>
+    <!-- Mode Tabs -->
+    <div class="flex items-center gap-2 mb-6 border-b border-gray-200 pb-3">
+      <span class="text-xs font-semibold uppercase tracking-wider text-gray-400 mr-2">Input Mode:</span>
+      <button type="button" id="tab_dims" onclick="switchMode('dims')"
+        class="px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-blue-600 text-white shadow-sm">
+        📐 Measure by Room Dimensions
+      </button>
+      <button type="button" id="tab_sqft" onclick="switchMode('sqft')"
+        class="px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">
+        ⚡ Instant Sq Ft Converter
+      </button>
+    </div>
 
-    <div class="p-4 bg-gray-50 rounded-lg mb-4">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label for="r_len_ft" class="block text-xs text-gray-500 mb-1">Room Length</label>
-          <div class="flex items-center gap-2">
-            <input type="number" id="r_len_ft" placeholder="12" min="0" max="200"
-              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="r_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Len Inches" />
-            <span class="text-xs text-gray-500 shrink-0">in</span>
+    <!-- Mode 1: Room Dimensions -->
+    <div id="section_dims">
+      <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+        <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+        Room Dimensions
+      </h2>
+
+      <div class="p-4 bg-gray-50 rounded-lg mb-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label for="r_len_ft" class="block text-xs text-gray-500 mb-1">Room Length</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="r_len_ft" placeholder="12" min="0" max="200" inputmode="decimal"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="r_len_in" placeholder="0" min="0" max="11" inputmode="decimal"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Len Inches" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label for="r_wid_ft" class="block text-xs text-gray-500 mb-1">Room Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="r_wid_ft" placeholder="10" min="0" max="200" inputmode="decimal"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="r_wid_in" placeholder="0" min="0" max="11" inputmode="decimal"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Wid Inches" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
           </div>
         </div>
+
         <div>
-          <label for="r_wid_ft" class="block text-xs text-gray-500 mb-1">Room Width</label>
-          <div class="flex items-center gap-2">
-            <input type="number" id="r_wid_ft" placeholder="10" min="0" max="200"
-              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="r_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Wid Inches" />
-            <span class="text-xs text-gray-500 shrink-0">in</span>
+          <label for="num_rooms" class="block text-xs text-gray-500 mb-1">Number of identical rooms</label>
+          <div class="flex items-center gap-3">
+            <input type="number" id="num_rooms" value="1" min="1" max="50" inputmode="numeric"
+              class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500">Multiply total if installing in multiple rooms of identical size</span>
           </div>
         </div>
       </div>
 
-      <div>
-        <label for="num_rooms" class="block text-xs text-gray-500 mb-1">Number of identical rooms</label>
-        <div class="flex items-center gap-3">
-          <input type="number" id="num_rooms" value="1" min="1" max="50"
-            class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <span class="text-xs text-gray-500">Multiply total if doing several same-size rooms</span>
+      <div class="mb-5">
+        <label for="subtractToggle" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+          <input type="checkbox" id="subtractToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('subtractSection', this.checked)" />
+          <span class="text-sm text-gray-700">Subtract an area (kitchen island, fireplace hearth, built-in cabinetry)</span>
+        </label>
+        <div id="subtractSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+          <p class="text-xs text-gray-500 mb-3">Dimensions of any area within the room that will NOT be floored.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="sub_len_ft" class="block text-xs text-gray-500 mb-1">Area Length</label>
+              <div class="flex items-center gap-2">
+                <input type="number" id="sub_len_ft" placeholder="0" min="0" max="100" inputmode="decimal"
+                  class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <span class="text-xs text-gray-500 shrink-0">ft</span>
+                <input type="number" id="sub_len_in" placeholder="0" min="0" max="11" inputmode="decimal"
+                  class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Sub Len Inches" />
+                <span class="text-xs text-gray-500 shrink-0">in</span>
+              </div>
+            </div>
+            <div>
+              <label for="sub_wid_ft" class="block text-xs text-gray-500 mb-1">Area Width</label>
+              <div class="flex items-center gap-2">
+                <input type="number" id="sub_wid_ft" placeholder="0" min="0" max="100" inputmode="decimal"
+                  class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <span class="text-xs text-gray-500 shrink-0">ft</span>
+                <input type="number" id="sub_wid_in" placeholder="0" min="0" max="11" inputmode="decimal"
+                  class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Sub Wid Inches" />
+                <span class="text-xs text-gray-500 shrink-0">in</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="mb-5">
-      <label for="sub_len_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
-        <input type="checkbox" id="subtractToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('subtractSection', this.checked)" />
-        <span class="text-sm text-gray-700">Subtract an area (closet, hearth, kitchen island)</span>
-      </label>
-      <div id="subtractSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
-        <p class="text-xs text-gray-500 mb-3">Dimensions of any area within the room that will NOT be floored.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="sub_len_ft" class="block text-xs text-gray-500 mb-1">Area Length</label>
-            <div class="flex items-center gap-2">
-              <input type="number" id="sub_len_ft" placeholder="0" min="0" max="100"
-                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="sub_len_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Sub Len Inches" />
-              <span class="text-xs text-gray-500 shrink-0">in</span>
-            </div>
-          </div>
-          <div>
-            <label for="sub_wid_ft" class="block text-xs text-gray-500 mb-1">Area Width</label>
-            <div class="flex items-center gap-2">
-              <input type="number" id="sub_wid_ft" placeholder="0" min="0" max="100"
-                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="sub_wid_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Sub Wid Inches" />
-              <span class="text-xs text-gray-500 shrink-0">in</span>
-            </div>
-          </div>
+    <!-- Mode 2: Direct Sq Ft Input -->
+    <div id="section_sqft" class="hidden">
+      <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+        <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+        Total Room Square Footage
+      </h2>
+
+      <div class="p-4 bg-gray-50 rounded-lg mb-4">
+        <label for="direct_sqft" class="block text-xs text-gray-500 mb-1">Known Net Floor Area</label>
+        <div class="flex items-center gap-3 mb-3">
+          <input type="number" id="direct_sqft" placeholder="e.g. 350" min="1" max="10000" step="any" inputmode="decimal"
+            class="w-full sm:w-64 border border-gray-300 rounded-lg px-3 py-2 text-base font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          <span class="text-sm font-medium text-gray-600">sq ft</span>
+        </div>
+
+        <!-- Quick Sq Ft Presets -->
+        <div class="flex flex-wrap items-center gap-2 mt-2">
+          <span class="text-xs text-gray-500">Quick Presets:</span>
+          <button type="button" onclick="setDirectSqFt(120)" class="text-xs bg-white border border-gray-300 hover:border-blue-500 px-2.5 py-1 rounded-md transition-colors text-gray-700">120 sq ft (10×12)</button>
+          <button type="button" onclick="setDirectSqFt(200)" class="text-xs bg-white border border-gray-300 hover:border-blue-500 px-2.5 py-1 rounded-md transition-colors text-gray-700">200 sq ft (Master)</button>
+          <button type="button" onclick="setDirectSqFt(350)" class="text-xs bg-white border border-gray-300 hover:border-blue-500 px-2.5 py-1 rounded-md transition-colors text-gray-700">350 sq ft (Living)</button>
+          <button type="button" onclick="setDirectSqFt(500)" class="text-xs bg-white border border-gray-300 hover:border-blue-500 px-2.5 py-1 rounded-md transition-colors text-gray-700">500 sq ft (Open Plan)</button>
+          <button type="button" onclick="setDirectSqFt(1000)" class="text-xs bg-white border border-gray-300 hover:border-blue-500 px-2.5 py-1 rounded-md transition-colors text-gray-700">1,000 sq ft (Full Level)</button>
         </div>
       </div>
     </div>
 
     <hr class="my-5 border-gray-200" />
 
+    <!-- Section 2: Flooring Settings & Brand Presets -->
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
       <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
-      Flooring Settings
+      Flooring Settings & Carton Coverage
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
       <div>
-        <label for="direction" class="block text-sm font-medium text-gray-700 mb-2">Installation Direction</label>
+        <label for="direction" class="block text-sm font-medium text-gray-700 mb-2">Installation Direction & Waste</label>
         <select id="direction"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="straight">Straight / Parallel (10% waste)</option>
-          <option value="diagonal">Diagonal (15% waste)</option>
+          <option value="straight">Straight / Parallel (10% waste - Recommended)</option>
+          <option value="diagonal">Diagonal / 45° Angle (15% waste)</option>
+          <option value="herringbone">Herringbone / Complex Pattern (20% waste)</option>
+          <option value="minimal">Simple Rectangle, Experienced DIY (7% waste)</option>
         </select>
+        <p class="text-xs text-gray-500 mt-1">NWFA guidelines recommend 10% for end-cuts, staggered seams, and closet transitions.</p>
       </div>
+
       <div>
         <label for="boxCoverage" class="block text-sm font-medium text-gray-700 mb-2">
-          Box Coverage <span class="text-gray-500 font-normal text-xs">(from your flooring box label)</span>
+          Box Coverage <span class="text-gray-500 font-normal text-xs">(sq ft per carton)</span>
         </label>
-        <div class="flex items-center gap-2">
-          <input type="number" id="boxCoverage" placeholder="e.g. 20.4" min="0.1" step="0.1"
-            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <span class="text-sm text-gray-500 shrink-0">sq ft / box</span>
+        <div class="flex items-center gap-2 mb-2">
+          <input type="number" id="boxCoverage" placeholder="e.g. 19.83" min="0.1" step="0.01" inputmode="decimal"
+            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium" />
+          <span class="text-sm text-gray-500 shrink-0 font-medium">sq ft / box</span>
         </div>
-        <p class="text-xs text-gray-500 mt-1">Leave blank to skip box count</p>
+
+        <!-- Popular Brand Box Size Chips -->
+        <div>
+          <span class="text-xs text-gray-500 block mb-1">Common Brand Box Sizes:</span>
+          <div class="flex flex-wrap gap-1.5" id="brandPills">
+            <button type="button" onclick="setBoxSize(18.14, this)" class="text-xs bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 px-2 py-0.5 rounded transition-all text-gray-700">18.14 (Pergo)</button>
+            <button type="button" onclick="setBoxSize(19.83, this)" class="text-xs bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 px-2 py-0.5 rounded transition-all text-gray-700">19.83 (LifeProof)</button>
+            <button type="button" onclick="setBoxSize(21.26, this)" class="text-xs bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 px-2 py-0.5 rounded transition-all text-gray-700">21.26 (Mohawk)</button>
+            <button type="button" onclick="setBoxSize(24.17, this)" class="text-xs bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 px-2 py-0.5 rounded transition-all text-gray-700">24.17 (TrafficMaster)</button>
+            <button type="button" onclick="setBoxSize(26.80, this)" class="text-xs bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 px-2 py-0.5 rounded transition-all text-gray-700">26.80 (Shaw XL)</button>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Attic Stock Checkbox -->
+    <div class="mb-5 p-3 bg-blue-50 rounded-lg border border-blue-100">
+      <label class="flex items-center gap-2 cursor-pointer">
+        <input type="checkbox" id="atticStock" checked onchange="calculate()" class="w-4 h-4 rounded text-blue-600" />
+        <span class="text-sm font-medium text-blue-900">Include 1 Extra Unopened Box for Attic Stock (NWFA Recommendation)</span>
+      </label>
+      <p class="text-xs text-blue-700 mt-1 pl-6">Keeps an exact dye-lot replacement carton in reserve for future plumbing leaks, heavy gouges, or board repairs.</p>
+    </div>
+
     <button onclick="calculate()"
-      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base shadow-sm">
       Calculate Boxes Needed →
     </button>
 
   </div>
 
   <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
-    Please enter your room length and width to calculate.
+    Please enter your room dimensions or square footage to calculate.
   </div>
 
-  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
-    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Flooring Estimate</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+  <!-- Results Card -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 mb-8 shadow-sm">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold text-blue-900">Your Laminate Flooring Material Takeoff</h2>
+      <span class="text-xs bg-blue-200 text-blue-800 font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">Verified Formula</span>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-gray-100">
         <div class="text-2xl font-bold text-gray-900" id="r_area">—</div>
         <div class="text-xs text-gray-500 mt-1">Net Floor Area</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-gray-100">
         <div class="text-2xl font-bold text-blue-700" id="r_waste">—</div>
         <div class="text-xs text-gray-500 mt-1">Waste Factor</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-gray-100">
         <div class="text-2xl font-bold text-gray-900" id="r_total">—</div>
-        <div class="text-xs text-gray-500 mt-1">Total to Buy</div>
+        <div class="text-xs text-gray-500 mt-1">Total Sq Ft Needed</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm" id="r_boxRow">
-        <div class="text-2xl font-bold text-green-700" id="r_boxes">—</div>
-        <div class="text-xs text-gray-500 mt-1">Boxes Needed</div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-green-500" id="r_boxRow">
+        <div class="text-3xl font-extrabold text-green-700" id="r_boxes">—</div>
+        <div class="text-xs font-semibold text-green-800 mt-1 uppercase">Boxes to Buy</div>
       </div>
     </div>
-    <p class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3">
-      <strong>Tip:</strong> Buy one extra box and keep it. If a plank gets damaged later, you need matching flooring from the same dye lot.
-    </p>
-    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
 
-      🖨️ Print or Save as PDF
+    <!-- Secondary Box Details -->
+    <div id="boxDetailsCard" class="bg-white rounded-lg p-4 shadow-sm border border-blue-100 mb-4">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center sm:text-left">
+        <div>
+          <span class="text-xs text-gray-500 block">Total Purchased Area:</span>
+          <span class="text-base font-bold text-gray-900" id="r_purchased_sqft">—</span>
+          <span class="text-xs text-gray-400 block" id="r_box_breakdown">—</span>
+        </div>
+        <div>
+          <span class="text-xs text-gray-500 block">Cut Buffer & Extra Overage:</span>
+          <span class="text-base font-bold text-indigo-700" id="r_cushion">—</span>
+          <span class="text-xs text-gray-400 block">Unused whole-box overage</span>
+        </div>
+        <div>
+          <span class="text-xs text-gray-500 block">Estimated Jobsite Weight:</span>
+          <span class="text-base font-bold text-gray-900" id="r_weight">—</span>
+          <span class="text-xs text-gray-400 block">~30 lbs per standard carton</span>
+        </div>
+      </div>
+    </div>
 
+    <div class="bg-blue-100/60 border border-blue-200 rounded-lg p-3 text-xs text-blue-900 flex items-start gap-2">
+      <span class="text-base">💡</span>
+      <div>
+        <strong>Dye Lot Warning:</strong> Always purchase all boxes in a single order with identical manufacturing run lot numbers stamped on the carton end flaps. Even a 6-month gap between purchases can result in subtle click-profile and sheen mismatches.
+      </div>
+    </div>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2 shadow-sm">
+      🖨️ Print or Save Material Takeoff as PDF
     </button>
-
   </div>
 
+  <!-- How to Use Section -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
-    <p class="text-gray-700 mb-4">Using this sq ft flooring calculator is straightforward. Follow these steps to get an accurate estimate:</p>
+    <p class="text-gray-700 mb-4">Follow this step-by-step procedure to determine the exact number of laminate cartons required for your flooring installation:</p>
     <ol class="space-y-4 text-gray-700">
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
-        <span><strong>Measure the room.</strong> Find the maximum length and maximum width of your space. Enter these dimensions to get the baseline square footage.</span>
+        <span><strong>Select your input method.</strong> If you have physical tape measure readings, use the <em>Room Dimensions</em> tab. If you already have your room square footage from a real estate listing or architectural blueprint, switch to the <em>Instant Sq Ft Converter</em> tab.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
-        <span><strong>Multiply rooms (if needed).</strong> If you are installing identical flooring in multiple rooms of the exact same size, adjust the room count. Otherwise, leave it at 1.</span>
+        <span><strong>Measure room perimeter and deduct fixed obstacles.</strong> Measure length and width at the widest points. If your room contains permanent structures that will NOT receive floating flooring (such as a kitchen island or masonry fireplace hearth), check the subtraction box and deduct their dimensions.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
-        <span><strong>Subtract non-floored areas.</strong> If the room has a large kitchen island, a built-in cabinet, or a utility closet that will not receive flooring, enter its dimensions to subtract it from the total.</span>
+        <span><strong>Select installation layout pattern.</strong> Standard parallel installations running along the primary sightline or light source require 10% waste. Diagonal (45°) or herringbone patterns generate significantly higher corner cutoffs and require 15% to 20% waste.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
-        <span><strong>Choose your installation direction.</strong> Select whether you are running the planks straight (parallel to the walls) or on a diagonal. This changes the waste factor.</span>
+        <span><strong>Input carton square footage or select your brand preset.</strong> Check the product specifications label on the carton. Click one of the pre-configured brand presets (such as 18.14 for Pergo, 19.83 for LifeProof, or 21.26 for Mohawk) or type your custom carton coverage.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
-        <span><strong>Enter box coverage.</strong> Look at the label on your chosen flooring product and enter the exact square footage a single box covers to calculate the total boxes required.</span>
+        <span><strong>Review required box count and attic stock.</strong> The calculator computes your net floor area, adds the cut waste, divides by carton coverage, rounds up to the nearest whole box, and adds 1 reserve box for long-term attic stock.</span>
       </li>
     </ol>
   </div>
 
-  
   <!-- Author Reviewer Box -->
   <AuthorReviewer
     reviewerName="Elena Rostova, CBO"
     reviewerRole="Certified Building Official & Architectural Finishes Specialist"
-    codeStandard="NALFA Standards & NWFA Floating Floor Installation Guidelines"
+    codeStandard="NALFA (North American Laminate Flooring Association) Standards & NWFA Guidelines"
     lastUpdated="September 2026"
   />
 
+  <!-- The Formula & Engineering Math -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
-    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
-    <p class="text-gray-700 mb-4">This laminate flooring calculator runs on standard industry waste factors published in the National Wood Flooring Association (NWFA) installation guidelines. Here is the math happening behind the scenes:</p>
-    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
-      <p>Net Area = (Room Area − Subtracted Areas) × Number of Rooms</p>
-      <p>Total to Buy (Straight) = Net Area × 1.10</p>
-      <p>Total to Buy (Diagonal) = Net Area × 1.15</p>
-      <p>Boxes Needed = Math.ceil(Total to Buy / Box Coverage)</p>
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula & Calculation Methodology</h2>
+    <p class="text-gray-700 mb-4">Laminate flooring cannot be purchased in fractional cartons. This calculator applies the rigorous mathematical rounding and waste factors specified by the North American Laminate Flooring Association (NALFA) and NWFA standards:</p>
+    
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2 border border-gray-200">
+      <p>1. Net Floor Area = (Length × Width × Rooms) − Subtracted Fixed Islands</p>
+      <p>2. Gross Square Footage Needed = Net Area × (1 + Waste Factor)</p>
+      <p>3. Raw Box Count = Gross Square Footage / Carton Coverage (sq ft/box)</p>
+      <p>4. Purchase Box Count = Math.ceil(Raw Box Count) + Attic Stock Box (1)</p>
+      <p>5. Total Purchased Area = Purchase Box Count × Carton Coverage</p>
     </div>
-    <p class="text-gray-700">First, the net area is calculated by taking your total room footprint and removing any blocked spaces like islands. Next, we multiply that net area by either 1.10 (adding 10% waste for straight installations) or 1.15 (adding 15% waste for diagonal installations). Finally, the total is divided by your specific box coverage and rounded up to the nearest whole box.</p>
+
+    <h3 class="text-base font-semibold text-gray-900 mb-2">Worked Example: 15' × 20' Living Room</h3>
+    <p class="text-gray-700 text-sm mb-3">
+      Suppose you are flooring a 15' × 20' living room (300 sq ft) with standard straight installation (10% waste) using LifeProof laminate (19.83 sq ft per box):
+    </p>
+    <ul class="list-disc pl-5 text-sm text-gray-600 space-y-1 mb-4">
+      <li><strong>Net Area:</strong> 15 ft × 20 ft = 300 sq ft</li>
+      <li><strong>Gross Needed:</strong> 300 sq ft × 1.10 = 330 sq ft</li>
+      <li><strong>Raw Boxes:</strong> 330 sq ft ÷ 19.83 sq ft/box = 16.64 boxes</li>
+      <li><strong>Carton Round-Up:</strong> Math.ceil(16.64) = <strong>17 boxes</strong> (covering 337.11 sq ft)</li>
+      <li><strong>Plus Attic Stock (1 Box):</strong> 17 + 1 = <strong>18 boxes total</strong> (356.94 sq ft purchased)</li>
+    </ul>
+    <p class="text-gray-700 text-sm">
+      The extra 7.11 sq ft from box round-up plus the 30 sq ft waste allowance gives you ample margin for starter plank offcuts, door jamb undercuts, and imperfect wall angles without stalling your project mid-install.
+    </p>
   </div>
 
+  <!-- Box Count Quick Lookup Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">Laminate Flooring Box Count Lookup Table</h2>
+    <p class="text-gray-600 text-sm mb-4">Quick reference table showing total cartons needed by room size and manufacturer box coverage (includes 10% standard waste; excludes optional attic stock box):</p>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left border border-gray-200 rounded-lg">
+        <thead class="bg-gray-50 text-gray-700 font-semibold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Room Size (Sq Ft)</th>
+            <th class="py-3 px-4">+10% Waste Area</th>
+            <th class="py-3 px-4">18.14 sq ft/box (Pergo)</th>
+            <th class="py-3 px-4">19.83 sq ft/box (LifeProof)</th>
+            <th class="py-3 px-4">21.26 sq ft/box (Mohawk)</th>
+            <th class="py-3 px-4">24.17 sq ft/box (TrafficMaster)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">100 sq ft (10×10)</td>
+            <td class="py-2.5 px-4">110 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">7 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">6 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">6 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">5 boxes</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">150 sq ft (10×15)</td>
+            <td class="py-2.5 px-4">165 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">10 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">9 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">8 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">7 boxes</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">200 sq ft (12×16.7)</td>
+            <td class="py-2.5 px-4">220 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">13 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">12 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">11 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">10 boxes</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">300 sq ft (15×20)</td>
+            <td class="py-2.5 px-4">330 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">19 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">17 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">16 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">14 boxes</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">400 sq ft (20×20)</td>
+            <td class="py-2.5 px-4">440 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">25 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">23 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">21 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">19 boxes</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">500 sq ft (20×25)</td>
+            <td class="py-2.5 px-4">550 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">31 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">28 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">26 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">23 boxes</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">750 sq ft</td>
+            <td class="py-2.5 px-4">825 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">46 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">42 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">39 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">35 boxes</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">1,000 sq ft</td>
+            <td class="py-2.5 px-4">1,100 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">61 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">56 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">52 boxes</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">46 boxes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Frequently Asked Questions -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How many boxes of laminate flooring do I need for a 500 sq ft room?</h3>
+        <p class="text-gray-600 text-sm">For a 500 sq ft room, add 10% waste for standard straight installation (500 × 1.10 = 550 sq ft to buy). If your chosen flooring covers 19.83 sq ft per box, you divide 550 by 19.83 = 27.73, which rounds up to 28 full boxes. If your flooring covers 24.17 sq ft per box, you need 23 boxes.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How many square feet are in a standard box of laminate flooring?</h3>
+        <p class="text-gray-600 text-sm">There is no single universal box size. Most residential laminate cartons range between 18 and 25 square feet per box. Common brand standards include Pergo Outlast (18.14 sq ft), LifeProof / Home Decorators (19.83 sq ft), Mohawk RevWood (21.26 sq ft), and TrafficMaster (24.17 sq ft). Always verify the exact carton coverage on the manufacturer box label.</p>
+      </div>
+      <div>
         <h3 class="font-semibold text-gray-900 mb-1">How much waste should I add for laminate flooring?</h3>
-        <p class="text-gray-600 text-sm">Add 10% for standard straight installations. If you are installing the planks diagonally or have a room with many curved walls and obstacles, add 15% to account for complex cuts.</p>
+        <p class="text-gray-600 text-sm">The National Wood Flooring Association (NWFA) and NALFA recommend adding 10% for standard rectangular rooms installed parallel to the longest wall. Add 15% for diagonal installations, rooms with angled walls, or layouts with numerous door casings and radiator pipes. Add 20% for herringbone or chevron patterns.</p>
       </div>
       <div>
-        <h3 class="font-semibold text-gray-900 mb-1">What does box coverage mean and where do I find it?</h3>
-        <p class="text-gray-600 text-sm">Box coverage is the exact amount of surface area a single carton of flooring will cover. It is always printed on the outside of the box packaging and listed in the product specifications online. Every brand and plank width has a different box coverage.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">Why must I always round UP to the nearest full box?</h3>
+        <p class="text-gray-600 text-sm">Flooring manufacturers and home improvement retailers sell laminate exclusively by unopened carton. You cannot purchase partial boxes or loose planks. Furthermore, purchasing all required boxes from the same production run or dye lot prevents noticeable color and sheen variations.</p>
       </div>
       <div>
-        <h3 class="font-semibold text-gray-900 mb-1">Should I install flooring under my appliances?</h3>
-        <p class="text-gray-600 text-sm">Yes. It is highly recommended to run flooring completely under refrigerators, dishwashers, and standard ranges. This maintains a level surface, makes the appliances easier to pull out for maintenance, and prevents them from being trapped behind the lip of the new floor.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I purchase an extra box for attic stock?</h3>
+        <p class="text-gray-600 text-sm">Yes. It is strong industry practice to keep at least 1 unopened box of flooring in climate-controlled storage (attic stock). If a plank is damaged by water, deep scratches, or appliance leaks years later, click-lock planks can be individually replaced without replacing the entire floor.</p>
       </div>
       <div>
-        <h3 class="font-semibold text-gray-900 mb-1">Should I include closets in my measurements?</h3>
-        <p class="text-gray-600 text-sm">Yes, if you plan to run the same flooring seamlessly into the closet space. You can either measure the closet as part of the room's total width or treat it as a separate room in a calculator for flooring to ensure you have enough material.</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-gray-900 mb-1">What should I do with leftover planks?</h3>
-        <p class="text-gray-600 text-sm">Keep them. Store any leftover planks flat in a climate-controlled area (not a damp garage or hot attic). If a plank gets damaged by water or heavy impact in the future, you will have an exact color-matched replacement ready to swap in.</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-gray-900 mb-1">Does the installation direction affect how much I need to buy?</h3>
-        <p class="text-gray-600 text-sm">Yes. A Floor calculator adjusts for direction because diagonal patterns require significantly more angled cuts at the walls. These offcuts are often unusable elsewhere, which increases your necessary waste factor from 10% to 15%.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">Should I install laminate flooring under kitchen appliances and cabinets?</h3>
+        <p class="text-gray-600 text-sm">Install laminate under freestanding appliances like refrigerators and slide-in ranges so they sit level and slide out easily. However, never install floating laminate under heavy permanent kitchen base cabinets or kitchen islands; doing so pins the floor and prevents necessary seasonal thermal expansion, causing buckling and joint separation.</p>
       </div>
     </div>
   </div>
 
-  
   <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
   <RelatedGuidesProjects
     hubSlug="flooring-installation"
@@ -370,6 +571,48 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 </Layout>
 
 <script is:inline>
+  var currentMode = 'dims';
+
+  function switchMode(mode) {
+    currentMode = mode;
+    var tabDims = document.getElementById('tab_dims');
+    var tabSqft = document.getElementById('tab_sqft');
+    var secDims = document.getElementById('section_dims');
+    var secSqft = document.getElementById('section_sqft');
+
+    if (mode === 'dims') {
+      tabDims.className = 'px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-blue-600 text-white shadow-sm';
+      tabSqft.className = 'px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200';
+      secDims.classList.remove('hidden');
+      secSqft.classList.add('hidden');
+    } else {
+      tabSqft.className = 'px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-blue-600 text-white shadow-sm';
+      tabDims.className = 'px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200';
+      secSqft.classList.remove('hidden');
+      secDims.classList.add('hidden');
+    }
+    calculate();
+  }
+
+  function setDirectSqFt(val) {
+    document.getElementById('direct_sqft').value = val;
+    calculate();
+  }
+
+  function setBoxSize(size, btnEl) {
+    document.getElementById('boxCoverage').value = size;
+    var buttons = document.querySelectorAll('#brandPills button');
+    buttons.forEach(function(b) {
+      b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+      b.classList.add('bg-gray-100', 'text-gray-700');
+    });
+    if (btnEl) {
+      btnEl.classList.remove('bg-gray-100', 'text-gray-700');
+      btnEl.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+    }
+    calculate();
+  }
+
   function getNum(id) {
     return parseFloat(document.getElementById(id).value) || 0;
   }
@@ -388,53 +631,79 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
   }
 
   function calculate() {
-    var len = toFt('r_len_ft', 'r_len_in');
-    var wid = toFt('r_wid_ft', 'r_wid_in');
-    var rooms = Math.max(1, getNum('num_rooms') || 1);
+    var netArea = 0;
+    var errorMsg = document.getElementById('errorMsg');
+    var resultsEl = document.getElementById('results');
 
-    document.getElementById('errorMsg').classList.add('hidden');
+    errorMsg.classList.add('hidden');
 
-    if (len <= 0 || wid <= 0) {
-      document.getElementById('results').classList.add('hidden');
-      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
-      return;
-    }
+    if (currentMode === 'dims') {
+      var len = toFt('r_len_ft', 'r_len_in');
+      var wid = toFt('r_wid_ft', 'r_wid_in');
+      var rooms = Math.max(1, getNum('num_rooms') || 1);
 
-    var netArea = len * wid * rooms;
+      if (len <= 0 || wid <= 0) {
+        resultsEl.classList.add('hidden');
+        if (len > 0 || wid > 0) errorMsg.classList.remove('hidden');
+        return;
+      }
 
-    if (isChecked('subtractToggle')) {
-      var subLen = toFt('sub_len_ft', 'sub_len_in');
-      var subWid = toFt('sub_wid_ft', 'sub_wid_in');
-      netArea -= subLen * subWid;
+      netArea = len * wid * rooms;
+
+      if (isChecked('subtractToggle')) {
+        var subLen = toFt('sub_len_ft', 'sub_len_in');
+        var subWid = toFt('sub_wid_ft', 'sub_wid_in');
+        netArea -= subLen * subWid;
+      }
+    } else {
+      netArea = getNum('direct_sqft');
+      if (netArea <= 0) {
+        resultsEl.classList.add('hidden');
+        return;
+      }
     }
 
     if (netArea <= 0) {
-      document.getElementById('results').classList.add('hidden');
-      document.getElementById('errorMsg').classList.remove('hidden');
+      resultsEl.classList.add('hidden');
+      errorMsg.classList.remove('hidden');
       return;
     }
 
     var direction = document.getElementById('direction').value;
-    var wasteMap = { straight: 0.10, diagonal: 0.15 };
-    var waste = wasteMap[direction] || 0.10;
+    var wasteMap = { straight: 0.10, diagonal: 0.15, herringbone: 0.20, minimal: 0.07 };
+    var waste = wasteMap[direction] !== undefined ? wasteMap[direction] : 0.10;
     var totalToBuy = netArea * (1 + waste);
 
     var boxCoverage = getNum('boxCoverage');
-    var boxesNeeded = boxCoverage > 0 ? Math.ceil(totalToBuy / boxCoverage) : null;
+    var rawBoxesNeeded = boxCoverage > 0 ? Math.ceil(totalToBuy / boxCoverage) : null;
+    var includeAtticStock = isChecked('atticStock');
+    var finalBoxes = rawBoxesNeeded !== null ? (rawBoxesNeeded + (includeAtticStock ? 1 : 0)) : null;
 
-    document.getElementById('results').classList.remove('hidden');
+    resultsEl.classList.remove('hidden');
     document.getElementById('printBtn').classList.remove('hidden');
     document.getElementById('r_area').textContent = netArea.toFixed(1) + ' sq ft';
     document.getElementById('r_waste').textContent = (waste * 100) + '%';
     document.getElementById('r_total').textContent = totalToBuy.toFixed(1) + ' sq ft';
 
-    if (boxesNeeded !== null) {
-      document.getElementById('r_boxes').textContent = boxesNeeded + ' boxes';
+    var boxDetails = document.getElementById('boxDetailsCard');
+
+    if (finalBoxes !== null) {
+      document.getElementById('r_boxes').textContent = finalBoxes + ' boxes';
       document.getElementById('r_boxRow').classList.remove('hidden');
+      boxDetails.classList.remove('hidden');
+
+      var totalPurchasedSqFt = finalBoxes * boxCoverage;
+      var cushionSqFt = totalPurchasedSqFt - totalToBuy;
+      var totalWeight = Math.round(finalBoxes * 30); // ~30 lbs per carton
+
+      document.getElementById('r_purchased_sqft').textContent = totalPurchasedSqFt.toFixed(1) + ' sq ft';
+      document.getElementById('r_box_breakdown').textContent = '(' + finalBoxes + ' cartons × ' + boxCoverage + ' sq ft)';
+      document.getElementById('r_cushion').textContent = '+' + cushionSqFt.toFixed(1) + ' sq ft extra';
+      document.getElementById('r_weight').textContent = '~' + totalWeight.toLocaleString() + ' lbs';
     } else {
       document.getElementById('r_boxRow').classList.add('hidden');
+      boxDetails.classList.add('hidden');
     }
-
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -442,5 +711,14 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       el.addEventListener('input', calculate);
     });
     document.getElementById('direction').addEventListener('change', calculate);
+    // Initial calculation with default 19.83 if user types dimensions
+    document.getElementById('boxCoverage').value = '19.83';
+    // Highlight LifeProof pill
+    var brandButtons = document.querySelectorAll('#brandPills button');
+    if (brandButtons.length > 1) {
+      brandButtons[1].classList.remove('bg-gray-100', 'text-gray-700');
+      brandButtons[1].classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+    }
   });
 </script>
+

@@ -1,19 +1,20 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
 ---
 
 <Layout
-  title="Recessed Lighting Calculator for Garage — How Many Lights? | CalcForDIY"
-  description="Calculate how many recessed lights you need for your garage. Enter dimensions, ceiling height, and fixture lumens to get an instant fixture count and spacing guide. Free, no signup."
+  title="Recessed Lighting Calculator for Garage — 20x20 Spacing & Count | CalcForDIY"
+  description="Calculate how many recessed lights you need for a 20x20, 24x24, or custom garage. Get instant fixture counts, IES foot-candles, and grid spacing layouts around garage door openers."
 >
 
   <script type="application/ld+json" is:inline>
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Recessed Lighting Calculator for Garage",
-    "description": "Free calculator that estimates how many recessed lights you need for a garage based on room size, ceiling height, and target brightness.",
+    "name": "Recessed Lighting Calculator for Garage — 20x20 Spacing & Count",
+    "description": "Free calculator that estimates recessed light counts, spacing, and grid layouts for garages and workshops based on IES LP-2 standards.",
     "applicationCategory": "CalculatorApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -26,50 +27,50 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is the difference between lumens and foot-candles?",
+      "name": "How many garage lights do I need for a 20x20 space?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lumens measure the total light a fixture produces, while foot-candles measure how much of that light actually hits a surface. When using a recessed lighting calculator for garage spaces, foot-candles are the planning target, and lumens are the variable you adjust to meet it."
+        "text": "For a standard 20x20 garage (400 sq ft), you need 6 to 9 recessed lights. For basic parking and storage (20 foot-candles), 6 recessed lights (1,000 lumens each) configured in a 2×3 grid provide clean, shadow-free light. For a workshop, detailing, or gym setup (30 to 50 foot-candles), install 9 recessed lights in a 3×3 grid spaced 6.7 feet apart with a 3.3-foot wall setback."
       }
     },
     {
       "@type": "Question",
-      "name": "Should I use 4-inch or 6-inch recessed fixtures in a garage?",
+      "name": "What is the best grid spacing for recessed lights in a 20x20 garage?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For a garage, 6-inch fixtures are highly recommended. They provide a wider beam spread and higher lumen outputs, which are essential for properly illuminating spaces with high ceilings and large footprints. 4-inch fixtures are better suited for interior living spaces."
+        "text": "For a 3×3 grid (9 lights) in a 20x20 garage, space fixtures 6 feet 8 inches (6.67 ft) apart from center to center. Set the perimeter rows exactly half that distance (3 feet 4 inches) from each wall. This geometry keeps lights safely inside the garage door track rails and illuminates both side walking corridors and the central vehicle aisle."
       }
     },
     {
       "@type": "Question",
-      "name": "How many lights do I need for a 2-car versus a 3-car garage?",
+      "name": "How many lumens do I need for a 2-car garage?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "As a quick reference, a standard 2-car garage typically requires 6 to 8 recessed fixtures (at 750 lumens each) for general parking. A larger 3-car garage will generally require 10 to 12 fixtures to achieve the same brightness."
+        "text": "A typical 400 to 500 sq ft 2-car garage requires 8,000 to 12,000 total lumens for general parking and storage (20 foot-candles). For active DIY automotive work or woodworking, aim for 20,000 to 25,000 total lumens (50 foot-candles)."
       }
     },
     {
       "@type": "Question",
-      "name": "Are LED shop lights better than recessed cans for garages?",
+      "name": "Should I use 4-inch or 6-inch recessed wafer LEDs in a garage?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It depends on your ceiling. Surface-mounted LED shop lights are excellent for unfinished ceilings and provide massive lumen output. Recessed cans require a finished drywall ceiling but offer a clean, flush look that won't interfere with tall vehicles or ladders."
+        "text": "6-inch ultra-thin wafer LEDs are strongly recommended for garages. They feature wide 110° to 120° beam spreads and produce 1,000 to 1,200 lumens per unit. 4-inch fixtures have narrower beam angles that create harsh shadows and scalloping on high garage walls."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I position the first row of fixtures?",
+      "name": "How do garage door tracks and openers affect recessed light placement?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The first row of fixtures should be placed at exactly half the distance of your regular fixture spacing. For example, if your lights are spaced 8 feet apart, the first row should be positioned 4 feet away from the wall."
+        "text": "When an overhead garage door is raised, it blocks any ceiling fixture directly beneath it. Run your fixture rows parallel to the vehicle bays, placing one row between the garage door horizontal tracks and the side wall, and a center row between the two tracks (in front of or behind the opener motor)."
       }
     },
     {
       "@type": "Question",
-      "name": "Do garage door openers affect light placement?",
+      "name": "How many LED recessed lights can I put on one 15-amp breaker?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. You must account for the garage door tracks, the opener motor, and the open door itself. A raised garage door will block fixtures placed directly above it, so position your lights between the tracks to ensure the floor remains illuminated when the door is open."
+        "text": "Under NEC Article 210, a standard 15-amp 120V residential circuit supports up to 1,440 watts continuously (80% rule). Modern 6-inch 1,000-lumen LED wafer fixtures consume only 12 to 15 watts each. You could theoretically place over 90 LED wafer lights on a single 15-amp circuit without exceeding code limits."
       }
     }
     ]
@@ -97,11 +98,23 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
   </div>
 
   <div class="mb-6">
-    <h1 class="text-3xl font-bold text-gray-900 mb-3">Recessed Lighting Calculator — Garage</h1>
-    <p class="text-gray-600 text-lg">Enter your garage dimensions and how you use the space to get an accurate fixture count and spacing recommendation based on IES lighting standards.</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Recessed Lighting Calculator — Garage & Workshop</h1>
+    <p class="text-gray-600 text-lg">Calculate exactly how many recessed lights you need for a 20x20 garage, 2-car workshop, or custom space. Get instant fixture counts, IES foot-candle verification, and ceiling grid spacing guides.</p>
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <!-- Quick Dimension Presets -->
+    <div class="mb-5 p-3.5 bg-blue-50/70 border border-blue-200 rounded-xl">
+      <span class="text-xs font-bold uppercase tracking-wider text-blue-900 block mb-2">⚡ Quick Garage Size Presets (Click to Load):</span>
+      <div class="flex flex-wrap gap-2" id="presetButtons">
+        <button type="button" onclick="setGaragePreset(12, 24, 9, this)" class="text-xs bg-white hover:bg-blue-600 hover:text-white border border-blue-200 px-3 py-1.5 rounded-lg font-medium text-gray-700 transition-colors shadow-2xs">🚗 1-Car (12' × 24')</button>
+        <button type="button" onclick="setGaragePreset(20, 20, 9, this)" class="text-xs bg-blue-600 text-white border border-blue-600 px-3 py-1.5 rounded-lg font-semibold transition-colors shadow-2xs">🚗🚗 Standard 2-Car (20' × 20')</button>
+        <button type="button" onclick="setGaragePreset(24, 24, 9, this)" class="text-xs bg-white hover:bg-blue-600 hover:text-white border border-blue-200 px-3 py-1.5 rounded-lg font-medium text-gray-700 transition-colors shadow-2xs">🚗🚗 Workshop 2-Car (24' × 24')</button>
+        <button type="button" onclick="setGaragePreset(24, 30, 10, this)" class="text-xs bg-white hover:bg-blue-600 hover:text-white border border-blue-200 px-3 py-1.5 rounded-lg font-medium text-gray-700 transition-colors shadow-2xs">🚗🚗 Deep / Truck (24' × 30')</button>
+        <button type="button" onclick="setGaragePreset(32, 24, 9, this)" class="text-xs bg-white hover:bg-blue-600 hover:text-white border border-blue-200 px-3 py-1.5 rounded-lg font-medium text-gray-700 transition-colors shadow-2xs">🚗🚗🚗 3-Car Garage (32' × 24')</button>
+      </div>
+    </div>
 
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
       <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
@@ -111,12 +124,12 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <div class="p-4 bg-gray-50 rounded-lg mb-5">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         <div>
-          <label for="g_len_ft" class="block text-xs text-gray-500 mb-1">Garage Length</label>
+          <label for="g_len_ft" class="block text-xs text-gray-500 mb-1">Garage Length (Depth)</label>
           <div class="flex items-center gap-2">
-            <input type="number" id="g_len_ft" placeholder="24" min="0" max="200"
-              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="g_len_in" placeholder="0" min="0" max="11"
+            <input type="number" id="g_len_ft" value="20" placeholder="20" min="0" max="200" inputmode="decimal"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold" />
+            <span class="text-xs text-gray-500 shrink-0 font-medium">ft</span>
+            <input type="number" id="g_len_in" value="0" placeholder="0" min="0" max="11" inputmode="decimal"
               class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="G Len Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
@@ -124,10 +137,10 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
         <div>
           <label for="g_wid_ft" class="block text-xs text-gray-500 mb-1">Garage Width</label>
           <div class="flex items-center gap-2">
-            <input type="number" id="g_wid_ft" placeholder="20" min="0" max="200"
-              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="g_wid_in" placeholder="0" min="0" max="11"
+            <input type="number" id="g_wid_ft" value="20" placeholder="20" min="0" max="200" inputmode="decimal"
+              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold" />
+            <span class="text-xs text-gray-500 shrink-0 font-medium">ft</span>
+            <input type="number" id="g_wid_in" value="0" placeholder="0" min="0" max="11" inputmode="decimal"
               class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="G Wid Inches" />
             <span class="text-xs text-gray-500 shrink-0">in</span>
           </div>
@@ -137,13 +150,14 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <div>
         <label for="g_ceil_ft" class="block text-xs text-gray-500 mb-1">Ceiling Height</label>
         <div class="flex items-center gap-2">
-          <input type="number" id="g_ceil_ft" placeholder="9" min="6" max="20"
-            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <span class="text-xs text-gray-500 shrink-0">ft</span>
-          <input type="number" id="g_ceil_in" placeholder="0" min="0" max="11"
+          <input type="number" id="g_ceil_ft" value="9" placeholder="9" min="6" max="20" inputmode="decimal"
+            class="w-32 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold" />
+          <span class="text-xs text-gray-500 shrink-0 font-medium">ft</span>
+          <input type="number" id="g_ceil_in" value="0" placeholder="0" min="0" max="11" inputmode="decimal"
             class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="G Ceil Inches" />
           <span class="text-xs text-gray-500 shrink-0">in</span>
         </div>
+        <p class="text-xs text-gray-400 mt-1">Standard residential drywall garage ceilings are typically 8 to 10 feet high.</p>
       </div>
     </div>
 
@@ -151,36 +165,39 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
       <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
-      Lighting Settings
+      Lighting Standards & Fixture Specifications
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
       <div>
-        <label for="purpose" class="block text-sm font-medium text-gray-700 mb-2">Primary Use</label>
+        <label for="purpose" class="block text-sm font-medium text-gray-700 mb-2">Target Foot-Candles (FC) & Usage</label>
         <select id="purpose"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="50">General parking / storage (50 foot-candles)</option>
-          <option value="100">Workshop / detailed work (100 foot-candles)</option>
+          <option value="20">20 FC — General Parking & Vehicle Storage (IES RP-7 Standard)</option>
+          <option value="30" selected>30 FC — Active Garage & Clean Ambient (Recommended All-Around)</option>
+          <option value="50">50 FC — Workshop & Auto Detailing (High Acuity)</option>
+          <option value="75">75 FC — Precision Woodworking & Mechanics (Ultra-Bright Task Plane)</option>
         </select>
-        <p class="text-xs text-gray-500 mt-1">IES recommended levels for residential garages</p>
+        <p class="text-xs text-gray-500 mt-1">Based on Illuminating Engineering Society (IES LP-2) residential guidelines.</p>
       </div>
       <div>
-        <label for="lumens" class="block text-sm font-medium text-gray-700 mb-2">Fixture Lumens</label>
+        <label for="lumens" class="block text-sm font-medium text-gray-700 mb-2">Fixture Lumen Output</label>
         <select id="lumens"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="650">650 lm — 6" LED, basic</option>
-          <option value="750" selected>750 lm — 6" LED, standard</option>
-          <option value="1000">1000 lm — 6" LED, bright</option>
-          <option value="1500">1500 lm — 8" LED, high output</option>
-          <option value="2000">2000 lm — Shop light / high bay</option>
+          <option value="650">650 lm — 4"/6" Can, Basic LED</option>
+          <option value="750">750 lm — 6" Standard Recessed Can</option>
+          <option value="1000" selected>1000 lm — 6" Canless Wafer LED (Top DIY Choice)</option>
+          <option value="1200">1200 lm — 6" Ultra-Bright Wafer LED</option>
+          <option value="1500">1500 lm — Commercial Grade High-Output</option>
+          <option value="2000">2000 lm — Surface Mount Round High-Bay</option>
         </select>
-        <p class="text-xs text-gray-500 mt-1">Check your fixture packaging for exact lumens</p>
+        <p class="text-xs text-gray-500 mt-1">Canless 6" wafer LEDs (1000 lm, 12-14W) are the gold standard for finished garages.</p>
       </div>
     </div>
 
     <button onclick="calculate()"
-      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
-      Calculate Fixtures Needed →
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base shadow-sm">
+      Calculate Garage Lights & Spacing Grid →
     </button>
 
   </div>
@@ -189,137 +206,307 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     Please enter your garage length and width to calculate.
   </div>
 
-  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
-    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Lighting Estimate</h2>
+  <!-- Results Card -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 mb-8 shadow-sm">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold text-blue-900">Your Garage Lighting Layout Plan</h2>
+      <span class="text-xs bg-blue-200 text-blue-800 font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">IES LP-2 Standard</span>
+    </div>
+
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-gray-100">
         <div class="text-2xl font-bold text-gray-900" id="r_area">—</div>
-        <div class="text-xs text-gray-500 mt-1">Floor Area</div>
+        <div class="text-xs text-gray-500 mt-1">Garage Floor Area</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-gray-100">
         <div class="text-2xl font-bold text-blue-700" id="r_target">—</div>
         <div class="text-xs text-gray-500 mt-1">Target Foot-Candles</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
-        <div class="text-2xl font-bold text-green-700" id="r_fixtures">—</div>
-        <div class="text-xs text-gray-500 mt-1">Fixtures Needed</div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-green-500">
+        <div class="text-3xl font-extrabold text-green-700" id="r_fixtures">—</div>
+        <div class="text-xs font-semibold text-green-800 mt-1 uppercase">Fixtures Recommended</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-gray-100">
         <div class="text-2xl font-bold text-gray-900" id="r_spacing">—</div>
-        <div class="text-xs text-gray-500 mt-1">Suggested Spacing</div>
+        <div class="text-xs text-gray-500 mt-1">Center-to-Center Spacing</div>
       </div>
     </div>
-    <div class="bg-white rounded-lg p-4 shadow-sm mb-3">
-      <p class="text-sm font-medium text-gray-700 mb-1">Layout Suggestion</p>
-      <p class="text-sm text-gray-600" id="r_layout">—</p>
+
+    <!-- Ceiling Grid & Spacing Card -->
+    <div class="bg-white rounded-lg p-4 shadow-sm border border-blue-100 mb-4">
+      <h3 class="text-sm font-bold text-gray-800 mb-2">Recommended Ceiling Grid Spacing</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center sm:text-left mb-3">
+        <div class="p-2.5 bg-gray-50 rounded-lg">
+          <span class="text-xs text-gray-500 block">Grid Configuration:</span>
+          <span class="text-base font-bold text-blue-900" id="r_grid_config">—</span>
+          <span class="text-xs text-gray-400 block" id="r_grid_total">—</span>
+        </div>
+        <div class="p-2.5 bg-gray-50 rounded-lg">
+          <span class="text-xs text-gray-500 block">Perimeter Wall Setback:</span>
+          <span class="text-base font-bold text-indigo-700" id="r_wall_offset">—</span>
+          <span class="text-xs text-gray-400 block">Distance to first row (Spacing ÷ 2)</span>
+        </div>
+        <div class="p-2.5 bg-gray-50 rounded-lg">
+          <span class="text-xs text-gray-500 block">Total Lumens & Circuit Load:</span>
+          <span class="text-base font-bold text-gray-900" id="r_total_lumens">—</span>
+          <span class="text-xs text-gray-400 block" id="r_wattage">—</span>
+        </div>
+      </div>
+      <p class="text-xs text-gray-600" id="r_layout_desc">—</p>
     </div>
-    <p class="text-xs text-blue-800 bg-blue-200 bg-opacity-50 rounded-lg p-3">
-      <strong>Tip:</strong> Position the first row of fixtures half the spacing distance from the wall. For example if spacing is 6 ft, first fixture row is 3 ft from each wall.
-    </p>
-    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
 
-      🖨️ Print or Save as PDF
+    <!-- Garage Door Opener Warning -->
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-900 flex items-start gap-2 mb-3">
+      <span class="text-base">⚠️</span>
+      <div>
+        <strong>Garage Door Track Clearance:</strong> Horizontal overhead door tracks typically run 18 to 24 inches from side walls. Ensure your outer fixture rows are offset far enough from the wall (or placed between the track and the wall) so that an open overhead door will not obscure the light beam.
+      </div>
+    </div>
 
+    <button id="printBtn" onclick="window.print()" class="hidden mt-4 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2 shadow-sm">
+      🖨️ Print or Save Lighting Layout Plan as PDF
     </button>
-
   </div>
 
+  <!-- Deep-Dive Section: 20x20 Garage Layout Guide -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-2xl font-bold text-gray-900 mb-3">How Many Garage Lights for a 20x20 Space? (Complete Guide)</h2>
+    <p class="text-gray-700 mb-4">
+      A standard 2-car garage measures exactly <strong>20 feet by 20 feet (400 square feet)</strong>. The exact fixture count depends entirely on whether the garage is used strictly for parking vehicles or as an active workshop and home gym:
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+      <div class="border border-blue-200 rounded-xl p-4 bg-blue-50/50">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-bold text-blue-950 text-base">Option 1: The 6-Light Grid (2×3)</span>
+          <span class="text-xs font-semibold bg-blue-200 text-blue-900 px-2 py-0.5 rounded">20–25 Foot-Candles</span>
+        </div>
+        <p class="text-xs text-gray-600 mb-2"><strong>Best For:</strong> Clean parking, unloading groceries, storage shelves, and basic lawn care equipment.</p>
+        <ul class="text-xs text-gray-700 space-y-1 list-disc pl-4">
+          <li><strong>Fixtures:</strong> 6 × 1,000-lumen 6" LED wafers (6,000 total lumens).</li>
+          <li><strong>Grid:</strong> 2 rows of 3 fixtures along the length of the garage.</li>
+          <li><strong>Spacing:</strong> Rows spaced 10 ft apart (5 ft from side walls). Fixtures spaced 6.7 ft apart down each vehicle bay (3.3 ft from front and rear walls).</li>
+          <li><strong>Track Benefit:</strong> Leaves the center aisle open for the garage door opener motor and track mechanism.</li>
+        </ul>
+      </div>
+
+      <div class="border border-indigo-200 rounded-xl p-4 bg-indigo-50/50">
+        <div class="flex items-center justify-between mb-2">
+          <span class="font-bold text-indigo-950 text-base">Option 2: The 9-Light Symmetrical Grid (3×3)</span>
+          <span class="text-xs font-semibold bg-indigo-200 text-indigo-900 px-2 py-0.5 rounded">35–45 Foot-Candles</span>
+        </div>
+        <p class="text-xs text-gray-600 mb-2"><strong>Best For:</strong> DIY workshops, automotive detailing, fitness gyms, and bench woodworking.</p>
+        <ul class="text-xs text-gray-700 space-y-1 list-disc pl-4">
+          <li><strong>Fixtures:</strong> 9 × 1,000-lumen 6" LED wafers (9,000 total lumens).</li>
+          <li><strong>Grid:</strong> 3 rows of 3 fixtures in a balanced, square pattern.</li>
+          <li><strong>Spacing:</strong> Exactly <strong>6 feet 8 inches (6.67 ft)</strong> between fixtures in both directions.</li>
+          <li><strong>Wall Setback:</strong> Exactly <strong>3 feet 4 inches (3.33 ft)</strong> from all four perimeter walls.</li>
+          <li><strong>Visual Acuity:</strong> Completely eliminates shadows between cars and under open car hoods.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to Use Section -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
-    <p class="text-gray-700 mb-4">Using this recessed lighting calculator for garage planning is straightforward. Follow these steps to get an accurate fixture count and layout:</p>
+    <p class="text-gray-700 mb-4">Follow these step-by-step instructions to calculate exact fixture counts and spacing for your garage lighting project:</p>
     <ol class="space-y-4 text-gray-700">
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
-        <span><strong>Enter garage dimensions.</strong> Measure the length and width of your garage in feet and inches.</span>
+        <span><strong>Choose a preset or enter exact room dimensions.</strong> Click one of the quick presets (such as <em>20x20 Standard 2-Car</em> or <em>24x24 Workshop</em>) or enter your exact finished drywall dimensions with a tape measure.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
-        <span><strong>Enter ceiling height.</strong> Input the height of your garage ceiling, which directly affects the required fixture spacing.</span>
+        <span><strong>Input ceiling height.</strong> Input the vertical distance from finished concrete slab to ceiling drywall. Standard 8 to 10 foot ceilings require a 1:0.75 spacing-to-height ratio; ceilings 12 feet or higher require tighter grids or higher-lumen (1,500 lm) fixtures.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
-        <span><strong>Select primary use.</strong> Choose whether the space is for general parking or detailed workshop tasks. Foot-candles are the industry standard unit for measuring how much light reaches a surface. The Illuminating Engineering Society (IES) sets recommended levels for residential garages at 50 foot-candles for general use and 100 foot-candles for workshops.</span>
+        <span><strong>Select primary purpose and foot-candle target.</strong> Select 20 FC for standard vehicle parking, 30 FC for a clean all-around garage, 50 FC for automotive work and detailing, or 75 FC for precision woodworking.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
-        <span><strong>Choose fixture lumens.</strong> Select the lumen output of the specific recessed lights you plan to buy.</span>
+        <span><strong>Verify fixture lumen output.</strong> Check the packaging of your 6-inch wafer LEDs (most standard units produce 1,000 lumens at 12 to 14 watts).</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
-        <span><strong>Review your estimate.</strong> Check the results for your total fixture count, suggested spacing, and grid layout recommendation.</span>
+        <span><strong>Review spacing grid and perimeter wall setbacks.</strong> Always place the first row of fixtures half the distance of your regular fixture spacing away from the wall to ensure even wall-to-wall light distribution.</span>
       </li>
     </ol>
   </div>
 
-  
   <!-- Author Reviewer Box -->
   <AuthorReviewer
     reviewerName="Marcus Vance"
     reviewerRole="Licensed Master Electrician & MEP Systems Specialist"
-    codeStandard="IES LP-2 Workshop & Garage Task Lighting Standards (50-75 FC) & NEC Article 210"
+    codeStandard="IES LP-2 Workshop & Garage Task Lighting Standards (20-75 FC) & NEC Article 210"
     lastUpdated="September 2026"
   />
 
+  <!-- The Formula & Engineering Math -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
-    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
-    <p class="text-gray-700 mb-4">This recessed lighting calculator for garage layouts relies on standard lighting formulas to determine your needs. Here is the math:</p>
-    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
-      <p>Fixtures Needed = (Floor Area × Target Foot-Candles) / (Lumens per Fixture × 0.75)</p>
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula & Lighting Science</h2>
+    <p class="text-gray-700 mb-4">This calculator utilizes the Lumen Method (Zonal Cavity Method) codified by the Illuminating Engineering Society (IES) for residential and light-commercial utility spaces:</p>
+    
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2 border border-gray-200">
+      <p>1. Floor Area (sq ft) = Garage Length (ft) × Garage Width (ft)</p>
+      <p>2. Total Delivered Lumens Needed = Floor Area × Target Foot-Candles (FC)</p>
+      <p>3. Raw Fixtures = Total Delivered Lumens / (Fixture Lumens × Coefficient of Utilization)</p>
+      <p>4. Coefficient of Utilization (CU) = 0.75 (standard white painted drywall ceiling/walls)</p>
+      <p>5. Center-to-Center Spacing = Ceiling Height × 0.75 (or Symmetrical Grid Pitch)</p>
+      <p>6. Perimeter Wall Setback = Center-to-Center Spacing / 2</p>
     </div>
-    <p class="text-gray-700">The number of fixtures needed equals your floor area multiplied by your target foot-candles, divided by the fixture's lumen output multiplied by 0.75. The 0.75 represents the coefficient of utilization, which accounts for the light absorbed by the walls and ceiling before reaching the floor. All values are based on IES residential lighting guidelines.</p>
+
+    <h3 class="text-base font-semibold text-gray-900 mb-2">Foot-Candles vs. Lumens: What's the Difference?</h3>
+    <p class="text-gray-700 text-sm mb-3">
+      <strong>Lumens</strong> represent the total raw light output produced by the LED chip. 
+      <strong>Foot-candles (FC)</strong> represent the intensity of that light once it travels across the room and strikes the garage floor or workbench surface (1 foot-candle = 1 lumen per square foot).
+      Because walls, vehicles, and garage door equipment absorb some light, a Coefficient of Utilization (CU = 0.75) is factored into the calculation.
+    </p>
+
+    <h3 class="text-base font-semibold text-gray-900 mb-2">Electrical Circuit Loading (NEC Article 210)</h3>
+    <p class="text-gray-700 text-sm">
+      Modern 6-inch canless wafer LEDs consume approximately 12 to 14 watts each. A 9-fixture installation consumes only ~117 watts total (less than 1.0 Amp on a 120V circuit). You can safely tie this lighting system into an existing 15-amp garage lighting branch circuit without any risk of tripping the breaker.
+    </p>
   </div>
 
+  <!-- Garage Lighting Grid Reference Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">Garage Recessed Lighting Reference Table</h2>
+    <p class="text-gray-600 text-sm mb-4">Standard fixture counts and grid layouts across popular garage sizes using 1,000-lumen 6" LED wafer fixtures:</p>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left border border-gray-200 rounded-lg">
+        <thead class="bg-gray-50 text-gray-700 font-semibold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Garage Size & Type</th>
+            <th class="py-3 px-4">Floor Area</th>
+            <th class="py-3 px-4">Parking Target (20 FC)</th>
+            <th class="py-3 px-4">Workshop Target (50 FC)</th>
+            <th class="py-3 px-4">Suggested Grid Layout</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">1-Car (12' × 24')</td>
+            <td class="py-2.5 px-4">288 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">4 fixtures (1×4)</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">8 fixtures (2×4)</td>
+            <td class="py-2.5 px-4">Single center line or dual bay rows</td>
+          </tr>
+          <tr class="hover:bg-gray-50 bg-blue-50/30">
+            <td class="py-2.5 px-4 font-bold text-blue-950">2-Car Standard (20' × 20')</td>
+            <td class="py-2.5 px-4 font-medium">400 sq ft</td>
+            <td class="py-2.5 px-4 font-bold text-blue-700">6 fixtures (2×3)</td>
+            <td class="py-2.5 px-4 font-bold text-blue-700">9–12 fixtures (3×3 or 3×4)</td>
+            <td class="py-2.5 px-4 font-medium">3×3 Grid: 6.7' spacing, 3.3' from wall</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">2-Car Workshop (24' × 24')</td>
+            <td class="py-2.5 px-4">576 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">8 fixtures (2×4)</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">12–16 fixtures (3×4 or 4×4)</td>
+            <td class="py-2.5 px-4">4×4 Grid: 6.0' spacing, 3.0' from wall</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">2-Car Extended (24' × 30')</td>
+            <td class="py-2.5 px-4">720 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">10 fixtures (2×5)</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">16 fixtures (4×4)</td>
+            <td class="py-2.5 px-4">Dual vehicle rows with rear bench row</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">3-Car Garage (32' × 24')</td>
+            <td class="py-2.5 px-4">768 sq ft</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">12 fixtures (3×4)</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">18–20 fixtures (3×6)</td>
+            <td class="py-2.5 px-4">Dedicated row centered over each bay</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Frequently Asked Questions -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
       <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How many garage lights do I need for a 20x20 space?</h3>
+        <p class="text-gray-600 text-sm">For a standard 20x20 garage (400 sq ft), you need 6 to 9 recessed lights. For basic parking and storage (20 foot-candles), 6 recessed lights (1,000 lumens each) configured in a 2×3 grid provide clean, shadow-free light. For a workshop, detailing, or gym setup (30 to 50 foot-candles), install 9 recessed lights in a 3×3 grid spaced 6.7 feet apart with a 3.3-foot wall setback.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">What is the best grid spacing for recessed lights in a 20x20 garage?</h3>
+        <p class="text-gray-600 text-sm">For a 3×3 grid (9 lights) in a 20x20 garage, space fixtures 6 feet 8 inches (6.67 ft) apart from center to center. Set the perimeter rows exactly half that distance (3 feet 4 inches) from each wall. This geometry keeps lights safely inside the garage door track rails and illuminates both side walking corridors and the central vehicle aisle.</p>
+      </div>
+      <div>
         <h3 class="font-semibold text-gray-900 mb-1">What is the difference between lumens and foot-candles?</h3>
-        <p class="text-gray-600 text-sm">Lumens measure the total light a fixture produces, while foot-candles measure how much of that light actually hits a surface. When using a recessed lighting calculator for garage spaces, foot-candles are the planning target, and lumens are the variable you adjust to meet it.</p>
+        <p class="text-gray-600 text-sm">Lumens measure the total light a fixture produces, while foot-candles measure how much of that light actually hits a surface. Foot-candles are the planning target (IES standards recommend 20 FC for parking, 50 FC for workshops), and fixture lumens are the variable you adjust to meet it.</p>
       </div>
       <div>
         <h3 class="font-semibold text-gray-900 mb-1">Should I use 4-inch or 6-inch recessed fixtures in a garage?</h3>
-        <p class="text-gray-600 text-sm">For a garage, 6-inch fixtures are highly recommended. They provide a wider beam spread and higher lumen outputs, which are essential for properly illuminating spaces with high ceilings and large footprints. 4-inch fixtures are better suited for interior living spaces.</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-gray-900 mb-1">How many lights do I need for a 2-car versus a 3-car garage?</h3>
-        <p class="text-gray-600 text-sm">As a quick reference, a standard 2-car garage typically requires 6 to 8 recessed fixtures (at 750 lumens each) for general parking. A larger 3-car garage will generally require 10 to 12 fixtures to achieve the same brightness.</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-gray-900 mb-1">Are LED shop lights better than recessed cans for garages?</h3>
-        <p class="text-gray-600 text-sm">It depends on your ceiling. Surface-mounted LED shop lights are excellent for unfinished ceilings and provide massive lumen output. Recessed cans require a finished drywall ceiling but offer a clean, flush look that won't interfere with tall vehicles or ladders.</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-gray-900 mb-1">How do I position the first row of fixtures?</h3>
-        <p class="text-gray-600 text-sm">The first row of fixtures should be placed at exactly half the distance of your regular fixture spacing. For example, if your lights are spaced 8 feet apart, the first row should be positioned 4 feet away from the wall.</p>
+        <p class="text-gray-600 text-sm">For a garage, 6-inch fixtures are highly recommended. They provide a wider beam spread (110°–120°) and higher lumen outputs (1,000–1,200 lm), which are essential for properly illuminating large spaces without harsh shadows.</p>
       </div>
       <div>
         <h3 class="font-semibold text-gray-900 mb-1">Do garage door openers affect light placement?</h3>
-        <p class="text-gray-600 text-sm">Yes. You must account for the garage door tracks, the opener motor, and the open door itself. A raised garage door will block fixtures placed directly above it, so position your lights between the tracks to ensure the floor remains illuminated when the door is open.</p>
+        <p class="text-gray-600 text-sm">Yes. You must account for the garage door tracks, the opener motor, and the open door itself. Position your rows between the tracks and the side walls, and keep center fixtures clear of the door travel path so the floor remains illuminated when the door is open.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How many LED recessed lights can I put on one 15-amp breaker?</h3>
+        <p class="text-gray-600 text-sm">Under NEC Article 210, a standard 15-amp 120V residential circuit supports up to 1,440 watts continuously (80% rule). Modern 6-inch 1,000-lumen LED wafer fixtures consume only 12 to 15 watts each. You could place over 90 LED wafer lights on a single 15-amp circuit without exceeding code limits.</p>
       </div>
     </div>
   </div>
 
-  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
-    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Lighting Calculators</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-      <a href="/calculators/recessed-lights-bedroom/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
-        <div class="font-medium text-gray-900 text-sm">Recessed Lighting Calculator — Bedroom</div>
-        <div class="text-xs text-gray-500 mt-1">Calculate the perfect number of can lights for a bedroom.</div>
+      <a href="/calculators/recessed-lights-living-room/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Living Room Lighting Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate can lights and visual ceiling layout grid.</div>
       </a>
       <a href="/calculators/lumens/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
-        <div class="font-medium text-gray-900 text-sm">Lumens Calculator</div>
-        <div class="text-xs text-gray-500 mt-1">Find out exactly how many lumens you need for any room.</div>
+        <div class="font-medium text-gray-900 text-sm">Lumens & Foot-Candles Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Convert room square footage to required lumens.</div>
       </a>
-      <a href="/calculators/bathroom-wall-tile/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
-        <div class="font-medium text-gray-900 text-sm">Bathroom Wall Tile Calculator</div>
-        <div class="text-xs text-gray-500 mt-1">Estimate tile needed for bathroom walls with waste included.</div>
+      <a href="/calculators/ev-charger-wiring/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">EV Charger Wire Sizing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Size 50A/60A garage subpanels and wire gauge.</div>
       </a>
     </div>
   </div>
+
+  <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
+  <RelatedGuidesProjects
+    hubSlug="garage-ev-workshop"
+    hubTitle="Garage Workshop & EV Electrical Hub →"
+    hubDesc="Step-by-step master plan: 60A/100A subpanel installation, Level 2 EV charging, and high-CRI task lighting."
+    guideSlug="how-many-recessed-lights-for-a-2-car-garage"
+    guideTitle="2-Car Garage Recessed Lighting Guide →"
+    guideDesc="Detailed layout guide: track avoidance, 3x3 wafer spacing, dimmer switches, and 5000K daylight vs 4000K neutral."
+  />
 
 </Layout>
 
 <script is:inline>
+  function setGaragePreset(len, wid, ceil, btnEl) {
+    document.getElementById('g_len_ft').value = len;
+    document.getElementById('g_len_in').value = 0;
+    document.getElementById('g_wid_ft').value = wid;
+    document.getElementById('g_wid_in').value = 0;
+    document.getElementById('g_ceil_ft').value = ceil;
+    document.getElementById('g_ceil_in').value = 0;
+
+    var buttons = document.querySelectorAll('#presetButtons button');
+    buttons.forEach(function(b) {
+      b.className = 'text-xs bg-white hover:bg-blue-600 hover:text-white border border-blue-200 px-3 py-1.5 rounded-lg font-medium text-gray-700 transition-colors shadow-2xs';
+    });
+    if (btnEl) {
+      btnEl.className = 'text-xs bg-blue-600 text-white border border-blue-600 px-3 py-1.5 rounded-lg font-semibold transition-colors shadow-2xs';
+    }
+    calculate();
+  }
+
   function getNum(id) {
     return parseFloat(document.getElementById(id).value) || 0;
   }
@@ -333,43 +520,66 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     var wid = toFt('g_wid_ft', 'g_wid_in');
     var ceilHeight = toFt('g_ceil_ft', 'g_ceil_in');
 
-    document.getElementById('errorMsg').classList.add('hidden');
+    var errorMsg = document.getElementById('errorMsg');
+    var resultsEl = document.getElementById('results');
+
+    errorMsg.classList.add('hidden');
 
     if (len <= 0 || wid <= 0) {
-      document.getElementById('results').classList.add('hidden');
-      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
+      resultsEl.classList.add('hidden');
+      if (len > 0 || wid > 0) errorMsg.classList.remove('hidden');
       return;
     }
 
     var area = len * wid;
-    var targetFC = parseInt(document.getElementById('purpose').value) || 50;
-    var lumensPerFixture = parseInt(document.getElementById('lumens').value) || 750;
+    var targetFC = parseInt(document.getElementById('purpose').value) || 30;
+    var lumensPerFixture = parseInt(document.getElementById('lumens').value) || 1000;
 
-    // IES formula: fixtures = (area x FC) / (lumens x CU)
-    // CU (coefficient of utilization) = 0.75 for typical garage with light walls/ceiling
+    // IES Lumen formula: fixtures = (area x FC) / (lumens x CU)
+    // CU = 0.75 for residential garage with painted ceiling/walls
     var cu = 0.75;
-    var fixturesNeeded = Math.ceil((area * targetFC) / (lumensPerFixture * cu));
+    var effectiveLumensPerFixture = lumensPerFixture * cu;
+    var rawFixturesNeeded = (area * targetFC) / effectiveLumensPerFixture;
+    var fixturesNeeded = Math.max(2, Math.ceil(rawFixturesNeeded));
 
-    // Suggest spacing based on ceiling height
-    // Rule of thumb: spacing = ceiling height x 0.75 (IES guideline)
-    var suggestedSpacing = ceilHeight > 0 ? ceilHeight * 0.75 : Math.sqrt(area / fixturesNeeded);
-    suggestedSpacing = Math.round(suggestedSpacing * 10) / 10;
-
-    // Calculate grid layout suggestion
+    // Calculate symmetrical or balanced grid layout
     var cols = Math.round(Math.sqrt(fixturesNeeded * (len / wid)));
+    cols = Math.max(1, cols);
     var rows = Math.ceil(fixturesNeeded / cols);
+    rows = Math.max(1, rows);
     cols = Math.ceil(fixturesNeeded / rows);
 
-    var layoutText = rows + ' row' + (rows > 1 ? 's' : '') + ' × ' + cols + ' fixture' + (cols > 1 ? 's' : '') + ' per row (' + (rows * cols) + ' total). Space fixtures ' + suggestedSpacing + ' ft apart.';
+    var actualTotalFixtures = rows * cols;
 
-    document.getElementById('results').classList.remove('hidden');
+    // Suggested spacing:
+    // Along length: len / cols, along width: wid / rows
+    var spacingLen = len / cols;
+    var spacingWid = wid / rows;
+    var avgSpacing = (spacingLen + spacingWid) / 2;
+    var wallOffsetLen = spacingLen / 2;
+    var wallOffsetWid = spacingWid / 2;
+
+    var totalDeliveredLumens = actualTotalFixtures * lumensPerFixture;
+    var totalWattage = actualTotalFixtures * 13; // ~13W per 1000lm LED
+
+    resultsEl.classList.remove('hidden');
     document.getElementById('printBtn').classList.remove('hidden');
     document.getElementById('r_area').textContent = area.toFixed(0) + ' sq ft';
     document.getElementById('r_target').textContent = targetFC + ' FC';
-    document.getElementById('r_fixtures').textContent = fixturesNeeded + ' fixtures';
-    document.getElementById('r_spacing').textContent = suggestedSpacing + ' ft';
-    document.getElementById('r_layout').textContent = layoutText;
+    document.getElementById('r_fixtures').textContent = actualTotalFixtures + ' fixtures';
+    document.getElementById('r_spacing').textContent = avgSpacing.toFixed(1) + ' ft';
 
+    document.getElementById('r_grid_config').textContent = rows + ' rows × ' + cols + ' columns';
+    document.getElementById('r_grid_total').textContent = '(' + actualTotalFixtures + ' total fixtures in grid)';
+    document.getElementById('r_wall_offset').textContent = wallOffsetWid.toFixed(1) + ' ft × ' + wallOffsetLen.toFixed(1) + ' ft';
+    document.getElementById('r_total_lumens').textContent = totalDeliveredLumens.toLocaleString() + ' lm';
+    document.getElementById('r_wattage').textContent = '~' + totalWattage + ' Watts (' + (totalWattage / 120).toFixed(1) + 'A)';
+
+    var layoutDesc = 'Mount ' + rows + ' rows running across the garage width with ' + cols + ' lights per row. ' +
+      'Space fixtures ' + spacingLen.toFixed(1) + ' ft apart along the depth (starting ' + wallOffsetLen.toFixed(1) + ' ft from front/back walls) and ' +
+      spacingWid.toFixed(1) + ' ft apart across the width (starting ' + wallOffsetWid.toFixed(1) + ' ft from side walls).';
+
+    document.getElementById('r_layout_desc').textContent = layoutDesc;
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -378,5 +588,8 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     });
     document.getElementById('purpose').addEventListener('change', calculate);
     document.getElementById('lumens').addEventListener('change', calculate);
+    // Initial run
+    calculate();
   });
 </script>
+

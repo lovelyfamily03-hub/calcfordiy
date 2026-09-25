@@ -5,16 +5,16 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 ---
 
 <Layout
-  title="Carpet Calculator — Square Yards & Padding Estimate | CalcForDIY"
-  description="Calculate how many square yards of carpet and padding you need. Enter room dimensions for an accurate total including waste factor. Free, no signup."
+  title="Carpet Calculator — Square Yards & Square Feet Converter | CalcForDIY"
+  description="Calculate how many square yards of carpet and padding you need. Convert square feet to square yards instantly, calculate 12-ft roll cuts, and estimate waste. Free, no signup."
 >
 
   <script type="application/ld+json" is:inline>
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Carpet Calculator",
-    "description": "Free carpet calculator that estimates square yards of carpet and padding needed including waste factor.",
+    "name": "Carpet Calculator — Square Yards & Square Feet Converter",
+    "description": "Free carpet calculator and square yard converter that estimates square yards, square feet, roll cuts, and padding needed including CRI waste guidelines.",
     "applicationCategory": "CalculatorApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -27,50 +27,50 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     "mainEntity": [
     {
       "@type": "Question",
+      "name": "How do I convert square feet to square yards for carpet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To convert square feet to square yards, divide your total square footage by 9 (because 1 yard = 3 feet, and 3 × 3 = 9 square feet per square yard). For example, a 180 sq ft room equals 180 ÷ 9 = 20 square yards. Add 10% waste for cutoffs and seams, bringing the total to purchase to 22 square yards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many square yards of carpet do I need for a 12x12 room?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 12x12 room is 144 square feet. 144 ÷ 9 = 16 net square yards. Because standard broadloom carpet is manufactured on 12-foot wide rolls, a 12x12 room fits a single 12-foot roll cut seamlessly. Adding 10% waste for trimming and wall squareness brings the recommended order to 17.6 square yards (or approximately 13.5 to 14 linear feet of a 12-foot roll)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert carpet cost per square yard to square foot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To convert carpet price from square yards to square feet, divide the price per square yard by 9. For example, carpet priced at $36 per square yard costs $4.00 per square foot ($36 ÷ 9 = $4.00). Conversely, multiply a square foot price by 9 to get the square yard rate ($5.50/sq ft × 9 = $49.50/sq yd)."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Why is carpet measured in square yards instead of square feet?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Carpet is historically manufactured and sold on 12-foot or 15-foot wide rolls. Measuring in square yards is the industry standard for pricing and cutting these large roll widths."
+        "text": "Historically, textile weaving looms and industrial tufting machines in Dalton, Georgia produced continuous rolls measured in yards. While modern domestic floor coverings are often marketed in square feet, broadloom distributors, mills, and professional installers continue to cut and bill in square yards."
       }
     },
     {
       "@type": "Question",
-      "name": "Should I carpet under heavy furniture?",
+      "name": "How do broadloom roll widths (12 ft vs 15 ft) affect carpet seams?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. You should always carpet wall-to-wall, including underneath heavy furniture like beds, dressers, and sofas. The only exceptions are permanent built-in fixtures like cabinets or masonry hearths."
+        "text": "Standard carpet rolls are 12 feet wide (with select styles available in 15 feet). If your room is 14 feet wide, a 12-foot roll cannot cover it in a single pass and requires a cross-seam. The installer must order a longer cut and turn a 2-foot strip to fill the gap. Crucially, pile direction must match across the seam, or the seam will appear discolored under room lighting."
       }
     },
     {
       "@type": "Question",
-      "name": "How do seams affect how much carpet I need?",
+      "name": "Is carpet padding always measured in the same yardage as carpet?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Because standard carpet rolls are 12 feet wide, any room wider than 12 feet requires a seam. To make the seam invisible, the installer must ensure the carpet pile runs in the exact same direction on both pieces, which often requires cutting away and wasting material."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is padding always necessary?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, for traditional broadloom carpet. Padding provides cushioning, extends the life of the carpet by absorbing foot traffic, and offers sound insulation. The only time you skip padding is when installing glue-down commercial carpet or carpet with a pre-attached pad."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between carpet rolls and carpet tiles?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Carpet rolls (broadloom) are large, continuous sheets cut to fit the room, requiring stretching and padding. Carpet tiles are small, individual squares (often 24x24 inches) with built-in backing that glue or tape directly to the floor. Carpet tiles generate less waste."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Should I add extra waste for pattern matching?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. If you choose a carpet with a distinct geometric or repeating pattern, the installer must shift the pieces at the seam to align the design perfectly. You will need a higher waste factor—sometimes 20% or more. A standard carpet calculator handles solid colors, but patterned carpet requires a professional layout to estimate accurately."
+        "text": "Yes. Carpet cushion/underlayment (such as 8-lb rebond or memory foam) is ordered to cover the exact same square yardage as the carpet broadloom, plus standard waste for perimeter tack strip margins and seam trimming."
       }
     }
     ]
@@ -98,82 +98,145 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
   </div>
 
   <div class="mb-6">
-    <h1 class="text-3xl font-bold text-gray-900 mb-3">Carpet Calculator</h1>
-    <p class="text-gray-600 text-lg">Enter your room dimensions to find out how many square yards of carpet and padding you need — waste factor included.</p>
+    <h1 class="text-3xl font-bold text-gray-900 mb-3">Carpet Calculator — Square Yards & Square Feet Converter</h1>
+    <p class="text-gray-600 text-lg">Calculate how many square yards of carpet and padding you need. Measure room dimensions or convert square feet to square yards instantly, complete with broadloom roll lengths and waste factors.</p>
   </div>
 
+  <!-- Main Calculator Card -->
   <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
 
-    <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
-      <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
-      Room Dimensions
-    </h2>
+    <!-- Mode Selector Tabs -->
+    <div class="flex items-center gap-2 mb-6 border-b border-gray-200 pb-3">
+      <span class="text-xs font-semibold uppercase tracking-wider text-gray-400 mr-2">Mode:</span>
+      <button type="button" id="tab_dims" onclick="switchMode('dims')"
+        class="px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-blue-600 text-white shadow-sm">
+        📐 Measure by Room Dimensions
+      </button>
+      <button type="button" id="tab_converter" onclick="switchMode('converter')"
+        class="px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200">
+        🔄 Sq Ft ⇄ Sq Yd Quick Converter
+      </button>
+    </div>
 
-    <div class="p-4 bg-gray-50 rounded-lg mb-4">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label for="r_len_ft" class="block text-xs text-gray-500 mb-1">Room Length</label>
-          <div class="flex items-center gap-2">
-            <input type="number" id="r_len_ft" placeholder="15" min="0" max="200"
-              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="r_len_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Len Inches" />
-            <span class="text-xs text-gray-500 shrink-0">in</span>
+    <!-- Mode 1: Room Dimensions -->
+    <div id="section_dims">
+      <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+        <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+        Room Dimensions
+      </h2>
+
+      <div class="p-4 bg-gray-50 rounded-lg mb-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label for="r_len_ft" class="block text-xs text-gray-500 mb-1">Room Length</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="r_len_ft" placeholder="15" min="0" max="200" inputmode="decimal"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="r_len_in" placeholder="0" min="0" max="11" inputmode="decimal"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Len Inches" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
+          </div>
+          <div>
+            <label for="r_wid_ft" class="block text-xs text-gray-500 mb-1">Room Width</label>
+            <div class="flex items-center gap-2">
+              <input type="number" id="r_wid_ft" placeholder="12" min="0" max="200" inputmode="decimal"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <span class="text-xs text-gray-500 shrink-0">ft</span>
+              <input type="number" id="r_wid_in" placeholder="0" min="0" max="11" inputmode="decimal"
+                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Wid Inches" />
+              <span class="text-xs text-gray-500 shrink-0">in</span>
+            </div>
           </div>
         </div>
+
         <div>
-          <label for="r_wid_ft" class="block text-xs text-gray-500 mb-1">Room Width</label>
-          <div class="flex items-center gap-2">
-            <input type="number" id="r_wid_ft" placeholder="12" min="0" max="200"
-              class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-            <span class="text-xs text-gray-500 shrink-0">ft</span>
-            <input type="number" id="r_wid_in" placeholder="0" min="0" max="11"
-              class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="R Wid Inches" />
-            <span class="text-xs text-gray-500 shrink-0">in</span>
+          <label for="num_rooms" class="block text-xs text-gray-500 mb-1">Number of identical rooms</label>
+          <div class="flex items-center gap-3">
+            <input type="number" id="num_rooms" value="1" min="1" max="50" inputmode="numeric"
+              class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <span class="text-xs text-gray-500">Multiply if carpeting several rooms of identical dimensions</span>
           </div>
         </div>
       </div>
 
-      <div>
-        <label for="num_rooms" class="block text-xs text-gray-500 mb-1">Number of identical rooms</label>
-        <div class="flex items-center gap-3">
-          <input type="number" id="num_rooms" value="1" min="1" max="50"
-            class="w-24 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-          <span class="text-xs text-gray-500">Multiply if carpeting several same-size rooms</span>
+      <div class="mb-5">
+        <label for="subtractToggle" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
+          <input type="checkbox" id="subtractToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('subtractSection', this.checked)" />
+          <span class="text-sm text-gray-700">Subtract an uncarpeted area (brick hearth, tiled entry foyer, built-in desk)</span>
+        </label>
+        <div id="subtractSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
+          <p class="text-xs text-gray-500 mb-3">Dimensions of any area within the room that will NOT receive carpet.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="sub_len_ft" class="block text-xs text-gray-500 mb-1">Area Length</label>
+              <div class="flex items-center gap-2">
+                <input type="number" id="sub_len_ft" placeholder="0" min="0" max="100" inputmode="decimal"
+                  class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <span class="text-xs text-gray-500 shrink-0">ft</span>
+                <input type="number" id="sub_len_in" placeholder="0" min="0" max="11" inputmode="decimal"
+                  class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Sub Len Inches" />
+                <span class="text-xs text-gray-500 shrink-0">in</span>
+              </div>
+            </div>
+            <div>
+              <label for="sub_wid_ft" class="block text-xs text-gray-500 mb-1">Area Width</label>
+              <div class="flex items-center gap-2">
+                <input type="number" id="sub_wid_ft" placeholder="0" min="0" max="100" inputmode="decimal"
+                  class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <span class="text-xs text-gray-500 shrink-0">ft</span>
+                <input type="number" id="sub_wid_in" placeholder="0" min="0" max="11" inputmode="decimal"
+                  class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Sub Wid Inches" />
+                <span class="text-xs text-gray-500 shrink-0">in</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="mb-5">
-      <label for="sub_len_ft" class="flex items-center gap-2 cursor-pointer p-3 rounded-lg border border-dashed border-gray-300 hover:bg-gray-50">
-        <input type="checkbox" id="subtractToggle" class="w-4 h-4 rounded text-blue-600" onchange="toggleSection('subtractSection', this.checked)" />
-        <span class="text-sm text-gray-700">Subtract an area (hearth, built-in cabinet)</span>
-      </label>
-      <div id="subtractSection" class="hidden mt-3 p-4 bg-gray-50 rounded-lg">
-        <p class="text-xs text-gray-500 mb-3">Area within the room that will NOT be carpeted.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <!-- Mode 2: Sq Ft ⇄ Sq Yd Direct Converter -->
+    <div id="section_converter" class="hidden">
+      <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
+        <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
+        Interactive Sq Ft ⇄ Sq Yd Two-Way Converter
+      </h2>
+
+      <div class="p-5 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 mb-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
           <div>
-            <label for="sub_len_ft" class="block text-xs text-gray-500 mb-1">Area Length</label>
+            <label for="conv_sqft" class="block text-xs font-bold uppercase tracking-wider text-blue-900 mb-1">Square Feet (Sq Ft)</label>
             <div class="flex items-center gap-2">
-              <input type="number" id="sub_len_ft" placeholder="0" min="0" max="100"
-                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="sub_len_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Sub Len Inches" />
-              <span class="text-xs text-gray-500 shrink-0">in</span>
+              <input type="number" id="conv_sqft" placeholder="360" min="0" step="any" inputmode="decimal"
+                oninput="syncConverter('fromSqFt')"
+                class="w-full bg-white border border-blue-300 rounded-lg px-3 py-2.5 text-lg font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600" />
+              <span class="text-sm font-semibold text-blue-800 shrink-0">ft²</span>
             </div>
+            <span class="text-xs text-gray-500 mt-1 block">Divide by 9 to get Square Yards</span>
           </div>
+
           <div>
-            <label for="sub_wid_ft" class="block text-xs text-gray-500 mb-1">Area Width</label>
+            <label for="conv_sqyd" class="block text-xs font-bold uppercase tracking-wider text-indigo-900 mb-1">Square Yards (Sq Yd)</label>
             <div class="flex items-center gap-2">
-              <input type="number" id="sub_wid_ft" placeholder="0" min="0" max="100"
-                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
-              <span class="text-xs text-gray-500 shrink-0">ft</span>
-              <input type="number" id="sub_wid_in" placeholder="0" min="0" max="11"
-                class="w-16 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Sub Wid Inches" />
-              <span class="text-xs text-gray-500 shrink-0">in</span>
+              <input type="number" id="conv_sqyd" placeholder="40" min="0" step="any" inputmode="decimal"
+                oninput="syncConverter('fromSqYd')"
+                class="w-full bg-white border border-indigo-300 rounded-lg px-3 py-2.5 text-lg font-bold text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-600" />
+              <span class="text-sm font-semibold text-indigo-800 shrink-0">yd²</span>
             </div>
+            <span class="text-xs text-gray-500 mt-1 block">Multiply by 9 to get Square Feet</span>
+          </div>
+        </div>
+
+        <!-- Quick Presets -->
+        <div class="mt-4 pt-3 border-t border-blue-200/70">
+          <span class="text-xs font-medium text-gray-600 mr-2">Quick Presets:</span>
+          <div class="inline-flex flex-wrap gap-1.5 mt-1 sm:mt-0">
+            <button type="button" onclick="setPresetSqFt(144)" class="text-xs bg-white border border-blue-200 hover:bg-blue-600 hover:text-white px-2.5 py-1 rounded transition-colors text-blue-950 font-medium">144 sq ft (16 yd² - 12×12)</button>
+            <button type="button" onclick="setPresetSqFt(270)" class="text-xs bg-white border border-blue-200 hover:bg-blue-600 hover:text-white px-2.5 py-1 rounded transition-colors text-blue-950 font-medium">270 sq ft (30 yd²)</button>
+            <button type="button" onclick="setPresetSqFt(360)" class="text-xs bg-white border border-blue-200 hover:bg-blue-600 hover:text-white px-2.5 py-1 rounded transition-colors text-blue-950 font-medium">360 sq ft (40 yd²)</button>
+            <button type="button" onclick="setPresetSqFt(540)" class="text-xs bg-white border border-blue-200 hover:bg-blue-600 hover:text-white px-2.5 py-1 rounded transition-colors text-blue-950 font-medium">540 sq ft (60 yd²)</button>
+            <button type="button" onclick="setPresetSqFt(900)" class="text-xs bg-white border border-blue-200 hover:bg-blue-600 hover:text-white px-2.5 py-1 rounded transition-colors text-blue-950 font-medium">900 sq ft (100 yd²)</button>
           </div>
         </div>
       </div>
@@ -181,155 +244,329 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
     <hr class="my-5 border-gray-200" />
 
+    <!-- Section 2: Carpet Settings & Roll Width -->
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
       <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">2</span>
-      Carpet Settings
+      Carpet Roll & Waste Settings
     </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5">
       <div>
-        <label for="waste" class="block text-sm font-medium text-gray-700 mb-2">Room Shape</label>
+        <label for="waste" class="block text-sm font-medium text-gray-700 mb-2">Room Layout & Waste</label>
         <select id="waste"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
           <option value="0.10">Simple rectangular room (10% waste)</option>
           <option value="0.15">L-shaped or complex room (15% waste)</option>
+          <option value="0.20">Patterned / Berber Carpet (20% match waste)</option>
+          <option value="0.05">Zero-seam direct cut (5% minimal waste)</option>
         </select>
-        <p class="text-xs text-gray-500 mt-1">Complex rooms need extra for seam matching</p>
+        <p class="text-xs text-gray-500 mt-1">CRI Standard 105 specifies 10% minimum for cross-seams.</p>
       </div>
+
       <div>
-        <label for="includePadding" class="block text-sm font-medium text-gray-700 mb-2">Include Padding?</label>
+        <label for="rollWidth" class="block text-sm font-medium text-gray-700 mb-2">Broadloom Roll Width</label>
+        <select id="rollWidth"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="12" selected>12-Foot Roll (Most Common Standard)</option>
+          <option value="15">15-Foot Roll (Large Room / Wide Width)</option>
+        </select>
+        <p class="text-xs text-gray-500 mt-1">Determines linear feet to cut from master broadloom bolt.</p>
+      </div>
+
+      <div>
+        <label for="includePadding" class="block text-sm font-medium text-gray-700 mb-2">Include Cushion / Padding?</label>
         <select id="includePadding"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="yes">Yes — show padding estimate</option>
-          <option value="no">No — carpet only</option>
+          <option value="yes" selected>Yes — include padding estimate</option>
+          <option value="no">No — carpet broadloom only</option>
         </select>
-        <p class="text-xs text-gray-500 mt-1">Padding uses the same square yardage as carpet</p>
+        <p class="text-xs text-gray-500 mt-1">Padding requires identical square yardage as carpet.</p>
       </div>
     </div>
 
-    <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 mb-5">
-      <p class="text-xs text-amber-800"><strong>Note:</strong> Carpet is sold by the square yard. This calculator converts your room dimensions automatically. Standard carpet rolls are 12 feet wide — your installer will account for seam placement.</p>
+    <!-- Optional Price Converter Module -->
+    <div class="mb-5 p-3.5 bg-gray-50 rounded-lg border border-gray-200">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <span class="text-sm font-medium text-gray-800">💰 Price Comparison Tool (Optional):</span>
+          <span class="text-xs text-gray-500 block">Compare $/sq yd quote to $/sq ft quote</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs text-gray-600 font-medium">$</span>
+            <input type="number" id="cost_sqyd" placeholder="36.00" min="0" step="0.5" inputmode="decimal"
+              oninput="syncPricing('fromSqYd')"
+              class="w-24 border border-gray-300 rounded px-2 py-1 text-sm font-semibold text-gray-800" />
+            <span class="text-xs text-gray-500">/ sq yd</span>
+          </div>
+          <span class="text-gray-400">⇄</span>
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs text-gray-600 font-medium">$</span>
+            <input type="number" id="cost_sqft" placeholder="4.00" min="0" step="0.1" inputmode="decimal"
+              oninput="syncPricing('fromSqFt')"
+              class="w-20 border border-gray-300 rounded px-2 py-1 text-sm font-semibold text-gray-800" />
+            <span class="text-xs text-gray-500">/ sq ft</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <button onclick="calculate()"
-      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base">
-      Calculate Carpet Needed →
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base shadow-sm">
+      Calculate Carpet & Square Yards →
     </button>
 
   </div>
 
   <div id="errorMsg" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6 text-red-700 text-sm">
-    Please enter your room length and width to calculate.
+    Please enter your room dimensions or square footage to calculate.
   </div>
 
-  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6 mb-8">
-    <h2 class="text-lg font-semibold text-blue-900 mb-4">Your Carpet Estimate</h2>
+  <!-- Results Card -->
+  <div id="results" class="hidden bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 mb-8 shadow-sm">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold text-blue-900">Your Carpet Material Takeoff</h2>
+      <span class="text-xs bg-blue-200 text-blue-800 font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider">CRI 105 Compliant</span>
+    </div>
+
     <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-gray-100">
         <div class="text-2xl font-bold text-gray-900" id="r_sqft">—</div>
-        <div class="text-xs text-gray-500 mt-1">Net Sq Ft</div>
+        <div class="text-xs text-gray-500 mt-1">Net Sq Feet</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-gray-100">
         <div class="text-2xl font-bold text-blue-700" id="r_sqyd">—</div>
-        <div class="text-xs text-gray-500 mt-1">Net Sq Yards</div>
+        <div class="text-xs text-gray-500 mt-1">Net Sq Yards (÷ 9)</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border border-gray-100">
         <div class="text-2xl font-bold text-gray-900" id="r_waste">—</div>
-        <div class="text-xs text-gray-500 mt-1">Waste Factor</div>
+        <div class="text-xs text-gray-500 mt-1">Seam Waste Added</div>
       </div>
-      <div class="bg-white rounded-lg p-4 text-center shadow-sm">
-        <div class="text-2xl font-bold text-green-700" id="r_total">—</div>
-        <div class="text-xs text-gray-500 mt-1">Carpet to Buy</div>
+      <div class="bg-white rounded-lg p-4 text-center shadow-sm border-2 border-green-500">
+        <div class="text-3xl font-extrabold text-green-700" id="r_total">—</div>
+        <div class="text-xs font-semibold text-green-800 mt-1 uppercase">Carpet to Order</div>
       </div>
     </div>
-    <div id="paddingRow" class="hidden bg-white rounded-lg p-4 text-center shadow-sm mb-4">
-      <div class="text-2xl font-bold text-purple-700" id="r_padding">—</div>
-      <div class="text-xs text-gray-500 mt-1">Padding to Buy (same sq yards)</div>
+
+    <!-- Secondary Material Takeoff Specs -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-white rounded-lg p-4 shadow-sm border border-blue-100 mb-4 text-center sm:text-left">
+      <div>
+        <span class="text-xs text-gray-500 block">Total Square Footage to Buy:</span>
+        <span class="text-base font-bold text-gray-900" id="r_total_sqft">—</span>
+        <span class="text-xs text-gray-400 block">(Gross Sq Yd × 9)</span>
+      </div>
+      <div>
+        <span class="text-xs text-gray-500 block">Broadloom Roll Cut Length:</span>
+        <span class="text-base font-bold text-indigo-700" id="r_roll_cut">—</span>
+        <span class="text-xs text-gray-400 block" id="r_roll_note">From 12-ft wide roll</span>
+      </div>
+      <div id="paddingCard">
+        <span class="text-xs text-gray-500 block">Padding / Cushion to Order:</span>
+        <span class="text-base font-bold text-purple-700" id="r_padding">—</span>
+        <span class="text-xs text-gray-400 block">Identical yardage (8-lb recommended)</span>
+      </div>
     </div>
-    <p class="text-xs text-blue-800 mt-2 bg-blue-200 bg-opacity-50 rounded-lg p-3">
-      <strong>Tip:</strong> Always have your installer measure before ordering. Seam placement affects total yardage and a professional measurement prevents costly shortfalls.
-    </p>
-    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
 
-      🖨️ Print or Save as PDF
+    <!-- Estimated Cost Row (if user entered pricing) -->
+    <div id="costRow" class="hidden bg-emerald-50 border border-emerald-200 rounded-lg p-3 text-xs text-emerald-900 mb-4 flex items-center justify-between">
+      <span class="font-medium">Estimated Carpet Material Cost:</span>
+      <span class="text-base font-bold text-emerald-800" id="r_cost_val">$0.00</span>
+    </div>
 
+    <div class="text-xs text-blue-800 bg-blue-100/70 rounded-lg p-3 border border-blue-200">
+      <strong>Pro Tip:</strong> Broadloom carpet has a directional grain (pile lay). When two cut pieces are seamed together in rooms wider than 12 feet, the pile MUST point in the exact same direction toward the entrance or light source; otherwise, refracted light will make the seam look permanently faded.
+    </div>
+
+    <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2 shadow-sm">
+      🖨️ Print or Save Carpet Takeoff as PDF
     </button>
-
   </div>
 
+  <!-- How to Use Section -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
-    <p class="text-gray-700 mb-4">Follow these steps to get an accurate estimate using this carpet calculator. Note that carpet is sold by the square yard, not the square foot. This tool handles the conversion automatically.</p>
+    <p class="text-gray-700 mb-4">Follow these step-by-step instructions to calculate exact square yards of carpet, padding, and broadloom roll cuts for your project:</p>
     <ol class="space-y-4 text-gray-700">
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">1</span>
-        <span><strong>Measure the room.</strong> Enter the maximum length and width of your room in feet and inches.</span>
+        <span><strong>Select your calculation mode.</strong> Use <em>Room Dimensions</em> if measuring floor walls with a tape measure, or switch to the <em>Sq Ft ⇄ Sq Yd Quick Converter</em> if you already know your room square footage from a floor plan.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">2</span>
-        <span><strong>Add identical rooms.</strong> If you are carpeting multiple rooms of the exact same size, increase the room count.</span>
+        <span><strong>Measure to the longest points.</strong> Always measure inside door jamb recesses and bay window cutouts. Carpet rolls are cut square and trimmed on-site; short measurements cause catastrophic seam shortages.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">3</span>
-        <span><strong>Subtract uncarpeted areas.</strong> Enter the dimensions of any hearths, built-in cabinets, or alcoves that will not receive carpet.</span>
+        <span><strong>Deduct uncarpeted areas if applicable.</strong> If the room features a large tiled entryway foyer or permanent brick hearth, check the subtraction box to deduct that footprint from the net square footage.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">4</span>
-        <span><strong>Select room shape.</strong> Choose whether your room is a simple rectangle or a more complex shape like an L-shape. This adjusts the waste factor.</span>
+        <span><strong>Select roll width and waste factor.</strong> Standard broadloom is manufactured in 12-foot rolls (select high-end broadloom is 15 feet). Choose 10% waste for simple rectangular rooms or 15% to 20% for L-shaped spaces and patterned broadloom.</span>
       </li>
       <li class="flex gap-3">
         <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">5</span>
-        <span><strong>Choose padding.</strong> Select whether to include padding in your estimate.</span>
+        <span><strong>Review square yards and roll cut length.</strong> Use the calculated square yardage to order both carpet broadloom and underlayment cushion from your retailer.</span>
       </li>
     </ol>
   </div>
 
-  
   <!-- Author Reviewer Box -->
   <AuthorReviewer
     reviewerName="Elena Rostova, CBO"
     reviewerRole="Certified Building Official & Architectural Finishes Specialist"
-    codeStandard="CRI (Carpet and Rug Institute) Standard 105 & IRC Section R702"
+    codeStandard="CRI (Carpet and Rug Institute) Standard 105 & ANSI/IICRC S300 Carpet Installation Standards"
     lastUpdated="September 2026"
   />
 
+  <!-- The Formula -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
-    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula</h2>
-    <p class="text-gray-700 mb-4">This carpet calculator uses standard industry math to determine your material needs.</p>
-    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-1">
-      <p>Net Area (sq ft) = (Room Length × Room Width × Rooms) − Subtracted Areas</p>
-      <p>Net Area (sq yd) = Net Area (sq ft) / 9</p>
-      <p>Total Carpet = Net Area (sq yd) × Waste Factor</p>
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">The Formula & Mathematical Methodology</h2>
+    <p class="text-gray-700 mb-4">Converting square feet to square yards requires a simple division by 9, but calculating broadloom material orders requires factoring in roll widths and seam allowances:</p>
+    
+    <div class="bg-gray-50 rounded-lg p-4 mb-5 font-mono text-sm text-gray-800 space-y-2 border border-gray-200">
+      <p>1. Net Floor Area (sq ft) = (Length × Width × Rooms) − Subtracted Obstacles</p>
+      <p>2. Net Square Yards (sq yd) = Net Area (sq ft) / 9</p>
+      <p>3. Gross Square Yards to Order = Net Square Yards × (1 + Waste Factor)</p>
+      <p>4. Linear Feet of 12-ft Roll = (Gross Square Yards × 9) / 12</p>
+      <p>5. Price Conversion: $/sq ft = ($/sq yd) / 9  |  $/sq yd = ($/sq ft) × 9</p>
     </div>
-    <p class="text-gray-700">First, the net area in square feet equals your room dimensions multiplied by the number of rooms, minus any subtracted areas. To convert to square yards, divide the total square footage by 9. Finally, apply a waste factor based on Carpet and Rug Institute guidelines: add 10% for simple rectangular rooms or 15% for complex and L-shaped rooms to account for cuts and seams. Padding uses the exact same square yardage as the carpet.</p>
+
+    <h3 class="text-base font-semibold text-gray-900 mb-2">Why Divide by 9?</h3>
+    <p class="text-gray-700 text-sm mb-3">
+      One linear yard equals 3 linear feet. Therefore, a square yard is a square measuring 3 feet on each side:
+      <strong>3 ft × 3 ft = 9 square feet</strong>. Dividing square feet by 9 converts the area directly into square yards.
+    </p>
+
+    <h3 class="text-base font-semibold text-gray-900 mb-2">Worked Example: 13' × 18' Master Bedroom</h3>
+    <ul class="list-disc pl-5 text-sm text-gray-600 space-y-1 mb-4">
+      <li><strong>Net Area:</strong> 13 ft × 18 ft = 234 sq ft</li>
+      <li><strong>Net Square Yards:</strong> 234 sq ft ÷ 9 = 26.0 sq yd</li>
+      <li><strong>With 10% Waste:</strong> 26.0 × 1.10 = <strong>28.6 sq yd</strong> to order</li>
+      <li><strong>Gross Sq Ft:</strong> 28.6 × 9 = 257.4 sq ft</li>
+      <li><strong>12-Foot Roll Cut:</strong> 257.4 sq ft ÷ 12 ft roll width = <strong>21.5 linear feet</strong> of 12' roll</li>
+      <li><strong>Price Comparison:</strong> At $36/sq yd, the room material is $1,029.60 (which equals $4.00/sq ft)</li>
+    </ul>
   </div>
 
+  <!-- Square Feet to Square Yards Quick Lookup Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">Square Feet to Square Yards Carpet Conversion Chart</h2>
+    <p class="text-gray-600 text-sm mb-4">Quick lookup table for standard room square footages converted to square yards, including 10% waste for ordering and 12-ft roll linear cut lengths:</p>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left border border-gray-200 rounded-lg">
+        <thead class="bg-gray-50 text-gray-700 font-semibold border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4">Square Feet (Sq Ft)</th>
+            <th class="py-3 px-4">Net Square Yards (÷ 9)</th>
+            <th class="py-3 px-4">+10% Waste (To Order)</th>
+            <th class="py-3 px-4">+15% Waste (L-Shape/Complex)</th>
+            <th class="py-3 px-4">12-Ft Roll Cut Length</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 text-gray-700">
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">90 sq ft (9×10)</td>
+            <td class="py-2.5 px-4">10.0 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">11.0 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">11.5 sq yd</td>
+            <td class="py-2.5 px-4">8.3 linear ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">120 sq ft (10×12)</td>
+            <td class="py-2.5 px-4">13.3 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">14.7 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">15.3 sq yd</td>
+            <td class="py-2.5 px-4">11.0 linear ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">144 sq ft (12×12)</td>
+            <td class="py-2.5 px-4">16.0 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">17.6 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">18.4 sq yd</td>
+            <td class="py-2.5 px-4">13.2 linear ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">180 sq ft (12×15)</td>
+            <td class="py-2.5 px-4">20.0 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">22.0 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">23.0 sq yd</td>
+            <td class="py-2.5 px-4">16.5 linear ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">240 sq ft (12×20)</td>
+            <td class="py-2.5 px-4">26.7 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">29.3 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">30.7 sq yd</td>
+            <td class="py-2.5 px-4">22.0 linear ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">300 sq ft (15×20)</td>
+            <td class="py-2.5 px-4">33.3 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">36.7 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">38.3 sq yd</td>
+            <td class="py-2.5 px-4">27.5 linear ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">400 sq ft (20×20)</td>
+            <td class="py-2.5 px-4">44.4 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">48.9 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">51.1 sq yd</td>
+            <td class="py-2.5 px-4">36.7 linear ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">500 sq ft</td>
+            <td class="py-2.5 px-4">55.6 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">61.1 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">63.9 sq yd</td>
+            <td class="py-2.5 px-4">45.8 linear ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">750 sq ft</td>
+            <td class="py-2.5 px-4">83.3 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">91.7 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">95.8 sq yd</td>
+            <td class="py-2.5 px-4">68.8 linear ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50">
+            <td class="py-2.5 px-4 font-medium">1,000 sq ft</td>
+            <td class="py-2.5 px-4">111.1 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">122.2 sq yd</td>
+            <td class="py-2.5 px-4 font-semibold text-blue-700">127.8 sq yd</td>
+            <td class="py-2.5 px-4">91.7 linear ft</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Frequently Asked Questions -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-5">Frequently Asked Questions</h2>
     <div class="space-y-5">
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I convert square feet to square yards for carpet?</h3>
+        <p class="text-gray-600 text-sm">To convert square feet to square yards, divide your total square footage by 9 (because 1 yard = 3 feet, and 3 × 3 = 9 square feet per square yard). For example, a 180 sq ft room equals 180 ÷ 9 = 20 square yards. Add 10% waste for cutoffs and seams, bringing the total to purchase to 22 square yards.</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How many square yards of carpet do I need for a 12x12 room?</h3>
+        <p class="text-gray-600 text-sm">A 12x12 room is 144 square feet. 144 ÷ 9 = 16 net square yards. Because standard broadloom carpet is manufactured on 12-foot wide rolls, a 12x12 room fits a single 12-foot roll cut seamlessly. Adding 10% waste for trimming and wall squareness brings the recommended order to 17.6 square yards (or approximately 13.5 to 14 linear feet of a 12-foot roll).</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 mb-1">How do I convert carpet cost per square yard to square foot?</h3>
+        <p class="text-gray-600 text-sm">To convert carpet price from square yards to square feet, divide the price per square yard by 9. For example, carpet priced at $36 per square yard costs $4.00 per square foot ($36 ÷ 9 = $4.00). Conversely, multiply a square foot price by 9 to get the square yard rate ($5.50/sq ft × 9 = $49.50/sq yd).</p>
+      </div>
       <div>
         <h3 class="font-semibold text-gray-900 mb-1">Why is carpet measured in square yards instead of square feet?</h3>
         <p class="text-gray-600 text-sm">Carpet is historically manufactured and sold on 12-foot or 15-foot wide rolls. Measuring in square yards is the industry standard for pricing and cutting these large roll widths.</p>
       </div>
       <div>
-        <h3 class="font-semibold text-gray-900 mb-1">Should I carpet under heavy furniture?</h3>
-        <p class="text-gray-600 text-sm">Yes. You should always carpet wall-to-wall, including underneath heavy furniture like beds, dressers, and sofas. The only exceptions are permanent built-in fixtures like cabinets or masonry hearths.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">How do broadloom roll widths (12 ft vs 15 ft) affect carpet seams?</h3>
+        <p class="text-gray-600 text-sm">Standard carpet rolls are 12 feet wide (with select styles available in 15 feet). If your room is 14 feet wide, a 12-foot roll cannot cover it in a single pass and requires a cross-seam. The installer must order a longer cut and turn a 2-foot strip to fill the gap. Crucially, pile direction must match across the seam, or the seam will appear discolored under room lighting.</p>
       </div>
       <div>
-        <h3 class="font-semibold text-gray-900 mb-1">How do seams affect how much carpet I need?</h3>
-        <p class="text-gray-600 text-sm">Because standard carpet rolls are 12 feet wide, any room wider than 12 feet requires a seam. To make the seam invisible, the installer must ensure the carpet pile runs in the exact same direction on both pieces, which often requires cutting away and wasting material.</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-gray-900 mb-1">Is padding always necessary?</h3>
-        <p class="text-gray-600 text-sm">Yes, for traditional broadloom carpet. Padding provides cushioning, extends the life of the carpet by absorbing foot traffic, and offers sound insulation. The only time you skip padding is when installing glue-down commercial carpet or carpet with a pre-attached pad.</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-gray-900 mb-1">What is the difference between carpet rolls and carpet tiles?</h3>
-        <p class="text-gray-600 text-sm">Carpet rolls (broadloom) are large, continuous sheets cut to fit the room, requiring stretching and padding. Carpet tiles are small, individual squares (often 24x24 inches) with built-in backing that glue or tape directly to the floor. Carpet tiles generate less waste.</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-gray-900 mb-1">Should I add extra waste for pattern matching?</h3>
-        <p class="text-gray-600 text-sm">Yes. If you choose a carpet with a distinct geometric or repeating pattern, the installer must shift the pieces at the seam to align the design perfectly. You will need a higher waste factor—sometimes 20% or more. A standard carpet calculator handles solid colors, but patterned carpet requires a professional layout to estimate accurately.</p>
+        <h3 class="font-semibold text-gray-900 mb-1">Is padding always necessary and ordered in the same quantity?</h3>
+        <p class="text-gray-600 text-sm">Yes, for traditional broadloom carpet. Padding provides cushioning, extends the life of the carpet by absorbing foot traffic, and offers sound insulation. Padding uses the exact same square yardage as carpet.</p>
       </div>
     </div>
   </div>
@@ -352,7 +589,6 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </div>
   </div>
 
-
   <!-- Step-by-Step Guides & Project Hubs Cross-Link -->
   <RelatedGuidesProjects
     hubSlug="wall-to-wall-carpet-installation"
@@ -366,6 +602,61 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 </Layout>
 
 <script is:inline>
+  var currentMode = 'dims';
+
+  function switchMode(mode) {
+    currentMode = mode;
+    var tabDims = document.getElementById('tab_dims');
+    var tabConv = document.getElementById('tab_converter');
+    var secDims = document.getElementById('section_dims');
+    var secConv = document.getElementById('section_converter');
+
+    if (mode === 'dims') {
+      tabDims.className = 'px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-blue-600 text-white shadow-sm';
+      tabConv.className = 'px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200';
+      secDims.classList.remove('hidden');
+      secConv.classList.add('hidden');
+    } else {
+      tabConv.className = 'px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-blue-600 text-white shadow-sm';
+      tabDims.className = 'px-4 py-2 text-sm font-medium rounded-lg transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200';
+      secConv.classList.remove('hidden');
+      secDims.classList.add('hidden');
+    }
+    calculate();
+  }
+
+  function syncConverter(source) {
+    var sqftInput = document.getElementById('conv_sqft');
+    var sqydInput = document.getElementById('conv_sqyd');
+    if (source === 'fromSqFt') {
+      var val = parseFloat(sqftInput.value) || 0;
+      sqydInput.value = val > 0 ? (val / 9).toFixed(2) : '';
+    } else {
+      var val = parseFloat(sqydInput.value) || 0;
+      sqftInput.value = val > 0 ? (val * 9).toFixed(1) : '';
+    }
+    calculate();
+  }
+
+  function setPresetSqFt(val) {
+    document.getElementById('conv_sqft').value = val;
+    document.getElementById('conv_sqyd').value = (val / 9).toFixed(2);
+    calculate();
+  }
+
+  function syncPricing(source) {
+    var sqydCost = document.getElementById('cost_sqyd');
+    var sqftCost = document.getElementById('cost_sqft');
+    if (source === 'fromSqYd') {
+      var val = parseFloat(sqydCost.value) || 0;
+      sqftCost.value = val > 0 ? (val / 9).toFixed(2) : '';
+    } else {
+      var val = parseFloat(sqftCost.value) || 0;
+      sqydCost.value = val > 0 ? (val * 9).toFixed(2) : '';
+    }
+    calculate();
+  }
+
   function getNum(id) {
     return parseFloat(document.getElementById(id).value) || 0;
   }
@@ -384,55 +675,84 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
   }
 
   function calculate() {
-    var len = toFt('r_len_ft', 'r_len_in');
-    var wid = toFt('r_wid_ft', 'r_wid_in');
-    var rooms = Math.max(1, getNum('num_rooms') || 1);
+    var netSqFt = 0;
+    var errorMsg = document.getElementById('errorMsg');
+    var resultsEl = document.getElementById('results');
 
-    document.getElementById('errorMsg').classList.add('hidden');
+    errorMsg.classList.add('hidden');
 
-    if (len <= 0 || wid <= 0) {
-      document.getElementById('results').classList.add('hidden');
-      if (len > 0 || wid > 0) document.getElementById('errorMsg').classList.remove('hidden');
-      return;
-    }
+    if (currentMode === 'dims') {
+      var len = toFt('r_len_ft', 'r_len_in');
+      var wid = toFt('r_wid_ft', 'r_wid_in');
+      var rooms = Math.max(1, getNum('num_rooms') || 1);
 
-    var netSqFt = len * wid * rooms;
+      if (len <= 0 || wid <= 0) {
+        resultsEl.classList.add('hidden');
+        if (len > 0 || wid > 0) errorMsg.classList.remove('hidden');
+        return;
+      }
 
-    if (isChecked('subtractToggle')) {
-      var subLen = toFt('sub_len_ft', 'sub_len_in');
-      var subWid = toFt('sub_wid_ft', 'sub_wid_in');
-      netSqFt -= subLen * subWid;
+      netSqFt = len * wid * rooms;
+
+      if (isChecked('subtractToggle')) {
+        var subLen = toFt('sub_len_ft', 'sub_len_in');
+        var subWid = toFt('sub_wid_ft', 'sub_wid_in');
+        netSqFt -= subLen * subWid;
+      }
+    } else {
+      netSqFt = getNum('conv_sqft');
+      if (netSqFt <= 0) {
+        resultsEl.classList.add('hidden');
+        return;
+      }
     }
 
     if (netSqFt <= 0) {
-      document.getElementById('results').classList.add('hidden');
-      document.getElementById('errorMsg').classList.remove('hidden');
+      resultsEl.classList.add('hidden');
+      errorMsg.classList.remove('hidden');
       return;
     }
 
-    // Convert to square yards (carpet is sold by the sq yard)
     var netSqYd = netSqFt / 9;
-
     var waste = parseFloat(document.getElementById('waste').value) || 0.10;
     var totalSqYd = netSqYd * (1 + waste);
+    var totalSqFt = totalSqYd * 9;
+
+    var rollWidth = parseFloat(document.getElementById('rollWidth').value) || 12;
+    var linearCutFt = totalSqFt / rollWidth;
 
     var includePadding = document.getElementById('includePadding').value === 'yes';
 
-    document.getElementById('results').classList.remove('hidden');
+    resultsEl.classList.remove('hidden');
     document.getElementById('printBtn').classList.remove('hidden');
     document.getElementById('r_sqft').textContent = netSqFt.toFixed(1) + ' sq ft';
     document.getElementById('r_sqyd').textContent = netSqYd.toFixed(1) + ' sq yd';
     document.getElementById('r_waste').textContent = (waste * 100) + '%';
     document.getElementById('r_total').textContent = totalSqYd.toFixed(1) + ' sq yd';
 
-    var paddingRow = document.getElementById('paddingRow');
+    document.getElementById('r_total_sqft').textContent = totalSqFt.toFixed(1) + ' sq ft';
+    document.getElementById('r_roll_cut').textContent = linearCutFt.toFixed(1) + ' linear ft';
+    document.getElementById('r_roll_note').textContent = 'Cut from ' + rollWidth + '-ft wide roll';
+
+    var paddingCard = document.getElementById('paddingCard');
     if (includePadding) {
       document.getElementById('r_padding').textContent = totalSqYd.toFixed(1) + ' sq yd';
-      paddingRow.classList.remove('hidden');
+      paddingCard.classList.remove('opacity-40');
     } else {
-      paddingRow.classList.add('hidden');
+      document.getElementById('r_padding').textContent = 'Excluded';
+      paddingCard.classList.add('opacity-40');
     }
 
+    // Pricing calculation
+    var costPerSqYd = getNum('cost_sqyd');
+    var costRow = document.getElementById('costRow');
+    if (costPerSqYd > 0) {
+      var totalCost = totalSqYd * costPerSqYd;
+      document.getElementById('r_cost_val').textContent = '$' + totalCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      costRow.classList.remove('hidden');
+    } else {
+      costRow.classList.add('hidden');
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -440,6 +760,8 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       el.addEventListener('input', calculate);
     });
     document.getElementById('waste').addEventListener('change', calculate);
+    document.getElementById('rollWidth').addEventListener('change', calculate);
     document.getElementById('includePadding').addEventListener('change', calculate);
   });
 </script>
+
