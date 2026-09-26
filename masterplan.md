@@ -250,14 +250,17 @@ Path: `src/pages/guides/` — Use staggered publish dates when committing.
 
 ---
 
-## SEO & INDEXING STATUS (Aug 3, 2026)
-- **Crawl & Indexing Health**: 89 total clean pages indexed, zero manual actions, zero 404s. Googlebot actively crawling 130+ requests/day.
-- **AdSense Site Review Status**: Initial automated review returned *"Low Value Content"*. 
+## SEO & INDEXING STATUS (Sep 25, 2026)
+- **Crawl & Indexing Health**: 84 pages indexed in GSC, 252 pages in "Discovered - currently not indexed" crawl queue.
+- **GSC Technical Audit & Fixes Deployed (COMPLETE ✅)**:
+  - *Page with redirect (78 pages)*: Standardized 1,345 internal URLs, category anchors, and BreadcrumbList schema items across 298 files to strictly end with trailing slash (`/`), eliminating internal 308/301 redirects and crawl budget waste.
+  - *Alternate page with proper canonical tag (65 pages)*: Apex domain `https://calcfordiy.com/` confirmed as canonical source; edge redirection rule configured in Cloudflare to permanently 301-redirect `www.calcfordiy.com/*` to apex.
+  - *Legacy 404s (11 pages)*: 301 redirect mapping in `public/_redirects` active and validated by Googlebot.
 - **Hardened AdSense Re-Submission Strategy**: Rather than mass-padding calculators with templated 500-word boilerplate (which risks Google's Scaled Content Abuse penalty), we are executing a 4-Phase Quality Plan:
   1. *Domain Trust (E-E-A-T - COMPLETE ✅)*: Explicit AdSense DART cookie privacy policy (`/privacy`), dedicated Calculation Methodology page (`/methodology`), and localized AHJ disclaimers.
   2. *Tiered Flagship Enhancement (COMPLETE ✅)*: Deepened top 10 core calculators (`concrete-slab`, `wall-framing`, `shower-tile`, `asphalt-shingles`, `ev-charger-wiring`, `retaining-wall`, `deck-joist-span`, `french-drain`, `stair-stringer`, `mini-split-sizing`) with explicit math equations, transparent default constants, and tool-specific job-site FAQs.
   3. *Homepage & Navigation (COMPLETE ✅)*: Focused 150-word intro, project paths, and site footer navigation.
-  4. *Pre-Resubmission Verification (COMPLETE ✅)*: 90 live 200 OK pages, clean mobile viewports, `ads.txt` verified. Ready for user resubmission in AdSense Dashboard.
+  4. *Pre-Resubmission Verification (COMPLETE ✅)*: 338 static route outputs (111 calculators, 15 project hubs, 21 guides, 9 field journal case studies), clean mobile viewports, `ads.txt` verified.
 
 ---
 

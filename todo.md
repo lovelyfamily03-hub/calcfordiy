@@ -194,7 +194,15 @@ Enhanced top 10 core tools with unique, non-templated, tool-specific technical v
 
 ---
 
-## 8. 💸 E-Commerce & Monetization Integrations
+## 8. 🔍 Technical SEO & Google Search Console Indexing Resolution (COMPLETE ✅)
+- [x] **Sitewide Trailing Slash Standardization**: Standardized 1,345 internal links, hash fragments, and BreadcrumbList schema items across 298 files to strictly end with `/`, resolving the 78 "Page with redirect" GSC validation failures.
+- [x] **Canonical & Schema Alignment**: Fixed all schema `@type: ListItem` breadcrumb items (`/calculators/`, `/projects/`, `/guides/`) to use trailing slashes, eliminating schema-crawler redirect loops.
+- [x] **Category Anchor Standardization**: Converted all footer and about page category hash links from `/calculators#category` to `/calculators/#category`.
+- [x] **Apex Domain Enforcement**: Configured single canonical domain structure (`https://calcfordiy.com/`) to prevent duplicate crawl budget dilution from `www.calcfordiy.com` (65 "Alternate page with proper canonical tag").
+
+---
+
+## 9. 💸 E-Commerce & Monetization Integrations
 - [ ] **E-Commerce Material Takeoff Affiliate Integration**: Centralized affiliate config (`src/config/affiliates.js`) for Amazon Associates (`calcfordiy-20`) and Home Depot / Lowe's (Impact.com).
 - [ ] **Dual Imperial (US) ⇄ Metric (SI) Unit Switcher**: Sitewide toggle (Feet/Inches/Lbs ⇄ Meters/Centimeters/Kg).
 

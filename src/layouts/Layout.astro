@@ -2,13 +2,13 @@
 import '../styles/global.css';
 const { title, description, noindex = false } = Astro.props;
 const pathname = Astro.url.pathname;
-const isCalculatorPage = pathname.startsWith('/calculators/') && pathname !== '/calculators/' && pathname !== '/calculators';
+const isCalculatorPage = pathname.startsWith('/calculators/') && pathname !== '/calculators/' && pathname !== '/calculators/';
 const navLinks = [
-  { href: '/journal/', label: 'Journal', match: '/journal' },
-  { href: '/calculators/', label: 'Calculators', match: '/calculators' },
-  { href: '/projects/', label: 'Projects', match: '/projects' },
-  { href: '/guides/', label: 'Guides', match: '/guides' },
-  { href: '/about/', label: 'About', match: '/about' },
+  { href: '/journal/', label: 'Journal', match: '/journal/' },
+  { href: '/calculators/', label: 'Calculators', match: '/calculators/' },
+  { href: '/projects/', label: 'Projects', match: '/projects/' },
+  { href: '/guides/', label: 'Guides', match: '/guides/' },
+  { href: '/about/', label: 'About', match: '/about/' },
 ];
 const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com${Astro.url.pathname}` : `https://calcfordiy.com${Astro.url.pathname}/`;
 ---
@@ -157,14 +157,14 @@ const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com$
           <div>
             <h3 class="font-semibold text-gray-900 mb-3">Categories</h3>
             <ul class="space-y-2">
-              <li><a href="/calculators#tile-flooring" class="hover:text-blue-600">Tile &amp; Flooring</a></li>
-              <li><a href="/calculators#carpentry-framing-roofing" class="hover:text-blue-600">Carpentry &amp; Roofing</a></li>
-              <li><a href="/calculators#millwork-trim-walls" class="hover:text-blue-600">Millwork &amp; Trim</a></li>
-              <li><a href="/calculators#concrete-masonry" class="hover:text-blue-600">Concrete &amp; Masonry</a></li>
-              <li><a href="/calculators#landscaping-hardscaping" class="hover:text-blue-600">Landscaping &amp; Paving</a></li>
-              <li><a href="/calculators#electrical-solar-lighting" class="hover:text-blue-600">Electrical &amp; Solar</a></li>
-              <li><a href="/calculators#plumbing-hvac-energy" class="hover:text-blue-600">Plumbing &amp; HVAC</a></li>
-              <li><a href="/calculators#paint-finishing" class="hover:text-blue-600">Paint &amp; Finishing</a></li>
+              <li><a href="/calculators/#tile-flooring" class="hover:text-blue-600">Tile &amp; Flooring</a></li>
+              <li><a href="/calculators/#carpentry-framing-roofing" class="hover:text-blue-600">Carpentry &amp; Roofing</a></li>
+              <li><a href="/calculators/#millwork-trim-walls" class="hover:text-blue-600">Millwork &amp; Trim</a></li>
+              <li><a href="/calculators/#concrete-masonry" class="hover:text-blue-600">Concrete &amp; Masonry</a></li>
+              <li><a href="/calculators/#landscaping-hardscaping" class="hover:text-blue-600">Landscaping &amp; Paving</a></li>
+              <li><a href="/calculators/#electrical-solar-lighting" class="hover:text-blue-600">Electrical &amp; Solar</a></li>
+              <li><a href="/calculators/#plumbing-hvac-energy" class="hover:text-blue-600">Plumbing &amp; HVAC</a></li>
+              <li><a href="/calculators/#paint-finishing" class="hover:text-blue-600">Paint &amp; Finishing</a></li>
             </ul>
           </div>
           <div>

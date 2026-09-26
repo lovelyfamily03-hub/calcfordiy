@@ -12,7 +12,7 @@ const workflowSteps = [
     title: "Critical Loads Energy Audit & Continuous kWh Sizing",
     description: "Audit essential household circuits required during extended utility grid blackouts: refrigerator (1.5 kWh/day), well pump (2.0 kWh/day), furnace blower/hydronic pump (3.0 kWh/day), router/communications, and lighting. Sum total continuous power draw (kW) and 24-hour energy consumption (kWh) to determine battery capacity (e.g. 10 kWh to 20 kWh LiFePO4) and peak inverter surge capacity for inductive motor starting.",
     calculatorName: "Solar Battery Storage Sizing Calculator",
-    href: "/calculators/solar-battery-sizing",
+    href: "/calculators/solar-battery-sizing/",
     icon: "🔋"
   },
   {
@@ -20,7 +20,7 @@ const workflowSteps = [
     title: "100A / 125A Critical Loads Subpanel & Circuit Relocation",
     description: "Mount a 12-circuit to 20-circuit subpanel adjacent to the main electrical service panel. Relocate prioritized branch circuits (hot conductors and dedicated neutrals) into the subpanel. Follow NEC 250.32 rules: ensure the neutral and ground busbars remain 100% unbonded (floating neutral) in the downstream subpanel, with a dedicated four-wire feed (two hots, one neutral, one equipment ground).",
     calculatorName: "Electrical Subpanel Sizing Calculator",
-    href: "/calculators/subpanel-sizing",
+    href: "/calculators/subpanel-sizing/",
     icon: "⚡"
   },
   {
@@ -28,7 +28,7 @@ const workflowSteps = [
     title: "Microgrid Gateway & Automatic Transfer Switch (ATS) Wiring",
     description: "Install an intelligent microgrid gateway (Tesla Backup Gateway, Enphase IQ System Controller, or Sol-Ark 15K). The gateway provides instantaneous utility grid disconnection (islanding) within 16 milliseconds per UL 1741 / IEEE 1547 standards, preventing lethal power backfeeding into downed utility lines while establishing a clean, frequency-controlled microgrid for the home.",
     calculatorName: "Wire Size & Voltage Drop Calculator",
-    href: "/calculators/ev-charger-wiring",
+    href: "/calculators/ev-charger-wiring/",
     icon: "🔌"
   },
   {
@@ -36,7 +36,7 @@ const workflowSteps = [
     title: "LiFePO4 Battery Anchoring, BMS Comm & Commissioning",
     description: "Anchor Lithium Iron Phosphate (LiFePO4) battery enclosures to structural wall studs using 3/8-inch lag bolts. Wire DC battery cables protected by Class T fast-acting fuses, or connect high-voltage DC modules (400V). Connect shielded CAN-bus / RS-485 BMS communication cables to the hybrid inverter. Configure grid-export profiles, time-of-use peak shaving, and test full off-grid black-start disconnect.",
     calculatorName: "Solar Battery Sizing Calculator",
-    href: "/calculators/solar-battery-sizing",
+    href: "/calculators/solar-battery-sizing/",
     icon: "✨"
   }
 ];
@@ -53,8 +53,8 @@ const workflowSteps = [
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
-      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects" },
-      { "@type": "ListItem", "position": 3, "name": "Solar Battery Storage Hub", "item": "https://calcfordiy.com/projects/solar-battery-storage-backup-panel" }
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects/" },
+      { "@type": "ListItem", "position": 3, "name": "Solar Battery Storage Hub", "item": "https://calcfordiy.com/projects/solar-battery-storage-backup-panel/" }
     ]
   }
   </script>
