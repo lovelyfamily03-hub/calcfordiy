@@ -1,0 +1,284 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: 'The 1/4" Slope Drainage Mistake: Why a Buried French Drain Flooded the Basement Wall',
+  slug: 'the-quarter-inch-slope-drainage-mistake-perforated-pipe-physics',
+  description: 'An engineering autopsy of an $8,200 exterior French drain that failed to stop basement flooding. How upside-down pipe perforations, uncompacted trench settlement, and the "pipe sock" fallacy turned a gravel trench into an underground swimming pool.',
+  author: 'David Miller, PE',
+  authorRole: 'Senior Structural Contributor',
+  reviewer: 'Marcus Vance',
+  reviewerRole: 'Master Plumber & Drainage Specialist',
+  publishDate: 'September 26, 2026',
+  readTime: '11 min read',
+  category: 'Field Investigation',
+  image: '/images/journal/french-drain-slope-failure.jpg',
+  tag: 'Drainage & Earthwork',
+  companionCalculator: {
+    name: 'French Drain Trench & Sump Calculator',
+    href: '/calculators/french-drain/',
+    desc: 'Calculate aggregate tonnage, pipe displacement volume, trench depth slope, and non-woven fabric yardage.'
+  },
+  companionHub: {
+    name: 'Basement Waterproofing & Yard Drainage Hub',
+    href: '/projects/basement-waterproofing/',
+    desc: 'Footer weeping tile, hydrostatic relief valves, exterior dimple board, and gravity daylight outlets.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-09-26T08:00:00+00:00",
+    "dateModified": "2026-09-26T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            DM
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-gray-500 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200">
+          <div>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Published</span>
+            <span class="font-mono text-gray-800">{article.publishDate}</span>
+          </div>
+          <div class="border-l border-gray-200 pl-4">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="font-semibold text-gray-800">{article.reviewer}</span>
+            <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Companion Tool Callout (Top) -->
+    <div class="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-5 rounded-r-xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-0.5">Companion Engineering Tool</div>
+        <div class="font-bold text-gray-900 text-base">{article.companionCalculator.name}</div>
+        <div class="text-xs text-gray-600 mt-0.5">{article.companionCalculator.desc}</div>
+      </div>
+      <a
+        href={article.companionCalculator.href}
+        class="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors flex items-center gap-1.5"
+      >
+        <span>Open Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Editorial Hero Photo -->
+    <div class="mb-10 rounded-2xl overflow-hidden shadow-md border border-gray-200">
+      <img
+        src="/images/journal/french-drain-slope-failure.jpg"
+        alt="Excavated exterior residential French drain trench along poured concrete foundation wall"
+        class="w-full h-auto object-cover max-h-[460px]"
+        loading="eager"
+      />
+      <div class="bg-gray-50 px-4 py-2.5 text-xs text-gray-600 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+        <span><strong>Field Investigation:</strong> Exposing an underground failure where clogged pipe wrapping and negative slope created hydrostatic ponding along a basement foundation footer.</span>
+        <span class="font-mono text-gray-400 text-[11px] shrink-0">Photo: CalcForDIY Field Unit</span>
+      </div>
+    </div>
+
+    <!-- Article Narrative Body -->
+    <div class="prose prose-lg max-w-none text-gray-800 leading-relaxed font-serif space-y-8">
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The $8,200 Trench That Made the Basement Wetter</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The homeowner stood in his unfinished basement in Columbus, Ohio, pointing at two sump pumps screaming in tandem. Outside, water had stopped raining six hours earlier. But inside, water was bubbling up through the cold joint between the poured concrete floor and the foundation wall at twenty gallons per minute.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          <em>"I don’t understand,"</em> he said, visibly exhausted. <em>"Last summer, I paid a landscape drainage contractor $8,200 to dig up the entire east yard and install an 80-foot exterior French drain with washed stone and black corrugated pipe. He promised my basement would be bone dry for fifty years."</em>
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          When I walked outside to inspect the daylight discharge pipe at the curb, not a single droplet of water was emerging. Eighty feet away, a massive storm had saturated the ground, yet the drain's outfall was bone dry while the basement was drowning.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Excavation Autopsy: Three Structural Sins</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The next morning, we brought in a mini-excavator to peel back the turf and expose the French drain trench down to the foundation footer. What we found was a textbook masterclass in fluid dynamics failure:
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">1. The Perforations Were Pointing Straight Up</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          This is the single most common mistake in residential yard drainage. The installer had rolled out 4-inch corrugated pipe with the dual rows of drilled weep holes oriented at 12 o’clock.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Under basic gravity drainage principles (and <strong>IRC Section R405.1</strong>), groundwater rises from the soil below as hydrostatic head accumulates. When perforations face down (at the 4 o'clock and 8 o'clock positions), water seeping up through the bedding gravel enters the pipe immediately at the trench floor and begins flowing away.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          With holes facing UP, water must fill the entire gravel trench, rise past the bottom four inches of the pipe, and spill over the crest before the pipe moves an ounce of liquid. That four inches of trapped subterranean water exerted 250 lbs/sq ft of lateral hydrostatic pressure directly against the basement cove joint.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">2. The 1/4" Fall Reversal (Trench Settlement)</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Using a rotary laser level, we shot elevations from the high point near the corner of the house to the discharge outlet.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Code requires a uniform slope of at least <strong>1/8 inch to 1/4 inch per linear foot</strong> (a minimum 1% gradient). For an 80-foot run, the pipe must drop at least 10 to 20 inches from start to finish.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          At the 35-foot mark, the contractor had trenched through loose backfill clay and dumped pipe directly on uncompacted soil. Over the winter, that loose soil settled by 3 inches. The laser confirmed the pipe pitched down for 30 feet, rose 2 inches in the middle, and then sloped down again.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          This created an artificial subterranean underground pond. Sediment, fine silt, and organic wash settled into the low belly, completely damming the pipe.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">3. The "Sock on the Pipe" Fallacy</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The contractor had purchased pre-sleeved pipe—corrugated plastic wrapped in a tight knitted polyester fabric sleeve (commonly sold as "pipe with a sock").
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          In coarse sandy soils, a pipe sleeve works. But in Midwestern clay and silty loam, colloidal clay particles migrate toward the pipe with water. Because the fabric sits directly against the pipe perforations, the surface area of filtration is tiny (a mere 4-inch cylinder). Within six months, the clay formed an impenetrable, greasy biological cake over the fabric mesh, blinding the holes completely.
+        </p>
+      </section>
+
+      <AdSlot type="in-feed" />
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Engineering Solution: The "Burrito Wrap" &amp; Smooth-Wall PVC</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          To permanently solve the flooding, we scrapped the flexible corrugated tubing entirely and re-engineered the trench according to hydraulic engineering standards:
+        </p>
+
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          1. <strong>Trench Excavation &amp; Compaction:</strong> We excavated a 14-inch-wide trench down to undisturbed soil beside the foundation footer, maintaining a verified continuous <strong>1/4 inch per foot fall</strong> using laser targets.
+        </p>
+
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          2. <strong>The Geotextile "Burrito" Lining:</strong> We lined the entire raw trench—bottom, sides, and extended flaps—with <strong>4 oz non-woven needle-punched geotextile fabric</strong>. The fabric must line the dirt trench walls, NOT the pipe. This provides over 300 square feet of filtration surface area instead of 80 square feet, allowing clean water to enter the gravel envelope while preventing soil particles from ever touching the stones.
+        </p>
+
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          3. <strong>Rigid Smooth-Wall PVC (ASTM D2729):</strong> We installed white rigid perforated PVC pipe with holes pointed DOWN at the 4 o'clock and 8 o'clock marks. The inner walls of rigid PVC are glass-smooth (Manning roughness coefficient $n = 0.009$, compared to $n = 0.016$ for corrugated), moving water twice as fast and self-scouring debris rather than trapping dirt in corrugated ridges.
+        </p>
+
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          4. <strong>Washed #57 Aggregate Bedding:</strong> We bedded the pipe in 2 inches of washed 3/4-inch crushed stone, filled the trench with 14 inches of stone over the pipe, folded the geotextile flaps over the top like a sealed burrito, and capped with coarse sand and turf.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Field Takeaways for DIY Drainage Projects</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>Holes ALWAYS face DOWN:</strong> Place the perforated holes toward the bottom of the trench so groundwater can enter immediately without creating hydrostatic buildup.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>Line the TRENCH, not the pipe:</strong> Never buy pipe with a pre-installed fabric sock in clay soil. Line the trench walls with non-woven 4 oz geotextile fabric to create a giant underground gravel envelope.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>Ditch flexible corrugated tubing:</strong> Flexible pipe sags, collects silt in ridges, and cannot be snaked or cleared with a rotary jetter. Rigid PVC stays straight, maintains true slope, and lasts 100 years.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>Check slope with a laser or line level:</strong> Eyeballing a ditch guarantees reverse slope bellies. Verify at least 1/4" drop every 4 feet of run.</p>
+      </section>
+    </div>
+
+    <!-- Editorial Signoff & Methodology Note -->
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-xl space-y-3 font-sans text-xs text-gray-600">
+      <div class="font-bold text-gray-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>CalcForDIY Editorial Standards &amp; Safety Disclaimer</span>
+      </div>
+      <p>
+        Field Investigations published in the CalcForDIY Journal chronicle real-world trade installations, forensics, and job-site inspections. Construction practices, building codes, and safety requirements vary significantly by municipality, climate zone, and local Authority Having Jurisdiction (AHJ).
+      </p>
+      <p>
+        Always consult with licensed master tradespeople and obtain required municipal permits prior to executing structural carpentry, electrical service alterations, gas piping, or foundation modifications.
+      </p>
+    </div>
+
+    <!-- Bottom Companion Hub Recommendation -->
+    <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-md">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider font-bold text-blue-400 mb-1">Related Project Workflow Hub</div>
+        <div class="text-lg font-bold text-white mb-1">{article.companionHub.name}</div>
+        <div class="text-xs text-gray-300 max-w-xl">{article.companionHub.desc}</div>
+      </div>
+      <a
+        href={article.companionHub.href}
+        class="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-2"
+      >
+        <span>Explore Full Hub</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Back to Journal Hub Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between font-sans text-xs">
+      <a href="/journal/" class="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+        <span>← Back to All Journal Stories</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-900">
+        Home
+      </a>
+    </div>
+  </article>
+</Layout>

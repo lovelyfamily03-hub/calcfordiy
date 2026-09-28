@@ -1,0 +1,280 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: 'Why Cold-Weather Grout Crumbled: Efflorescence, Slump, and ANSI A118.6 Forensic Chemistry',
+  slug: 'why-cold-weather-grout-crumbled-efflorescence-chemistry',
+  description: 'A forensic breakdown of an upstate New York mudroom where premium charcoal grout turned chalky white and crumbled to sand within 30 days. How 42°F night curing temperatures, hydration stall, and over-washing sabotaged the tile matrix.',
+  author: 'Elena Rostova',
+  authorRole: 'Historic Renovation Specialist & Tile Artisan',
+  reviewer: 'David Miller, PE',
+  reviewerRole: 'Senior Structural Reviewer',
+  publishDate: 'September 24, 2026',
+  readTime: '10 min read',
+  category: 'Field Investigation',
+  image: '/images/journal/cold-weather-grout-failure.jpg',
+  tag: 'Tile & Masonry Chemistry',
+  companionCalculator: {
+    name: 'Grout Coverage & Bag Takeoff Calculator',
+    href: '/calculators/grout/',
+    desc: 'Calculate exact 10 lb and 25 lb grout bag yields, joint width volumes, and water mix ratios.'
+  },
+  companionHub: {
+    name: 'Bathroom & Kitchen Tile Remodeling Hub',
+    href: '/projects/bathroom-remodel/',
+    desc: 'TCNA-compliant substrate prep, thinset mortar selection, and polymer grout standards.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-09-24T08:00:00+00:00",
+    "dateModified": "2026-09-24T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            ER
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-gray-500 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200">
+          <div>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Published</span>
+            <span class="font-mono text-gray-800">{article.publishDate}</span>
+          </div>
+          <div class="border-l border-gray-200 pl-4">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="font-semibold text-gray-800">{article.reviewer}</span>
+            <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Companion Tool Callout (Top) -->
+    <div class="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-5 rounded-r-xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-0.5">Companion Engineering Tool</div>
+        <div class="font-bold text-gray-900 text-base">{article.companionCalculator.name}</div>
+        <div class="text-xs text-gray-600 mt-0.5">{article.companionCalculator.desc}</div>
+      </div>
+      <a
+        href={article.companionCalculator.href}
+        class="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors flex items-center gap-1.5"
+      >
+        <span>Open Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Editorial Hero Photo -->
+    <div class="mb-10 rounded-2xl overflow-hidden shadow-md border border-gray-200">
+      <img
+        src="/images/journal/cold-weather-grout-failure.jpg"
+        alt="Damaged porcelain tile floor with efflorescence and crumbling grout lines"
+        class="w-full h-auto object-cover max-h-[460px]"
+        loading="eager"
+      />
+      <div class="bg-gray-50 px-4 py-2.5 text-xs text-gray-600 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+        <span><strong>Field Investigation:</strong> Forensic inspection of low-temperature Portland cement grout hydration failure with severe surface efflorescence and micro-cracking.</span>
+        <span class="font-mono text-gray-400 text-[11px] shrink-0">Photo: CalcForDIY Field Unit</span>
+      </div>
+    </div>
+
+    <!-- Article Narrative Body -->
+    <div class="prose prose-lg max-w-none text-gray-800 leading-relaxed font-serif space-y-8">
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Mystery of the Vanishing Charcoal Grout</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The homeowner’s email was blunt: <em>"The tile store sold us a defective batch of grout. It was supposed to be Jet Black, but it turned into white chalk. When I run the vacuum over it, whole sections pull out like dry beach sand."</em>
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Three days before Thanksgiving, I drove out to an unheated addition in Saratoga County, New York. The floor was an expansive 220-square-foot mudroom finished in 12&times;24-inch matte gray porcelain tiles with 1/8-inch joints. Visually, the tile was flat and aligned with immaculate 1/32-inch lip tolerance. But the grout joints told a tragic chemical story.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Instead of dense, smooth, charcoal-colored lines, the joints were blotchy, powdery, and covered in a ghostly crust of pale efflorescence. When I dragged a simple dull utility knife blade across a joint with minimal hand pressure, the blade gouged a 1/16-inch furrow directly into the compound. The grout had essentially zero compressive strength.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Forensic Chemistry: Why Cement Stalls at 45°F</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Standard sanded tile grout (compliant with <strong>ANSI A118.6</strong>) is not a plastic filler; it is an engineered Portland cement mortar. Cement does not dry to achieve hardness—it <em>hydrates</em>. When tricalcium silicate ($C_3S$) and dicalcium silicate ($C_2S$) particles react with clean water, they produce Calcium Silicate Hydrate ($C-S-H$) crystalline needles that interlock around silica aggregate to form artificial rock.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          However, that hydration chemical reaction is fiercely temperature-dependent. Under primary masonry standards, Portland cement hydration grinds to an almost complete chemical halt below <strong>50°F (10°C)</strong>.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          When I cross-examined the timeline, the forensic puzzle clicked into place:
+        </p>
+        <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 font-sans text-sm text-gray-700 space-y-2">
+          <p><strong>1. Saturday 2:00 PM:</strong> The tile crew finished grouting with the temporary electric space heaters maintaining 68°F.</p>
+          <p><strong>2. Saturday 6:00 PM:</strong> To prevent a potential fire hazard over the weekend, the general contractor turned off the portable space heaters and locked the uninsulated mudroom door.</p>
+          <p><strong>3. Saturday Midnight:</strong> Upstate New York outdoor ambient temperature plummeted to 24°F. Infrared thermography showed the concrete slab subfloor temperature dropped to <strong>41°F within six hours</strong>.</p>
+        </div>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          With the slab at 41°F, crystalline growth stalled. The water in the grout could not bond into the mineral matrix. Instead, the trapped free water sat dormant for two days. When the heat was finally blasted back on Monday morning, the water evaporated too rapidly, drawing unreacted calcium hydroxide ($Ca(OH)_2$) to the joint surface.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Upon meeting carbon dioxide ($CO_2$) in the room’s air, the calcium hydroxide converted to calcium carbonate ($CaCO_3$)—pure chalky efflorescence:
+        </p>
+        <div class="p-4 bg-slate-900 text-emerald-400 font-mono text-sm rounded-lg">
+          Ca(OH)₂ (Free Lime in Unhydrated Grout) + CO₂ (Air) → CaCO₃ (Chalky White Efflorescence) + H₂O
+        </div>
+      </section>
+
+      <AdSlot type="in-feed" />
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Secondary Culprit: The "Soaking Sponge" Reflex</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Temperature was only half the crime. When I inspected the waste barrels, I found another dead giveaway: three heavily rounded, disintegrating yellow cellulose grout sponges.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Novice installers and rushed crews frequently make the fatal mistake of washing tile joints with a sponge that is dripping wet rather than damp-wrung. Excess wash water floods the uncured grout joints, diluting the water-cement ratio from the manufacturer’s specified 0.40 up to 0.70+.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Over-washing floats the fine pigment particles out of the joint, washes away the liquid polymer cross-linkers, and creates microscopic air channels as the excess water evaporates. The result is a weak, micro-porous foam rather than dense masonry.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Verdict &amp; The Fix: Extraction vs. Acid Wash</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          When efflorescence is superficial (the grout is rock-hard underneath but discolored on top), a mild 10:1 dilution of <strong>sulfamic acid crystals</strong> will dissolve the calcium carbonate crust and restore the original pigment.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          In this mudroom, however, the scratch test proved the internal matrix was soft. Acid washing would have simply etched the crumbling sand into a sludge. There was only one honest engineering remedy:
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          1. <strong>Diamond Blade Extraction:</strong> We spent 14 hours using an oscillating multi-tool equipped with a carbide grout blade and HEPA vacuum shroud, removing all failed grout down to 2/3 of the tile depth (approx 1/4 inch deep).
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          2. <strong>Upgraded Chemistry (ANSI A118.7):</strong> Instead of standard cement grout, we specified a high-performance, rapid-setting calcium aluminate cement grout (such as Mapei Ultracolor Plus FA or Laticrete Permacolor). Calcium aluminate chemistries hydrate through an internal chemical cure that resists efflorescence and cures hard even in chilly conditions down to 50°F.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          3. <strong>Strict 72-Hour Climate Control:</strong> The addition was locked at a continuous, thermostat-monitored 68°F for 72 full hours after washing.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Job-Site Takeaways for Cold-Weather Tiling</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>Never let room temperature drop below 50°F</strong> for 72 hours post-grouting. The subfloor slab temperature matters just as much as ambient air.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>Measure water with a graduated cylinder</strong>, not by "eye" from a garden hose. A single extra cup of water can ruin a 25 lb bag’s pigment uniformity.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• <strong>Wring your cleanup sponge until not a single drop drips</strong> when squeezed. You want damp friction, not standing puddles.</p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">• For high-moisture mudrooms or low-temperature seasons, upgrade from basic ANSI A118.6 grout to <strong>ANSI A118.7 high-performance cement or pre-mixed urethane/epoxy</strong>.</p>
+      </section>
+    </div>
+
+    <!-- Editorial Signoff & Methodology Note -->
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-xl space-y-3 font-sans text-xs text-gray-600">
+      <div class="font-bold text-gray-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>CalcForDIY Editorial Standards &amp; Safety Disclaimer</span>
+      </div>
+      <p>
+        Field Investigations published in the CalcForDIY Journal chronicle real-world trade installations, forensics, and job-site inspections. Construction practices, building codes, and safety requirements vary significantly by municipality, climate zone, and local Authority Having Jurisdiction (AHJ).
+      </p>
+      <p>
+        Always consult with licensed master tradespeople and obtain required municipal permits prior to executing structural carpentry, electrical service alterations, gas piping, or foundation modifications.
+      </p>
+    </div>
+
+    <!-- Bottom Companion Hub Recommendation -->
+    <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-md">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider font-bold text-blue-400 mb-1">Related Project Workflow Hub</div>
+        <div class="text-lg font-bold text-white mb-1">{article.companionHub.name}</div>
+        <div class="text-xs text-gray-300 max-w-xl">{article.companionHub.desc}</div>
+      </div>
+      <a
+        href={article.companionHub.href}
+        class="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-2"
+      >
+        <span>Explore Full Hub</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Back to Journal Hub Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between font-sans text-xs">
+      <a href="/journal/" class="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+        <span>← Back to All Journal Stories</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-900">
+        Home
+      </a>
+    </div>
+  </article>
+</Layout>

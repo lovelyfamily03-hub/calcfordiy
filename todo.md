@@ -105,6 +105,19 @@
 - [x] `"How Many Bags of Concrete for a Sonotube (8, 10, 12, 16 In)?"` (`/guides/how-many-bags-of-concrete-for-sonotube`)
 - [x] `"How Deep Should a Gravel Driveway Be? (3-Layer Guide)"` (`/guides/how-deep-should-a-gravel-driveway-be`)
 
+### 📰 Field Journal Dispatches (`/journal/` - COMPLETE ✅ 11 Live Dispatches with Photos)
+- [x] `"The 1/4\" Slope Drainage Mistake: Why a Buried French Drain Flooded the Basement Wall"` (`/journal/the-quarter-inch-slope-drainage-mistake-perforated-pipe-physics`)
+- [x] `"Why Cold-Weather Grout Crumbled: Efflorescence, Slump, and ANSI A118.6 Forensic Chemistry"` (`/journal/why-cold-weather-grout-crumbled-efflorescence-chemistry`)
+- [x] `"The $6,200 Ice Dam Catastrophe: Why Standard Felt Paper Failed on a 3:12 Pitch Roof"` (`/journal/the-6200-dollar-ice-dam-roofing-failure-eave-warm-wall`)
+- [x] `"The Thermal Bridge Trapped Inside Our Walls: Cascadia Clip Forensics"` (`/journal/thermal-bridge-rainscreen-cladding-cascadia-clip-forensics`)
+- [x] `"The $4,800 Sump Pump Mistake: Hydrostatic Pressure"` (`/journal/the-4800-dollar-sump-pump-mistake-hydrostatic-pressure`)
+- [x] `"The 100-Amp Reality Check: EV Charger & Heat Pump Subpanel"` (`/journal/the-100-amp-reality-check-ev-charger-heat-pump-subpanel`)
+- [x] `"The $9,000 Shower Pan Leak: Preslope & Curbless Failure"` (`/journal/the-9000-dollar-shower-pan-leak-preslope-curbless-failure`)
+- [x] `"When 4 Inches Isn't Enough: Concrete Driveway Spalling"` (`/journal/when-4-inches-isnt-enough-concrete-driveway-frost-heave`)
+- [x] `"Why My Luxury Vinyl Plank Separated: Subfloor Flatness"` (`/journal/why-luxury-vinyl-plank-separated-subfloor-flatness-acclimation`)
+- [x] `"Tearing Down an 80-Year-Old Plaster Ceiling: Level 5 Drywall"` (`/journal/tearing-down-80-year-old-plaster-ceiling-level-5-drywall`)
+- [x] `"Anatomy of a Deck Stair Stringer Rejection (IRC R311)"` (`/journal/anatomy-of-deck-stair-stringer-rejection-irc-r311`)
+
 ---
 
 ## 4. 💵 Monetization & Hardened AdSense Re-Submission Plan
