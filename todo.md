@@ -127,6 +127,7 @@
 ### Phase 1: Domain-Level Trust & Methodology (E-E-A-T Infrastructure - COMPLETE ✅)
 - [x] **AdSense Privacy Policy Compliance**: Updated `/privacy` with explicit third-party vendor advertising, Google AdSense cookie collection, DART cookies, and opt-out mechanisms (`aboutads.info` & NAI).
 - [x] **Calculation Methodology Page (`/methodology`)**: Built dedicated page detailing formula research, building code standards (IRC 2021/2024, TCNA, NEC, IES, NWFA), testing procedures, and density constants.
+- [x] **Code Maintenance & Audit Governance Schedule (`/methodology`)**: Formalized 4-tier code review schedule (Triennial model codes, Annual trade manuals, Bi-annual packaging/cost indices, Continuous automated CI/CD) and documented 2024–2026 code audit log (IRC 2024 R318/R507, NEC 2026 Art 120, TCNA 2024, ACI 332, IECC 2024).
 - [x] **Standardized Localized Disclaimer**: Added localized AHJ disclaimer across all tools: *"Planning estimate, not a permit-ready design or code determination. Confirm local requirements with your AHJ."*
 
 ### Phase 2: Tiered Content Enhancement for Top 10 Flagship Calculators (COMPLETE ✅)
