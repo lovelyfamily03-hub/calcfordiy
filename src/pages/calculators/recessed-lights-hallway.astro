@@ -82,7 +82,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
       { "@type": "ListItem", "position": 3, "name": "Recessed Lighting Calculator — Hallway", "item": "https://calcfordiy.com/calculators/recessed-lights-hallway/" }
     ]
@@ -108,6 +108,24 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6 print:border-none print:shadow-none print:p-0">
+
+    <div class="mb-5 print:hidden">
+      <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">⚡ Popular Hallway Size Presets:</label>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="h-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="12" data-wid="3.5" data-ceil="8">
+          3.5'×12' Short Hallway (42 sq ft)
+        </button>
+        <button type="button" class="h-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="20" data-wid="4" data-ceil="8">
+          4'×20' Standard Hallway (80 sq ft)
+        </button>
+        <button type="button" class="h-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="30" data-wid="4" data-ceil="8">
+          4'×30' Long Ranch Hallway (120 sq ft)
+        </button>
+        <button type="button" class="h-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="16" data-wid="5" data-ceil="9">
+          5'×16' Foyer / Entry Corridor (80 sq ft)
+        </button>
+      </div>
+    </div>
 
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
       <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
@@ -262,6 +280,69 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </button>
   </div>
 
+  <!-- Hallway Lighting Standards Reference (IES Residential Circulation Guidelines) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">Hallway Lighting Standards &amp; Centerline Spacing Rules</h2>
+        <p class="text-xs text-gray-500 mt-0.5">Authoritative foot-candle and single-row spacing benchmarks per Illuminating Engineering Society (IES)</p>
+      </div>
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 border border-blue-200 text-blue-700 rounded-md text-xs font-semibold self-start sm:self-auto">
+        <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+        Circulation Code Standard
+      </span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700 border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            <th class="py-3 px-3">Ceiling Height</th>
+            <th class="py-3 px-3">Max Spacing Between Cans</th>
+            <th class="py-3 px-3">End Wall Buffer (Distance to First Light)</th>
+            <th class="py-3 px-3">Target Foot-Candles</th>
+            <th class="py-3 px-3">Recommended Fixture Beam Angle</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-xs sm:text-sm">
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">8 ft Ceiling</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">6.0 ft max (72")</td>
+            <td class="py-2.5 px-3 font-medium text-gray-900">3.0 ft (36")</td>
+            <td class="py-2.5 px-3 font-mono">10 – 15 FC</td>
+            <td class="py-2.5 px-3">90° – 110° Wide Flood (Wafer LED)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">9 ft Ceiling</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">6.75 ft max (81")</td>
+            <td class="py-2.5 px-3 font-medium text-gray-900">3.25 – 3.5 ft</td>
+            <td class="py-2.5 px-3 font-mono">10 – 15 FC</td>
+            <td class="py-2.5 px-3">90° – 110° Wide Flood</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">10 ft Ceiling</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">7.5 ft max (90")</td>
+            <td class="py-2.5 px-3 font-medium text-gray-900">3.75 ft (45")</td>
+            <td class="py-2.5 px-3 font-mono">15 – 20 FC</td>
+            <td class="py-2.5 px-3">60° – 90° Narrow/Medium Flood</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">12 ft Foyer / Entry</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">9.0 ft max (108")</td>
+            <td class="py-2.5 px-3 font-medium text-gray-900">4.5 ft (54")</td>
+            <td class="py-2.5 px-3 font-mono">15 – 20 FC</td>
+            <td class="py-2.5 px-3">40° – 60° Directional Gimbal / Narrow</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 p-4 bg-blue-50/60 rounded-lg text-xs text-blue-900 space-y-1.5 border border-blue-100">
+      <p><strong>The End-Wall Distance Rule (1/2 of Inter-Fixture Spacing):</strong></p>
+      <p>Why should the first and last light be placed at half the distance of the spacing between cans? Because light spreads symmetrically from each fixture. Two fixtures spaced 6 feet apart cast overlapping light cones that meet in the middle (3 ft reach each). Placing the first light 3 feet from the end wall ensures that the edge of its beam hits the baseboard cleanly without creating a dark threshold shadow at the entrance or an over-concentrated hot spot on the wall header.</p>
+    </div>
+  </div>
+
   <div class="prose prose-gray max-w-none text-gray-700 print:prose-sm">
 
     <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">How to Use This Calculator</h2>
@@ -377,6 +458,27 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       el.addEventListener('input', calculate);
     });
     document.getElementById('lumens').addEventListener('change', calculate);
+
+    // Preset button handlers
+    document.querySelectorAll('.h-preset-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('h_len_ft').value = this.dataset.len;
+        document.getElementById('h_len_in').value = 0;
+        document.getElementById('h_wid_ft').value = this.dataset.wid;
+        document.getElementById('h_wid_in').value = 0;
+        document.getElementById('h_ceil_ft').value = this.dataset.ceil;
+        document.getElementById('h_ceil_in').value = 0;
+
+        document.querySelectorAll('.h-preset-btn').forEach(function (b) {
+          b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+          b.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+        });
+        this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+        this.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+
+        calculate();
+      });
+    });
   });
 
   function calculate() {

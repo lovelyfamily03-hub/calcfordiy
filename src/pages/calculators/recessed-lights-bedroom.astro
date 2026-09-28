@@ -82,7 +82,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
       { "@type": "ListItem", "position": 3, "name": "Recessed Lighting Calculator — Bedroom", "item": "https://calcfordiy.com/calculators/recessed-lights-bedroom/" }
     ]
@@ -103,6 +103,24 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
+
+    <div class="mb-5 print:hidden">
+      <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">⚡ Popular Bedroom Size Presets:</label>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="bed-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="11" data-wid="10" data-ceil="8">
+          10'×11' Small Bedroom (110 sq ft)
+        </button>
+        <button type="button" class="bed-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="14" data-wid="12" data-ceil="8">
+          12'×14' Standard Bedroom (168 sq ft)
+        </button>
+        <button type="button" class="bed-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="16" data-wid="14" data-ceil="9">
+          14'×16' Primary Suite (224 sq ft)
+        </button>
+        <button type="button" class="bed-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="20" data-wid="16" data-ceil="9">
+          16'×20' Master Suite / Sitting (320 sq ft)
+        </button>
+      </div>
+    </div>
 
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
       <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
@@ -222,11 +240,71 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
       <strong>Tip:</strong> Keep fixtures at least 2 feet from walls to avoid harsh shadows. Position the first row at half the fixture spacing distance from the wall.
     </p>
     <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
-
       🖨️ Print or Save as PDF
-
     </button>
+  </div>
 
+  <!-- Bedroom Lighting Standards Reference (IES Residential Guidelines) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">Bedroom Lighting Standards &amp; Kelvin Color Guide</h2>
+        <p class="text-xs text-gray-500 mt-0.5">Authoritative foot-candle and color temperature targets per Illuminating Engineering Society (IES)</p>
+      </div>
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 border border-blue-200 text-blue-700 rounded-md text-xs font-semibold self-start sm:self-auto">
+        <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+        IES Residential Spec
+      </span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700 border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            <th class="py-3 px-3">Bedroom Activity / Zone</th>
+            <th class="py-3 px-3">Target Foot-Candles</th>
+            <th class="py-3 px-3">Lumens per Sq Ft</th>
+            <th class="py-3 px-3">Recommended CCT (Kelvin)</th>
+            <th class="py-3 px-3">Dimming Capability</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-xs sm:text-sm">
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Relaxed Ambient / Evening</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">10 – 20 FC</td>
+            <td class="py-2.5 px-3 font-mono">10 – 20 lm/ft²</td>
+            <td class="py-2.5 px-3 text-amber-700 font-medium">2700K (Warm White)</td>
+            <td class="py-2.5 px-3">Essential (10%–100% TRIAC/0-10V)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">General Daytime Activity</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">20 – 30 FC</td>
+            <td class="py-2.5 px-3 font-mono">20 – 30 lm/ft²</td>
+            <td class="py-2.5 px-3 font-medium">2700K – 3000K (Soft White)</td>
+            <td class="py-2.5 px-3">Recommended</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Bedside Reading &amp; Desk</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">30 – 40 FC</td>
+            <td class="py-2.5 px-3 font-mono">30 – 40 lm/ft²</td>
+            <td class="py-2.5 px-3 font-medium">3000K (Clean Reading Beam)</td>
+            <td class="py-2.5 px-3">Recommended (or dedicated sconces)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Walk-In Closet / Dressing</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">30 – 50 FC</td>
+            <td class="py-2.5 px-3 font-mono">30 – 50 lm/ft²</td>
+            <td class="py-2.5 px-3 text-blue-700 font-medium">3500K – 4000K (High 90+ CRI)</td>
+            <td class="py-2.5 px-3">Optional (Color matching clothes)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 p-4 bg-blue-50/60 rounded-lg text-xs text-blue-900 space-y-1.5 border border-blue-100">
+      <p><strong>Circadian Rhythm &amp; Color Temperature Rule:</strong></p>
+      <p>Never install 4000K or 5000K (Cool/Daylight) recessed lights in a bedroom. High blue-light content inhibits melatonin production and disrupts sleep cycles. The standard specification for bedrooms is <strong>2700K Warm White</strong> with dim-to-warm capability, paired with an electronic LED dimmer to adjust from bright daytime cleaning down to a gentle ambient glow at night.</p>
+    </div>
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
@@ -398,5 +476,26 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     });
     document.getElementById('purpose').addEventListener('change', calculate);
     document.getElementById('lumens').addEventListener('change', calculate);
+
+    // Preset button handlers
+    document.querySelectorAll('.bed-preset-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('r_len_ft').value = this.dataset.len;
+        document.getElementById('r_len_in').value = 0;
+        document.getElementById('r_wid_ft').value = this.dataset.wid;
+        document.getElementById('r_wid_in').value = 0;
+        document.getElementById('r_ceil_ft').value = this.dataset.ceil;
+        document.getElementById('r_ceil_in').value = 0;
+
+        document.querySelectorAll('.bed-preset-btn').forEach(function (b) {
+          b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+          b.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+        });
+        this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+        this.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+
+        calculate();
+      });
+    });
   });
 </script>

@@ -114,6 +114,27 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
   <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6">
 
+    <div class="mb-5">
+      <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">⚡ Quick Tile &amp; Joint Presets:</label>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="grout-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="3" data-wid="6" data-thick="0.3125" data-joint="0.0625" data-type="unsanded">
+          3"×6" Subway (1/16" joint)
+        </button>
+        <button type="button" class="grout-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="12" data-wid="24" data-thick="0.375" data-joint="0.125" data-type="sanded">
+          12"×24" Large Format (1/8" joint)
+        </button>
+        <button type="button" class="grout-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="12" data-wid="12" data-thick="0.375" data-joint="0.1875" data-type="sanded">
+          12"×12" Floor Tile (3/16" joint)
+        </button>
+        <button type="button" class="grout-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="2" data-wid="2" data-thick="0.25" data-joint="0.125" data-type="unsanded">
+          2"×2" Shower Mosaic (1/8" joint)
+        </button>
+        <button type="button" class="grout-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="6" data-wid="24" data-thick="0.375" data-joint="0.125" data-type="sanded">
+          6"×24" Wood Plank (1/8" joint)
+        </button>
+      </div>
+    </div>
+
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2">
       <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">1</span>
       Tile Dimensions (inches)
@@ -188,9 +209,9 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
         <label for="bag_size" class="block text-sm font-medium text-gray-700 mb-2">Bag Size</label>
         <select id="bag_size"
           class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="25">25 lb bag</option>
-          <option value="10">10 lb bag</option>
-          <option value="50">50 lb bag</option>
+          <option value="25">25 lb bag (standard floor/wall)</option>
+          <option value="10">10 lb bag (bathrooms/backsplashes)</option>
+          <option value="50">50 lb bag (commercial/large areas)</option>
         </select>
       </div>
     </div>
@@ -215,26 +236,172 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
       <div class="bg-white rounded-lg p-4 text-center shadow-sm">
         <div class="text-2xl font-bold text-blue-700" id="r_totalLbs">—</div>
-        <div class="text-xs text-gray-500 mt-1">Total Pounds</div>
+        <div class="text-xs text-gray-500 mt-1">Total Net Pounds</div>
       </div>
       <div class="bg-white rounded-lg p-4 text-center shadow-sm">
         <div class="text-2xl font-bold text-gray-900" id="r_lbsWithWaste">—</div>
-        <div class="text-xs text-gray-500 mt-1">With 10% Waste</div>
+        <div class="text-xs text-gray-500 mt-1">With 10% Reserve</div>
       </div>
       <div class="bg-white rounded-lg p-4 text-center shadow-sm">
         <div class="text-2xl font-bold text-green-700" id="r_bags">—</div>
         <div class="text-xs text-gray-500 mt-1">Bags Needed</div>
       </div>
     </div>
-    <p class="text-xs text-blue-800 mt-4 bg-blue-200 bg-opacity-50 rounded-lg p-3">
-      <strong>Tip:</strong> Buy one extra bag. Leftover grout seals in a bucket for months and is useful for repairs.
+
+    <!-- Bag Yield Metric -->
+    <div class="mt-4 pt-4 border-t border-blue-200 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+      <div class="bg-white/80 rounded-lg p-3 border border-blue-100 flex items-center justify-between">
+        <span class="font-medium text-gray-700">Estimated 25 lb Bag Yield for this Tile:</span>
+        <span class="font-bold text-blue-700 text-sm" id="r_sqftPer25">—</span>
+      </div>
+      <div class="bg-white/80 rounded-lg p-3 border border-blue-100 flex items-center justify-between">
+        <span class="font-medium text-gray-700">Estimated 10 lb Bag Yield for this Tile:</span>
+        <span class="font-bold text-blue-700 text-sm" id="r_sqftPer10">—</span>
+      </div>
+    </div>
+
+    <p class="text-xs text-blue-800 mt-4 bg-blue-200/50 rounded-lg p-3">
+      <strong>Pro Tip:</strong> Buy one extra bag for dye-lot consistency. Unopened grout stored in a sealed bucket will keep for future maintenance. Never wash grout sponge water into household sink drains.
     </p>
     <button id="printBtn" onclick="window.print()" class="hidden mt-5 w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
-
       🖨️ Print or Save as PDF
-
     </button>
+  </div>
 
+  <!-- Grout Coverage Per Bag Reference Table (GSC Pos 54.5 Target) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">Grout Coverage per Bag Reference Table</h2>
+        <p class="text-xs text-gray-500 mt-0.5">Authoritative coverage chart per ANSI A118.6 &amp; TCNA Handbook standards (10 lb vs. 25 lb bags)</p>
+      </div>
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 border border-blue-200 text-blue-700 rounded-md text-xs font-semibold self-start sm:self-auto">
+        <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+        ANSI Standard Matrix
+      </span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700 border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            <th class="py-3 px-3">Tile Dimensions</th>
+            <th class="py-3 px-3">Joint Width</th>
+            <th class="py-3 px-3">Grout Type</th>
+            <th class="py-3 px-3">Lbs / Sq Ft</th>
+            <th class="py-3 px-3 bg-blue-50/50 text-blue-900 font-bold">25 lb Bag Yield</th>
+            <th class="py-3 px-3 text-gray-900 font-semibold">10 lb Bag Yield</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-xs sm:text-sm">
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">3" × 6" Subway</td>
+            <td class="py-2.5 px-3">1/16" (0.0625")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200">Unsanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.105</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~237 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~95 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">3" × 6" Subway</td>
+            <td class="py-2.5 px-3">1/8" (0.125")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200">Sanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.244</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~102 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~41 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">4" × 4" Square Ceramic</td>
+            <td class="py-2.5 px-3">1/16" (0.0625")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200">Unsanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.105</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~237 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~95 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">4" × 4" Square Ceramic</td>
+            <td class="py-2.5 px-3">1/8" (0.125")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200">Sanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.244</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~102 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~41 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">12" × 12" Floor Tile</td>
+            <td class="py-2.5 px-3">1/8" (0.125")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200">Sanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.098</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~256 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~102 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">12" × 12" Floor Tile</td>
+            <td class="py-2.5 px-3">3/16" (0.1875")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200">Sanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.146</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~171 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~68 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">12" × 12" Floor Tile</td>
+            <td class="py-2.5 px-3">1/4" (0.25")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200">Sanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.195</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~128 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~51 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">12" × 24" Large Format</td>
+            <td class="py-2.5 px-3">1/16" (0.0625")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200">Sanded / HP</span></td>
+            <td class="py-2.5 px-3 font-mono">0.037</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~683 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~273 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">12" × 24" Large Format</td>
+            <td class="py-2.5 px-3">1/8" (0.125")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200">Sanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.073</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~341 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~136 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">12" × 24" Large Format</td>
+            <td class="py-2.5 px-3">3/16" (0.1875")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200">Sanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.110</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~228 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~91 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">6" × 24" Wood Plank</td>
+            <td class="py-2.5 px-3">1/8" (0.125")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200">Sanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.122</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~205 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~82 sq ft</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">2" × 2" Shower Mosaic</td>
+            <td class="py-2.5 px-3">1/8" (0.125")</td>
+            <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200">Unsanded</span></td>
+            <td class="py-2.5 px-3 font-mono">0.338</td>
+            <td class="py-2.5 px-3 bg-blue-50/30 font-bold text-blue-700">~74 sq ft</td>
+            <td class="py-2.5 px-3 font-medium text-gray-800">~30 sq ft</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 p-4 bg-gray-50 rounded-lg text-xs text-gray-600 space-y-2">
+      <p><strong>TCNA Joint Selection Guidelines:</strong></p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>Joints &lt; 1/8" (0.125"):</strong> Require <em>Unsanded Grout</em> (ANSI A118.6). Aggregates in sanded grout cannot pack tightly into narrow joints, causing voids and crumbly joints.</li>
+        <li><strong>Joints ≥ 1/8":</strong> Require <em>Sanded Grout</em>. The silica sand provides tensile strength to bridge wide spaces and prevents shrinkage cracking during hydration.</li>
+        <li><strong>Large Format Tile (LFT &gt; 15" on any side):</strong> TCNA recommends a minimum 1/8" joint (or 3/16" for non-rectified tiles) to accommodate tile lippage and substrate variations.</li>
+      </ul>
+    </div>
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
@@ -381,12 +548,17 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     var bagSize = parseInt(document.getElementById('bag_size').value);
     var bagsNeeded = Math.ceil(totalWithWaste / bagSize);
 
+    var sqftPer25 = lbsPerSqFt > 0 ? (25 / lbsPerSqFt).toFixed(1) + ' sq ft' : '—';
+    var sqftPer10 = lbsPerSqFt > 0 ? (10 / lbsPerSqFt).toFixed(1) + ' sq ft' : '—';
+
     document.getElementById('results').classList.remove('hidden');
     document.getElementById('printBtn').classList.remove('hidden');
     document.getElementById('r_lbsPerSqFt').textContent = lbsPerSqFt.toFixed(3) + ' lbs';
     document.getElementById('r_totalLbs').textContent = totalLbs.toFixed(1) + ' lbs';
     document.getElementById('r_lbsWithWaste').textContent = totalWithWaste.toFixed(1) + ' lbs';
     document.getElementById('r_bags').textContent = bagsNeeded + ' bags';
+    document.getElementById('r_sqftPer25').textContent = sqftPer25;
+    document.getElementById('r_sqftPer10').textContent = sqftPer10;
 
   }
 
@@ -396,5 +568,26 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     });
     document.getElementById('grout_type').addEventListener('change', calculate);
     document.getElementById('bag_size').addEventListener('change', calculate);
+
+    // Preset button click handlers
+    document.querySelectorAll('.grout-preset-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('tile_len').value = this.dataset.len;
+        document.getElementById('tile_wid').value = this.dataset.wid;
+        document.getElementById('tile_thick').value = this.dataset.thick;
+        document.getElementById('joint_wid').value = this.dataset.joint;
+        document.getElementById('grout_type').value = this.dataset.type;
+
+        // Visual feedback
+        document.querySelectorAll('.grout-preset-btn').forEach(function (b) {
+          b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+          b.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+        });
+        this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+        this.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+
+        calculate();
+      });
+    });
   });
 </script>

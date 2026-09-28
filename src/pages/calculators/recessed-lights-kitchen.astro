@@ -82,7 +82,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
       { "@type": "ListItem", "position": 3, "name": "Recessed Lighting Calculator — Kitchen", "item": "https://calcfordiy.com/calculators/recessed-lights-kitchen/" }
     ]
@@ -108,6 +108,24 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 mb-6 print:border-none print:shadow-none print:p-0">
+
+    <div class="mb-5 print:hidden">
+      <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">⚡ Popular Kitchen Size Presets:</label>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="k-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="10" data-wid="10" data-ceil="8">
+          10'×10' Small Kitchen (100 sq ft)
+        </button>
+        <button type="button" class="k-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="12" data-wid="14" data-ceil="9">
+          12'×14' Standard Kitchen (168 sq ft)
+        </button>
+        <button type="button" class="k-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="14" data-wid="18" data-ceil="9">
+          14'×18' Open Concept / Island (252 sq ft)
+        </button>
+        <button type="button" class="k-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="8" data-wid="14" data-ceil="8">
+          8'×14' Galley Kitchen (112 sq ft)
+        </button>
+      </div>
+    </div>
 
     <h2 class="text-base font-semibold text-gray-800 mb-4 flex items-center gap-2 print:text-lg">
       <span class="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold print:hidden">1</span>
@@ -315,6 +333,69 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </button>
   </div>
 
+  <!-- Kitchen Lighting Standards Reference (IES RP-11 & NKBA Guidelines) -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">Kitchen Foot-Candle (FC) &amp; Placement Standards</h2>
+        <p class="text-xs text-gray-500 mt-0.5">Authoritative lux and foot-candle benchmarks per IES RP-11 &amp; National Kitchen &amp; Bath Association (NKBA)</p>
+      </div>
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-50 border border-amber-200 text-amber-800 rounded-md text-xs font-semibold self-start sm:self-auto">
+        <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+        Dual-Zone Lighting Code
+      </span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700 border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            <th class="py-3 px-3">Kitchen Zone</th>
+            <th class="py-3 px-3">Recommended Foot-Candles</th>
+            <th class="py-3 px-3">Lumens per Sq Ft</th>
+            <th class="py-3 px-3">Fixture Placement Rule</th>
+            <th class="py-3 px-3">Color Temperature (Kelvin)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-xs sm:text-sm">
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">General Ambient</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">30 – 50 FC</td>
+            <td class="py-2.5 px-3 font-mono">30 – 50 lm/ft²</td>
+            <td class="py-2.5 px-3">Even grid spaced 4–5 ft apart, 2–3 ft from walls</td>
+            <td class="py-2.5 px-3">2700K – 3000K (Warm/Soft)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Perimeter Counter Task</td>
+            <td class="py-2.5 px-3 font-bold text-amber-700">70 – 100 FC</td>
+            <td class="py-2.5 px-3 font-mono">70 – 100 lm/ft²</td>
+            <td class="py-2.5 px-3 font-medium text-gray-900">24" from wall (directly over counter front edge)</td>
+            <td class="py-2.5 px-3">3000K – 3500K (Neutral White)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Kitchen Island Prep</td>
+            <td class="py-2.5 px-3 font-bold text-amber-700">60 – 90 FC</td>
+            <td class="py-2.5 px-3 font-mono">60 – 90 lm/ft²</td>
+            <td class="py-2.5 px-3">Centered along island, 24"–30" inter-fixture spacing</td>
+            <td class="py-2.5 px-3">3000K (Clean Color Rendition)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Sink &amp; Range Center</td>
+            <td class="py-2.5 px-3 font-bold text-amber-700">80 – 100 FC</td>
+            <td class="py-2.5 px-3 font-mono">80 – 100 lm/ft²</td>
+            <td class="py-2.5 px-3">Single centered can directly over sink basin center</td>
+            <td class="py-2.5 px-3">3000K – 4000K (High 90+ CRI)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 p-4 bg-amber-50/60 rounded-lg text-xs text-amber-900 space-y-1.5 border border-amber-100">
+      <p><strong>The Critical 24-Inch Countertop Alignment Rule:</strong></p>
+      <p>The most common DIY kitchen lighting mistake is centering recessed lights in the walkway behind the cook (e.g. 36"–48" from the wall). When lights are behind you, your body casts a harsh silhouette directly over the cutting board and sink. Placing perimeter cans <strong>24 inches out from the wall</strong> positions the light cone directly over the edge of standard 25" countertops, ensuring clean, shadow-free food prep.</p>
+    </div>
+  </div>
+
   <div class="prose prose-gray max-w-none text-gray-700 print:prose-sm">
 
     <h2 class="text-2xl font-bold text-gray-900 mt-10 mb-5">How to Use This Calculator</h2>
@@ -512,5 +593,26 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     document.getElementById('ambient_lumens').addEventListener('change', calculate);
     document.getElementById('island_spacing') && document.getElementById('island_spacing').addEventListener('change', calculate);
     document.getElementById('task_lumens') && document.getElementById('task_lumens').addEventListener('change', calculate);
+
+    // Preset button handlers
+    document.querySelectorAll('.k-preset-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('k_len_ft').value = this.dataset.len;
+        document.getElementById('k_len_in').value = 0;
+        document.getElementById('k_wid_ft').value = this.dataset.wid;
+        document.getElementById('k_wid_in').value = 0;
+        document.getElementById('k_ceil_ft').value = this.dataset.ceil;
+        document.getElementById('k_ceil_in').value = 0;
+
+        document.querySelectorAll('.k-preset-btn').forEach(function (b) {
+          b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+          b.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+        });
+        this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+        this.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+
+        calculate();
+      });
+    });
   });
 </script>

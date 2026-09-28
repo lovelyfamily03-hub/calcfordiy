@@ -229,9 +229,9 @@ Target: **78 Live Tools → 100 Flagship Calculators** (+22 New Tools)
 - `[x]` "Compare two options" mode (AC and Furnace Cost calculators)
 - `[x]` GA4 engagement event tracking (`calculator_used`, `calculate_button_click`)
 - `[x]` Live SVG cut diagram (Stair Stringer Calculator)
-- `[ ]` One-click `📋 Copy Shopping List` button on result cards
-- `[ ]` Dual "DIY Material Cost" vs "Contractor Installed Cost" toggle
-- `[ ]` Project Workflow Hubs ("Yard Drainage Hub", "Deck Building Hub", "Basement Finishing Hub")
+- `[x]` One-click `📋 Copy Shopping List` button on result cards
+- `[x]` Dual "DIY Material Cost" vs "Contractor Installed Cost" toggle
+- `[x]` Project Workflow Hubs ("Yard Drainage Hub", "Deck Building Hub", "Basement Finishing Hub")
 - `[ ]` "Email my results"
 - `[ ]` Dark mode toggle
 - `[ ]` Unit switcher (metric/imperial)
