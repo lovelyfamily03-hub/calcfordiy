@@ -1,0 +1,483 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Countertop Square Footage & Overhang Support Calculator | CalcForDIY"
+  description="Calculate countertop square footage, gross slab count, total stone weight, and required steel overhang support brackets per Natural Stone Institute (NSI) standards."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Countertop Square Footage and Overhang Support Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How far can a granite or quartz countertop overhang without support brackets?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per the Natural Stone Institute (NSI) Dimension Stone Design Manual, 3cm (1-1/4\" thick) granite or engineered quartz can cantilever up to 10 inches without brackets, provided at least 70% of the slab width remains supported on the cabinets. 2cm (3/4\" thick) stone can only overhang up to 6 inches unsupported. Any cantilever exceeding these limits requires hidden flat steel support brackets or corbels spaced every 20 to 24 inches."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do fabricators deduct sink and cooktop cutouts from countertop square footage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Countertop fabricators do not deduct sink or cooktop cutouts from billing because they must purchase and handle the full stone slab, and cutting/polishing internal sink cutouts requires additional CNC machine time and labor. Finished square footage gives you your net surface area, but expect fabricator quotes based on gross slab square footage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does a granite or quartz countertop weigh?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard 3cm (1-1/4\") granite or engineered quartz weighs approximately 18 to 20 pounds per square foot. A typical 50 square foot kitchen layout with an island weighs between 900 and 1,000 pounds. 2cm (3/4\") stone weighs roughly 13 to 15 pounds per square foot plus a 3/4\" plywood underlayment subtop."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "Countertop Sq Ft Calculator", "item": "https://calcfordiy.com/calculators/countertop-sqft/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Countertop Sq Ft Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-2">
+      <span>🏛️ Natural Stone Institute (NSI) &amp; MIA Overhang Design Standards</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Countertop Square Footage &amp; Overhang Support Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate finished surface square footage, gross fabrication slab requirements, total dead load weight, and mandatory cantilever support brackets for granite, quartz, and butcher block.
+    </p>
+  </div>
+
+  <!-- Calculator Card -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <!-- Presets -->
+    <div class="mb-5 pb-4 border-b border-gray-100">
+      <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">Popular Kitchen Countertop Presets</label>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="ct-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-run1="12" data-dep1="25.5" data-isl="0" data-isldep="36" data-oh="0">
+          Galley / Straight Run (12 ft, 25.5 sq ft)
+        </button>
+        <button type="button" class="ct-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-run1="14" data-dep1="25.5" data-isl="6" data-isldep="36" data-oh="12">
+          L-Shape + 6 ft Island (48 sq ft + 12" Overhang)
+        </button>
+        <button type="button" class="ct-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-run1="18" data-dep1="25.5" data-isl="8" data-isldep="42" data-oh="15">
+          Chef's Kitchen + 8 ft Island (66 sq ft + 15" Overhang)
+        </button>
+      </div>
+    </div>
+
+    <!-- Section 1 & 2 Inputs -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="mainRunLen" class="block text-xs font-medium text-gray-600 mb-1">Main Counter Length (Feet)</label>
+        <input type="number" id="mainRunLen" value="14" min="1" max="100" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="text-[11px] text-gray-400 mt-1 block">Perimeter cabinet run length</span>
+      </div>
+
+      <div>
+        <label for="mainRunDepth" class="block text-xs font-medium text-gray-600 mb-1">Main Counter Depth (Inches)</label>
+        <input type="number" id="mainRunDepth" value="25.5" min="12" max="60" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="text-[11px] text-gray-400 mt-1 block">Standard 24" cabinet + 1.5" front lip</span>
+      </div>
+
+      <div>
+        <label for="islandLen" class="block text-xs font-medium text-gray-600 mb-1">Island / Peninsula Length (Feet)</label>
+        <input type="number" id="islandLen" value="7" min="0" max="50" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="text-[11px] text-gray-400 mt-1 block">Enter 0 if no island/bar</span>
+      </div>
+
+      <div>
+        <label for="islandDepth" class="block text-xs font-medium text-gray-600 mb-1">Island Total Depth (Inches)</label>
+        <input type="number" id="islandDepth" value="36" min="18" max="72" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="text-[11px] text-gray-400 mt-1 block">Including seating overhang</span>
+      </div>
+    </div>
+
+    <!-- Overhang & Material Specs -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5 p-4 bg-gray-50 rounded-lg border border-gray-100">
+      <div>
+        <label for="overhangInches" class="block text-xs font-medium text-gray-700 mb-1">Cantilever Overhang (Inches)</label>
+        <select id="overhangInches" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0">None (Flush with back panel)</option>
+          <option value="10">10 Inches (Shallow Bar Stool)</option>
+          <option value="12" selected>12 Inches (Standard Comfortable Seating)</option>
+          <option value="15">15 Inches (Deep Seating / Knee Room)</option>
+          <option value="18">18 Inches (Extra Deep Bar)</option>
+        </select>
+        <span class="text-[11px] text-gray-500 mt-1 block">NSI: &gt;10" requires steel supports</span>
+      </div>
+
+      <div>
+        <label for="materialType" class="block text-xs font-medium text-gray-700 mb-1">Stone Material &amp; Thickness</label>
+        <select id="materialType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="3cm_granite" selected>3cm (1-1/4") Granite / Quartz (19 lbs/sqft)</option>
+          <option value="2cm_granite">2cm (3/4") Granite / Quartz (14 lbs/sqft)</option>
+          <option value="butcher_block">1.5" Hardwood Butcher Block (5.5 lbs/sqft)</option>
+          <option value="solid_surface">Solid Surface (Corian 1/2") (5 lbs/sqft)</option>
+          <option value="concrete">1.5" Cast Concrete (18 lbs/sqft)</option>
+        </select>
+        <span class="text-[11px] text-gray-500 mt-1 block">Sets dead weight &amp; support limits</span>
+      </div>
+
+      <div>
+        <label for="sinkCutout" class="block text-xs font-medium text-gray-700 mb-1">Sink Cutout</label>
+        <select id="sinkCutout" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="4.0" selected>Undermount Kitchen Sink (~4.0 sq ft)</option>
+          <option value="5.0">Large Single-Bowl Farmhouse Sink (~5.0 sq ft)</option>
+          <option value="2.5">Prep / Bar Sink (~2.5 sq ft)</option>
+          <option value="0">None</option>
+        </select>
+        <span class="text-[11px] text-gray-500 mt-1 block">Net area deduction</span>
+      </div>
+
+      <div>
+        <label for="cooktopCutout" class="block text-xs font-medium text-gray-700 mb-1">Cooktop Cutout</label>
+        <select id="cooktopCutout" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0" selected>Freestanding Range (No cutout needed)</option>
+          <option value="4.5">30" Drop-in Cooktop (~4.5 sq ft)</option>
+          <option value="5.5">36" Drop-in Cooktop (~5.5 sq ft)</option>
+        </select>
+        <span class="text-[11px] text-gray-500 mt-1 block">Subtracted for net finished surface</span>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+      <div class="text-xs text-gray-500">
+        🏛️ Math: Finished Area = &sum;(Length &times; Depth) - Cutouts. Overhang steel brackets spaced 24" on center per NSI.
+      </div>
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Calculate Countertop
+      </button>
+    </div>
+  </div>
+
+  <!-- Results Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">NSI Fabrication &amp; Engineering Summary</span>
+        <h2 class="text-lg font-bold text-white" id="r_takeoffTitle">46.8 Finished Sq Ft &bull; 1 Jumbo Slab</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Takeoff
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Finished Surface Area</div>
+        <div class="text-2xl font-black text-amber-400" id="r_netSqFt">46.8 Sq Ft</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_grossSqFt">50.8 gross sq ft before cutouts</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Estimated Slabs Needed</div>
+        <div class="text-2xl font-black text-white" id="r_slabCount">1 Jumbo Slab</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_slabDesc">Or 2 standard (55 sq ft) slabs</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Total Dead Weight</div>
+        <div class="text-2xl font-black text-emerald-400" id="r_totalWeight">965 lbs</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_weightDesc">At 19 lbs / sq ft (3cm stone)</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Overhang Support Brackets</div>
+        <div class="text-2xl font-black text-sky-300" id="r_bracketCount">4 Brackets</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_bracketDesc">1/2" steel plates every 24" o.c.</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+      <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700/80">
+        <span class="text-slate-400 text-xs block">NSI Overhang Status</span>
+        <span class="text-white font-bold text-sm" id="r_nsiStatus">Support Mandatory (&gt;10")</span>
+        <span class="text-[11px] text-slate-400 block mt-0.5">12" cantilever exceeds 10" free span</span>
+      </div>
+      <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700/80">
+        <span class="text-slate-400 text-xs block">Fabrication Billing Area</span>
+        <span class="text-white font-bold text-sm" id="r_billingArea">58.4 Sq Ft (Gross + 15%)</span>
+        <span class="text-[11px] text-slate-400 block mt-0.5">Fabricator estimate baseline</span>
+      </div>
+      <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700/80">
+        <span class="text-slate-400 text-xs block">Cabinet Joist Load</span>
+        <span class="text-white font-bold text-sm" id="r_loadPsd">~38 lbs / linear foot</span>
+        <span class="text-[11px] text-slate-400 block mt-0.5">Base cabinet distributed load</span>
+      </div>
+    </div>
+
+    <div class="p-4 bg-slate-800/50 rounded-lg text-xs text-slate-300 border border-slate-700/60 leading-relaxed" id="r_fullSummary">
+      Engineering Takeoff: Kitchen requires 46.8 finished square feet of countertop (50.8 gross sq ft before cutouts). The total 3cm stone weight is approximately 965 lbs. Because the 12" island overhang exceeds the 10" NSI allowable cantilever threshold for 3cm stone, install 4 hidden steel support brackets spaced every 24 inches along the cabinet pony wall.
+    </div>
+  </div>
+
+  <!-- Reference Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">NSI Cantilever Overhang Support Matrix</h2>
+        <p class="text-xs text-gray-500 mt-0.5">Maximum unsupported cantilever and bracket spacing per Natural Stone Institute Dimension Stone Design Manual</p>
+      </div>
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-50 border border-amber-200 text-amber-800 rounded-md text-xs font-semibold self-start sm:self-auto">
+        NSI Chapter 14
+      </span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700 border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            <th class="py-3 px-3">Material &amp; Thickness</th>
+            <th class="py-3 px-3">Max Unsupported Cantilever</th>
+            <th class="py-3 px-3">Support Requirement Above Limit</th>
+            <th class="py-3 px-3">Weight per Sq Ft</th>
+            <th class="py-3 px-3">Subtop Plywood Required?</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-xs sm:text-sm">
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">3cm (1-1/4") Granite / Quartz</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">10 Inches max</td>
+            <td class="py-2.5 px-3">1/2" steel plates or corbels every 24" o.c.</td>
+            <td class="py-2.5 px-3 font-mono">18 – 20 lbs</td>
+            <td class="py-2.5 px-3 font-medium text-emerald-700">No (direct on cabinet frames)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">2cm (3/4") Granite / Quartz</td>
+            <td class="py-2.5 px-3 font-bold text-amber-700">6 Inches max</td>
+            <td class="py-2.5 px-3">Brackets or corbels every 18"–24" o.c.</td>
+            <td class="py-2.5 px-3 font-mono">13 – 15 lbs</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">Yes (5/8" or 3/4" CDX plywood)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">1.5" Hardwood Butcher Block</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">8 – 10 Inches max</td>
+            <td class="py-2.5 px-3">Angle brackets or apron support rails</td>
+            <td class="py-2.5 px-3 font-mono">5.0 – 6.0 lbs</td>
+            <td class="py-2.5 px-3">No (needs slotted expansion holes)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">1/2" Solid Surface (Corian)</td>
+            <td class="py-2.5 px-3 font-bold text-amber-700">6 Inches max</td>
+            <td class="py-2.5 px-3">Wood ladder frame or cantilever gussets</td>
+            <td class="py-2.5 px-3 font-mono">4.5 – 5.5 lbs</td>
+            <td class="py-2.5 px-3">No (open perimeter wood strips)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 p-4 bg-amber-50/70 rounded-lg text-xs text-amber-900 space-y-1.5 border border-amber-200/80">
+      <p><strong>NSI 70/30 Rule for Countertop Stability:</strong></p>
+      <p>Per the Natural Stone Institute, at least 70% of the countertop's total depth must be physically resting on and secured to the cabinet carcass, while no more than 30% of the total depth may be cantilevered as an overhang. Even with steel brackets, exceeding a 30% cantilever ratio can cause cabinet tipping and severe joint failure without floor anchors.</p>
+    </div>
+  </div>
+
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Input Perimeter Counter Dimensions:</strong> Enter the linear length of your perimeter base cabinets in feet and depth in inches (standard is 25.5 inches to provide a 1.5-inch overhang over 24-inch cabinet carcasses).</li>
+      <li><strong>Add Kitchen Island or Breakfast Bar:</strong> If your layout includes an island or peninsula, enter its length and total depth (including the seating cantilever).</li>
+      <li><strong>Specify Seating Overhang:</strong> Select your intended overhang depth (10 inches is minimum bar stool clearance; 12 to 15 inches is standard dining height comfort).</li>
+      <li><strong>Select Stone Thickness &amp; Cutouts:</strong> Choose between 3cm (common in the East/Midwest) and 2cm (common on the West Coast), and select your sink and cooktop sizes.</li>
+      <li><strong>Review Support Bracket Count &amp; Dead Weight:</strong> Check whether your cantilever requires hidden steel support brackets to prevent slab cracking, and inspect total weight to confirm your floor joist capacity.</li>
+    </ol>
+  </div>
+
+  <AuthorReviewer
+    authorName="Viktor Taturevych"
+    authorTitle="Master Craftsman &amp; Finish Carpentry Specialist"
+    reviewerName="Elena Rostova"
+    reviewerRole="Architectural Finishes Specialist &amp; TCNA Code Reviewer"
+    codeStandard="Natural Stone Institute (NSI) Dimension Stone Design Manual &amp; MIA Guidelines"
+    lastUpdated="September 2026"
+  />
+
+  <RelatedGuidesProjects
+    hubSlug="room-accent-wall"
+    hubTitle="Interior Trim &amp; Carpentry Hub →"
+    hubDesc="Cabinet installation, finish carpentry, floating shelves, and structural support guidelines."
+    guideSlug="how-much-tile-for-standard-shower"
+    guideTitle="Surface Takeoff &amp; Square Footage Guide →"
+    guideDesc="Square footage formulas, cut scrap factors, and material yield estimating."
+  />
+</Layout>
+
+<script is:inline>
+(function() {
+  function calc() {
+    var run1 = parseFloat(document.getElementById('mainRunLen').value) || 0;
+    var dep1 = parseFloat(document.getElementById('mainRunDepth').value) || 25.5;
+    var islLen = parseFloat(document.getElementById('islandLen').value) || 0;
+    var islDep = parseFloat(document.getElementById('islandDepth').value) || 36;
+    var ohIn = parseFloat(document.getElementById('overhangInches').value) || 0;
+
+    var material = document.getElementById('materialType').value;
+    var sinkDeduct = parseFloat(document.getElementById('sinkCutout').value) || 0;
+    var cooktopDeduct = parseFloat(document.getElementById('cooktopCutout').value) || 0;
+
+    // Weight factors
+    var weightPerSqFt = 19;
+    var maxUnsupported = 10;
+    var requiresSubtop = false;
+
+    if (material === '2cm_granite') {
+      weightPerSqFt = 14;
+      maxUnsupported = 6;
+      requiresSubtop = true;
+    } else if (material === 'butcher_block') {
+      weightPerSqFt = 5.5;
+      maxUnsupported = 10;
+    } else if (material === 'solid_surface') {
+      weightPerSqFt = 5;
+      maxUnsupported = 6;
+    } else if (material === 'concrete') {
+      weightPerSqFt = 18;
+      maxUnsupported = 8;
+    }
+
+    // Areas
+    var areaRun1 = run1 * (dep1 / 12.0);
+    var areaIsland = islLen * (islDep / 12.0);
+    var grossSqFt = areaRun1 + areaIsland;
+    var netSqFt = Math.max(0, grossSqFt - sinkDeduct - cooktopDeduct);
+
+    // Fabricator billing area (typically gross + 15% fabrication scrap/waste)
+    var billingSqFt = grossSqFt * 1.15;
+
+    // Slab count (Standard slab = ~55 sq ft; Jumbo slab = ~63 sq ft)
+    var standardSlabs = Math.ceil(billingSqFt / 50.0);
+    var jumboSlabs = Math.ceil(billingSqFt / 60.0);
+    var slabDesc = jumboSlabs === 1 ? "1 Jumbo Slab" : (standardSlabs + " Standard Slabs");
+
+    // Total dead weight
+    var totalWeight = Math.round(grossSqFt * weightPerSqFt);
+
+    // Overhang support brackets:
+    // If overhang > maxUnsupported, brackets required every 24" o.c. along island length
+    var bracketsNeeded = 0;
+    var nsiStatus = "No Brackets Needed";
+    if (ohIn > maxUnsupported && islLen > 0) {
+      bracketsNeeded = Math.max(2, Math.ceil((islLen * 12.0) / 24.0));
+      nsiStatus = "Support Mandatory (>" + maxUnsupported + "\")";
+    } else if (ohIn > 0 && ohIn <= maxUnsupported) {
+      nsiStatus = "Supported (Within " + maxUnsupported + "\" limit)";
+    }
+
+    // UI Updates
+    document.getElementById('r_takeoffTitle').textContent = netSqFt.toFixed(1) + " Finished Sq Ft \u2022 " + slabDesc;
+    document.getElementById('r_netSqFt').textContent = netSqFt.toFixed(1) + " Sq Ft";
+    document.getElementById('r_grossSqFt').textContent = grossSqFt.toFixed(1) + " gross sq ft before cutouts";
+
+    document.getElementById('r_slabCount').textContent = slabDesc;
+    document.getElementById('r_slabDesc').textContent = "At ~" + billingSqFt.toFixed(1) + " sq ft billing yield";
+
+    document.getElementById('r_totalWeight').textContent = totalWeight + " lbs";
+    document.getElementById('r_weightDesc').textContent = "At " + weightPerSqFt + " lbs / sq ft (" + (material.includes('2cm') ? "2cm" : "3cm") + " material)";
+
+    document.getElementById('r_bracketCount').textContent = bracketsNeeded > 0 ? (bracketsNeeded + " Brackets") : "0 Brackets";
+    document.getElementById('r_bracketDesc').textContent = bracketsNeeded > 0 ? "1/2\" steel plates every 24\" o.c." : "Overhang \u2264 " + maxUnsupported + "\" allowed unsupported";
+
+    document.getElementById('r_nsiStatus').textContent = nsiStatus;
+    document.getElementById('r_billingArea').textContent = billingSqFt.toFixed(1) + " Sq Ft (Gross + 15%)";
+
+    var linearFtTotal = run1 + islLen;
+    var loadPsd = linearFtTotal > 0 ? Math.round(totalWeight / linearFtTotal) : 0;
+    document.getElementById('r_loadPsd').textContent = "~" + loadPsd + " lbs / linear foot";
+
+    var summary = "Engineering Takeoff: Kitchen requires " + netSqFt.toFixed(1) + " finished square feet of countertop (" + grossSqFt.toFixed(1) + " gross sq ft before cutouts). Total dead weight is approximately " + totalWeight + " lbs. " +
+      (bracketsNeeded > 0 ? ("Because the " + ohIn + "\" island overhang exceeds the " + maxUnsupported + "\" NSI allowable cantilever threshold, install " + bracketsNeeded + " hidden steel support brackets spaced every 24 inches along the cabinet wall. ") : "The overhang is within NSI unsupported limits. ") +
+      "Fabricators will order approximately " + slabDesc.toLowerCase() + " to accommodate seams and edge profiling.";
+    document.getElementById('r_fullSummary').textContent = summary;
+  }
+
+  var inputs = ['mainRunLen', 'mainRunDepth', 'islandLen', 'islandDepth', 'overhangInches', 'materialType', 'sinkCutout', 'cooktopCutout'];
+  inputs.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', calc);
+      el.addEventListener('change', calc);
+    }
+  });
+
+  // Presets
+  document.querySelectorAll('.ct-preset-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.getElementById('mainRunLen').value = this.dataset.run1;
+      document.getElementById('mainRunDepth').value = this.dataset.dep1;
+      document.getElementById('islandLen').value = this.dataset.isl;
+      document.getElementById('islandDepth').value = this.dataset.isldep;
+      document.getElementById('overhangInches').value = this.dataset.oh;
+
+      document.querySelectorAll('.ct-preset-btn').forEach(function(b) {
+        b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+        b.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+      });
+      this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+      this.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+
+      calc();
+    });
+  });
+
+  document.getElementById('calcBtn').addEventListener('click', calc);
+  calc();
+
+  document.getElementById('copyListBtn').addEventListener('click', function() {
+    var title = document.getElementById('r_takeoffTitle').textContent;
+    var net = document.getElementById('r_netSqFt').textContent;
+    var slabs = document.getElementById('r_slabCount').textContent;
+    var weight = document.getElementById('r_totalWeight').textContent;
+    var brackets = document.getElementById('r_bracketCount').textContent;
+    var nsi = document.getElementById('r_nsiStatus').textContent;
+
+    var text = `=== Countertop Takeoff & Overhang Audit ===
+Estimate: ${title}
+Finished Surface: ${net}
+Slab Requirement: ${slabs}
+Total Dead Weight: ${weight}
+Overhang Support: ${brackets} (${nsi})
+Standards: Natural Stone Institute (NSI) & MIA Guidelines
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/countertop-sqft/)`;
+
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById('copyListBtn');
+      btn.textContent = '✓ Copied Takeoff!';
+      setTimeout(function() { btn.textContent = '📋 Copy Takeoff'; }, 2500);
+    });
+  });
+})();
+</script>

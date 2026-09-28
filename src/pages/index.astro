@@ -93,6 +93,20 @@ const calculators = [
     href: "/calculators/moisture-vapor-barrier/",
     category: "Tile & Flooring",
   },
+  {
+    title: "Kitchen Backsplash Tile Calculator",
+    description:
+      "Calculate backsplash net square footage, subway tile boxes, pattern waste (herringbone/diagonal), mastic, and grout.",
+    href: "/calculators/kitchen-backsplash-tile/",
+    category: "Tile & Flooring",
+  },
+  {
+    title: "Bathroom Floor Tile & Underlayment Estimator",
+    description:
+      "Calculate net bathroom floor tile area, tub/vanity deductions, cement backer board (CBU) or DITRA membrane, and thinset mortar.",
+    href: "/calculators/bathroom-floor-tile/",
+    category: "Tile & Flooring",
+  },
 
   // 2. Carpentry, Framing & Roofing (12)
   {
@@ -270,6 +284,13 @@ const calculators = [
     description:
       "Calculate exact wallpaper rolls needed, accounting for straight and half-drop pattern repeats.",
     href: "/calculators/wallpaper/",
+    category: "Millwork, Trim & Walls",
+  },
+  {
+    title: "Countertop Square Footage & Overhang Support Calculator",
+    description:
+      "Calculate finished countertop surface area, gross slab requirements, total stone dead weight, and mandatory cantilever support brackets.",
+    href: "/calculators/countertop-sqft/",
     category: "Millwork, Trim & Walls",
   },
 
@@ -614,6 +635,13 @@ const calculators = [
     href: "/calculators/extension-cord-drop/",
     category: "Electrical, Solar & Lighting",
   },
+  {
+    title: "Landscape Lighting Transformer & Wire Calculator",
+    description:
+      "Calculate total circuit wattage, 12V/15V transformer sizing (with 25% safety margin), and copper wire gauge voltage drop per NEC Article 411.",
+    href: "/calculators/landscape-lighting-wire/",
+    category: "Electrical, Solar & Lighting",
+  },
 
   // 8. Plumbing, HVAC & Energy (14)
   {
@@ -911,7 +939,7 @@ const categories = [...new Set(calculators.map((c) => c.category))];
       url: "https://calcfordiy.com",
       logo: "https://calcfordiy.com/favicon.svg",
       description:
-        "CalcForDIY provides 111 free construction, framing, and home improvement material takeoffs with trade editorial guides, visual diagrams, and contractor cost benchmarks.",
+        "CalcForDIY provides 115 free construction, framing, and home improvement material takeoffs with trade editorial guides, visual diagrams, and contractor cost benchmarks.",
     })}
   />
 
@@ -985,7 +1013,7 @@ const categories = [...new Set(calculators.map((c) => c.category))];
       </div>
       <div class="text-xs text-gray-600 font-mono text-left md:text-right">
         <div>Field Dispatches &amp; Renovation Narratives</div>
-        <div>Backed by 111 Engineering Calculators</div>
+        <div>Backed by 115 Engineering Calculators</div>
       </div>
     </div>
     <div
@@ -1322,7 +1350,7 @@ const categories = [...new Set(calculators.map((c) => c.category))];
         type="text"
         id="calcSearch"
         placeholder="Search calculators... (e.g. tile, paint, furnace)"
-        aria-label="Search all 111 calculators"
+        aria-label="Search all 115 calculators"
         class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm"
       />
     </div>

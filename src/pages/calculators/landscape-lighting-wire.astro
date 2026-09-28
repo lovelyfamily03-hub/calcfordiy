@@ -1,0 +1,428 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Low-Voltage Landscape Lighting Transformer & Wire Calculator | CalcForDIY"
+  description="Calculate total circuit wattage, 12V/15V transformer sizing, and copper wire gauge voltage drop for outdoor landscape lighting per NEC Article 411 and UL 1838."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Low-Voltage Landscape Lighting Transformer and Wire Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What size transformer do I need for landscape lighting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per UL 1838 and NEC Article 411 guidelines, size your low-voltage landscape lighting transformer with at least a 20% safety headroom buffer above your total fixture wattage (multiply total watts by 1.25). For example, a 120-watt fixture load requires a transformer rated for at least 150 to 200 watts to prevent thermal overload and provide headroom for future expansion."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What wire gauge is best for low-voltage landscape lighting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "12 AWG direct-burial low-voltage landscape wire (12/2) is the industry standard for runs up to 100 feet carrying up to 100 watts. For runs over 100 feet or heavy loads up to 150 watts, step up to heavier 10 AWG wire (10/2) to prevent excessive voltage drop and keep operating voltage at the final fixture above 10.8 volts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What voltage tap should I use on a multi-tap transformer (12V vs 15V)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multi-tap transformers feature 12V, 13V, 14V, and 15V secondary terminals. If you have a long cable run where line resistance drops voltage below 10.5V at the last fixture, you can connect the home-run cable to the 13V, 14V, or 15V tap to boost terminal voltage back into the optimal 11.0V to 12.0V operating range for LED fixtures."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "Landscape Lighting Calculator", "item": "https://calcfordiy.com/calculators/landscape-lighting-wire/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Landscape Lighting Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-2">
+      <span>⚡ NEC Article 411 &amp; UL 1838 Low-Voltage Power Standards</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Low-Voltage Landscape Lighting Transformer &amp; Wire Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate total wattage, minimum transformer capacity (with 20% safety margin), and exact voltage drop for 16/2, 14/2, 12/2, and 10/2 low-voltage landscape lighting cables.
+    </p>
+  </div>
+
+  <!-- Calculator Card -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="fixtureCount" class="block text-xs font-medium text-gray-600 mb-1">Number of Fixtures</label>
+        <input type="number" id="fixtureCount" value="12" min="1" max="100" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="text-[11px] text-gray-400 mt-1 block">Path lights, spotlights, uplights</span>
+      </div>
+
+      <div>
+        <label for="avgWatts" class="block text-xs font-medium text-gray-600 mb-1">Avg Wattage per Fixture</label>
+        <select id="avgWatts" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="3">3 Watts (Modern LED Path Light)</option>
+          <option value="5" selected>5 Watts (Standard LED Spotlight)</option>
+          <option value="7">7 Watts (Bright Tree Uplight)</option>
+          <option value="12">12 Watts (High-Output Wall Wash LED)</option>
+          <option value="20">20 Watts (Legacy Halogen Path Light)</option>
+        </select>
+        <span class="text-[11px] text-gray-400 mt-1 block">Or enter custom total watts below</span>
+      </div>
+
+      <div>
+        <label for="runLength" class="block text-xs font-medium text-gray-600 mb-1">One-Way Run Length (Feet)</label>
+        <input type="number" id="runLength" value="75" min="5" max="500" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="text-[11px] text-gray-400 mt-1 block">From transformer to farthest light</span>
+      </div>
+
+      <div>
+        <label for="wireGauge" class="block text-xs font-medium text-gray-600 mb-1">Copper Cable Gauge</label>
+        <select id="wireGauge" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="16">16 AWG (16/2 - Light Short Runs)</option>
+          <option value="14">14 AWG (14/2 - Standard Medium Runs)</option>
+          <option value="12" selected>12 AWG (12/2 - Contractor Standard)</option>
+          <option value="10">10 AWG (10/2 - Heavy Duty / Long Runs)</option>
+        </select>
+        <span class="text-[11px] text-gray-400 mt-1 block">Direct burial outdoor cable</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5 p-4 bg-gray-50 rounded-lg border border-gray-100">
+      <div>
+        <label for="transformerTap" class="block text-xs font-medium text-gray-700 mb-1">Transformer Tap Voltage</label>
+        <select id="transformerTap" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="12" selected>12 Volts (Standard Common Tap)</option>
+          <option value="13">13 Volts (Boost Tap 1)</option>
+          <option value="14">14 Volts (Boost Tap 2)</option>
+          <option value="15">15 Volts (High Boost Tap)</option>
+        </select>
+        <span class="text-[11px] text-gray-500 mt-1 block">Compensate for long wire runs</span>
+      </div>
+
+      <div>
+        <label for="hubDistribution" class="block text-xs font-medium text-gray-700 mb-1">Wiring Layout Topology</label>
+        <select id="hubDistribution" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="daisy" selected>Daisy Chain (Fixtures spaced along line)</option>
+          <option value="endLoad">Concentrated End Load (Worst case)</option>
+          <option value="hub">Hub / Split Run (T-Method balanced)</option>
+        </select>
+        <span class="text-[11px] text-gray-500 mt-1 block">Daisy chain distributes load evenly</span>
+      </div>
+
+      <div>
+        <label for="customWattage" class="block text-xs font-medium text-gray-700 mb-1">Override Total Watts (Optional)</label>
+        <input type="number" id="customWattage" placeholder="Auto-calculated" min="0" max="1200" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-[11px] text-gray-500 mt-1 block">Leave empty to use count &times; watts</span>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+      <div class="text-xs text-gray-500">
+        ⚡ Formula: Vdrop = (2 &times; Length &times; Amps &times; R) / 1000 per NEC low-voltage copper constants.
+      </div>
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Calculate Circuit
+      </button>
+    </div>
+  </div>
+
+  <!-- Results Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">UL 1838 Landscape Power Audit</span>
+        <h2 class="text-lg font-bold text-white" id="r_statusTitle">OPTIMAL: 11.4V at Last Fixture (Safe)</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Takeoff
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Total Fixture Load</div>
+        <div class="text-2xl font-black text-amber-400" id="r_totalWatts">60 Watts</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_totalAmps">5.0 Amps at 12V</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Recommended Transformer</div>
+        <div class="text-2xl font-black text-emerald-400" id="r_recTransformer">100W or 150W</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_headroom">Includes 25% safety buffer</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Voltage at End Fixture</div>
+        <div class="text-2xl font-black text-white" id="r_endVoltage">11.4 Volts</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_dropDesc">0.6V drop (4.9%)</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Wire Gauge Assessment</div>
+        <div class="text-2xl font-black text-sky-300" id="r_gaugeStatus">12/2 Adequate</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_tapAdvice">12V tap recommended</div>
+      </div>
+    </div>
+
+    <div class="p-4 bg-slate-800/50 rounded-lg text-xs text-slate-300 border border-slate-700/60 leading-relaxed" id="r_fullSummary">
+      Summary: A 60-watt load running 75 feet on 12/2 landscape wire experiences approximately 0.6 volts of drop. The final fixture receives 11.4 volts, well within the optimal 10.8V–12.0V operating range for LED fixtures. A 100W or 150W low-voltage transformer provides optimal efficiency and headroom.
+    </div>
+  </div>
+
+  <!-- Authoritative Reference Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">Landscape Wire Max Cable Run Reference Table (12V LED Circuits)</h2>
+        <p class="text-xs text-gray-500 mt-0.5">Maximum one-way cable length in feet to maintain at least 10.8V at the farthest fixture (max 10% voltage drop per UL 1838)</p>
+      </div>
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-50 border border-amber-200 text-amber-800 rounded-md text-xs font-semibold self-start sm:self-auto">
+        NEC Article 411
+      </span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700 border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            <th class="py-3 px-3">Total Circuit Watts</th>
+            <th class="py-3 px-3">16/2 AWG Wire</th>
+            <th class="py-3 px-3">14/2 AWG Wire</th>
+            <th class="py-3 px-3">12/2 AWG (Standard)</th>
+            <th class="py-3 px-3">10/2 AWG (Heavy Duty)</th>
+            <th class="py-3 px-3">Rec. Transformer Rating</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-xs sm:text-sm">
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">25 Watts (5–8 LEDs)</td>
+            <td class="py-2.5 px-3">48 ft</td>
+            <td class="py-2.5 px-3">78 ft</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">124 ft</td>
+            <td class="py-2.5 px-3 font-bold text-green-700">194 ft</td>
+            <td class="py-2.5 px-3">45W – 75W</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">50 Watts (10–12 LEDs)</td>
+            <td class="py-2.5 px-3">24 ft</td>
+            <td class="py-2.5 px-3">39 ft</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">62 ft</td>
+            <td class="py-2.5 px-3 font-bold text-green-700">97 ft</td>
+            <td class="py-2.5 px-3">75W – 100W</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">75 Watts (15 LEDs)</td>
+            <td class="py-2.5 px-3">16 ft</td>
+            <td class="py-2.5 px-3">26 ft</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">41 ft</td>
+            <td class="py-2.5 px-3 font-bold text-green-700">65 ft</td>
+            <td class="py-2.5 px-3">100W – 150W</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">100 Watts (20 LEDs)</td>
+            <td class="py-2.5 px-3">12 ft</td>
+            <td class="py-2.5 px-3">20 ft</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">31 ft</td>
+            <td class="py-2.5 px-3 font-bold text-green-700">49 ft</td>
+            <td class="py-2.5 px-3">150W – 200W</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">150 Watts (Heavy Run)</td>
+            <td class="py-2.5 px-3">8 ft</td>
+            <td class="py-2.5 px-3">13 ft</td>
+            <td class="py-2.5 px-3 font-bold text-blue-700">21 ft</td>
+            <td class="py-2.5 px-3 font-bold text-green-700">32 ft</td>
+            <td class="py-2.5 px-3">200W – 300W</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 p-4 bg-amber-50/70 rounded-lg text-xs text-amber-900 space-y-1.5 border border-amber-200/80">
+      <p><strong>Pro-Installer Tip: The "Hub" (Center-Feed) Wiring Method</strong></p>
+      <p>Instead of connecting all fixtures in one long continuous string from the transformer, run your main home-run cable to the center of your garden bed and split it in two directions (T-tap or hub). This cuts the effective load and length of each leg in half, reducing voltage drop by up to 75% without upgrading to heavier gauge wire.</p>
+    </div>
+  </div>
+
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Enter Number of Lights &amp; Average Wattage:</strong> Input your fixture count and choose the average wattage (typically 3W to 5W for low-voltage LED landscape fixtures, or 20W for older halogen bulbs).</li>
+      <li><strong>Measure the Cable Run Length:</strong> Enter the distance in feet from your exterior GFCI outlet / transformer location to the farthest light fixture along the trench path.</li>
+      <li><strong>Select Wire Gauge &amp; Transformer Tap:</strong> Choose your direct-burial cable gauge (14/2, 12/2, or 10/2) and target tap voltage (12V common or 13V–15V multi-tap).</li>
+      <li><strong>Check Final Operating Voltage:</strong> Ensure the calculated voltage at the end fixture is between 10.8V and 12.0V for bright, non-flickering LED performance.</li>
+      <li><strong>Verify Transformer Size:</strong> Buy a transformer rated at least 20% to 25% higher than your total load to ensure long transformer lifespan and headroom for seasonal add-ons.</li>
+    </ol>
+  </div>
+
+  <AuthorReviewer
+    authorName="Viktor Taturevych"
+    authorTitle="Master Electrician &amp; Safety Auditor"
+    reviewerName="Marcus Vance"
+    reviewerRole="Licensed Master Electrician &amp; MEP Systems Specialist"
+    codeStandard="NEC Article 411 (Low-Voltage Lighting) &amp; UL 1838 Safety Standard"
+    lastUpdated="September 2026"
+  />
+
+  <RelatedGuidesProjects
+    hubSlug="garage-ev-workshop"
+    hubTitle="Outdoor &amp; Workshop Electrical Hub →"
+    hubDesc="Outdoor electrical installations: GFCI protection, conduit trenching, and low-voltage transformer wiring."
+    guideSlug="what-gauge-wire-for-50-amp-ev-charger"
+    guideTitle="Conductor Ampacity &amp; Wire Gauge Guide →"
+    guideDesc="NEC Table 310.16 copper conductor ampacity and resistance standards."
+  />
+</Layout>
+
+<script is:inline>
+(function() {
+  function calc() {
+    var count = parseInt(document.getElementById('fixtureCount').value) || 0;
+    var perWatt = parseFloat(document.getElementById('avgWatts').value) || 5;
+    var customW = parseFloat(document.getElementById('customWattage').value);
+    var totalWatts = (!isNaN(customW) && customW > 0) ? customW : (count * perWatt);
+
+    var len = parseFloat(document.getElementById('runLength').value) || 0;
+    var gauge = document.getElementById('wireGauge').value;
+    var tapV = parseFloat(document.getElementById('transformerTap').value) || 12;
+    var topology = document.getElementById('hubDistribution').value;
+
+    // Resistance per 1000 ft copper: 16: 4.99, 14: 3.07, 12: 1.93, 10: 1.24
+    var resMap = { '16': 4.99, '14': 3.07, '12': 1.93, '10': 1.24 };
+    var r = resMap[gauge] || 1.93;
+
+    var currentAmps = totalWatts / tapV;
+
+    // Topology load multiplier:
+    // Daisy chain: average load along line is approx 50-60% of total
+    // End load: full current travels full distance (100%)
+    // Hub / T-split: load split in two halves (25-35% effective drop)
+    var distFactor = 0.55;
+    if (topology === 'endLoad') distFactor = 1.0;
+    if (topology === 'hub') distFactor = 0.35;
+
+    // Vdrop = (2 * length * effectiveAmps * R) / 1000
+    var vDrop = (2.0 * len * (currentAmps * distFactor) * r) / 1000.0;
+    var endV = tapV - vDrop;
+    var dropPct = (vDrop / tapV) * 100.0;
+
+    // Recommended transformer size (with 25% safety margin)
+    var minTransWatts = Math.ceil(totalWatts * 1.25);
+    var standardTransSizes = [45, 75, 100, 150, 200, 300, 600, 900];
+    var recTrans = standardTransSizes.find(function(s) { return s >= minTransWatts; }) || (minTransWatts + "W Custom");
+
+    // Status judgment
+    var isSafe = endV >= 10.8 && endV <= 12.5;
+    var isLow = endV < 10.8;
+    var isHigh = endV > 12.5;
+
+    var statusEl = document.getElementById('r_statusTitle');
+    if (isSafe) {
+      statusEl.textContent = "OPTIMAL: " + endV.toFixed(1) + "V at Last Fixture (Safe)";
+      statusEl.className = "text-lg font-bold text-emerald-400";
+    } else if (isLow) {
+      statusEl.textContent = "WARNING: " + endV.toFixed(1) + "V Too Low (LED Dimming/Flicker)";
+      statusEl.className = "text-lg font-bold text-amber-400";
+    } else {
+      statusEl.textContent = "CAUTION: " + endV.toFixed(1) + "V Overvoltage (Shortened Diode Life)";
+      statusEl.className = "text-lg font-bold text-red-400";
+    }
+
+    document.getElementById('r_totalWatts').textContent = Math.round(totalWatts) + " Watts";
+    document.getElementById('r_totalAmps').textContent = currentAmps.toFixed(1) + " Amps at " + tapV + "V";
+
+    document.getElementById('r_recTransformer').textContent = typeof recTrans === 'number' ? (recTrans + " Watts") : recTrans;
+    document.getElementById('r_headroom').textContent = "Minimum " + minTransWatts + "W required (25% buffer)";
+
+    var endVEl = document.getElementById('r_endVoltage');
+    endVEl.textContent = endV.toFixed(1) + " Volts";
+    endVEl.className = isSafe ? "text-2xl font-black text-white" : (isLow ? "text-2xl font-black text-amber-400" : "text-2xl font-black text-red-400");
+
+    document.getElementById('r_dropDesc').textContent = vDrop.toFixed(2) + "V drop (" + dropPct.toFixed(1) + "%)";
+
+    var gaugeDesc = gauge + "/2 " + (isSafe ? "Adequate" : (isLow ? "Undersized" : "High Tap"));
+    document.getElementById('r_gaugeStatus').textContent = gaugeDesc;
+    document.getElementById('r_gaugeStatus').className = isSafe ? "text-2xl font-black text-sky-300" : "text-2xl font-black text-amber-300";
+
+    var tapAdvice = "Use " + tapV + "V tap";
+    if (isLow && tapV < 15) {
+      var suggestedTap = tapV + 1;
+      tapAdvice = "Step up to " + suggestedTap + "V tap or 10/2 wire";
+    }
+    document.getElementById('r_tapAdvice').textContent = tapAdvice;
+
+    var summaryText = "Summary: A " + Math.round(totalWatts) + "-watt circuit running " + len + " ft on " + gauge + "/2 direct-burial cable experiences approx " + vDrop.toFixed(1) + "V of drop. Terminal voltage is " + endV.toFixed(1) + "V. " +
+      (isSafe ? "Operating voltage is within the optimal 10.8V–12.0V range for LED fixtures. " : (isLow ? "Voltage is below the 10.8V threshold; step up to a higher transformer tap or upgrade to heavier wire. " : "Voltage is above 12.5V; reduce tap voltage. ")) +
+      "Install at least a " + (typeof recTrans === 'number' ? (recTrans + "W") : recTrans) + " transformer to maintain 25% capacity headroom.";
+    document.getElementById('r_fullSummary').textContent = summaryText;
+  }
+
+  var inputs = ['fixtureCount', 'avgWatts', 'customWattage', 'runLength', 'wireGauge', 'transformerTap', 'hubDistribution'];
+  inputs.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', calc);
+      el.addEventListener('change', calc);
+    }
+  });
+
+  document.getElementById('calcBtn').addEventListener('click', calc);
+  calc();
+
+  document.getElementById('copyListBtn').addEventListener('click', function() {
+    var status = document.getElementById('r_statusTitle').textContent;
+    var watts = document.getElementById('r_totalWatts').textContent;
+    var trans = document.getElementById('r_recTransformer').textContent;
+    var endV = document.getElementById('r_endVoltage').textContent;
+    var drop = document.getElementById('r_dropDesc').textContent;
+    var wire = document.getElementById('r_gaugeStatus').textContent;
+
+    var text = `=== Low-Voltage Landscape Lighting Takeoff ===
+Status: ${status}
+Total Load: ${watts}
+Recommended Transformer: ${trans}
+End-of-Line Voltage: ${endV} (${drop})
+Wire Gauge Status: ${wire}
+Code Standards: NEC Article 411 & UL 1838
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/landscape-lighting-wire/)`;
+
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById('copyListBtn');
+      btn.textContent = '✓ Copied Takeoff!';
+      setTimeout(function() { btn.textContent = '📋 Copy Takeoff'; }, 2500);
+    });
+  });
+})();
+</script>

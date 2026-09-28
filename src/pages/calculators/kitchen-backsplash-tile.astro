@@ -1,0 +1,492 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Kitchen Backsplash Tile & Mosaic Takeoff Calculator | CalcForDIY"
+  description="Calculate net square footage, tile carton count, mastic/thinset mortar, grout, and silicone caulk for kitchen backsplashes and range accents per TCNA standards."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Kitchen Backsplash Tile and Mosaic Takeoff Calculator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much extra tile should I buy for a kitchen backsplash?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per TCNA guidelines, buy 10% extra for straight running-bond subway tile, 15% extra for diagonal patterns, and 18% to 20% extra for herringbone layouts. Backsplashes involve frequent perimeter trim cuts around electrical outlets, window sills, and upper cabinets, creating higher scrap rates than wide open floors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What type of adhesive is best for a kitchen backsplash (mastic vs thinset)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For dry drywall kitchen backsplashes using ceramic or porcelain subway tiles up to 8x8 inches, Type 1 organic pre-mixed mastic adhesive is popular for its instant grab and zero slump. For heavy natural stone, glass tile, or large format tiles, ANSI A118.4 polymer-modified thinset mortar is required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should you grout the joint between the countertop and backsplash?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Never grout the joint where the backsplash meets the countertop. Per TCNA Detail EJ171, any 90-degree change of plane experiences differential house settling and thermal movement. That joint must be caulked with color-matched 100% silicone or acrylic latex caulk to prevent cracking and water intrusion."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "Kitchen Backsplash Calculator", "item": "https://calcfordiy.com/calculators/kitchen-backsplash-tile/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Kitchen Backsplash Tile Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-50 border border-amber-200 rounded-full text-amber-800 text-xs font-semibold mb-2">
+      <span>📐 TCNA W244 / W245 &amp; ANSI A108 Ceramic Tile Standards</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Kitchen Backsplash Tile &amp; Mosaic Takeoff Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate exact net square footage, pattern cut waste, tile carton quantities, adhesive, unsanded grout, and silicone perimeter caulk for kitchen backsplash renovations.
+    </p>
+  </div>
+
+  <!-- Calculator Inputs -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <!-- Presets -->
+    <div class="mb-5 pb-4 border-b border-gray-100">
+      <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">Popular Kitchen Backsplash Layout Presets</label>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="bs-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-run1="12" data-h1="18" data-run2="0" data-range="30" data-rangeh="30" data-outlets="4">
+          Galley / Single Wall (12 ft Run + Range)
+        </button>
+        <button type="button" class="bs-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-run1="14" data-h1="18" data-run2="10" data-range="30" data-rangeh="30" data-outlets="6">
+          Standard L-Shape (14' &times; 10' + Range)
+        </button>
+        <button type="button" class="bs-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-run1="12" data-h1="18" data-run2="16" data-range="36" data-rangeh="36" data-outlets="8">
+          Large U-Shape / Island Home (30+ Lin Ft)
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label for="mainRunLen" class="block text-xs font-medium text-gray-600 mb-1">Main Countertop Run Length (Feet)</label>
+        <input type="number" id="mainRunLen" value="12" min="1" max="100" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="text-[11px] text-gray-400 mt-1 block">Total linear feet along primary counter</span>
+      </div>
+
+      <div>
+        <label for="mainRunHeight" class="block text-xs font-medium text-gray-600 mb-1">Backsplash Height (Inches)</label>
+        <select id="mainRunHeight" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="15">15 Inches (Low Upper Cabinets)</option>
+          <option value="18" selected>18 Inches (Standard Kitchen Code)</option>
+          <option value="20">20 Inches (Tall Upper Cabinets)</option>
+          <option value="24">24 Inches (Open Shelving / High)</option>
+        </select>
+        <span class="text-[11px] text-gray-400 mt-1 block">Countertop to cabinet bottom</span>
+      </div>
+
+      <div>
+        <label for="secondRunLen" class="block text-xs font-medium text-gray-600 mb-1">Secondary / Return Wall (Feet)</label>
+        <input type="number" id="secondRunLen" value="6" min="0" max="60" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="text-[11px] text-gray-400 mt-1 block">Enter 0 if straight single-wall kitchen</span>
+      </div>
+    </div>
+
+    <!-- Range Accent & Deductions -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5 p-4 bg-gray-50 rounded-lg border border-gray-100">
+      <div>
+        <label for="rangeWidth" class="block text-xs font-medium text-gray-700 mb-1">Behind-Range Width (Inches)</label>
+        <select id="rangeWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0">None (Uniform Height Everywhere)</option>
+          <option value="30" selected>30 Inches (Standard Range)</option>
+          <option value="36">36 Inches (Pro-Style Range)</option>
+          <option value="48">48 Inches (Commercial Range)</option>
+        </select>
+        <span class="text-[11px] text-gray-500 mt-1 block">Focal wall accent behind stove</span>
+      </div>
+
+      <div>
+        <label for="rangeExtraHeight" class="block text-xs font-medium text-gray-700 mb-1">Extra Height to Hood (Inches)</label>
+        <input type="number" id="rangeExtraHeight" value="12" min="0" max="60" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-[11px] text-gray-500 mt-1 block">Extra inches above standard height</span>
+      </div>
+
+      <div>
+        <label for="outletCount" class="block text-xs font-medium text-gray-700 mb-1">Electrical Outlet Boxes</label>
+        <input type="number" id="outletCount" value="5" min="0" max="25" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-[11px] text-gray-500 mt-1 block">Deducts ~0.15 sq ft per gang</span>
+      </div>
+
+      <div>
+        <label for="windowDeduction" class="block text-xs font-medium text-gray-700 mb-1">Window Cutout (Sq Ft)</label>
+        <input type="number" id="windowDeduction" value="0" min="0" max="50" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-[11px] text-gray-500 mt-1 block">Sink window cutout area</span>
+      </div>
+    </div>
+
+    <!-- Tile Pattern & Box Details -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label for="tilePattern" class="block text-xs font-medium text-gray-600 mb-1">Tile Pattern (Waste %)</label>
+        <select id="tilePattern" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.10" selected>Running Bond / Stacked Subway (10% waste)</option>
+          <option value="1.12">Sheet Mosaics on Mesh (12% waste)</option>
+          <option value="1.15">45° Diagonal Tile Pattern (15% waste)</option>
+          <option value="1.20">Herringbone Pattern (20% waste)</option>
+        </select>
+        <span class="text-[11px] text-gray-400 mt-1 block">Herringbone creates heavy scrap cuts</span>
+      </div>
+
+      <div>
+        <label for="sqftPerBox" class="block text-xs font-medium text-gray-600 mb-1">Carton Coverage (Sq Ft / Box)</label>
+        <input type="number" id="sqftPerBox" value="10" min="1" max="50" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <span class="text-[11px] text-gray-400 mt-1 block">Subway boxes commonly 10 or 12.5 sq ft</span>
+      </div>
+
+      <div>
+        <label for="adhesiveType" class="block text-xs font-medium text-gray-600 mb-1">Setting Adhesive Preference</label>
+        <select id="adhesiveType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="mastic" selected>Type 1 Organic Mastic Pail (45 sq ft/gal)</option>
+          <option value="thinset">Modified Thinset 25 lb Bag (40 sq ft/bag)</option>
+        </select>
+        <span class="text-[11px] text-gray-400 mt-1 block">Mastic has zero vertical slip on drywall</span>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+      <div class="text-xs text-gray-500">
+        📐 Math: Net Area = Runs &times; Height + Range Accent - Outlets. Gross = Net &times; (1 + Pattern Waste).
+      </div>
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Calculate Backsplash
+      </button>
+    </div>
+  </div>
+
+  <!-- Results Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">TCNA Material Takeoff Summary</span>
+        <h2 class="text-lg font-bold text-white" id="r_takeoffTitle">33.5 Gross Sq Ft (4 Boxes Needed)</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Takeoff
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Net Wall Coverage</div>
+        <div class="text-2xl font-black text-amber-400" id="r_netArea">29.7 Sq Ft</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_linFtDesc">18 total linear feet</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Gross Tile Required</div>
+        <div class="text-2xl font-black text-white" id="r_grossArea">32.7 Sq Ft</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_wasteDesc">Includes 10% cut waste</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Tile Cartons / Boxes</div>
+        <div class="text-2xl font-black text-emerald-400" id="r_cartonCount">4 Boxes</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_cartonDetail">At 10.0 sq ft / carton</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Adhesive Required</div>
+        <div class="text-2xl font-black text-sky-300" id="r_adhesiveQty">1 Gallon Pail</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_adhesiveDetail">Type 1 Mastic Pail</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+      <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700/80">
+        <span class="text-slate-400 text-xs block">Unsanded Grout</span>
+        <span class="text-white font-bold text-sm" id="r_groutLbs">10 lb Bag (1 Bag)</span>
+        <span class="text-[11px] text-slate-400 block mt-0.5">For 1/16" or 1/8" subway joints</span>
+      </div>
+      <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700/80">
+        <span class="text-slate-400 text-xs block">100% Silicone Caulk</span>
+        <span class="text-white font-bold text-sm" id="r_caulkTubes">2 Tubes (10.1 oz)</span>
+        <span class="text-[11px] text-slate-400 block mt-0.5">Counter-to-wall expansion joint</span>
+      </div>
+      <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700/80">
+        <span class="text-slate-400 text-xs block">Notch Trowel Size</span>
+        <span class="text-white font-bold text-sm" id="r_trowelRec">3/16" &times; 5/32" V-Notch</span>
+        <span class="text-[11px] text-slate-400 block mt-0.5">Optimal coverage for wall subway tile</span>
+      </div>
+    </div>
+
+    <div class="p-4 bg-slate-800/50 rounded-lg text-xs text-slate-300 border border-slate-700/60 leading-relaxed" id="r_fullSummary">
+      Takeoff: Backsplash covers 29.7 net sq ft across 18 linear ft of wall plus range accent. At 10% cut waste, order 32.7 sq ft (4 boxes). You will need 1 gallon of mastic, one 10 lb bag of unsanded grout, and 2 tubes of color-matched silicone caulk for the countertop perimeter joint.
+    </div>
+  </div>
+
+  <!-- Reference Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">TCNA Kitchen Backsplash Material &amp; Trowel Standards</h2>
+        <p class="text-xs text-gray-500 mt-0.5">ANSI A108 / TCNA Handbook recommended adhesives, notch trowel profiles, and joint compounds by tile type</p>
+      </div>
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 border border-blue-200 text-blue-700 rounded-md text-xs font-semibold self-start sm:self-auto">
+        TCNA Method W244
+      </span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700 border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            <th class="py-3 px-3">Tile Format</th>
+            <th class="py-3 px-3">Recommended Trowel</th>
+            <th class="py-3 px-3">Adhesive Standard</th>
+            <th class="py-3 px-3">Grout Type</th>
+            <th class="py-3 px-3">Waste Allowance</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-xs sm:text-sm">
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">3"&times;6" Subway Ceramic</td>
+            <td class="py-2.5 px-3 font-mono">3/16" &times; 5/32" V-Notch</td>
+            <td class="py-2.5 px-3">Type 1 Organic Mastic</td>
+            <td class="py-2.5 px-3 font-medium text-blue-700">Unsanded (1/16"–1/8")</td>
+            <td class="py-2.5 px-3">10% (Running Bond)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Herringbone Subway Cut</td>
+            <td class="py-2.5 px-3 font-mono">3/16" &times; 5/32" V-Notch</td>
+            <td class="py-2.5 px-3">Type 1 Mastic / Polymer Thinset</td>
+            <td class="py-2.5 px-3 font-medium text-blue-700">Unsanded / Epoxy</td>
+            <td class="py-2.5 px-3 font-bold text-amber-700">18% – 20%</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Glass Sheet Mosaics</td>
+            <td class="py-2.5 px-3 font-mono">3/16" &times; 1/4" V-Notch</td>
+            <td class="py-2.5 px-3">ANSI A118.4 White Glass Mortar</td>
+            <td class="py-2.5 px-3 font-medium text-blue-700">Non-Scratch Unsanded / Urethane</td>
+            <td class="py-2.5 px-3">12% – 15%</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Handmade Zellige / 4"&times;4"</td>
+            <td class="py-2.5 px-3 font-mono">1/4" &times; 1/4" Square Notch</td>
+            <td class="py-2.5 px-3">ANSI A118.4 Polymer Thinset</td>
+            <td class="py-2.5 px-3 font-medium text-blue-700">Sanded or Unsanded (per joint)</td>
+            <td class="py-2.5 px-3">15%</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Large Format Slab (12"&times;24")</td>
+            <td class="py-2.5 px-3 font-mono">1/4" &times; 3/8" Square Notch</td>
+            <td class="py-2.5 px-3">ANSI A118.15 Non-Sag Polymer Thinset</td>
+            <td class="py-2.5 px-3 font-medium text-blue-700">High-Performance Cement / Epoxy</td>
+            <td class="py-2.5 px-3">12%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 p-4 bg-blue-50/60 rounded-lg text-xs text-blue-900 space-y-1.5 border border-blue-100">
+      <p><strong>TCNA Detail EJ171 Critical Rule: Never Grout the Countertop Joint</strong></p>
+      <p>Grout has zero tensile flexibility. When your kitchen cabinets slightly settle or expand with seasonal humidity changes, hard grout at the 90-degree intersection of the countertop will crack, turn to powder, and allow sink moisture behind the drywall. Always fill the countertop perimeter joint with 100% silicone sealant that matches your grout color.</p>
+    </div>
+  </div>
+
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Measure Countertop Run Lengths:</strong> Measure the total linear length of your main counter in feet, plus any secondary return walls (such as the short leg of an L-shape kitchen).</li>
+      <li><strong>Confirm Backsplash Height:</strong> Standard height is 18 inches between countertop and upper cabinets, but measure your exact spacing.</li>
+      <li><strong>Add Range Accent Dimensions:</strong> If your tile extends higher behind the cooking stove or range hood (e.g. 30" or 36" wide, up to the ceiling), input the extra dimensions to capture the additional area.</li>
+      <li><strong>Deduct Outlets &amp; Windows:</strong> Enter the count of electrical receptacles and any window cutouts to determine true net square footage.</li>
+      <li><strong>Select Pattern Waste &amp; Box Size:</strong> Choose your tile laying pattern (herringbone requires 20% waste allowance due to 45° angled edge cuts) and enter carton coverage to get your exact box purchase quantity.</li>
+    </ol>
+  </div>
+
+  <AuthorReviewer
+    authorName="Viktor Taturevych"
+    authorTitle="Master Craftsman &amp; Tile Installation Specialist"
+    reviewerName="Elena Rostova"
+    reviewerRole="Architectural Finishes Specialist &amp; TCNA Code Reviewer"
+    codeStandard="TCNA Handbook W244 / W245 &amp; ANSI A108/A118 Tile Specifications"
+    lastUpdated="September 2026"
+  />
+
+  <RelatedGuidesProjects
+    hubSlug="bathroom-remodel"
+    hubTitle="Bathroom &amp; Kitchen Tile Hub →"
+    hubDesc="Tile layout planning, thinset mortar selection, uncoupling membranes, and waterproof backer board guides."
+    guideSlug="how-much-tile-for-standard-shower"
+    guideTitle="Tile Square Footage &amp; Waste Guide →"
+    guideDesc="TCNA recommended waste allowances for herringbone, subway, and mosaic layouts."
+  />
+</Layout>
+
+<script is:inline>
+(function() {
+  function calc() {
+    var run1 = parseFloat(document.getElementById('mainRunLen').value) || 0;
+    var h1 = parseFloat(document.getElementById('mainRunHeight').value) || 18;
+    var run2 = parseFloat(document.getElementById('secondRunLen').value) || 0;
+    var rangeW = parseFloat(document.getElementById('rangeWidth').value) || 0;
+    var rangeExtraH = parseFloat(document.getElementById('rangeExtraHeight').value) || 0;
+    var outlets = parseInt(document.getElementById('outletCount').value) || 0;
+    var winSqFt = parseFloat(document.getElementById('windowDeduction').value) || 0;
+
+    var wasteMult = parseFloat(document.getElementById('tilePattern').value) || 1.10;
+    var sqftBox = parseFloat(document.getElementById('sqftPerBox').value) || 10;
+    var adhesive = document.getElementById('adhesiveType').value;
+
+    // Convert heights to feet
+    var areaRun1 = run1 * (h1 / 12.0);
+    var areaRun2 = run2 * (h1 / 12.0);
+    var areaRange = (rangeW / 12.0) * (rangeExtraH / 12.0);
+
+    var outletDeduction = outlets * 0.15; // ~0.15 sq ft per gang
+    var netArea = Math.max(0, (areaRun1 + areaRun2 + areaRange) - (outletDeduction + winSqFt));
+    var grossArea = netArea * wasteMult;
+
+    var boxes = Math.ceil(grossArea / sqftBox);
+    var totalLinFt = run1 + run2;
+
+    // Adhesive calculation
+    var adhesiveQtyText = "";
+    var adhesiveDetailText = "";
+    if (adhesive === 'mastic') {
+      var gallons = Math.ceil(grossArea / 45.0);
+      adhesiveQtyText = gallons + " Gallon" + (gallons > 1 ? "s" : "") + " Pail";
+      adhesiveDetailText = "Type 1 Mastic (45 sq ft/gal)";
+    } else {
+      var bags = Math.ceil(grossArea / 40.0);
+      adhesiveQtyText = bags + " Bag" + (bags > 1 ? "s" : "") + " (25 lb)";
+      adhesiveDetailText = "ANSI A118.4 Polymer Thinset";
+    }
+
+    // Grout: 10 lb unsanded bag covers approx 50-70 sq ft of 3x6 subway tile with 1/16" joint
+    var groutBags = Math.ceil(grossArea / 55.0);
+    var groutLbs = groutBags * 10;
+
+    // Caulk: 1 tube of silicone covers approx 24-30 linear feet with 1/4" bead
+    var caulkTubes = Math.max(1, Math.ceil(totalLinFt / 22.0));
+
+    // Update UI
+    var wastePct = Math.round((wasteMult - 1.0) * 100);
+    document.getElementById('r_takeoffTitle').textContent = grossArea.toFixed(1) + " Gross Sq Ft (" + boxes + " Box" + (boxes > 1 ? "es" : "") + " Needed)";
+    document.getElementById('r_netArea').textContent = netArea.toFixed(1) + " Sq Ft";
+    document.getElementById('r_linFtDesc').textContent = totalLinFt.toFixed(1) + " total linear feet";
+
+    document.getElementById('r_grossArea').textContent = grossArea.toFixed(1) + " Sq Ft";
+    document.getElementById('r_wasteDesc').textContent = "Includes " + wastePct + "% cut waste";
+
+    document.getElementById('r_cartonCount').textContent = boxes + " Box" + (boxes > 1 ? "es" : "");
+    document.getElementById('r_cartonDetail').textContent = "At " + sqftBox.toFixed(1) + " sq ft / carton";
+
+    document.getElementById('r_adhesiveQty').textContent = adhesiveQtyText;
+    document.getElementById('r_adhesiveDetail').textContent = adhesiveDetailText;
+
+    document.getElementById('r_groutLbs').textContent = groutLbs + " lbs (" + groutBags + " &times; 10 lb Bag" + (groutBags > 1 ? "s" : "") + ")";
+    document.getElementById('r_caulkTubes').textContent = caulkTubes + " Tube" + (caulkTubes > 1 ? "s" : "") + " (10.1 oz)";
+
+    var trowel = wasteMult >= 1.18 ? "3/16\" &times; 5/32\" V-Notch (Angle Cut)" : "3/16\" &times; 5/32\" V-Notch";
+    document.getElementById('r_trowelRec').textContent = trowel;
+
+    var summary = "Takeoff: Backsplash covers " + netArea.toFixed(1) + " net sq ft across " + totalLinFt.toFixed(1) + " linear ft of counter" +
+      (rangeW > 0 ? " plus a " + rangeW + "\" range accent. " : ". ") +
+      "At " + wastePct + "% cut waste, order " + grossArea.toFixed(1) + " sq ft (" + boxes + " cartons). " +
+      "You will need " + adhesiveQtyText + ", " + groutLbs + " lbs of unsanded grout, and " + caulkTubes + " tube" + (caulkTubes > 1 ? "s" : "") + " of color-matched 100% silicone caulk for the countertop perimeter joint.";
+    document.getElementById('r_fullSummary').textContent = summary;
+  }
+
+  var inputs = ['mainRunLen', 'mainRunHeight', 'secondRunLen', 'rangeWidth', 'rangeExtraHeight', 'outletCount', 'windowDeduction', 'tilePattern', 'sqftPerBox', 'adhesiveType'];
+  inputs.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', calc);
+      el.addEventListener('change', calc);
+    }
+  });
+
+  // Presets
+  document.querySelectorAll('.bs-preset-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.getElementById('mainRunLen').value = this.dataset.run1;
+      document.getElementById('mainRunHeight').value = this.dataset.h1;
+      document.getElementById('secondRunLen').value = this.dataset.run2;
+      document.getElementById('rangeWidth').value = this.dataset.range;
+      document.getElementById('rangeExtraHeight').value = this.dataset.rangeh;
+      document.getElementById('outletCount').value = this.dataset.outlets;
+
+      document.querySelectorAll('.bs-preset-btn').forEach(function(b) {
+        b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+        b.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+      });
+      this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+      this.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+
+      calc();
+    });
+  });
+
+  document.getElementById('calcBtn').addEventListener('click', calc);
+  calc();
+
+  document.getElementById('copyListBtn').addEventListener('click', function() {
+    var title = document.getElementById('r_takeoffTitle').textContent;
+    var net = document.getElementById('r_netArea').textContent;
+    var gross = document.getElementById('r_grossArea').textContent;
+    var boxes = document.getElementById('r_cartonCount').textContent;
+    var adhesive = document.getElementById('r_adhesiveQty').textContent;
+    var grout = document.getElementById('r_groutLbs').textContent;
+    var caulk = document.getElementById('r_caulkTubes').textContent;
+
+    var text = `=== Kitchen Backsplash Tile Takeoff ===
+Estimate: ${title}
+Net Coverage: ${net}
+Gross Tile (with waste): ${gross}
+Cartons: ${boxes}
+Adhesive: ${adhesive}
+Grout: ${grout}
+Silicone Caulk: ${caulk}
+Standards: TCNA W244 / W245 & ANSI A108
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/kitchen-backsplash-tile/)`;
+
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById('copyListBtn');
+      btn.textContent = '✓ Copied Takeoff!';
+      setTimeout(function() { btn.textContent = '📋 Copy Takeoff'; }, 2500);
+    });
+  });
+})();
+</script>

@@ -1,0 +1,473 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Bathroom Floor Tile & Underlayment Estimator | CalcForDIY"
+  description="Calculate net floor area, tile boxes, CBU backer board or DITRA uncoupling membrane, thinset mortar bags, and grout for bathroom remodels per TCNA standards."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Bathroom Floor Tile and Underlayment Estimator",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should you tile under a bathroom vanity?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, tiling the entire bathroom floor before installing a freestanding or open-shelf vanity is strongly recommended. It eliminates intricate curved cuts around cabinet kicks, allows easy vanity replacement in the future without disturbing tile, and keeps water leaks from pooling in unsealed subfloor pockets."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which underlayment is better: cement backer board (CBU) or uncoupling membrane (DITRA)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per TCNA methods F144 and F125, both provide rigid ceramic tile substrates over wood subfloors. Cement board (such as 1/4\" HardieBacker or Durock) is heavier and requires mechanical fastening with screws every 8 inches into thinset. Uncoupling membranes (such as Schluter-DITRA) are lightweight (1/8\" thick), provide built-in waterproofing, and neutralize lateral subfloor expansion shears to prevent tile and grout cracking."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What subfloor deflection rating is required for bathroom tile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per TCNA specifications, ceramic and porcelain tile require a minimum floor joist deflection rating of L/360 under total design load (span length divided by 360). Heavy natural stone (such as marble, travertine, or granite) is far more brittle and requires a rigid deflection standard of L/720."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "Bathroom Floor Tile Estimator", "item": "https://calcfordiy.com/calculators/bathroom-floor-tile/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Bathroom Floor Tile Estimator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-800 text-xs font-semibold mb-2">
+      <span>🚿 TCNA F144 / F125 &amp; ANSI A108 Subfloor Specifications</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Bathroom Floor Tile &amp; Underlayment Estimator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate net square footage, vanity &amp; tub deductions, tile carton counts, cement backer boards (CBU) or uncoupling membrane (DITRA), thinset mortar bags, and grout.
+    </p>
+  </div>
+
+  <!-- Calculator Card -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <!-- Presets -->
+    <div class="mb-5 pb-4 border-b border-gray-100">
+      <label class="block text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">Popular Bathroom Size Presets</label>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="bath-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="5" data-wid="5" data-tub="0" data-vanity="0">
+          Powder Room (5' &times; 5', 25 sq ft)
+        </button>
+        <button type="button" class="bath-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="8" data-wid="5" data-tub="12.5" data-vanity="5.25">
+          Standard Full Bath (8' &times; 5' + Tub)
+        </button>
+        <button type="button" class="bath-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="10" data-wid="8" data-tub="15" data-vanity="10.5">
+          Primary Bath (10' &times; 8' Ensuite)
+        </button>
+        <button type="button" class="bath-preset-btn px-3 py-1.5 bg-gray-100 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 rounded-lg text-xs font-medium transition-colors" data-len="14" data-wid="10" data-tub="20" data-vanity="12.5">
+          Luxury Master Suite (14' &times; 10')
+        </button>
+      </div>
+    </div>
+
+    <!-- Dimensions -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="roomLenFt" class="block text-xs font-medium text-gray-600 mb-1">Room Length (Feet)</label>
+        <input type="number" id="roomLenFt" value="8" min="2" max="50" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+
+      <div>
+        <label for="roomWidFt" class="block text-xs font-medium text-gray-600 mb-1">Room Width (Feet)</label>
+        <input type="number" id="roomWidFt" value="5" min="2" max="50" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+
+      <div>
+        <label for="tubDeduction" class="block text-xs font-medium text-gray-600 mb-1">Tub / Shower Pan (Sq Ft)</label>
+        <select id="tubDeduction" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0">None (Tile Entire Floor / Curbless)</option>
+          <option value="12.5" selected>12.5 Sq Ft (Standard 30" &times; 60" Tub)</option>
+          <option value="15">15.0 Sq Ft (36" &times; 60" Tub / Shower)</option>
+          <option value="20">20.0 Sq Ft (Large Walk-in Shower)</option>
+        </select>
+        <span class="text-[11px] text-gray-400 mt-1 block">Subtracted from floor tile</span>
+      </div>
+
+      <div>
+        <label for="vanityDeduction" class="block text-xs font-medium text-gray-600 mb-1">Vanity Footprint</label>
+        <select id="vanityDeduction" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0">Tile Under Vanity (Recommended)</option>
+          <option value="5.25" selected>Deduct 36" Vanity (~5.2 sq ft)</option>
+          <option value="7.0">Deduct 48" Vanity (~7.0 sq ft)</option>
+          <option value="10.5">Deduct 60" Double Vanity (~10.5 sq ft)</option>
+        </select>
+        <span class="text-[11px] text-gray-400 mt-1 block">Choose whether to tile under</span>
+      </div>
+    </div>
+
+    <!-- Underlayment & Tile Specs -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5 p-4 bg-gray-50 rounded-lg border border-gray-100">
+      <div>
+        <label for="underlaymentType" class="block text-xs font-medium text-gray-700 mb-1">Subfloor Underlayment</label>
+        <select id="underlaymentType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="cbu" selected>Cement Board 3' &times; 5' Sheets (Hardie/Durock)</option>
+          <option value="ditra">Uncoupling Membrane Roll (Schluter-DITRA)</option>
+        </select>
+        <span class="text-[11px] text-gray-500 mt-1 block">Installed over 3/4" exterior OSB</span>
+      </div>
+
+      <div>
+        <label for="tileFormat" class="block text-xs font-medium text-gray-700 mb-1">Tile Format &amp; Pattern</label>
+        <select id="tileFormat" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1.10" selected>12" &times; 24" Large Format (10% waste)</option>
+          <option value="1.10">12" &times; 12" Square Tile (10% waste)</option>
+          <option value="1.15">45° Diagonal Pattern (15% waste)</option>
+          <option value="1.18">Herringbone / Chevron (18% waste)</option>
+          <option value="1.15">Hexagon / Penny Mosaic (15% waste)</option>
+        </select>
+        <span class="text-[11px] text-gray-500 mt-1 block">Toilet flange cuts require extra tile</span>
+      </div>
+
+      <div>
+        <label for="cartonSqFt" class="block text-xs font-medium text-gray-700 mb-1">Carton Coverage (Sq Ft / Box)</label>
+        <input type="number" id="cartonSqFt" value="14" min="1" max="50" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white" />
+        <span class="text-[11px] text-gray-500 mt-1 block">Commonly 12 to 16 sq ft per carton</span>
+      </div>
+
+      <div>
+        <label for="groutJoint" class="block text-xs font-medium text-gray-700 mb-1">Grout Joint Width</label>
+        <select id="groutJoint" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="1/16">1/16 Inch (Rectified LFT - Unsanded)</option>
+          <option value="1/8" selected>1/8 Inch (Standard Floor - Sanded/All-in-One)</option>
+          <option value="3/16">3/16 Inch (Pressed Edge Ceramic)</option>
+        </select>
+        <span class="text-[11px] text-gray-500 mt-1 block">Joint width sets bag yield</span>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+      <div class="text-xs text-gray-500">
+        📐 Math: Net Area = (Length &times; Width) - (Tub + Vanity Deductions). Gross Tile = Net &times; Waste Factor.
+      </div>
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Calculate Materials
+      </button>
+    </div>
+  </div>
+
+  <!-- Results Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">TCNA Floor &amp; Substrate Takeoff</span>
+        <h2 class="text-lg font-bold text-white" id="r_takeoffTitle">22.3 Net Sq Ft &bull; 2 Boxes of Tile</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Takeoff
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Net Floor Tile Area</div>
+        <div class="text-2xl font-black text-amber-400" id="r_netArea">22.3 Sq Ft</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_grossArea">24.5 gross sq ft with waste</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Tile Cartons / Boxes</div>
+        <div class="text-2xl font-black text-white" id="r_boxCount">2 Boxes</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_boxDesc">At 14.0 sq ft / box</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Underlayment Material</div>
+        <div class="text-2xl font-black text-emerald-400" id="r_underlaymentQty">2 Sheets</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_underlaymentDesc">3' &times; 5' CBU Boards (30 sq ft)</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Thinset Mortar (50 lb)</div>
+        <div class="text-2xl font-black text-sky-300" id="r_mortarBags">1 Bag</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_mortarDetail">ANSI A118.4 Polymer Modified</div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+      <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700/80">
+        <span class="text-slate-400 text-xs block">Grout Quantity</span>
+        <span class="text-white font-bold text-sm" id="r_groutLbs">10 lb Box (1 Box)</span>
+        <span class="text-[11px] text-slate-400 block mt-0.5">Sanded / High-performance cement</span>
+      </div>
+      <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700/80">
+        <span class="text-slate-400 text-xs block">Fasteners / Membrane Tape</span>
+        <span class="text-white font-bold text-sm" id="r_fastenerReq">1 Box Backer Screws</span>
+        <span class="text-[11px] text-slate-400 block mt-0.5">1-1/4" corrosion-resistant CBU screws</span>
+      </div>
+      <div class="p-3 bg-slate-800/60 rounded-lg border border-slate-700/80">
+        <span class="text-slate-400 text-xs block">Threshold / Transition</span>
+        <span class="text-white font-bold text-sm" id="r_thresholdReq">1 Doorway Sill</span>
+        <span class="text-[11px] text-slate-400 block mt-0.5">Marble saddle or metal edge profile</span>
+      </div>
+    </div>
+
+    <div class="p-4 bg-slate-800/50 rounded-lg text-xs text-slate-300 border border-slate-700/60 leading-relaxed" id="r_fullSummary">
+      Takeoff: Bathroom floor requires 22.3 net square feet of tile. Factor in 10% waste for perimeter and toilet flange cuts to order 24.5 gross sq ft (2 boxes). You will need 2 sheets of 3' &times; 5' cement backer board, one 50 lb bag of modified thinset mortar, 1 box of backer screws, one 10 lb container of grout, and 1 doorway transition saddle.
+    </div>
+  </div>
+
+  <!-- Reference Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+      <div>
+        <h2 class="text-xl font-bold text-gray-900">TCNA Bathroom Subfloor &amp; Underlayment Code Matrix</h2>
+        <p class="text-xs text-gray-500 mt-0.5">Structural requirements, allowable deflection ratings, and mortar bonding methods per TCNA Handbook</p>
+      </div>
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 border border-blue-200 text-blue-700 rounded-md text-xs font-semibold self-start sm:self-auto">
+        TCNA Method F144 / F125
+      </span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-sm text-gray-700 border-collapse">
+        <thead>
+          <tr class="bg-gray-50 border-b border-gray-200 text-xs font-semibold text-gray-600 uppercase tracking-wider">
+            <th class="py-3 px-3">Substrate System</th>
+            <th class="py-3 px-3">Deflection Limit</th>
+            <th class="py-3 px-3">Bedding Mortar Below Underlayment</th>
+            <th class="py-3 px-3">Fastener Schedule</th>
+            <th class="py-3 px-3">Finished Height Increase</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-xs sm:text-sm">
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">1/4" Cement Board (CBU)</td>
+            <td class="py-2.5 px-3 font-mono">L/360</td>
+            <td class="py-2.5 px-3 font-medium text-blue-700">Dry-set or modified thinset bed</td>
+            <td class="py-2.5 px-3">1-1/4" screws every 8" on center</td>
+            <td class="py-2.5 px-3">+ 1/4" (+ 1/8" thinset)</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Schluter-DITRA Membrane</td>
+            <td class="py-2.5 px-3 font-mono">L/360</td>
+            <td class="py-2.5 px-3 font-medium text-blue-700">Modified thinset (ANSI A118.11)</td>
+            <td class="py-2.5 px-3">Embedded with flat float / roller</td>
+            <td class="py-2.5 px-3 font-bold text-green-700">+ 1/8" ultra low profile</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Natural Stone (Marble/Slate)</td>
+            <td class="py-2.5 px-3 font-mono font-bold text-amber-700">L/720 (Double Layer)</td>
+            <td class="py-2.5 px-3 font-medium text-blue-700">ANSI A118.4 Polymer Thinset</td>
+            <td class="py-2.5 px-3">1/2" CBU or DITRA-XL over 2 plywood layers</td>
+            <td class="py-2.5 px-3">+ 1/2" to + 3/4"</td>
+          </tr>
+          <tr class="hover:bg-gray-50/80 transition-colors">
+            <td class="py-2.5 px-3 font-semibold text-gray-900">Concrete Slab Pour</td>
+            <td class="py-2.5 px-3 font-mono">L/360</td>
+            <td class="py-2.5 px-3 font-medium text-blue-700">Direct bond or fracture mat</td>
+            <td class="py-2.5 px-3">Adhesive bond only (no screws)</td>
+            <td class="py-2.5 px-3">+ 0" (flush mount)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4 p-4 bg-amber-50/70 rounded-lg text-xs text-amber-900 space-y-1.5 border border-amber-200/80">
+      <p><strong>Critical Underlayment Rule: Thinset Bed Under Cement Board is Non-Negotiable</strong></p>
+      <p>Many first-time DIYers screw cement board directly into dry plywood subflooring without mortar. This is a fatal mistake that causes cracked tiles. The thinset layer beneath cement board does not act as glue—it acts as a <em>gap filler</em> to eliminate microscopic voids between the plywood and cement board so the boards cannot flex when walked on.</p>
+    </div>
+  </div>
+
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Enter Overall Bathroom Dimensions:</strong> Input your bathroom length and width in feet, or click one of the quick presets (Powder Room, Full Bath, Primary Bath).</li>
+      <li><strong>Select Obstacle Deductions:</strong> Choose whether to subtract the bathtub/shower footprint and whether you plan to tile beneath your bathroom vanity cabinet.</li>
+      <li><strong>Pick Subfloor Underlayment:</strong> Choose between traditional 3' &times; 5' cement backer board sheets (HardieBacker / WonderBoard) or lightweight waterproof uncoupling membrane (Schluter-DITRA).</li>
+      <li><strong>Set Tile Size &amp; Laying Pattern:</strong> Large format tiles and diagonal or herringbone patterns require 15% to 18% waste factors to account for perimeter cuts around the toilet flange and door casing.</li>
+      <li><strong>Review Takeoff &amp; Fasteners:</strong> Get your complete shopping list including tile cartons, underlayment sheets, thinset mortar bags (for both bedding the underlayment and laying the tile), grout, and doorway saddles.</li>
+    </ol>
+  </div>
+
+  <AuthorReviewer
+    authorName="Viktor Taturevych"
+    authorTitle="Master Craftsman &amp; Tile Installation Specialist"
+    reviewerName="Elena Rostova"
+    reviewerRole="Architectural Finishes Specialist &amp; TCNA Code Reviewer"
+    codeStandard="TCNA Handbook Method F144 / F125 &amp; ANSI A108.11 Subfloor Standards"
+    lastUpdated="September 2026"
+  />
+
+  <RelatedGuidesProjects
+    hubSlug="bathroom-remodel"
+    hubTitle="Complete Bathroom Remodeling Hub →"
+    hubDesc="Curbless walk-in showers, linear drains, cement backer installation, and waterproofing membranes."
+    guideSlug="how-much-tile-for-standard-shower"
+    guideTitle="Shower &amp; Bath Tile Takeoff Guide →"
+    guideDesc="TCNA recommended joint widths, trowel notches, and thinset mortar coverage."
+  />
+</Layout>
+
+<script is:inline>
+(function() {
+  function calc() {
+    var len = parseFloat(document.getElementById('roomLenFt').value) || 0;
+    var wid = parseFloat(document.getElementById('roomWidFt').value) || 0;
+    var tubDeduct = parseFloat(document.getElementById('tubDeduction').value) || 0;
+    var vanityDeduct = parseFloat(document.getElementById('vanityDeduction').value) || 0;
+
+    var underlayment = document.getElementById('underlaymentType').value;
+    var wasteMult = parseFloat(document.getElementById('tileFormat').value) || 1.10;
+    var cartonSqFt = parseFloat(document.getElementById('cartonSqFt').value) || 14;
+    var joint = document.getElementById('groutJoint').value;
+
+    var grossFloor = len * wid;
+    var netArea = Math.max(0, grossFloor - tubDeduct - vanityDeduct);
+    var grossTile = netArea * wasteMult;
+    var boxes = Math.ceil(grossTile / cartonSqFt);
+
+    var wastePct = Math.round((wasteMult - 1.0) * 100);
+
+    // Underlayment takeoff
+    var underlaymentQtyText = "";
+    var underlaymentDescText = "";
+    var fastenerText = "";
+
+    if (underlayment === 'cbu') {
+      // 3x5 sheets = 15 sq ft per board + 10% scrap
+      var cbuSheets = Math.ceil((netArea * 1.10) / 15.0);
+      underlaymentQtyText = cbuSheets + " Sheet" + (cbuSheets > 1 ? "s" : "");
+      underlaymentDescText = "3' &times; 5' CBU Boards (" + (cbuSheets * 15) + " sq ft)";
+      var screwBoxes = Math.ceil((cbuSheets * 35) / 150); // ~35 screws per 3x5 board
+      fastenerText = screwBoxes + " Box" + (screwBoxes > 1 ? "es" : "") + " (1-1/4\" CBU Screws)";
+    } else {
+      // DITRA: 54 sq ft roll or linear feet
+      var ditraSqFt = Math.ceil(netArea * 1.08);
+      var ditraRolls = Math.ceil(ditraSqFt / 54.0);
+      underlaymentQtyText = ditraSqFt + " Sq Ft";
+      underlaymentDescText = ditraRolls + " Roll" + (ditraRolls > 1 ? "s" : "") + " (54 sq ft/roll)";
+      fastenerText = "No screws (Thinset bond)";
+    }
+
+    // Thinset mortar:
+    // When using CBU: need mortar bed under CBU (~40 sq ft/bag) + mortar bed under tile (~40 sq ft/bag)
+    // When using DITRA: need mortar under DITRA (~150 sq ft/bag) + mortar over DITRA (~35-40 sq ft/bag)
+    var totalMortarSqFt = underlayment === 'cbu' ? (netArea * 2) : (netArea * 1.3);
+    var mortarBags = Math.max(1, Math.ceil(totalMortarSqFt / 45.0));
+
+    // Grout: 10 lb box covers approx 40-70 sq ft of 12x24 tile with 1/8" joint
+    var groutBags = Math.max(1, Math.ceil(grossTile / 55.0));
+    var groutLbs = groutBags * 10;
+
+    // Update UI
+    document.getElementById('r_takeoffTitle').textContent = netArea.toFixed(1) + " Net Sq Ft &bull; " + boxes + " Box" + (boxes > 1 ? "es" : "") + " of Tile";
+    document.getElementById('r_netArea').textContent = netArea.toFixed(1) + " Sq Ft";
+    document.getElementById('r_grossArea').textContent = grossTile.toFixed(1) + " gross sq ft (" + wastePct + "% waste)";
+
+    document.getElementById('r_boxCount').textContent = boxes + " Box" + (boxes > 1 ? "es" : "");
+    document.getElementById('r_boxDesc').textContent = "At " + cartonSqFt.toFixed(1) + " sq ft / box";
+
+    document.getElementById('r_underlaymentQty').textContent = underlaymentQtyText;
+    document.getElementById('r_underlaymentDesc').textContent = underlaymentDescText;
+
+    document.getElementById('r_mortarBags').textContent = mortarBags + " Bag" + (mortarBags > 1 ? "s" : "");
+    document.getElementById('r_mortarDetail').textContent = "50 lb Modified Thinset";
+
+    document.getElementById('r_groutLbs').textContent = groutLbs + " lbs (" + groutBags + " &times; 10 lb Box" + (groutBags > 1 ? "es" : "") + ")";
+    document.getElementById('r_fastenerReq').textContent = fastenerText;
+    document.getElementById('r_thresholdReq').textContent = "1 Doorway Transition Saddle";
+
+    var summary = "Takeoff: Bathroom floor requires " + netArea.toFixed(1) + " net square feet of tile. Factor in " + wastePct + "% waste for perimeter and toilet flange cuts to order " + grossTile.toFixed(1) + " gross sq ft (" + boxes + " boxes). You will need " + underlaymentQtyText + " of " + (underlayment === 'cbu' ? "cement backer board" : "uncoupling membrane") + ", " + mortarBags + " bag" + (mortarBags > 1 ? "s" : "") + " of modified thinset mortar, " + groutLbs + " lbs of grout, and 1 doorway transition threshold.";
+    document.getElementById('r_fullSummary').textContent = summary;
+  }
+
+  var inputs = ['roomLenFt', 'roomWidFt', 'tubDeduction', 'vanityDeduction', 'underlaymentType', 'tileFormat', 'cartonSqFt', 'groutJoint'];
+  inputs.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', calc);
+      el.addEventListener('change', calc);
+    }
+  });
+
+  // Presets
+  document.querySelectorAll('.bath-preset-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.getElementById('roomLenFt').value = this.dataset.len;
+      document.getElementById('roomWidFt').value = this.dataset.wid;
+      document.getElementById('tubDeduction').value = this.dataset.tub;
+      document.getElementById('vanityDeduction').value = this.dataset.vanity;
+
+      document.querySelectorAll('.bath-preset-btn').forEach(function(b) {
+        b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
+        b.classList.add('bg-gray-100', 'text-gray-700', 'border-gray-200');
+      });
+      this.classList.remove('bg-gray-100', 'text-gray-700', 'border-gray-200');
+      this.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
+
+      calc();
+    });
+  });
+
+  document.getElementById('calcBtn').addEventListener('click', calc);
+  calc();
+
+  document.getElementById('copyListBtn').addEventListener('click', function() {
+    var title = document.getElementById('r_takeoffTitle').textContent;
+    var net = document.getElementById('r_netArea').textContent;
+    var gross = document.getElementById('r_grossArea').textContent;
+    var boxes = document.getElementById('r_boxCount').textContent;
+    var underlayment = document.getElementById('r_underlaymentQty').textContent;
+    var mortar = document.getElementById('r_mortarBags').textContent;
+    var grout = document.getElementById('r_groutLbs').textContent;
+
+    var text = `=== Bathroom Floor Tile Takeoff ===
+Estimate: ${title}
+Net Coverage: ${net}
+Gross Tile: ${gross}
+Cartons: ${boxes}
+Underlayment: ${underlayment}
+Thinset Mortar: ${mortar}
+Grout: ${grout}
+Standards: TCNA F144 / F125 & ANSI A108.11
+Estimated via CalcForDIY (https://calcfordiy.com/calculators/bathroom-floor-tile/)`;
+
+    navigator.clipboard.writeText(text).then(function() {
+      var btn = document.getElementById('copyListBtn');
+      btn.textContent = '✓ Copied Takeoff!';
+      setTimeout(function() { btn.textContent = '📋 Copy Takeoff'; }, 2500);
+    });
+  });
+})();
+</script>

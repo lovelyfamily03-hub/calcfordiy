@@ -203,18 +203,18 @@ Target: **78 Live Tools → 100 Flagship Calculators** (+22 New Tools)
 - `[x]` **#88 — OSB & Plywood Sheathing Calculator** (`/calculators/osb-sheathing`) — 4x8 panel count, 1/8" expansion gaps, IRC R602.3 8d nail schedule.
 - `[x]` **#89 — IRC Egress Window Rough Opening Calculator** (`/calculators/egress-window`) — IRC Section R310 (5.7 sq ft net opening, 44" max sill height, well sq ft).
 
-#### Electrical, Energy & HVAC (#90 – #91 - COMPLETE ✅)
-- `[x]` **#90 — Blown-In Attic Insulation Bag Estimator** (`/calculators/attic-insulation`) — R-30 to R-60 target upgrade, cellulose vs fiberglass bag tables.
-- `[x]` **#91 — Extension Cord Wire Gauge & Voltage Drop Calculator** (`/calculators/extension-cord-drop`) — 14 AWG / 12 AWG / 10 AWG voltage drop over 25–100 ft runs for 15A/20A motor loads.
-- `[ ]` **#92 — Low-Voltage Landscape Lighting Transformer & Wire Calculator** (`/calculators/landscape-lighting-wire`) — 12V/15V taps, wattage headroom, 12/2 vs 10/2 gauge drop.
+#### Electrical, Energy & HVAC (#90 – #92 - COMPLETE ✅)
+- `[x]` **#90 — Blown-In Attic Insulation Bag Estimator** (`/calculators/attic-insulation/`) — R-30 to R-60 target upgrade, cellulose vs fiberglass bag tables.
+- `[x]` **#91 — Extension Cord Wire Gauge & Voltage Drop Calculator** (`/calculators/extension-cord-drop/`) — 14 AWG / 12 AWG / 10 AWG voltage drop over 25–100 ft runs for 15A/20A motor loads.
+- `[x]` **#92 — Low-Voltage Landscape Lighting Transformer & Wire Calculator** (`/calculators/landscape-lighting-wire/`) — 12V/15V taps, wattage headroom, 12/2 vs 10/2 gauge drop.
 
-#### Kitchen, Bath & Tile (#93 – #95)
-- `[ ]` **#93 — Kitchen Backsplash Tile & Mosaic Takeoff** (`/calculators/kitchen-backsplash-tile`) — Outlet box subtractions, diagonal/herringbone waste, grout bags.
-- `[ ]` **#94 — Bathroom Floor Tile & Underlayment Estimator** (`/calculators/bathroom-floor-tile`) — CBU backer board / DITRA uncoupling membrane rolls.
-- `[ ]` **#95 — Countertop Square Footage & Overhang Support Calculator** (`/calculators/countertop-sqft`) — Granite/quartz slab area, corbel steel bracket spacing (>10" overhang).
+#### Kitchen, Bath & Tile (#93 – #95 - COMPLETE ✅)
+- `[x]` **#93 — Kitchen Backsplash Tile & Mosaic Takeoff** (`/calculators/kitchen-backsplash-tile/`) — Outlet box subtractions, diagonal/herringbone waste, grout bags.
+- `[x]` **#94 — Bathroom Floor Tile & Underlayment Estimator** (`/calculators/bathroom-floor-tile/`) — CBU backer board / DITRA uncoupling membrane rolls.
+- `[x]` **#95 — Countertop Square Footage & Overhang Support Calculator** (`/calculators/countertop-sqft/`) — Granite/quartz slab area, corbel steel bracket spacing (>10" overhang).
 
 #### Outdoor, Masonry & Landscaping (#96 – #100)
-- `[ ]` **#96 — Sod Pallet & Lawn Roll Estimator** (`/calculators/sod-pallet`) — Pallets (450–500 sq ft), starter fertilizer bags, topsoil layer.
+- `[x]` **#96 — Sod Pallet & Lawn Roll Estimator** (`/calculators/sod-pallet/`) — Pallets (450–500 sq ft), starter fertilizer bags, topsoil layer.
 - `[ ]` **#97 — Drip Irrigation Emitter & Line Pressure Drop Calculator** (`/calculators/drip-irrigation`) — GPH emitter count per plant zone, 1/2" main tubing max run length.
 - `[ ]` **#98 — Topsoil & Lawn Dressing Overseeding Calculator** (`/calculators/topsoil-lawn-dressing`) — Cubic yards for 1/4"–1/2" topdressing, seed lbs per 1,000 sq ft.
 - `[ ]` **#99 — Split-Rail & Post-and-Rail Fence Estimator** (`/calculators/split-rail-fence`) — Line/corner/end posts, 2-rail vs 3-rail lumber, concrete footings.
