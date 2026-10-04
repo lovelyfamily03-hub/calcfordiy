@@ -105,7 +105,9 @@
 - [x] `"How Many Bags of Concrete for a Sonotube (8, 10, 12, 16 In)?"` (`/guides/how-many-bags-of-concrete-for-sonotube`)
 - [x] `"How Deep Should a Gravel Driveway Be? (3-Layer Guide)"` (`/guides/how-deep-should-a-gravel-driveway-be`)
 
-### 📰 Field Journal Dispatches (`/journal/` - COMPLETE ✅ 11 Live Dispatches with Photos)
+### 📰 Field Journal Dispatches (`/journal/` - COMPLETE ✅ 13 Live Dispatches with Photos)
+- [x] `"The $14,000 Bowing Retaining Wall: Hydrostatic Surcharge, Clay Backfill, and the 4-Foot Code Threshold"` (`/journal/the-14000-dollar-bowing-retaining-wall-hydrostatic-surcharge`)
+- [x] `"The Attic Mold Catastrophe: How 18 Inches of Blown Insulation Suffocated the Soffit Baffles"` (`/journal/the-attic-mold-catastrophe-blown-insulation-soffit-baffles`)
 - [x] `"The 1/4\" Slope Drainage Mistake: Why a Buried French Drain Flooded the Basement Wall"` (`/journal/the-quarter-inch-slope-drainage-mistake-perforated-pipe-physics`)
 - [x] `"Why Cold-Weather Grout Crumbled: Efflorescence, Slump, and ANSI A118.6 Forensic Chemistry"` (`/journal/why-cold-weather-grout-crumbled-efflorescence-chemistry`)
 - [x] `"The $6,200 Ice Dam Catastrophe: Why Standard Felt Paper Failed on a 3:12 Pitch Roof"` (`/journal/the-6200-dollar-ice-dam-roofing-failure-eave-warm-wall`)

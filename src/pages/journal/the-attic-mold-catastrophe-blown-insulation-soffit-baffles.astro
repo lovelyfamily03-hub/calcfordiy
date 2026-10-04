@@ -1,0 +1,293 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: 'The Attic Mold Catastrophe: How 18 Inches of Blown Insulation Suffocated the Soffit Baffles',
+  slug: 'the-attic-mold-catastrophe-blown-insulation-soffit-baffles',
+  description: 'A building science autopsy of an R-60 attic retrofit that turned into an emergency black mold remediation. Why stuffing loose-fill cellulose into roof eaves choked continuous soffit ventilation, spiked attic humidity to 100%, and rotted the plywood roof sheathing.',
+  author: 'Elena Rostova',
+  authorRole: 'Historic Renovation Specialist',
+  reviewer: 'David Miller, PE',
+  reviewerRole: 'Senior Structural Contributor',
+  publishDate: 'October 11, 2026',
+  readTime: '12 min read',
+  category: 'Field Investigation',
+  image: '/images/journal/attic-mold-soffit-blockage.jpg',
+  tag: 'Building Science & Envelope',
+  companionCalculator: {
+    name: 'Blown-In Attic Insulation Bag & R-Value Calculator',
+    href: '/calculators/attic-insulation/',
+    desc: 'Calculate fiberglass vs cellulose bag counts, target R-value depth, soffit baffle counts, and air sealing foam requirements.'
+  },
+  companionHub: {
+    name: 'Whole-Home Energy & HVAC Efficiency Hub',
+    href: '/projects/hvac-energy-efficiency/',
+    desc: 'Attic air sealing, rafter ventilation baffles, continuous eave intake, and whole-house fan ventilation.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-10-11T08:00:00+00:00",
+    "dateModified": "2026-10-11T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            ER
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-gray-500 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200">
+          <div>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Published</span>
+            <span class="font-mono text-gray-800">{article.publishDate}</span>
+          </div>
+          <div class="border-l border-gray-200 pl-4">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="font-semibold text-gray-800">{article.reviewer}</span>
+            <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Companion Tool Callout (Top) -->
+    <div class="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-5 rounded-r-xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-0.5">Companion Engineering Tool</div>
+        <div class="font-bold text-gray-900 text-base">{article.companionCalculator.name}</div>
+        <div class="text-xs text-gray-600 mt-0.5">{article.companionCalculator.desc}</div>
+      </div>
+      <a
+        href={article.companionCalculator.href}
+        class="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors flex items-center gap-1.5"
+      >
+        <span>Open Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Editorial Lead Photo -->
+    <figure class="mb-10 rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-gray-100">
+      <img
+        src={article.image}
+        alt="Blown cellulose insulation blocking attic eave soffit vents with black mold on roof sheathing"
+        class="w-full h-auto object-cover max-h-[500px]"
+        loading="eager"
+      />
+      <figcaption class="p-3 bg-gray-50 text-xs text-gray-600 border-t border-gray-200 font-mono">
+        Figure 1.1: Flashlight inspection view of the northeast eave bay in Minneapolis. Loose cellulose was blown directly against the underside of the roof decking, suffocating the soffit intake vents and creating an unventilated moisture chamber that spawned black mold within 90 days.
+      </figcaption>
+    </figure>
+
+    <!-- Article Body -->
+    <div class="prose prose-lg max-w-none text-gray-800 space-y-8 font-serif">
+      <section class="space-y-4">
+        <p class="text-xl sm:text-2xl leading-relaxed text-gray-900 font-serif font-medium first-letter:text-5xl first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:text-blue-900">
+          The smell hit us the second we unscrewed the attic hatch in the upstairs hallway. It wasn't the sweet, woody aroma of dry Douglas fir lumber—it was the heavy, acrid, mushroom-like stench of active fungal colonization and rotting wood fiber.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Three months earlier, the homeowners of a 1994 two-story home in suburban Minneapolis had taken advantage of an energy efficiency rebate program. Their attic had only 6 inches of compressed fiberglass batts (roughly R-19). An insulation contractor wheeled in a commercial blower truck and pumped in 72 bags of loose-fill borate-treated cellulose, bringing the thermal blanket to a plush 18 inches (R-60).
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The home felt warmer, and heating bills dropped by $90 the first month. But by late February, dark brown water rings began blooming on the master bedroom ceiling drywall. When we pushed a ladder into the attic crawlspace with a high-lumen inspection flashlight, the entire northern roof slope looked as if someone had spray-painted the plywood deck with charcoal soot.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Forensic Diagnosis: The Suffocated Eaves</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          In cold-climate building science (IECC Climate Zones 5 through 7), an unconditioned attic is designed to remain at the <strong>exact same temperature and humidity as the outdoor winter air</strong>.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          When we crawled into the tight eave overhangs near the exterior wall top plates, the root cause became instantly glaring:
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">1. Zero Rafter Vent Baffles (The Suffocation)</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Under <strong>IRC Section R806.3</strong>, a clear ventilation path of not less than <strong>1 inch (25 mm)</strong> must be maintained between the insulation and the roof sheathing at the location of the vent.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The insulation blowing crew had stood in the center of the attic and aimed the 4-inch discharge hose into the dark eave corners. Without pre-installing rigid PVC or extruded polystyrene (XPS) rafter baffles (commonly called AccuVents or Raft-R-Mates), the dense cloud of grey cellulose packed tightly into the bird's mouth notches, completely damming every perforated vinyl soffit intake vent along the 64-foot eave.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">2. The 1:300 Ventilation Imbalance Fallacy</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The house had a continuous ridge vent along the roof peak. But a ridge vent operates on the <em>stack effect</em> (buoyancy): warm air exhausts out the top <strong>only if an equal volume of cold, dry replacement air can enter from the bottom soffits</strong>.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          With the soffits 100% blocked by cellulose, the ridge vent could not draw outdoor air. Instead, the attic became a negative pressure zone relative to the conditioned house below, actively sucking warm, humid indoor air up through ceiling penetrations.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">3. The Unsealed Attic Bypasses</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The contractor had blown insulation over the top plates without performing <strong>air sealing</strong>. A family of four generates roughly <strong>2 to 3 gallons of airborne water vapor daily</strong> through respiration, hot showers, and cooking.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          That warm vapor drifted through gaps around recessed lighting cans, bathroom exhaust fan housings, plumbing vent stacks, and the open drywall seams atop partition walls.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          When this 68°F air carrying 45% relative humidity entered the freezing 12°F attic cavity, it hit the sub-zero plywood roof decking. The temperature of the wood was far below the dew point (around 46°F). Water vapor instantly condensed into liquid droplets, froze into sheets of frost over December and January, and thawed into gallons of liquid runoff during the February warm snap.
+        </p>
+      </section>
+
+      <AdSlot type="in-feed" />
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Remediation &amp; Engineered Re-Insulation</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The cost of correcting this installation totaled $8,850—more than three times the price of the original insulation job. Here is the surgical process required to fix the envelope:
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Phase 1: Mold Abatement &amp; Decking Treatment</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          A licensed remediation crew used industrial vacuum trucks equipped with HEPA filtration to suck out the top 6 inches of contaminated, moisture-soaked cellulose. They applied a commercial quaternary ammonium antimicrobial wash to the plywood sheathing and framing rafters, followed by HEPA dry-ice blasting to remove all surface hyphae without damaging the structural wood fibers.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Phase 2: Rafter Baffle Installation with 2-Inch Headroom</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          In every single rafter bay (48 bays total), we installed heavy-duty rigid extruded polystyrene baffles with integrated eave wind blocks. The baffles were stapled to the underside of the roof sheathing, extending from 4 inches past the exterior wall plate to 12 inches above the final R-60 insulation line, preserving a continuous <strong>2-inch air chute</strong> directly above the soffits.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Phase 3: Comprehensive Two-Part Spray Foam Air Sealing</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Before blowing new insulation, we used closed-cell polyurethane foam kits to seal every ceiling penetration: all drywall top plate seams, wire penetrations, bath fan duct transitions, and the perimeter of the attic access door. The access hatch was fitted with automotive weatherstripping and a 4-inch rigid polyiso insulation box (R-26).
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Phase 4: Balanced Re-Blow to R-60 Depth</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          We installed depth measurement rulers across the attic joists and blew in virgin virgin-fiber borate cellulose to a settled depth of 17.5 inches. With continuous soffit intake airflow restored, a test with an anemometer confirmed 180 linear feet per minute of airflow rushing up through the baffles and exhausting cleanly out the ridge.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Key Rules Before Blowing Attic Insulation</h2>
+        <div class="space-y-3">
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Air seal FIRST, insulate second:</strong> Blown cellulose and fiberglass are thermal filters, not air barriers. Adding insulation over unsealed ceiling bypasses only traps moist indoor air against cold framing.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Install rafter baffles in EVERY bay:</strong> Never allow blown insulation to contact the underside of roof sheathing. Install baffles that extend at least 6 inches above your target insulation depth before touching a blower hose.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Respect the 1:300 ventilation rule:</strong> Ensure your attic ventilation is balanced 50/50 between low eave soffit intake and high ridge exhaust per IRC Section R806.2.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Use an insulation calculator to avoid over-ordering:</strong> Piling extra bags into an attic to "use up the pallet" routinely results in packed eave corners and suffocated soffits. Calculate exact bag counts based on manufacturer coverage charts.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Editorial Signoff & Methodology Note -->
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-xl space-y-3 font-sans text-xs text-gray-600">
+      <div class="font-bold text-gray-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>CalcForDIY Editorial Standards &amp; Safety Disclaimer</span>
+      </div>
+      <p>
+        Field Investigations published in the CalcForDIY Journal chronicle real-world trade installations, forensics, and job-site inspections. Construction practices, building codes, and safety requirements vary significantly by municipality, climate zone, and local Authority Having Jurisdiction (AHJ).
+      </p>
+      <p>
+        Always wear NIOSH-approved P100 respirators, protective eyewear, and safety harnesses when working in attic cavities containing airborne mineral fibers, cellulose particulates, or suspected mold spores.
+      </p>
+    </div>
+
+    <!-- Bottom Companion Hub Recommendation -->
+    <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-md">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider font-bold text-blue-400 mb-1">Related Project Workflow Hub</div>
+        <div class="text-lg font-bold text-white mb-1">{article.companionHub.name}</div>
+        <div class="text-xs text-gray-300 max-w-xl">{article.companionHub.desc}</div>
+      </div>
+      <a
+        href={article.companionHub.href}
+        class="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-2"
+      >
+        <span>Explore Full Hub</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Back to Journal Hub Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between font-sans text-xs">
+      <a href="/journal/" class="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+        <span>← Back to All Journal Stories</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-900">
+        Home
+      </a>
+    </div>
+  </article>
+</Layout>

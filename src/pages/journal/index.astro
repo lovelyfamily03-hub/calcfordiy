@@ -4,6 +4,36 @@ import AdSlot from '../../components/AdSlot.astro';
 
 const articles = [
   {
+    title: "The $14,000 Bowing Retaining Wall: Hydrostatic Surcharge, Clay Backfill, and the 4-Foot Code Threshold",
+    slug: "the-14000-dollar-bowing-retaining-wall-hydrostatic-surcharge",
+    image: "/images/journal/retaining-wall-bowing-failure.jpg",
+    excerpt: "A forensic failure analysis of a 5.5-foot residential concrete block retaining wall that bowed 8 inches forward after heavy autumn rain. How clay backfill, missing geogrid reinforcement, and zero drainage stone generated 4,800 lbs of hydrostatic surcharge.",
+    author: "David Miller, PE",
+    authorRole: "Senior Structural Contributor",
+    publishDate: "October 4, 2026",
+    readTime: "11 min read",
+    category: "Field Investigation",
+    tag: "Concrete & Earthwork",
+    companionTool: "Retaining Wall Block & Geogrid Calculator",
+    companionHref: "/calculators/retaining-wall/",
+    featured: true
+  },
+  {
+    title: "The Attic Mold Catastrophe: How 18 Inches of Blown Insulation Suffocated the Soffit Baffles",
+    slug: "the-attic-mold-catastrophe-blown-insulation-soffit-baffles",
+    image: "/images/journal/attic-mold-soffit-blockage.jpg",
+    excerpt: "A building science autopsy of an R-60 attic retrofit that turned into an emergency black mold remediation. Why stuffing loose-fill cellulose into roof eaves choked continuous soffit ventilation, spiked attic humidity to 100%, and rotted the plywood roof sheathing.",
+    author: "Elena Rostova",
+    authorRole: "Historic Renovation Specialist",
+    publishDate: "October 11, 2026",
+    readTime: "12 min read",
+    category: "Field Investigation",
+    tag: "Roofing & Envelope",
+    companionTool: "Blown-In Attic Insulation Bag Calculator",
+    companionHref: "/calculators/attic-insulation/",
+    featured: false
+  },
+  {
     title: "The 1/4\" Slope Drainage Mistake: Why a Buried French Drain Flooded the Basement Wall",
     slug: "the-quarter-inch-slope-drainage-mistake-perforated-pipe-physics",
     image: "/images/journal/french-drain-slope-failure.jpg",
@@ -16,7 +46,7 @@ const articles = [
     tag: "Drainage & Earthwork",
     companionTool: "French Drain Trench Calculator",
     companionHref: "/calculators/french-drain/",
-    featured: true
+    featured: false
   },
   {
     title: "Why Cold-Weather Grout Crumbled: Efflorescence, Slump, and ANSI A118.6 Forensic Chemistry",
@@ -206,7 +236,7 @@ const allCategories = ["All", "Electrical & Energy", "Plumbing & Drainage", "Til
   <header class="border-b-2 border-gray-900 pb-6 mb-8 pt-2">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 pb-3 mb-4">
       <div>
-        <span class="text-xs font-mono font-bold tracking-widest text-blue-700 uppercase">Volume 1 • Issue 2 • September 2026</span>
+        <span class="text-xs font-mono font-bold tracking-widest text-blue-700 uppercase">Volume 1 • Issue 3 • October 2026</span>
         <h1 class="text-4xl md:text-6xl font-black text-gray-950 tracking-tight mt-1 font-serif">CALCFORDIY JOURNAL</h1>
       </div>
       <div class="text-xs text-gray-700 font-mono text-left md:text-right">

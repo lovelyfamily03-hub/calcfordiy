@@ -1,0 +1,303 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: 'The $14,000 Bowing Retaining Wall: Hydrostatic Surcharge, Clay Backfill, and the 4-Foot Code Threshold',
+  slug: 'the-14000-dollar-bowing-retaining-wall-hydrostatic-surcharge',
+  description: 'A forensic failure analysis of a 5.5-foot residential concrete block retaining wall that bowed 8 inches forward after heavy autumn rain. How clay backfill, missing geogrid reinforcement, and zero drainage stone generated 4,800 lbs of hydrostatic surcharge.',
+  author: 'David Miller, PE',
+  authorRole: 'Senior Structural Contributor',
+  reviewer: 'Marcus Vance',
+  reviewerRole: 'Master Groundwork & Drainage Specialist',
+  publishDate: 'October 4, 2026',
+  readTime: '11 min read',
+  category: 'Field Investigation',
+  image: '/images/journal/retaining-wall-bowing-failure.jpg',
+  tag: 'Masonry & Earth Retention',
+  companionCalculator: {
+    name: 'Retaining Wall Block & Geogrid Calculator',
+    href: '/calculators/retaining-wall/',
+    desc: 'Calculate block unit counts, capstones, geogrid reinforcement layers, 3/4" drainage gravel tons, and base trench excavation depth.'
+  },
+  companionHub: {
+    name: 'Outdoor Patio & Hardscaping Hub',
+    href: '/projects/outdoor-patio/',
+    desc: 'Excavation depth, sub-base compaction, retaining wall block engineering, and polymeric sand locking.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-10-04T08:00:00+00:00",
+    "dateModified": "2026-10-04T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            DM
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-gray-500 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200">
+          <div>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Published</span>
+            <span class="font-mono text-gray-800">{article.publishDate}</span>
+          </div>
+          <div class="border-l border-gray-200 pl-4">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="font-semibold text-gray-800">{article.reviewer}</span>
+            <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Companion Tool Callout (Top) -->
+    <div class="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-5 rounded-r-xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-0.5">Companion Engineering Tool</div>
+        <div class="font-bold text-gray-900 text-base">{article.companionCalculator.name}</div>
+        <div class="text-xs text-gray-600 mt-0.5">{article.companionCalculator.desc}</div>
+      </div>
+      <a
+        href={article.companionCalculator.href}
+        class="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors flex items-center gap-1.5"
+      >
+        <span>Open Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Editorial Lead Photo -->
+    <figure class="mb-10 rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-gray-100">
+      <img
+        src={article.image}
+        alt="Bowing and tilted concrete block retaining wall failing under hydrostatic clay pressure"
+        class="w-full h-auto object-cover max-h-[500px]"
+        loading="eager"
+      />
+      <figcaption class="p-3 bg-gray-50 text-xs text-gray-600 border-t border-gray-200 font-mono">
+        Figure 1.1: Forensic site view of a 5.5-foot dry-stacked retaining wall in Atlanta. Notice the 8-inch forward belly deflection along courses 4 through 7, caused by zero aggregate backfill and saturated clay expansion.
+      </figcaption>
+    </figure>
+
+    <!-- Article Body -->
+    <div class="prose prose-lg max-w-none text-gray-800 space-y-8 font-serif">
+      <section class="space-y-4">
+        <p class="text-xl sm:text-2xl leading-relaxed text-gray-900 font-serif font-medium first-letter:text-5xl first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:text-blue-900">
+          From twenty feet away, you didn't need a laser transit to see the disaster. The middle thirty feet of the retaining wall were bulging into the lower lawn like the bow of an overloaded cargo freighter, separating the top coping stones by nearly three inches.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The homeowner, Mark, had paid a landscape subcontractor $14,200 just fourteen months earlier to carve out a sloped backyard hillside and create a flat sod play area for his children. The subcontractor had stacked 80-pound architectural concrete retaining blocks, glued the caps, and walked away.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Then came three days of relentless October rain—over 4.2 inches in 48 hours. By day three, Mark heard a dull groaning sound outside his home office window. The ground behind the wall had settled two feet down, and the wall had shoved forward by eight inches, shearing off the underground sprinkler main and threatening to collapse straight onto the driveway below.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Autopsy: Why Retaining Walls Fail</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          When a retaining wall fails, 98% of homeowners believe the concrete blocks weren't strong enough. That is almost never true. Concrete blocks do not fail in compression; they are pushed over by soil physics and subterranean water.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          We brought in a mini-excavator to dismantle the failure zone block by block. What we documented was a textbook checklist of structural omission:
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">1. The 4-Foot Code Threshold (Zero Engineering Permitting)</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Under <strong>IRC Section R105.2</strong> and the <strong>National Concrete Masonry Association (NCMA) Design Manual</strong>, retaining walls that retain more than <strong>48 inches (4 feet)</strong> of unbalanced backfill require engineered structural drawings and a municipal building permit.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Up to 3 or 4 feet, a dry-stacked segmental block wall functions as a pure <em>gravity wall</em>—its self-weight (130 lbs/cu ft) and built-in rearward setback (typically 3/4-inch per foot) resist the active lateral earth pressure of the soil wedge.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          At 5.5 feet tall, however, the overturning moment increases with the <strong>cube of the height</strong> (overturning moment M scales with H cubed). By increasing the wall height from 4 feet to 5.5 feet, the contractor increased the overturning force against the bottom course by more than <strong>260%</strong>. Gravity blocks alone cannot withstand this rotational shear without mechanical soil reinforcement.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">2. Zero Geogrid Soil Reinforcement</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          On any wall over 4 feet, code requires <strong>biaxial or uniaxial geogrid</strong>—a high-tensile polyester or polypropylene mesh—sandwiched between block courses and extending horizontally back into the hillside.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Geogrid does not just anchor the block facade; it mechanically locks the retained soil into a unified, coherent reinforced soil mass (extending 60% to 70% of wall height back into the slope). For a 5.5-foot wall, geogrid layers should have been laid every two courses (16 inches vertically), extending at least <strong>4 to 5 feet back</strong> into the excavated bank.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          During our excavation, we dug behind the blocks. We found zero geogrid. Not a single square inch. The wall was essentially a 5.5-foot-tall unmortared stack of dominoes fighting thousands of pounds of live earth.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">3. Saturated Red Clay vs. Drainage Gravel</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          This was the fatal nail in the coffin. When the contractor excavated the hillside, he had a massive mound of native Georgia red clay sitting on the lawn. Rather than paying $45 per ton to haul in clean 3/4-inch angular crushed granite gravel (#57 stone), he scraped the native clay straight back behind the blocks.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          High-plasticity clay has almost zero drainage permeability. When dry, clay weighs roughly 100 lbs/cu ft. When saturated with rainwater, two devastating physical reactions occur:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-base sm:text-lg text-gray-800">
+          <li><strong>Hydrostatic Surcharge:</strong> Trapped water cannot drain away, adding 62.4 lbs/cu ft of liquid pressure directly to the soil weight.</li>
+          <li><strong>Clay Plastic Expansion:</strong> Montmorillonite clay minerals swell by up to 20% in volume, exerting outward lateral swelling pressures exceeding 2,000 lbs/sq ft.</li>
+        </ul>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Without a vertical 12-inch drainage chimney of angular stone and without a perforated collector pipe at the footing, that saturated clay transformed into a heavy, fluid hydraulic ram pushing directly against the unanchored blocks.
+        </p>
+      </section>
+
+      <AdSlot type="in-feed" />
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Engineering Rebuild: Step-by-Step Restoration</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          You cannot repair a bowed retaining wall by pushing it back. Once the interlocking pins shear and the base shifts, the entire structure must be dismantled to the subgrade. Here is how we engineered the permanent rebuild:
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 1: The Compacted Leveling Pad (ASTM D2940)</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          We excavated a 24-inch-wide trench down to virgin subgrade, 12 inches below finished grade. We installed <strong>6 inches of dense-grade aggregate (crusher run)</strong>, compacted in two 3-inch lifts using a 200-lb plate compactor to 98% Standard Proctor density. The first course of blocks was buried a full 6 inches below ground to prevent toe kickout.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 2: Footing Drainage Pipe Daylighting to Gravity</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Directly behind the buried base course, we bedded a 4-inch perforated rigid PVC drain pipe (holes pointed DOWN at 4 and 8 o'clock), pitched at 1/8-inch per foot, and piped it around the wall to daylight in a rain garden downslope.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 3: The 12-Inch Washed Stone Drainage Chimney</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Behind every course, we installed a minimum of <strong>12 inches of washed 3/4-inch crushed granite (#57 stone)</strong>, separated from the hillside clay with 4 oz non-woven needle-punched geotextile fabric. Water filtering down from the lawn hits the gravel chimney and drops harmlessly to the footer pipe in seconds, with zero hydrostatic head ever developing against the blocks.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 4: Biaxial Geogrid Layers at Courses 2, 4, and 6</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          We rolled out heavy-duty biaxial geogrid (Miragrid 2XT) perpendicular to the wall face at courses 2, 4, and 6. Each sheet extended <strong>5.0 feet back</strong> into the excavated bench, pulled taut, pinned with rebar stakes, and backfilled with crushed stone and compacted select borrow fill.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Rules for Building Retaining Walls That Last Decades</h2>
+        <div class="space-y-3">
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Never exceed 4 feet without engineering &amp; geogrid:</strong> If your grade change exceeds 4 feet, terraced tiered walls (two 3-foot walls separated by a 4-foot planter bench) are far cheaper, code-exempt, and structurally superior to a single tall monolith.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Clay is NOT backfill:</strong> Never backfill native clay against the back of retaining blocks. Budget for 1 ton of washed 3/4-inch drainage stone for every 4 to 5 linear feet of a 4-foot wall.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Always bury the bottom course:</strong> A wall sitting on top of grass has zero lateral resistance. Bury at least 1 inch of block for every 8 inches of wall height (minimum 1 full course).
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Calculate exact block &amp; gravel tonnage in advance:</strong> Running short of drainage gravel tempts contractors to toss excavated dirt behind the top courses. Use our companion calculator to verify your exact tonnage before picking up the phone.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Editorial Signoff & Methodology Note -->
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-xl space-y-3 font-sans text-xs text-gray-600">
+      <div class="font-bold text-gray-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>CalcForDIY Editorial Standards &amp; Safety Disclaimer</span>
+      </div>
+      <p>
+        Field Investigations published in the CalcForDIY Journal chronicle real-world trade installations, forensics, and job-site inspections. Construction practices, building codes, and safety requirements vary significantly by municipality, climate zone, and local Authority Having Jurisdiction (AHJ).
+      </p>
+      <p>
+        Always consult with a licensed structural engineer and obtain required municipal permits prior to constructing retaining walls exceeding 48 inches in total height or supporting driveway and foundation surcharge loads.
+      </p>
+    </div>
+
+    <!-- Bottom Companion Hub Recommendation -->
+    <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-md">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider font-bold text-blue-400 mb-1">Related Project Workflow Hub</div>
+        <div class="text-lg font-bold text-white mb-1">{article.companionHub.name}</div>
+        <div class="text-xs text-gray-300 max-w-xl">{article.companionHub.desc}</div>
+      </div>
+      <a
+        href={article.companionHub.href}
+        class="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-2"
+      >
+        <span>Explore Full Hub</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Back to Journal Hub Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between font-sans text-xs">
+      <a href="/journal/" class="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+        <span>← Back to All Journal Stories</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-900">
+        Home
+      </a>
+    </div>
+  </article>
+</Layout>

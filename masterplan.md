@@ -26,11 +26,11 @@
 ## CURRENT STATUS & 100-CALCULATOR GOAL
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Total Pages Live:** 173 pages (344 static route outputs built)
+- **Total Pages Live:** 175 pages (346 static route outputs built)
 - **Calculators live:** 115 calculators live (Target of 100 Calculators ACHIEVED & SURPASSED ✅)
 - **SEO Guides live:** 21 guides (`src/pages/guides/`)
 - **Project Workflow Hubs live:** 15 hubs (`src/pages/projects/`)
-- **Field Journal Case Studies live:** 11 in-depth case studies with on-site photography (`src/pages/journal/`)
+- **Field Journal Case Studies live:** 13 in-depth case studies with on-site photography (`src/pages/journal/`)
 - **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. 0 broken links verified across all 167 HTML pages. AdSense crawl buffer elapsed. Site is 100% READY for dashboard resubmission ("Request Review").
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
 - **GSC Status:** 167 pages indexed/crawlable, zero manual actions. Ranking in Top 10–20 for competitive long-tail terms (`how many boxes of laminate flooring do i need calculator` - Pos 9.0, `postcrete calculator` - Pos 20.0).
@@ -39,7 +39,7 @@
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[x]` **Status**: Wave 4 Expansion Complete (115 Live Interactive Calculators + 15 Project Workflow Hubs + 21 SEO Guides + 11 Journal Case Studies).
+- `[x]` **Status**: Wave 4 Expansion Complete (115 Live Interactive Calculators + 15 Project Workflow Hubs + 21 SEO Guides + 13 Journal Case Studies).
 - `[x]` **Moat 1: Dynamic SVG Visual Cut & Layout Diagrams** — 15 live interactive vector diagrams (Stair Stringers, Miter Saw Protractor, Retaining Wall, Paver Layers, Rebar Grid, Framing Studs).
 - `[x]` **Moat 2: One-Click `📋 Copy Shopping List` Button** — Global clipboard handler auto-injecting formatted material takeoffs into results cards.
 - `[x]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes with regional multipliers (COMPLETE ✅).
