@@ -105,7 +105,8 @@
 - [x] `"How Many Bags of Concrete for a Sonotube (8, 10, 12, 16 In)?"` (`/guides/how-many-bags-of-concrete-for-sonotube`)
 - [x] `"How Deep Should a Gravel Driveway Be? (3-Layer Guide)"` (`/guides/how-deep-should-a-gravel-driveway-be`)
 
-### 📰 Field Journal Dispatches (`/journal/` - COMPLETE ✅ 14 Live Dispatches with Photos)
+### 📰 Field Journal Dispatches (`/journal/` - COMPLETE ✅ 15 Live Dispatches with Photos)
+- [x] `"The Peeling Epoxy Disaster: Why a $5,400 Garage Floor Lifted in Sheets After One Summer"` (`/journal/the-peeling-epoxy-disaster-moisture-vapor-transmission`)
 - [x] `"The 3-Inch Frost Heave: Why Straight Sonotube Piers Jacked a $9,500 Timber Pergola"` (`/journal/the-3-inch-frost-heave-sonotube-pier-pergola-failure`)
 - [x] `"The $14,000 Bowing Retaining Wall: Hydrostatic Surcharge, Clay Backfill, and the 4-Foot Code Threshold"` (`/journal/the-14000-dollar-bowing-retaining-wall-hydrostatic-surcharge`)
 - [x] `"The Attic Mold Catastrophe: How 18 Inches of Blown Insulation Suffocated the Soffit Baffles"` (`/journal/the-attic-mold-catastrophe-blown-insulation-soffit-baffles`)
