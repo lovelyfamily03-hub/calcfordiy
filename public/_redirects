@@ -1,5 +1,5 @@
 # Cloudflare Pages 301 Permanent Redirect Rules
-# Resolves 404s and legacy URLs identified in Google Search Console
+# Resolves legacy URLs and ensures clean redirect paths
 
 # 1. Outdoor string lights -> string lights calculator
 /calculators/outdoor-string-lights /calculators/string-lights/ 301
@@ -17,29 +17,20 @@
 /calculators/concrete-mix /calculators/concrete-slab/ 301
 /calculators/concrete-mix/ /calculators/concrete-slab/ 301
 
-# 5. /yr relative fragment -> homepage
-/yr / 301
-/yr/ / 301
-
-# 6. Baseboard -> Baseboard & shoe molding calculator
+# 5. Baseboard -> Baseboard & shoe molding calculator
 /calculators/baseboard /calculators/baseboard-shoe-molding/ 301
 /calculators/baseboard/ /calculators/baseboard-shoe-molding/ 301
 
-# 7. Cloudflare email obfuscation route -> About page
-/cdn-cgi/l/email-protection /about/ 301
-/cdn-cgi/l/email-protection/* /about/ 301
-
-# 8. Pipe slope canonical redirect
-/calculators/pipe-slope /calculators/pipe-slope/ 301
-
-# 9. /day relative fragment -> homepage
-/day / 301
-/day/ / 301
-
-# 10. Raised bed -> Raised bed soil calculator
+# 6. Raised bed -> Raised bed soil calculator
 /calculators/raised-bed /calculators/raised-bed-soil/ 301
 /calculators/raised-bed/ /calculators/raised-bed-soil/ 301
 
-# 11. Sump pump size -> Sump pump sizing calculator
+# 7. Sump pump size -> Sump pump sizing calculator
 /calculators/sump-pump-size /calculators/sump-pump-sizing/ 301
 /calculators/sump-pump-size/ /calculators/sump-pump-sizing/ 301
+
+# 8. Residual fragments
+/yr / 301
+/yr/ / 301
+/day / 301
+/day/ / 301
