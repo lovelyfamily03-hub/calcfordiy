@@ -951,7 +951,7 @@ const projects = [
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
     {projects.map((project) => (
-      <a href={`/projects/${project.slug}`} class="block bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-400 hover:shadow-md transition-all group">
+      <a href={`/projects/${project.slug.replace(/\/+$/, '')}/`} class="block bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-400 hover:shadow-md transition-all group">
         <div class="flex items-center justify-between mb-3">
           <span class="text-3xl">{project.icon}</span>
           <span class="text-xs font-semibold px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full border border-blue-100">

@@ -1,0 +1,303 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: 'The Rotten Rim Joist: Why Lag Screws Through Vinyl Siding Nearly Collapsed an $18,000 Deck',
+  slug: 'the-rotten-rim-joist-deck-ledger-collapse',
+  description: 'A structural failure autopsy of a second-story pressure-treated deck pulling 1.5 inches away from the house framing. How bolting a ledger board directly over vinyl siding without Z-flashing or lateral tension ties turned an OSB rim board into wet mulch.',
+  author: 'David Miller, PE',
+  authorRole: 'Senior Structural Contributor',
+  reviewer: 'Elena Rostova',
+  reviewerRole: 'Historic Renovation Specialist',
+  publishDate: 'November 6, 2026',
+  readTime: '11 min read',
+  category: 'Field Investigation',
+  image: '/images/journal/rotten-deck-ledger-rim-joist.jpg',
+  tag: 'Structural Carpentry',
+  companionCalculator: {
+    name: 'Deck Joist Span & Beam Calculator',
+    href: '/calculators/deck-joist-span/',
+    desc: 'Calculate IRC Table R507 maximum deck joist spans, girder beam sizing, post spacing, and complete framing lumber schedules.'
+  },
+  companionHub: {
+    name: 'Deck Construction Hub',
+    href: '/projects/deck-building/',
+    desc: 'Follow our complete deck engineering workflow covering footings, ledger attachment, joist spans, stair stringers, and corrosion-resistant hardware.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-11-06T08:00:00+00:00",
+    "dateModified": "2026-11-06T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            DM
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-gray-500 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200">
+          <div>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Published</span>
+            <span class="font-mono text-gray-800">{article.publishDate}</span>
+          </div>
+          <div class="border-l border-gray-200 pl-4">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="font-semibold text-gray-800">{article.reviewer}</span>
+            <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Companion Tool Callout (Top) -->
+    <div class="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-5 rounded-r-xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-0.5">Companion Engineering Tool</div>
+        <div class="font-bold text-gray-900 text-base">{article.companionCalculator.name}</div>
+        <div class="text-xs text-gray-600 mt-0.5">{article.companionCalculator.desc}</div>
+      </div>
+      <a
+        href={article.companionCalculator.href}
+        class="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors flex items-center gap-1.5"
+      >
+        <span>Open Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Editorial Lead Photo -->
+    <figure class="mb-10 rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-gray-100">
+      <img
+        src={article.image}
+        alt="Waterlogged rotted OSB rim joist exposed behind a pressure-treated deck ledger bolted over vinyl siding"
+        class="w-full h-auto object-cover max-h-[500px]"
+        loading="eager"
+      />
+      <figcaption class="p-3 bg-gray-50 text-xs text-gray-600 border-t border-gray-200 font-mono">
+        Figure 1.1: Inspection tear-open beneath an 8-year-old second-story deck in Ohio. The pressure-treated ledger was bolted straight through hollow vinyl siding without head flashing, saturating the engineered OSB band joist until lag screw threads lost all withdrawal grip.
+      </figcaption>
+    </figure>
+
+    <!-- Article Body -->
+    <div class="prose prose-lg max-w-none text-gray-800 space-y-8 font-serif">
+      <section class="space-y-4">
+        <p class="text-xl sm:text-2xl leading-relaxed text-gray-900 font-serif font-medium first-letter:text-5xl first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:text-blue-900">
+          The homeowner noticed the sliding patio door threshold felt odd before anyone saw the deck moving. Whenever three or four adults walked out toward the railing with dinner plates, a thin wedge of daylight opened beneath the bottom edge of the aluminum patio sill—and a distinct creak echoed up from the basement ceiling directly below.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          From the backyard lawn, the 14-by-24-foot raised deck looked pristine. The composite decking boards were arrow-straight, the aluminum balusters were plumb, and the 6x6 support posts rested cleanly on poured piers. Yet from underneath with a 4-foot box level held against the joists, the truth was alarming: the entire house side of the <strong>$18,000 deck had separated 1.5 inches outward from the house wall</strong>, hanging precariously by rusted 3/8-inch lag screw tips bent downward like fishing hooks.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Across the United States, over 90% of catastrophic residential deck collapses occur at one single joint: the <strong>ledger board connection</strong> where the deck meets the house band joist. When we dismantled the first four composite planks against the wall and peeled back the vinyl siding, every mistake that causes ledger failure was hiding behind the trim.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Four Compounding Failures at the Band Joist</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Deck ledgers carry half of the entire structure's dead and live gravity load plus outward lateral tension every time people move toward the outer beam. In this failure, four seemingly minor builder shortcuts stacked together until structural failure became inevitable.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">1. Bolting Over Hollow Vinyl Siding (IRC R507.9.1.1)</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Instead of snapping a chalk line, cutting out the house cladding, and flashing directly to bare sheathing and structural rim framing, the original builder slapped the 2x10 pressure-treated ledger straight over existing Dutch-lap vinyl siding.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Under <strong>IRC Section R507.9.1.1</strong>, deck ledgers are strictly prohibited from being fastened over exterior cladding materials—including vinyl siding, lap siding, stucco, or brick veneer—without solid continuous structural bearing. Hollow vinyl lap siding creates a tapered void between 1/2 inch and 5/8 inch wide behind the ledger. Tightening lag screws crushes the brittle PVC panels unevenly, leaving bolts acting as <strong>cantilevered bending beams across an air gap</strong> instead of pure shear pins clamped tight between two structural faces:
+        </p>
+        <div class="bg-gray-50 border-l-4 border-blue-600 p-4 rounded-r-lg font-mono text-xs sm:text-sm text-gray-800 my-2">
+          1.50 in (2x10 Ledger) + 0.625 in (Crushed Vinyl Void) + 0.50 in (OSB Sheathing) = 2.625 in Moment Arm<br />
+          Remaining Bolt Penetration into 1.125 in EWP Rim Board &lt; 0.90 in (Gross Bending &amp; Withdrawal Failure)
+        </div>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Instead of transferring 50 psf live plus dead loads cleanly into the rim board in direct shear, every person stepping onto the deck pry-barred those lag screws downward in bending against compressed plastic cavities.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">2. Missing Z-Flashing and Galvanic Pinhole Corrosion</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Water is patient. Without a continuous peel-and-stick butyl ledger tape behind the board and a rigid drip-edge <strong>Z-flashing under the siding above (IRC R703.4 &amp; R507.9)</strong>, wind-driven rain sheeted down the house wall, tucked cleanly behind the vinyl J-channel, and poured straight between the crushed siding ribs into every unsealed lag bolt shaft.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Even builders who do remember flashing often trigger a hidden trap here: using standard bare aluminum coil flashing against modern alkaline copper quaternary (ACQ) or copper azole (CA-C) pressure-treated pine. High-copper preservatives rapidly oxidize bare aluminum through galvanic corrosion, eating pinhole leaks directly above the lag bolts within three wet winters. Code requires <strong>G185 galvanized steel, stainless steel, copper, or heavy-gauge vinyl Z-flashing</strong>—never bare aluminum in contact with pressure-treated lumber.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">3. Lag Screws vs. Engineered OSB Rim Boards</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Homes framed since the late 1990s rarely have solid 2x10 Douglas Fir or Southern Pine rim joists. This house was built on engineered floor I-joists perimeter-banded with a <strong>1-1/8 inch structural OSB rim board</strong>.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          While intact OSB rim boards have high vertical compression capacity, conventional coarse-thread lag screws do not bite reliably into layered wood strands—especially once chronic moisture swells the resin glue line. Under <strong>IRC Table R507.9.1.3(1)</strong>, engineered wood product (EWP) rim boards require either 1/2-inch through-bolts backed by nuts and washers inside the joist bay or manufacturer-evaluated structural ledger screws (such as Simpson SDS / FastenMaster LedgerLOK) installed on strict staggered spacing tables (frequently 8 to 14 inches on-center depending on joist span). When water swelled that OSB band board to 1-1/2 inches thick and turned the inner core into damp oatmeal, the 3/8-inch lag screws pulled straight out like thumbtacks from wet cardboard.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">4. Zero Lateral Tension Ties (IRC Section R507.9.2)</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Every deck ledger joint is vulnerable to outward peel-away rotation if joists only hang downward in shear. When soil settles under the outer posts or horizontal live load pushes outward, nothing stops the deck from pulling cleanly off the nails and fasteners except mechanical tension ties.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Since the 2009–2024 code cycles, <strong>IRC Section R507.9.2</strong> mandates positive <strong>lateral load connections</strong>: either a minimum of two 1,500-lb tension devices (such as DTT2Z hold-downs screwed horizontally through the rim into interior house floor joists) or four 750-lb tension devices spaced evenly along the deck width. This 8-year-old deck had zero hold-down ties anywhere in the framing.
+        </p>
+      </section>
+
+      <AdSlot type="in-feed" />
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Structural Rebuild: Replacing the Band Board &amp; Dropping a Freestanding Beam</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          You cannot bolt a new ledger back onto saturated, delaminated OSB. Once fungal decay softens the engineered band joist, the floor diaphragm supporting your kitchen exterior wall and patio door is also compromised. Here is the structural sequence required to make the house and deck bombproof:
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 1: Temporary Shoring &amp; Rim Joist Surgical Replacement</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          First, we built a temporary shoring wall inside the basement 36 inches inside the foundation line, supporting every I-joist end and carrying the second-floor wall load down to the concrete slab. Outside, we built a twin-post 2x10 shoring carrier beam under the deck joists so the entire deck could remain intact without full demolition.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          After unbolting the failed ledger and stripping away 30 linear feet of water-damaged OSB band board, we dried the I-joist ends, treated adjacent plates with borate preservative, and spliced in a fresh <strong>1-3/4 inch LVL (Laminated Veneer Lumber) engineered rim beam</strong> anchored into the sill plate and I-joist webs.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 2: Waterproofing the Wall Envelope Before Re-Siding</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Because we wanted zero moisture risk against the house envelope going forward, we re-sheathed the exposed wall with 1/2-inch CDX plywood, overlapped the weather-resistive barrier housewrap downward, applied a continuous self-adhered Vycor-style flashing membrane across the band joist plane, and tucked rigid PVC-coated galvanized Z-flashing cleanly behind the intact siding course above.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 3: Converting to a Freestanding Flush Girder System</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          With the house rim repaired and re-flashed, we faced a permanent engineering choice: bolt a new ledger straight to the LVL rim with DTT2Z ties inside the finished basement ceiling, or bypass ledger loading altogether.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          We chose the <strong>freestanding dropped beam conversion</strong>. By digging three new frost-depth flared footings 28 inches out from the house foundation wall, setting 6x6 posts on galvanized standoff bases, and hoisting a triple 2x10 Southern Pine girder beneath the existing deck joists, the entire deck became <strong>100% self-supporting</strong>. Every joist now bears directly in wood-on-wood compression atop a massive girder with hurricane ties—cutting gravity shear on the house band joist to zero and removing future ledger leak paths forever.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Code Rules Every Deck Builder Must Verify First</h2>
+        <div class="space-y-3">
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Never fasten a ledger through siding or stucco:</strong> Strip siding back cleanly 2 inches beyond the perimeter of the ledger board so wood-to-structural-sheathing compression is tight and watertight. Install metal or heavy vinyl Z-flashing tucked under the housewrap above.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Keep bare aluminum away from treated lumber:</strong> Use G185 hot-dipped galvanized steel, stainless steel, or heavy vinyl Z-flashing above treated ledgers, and always verify joist hangers and screws carry G185 ZMAX or 316 stainless ratings for ACQ/CA-C lumber.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Identify your rim board before buying fasteners:</strong> Never drive standard lag screws blindly into 1-1/8" OSB rim board or cantilever bay framing. Verify EWP fastener approval tables or install 1/2" through-bolts and washers with lateral tension ties per IRC R507.9.2.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>When in doubt, build freestanding:</strong> If a house has brick veneer, masonry block cavities, cantilevered floor joists, or concealed rim framing you cannot inspect from the basement, running a dropped beam on independent frost footings eliminates the #1 point of failure in residential carpentry.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Editorial Signoff & Methodology Note -->
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-xl space-y-3 font-sans text-xs text-gray-600">
+      <div class="font-bold text-gray-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>CalcForDIY Editorial Standards &amp; Safety Disclaimer</span>
+      </div>
+      <p>
+        Field Investigations published in the CalcForDIY Journal document real-world structural inspections, failure forensics, and residential code compliance principles. Span allowances, snow loads, and ledger connection details vary substantially by local jurisdiction and adopted edition of the International Residential Code (IRC).
+      </p>
+      <p>
+        Always obtain structural permits, verify engineered rim board compatibility before anchoring ledgers, and consult a licensed structural engineer if you observe deck separation, bouncy outer beams, or water stains along basement rim joists.
+      </p>
+    </div>
+
+    <!-- Bottom Companion Hub Recommendation -->
+    <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-md">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider font-bold text-blue-400 mb-1">Related Project Workflow Hub</div>
+        <div class="text-lg font-bold text-white mb-1">{article.companionHub.name}</div>
+        <div class="text-xs text-gray-300 max-w-xl">{article.companionHub.desc}</div>
+      </div>
+      <a
+        href={article.companionHub.href}
+        class="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-2"
+      >
+        <span>Explore Full Hub</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Back to Journal Hub Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between font-sans text-xs">
+      <a href="/journal/" class="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+        <span>← Back to All Journal Stories</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-900">
+        Home
+      </a>
+    </div>
+  </article>
+</Layout>

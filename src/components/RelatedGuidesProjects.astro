@@ -26,7 +26,7 @@ const {
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {hubSlug && (
         <a
-          href={`/projects/${hubSlug}`}
+          href={`/projects/${hubSlug.replace(/\/+$/, '')}/`}
           class="group block bg-gradient-to-br from-blue-50/70 to-indigo-50/50 border border-blue-200/80 hover:border-blue-400 p-4 rounded-xl transition-all shadow-2xs hover:shadow-xs"
         >
           <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-blue-700 mb-1">
@@ -41,7 +41,7 @@ const {
 
       {guideSlug && (
         <a
-          href={`/guides/${guideSlug}`}
+          href={`/guides/${guideSlug.replace(/\/+$/, '')}/`}
           class="group block bg-gradient-to-br from-emerald-50/70 to-teal-50/50 border border-emerald-200/80 hover:border-emerald-400 p-4 rounded-xl transition-all shadow-2xs hover:shadow-xs"
         >
           <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-700 mb-1">

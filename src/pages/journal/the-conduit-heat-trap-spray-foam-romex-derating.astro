@@ -1,0 +1,293 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: 'The Conduit Heat Trap: Why Bundling Six Romex Cables Inside Spray Foam Melted Insulation Jackets',
+  slug: 'the-conduit-heat-trap-spray-foam-romex-derating',
+  description: 'An electrical forensics investigation inside an insulated garage workshop where bundling six 12/2 NM-B circuits through a crowded PVC sleeve inside closed-cell spray foam triggered 50% NEC ampacity derating and thermally scorched cable jacketing.',
+  author: 'Greg Larson',
+  authorRole: 'Licensed Master Electrician & Field Contributor',
+  reviewer: 'David Miller, PE',
+  reviewerRole: 'Senior Electrical & Structural Reviewer',
+  publishDate: 'November 13, 2026',
+  readTime: '11 min read',
+  category: 'Field Investigation',
+  image: '/images/journal/conduit-spray-foam-heat-trap.jpg',
+  tag: 'Electrical & Energy',
+  companionCalculator: {
+    name: 'NEC Conduit Fill Calculator',
+    href: '/calculators/conduit-fill/',
+    desc: 'Calculate NEC Chapter 9 40% conduit fill limits for EMT, Schedule 40 PVC, and THHN conductors before pulling branch circuits.'
+  },
+  companionHub: {
+    name: 'Garage Workshop & EV Electrical Hub',
+    href: '/projects/garage-ev-workshop/',
+    desc: 'Plan workshop subpanels, EV Level 2 feeders, continuous load derating, GFCI protection, and balanced circuit routing step by step.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "datePublished": "2026-11-13T08:00:00+00:00",
+    "dateModified": "2026-11-13T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            GL
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-gray-500 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200">
+          <div>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Published</span>
+            <span class="font-mono text-gray-800">{article.publishDate}</span>
+          </div>
+          <div class="border-l border-gray-200 pl-4">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="font-semibold text-gray-800">{article.reviewer}</span>
+            <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Companion Tool Callout (Top) -->
+    <div class="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-5 rounded-r-xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-0.5">Companion Engineering Tool</div>
+        <div class="font-bold text-gray-900 text-base">{article.companionCalculator.name}</div>
+        <div class="text-xs text-gray-600 mt-0.5">{article.companionCalculator.desc}</div>
+      </div>
+      <a
+        href={article.companionCalculator.href}
+        class="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors flex items-center gap-1.5"
+      >
+        <span>Open Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Editorial Lead Photo -->
+    <figure class="mb-10 rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-gray-100">
+      <img
+        src={article.image}
+        alt="Six yellow 12/2 NM-B Romex cables bundled inside a PVC conduit sleeve surrounded by closed-cell spray foam showing heat-blistered sheathing"
+        class="w-full h-auto object-cover max-h-[500px]"
+        loading="eager"
+      />
+      <figcaption class="p-3 bg-gray-50 text-xs text-gray-600 border-t border-gray-200 font-mono">
+        Figure 1.1: Garage framing cavity cut open after a nuisance 20-amp AFCI breaker fault. Six 12/2 NM-B branch circuits (12 current-carrying conductors) were jammed through an 8-foot Schedule 40 PVC chase and completely sealed inside R-20 closed-cell polyurethane foam.
+      </figcaption>
+    </figure>
+
+    <!-- Article Body -->
+    <div class="prose prose-lg max-w-none text-gray-800 space-y-8 font-serif">
+      <section class="space-y-4">
+        <p class="text-xl sm:text-2xl leading-relaxed text-gray-900 font-serif font-medium first-letter:text-5xl first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:text-blue-900">
+          When the garage workshop smelled faintly of warm vinyl every Saturday afternoon, the homeowner blamed his new dust collector motor. Then a 20-amp Dual Function AFCI/GFCI breaker tripped three times in a single hour while running an electric shop heater alongside a table saw and compressor.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Each dedicated outlet had been wired cleanly with yellow 12/2 NM-B copper cable on its own 20-amp breaker. No single tool drew more than 14 amps. On paper, everything looked conservative and well below breaker limits.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The problem wasn't inside the receptacle boxes. Pulling off the ceiling access hatch near the main garage panel revealed what had looked like a clever "neat wiring" shortcut six months earlier: all six 12/2 Romex homeruns had been bundled side-by-side through an 8-foot stretch of <strong>1-1/2 inch Schedule 40 PVC conduit</strong> crossing the garage bay, and then buried under 3 inches of <strong>2-lb closed-cell spray polyurethane foam (ccSPF)</strong>. When we opened that junction cavity with a thermal camera, the cable bundle core was cooking at <strong>164°F</strong>—right against PVC insulation's softening cliff.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Physics of Bundling &amp; The Three NEC Rules Violated</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Electrical code ampacity tables are not arbitrary safety margins; they are steady-state thermal equilibrium equations. Every ampere flowing through copper generates internal resistive heat (<span class="font-mono font-semibold">P = I<sup>2</sup>R</span>) that has to escape into surrounding wood or air faster than it accumulates. Wrap six heat-generating cables tightly inside stagnant air and R-20 closed-cell foam, and that heat has nowhere to go.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">1. The Counting Trap: Six Cables Equal 12 Conductors (NEC Table 310.15(C)(1))</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          When most DIYers look at <strong>NEC Section 310.15(C)(1)</strong>, they see the 80% derating column for "4 to 6" conductors and assume six Romex cables fall comfortably near the edge of 80%. That math makes a dangerous mistake: the NEC counts <strong>current-carrying conductors</strong>, not outer jackets.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          In a standard 120-volt 12/2 NM-B branch circuit, both the black ungrounded hot conductor AND the white grounded neutral carry identical return current (2 current-carrying conductors per cable; only the bare ground wire is excluded). Bundle six 12/2 cables together for more than 24 inches without maintained spacing, and you have just grouped <strong>12 current-carrying conductors</strong>—dropping allowable ampacity straight into the <strong>50% bracket (10 to 20 conductors)</strong>:
+        </p>
+        <div class="bg-gray-50 border-l-4 border-blue-600 p-4 rounded-r-lg font-mono text-xs sm:text-sm text-gray-800 my-2">
+          NEC 334.80 (90°C NM-B Baseline for 12 AWG Copper, Table 310.16) = 30 Amps<br />
+          Table 310.15(C)(1) Factor for 12 Current-Carrying Conductors = 0.50 (50%)<br />
+          Adjusted Ampacity = 30A &times; 0.50 = 15.0 Amps Max (VIOLATES 20A Breaker Protection!)
+        </div>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Even though Type NM-B allows starting ampacity derating from its 90°C column (30A) rather than the 60°C final limit (20A), cutting 30A in half drops safe copper capacity to <strong>15 amps</strong>. Leaving those cables on 20-amp circuit breakers meant four or five tools could legally draw 14 to 17 amps each without ever tripping thermal-magnetic overcurrent protection—quietly baking the conductors until an arc-fault event finally tripped the AFCI sensor.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">2. The Spray Foam Explicit Trigger (NEC Section 334.80)</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Many remodelers skip conduit sleeves altogether and simply pull five or six NM-B cables through one large 1-1/2-inch drilled hole in a garage top plate before the spray foam truck arrives. <strong>NEC Section 334.80</strong> specifically closes that loophole.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Section 334.80 explicitly states that where <strong>more than two NM cables containing two or more current-carrying conductors</strong> are installed without maintaining spacing through the same wood framing opening sealed with <strong>thermal insulation, caulk, or sealing foam</strong>, the allowable ampacity of every conductor in that hole must be derated using Table 310.15(C)(1)—even when the hole length itself is under 24 inches! Closed-cell polyurethane foam has virtually zero convective airflow and acts like a thermos bottle around the copper bundle, compounded by an initial exothermic curing spike when spray foam is sprayed in thick lifts.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">3. Flat Oval Romex vs. Round Conduit Fill (NEC Chapter 9, Table 1 &amp; Note 9)</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          On top of thermal derating, shoving six flat NM-B cables into a 1-1/2-inch Schedule 40 PVC sleeve severely violated raceway fill limits. Under <strong>NEC Chapter 9, Note (9)</strong>, a multiconductor flat cable like Romex is treated as a single circular conductor whose diameter equals the <strong>major (wide) dimension of the cable jacket</strong>—not its thin flat cross-sectional area—because flat jackets wedge and twist inside conduit bends instead of nesting efficiently.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          For standard flat 12/2 NM-B (~0.47 inches wide), Note (9) assigns a virtual circular area of roughly <strong>0.173 sq in per cable</strong>. Multiplying by six cables requires <strong>1.04 sq in</strong> of fill space, blowing well past the 40% allowable fill limit of 1-1/2-inch Schedule 40 PVC (approx. <strong>0.794 sq in</strong>) and pinching the yellow PVC outer sheaths tight against the pipe walls during pulling.
+        </p>
+      </section>
+
+      <AdSlot type="in-feed" />
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The NEC-Compliant Rewire: Subpanel Feeders, EMT Air Cooling &amp; Spaced Holes</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          You cannot "repair" heat-hardened, embrittled PVC insulation in place; darkened copper jackets with micro-cracking insulation are a permanent fire risk. Here is the clean, code-compliant architecture we installed instead:
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 1: Intercept &amp; Replace with One 100A Subpanel Feeder</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Instead of dragging six separate 20-amp branch homeruns 45 feet back through insulated garage rafters, we pulled <strong>one single #2 Aluminum SER feeder (90A)</strong> from the house main panel directly to a dedicated 125A garage workshop subpanel mounted cleanly on the workshop wall. One single 3-wire feeder in an unobstructed framing bay faces zero multi-circuit bundling derating penalties.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 2: Surface-Mounted 3/4" EMT Conduit with Individual THHN Conductors</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          From the new workshop subpanel out to tool drops, we ran exposed <strong>3/4-inch thin-wall EMT metal conduit</strong> on the interior dry garage wall rather than burying cables inside spray foam. Thin-walled steel EMT radiates heat freely into conditioned 68°F garage air, acts as an equipment grounding raceway when properly bonded, and keeps branch runs short.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Inside the exposed EMT runs, we pulled individual <strong>12 AWG &amp; 10 AWG THHN/THWN-2</strong> round conductors—keeping a maximum of <strong>three</strong> 12 AWG current-carrying circuits (or 4 to 6 CCCs at 80%: <span class="font-mono font-semibold">30A &times; 0.80 = 24A</span>, safely protecting a 20A circuit!) per 3/4-inch raceway. Zero oval Romex jamming, zero concealed foam heat pockets.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 3: Isolated 3/4" Boreholes When Framing Runs Are Necessary</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          For the overhead lighting and garage opener circuits that still had to cross ceiling framing before foam encapsulation, we drilled individual <strong>3/4-inch holes spaced at least 2 inches apart</strong>—limiting each foam-sealed penetration strictly to one or at most two NM-B cables per NEC 334.80, and placing cables near the warm drywall face rather than centered inside deep closed-cell foam cores.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Field Rules for Wire Bundling, Spray Foam &amp; Conduit Fill</h2>
+        <div class="space-y-3">
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Never stack more than two Romex cables in a foam-sealed hole:</strong> Under NEC 334.80, exceeding two NM-B cables per fire-stopped or foam-sealed framing bore requires full Table 310.15(C)(1) derating. Drill separate holes for every pair of cables.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Count current-carrying wires, not jackets:</strong> Four 12/2 NM-B cables equal 8 current-carrying conductors (70% factor → 21A, still marginal at high ambient temp); five or more 12/2 cables hit 10+ conductors (50% factor → 15A, illegal on a 20A breaker!).
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Calculate flat cable conduit fill by major width:</strong> Never pull multiple NM-B cables through long conduit sleeves using flat area math. Use NEC Chapter 9 Note (9) diameter equivalents—or switch cleanly to a workshop subpanel and THHN conductors inside EMT.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Verify fill limits before pulling:</strong> Size raceways accurately with our NEC Conduit Fill Calculator so conductors stay well under the 40% limit (three or more wires) with room for clean cooling and snag-free pulls.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Editorial Signoff & Methodology Note -->
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-xl space-y-3 font-sans text-xs text-gray-600">
+      <div class="font-bold text-gray-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>CalcForDIY Editorial Standards &amp; Safety Disclaimer</span>
+      </div>
+      <p>
+        Field Investigations published in the CalcForDIY Journal examine residential electrical installations, thermal load calculations, and NEC failure patterns. Electrical codes and local amendments to NEC 310.15(C)(1) and 334.80 vary by state and municipality.
+      </p>
+      <p>
+        Always coordinate rough-in wiring inspections BEFORE spray polyurethane foam encapsulation covers framing cavities, verify continuous-load derating with a licensed master electrician, and pull local permits for panel upgrades and branch circuit alterations.
+      </p>
+    </div>
+
+    <!-- Bottom Companion Hub Recommendation -->
+    <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-md">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider font-bold text-blue-400 mb-1">Related Project Workflow Hub</div>
+        <div class="text-lg font-bold text-white mb-1">{article.companionHub.name}</div>
+        <div class="text-xs text-gray-300 max-w-xl">{article.companionHub.desc}</div>
+      </div>
+      <a
+        href={article.companionHub.href}
+        class="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-2"
+      >
+        <span>Explore Full Hub</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Back to Journal Hub Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between font-sans text-xs">
+      <a href="/journal/" class="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+        <span>← Back to All Journal Stories</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-900">
+        Home
+      </a>
+    </div>
+  </article>
+</Layout>

@@ -824,6 +824,38 @@ const calculators = [
 const journalDispatches = [
   {
     title:
+      "The Conduit Heat Trap: Why Bundling Six Romex Cables Inside Spray Foam Melted Insulation Jackets",
+    slug: "the-conduit-heat-trap-spray-foam-romex-derating",
+    image: "/images/journal/conduit-spray-foam-heat-trap.jpg",
+    excerpt:
+      "An electrical forensics investigation inside an insulated garage workshop where bundling six 12/2 NM-B circuits through a crowded PVC sleeve inside closed-cell spray foam triggered 50% NEC ampacity derating and thermally scorched cable jacketing.",
+    author: "Greg Larson",
+    authorRole: "Licensed Master Electrician & Field Contributor",
+    publishDate: "November 13, 2026",
+    readTime: "11 min read",
+    category: "Field Investigation",
+    companionTool: "NEC Conduit Fill Calculator",
+    companionHref: "/calculators/conduit-fill/",
+    featured: true,
+  },
+  {
+    title:
+      "The Rotten Rim Joist: Why Lag Screws Through Vinyl Siding Nearly Collapsed an $18,000 Deck",
+    slug: "the-rotten-rim-joist-deck-ledger-collapse",
+    image: "/images/journal/rotten-deck-ledger-rim-joist.jpg",
+    excerpt:
+      "A structural failure autopsy of a second-story pressure-treated deck pulling 1.5 inches away from the house framing. How bolting a ledger board directly over vinyl siding without Z-flashing or lateral tension ties turned an OSB rim board into wet mulch.",
+    author: "David Miller, PE",
+    authorRole: "Senior Structural Contributor",
+    publishDate: "November 6, 2026",
+    readTime: "11 min read",
+    category: "Field Investigation",
+    companionTool: "Deck Joist Span & Beam Calculator",
+    companionHref: "/calculators/deck-joist-span/",
+    featured: false,
+  },
+  {
+    title:
       "The Peeling Epoxy Disaster: Why a $5,400 Garage Floor Lifted in Sheets After One Summer",
     slug: "the-peeling-epoxy-disaster-moisture-vapor-transmission",
     image: "/images/journal/peeling-garage-epoxy-failure.jpg",
@@ -836,7 +868,7 @@ const journalDispatches = [
     category: "Field Investigation",
     companionTool: "Epoxy Moisture Vapor Barrier Calculator",
     companionHref: "/calculators/moisture-vapor-barrier/",
-    featured: true,
+    featured: false,
   },
   {
     title:
@@ -1154,7 +1186,7 @@ const categories = [...new Set(calculators.map((c) => c.category))];
         class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-950 font-serif tracking-tight mb-3 leading-snug"
       >
         <a
-          href={`/journal/${featuredDispatch.slug}`}
+          href={`/journal/${featuredDispatch.slug}/`}
           class="hover:text-blue-700 transition-colors"
         >
           {featuredDispatch.title}
@@ -1200,7 +1232,7 @@ const categories = [...new Set(calculators.map((c) => c.category))];
             <span>↗</span>
           </a>
           <a
-            href={`/journal/${featuredDispatch.slug}`}
+            href={`/journal/${featuredDispatch.slug}/`}
             class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-xl transition-colors shadow-xs"
           >
             <span>Read Field Story</span>
@@ -1240,7 +1272,7 @@ const categories = [...new Set(calculators.map((c) => c.category))];
 
               
             <!-- Dispatch Card Photo -->
-            <a href={`/journal/${article.slug}`} class="block mb-3 rounded-lg overflow-hidden shadow-2xs hover:opacity-95 transition-opacity">
+            <a href={`/journal/${article.slug}/`} class="block mb-3 rounded-lg overflow-hidden shadow-2xs hover:opacity-95 transition-opacity">
               <img
                 src={article.image}
                 alt={article.title}
@@ -1251,7 +1283,7 @@ const categories = [...new Set(calculators.map((c) => c.category))];
 
               <h4 class="text-lg font-bold text-gray-950 font-serif mb-2 leading-snug">
                 <a
-                  href={`/journal/${article.slug}`}
+                  href={`/journal/${article.slug}/`}
                   class="hover:text-blue-700 transition-colors"
                 >
                   {article.title}
@@ -1273,7 +1305,7 @@ const categories = [...new Set(calculators.map((c) => c.category))];
                 </div>
               </div>
               <a
-                href={`/journal/${article.slug}`}
+                href={`/journal/${article.slug}/`}
                 class="text-xs font-bold text-blue-700 hover:text-blue-800 flex items-center gap-1"
               >
                 <span>Read Story</span>

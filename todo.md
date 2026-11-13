@@ -105,7 +105,9 @@
 - [x] `"How Many Bags of Concrete for a Sonotube (8, 10, 12, 16 In)?"` (`/guides/how-many-bags-of-concrete-for-sonotube`)
 - [x] `"How Deep Should a Gravel Driveway Be? (3-Layer Guide)"` (`/guides/how-deep-should-a-gravel-driveway-be`)
 
-### 📰 Field Journal Dispatches (`/journal/` - COMPLETE ✅ 15 Live Dispatches with Photos)
+### 📰 Field Journal Dispatches (`/journal/` - COMPLETE ✅ 17 Live Dispatches with Photos)
+- [x] `"The Conduit Heat Trap: Why Bundling Six Romex Cables Inside Spray Foam Melted Insulation Jackets"` (`/journal/the-conduit-heat-trap-spray-foam-romex-derating/`)
+- [x] `"The Rotten Rim Joist: Why Lag Screws Through Vinyl Siding Nearly Collapsed an $18,000 Deck"` (`/journal/the-rotten-rim-joist-deck-ledger-collapse/`)
 - [x] `"The Peeling Epoxy Disaster: Why a $5,400 Garage Floor Lifted in Sheets After One Summer"` (`/journal/the-peeling-epoxy-disaster-moisture-vapor-transmission`)
 - [x] `"The 3-Inch Frost Heave: Why Straight Sonotube Piers Jacked a $9,500 Timber Pergola"` (`/journal/the-3-inch-frost-heave-sonotube-pier-pergola-failure`)
 - [x] `"The $14,000 Bowing Retaining Wall: Hydrostatic Surcharge, Clay Backfill, and the 4-Foot Code Threshold"` (`/journal/the-14000-dollar-bowing-retaining-wall-hydrostatic-surcharge`)
@@ -213,7 +215,7 @@ Enhanced top 10 core tools with unique, non-templated, tool-specific technical v
 ---
 
 ## 8. 🔍 Technical SEO & Google Search Console Indexing Resolution (COMPLETE ✅)
-- [x] **Sitewide Trailing Slash Standardization**: Standardized 1,345 internal links, hash fragments, and BreadcrumbList schema items across 298 files to strictly end with `/`, resolving the 78 "Page with redirect" GSC validation failures.
+- [x] **Sitewide Trailing Slash Standardization**: Standardized internal links, hash fragments, and BreadcrumbList schema items to strictly end with `/` — including Nov 13, 2026 remediation of 290 template links in `index.astro`, `projects/index.astro`, and `RelatedGuidesProjects.astro` (0 non-trailing internal links remaining across all 350 built pages).
 - [x] **Canonical & Schema Alignment**: Fixed all schema `@type: ListItem` breadcrumb items (`/calculators/`, `/projects/`, `/guides/`) to use trailing slashes, eliminating schema-crawler redirect loops.
 - [x] **Category Anchor Standardization**: Converted all footer and about page category hash links from `/calculators#category` to `/calculators/#category`.
 - [x] **Apex Domain Enforcement**: Configured single canonical domain structure (`https://calcfordiy.com/`) to prevent duplicate crawl budget dilution from `www.calcfordiy.com` (65 "Alternate page with proper canonical tag").
