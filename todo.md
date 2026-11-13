@@ -216,9 +216,12 @@ Enhanced top 10 core tools with unique, non-templated, tool-specific technical v
 
 ## 8. 🔍 Technical SEO & Google Search Console Indexing Resolution (COMPLETE ✅)
 - [x] **Sitewide Trailing Slash Standardization**: Standardized internal links, hash fragments, and BreadcrumbList schema items to strictly end with `/` — including Nov 13, 2026 remediation of 290 template links in `index.astro`, `projects/index.astro`, and `RelatedGuidesProjects.astro` (0 non-trailing internal links remaining across all 350 built pages).
-- [x] **Canonical & Schema Alignment**: Fixed all schema `@type: ListItem` breadcrumb items (`/calculators/`, `/projects/`, `/guides/`) to use trailing slashes, eliminating schema-crawler redirect loops.
+- [x] **Canonical & Schema Alignment**: Fixed all schema `@type: ListItem` breadcrumb items (`https://calcfordiy.com/`, `/calculators/`, `/projects/`, `/guides/`) across 285 pages to use trailing slashes, added `"image"` + `max-image-preview:large` + dynamic `og:image`/`ogType` across all 17 Journal dispatches / 14 guide & 16 project heroes, and fixed `SearchAction` target (`https://calcfordiy.com/calculators/?q={search_term_string}`) + live `?q=` query handling.
+- [x] **Git-Derived Sitemap `<lastmod>` & `/sitemap.xml` Redirect**: Configured `@astrojs/sitemap` in `astro.config.mjs` to emit real per-route git commit ISO `<lastmod>` timestamps across all 349 sitemap URLs (removing ignored `changefreq`/`priority`) and added `/sitemap.xml -> /sitemap-index.xml 301` in `public/_redirects`.
+- [x] **Mobile-First Image Compression & Zero-CLS Media**: Compressed all 48 site JPEGs (`43.98 MB -> 7.96 MB`, `-81.9%` via progressive `mozjpeg` @ q78 while keeping `>=1200px` resolution) and enforced explicit `width`/`height` attributes across every rendered `<img>` (`0` missing dimension attributes).
+- [x] **Flagship Project Hub Deepening & Internal Link Graph**: Deepened all 16 thin flagship project hubs (`147–247` words -> `340+` words each) with IRC/NEC/TCNA/NWFA inspection checklists and contextual links into guides and dispatches, cutting single-inbound pages to `0` (`0` orphan routes) and resolving the duplicate `<h1>` on `/` + category filter bug on `/journal/`.
 - [x] **Category Anchor Standardization**: Converted all footer and about page category hash links from `/calculators#category` to `/calculators/#category`.
-- [x] **Apex Domain Enforcement**: Configured single canonical domain structure (`https://calcfordiy.com/`) to prevent duplicate crawl budget dilution from `www.calcfordiy.com` (65 "Alternate page with proper canonical tag").
+- [x] **Apex Domain Enforcement**: Configured single canonical domain structure (`https://calcfordiy.com/`) to prevent duplicate crawl budget dilution from `www.calcfordiy.com` (check Cloudflare dashboard Bulk Redirect rule preserves trailing `/` on `www -> apex` hops).
 
 ---
 

@@ -47,7 +47,7 @@ const workflowSteps = [
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects/" },
       { "@type": "ListItem", "position": 3, "name": "Flooring Installation Hub — Step-by-Step Hardwood & Laminate Workflow", "item": "https://calcfordiy.com/projects/flooring-installation/" }
     ]
@@ -129,6 +129,42 @@ const workflowSteps = [
       </div>
     ))}
   </div>
+
+  <!-- Pre-Install Inspection & Tolerance Standards -->
+  <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 mb-10">
+    <h2 class="text-2xl font-bold text-slate-900 mb-3">Subfloor Flatness, Deflection &amp; Moisture Verification</h2>
+    <p class="text-slate-600 text-sm mb-6">
+      More than half of premature vinyl plank, hardwood, and porcelain tile failures trace back to skipped subfloor prep rather than defective flooring material. Verify these tolerance thresholds before opening cartons or mixing thinset:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-sm text-slate-700">
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">1. Straightedge Flatness (3/16 in. over 10 ft)</h3>
+        <p>Both NWFA wood guidelines and rigid-core LVP manufacturers specify no more than 3/16 inch variation over a 10-foot radius (and 1/8 inch over 6 feet). Large-format porcelain tile tightens this requirement under ANSI A108.02 to 1/8 inch in 10 feet.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">2. Joist Deflection Limits (L/360 vs. L/720)</h3>
+        <p>TCNA guidelines require floor framing deflection no worse than L/360 for ceramic and porcelain tile and L/720 for natural stone (marble, travertine, slate) to prevent grout line cracking and uncoupling failure.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">3. Concrete Slab Vapor Emission (ASTM F2170 / F1869)</h3>
+        <p>On-grade concrete emits continuous water vapor even when dry on top. Exceeding 75% to 80% internal relative humidity (RH) or 3 lbs MVER under calcium chloride testing requires an epoxy moisture vapor barrier or 6-mil polyethylene sheet under floating floors.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">4. Directional Trowel Coverage (ANSI A108.5)</h3>
+        <p>Comb thinset in straight parallel ridges rather than swirls, then slide each tile perpendicular to the ridges to collapse air voids. Achieve at least 80% mortar contact in dry rooms and 95% in wet areas or Exterior slabs.</p>
+      </div>
+    </div>
+    <div class="border-t border-slate-200 pt-5">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Engineering Guides &amp; Field Investigations</h3>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm font-medium">
+        <li><a href="/guides/how-many-boxes-of-vinyl-plank-flooring/" class="text-blue-700 hover:underline">&rarr; How Many Boxes of Vinyl Plank Flooring Do I Need?</a></li>
+        <li><a href="/guides/tcna-subfloor-deflection-guide/" class="text-blue-700 hover:underline">&rarr; TCNA Subfloor Deflection Limits (L/360 vs L/720)</a></li>
+        <li><a href="/guides/trowel-notch-size-tile-format/" class="text-blue-700 hover:underline">&rarr; Trowel Notch Size &amp; Back-Buttering by Tile Format</a></li>
+        <li><a href="/journal/why-luxury-vinyl-plank-separated-subfloor-flatness-acclimation/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: Why Luxury Vinyl Plank Separated at End Joints</a></li>
+        <li><a href="/journal/the-peeling-epoxy-disaster-moisture-vapor-transmission/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: Concrete Hydrostatic Vapor &amp; Coating Failures</a></li>
+      </ul>
+    </div>
+  </section>
 
   <!-- Bottom CTA -->
   <div class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-2xl p-8 text-white text-center">

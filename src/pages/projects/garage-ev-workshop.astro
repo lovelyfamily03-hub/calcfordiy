@@ -62,7 +62,7 @@ const workflowSteps = [
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects/" },
       { "@type": "ListItem", "position": 3, "name": "Garage & EV Workshop Hub", "item": "https://calcfordiy.com/projects/garage-ev-workshop/" }
     ]
@@ -117,6 +117,42 @@ const workflowSteps = [
     <div class="space-y-3 text-sm text-gray-700">
       <p><strong>NEC Continuous Load Rule (80% Rule):</strong> EV chargers are classified as continuous electrical loads. A 48A charger requires a 60A circuit breaker (48A is 80% of 60A).</p>
       <p><strong>Wire Gauge Requirement:</strong> Use 6 AWG THHN copper wire in conduit (or 6/3 NM-B Romex for max 55A / 40A charging) for Level 2 EV chargers.</p>
+    </div>
+  </div>
+
+  <!-- EVSE Termination, Conduit Thermal Derating & Panel Load Forensics -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-3">NEC 625 Hardwired vs. NEMA 14-50 Safety &amp; Service Load Verification</h2>
+    <p class="text-gray-600 text-sm mb-5">
+      Sustained 40A to 48A overnight EV charging pushes residential receptacles, breaker lugs, and insulation-covered conduits to continuous thermal equilibrium. Verify these four installation checks alongside your sizing math:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5 text-sm text-gray-700">
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">1. Torque Driver Calibration &amp; Hardwired Advantage</h3>
+        <p>NEC 110.14(D) requires tightening breaker and receptacle terminal lugs with a calibrated torque screwdriver. Under NEC 625.54, plug-in NEMA 14-50 outlets in garages require GFCI breakers (and commercial-grade EV receptacles to avoid melted blades), whereas hardwired EVSEs eliminate plug thermal resistance.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">2. 6/3 NM-B 60&deg;C Cap vs. 75&deg;C THHN in Conduit</h3>
+        <p>By NEC 334.80, NM-B (Romex) ampacity is limited to the 60&deg;C column (55A max for 6 AWG copper, supporting at most a 44A continuous charger / 50A–55A circuit), whereas individual 6 AWG THHN/THWN-2 copper conductors in EMT/PVC conduit rate for 65A at 75&deg;C (supporting a 48A charger on a 60A breaker).</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">3. Bundle Derating Inside Foamed Garage Walls</h3>
+        <p>Grouping an EV circuit alongside workshop welder and compressor feeders inside closed-cell spray-foamed stud bays triggers NEC 310.15(C) ampacity derating factors and blocks passive convection cooling.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">4. Subpanel Neutral/Ground Separation &amp; 100A Service Check</h3>
+        <p>Before adding a 60A EV feeder or garage mini-split to an existing 100A main service, run an NEC 220.83 demand load calculation—and confirm any garage subpanel separates its neutral bar from its ground bar via a 4-wire feeder.</p>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 pt-4">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">EV &amp; Panel Code Guides &amp; Field Dispatches</h3>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm font-medium">
+        <li><a href="/guides/ev-charger-hardwired-vs-nema-14-50-nec-625/" class="text-blue-700 hover:underline">&rarr; Hardwired EV Charger vs. NEMA 14-50 (NEC 625)</a></li>
+        <li><a href="/guides/subpanel-neutral-ground-separation-nec/" class="text-blue-700 hover:underline">&rarr; Garage Subpanel Neutral &amp; Ground Separation (NEC 250)</a></li>
+        <li><a href="/guides/nec-220-residential-load-calc/" class="text-blue-700 hover:underline">&rarr; NEC Article 220 Service &amp; EV Demand Calculation</a></li>
+        <li><a href="/journal/the-conduit-heat-trap-spray-foam-romex-derating/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: Spray Foam Conduit Heat Traps &amp; Romex Derating</a></li>
+        <li><a href="/journal/the-100-amp-reality-check-ev-charger-heat-pump-subpanel/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: Can a 100A Service Handle an EV Charger &amp; Heat Pump?</a></li>
+      </ul>
     </div>
   </div>
 

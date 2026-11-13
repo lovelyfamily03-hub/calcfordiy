@@ -263,7 +263,31 @@ const articles = [
 const featuredArticle = articles.find(a => a.featured) || articles[0];
 const regularArticles = articles.filter(a => a !== featuredArticle);
 
-const allCategories = ["All", "Electrical & Energy", "Plumbing & Drainage", "Tile & Waterproofing", "Concrete & Earthwork", "Flooring & Interiors", "Structural Carpentry"];
+const allCategories = [
+  "All",
+  "Electrical & Energy",
+  "Plumbing & Drainage",
+  "Tile & Waterproofing",
+  "Concrete & Earthwork",
+  "Flooring & Interiors",
+  "Structural Carpentry",
+  "Roofing & Envelope"
+];
+
+const tagToGroup: Record<string, string> = {
+  "Electrical & Energy": "Electrical & Energy",
+  "Plumbing & Drainage": "Plumbing & Drainage",
+  "Drainage & Earthwork": "Plumbing & Drainage",
+  "Tile & Waterproofing": "Tile & Waterproofing",
+  "Tile & Masonry Chemistry": "Tile & Waterproofing",
+  "Concrete & Earthwork": "Concrete & Earthwork",
+  "Coatings & Concrete Forensics": "Concrete & Earthwork",
+  "Flooring & Interiors": "Flooring & Interiors",
+  "Interiors & Finishes": "Flooring & Interiors",
+  "Structural Carpentry": "Structural Carpentry",
+  "Roofing & Envelope": "Roofing & Envelope",
+  "Insulation & Retrofits": "Roofing & Envelope"
+};
 ---
 
 <Layout
@@ -340,7 +364,7 @@ const allCategories = ["All", "Electrical & Energy", "Plumbing & Drainage", "Til
 
   <!-- Lead Story (Featured Dispatch) -->
   <section class="mb-12" id="featuredSection">
-    <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-10 shadow-xs hover:border-gray-400 transition-all journal-card" data-tag={featuredArticle.tag} data-title={featuredArticle.title.toLowerCase()} data-excerpt={featuredArticle.excerpt.toLowerCase()}>
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 sm:p-10 shadow-xs hover:border-gray-400 transition-all journal-card" data-tag={featuredArticle.tag} data-group={tagToGroup[featuredArticle.tag] || featuredArticle.tag} data-title={featuredArticle.title.toLowerCase()} data-excerpt={featuredArticle.excerpt.toLowerCase()}>
       <div class="flex items-center gap-3 mb-4">
         <span class="px-3 py-1 bg-amber-100 text-amber-900 text-xs font-bold rounded-full uppercase tracking-wider">
           {featuredArticle.category}
@@ -359,6 +383,9 @@ const allCategories = ["All", "Electrical & Energy", "Plumbing & Drainage", "Til
         <img
           src={featuredArticle.image}
           alt={featuredArticle.title}
+          width="1200"
+          height="896"
+          fetchpriority="high"
           class="w-full h-auto object-cover max-h-[380px]"
           loading="eager"
         />
@@ -414,7 +441,7 @@ const allCategories = ["All", "Electrical & Energy", "Plumbing & Drainage", "Til
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="journalGrid">
       {regularArticles.map(article => (
-        <article class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:border-gray-400 hover:shadow-xs transition-all journal-card" data-tag={article.tag} data-title={article.title.toLowerCase()} data-excerpt={article.excerpt.toLowerCase()}>
+        <article class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:border-gray-400 hover:shadow-xs transition-all journal-card" data-tag={article.tag} data-group={tagToGroup[article.tag] || article.tag} data-title={article.title.toLowerCase()} data-excerpt={article.excerpt.toLowerCase()}>
           <div>
             <div class="flex flex-wrap items-center gap-2 mb-3">
               <span class="px-2.5 py-0.5 bg-gray-100 text-gray-800 text-xs font-semibold rounded-md">
@@ -432,6 +459,9 @@ const allCategories = ["All", "Electrical & Energy", "Plumbing & Drainage", "Til
             <img
               src={article.image}
               alt={article.title}
+              width="1376"
+              height="768"
+              decoding="async"
               class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
               loading="lazy"
             />
@@ -521,10 +551,11 @@ const allCategories = ["All", "Electrical & Energy", "Plumbing & Drainage", "Til
 
         cards.forEach(card => {
           const tag = card.getAttribute('data-tag') || '';
+          const group = card.getAttribute('data-group') || tag;
           const title = card.getAttribute('data-title') || '';
           const excerpt = card.getAttribute('data-excerpt') || '';
 
-          const matchesTag = (currentFilter === 'All') || (tag.toLowerCase() === currentFilter.toLowerCase());
+          const matchesTag = (currentFilter === 'All') || (group.toLowerCase() === currentFilter.toLowerCase()) || (tag.toLowerCase() === currentFilter.toLowerCase());
           const matchesQuery = !currentQuery || title.includes(currentQuery) || excerpt.includes(currentQuery) || tag.toLowerCase().includes(currentQuery);
 
           if (matchesTag && matchesQuery) {

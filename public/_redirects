@@ -34,3 +34,6 @@
 /yr/ / 301
 /day / 301
 /day/ / 301
+
+# 9. Standard sitemap alias
+/sitemap.xml /sitemap-index.xml 301

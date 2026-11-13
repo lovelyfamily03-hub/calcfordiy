@@ -40,6 +40,9 @@ const workflowSteps = [
 <Layout
   title="Basement Waterproofing Hub — Step-by-Step Drainage & Sump Pump Workflow | CalcForDIY"
   description="Follow a 4-step DIY basement waterproofing workflow: Interior French drain trenching, sump pump horsepower sizing, discharge pipe slope, and subfloor moisture barrier."
+  image="/images/projects/basement-waterproofing.jpg"
+  imageAlt="Finished dry basement with interior French drain perimeter channel, sealed sump pump basin, and dimpled drainage membrane"
+  ogType="website"
 >
 
   <script type="application/ld+json" is:inline>
@@ -47,7 +50,7 @@ const workflowSteps = [
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects/" },
       { "@type": "ListItem", "position": 3, "name": "Basement Waterproofing Hub — Step-by-Step Drainage & Sump Pump Workflow", "item": "https://calcfordiy.com/projects/basement-waterproofing/" }
     ]
@@ -109,6 +112,9 @@ const workflowSteps = [
   <div class="mb-8 overflow-hidden rounded-2xl border border-gray-200 shadow-sm bg-white">
     <img
       src="/images/projects/basement-waterproofing.jpg"
+      width="1376"
+      height="768"
+      fetchpriority="high"
       alt="Finished dry basement with interior French drain perimeter channel, sealed sump pump basin, and dimpled drainage membrane"
       class="w-full h-64 sm:h-80 md:h-96 object-cover"
       loading="eager"
@@ -143,6 +149,42 @@ const workflowSteps = [
       </div>
     ))}
   </div>
+
+  <!-- Hydrostatic Pressure, Sump Sizing & Capillary Control -->
+  <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 mb-10">
+    <h2 class="text-2xl font-bold text-slate-900 mb-3">Hydrostatic Perimeter Relief, Check Valves &amp; Slab Capillary Breaks</h2>
+    <p class="text-slate-600 text-sm mb-6">
+      Interior latex masonry paint cannot withstand external hydrostatic pressure once water rises around a foundation footing. Dry basements rely on relief drainage and mechanical pumping sized against real friction head:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-sm text-slate-700">
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">1. Total Dynamic Head (TDH) vs. Nominal GPH</h3>
+        <p>Pump box labels quote flow at 0 feet of vertical lift. Calculate vertical discharge rise plus 90-degree elbow friction losses at 1-1/2 inch pipe diameter so a 1/3 HP or 1/2 HP cast-iron pump still hits 2,500+ GPH at working head.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">2. Silent Check Valve &amp; Weep Hole Placement</h3>
+        <p>Install a spring-loaded silent check valve just above the sump basin cover to stop column water from hammering back down into the crock, and verify a 3/16-inch air-bleed weep hole below the valve to prevent pump air-lock.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">3. Interior Cove Joints &amp; Sealed Sump Lids</h3>
+        <p>Hydrostatic seepage typically enters at the cold joint where poured concrete walls rest on the footing. An internal drain tile channel wrapped in #57 washed stone relieves pressure beneath the floor slab before it reaches drywall plates.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">4. Battery Backup Sizing &amp; Surface Grading</h3>
+        <p>Pair primary AC sump pumps with a DC marine deep-cycle or LiFePO4 battery backup since heavy thunderstorms knock out utility power at peak groundwater inflow—and discharge exits at least 10 feet downhill from the foundation.</p>
+      </div>
+    </div>
+    <div class="border-t border-slate-200 pt-5">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Engineering Guides &amp; Field Investigations</h3>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm font-medium">
+        <li><a href="/guides/dual-check-valve-sump-pump-rules/" class="text-blue-700 hover:underline">&rarr; Dual-Pump &amp; Silent Check Valve Sump Pit Plumbing Rules</a></li>
+        <li><a href="/guides/tdh-well-pump-formula-guide/" class="text-blue-700 hover:underline">&rarr; Total Dynamic Head (TDH) &amp; Pipe Friction Formula Guide</a></li>
+        <li><a href="/guides/concrete-mix-ratios-psi-curing/" class="text-blue-700 hover:underline">&rarr; Trench Patch Concrete Mix Ratios &amp; Hydraulic Repair Specs</a></li>
+        <li><a href="/journal/the-4800-dollar-sump-pump-mistake-hydrostatic-pressure/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: The $4,800 Sump Pump &amp; Hydrostatic Failure</a></li>
+        <li><a href="/journal/the-peeling-epoxy-disaster-moisture-vapor-transmission/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: Slab Vapor Transmission &amp; Floor Coating Delamination</a></li>
+      </ul>
+    </div>
+  </section>
 
   <!-- Bottom CTA -->
   <div class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-2xl p-8 text-white text-center">

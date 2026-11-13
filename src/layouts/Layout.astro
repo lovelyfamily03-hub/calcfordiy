@@ -1,6 +1,13 @@
 ---
 import '../styles/global.css';
-const { title, description, noindex = false } = Astro.props;
+const {
+  title,
+  description,
+  noindex = false,
+  image = '/og-image.jpg',
+  imageAlt = 'CalcForDIY — 115 Free DIY Construction & Material Takeoff Calculators',
+  ogType = 'website',
+} = Astro.props;
 const pathname = Astro.url.pathname;
 const isCalculatorPage = pathname.startsWith('/calculators/') && pathname !== '/calculators/' && pathname !== '/calculators/';
 const navLinks = [
@@ -11,6 +18,7 @@ const navLinks = [
   { href: '/about/', label: 'About', match: '/about/' },
 ];
 const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com${Astro.url.pathname}` : `https://calcfordiy.com${Astro.url.pathname}/`;
+const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.com${image.startsWith('/') ? image : `/${image}`}`;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +36,11 @@ const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com$
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   </noscript>
   <meta name="description" content={description} />
-  {noindex && <meta name="robots" content="noindex, follow" />}
+  {noindex ? (
+    <meta name="robots" content="noindex, follow" />
+  ) : (
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+  )}
   <title>{title}</title>
   <link rel="canonical" href={canonicalUrl} />
   
@@ -47,21 +59,19 @@ const canonicalUrl = Astro.url.pathname.endsWith('/') ? `https://calcfordiy.com$
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:site_name" content="CalcForDIY" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content="https://calcfordiy.com/og-image.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="CalcForDIY — 115 Free DIY Construction & Material Takeoff Calculators" />
+  <meta property="og:image" content={absoluteImageUrl} />
+  <meta property="og:image:alt" content={imageAlt} />
   
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content="https://calcfordiy.com/og-image.jpg" />
-  <meta name="twitter:image:alt" content="CalcForDIY — 115 Free DIY Construction & Material Takeoff Calculators" />
+  <meta name="twitter:image" content={absoluteImageUrl} />
+  <meta name="twitter:image:alt" content={imageAlt} />
 </head>
   <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
     <!-- Accessible Skip to Content Link -->

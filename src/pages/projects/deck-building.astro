@@ -40,6 +40,9 @@ const workflowSteps = [
 <Layout
   title="Deck Building Project Hub — Step-by-Step Framing Workflow | CalcForDIY"
   description="Follow a 4-step deck construction workflow: concrete footings, joist span code sizing, deck boards, and stair stringer notch diagrams."
+  image="/images/projects/deck-building.jpg"
+  imageAlt="Backyard pressure-treated wood deck framing with joist tape and cedar decking under construction"
+  ogType="website"
 >
 
   <script type="application/ld+json" is:inline>
@@ -62,7 +65,7 @@ const workflowSteps = [
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects/" },
       { "@type": "ListItem", "position": 3, "name": "Deck Building Hub", "item": "https://calcfordiy.com/projects/deck-building/" }
     ]
@@ -91,6 +94,9 @@ const workflowSteps = [
   <div class="mb-8 overflow-hidden rounded-2xl border border-gray-200 shadow-sm bg-white">
     <img
       src="/images/projects/deck-building.jpg"
+      width="1376"
+      height="768"
+      fetchpriority="high"
       alt="Backyard pressure-treated wood deck framing with joist tape and cedar decking under construction"
       class="w-full h-64 sm:h-80 md:h-96 object-cover"
       loading="eager"
@@ -131,6 +137,43 @@ const workflowSteps = [
     <div class="space-y-3 text-sm text-gray-700">
       <p><strong>Ledger Board Flashing:</strong> Always install Z-flashing over house ledger boards to prevent rot behind the siding.</p>
       <p><strong>Fastener Specification:</strong> Use hot-dipped galvanized or 304/316 stainless steel screws and joist hanger nails for pressure-treated lumber (ACQ chemicals corrode standard steel fast).</p>
+    </div>
+  </div>
+
+  <!-- Structural Code Checkpoints & Inspection Failures -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-3">IRC R507 Ledger Lateral Ties, Joist Spans &amp; Stair Stringer Rules</h2>
+    <p class="text-gray-600 text-sm mb-5">
+      According to NADRA deck collapse forensics, over 90% of catastrophic deck failures pull away at the house ledger board rather than snapping mid-span joists. Verify these four IRC R507 &amp; R311 requirements before calling for framing inspection:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5 text-sm text-gray-700">
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">1. Ledger Bolting &amp; Lateral Load Ties (IRC R507.9)</h3>
+        <p>Attach ledgers directly to solid house rim joists (never over hollow exterior foam or brick veneer) using staggered structural ledger screws or 1/2-inch lag bolts per Table R507.9.1.3(1), plus tension ties rated at 750 lbs or 1,500 lbs into floor joists.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">2. Joist Spacing for Composite Decking (12 in. vs. 16 in. OC)</h3>
+        <p>While pressure-treated #2 Southern Pine 2&times;8 joists safely carry 40 psf live loads past 10 feet at 16-inch centers, capped wood-plastic composite boards require 12-inch OC framing when installed at 45-degree diagonal angles to prevent wavy sag.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">3. Minimum Throat Depth on Cut Stair Stringers (IRC R311.7)</h3>
+        <p>Maintain at least 3-1/2 inches (commonly 5 inches recommended) of uncut solid wood throat beneath each stair notch, keep uniform riser height under 7-3/4 inches (max 3/8-inch variance), and land stringers on a poured frost-free concrete pad.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">4. Composite Board Thermal Butt-Joint Gaps</h3>
+        <p>Unlike kiln-dried wood decking that shrinks, PVC and composite boards expand linearly in summer sun. Adjust side and butt gaps for installation ambient temperature using expansion spacing charts so boards do not buckle.</p>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 pt-4">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Deck Engineering Guides &amp; Field Forensics</h3>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm font-medium">
+        <li><a href="/guides/how-far-can-2x8-deck-joist-span/" class="text-blue-700 hover:underline">&rarr; How Far Can a 2&times;8 Deck Joist Span? (IRC R507 Tables)</a></li>
+        <li><a href="/guides/how-many-bags-of-concrete-for-4x4-post/" class="text-blue-700 hover:underline">&rarr; Post Footing Concrete Volume &amp; Bag Chart</a></li>
+        <li><a href="/guides/lvl-beam-selection-span-tables/" class="text-blue-700 hover:underline">&rarr; Multi-Ply Flush &amp; Dropped Beam Span Tables</a></li>
+        <li><a href="/guides/composite-deck-board-expansion-gaps/" class="text-blue-700 hover:underline">&rarr; Composite Deck Board Thermal Expansion Gap Chart</a></li>
+        <li><a href="/journal/the-rotten-rim-joist-deck-ledger-collapse/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: Rotten Rim Joist &amp; Deck Ledger Collapse Forensics</a></li>
+        <li><a href="/journal/anatomy-of-deck-stair-stringer-rejection-irc-r311/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: Why Inspectors Reject Deck Stair Stringers (IRC R311)</a></li>
+      </ul>
     </div>
   </div>
 

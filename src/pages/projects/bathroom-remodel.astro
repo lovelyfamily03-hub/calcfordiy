@@ -48,6 +48,9 @@ const workflowSteps = [
 <Layout
   title="Bathroom & Shower Remodel Hub — Step-by-Step Tiling Workflow | CalcForDIY"
   description="Follow a 5-step bathroom remodel workflow: shower tile, wall tile, thinset mortar, grout bags, and tankless water heater sizing."
+  image="/images/projects/bathroom-remodel.jpg"
+  imageAlt="Modern walk-in shower tile renovation with white subway wall tile and slate flooring"
+  ogType="website"
 >
 
   <script type="application/ld+json" is:inline>
@@ -71,7 +74,7 @@ const workflowSteps = [
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects/" },
       { "@type": "ListItem", "position": 3, "name": "Bathroom Remodel Hub", "item": "https://calcfordiy.com/projects/bathroom-remodel/" }
     ]
@@ -100,6 +103,9 @@ const workflowSteps = [
   <div class="mb-8 overflow-hidden rounded-2xl border border-gray-200 shadow-sm bg-white">
     <img
       src="/images/projects/bathroom-remodel.jpg"
+      width="1376"
+      height="768"
+      fetchpriority="high"
       alt="Modern walk-in shower tile renovation with white subway wall tile and slate flooring"
       class="w-full h-64 sm:h-80 md:h-96 object-cover"
       loading="eager"
@@ -134,5 +140,55 @@ const workflowSteps = [
       </div>
     ))}
   </div>
+
+  <!-- TCNA & Plumbing Inspection Sequence -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-8 space-y-4">
+    <h2 class="text-xl font-bold text-gray-900">TCNA Waterproofing &amp; Bath Remodel Code Standards</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700 leading-relaxed">
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">1. Subfloor Deflection Before Tile (L/360 vs L/720)</h3>
+        <p>Porcelain and ceramic tile demand maximum L/360 joist and subfloor stiffness per TCNA guidelines (3/4" exterior plywood plus uncoupling membrane or cement board). Natural marble and travertine require L/720 stiffness to stop grout cracking.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">2. Preslope &amp; 24-Hour Flood Test (IRC P2709)</h3>
+        <p>Water flows underneath porous grout. Traditional PVC pan liners MUST sit atop a 1/4"-per-foot sloped dry-pack mortar preslope before flooding 2 inches deep over 24 hours—or use a surface-bonded sheet/liquid ANSI A118.10 membrane right over sloped foam trays.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">3. Trowel Notch Coverage (95% Wet-Area Transfer)</h3>
+        <p>TCNA ANSI A108 requires minimum 95% mortar coverage on shower floors/walls and exterior installations. Large-format 12x24 porcelain planks require 1/2" x 1/2" square-notch troweling and back-buttering to eliminate hollow voids.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">4. Dedicated 20A GFCI &amp; Exhaust Venting</h3>
+        <p>NEC Section 210.11(C)(3) requires a dedicated 20-amp GFCI-protected receptacle circuit serving bathroom vanity outlets, and IRC Section M1505 requires mechanical exhaust ducted straight outside to daylight (minimum 50 CFM intermittent)—never into unconditioned attic soffits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross-Linked Engineering Guides & Dispatches -->
+  <section class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-gray-900 mb-3">Related Tile Engineering Guides &amp; Failure Forensics</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+      <a href="/guides/trowel-notch-size-tile-format/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">Trowel Notch Size &amp; Tile Format Guide →</div>
+        <div class="text-xs text-gray-600 mt-1">Select exact 1/4", 3/8", or 1/2" notches to achieve 95% TCNA mortar coverage.</div>
+      </a>
+      <a href="/guides/tcna-subfloor-deflection-guide/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">TCNA Subfloor Deflection &amp; Span Guide →</div>
+        <div class="text-xs text-gray-600 mt-1">Prevent cracked floor tile and failed grout joints with proper subfloor thickness math.</div>
+      </a>
+      <a href="/guides/linear-drain-slope-single-plane-waterproofing/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">Curbless Shower Single-Plane Linear Drain Guide →</div>
+        <div class="text-xs text-gray-600 mt-1">1/4"-per-foot slope geometry for large-format barrier-free showers.</div>
+      </a>
+      <a href="/journal/the-9000-dollar-shower-pan-leak-preslope-curbless-failure/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">Field Dispatch: The $9,000 Shower Pan Leak →</div>
+        <div class="text-xs text-gray-600 mt-1">Why missing preslopes trap stagnant gray water under tile until dining ceilings rot.</div>
+      </a>
+      <a href="/journal/why-cold-weather-grout-crumbled-efflorescence-chemistry/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors md:col-span-2">
+        <div class="font-semibold text-gray-900">Field Dispatch: Why Cold-Weather Grout Crumbled &amp; Effloresced →</div>
+        <div class="text-xs text-gray-600 mt-1">Hydration stall below 50°F, excess wash water, and ANSI A118.6 curing chemistry.</div>
+      </a>
+    </div>
+  </section>
 
 </Layout>

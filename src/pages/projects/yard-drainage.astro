@@ -62,7 +62,7 @@ const workflowSteps = [
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects/" },
       { "@type": "ListItem", "position": 3, "name": "Yard Drainage Hub", "item": "https://calcfordiy.com/projects/yard-drainage/" }
     ]
@@ -111,5 +111,51 @@ const workflowSteps = [
       </div>
     ))}
   </div>
+
+  <!-- Civil & Hydraulic Drainage Rules -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-8 space-y-4">
+    <h2 class="text-xl font-bold text-gray-900">Hydraulic Grading, Pipe Orientation &amp; Envelope Standards</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700 leading-relaxed">
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">1. Positive 1%–2% Slope Away from Foundations</h3>
+        <p>IRC Section R401.3 requires minimum 6 inches of fall within the first 10 feet away from residential foundation walls (or swales at minimum 2% slope). Buried drain tile requires a continuous laser-verified fall between 1/8 inch and 1/4 inch per linear foot to maintain self-cleaning flow.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">2. Perforation Holes Point DOWN (4 &amp; 8 O'Clock)</h3>
+        <p>Rigid SDR-35 or Schedule 40 perforated pipe belongs on a 2-inch bed of clean 3/4-inch washed stone with holes facing downward. Groundwater rises into the lower gravel voids as the water table swells, draining cleanly without filling the trench with trapped silt.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">3. Wrap the Trench, Not the Pipe</h3>
+        <p>Never use thin black knit "pipe socks" in clay soils—fine silt cements around the tight weave and blocks inflow. Line the excavated trench walls with permeable non-woven needle-punched geotextile fabric, fill completely with washed #57 angular stone, and overlap the top flap 12 inches like a burrito.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">4. Cleanout Access &amp; Daylight Outfall</h3>
+        <p>Keep solid downspout leaders completely separate from perforated French drain pipe so roof storms never back-flood subsoil trenches. Terminate lines to an open daylight pop-up emitter or drywell chamber beyond freezing frost heave where surface water drains away safely.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross-Linked Engineering Guides & Dispatches -->
+  <section class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-gray-900 mb-3">Related Drainage Engineering Guides &amp; Failure Forensics</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+      <a href="/guides/french-drain-pipe-holes-up-or-down/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">French Drain Pipe Holes: Up vs. Down Engineering →</div>
+        <div class="text-xs text-gray-600 mt-1">Water table invert physics and why upward holes hold standing stagnation water.</div>
+      </a>
+      <a href="/guides/soil-percolation-test-drywell/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">How to Run a Soil Percolation Test for Drywells →</div>
+        <div class="text-xs text-gray-600 mt-1">Measure minutes-per-inch infiltration rates in clay vs. sandy soils before trenching.</div>
+      </a>
+      <a href="/journal/the-quarter-inch-slope-drainage-mistake-perforated-pipe-physics/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">Field Dispatch: Why an $8,200 French Drain Flooded →</div>
+        <div class="text-xs text-gray-600 mt-1">Post-mortem on upside-down perforations, settlement bellies, and plugged fabric socks.</div>
+      </a>
+      <a href="/journal/the-14000-dollar-bowing-retaining-wall-hydrostatic-surcharge/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">Field Dispatch: The $14,000 Bowing Retaining Wall →</div>
+        <div class="text-xs text-gray-600 mt-1">How clay backfill without drainage gravel generated 4,800 lbs of hydrostatic pressure.</div>
+      </a>
+    </div>
+  </section>
 
 </Layout>

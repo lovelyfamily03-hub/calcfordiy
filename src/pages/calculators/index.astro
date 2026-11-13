@@ -882,6 +882,13 @@ const categories = [...new Set(calculators.map(c => c.category))];
 
     searchInput.addEventListener('input', filterCalculators);
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialQuery = urlParams.get('q');
+    if (initialQuery) {
+      searchInput.value = initialQuery;
+      filterCalculators();
+    }
+
     clearBtn.addEventListener('click', () => {
       searchInput.value = '';
       filterCalculators();

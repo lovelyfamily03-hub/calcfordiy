@@ -37,6 +37,7 @@ const article = {
     "@type": "BlogPosting",
     "headline": article.title,
     "description": article.description,
+    "image": "https://calcfordiy.com/images/journal/conduit-spray-foam-heat-trap.jpg",
     "datePublished": "2026-11-13T08:00:00+00:00",
     "dateModified": "2026-11-13T08:00:00+00:00",
     "author": {
@@ -141,6 +142,9 @@ const article = {
     <!-- Editorial Lead Photo -->
     <figure class="mb-10 rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-gray-100">
       <img
+        width="1200"
+        height="896"
+        fetchpriority="high"
         src={article.image}
         alt="Six yellow 12/2 NM-B Romex cables bundled inside a PVC conduit sleeve surrounded by closed-cell spray foam showing heat-blistered sheathing"
         class="w-full h-auto object-cover max-h-[500px]"

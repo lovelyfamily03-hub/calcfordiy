@@ -33,7 +33,7 @@
 - **Field Journal Case Studies live:** 17 in-depth case studies with on-site photography (`src/pages/journal/`)
 - **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. 0 broken links verified across all 167 HTML pages. AdSense crawl buffer elapsed. Site is 100% READY for dashboard resubmission ("Request Review").
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
-- **GSC Status:** 167 pages indexed/crawlable, zero manual actions. Ranking in Top 10–20 for competitive long-tail terms (`how many boxes of laminate flooring do i need calculator` - Pos 9.0, `postcrete calculator` - Pos 20.0).
+- **GSC Status:** As of Nov 10, 2026 GSC snapshot: 80 pages indexed, 469 not indexed (260 Discovered - not indexed, 111 Page with redirect, 59 Alternate canonical, 27 Crawled - not indexed, 11 404s, 1 Redirect error); Nov 13 technical SEO & CWV overhaul deployed to resolve crawl-budget & mobile weight bottlenecks.
 
 ---
 
@@ -250,12 +250,13 @@ Path: `src/pages/guides/` — Use staggered publish dates when committing.
 
 ---
 
-## SEO & INDEXING STATUS (Sep 25, 2026)
-- **Crawl & Indexing Health**: 84 pages indexed in GSC, 252 pages in "Discovered - currently not indexed" crawl queue.
-- **GSC Technical Audit & Fixes Deployed (COMPLETE ✅)**:
-  - *Page with redirect (78 pages)*: Standardized 1,345 internal URLs, category anchors, and BreadcrumbList schema items across 298 files to strictly end with trailing slash (`/`), eliminating internal 308/301 redirects and crawl budget waste.
-  - *Alternate page with proper canonical tag (65 pages)*: Apex domain `https://calcfordiy.com/` confirmed as canonical source; edge redirection rule configured in Cloudflare to permanently 301-redirect `www.calcfordiy.com/*` to apex.
-  - *Legacy 404s (11 pages)*: 301 redirect mapping in `public/_redirects` active and validated by Googlebot.
+## SEO & INDEXING STATUS (Nov 13, 2026)
+- **Crawl & Indexing Health (GSC Snapshot through Nov 10, 2026)**: 80 pages indexed (469 not indexed: 260 Discovered, 111 Redirect, 59 Alternate canonical, 27 Crawled - not indexed, 11 404s, 1 Redirect error); 654 requests/90d (84% Smartphone crawler, 96% Refresh vs 4% Discovery, 72% apex / 28% `www`).
+- **Nov 13, 2026 Visibility, CWV & Crawl-Efficiency Sweep (COMPLETE ✅)**:
+  - *Image Weight & Mobile CWV*: Lossless-visually compressed all 48 site JPEGs via `sharp` progressive `mozjpeg` (q78, >=1200px kept) cutting `43.98 MB -> 7.96 MB (-81.9%)`, added `max-image-preview:large`, dynamic `og:image`/`ogType`, and explicit `width`/`height` on all images (`0` missing).
+  - *Sitemap Discovery & Redirects*: Added git-derived per-route ISO `<lastmod>` timestamps across all 349 URLs in `sitemap-0.xml` (removing ignored `changefreq`/`priority`) and added `/sitemap.xml -> /sitemap-index.xml 301` in `public/_redirects`. Note: external Cloudflare `www -> apex` redirect without trailing slash remains in Cloudflare Dashboard rules (`www` took 28% of hits).
+  - *Schema, SearchAction & On-Page Architecture*: Fixed `BreadcrumbList` apex home URLs (`https://calcfordiy.com/`) across 285 pages, added `"image"` to all 17 `BlogPosting` schemas, fixed `/` `SearchAction` + `/calculators/?q=` query initialization, eliminated duplicate homepage `<h1>` (`CALCFORDIY WORKSHOP & JOURNAL`), trimmed `/` cards to slices `1..7`, and fixed `/journal/` filter `data-group` coverage across all 17 dispatches.
+  - *Thin Project Hubs & Link Equity*: Deepened all 16 thin flagship project hubs (`147–247` words -> `340+` words each) with IRC/NEC/TCNA/NWFA checklists & cross-links, eliminating all `13` single-inbound pages (`0` zero-inbound, `0` single-inbound across `350` built pages).
 - **Hardened AdSense Re-Submission Strategy**: Rather than mass-padding calculators with templated 500-word boilerplate (which risks Google's Scaled Content Abuse penalty), we are executing a 4-Phase Quality Plan:
   1. *Domain Trust (E-E-A-T - COMPLETE ✅)*: Explicit AdSense DART cookie privacy policy (`/privacy`), dedicated Calculation Methodology page (`/methodology`), 4-tier code maintenance schedule (triennial, annual, bi-annual, continuous), 2024–2026 code audit log, and localized AHJ disclaimers.
   2. *Tiered Flagship Enhancement (COMPLETE ✅)*: Deepened top 10 core calculators (`concrete-slab`, `wall-framing`, `shower-tile`, `asphalt-shingles`, `ev-charger-wiring`, `retaining-wall`, `deck-joist-span`, `french-drain`, `stair-stringer`, `mini-split-sizing`) with explicit math equations, transparent default constants, and tool-specific job-site FAQs.

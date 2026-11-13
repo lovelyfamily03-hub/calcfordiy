@@ -40,6 +40,9 @@ const workflowSteps = [
 <Layout
   title="Shed Construction Hub — Step-by-Step DIY Outbuilding Workflow | CalcForDIY"
   description="Follow a 4-step DIY shed building workflow: Concrete slab foundation, 2x4 wall framing, roof rafter cut geometry, and asphalt shingle roofing."
+  image="/images/projects/shed-building.jpg"
+  imageAlt="Timber framed modern storage shed under construction with wall studs, roof rafters, and plywood floor"
+  ogType="website"
 >
 
   <script type="application/ld+json" is:inline>
@@ -47,7 +50,7 @@ const workflowSteps = [
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects/" },
       { "@type": "ListItem", "position": 3, "name": "Shed Construction Hub — Step-by-Step DIY Outbuilding Workflow", "item": "https://calcfordiy.com/projects/shed-building/" }
     ]
@@ -109,6 +112,9 @@ const workflowSteps = [
   <div class="mb-8 overflow-hidden rounded-2xl border border-gray-200 shadow-sm bg-white">
     <img
       src="/images/projects/shed-building.jpg"
+      width="1376"
+      height="768"
+      fetchpriority="high"
       alt="Timber framed modern storage shed under construction with wall studs, roof rafters, and plywood floor"
       class="w-full h-64 sm:h-80 md:h-96 object-cover"
       loading="eager"
@@ -143,6 +149,42 @@ const workflowSteps = [
       </div>
     ))}
   </div>
+
+  <!-- Shed Foundations, Sill Decay & Roof Framing Checkpoints -->
+  <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 mb-10">
+    <h2 class="text-2xl font-bold text-slate-900 mb-3">Outbuilding Foundations, Treated Sills &amp; Roof Square Checks</h2>
+    <p class="text-slate-600 text-sm mb-6">
+      Under IRC R105.2, detached tool and storage sheds up to 200 square feet are frequently exempt from building permits, yet frost heave, undersized floor joists, and rotting bottom plates destroy more backyard sheds than windstorms. Verify these four details:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-sm text-slate-700">
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">1. Gravel Pad vs. Concrete Slab vs. Piers</h3>
+        <p>For skid-mounted wood floors, excavate 4 to 6 inches of organic topsoil and compact clean #57 crushed angular gravel for free drainage. For monolithic concrete slabs, use 4,000 PSI air-entrained concrete with thickened perimeter haunches in freeze-thaw regions.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">2. Ground-Contact Treatment (UC4A) &amp; Sill Seal</h3>
+        <p>Pressure-treated rim joists or skids within 8 inches of finished grade require UC4A ground-contact rating, separated from poured concrete by capillary sill-sealer foam and anchored with J-bolts spaced every 4 to 6 feet.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">3. Wall Framing Module &amp; OSB Shear Nailing</h3>
+        <p>Lay out studs cleanly at 16 inches on center (starting at 15-1/4 inches from the corner) so vertical 4&times;8 structural sheathing sheets land centered on framing members without field ripping, and leave 1/8-inch panel edge gaps.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">4. Collar Ties vs. Rafter Ties (IRC R802.3)</h3>
+        <p>Common gable roofs without a structural ridge beam need horizontal ceiling joists or lower-third rafter ties nailed per IRC R802.5.2 to resist outward wall thrust under winter snow loads.</p>
+      </div>
+    </div>
+    <div class="border-t border-slate-200 pt-5">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Engineering Guides &amp; Field Investigations</h3>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm font-medium">
+        <li><a href="/guides/how-many-studs-for-a-wall/" class="text-blue-700 hover:underline">&rarr; How Many Studs for a Wall? (16 vs. 24 in. OC + Corner Math)</a></li>
+        <li><a href="/guides/concrete-mix-ratios-psi-curing/" class="text-blue-700 hover:underline">&rarr; Concrete Mix Ratios, 4,000 PSI Specs &amp; Cold Curing</a></li>
+        <li><a href="/guides/how-many-roofing-squares/" class="text-blue-700 hover:underline">&rarr; How Many Roofing Squares &amp; Shingle Bundles Needed?</a></li>
+        <li><a href="/journal/when-4-inches-isnt-enough-concrete-driveway-frost-heave/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: Slab Thickness, Compacted Base &amp; Frost Heave</a></li>
+        <li><a href="/journal/the-3-inch-frost-heave-sonotube-pier-pergola-failure/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: Why Shallow Footings Frost-Heave in Winter</a></li>
+      </ul>
+    </div>
+  </section>
 
   <!-- Bottom CTA -->
   <div class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-2xl p-8 text-white text-center">

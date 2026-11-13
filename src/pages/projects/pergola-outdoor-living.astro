@@ -47,7 +47,7 @@ const workflowSteps = [
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Project Hubs", "item": "https://calcfordiy.com/projects/" },
       { "@type": "ListItem", "position": 3, "name": "Pergola & Outdoor Living Hub — Step-by-Step Patio Construction Workflow", "item": "https://calcfordiy.com/projects/pergola-outdoor-living/" }
     ]
@@ -129,6 +129,42 @@ const workflowSteps = [
       </div>
     ))}
   </div>
+
+  <!-- Outdoor Framing & Pier Depth Checkpoints -->
+  <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 mb-10">
+    <h2 class="text-2xl font-bold text-slate-900 mb-3">Frost Depth Footings, Wind Uplift &amp; Outdoor Span Rules</h2>
+    <p class="text-slate-600 text-sm mb-6">
+      Because standalone pergolas and pavilions act like sails in high winds and lack interior shear walls, overturning resistance and frost-depth anchorage matter just as much as beam sizing. Check these four structural criteria before digging:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 text-sm text-slate-700">
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">1. Below-Frost Concrete Pier Bearing (IRC R403.1.4)</h3>
+        <p>Support footings below the local frost line (often 36 to 48+ inches in northern climates) rather than setting posts on shallow patio pavers. Frost-heaved slabs lift corner posts unevenly and wrack mortised overhead beams.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">2. Elevated Post Bases &amp; End-Grain Wicking</h3>
+        <p>Never embed raw pressure-treated posts directly inside poured concrete piers without standoff hardware. A 1-inch standoff anchor base isolates wood end grain from standing rainwater and satisfies continuous uplift load paths.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">3. Beam Cantilever &amp; Rafter Overhang Ratios</h3>
+        <p>Decorative rafter tail cantilevers past the carrying beam typically stay within 1/4 of the back-span (maximum 18 to 24 inches depending on species and spacing) to prevent downward sag over multi-season wetting cycles.</p>
+      </div>
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+        <h3 class="font-bold text-slate-900 mb-1">4. Lateral Knee Bracing &amp; ACQ Fastener Alloy</h3>
+        <p>Freestanding 4-post pergolas rely on 45-degree corner knee braces secured with structural lag screws (or through-bolts) to arrest racking. Specify ZMAX (G185) or 304/316 stainless connectors whenever contacting copper-treated lumber.</p>
+      </div>
+    </div>
+    <div class="border-t border-slate-200 pt-5">
+      <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Engineering Guides &amp; Field Investigations</h3>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm font-medium">
+        <li><a href="/guides/pergola-rafter-span-cantilever-beam-rules/" class="text-blue-700 hover:underline">&rarr; Pergola Rafter Span &amp; Cantilever Beam Rules</a></li>
+        <li><a href="/guides/how-many-bags-of-concrete-for-sonotube/" class="text-blue-700 hover:underline">&rarr; Sonotube Pier Concrete Volume &amp; Bag Chart</a></li>
+        <li><a href="/guides/how-many-bags-of-concrete-for-4x4-post/" class="text-blue-700 hover:underline">&rarr; How Many Bags of Concrete for a 4&times;4 Post?</a></li>
+        <li><a href="/guides/lvl-beam-selection-span-tables/" class="text-blue-700 hover:underline">&rarr; LVL &amp; Exterior Beam Span Table Reference</a></li>
+        <li><a href="/journal/the-3-inch-frost-heave-sonotube-pier-pergola-failure/" class="text-blue-700 hover:underline">&rarr; Field Dispatch: The 3-Inch Sonotube Frost-Heave Pergola Failure</a></li>
+      </ul>
+    </div>
+  </section>
 
   <!-- Bottom CTA -->
   <div class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-2xl p-8 text-white text-center">

@@ -1033,7 +1033,7 @@ const journalDispatches = [
 ];
 
 const featuredDispatch = journalDispatches[0];
-const recentDispatches = journalDispatches.slice(1);
+const recentDispatches = journalDispatches.slice(1, 7);
 
 const categories = [...new Set(calculators.map((c) => c.category))];
 ---
@@ -1052,7 +1052,7 @@ const categories = [...new Set(calculators.map((c) => c.category))];
       description: `${calculators.length} free DIY calculators with dynamic SVG cut diagrams, RSMeans contractor cost benchmarks, 1-click shopping lists, and project construction hubs.`,
       potentialAction: {
         "@type": "SearchAction",
-        target: "https://calcfordiy.com/calculators?q={search_term_string}",
+        target: "https://calcfordiy.com/calculators/?q={search_term_string}",
         "query-input": "required name=search_term_string",
       },
     })}
@@ -1131,12 +1131,12 @@ const categories = [...new Set(calculators.map((c) => c.category))];
       <div>
         <span
           class="text-xs font-mono font-bold tracking-widest text-blue-700 uppercase"
-          >Volume 1 • Issue 1 • Fall 2026</span
+          >Volume 1 • Issue 4 • November 2026</span
         >
         <h1
-          class="text-4xl md:text-6xl font-black text-gray-950 tracking-tight mt-1 font-serif"
+          class="text-3xl sm:text-5xl font-black text-gray-950 tracking-tight mt-1 font-serif"
         >
-          CALCFORDIY JOURNAL
+          CALCFORDIY WORKSHOP &amp; JOURNAL
         </h1>
       </div>
       <div class="text-xs text-gray-600 font-mono text-left md:text-right">
@@ -1276,6 +1276,9 @@ const categories = [...new Set(calculators.map((c) => c.category))];
               <img
                 src={article.image}
                 alt={article.title}
+                width="1376"
+                height="768"
+                decoding="async"
                 class="w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />

@@ -71,7 +71,7 @@ const workflowSteps = [
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
       { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://calcfordiy.com/projects/" },
       { "@type": "ListItem", "position": 3, "name": "Basement Finishing Hub", "item": "https://calcfordiy.com/projects/basement-finishing/" }
     ]
@@ -120,5 +120,55 @@ const workflowSteps = [
       </div>
     ))}
   </div>
+
+  <!-- Basement Building Science & Code Sequence -->
+  <section class="bg-white border border-gray-200 rounded-xl p-6 mb-8 space-y-4">
+    <h2 class="text-xl font-bold text-gray-900">Basement Code, Moisture Control &amp; Life-Safety Checkpoints</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700 leading-relaxed">
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">1. Rigid XPS Foam Before Stud Framing</h3>
+        <p>Never place paper-faced fiberglass batts directly against bare poured concrete—condensation feeds hidden mold behind drywall. Glue minimum 2-inch closed-cell XPS rigid foam (R-10+ per IECC Climate Zones 4–7) directly to foundation walls and tape seams before framing floating stud walls.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">2. Egress Windows &amp; Fireblocking (IRC R310 / R302)</h3>
+        <p>Finished habitable basements and sleeping rooms require IRC Section R310 emergency escape openings with minimum 5.7 sq ft net clear opening (5.0 sq ft at grade), minimum 20" width, 24" height, and 44" max sill height. Install solid 2x fireblocking along stud top plates and soffit chases per IRC R302.11.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">3. Pressure-Treated Bottom Plates &amp; Floating Expansion</h3>
+        <p>Anchor ground-contact ACQ/CA-C bottom plates (plus closed-cell foam sill gasket) into concrete slabs using corrosion-resistant Tapcon or stainless fasteners—or frame floating walls in expansive clay areas to keep floor uplift from buckling upstairs joists.</p>
+      </div>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+        <h3 class="font-bold text-gray-900 mb-1">4. Subfloor &amp; Stairway Headroom Clearances</h3>
+        <p>Verify minimum 7-foot finished ceiling height (6'4" under structural beams and ductwork per IRC R305.1) before hanging framing, and measure doorway widths against 12-foot drywall panel turning radius.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cross-Linked Engineering Guides & Dispatches -->
+  <section class="bg-gray-50 border border-gray-200 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-gray-900 mb-3">Related Basement Framing Guides &amp; Field Reports</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+      <a href="/guides/how-many-studs-for-a-wall/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">How Many Studs Do I Need for a Wall? →</div>
+        <div class="text-xs text-gray-600 mt-1">Exact math for 16" o.c. framing, California corners, T-junctions, and openings.</div>
+      </a>
+      <a href="/guides/drywall-sheet-size-8-vs-12-ft/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">Drywall Sheet Size Guide: 8 ft vs. 10 ft vs. 12 ft →</div>
+        <div class="text-xs text-gray-600 mt-1">Cut butt joints in half while checking basement stairwell turn clearances first.</div>
+      </a>
+      <a href="/guides/lvl-beam-selection-span-tables/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">LVL Engineered Beam Span &amp; Bearing Guide →</div>
+        <div class="text-xs text-gray-600 mt-1">Inspect load paths, jack studs, and footing pads before removing basement posts.</div>
+      </a>
+      <a href="/projects/coffered-ceiling-layout/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors">
+        <div class="font-semibold text-gray-900">Coffered Ceiling Layout Hub →</div>
+        <div class="text-xs text-gray-600 mt-1">Turn low structural steel beams and HVAC soffits into balanced ceiling coffers.</div>
+      </a>
+      <a href="/journal/the-4800-dollar-sump-pump-mistake-hydrostatic-pressure/" class="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition-colors md:col-span-2">
+        <div class="font-semibold text-gray-900">Field Dispatch: The $4,800 Sump Pump Failure →</div>
+        <div class="text-xs text-gray-600 mt-1">Never hang basement drywall or carpet before validating battery backup pump flow against storm TDH.</div>
+      </a>
+    </div>
+  </section>
 
 </Layout>
