@@ -105,7 +105,8 @@
 - [x] `"How Many Bags of Concrete for a Sonotube (8, 10, 12, 16 In)?"` (`/guides/how-many-bags-of-concrete-for-sonotube`)
 - [x] `"How Deep Should a Gravel Driveway Be? (3-Layer Guide)"` (`/guides/how-deep-should-a-gravel-driveway-be`)
 
-### 📰 Field Journal Dispatches (`/journal/` - COMPLETE ✅ 17 Live Dispatches with Photos)
+### 📰 Field Journal Dispatches (`/journal/` - COMPLETE ✅ 18 Live Dispatches with Photos)
+- [x] `"Why Outdoor Christmas Lights Trip GFCI Outlets and Melt Splitters: NEC 590, Wet-Cover Leakage, and the 16 AWG Cord Trap"` (`/journal/outdoor-christmas-lights-gfci-overload-nec-590/`)
 - [x] `"The Conduit Heat Trap: Why Bundling Six Romex Cables Inside Spray Foam Melted Insulation Jackets"` (`/journal/the-conduit-heat-trap-spray-foam-romex-derating/`)
 - [x] `"The Rotten Rim Joist: Why Lag Screws Through Vinyl Siding Nearly Collapsed an $18,000 Deck"` (`/journal/the-rotten-rim-joist-deck-ledger-collapse/`)
 - [x] `"The Peeling Epoxy Disaster: Why a $5,400 Garage Floor Lifted in Sheets After One Summer"` (`/journal/the-peeling-epoxy-disaster-moisture-vapor-transmission`)

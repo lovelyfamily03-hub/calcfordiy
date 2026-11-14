@@ -1,0 +1,349 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: 'Why Outdoor Christmas Lights Trip GFCI Outlets and Melt Splitters: NEC 590, Wet-Cover Leakage, and the 16 AWG Cord Trap',
+  slug: 'outdoor-christmas-lights-gfci-overload-nec-590',
+  description: 'An electrical forensics field report on an exterior holiday lighting display that scorched a 3-way splitter cube and repeatedly tripped the porch GFCI in November rain. Covering NEC Article 590 90-day rules, NEC 406.9(B)(1) extra-duty covers, continuous 80% load limits, and 16 AWG voltage drop math.',
+  author: 'Greg Larson',
+  authorRole: 'Licensed Master Electrician & Field Contributor',
+  reviewer: 'Marcus Vance',
+  reviewerRole: 'Master Electrician & MEP Systems Specialist',
+  publishDate: 'November 14, 2026',
+  readTime: '11 min read',
+  category: 'Field Investigation',
+  image: '/images/journal/holiday-lights-gfci-overload.jpg',
+  tag: 'Electrical & Energy',
+  companionCalculator: {
+    name: 'Holiday & Outdoor Power Load Calculator',
+    href: '/calculators/holiday-power-load/',
+    desc: 'Total up light string wattage, yard inflatables, and continuous NEC 80% circuit loads with 16/14/12 AWG extension cord gauge checks.'
+  },
+  companionHub: {
+    name: 'Exterior Holiday Lighting & Safe Wiring Hub',
+    href: '/projects/exterior-holiday-lighting-safe-wiring/',
+    desc: 'Complete 4-step workflow covering NEC Article 590 temporary wiring limits, 0.58W C9 LED retrofits, custom SPT-2 cords, and NEMA 3R covers.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+  image="/images/journal/holiday-lights-gfci-overload.jpg"
+  imageAlt={article.title}
+  ogType="article"
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "image": "https://calcfordiy.com/images/journal/holiday-lights-gfci-overload.jpg",
+    "datePublished": "2026-11-14T08:00:00+00:00",
+    "dateModified": "2026-11-14T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            GL
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-gray-500 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200">
+          <div>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Published</span>
+            <span class="font-mono text-gray-800">{article.publishDate}</span>
+          </div>
+          <div class="border-l border-gray-200 pl-4">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="font-semibold text-gray-800">{article.reviewer}</span>
+            <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Companion Tool Callout (Top) -->
+    <div class="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-5 rounded-r-xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-0.5">Companion Engineering Tool</div>
+        <div class="font-bold text-gray-900 text-base">{article.companionCalculator.name}</div>
+        <div class="text-xs text-gray-600 mt-0.5">{article.companionCalculator.desc}</div>
+      </div>
+      <a
+        href={article.companionCalculator.href}
+        class="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors flex items-center gap-1.5"
+      >
+        <span>Open Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Editorial Lead Photo -->
+    <figure class="mb-10 rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-gray-100">
+      <img
+        width="1200"
+        height="896"
+        fetchpriority="high"
+        src={article.image}
+        alt="Overloaded orange 3-way splitter cube with scorched plastic plugged into an exterior Bell outlet box while green and white Christmas light cords trail directly into wet November oak leaf mulch"
+        class="w-full h-auto object-cover max-h-[500px]"
+        loading="eager"
+      />
+      <figcaption class="p-3 bg-gray-50 text-xs text-gray-600 border-t border-gray-200 font-mono">
+        Figure 1.1: Front-porch Bell receptacle inspection following repeated rainy-night GFCI trips. Propping open a flat weatherproof flip-cover left the orange 3-way adapter exposed to brick runoff, while loose incandescent C9 plugs and coiled 16 AWG cord rested directly in saturated leaf mulch.
+      </figcaption>
+    </figure>
+
+    <!-- Article Body -->
+    <div class="prose prose-lg max-w-none text-gray-800 space-y-8 font-serif">
+      <section class="space-y-4">
+        <p class="text-xl sm:text-2xl leading-relaxed text-gray-900 font-serif font-medium first-letter:text-5xl first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:text-blue-900">
+          Every mid-November rainstorm tells the same story on neighborhood electrical service calls: a front-yard Christmas light display works fine during dry setup afternoon, then trips dead ten minutes into the first cold drizzle—often taking the garage freezer and half the basement outlets offline with it.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          When we inspected this homeowner's front-porch receptacle after three consecutive nights of nuisance trips and a faint burning-plastic smell near the brick stoop, the setup looked ordinary at first glance. A classic orange three-way cube splitter hung off the upper receptacle of an outdoor metal Bell box, feeding three roofline and shrub runs across a 100-foot coiled extension cord.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Pulling that orange splitter out of the outlet ended any mystery. One side of the molded PVC block around a white light-string blade showed charred carbon tracking, moisture droplets clung beneath the propped-open metal flip lid, and total steady current measured <strong>13.2 amps (1,585 watts)</strong> from vintage glass C9 bulbs and incandescent bush wraps alone—even before adding the homeowner's garage deep freezer sharing the same 15-amp branch breaker.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Forensic Breakdown: Why This Outdoor Setup Failed</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Holiday lighting failures rarely stem from a single defect. Instead, four overlapping physics and National Electrical Code (NEC) violations compounded until moisture and heat bridged the fault path.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">1. Incandescent C9 Wattage Exceeded the NEC 80% Continuous Rule</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The homeowner had hung <strong>175 linear feet</strong> of nostalgic opaque-glass C9 incandescent strings at 12-inch socket spacing across the eaves and front gable—<strong>175 bulbs drawing 7 watts apiece (1,225W / 10.21A)</strong>—plus six 40-watt incandescent mini-light bush nets (<strong>240W / 2.0A</strong>) and a 120-watt yard inflatable blower (<strong>1.0A</strong>). Combined porch load reached <strong>1,585W (13.21A)</strong>.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Under <strong>NEC Sections 210.19(A)(1) and 210.20(A)</strong>, any electrical load operating continuously for <strong>3 hours or more</strong>—which includes every dusk-to-midnight holiday timer running 6 to 8 hours nightly—must be capped at <strong>80% of the branch circuit's overcurrent rating</strong>:
+        </p>
+        <div class="bg-gray-50 border-l-4 border-blue-600 p-4 rounded-r-lg font-mono text-xs sm:text-sm text-gray-800 my-2">
+          15A Branch Circuit (120V): 1,800W Peak &rarr; <strong>1,440W (12.0A) Continuous Max</strong><br />
+          20A Branch Circuit (120V): 2,400W Peak &rarr; <strong>1,920W (16.0A) Continuous Max</strong><br />
+          Observed Porch Load Alone: 1,585W (13.21A) &rarr; <strong>110% of 15A Continuous Cap</strong> (+ Garage Freezer on Upstream Tap!)
+        </div>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          To estimate roofline strand footage, clip counts, and wattage before plugging strings in, check both our{' '}
+          <a href="/calculators/exterior-christmas-lights/" class="text-blue-700 font-semibold underline hover:text-blue-900">Exterior House Christmas Lights Calculator</a>{' '}
+          and our{' '}
+          <a href="/calculators/christmas-tree-lights/" class="text-blue-700 font-semibold underline hover:text-blue-900">Christmas Tree Lights Calculator</a>.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">2. Wet-Location Cover Violation &amp; Ground-Fault Leakage (NEC 406.9(B)(1))</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The exterior box pictured above used an older spring-loaded <em>flip cover</em> rated damp/wet only when nothing is plugged in. Lifting that lid vertically to insert an oversized orange 3-way cube turned the housing into a catch funnel: cold rainwater running down the textured brick joints dripped directly onto the exposed adapter blades.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Meanwhile, downstream cord splices rested face-up in soaked November oak leaves and pine bark mulch. A Class A residential GFCI trips whenever as little as <strong>4 to 6 milliamps (0.005A)</strong> leaks between hot/neutral blades and damp earth or grounded metal box conduit—a threshold rainwater bridges effortlessly across un-gasketed junctions. Under current <strong>NEC Section 406.9(B)(1)</strong>, 15A and 20A wet-location receptacles must use a listed <strong>Extra-Duty Weatherproof "While-In-Use" (bubble) cover</strong> paired with a <strong>Weather-Resistant (WR)</strong> GFCI receptacle so the door latches tightly shut around exiting cords.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">3. The 100-Foot Coiled 16 AWG Extension Cord &amp; UL 588 210W Fuse Limit</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          The final thermal damage came from pairing that heavy continuous current with two classic wiring mistakes: leaving 70 feet of a <strong>100-foot 16 AWG</strong> extension cord coiled tightly in the bushes, and feeding multiple C9 strings through consumer plug taps capped under <strong>UL 588</strong>.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Per <strong>NEC Chapter 9, Table 8</strong>, uncoated 16 AWG stranded copper carries roughly <strong>4.99 &Omega; per 1,000 feet</strong> at 75&deg;C (200 conductor feet round-trip in a 100-foot cord &approx; <strong>1.0 &Omega;</strong> total loop resistance). Pushing 13.2 amps through 1.0 &Omega; wastes roughly <strong>13.2 volts (11% line drop)</strong> and generates <strong>over 170 watts of continuous resistive heat (<span class="font-mono">P = I<sup>2</sup>R</span>)</strong> inside the coiled jacket. Compounded by a loose brass contact inside the cheap orange splitter cube, surface plastic oxidized, blackened, and began melting right next to damp leaves.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          And inside consumer light plugs themselves, <strong>UL 588</strong> caps end-to-end string daisy-chaining at <strong>210 Watts (1.75A at 120V)</strong> via tiny 3A or 5A slide-door glass fuses—meaning daisy-chaining more than one 25-foot incandescent C9 set (175W) immediately risks blowing tiny internal fuses or overheating 20–22 AWG cord wire.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">4. Temporary 90-Day Cap &amp; Pinched Window Cords (NEC 590.3(B) &amp; 400.12)</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Finally, when troubleshooting outdoor trips, homeowners frequently try bypassing outdoor GFCIs by shutting a cord through a garage door gasket or cracked basement window into an interior outlet. That violates <strong>NEC 400.12</strong> (prohibiting flexible cords through doorways, windows, walls, or concealed spaces where framing crushes copper insulation) and loses wet-location GFCI protection. Remember too that <strong>NEC Article 590.3(B)</strong> restricts temporary flexible decorative lighting installations strictly to <strong>90 days maximum</strong>—permanent exterior architectural lighting must use rigid wet-location conduit and permanent fixtures under Articles 225 and 410.
+        </p>
+      </section>
+
+      <AdSlot type="in-feed" />
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Safe Retrofit: 91% Load Reduction &amp; Dry Splice Architecture</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Instead of pulling a second dedicated outdoor 20A circuit, upgrading bulb technology and wet-weather hardware solved every fault on the existing branch in one afternoon:
+        </p>
+
+        <div class="overflow-x-auto not-prose my-6">
+          <table class="w-full text-left border border-gray-200 rounded-xl overflow-hidden text-xs sm:text-sm">
+            <thead class="bg-gray-900 text-white uppercase text-[11px] tracking-wider">
+              <tr>
+                <th class="py-3 px-4">Display Component</th>
+                <th class="py-3 px-4">Before (Tripping Setup)</th>
+                <th class="py-3 px-4">After (LED + SPT-2 Retrofit)</th>
+                <th class="py-3 px-4">Power Savings</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="py-3 px-4 font-semibold text-gray-900">175 ft Roofline C9s (175 bulbs)</td>
+                <td class="py-3 px-4 font-mono text-red-700">1,225W (10.21A @ 7W ea)</td>
+                <td class="py-3 px-4 font-mono text-emerald-700">101.5W (0.85A @ 0.58W LED)</td>
+                <td class="py-3 px-4 font-bold text-emerald-700">-91.7%</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold text-gray-900">6 Shrub Light Nets (25 ft ea)</td>
+                <td class="py-3 px-4 font-mono text-red-700">240W (2.00A @ 40W inc.)</td>
+                <td class="py-3 px-4 font-mono text-emerald-700">24W (0.20A @ 4W LED)</td>
+                <td class="py-3 px-4 font-bold text-emerald-700">-90.0%</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-semibold text-gray-900">Yard Inflatable Fan</td>
+                <td class="py-3 px-4 font-mono">120W (1.00A)</td>
+                <td class="py-3 px-4 font-mono">120W (1.00A on dedicated timer)</td>
+                <td class="py-3 px-4">Isolated drop</td>
+              </tr>
+              <tr class="bg-blue-50/70 font-bold">
+                <td class="py-3 px-4 text-gray-900">Total Porch Load</td>
+                <td class="py-3 px-4 font-mono text-red-700">1,585W (13.21A &mdash; OVER 80% CAP)</td>
+                <td class="py-3 px-4 font-mono text-emerald-800">245.5W (2.05A &mdash; 17% of 15A)</td>
+                <td class="py-3 px-4 text-emerald-800">1,339.5W freed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 1: Replace the Flip Lid with an Extra-Duty While-In-Use Box Cover</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          We scrapped the corroded flip lid and installed a metallic <strong>Extra-Duty UL-listed While-In-Use bubble cover</strong> with intact foam backplate gasket over a fresh <strong>Weather-Resistant (WR) 15A GFCI receptacle</strong>, replacing the scorched orange cube completely.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 2: Swap Legacy Glass Bulbs for Faceted 0.58W C9 LEDs on SPT-2 Cord</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Switching 175 C9 sockets to poly-faceted <strong>0.58-watt warm-white SMD LEDs</strong> on commercial-grade <strong>18 AWG SPT-2</strong> zip cord dropped total roofline load from <strong>10.21A down to 0.85A</strong> (see our{' '}
+          <a href="/guides/c9-vs-c7-commercial-christmas-lights-spacing/" class="text-blue-700 font-semibold underline hover:text-blue-900">C9 vs. C7 Commercial Lights Guide</a>{' '}
+          for exact SPT-2 vampire-plug polarity alignment so ribbed neutral lines land on the wide silver blade). Even after adding shrubs and inflatables, total branch demand dropped below <strong>2.1 amps</strong>.
+        </p>
+
+        <h3 class="text-xl font-bold text-gray-900 font-serif">Step 3: Elevate All Cord Couplings &amp; Uncoil Properly Sized SJTW Leads</h3>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          We replaced the coiled 100-foot 16 AWG line with an uncoiled 50-foot <strong>14 AWG cold-weather SJTW</strong> cord, hung a natural downward <strong>drip loop</strong> beneath the bubble cover, staked all lawn plug junctions 6 inches above soil inside latched dry-box enclosures, and capped open female roofline tails with snug weatherproof caps wrapped in self-fusing silicone tape.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Quick Pre-Light Inspection Checklist</h2>
+        <div class="space-y-3">
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Size loads below 80% first:</strong> Keep total holiday lights plus existing indoor shared receptacles under <strong>1,440W (12A)</strong> on 15A circuits using our <a href="/calculators/holiday-power-load/" class="text-blue-700 font-semibold underline">Holiday Power Load Calculator</a>.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Install an Extra-Duty bubble cover (NEC 406.9(B)(1)):</strong> Never prop a flat flip cover open over plugged-in timers or splitters in rain or snow.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Match extension cord gauge to footage &amp; uncoil completely:</strong> Use <strong>14 AWG</strong> (or <strong>12 AWG</strong> above 10A/100 ft) outdoor SJTW jacketed cords, never leave high-draw loops coiled on turf, and never pinch cords under garage doors or window sashes (<strong>NEC 400.12</strong>).
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Observe the 90-day NEC 590.3(B) removal rule:</strong> Unplug and store temporary seasonal flexible-cord displays promptly after the holidays—never leave temporary decorative light strings energized year-round.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Editorial Signoff & Methodology Note -->
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-xl space-y-3 font-sans text-xs text-gray-600">
+      <div class="font-bold text-gray-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>CalcForDIY Editorial Standards &amp; Safety Disclaimer</span>
+      </div>
+      <p>
+        Field Investigations published in the CalcForDIY Journal examine residential electrical installations, circuit load calculations, and NEC compliance failures. Electrical codes and local amendments to NEC Articles 210, 400, 406, and 590 vary by municipality.
+      </p>
+      <p>
+        Immediately discontinue use of any blackened, warm, or water-damaged extension cord splitter or receptacle, press Test/Reset on exterior GFCI devices monthly, and consult a licensed electrician to install dedicated Extra-Duty wet-location outlets before energizing heavy seasonal displays.
+      </p>
+    </div>
+
+    <!-- Bottom Companion Hub Recommendation -->
+    <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-md">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider font-bold text-blue-400 mb-1">Related Project Workflow Hub</div>
+        <div class="text-lg font-bold text-white mb-1">{article.companionHub.name}</div>
+        <div class="text-xs text-gray-300 max-w-xl">{article.companionHub.desc}</div>
+      </div>
+      <a
+        href={article.companionHub.href}
+        class="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-2"
+      >
+        <span>Explore Full Hub</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Back to Journal Hub Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between font-sans text-xs">
+      <a href="/journal/" class="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+        <span>← Back to All Journal Stories</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-900">
+        Home
+      </a>
+    </div>
+  </article>
+</Layout>
