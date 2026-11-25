@@ -5,10 +5,10 @@ const article = {
   title: "When the Inspector Arrives: The Anatomy of a Deck Stair Stringer Rejection (and the Geometry That Saved It)",
   slug: "anatomy-of-deck-stair-stringer-rejection-irc-r311",
   description: "An honest breakdown of why our deck stairs failed municipal inspection by 3/8 of an inch, the IRC R311 throat depth rule, and the LVL redesign that created an unshakeable staircase.",
-  author: "David Miller, PE",
-  authorRole: "Senior Structural Contributor",
-  reviewer: "Marcus Vance",
-  reviewerRole: "Code Compliance Reviewer",
+  author: "CalcForDIY Structural Desk",
+  authorRole: "IRC & Structural Engineering Reference",
+  reviewer: 'CalcForDIY Engineering Reference',
+  reviewerRole: 'Primary Building Code Audit',
   publishDate: "September 1, 2026",
   readTime: "8 min read",
   category: "Code & Craft",
@@ -41,9 +41,9 @@ const article = {
     "datePublished": "2026-09-01T08:00:00+00:00",
     "dateModified": "2026-09-01T08:00:00+00:00",
     "author": {
-      "@type": "Person",
-      "name": article.author,
-      "jobTitle": article.authorRole
+      "@type": "Organization",
+      "name": "CalcForDIY Editorial Team",
+      "url": "https://calcfordiy.com/about/"
     },
     "publisher": {
       "@type": "Organization",
@@ -80,7 +80,7 @@ const article = {
     <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-gray-200 text-xs text-gray-600 mb-8">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 font-bold flex items-center justify-center font-serif">
-          DM
+          CD
         </div>
         <div>
           <span class="font-bold text-gray-900 block">{article.author}</span>
@@ -89,7 +89,7 @@ const article = {
       </div>
       <div class="text-right">
         <span class="block font-semibold text-gray-900">{article.publishDate} • {article.readTime}</span>
-        <span class="text-gray-500">Reviewed by {article.reviewer}</span>
+        <span class="text-gray-500">Standards Audit: {article.reviewer}</span>
       </div>
     </div>
 
@@ -125,7 +125,7 @@ const article = {
       </p>
 
       <p>
-        I was a licensed structural engineer. I had spent two weekends meticulously cutting 2x12 pressure-treated stringers on sawhorses using a framing square and brass stair gauges. How could my stairs have failed inspection by a margin less than the thickness of a pencil?
+        I had spent two weekends meticulously cutting 2x12 pressure-treated stringers on sawhorses using a framing square and brass stair gauges. How could the stairs have failed inspection by a margin less than the thickness of a pencil?
       </p>
 
       <div class="my-8 p-6 bg-stone-100 border-l-4 border-emerald-600 rounded-r-xl">
@@ -253,12 +253,12 @@ const article = {
     <div class="mt-12 pt-8 border-t-2 border-gray-200 bg-gray-50 rounded-2xl p-6 sm:p-8">
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
         <div class="w-14 h-14 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center font-serif text-xl">
-          DM
+          CD
         </div>
         <div>
           <h4 class="text-base font-bold text-gray-950">{article.author}</h4>
           <p class="text-xs text-gray-600 leading-relaxed">
-            David Miller, PE is a licensed structural engineer and principal editor for CalcForDIY. He specializes in timber framing, residential foundation mechanics, and building code compliance under the IRC and IBC.
+            Covers residential timber framing, foundation mechanics, and code compliance under the International Residential Code (IRC).
           </p>
         </div>
       </div>

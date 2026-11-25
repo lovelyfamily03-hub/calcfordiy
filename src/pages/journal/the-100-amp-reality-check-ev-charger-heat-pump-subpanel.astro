@@ -6,10 +6,10 @@ const article = {
   title: 'The 100-Amp Reality Check: Why Adding an EV Charger and Heat Pump Broke My Service Panel Budget',
   slug: 'the-100-amp-reality-check-ev-charger-heat-pump-subpanel',
   description: 'A deep dive into residential electrical load calculations under NEC Article 220, the 80% continuous load rule, and how adding a Level 2 EV charger forced a painful choice between an $8,500 utility trench and a smart energy management system.',
-  author: 'Greg Larson',
-  authorRole: 'Licensed Master Electrician & Field Contributor',
-  reviewer: 'David Miller, PE',
-  reviewerRole: 'Senior Electrical & Structural Reviewer',
+  author: 'CalcForDIY Electrical Desk',
+  authorRole: 'NEC / NFPA 70 Code Reference',
+  reviewer: 'CalcForDIY Engineering Reference',
+  reviewerRole: 'Primary Building Code Audit',
   publishDate: 'September 16, 2026',
   readTime: '10 min read',
   category: 'Field Investigation',
@@ -44,9 +44,9 @@ const article = {
     "datePublished": "2026-09-16T08:00:00+00:00",
     "dateModified": "2026-09-16T08:00:00+00:00",
     "author": {
-      "@type": "Person",
-      "name": article.author,
-      "jobTitle": article.authorRole
+      "@type": "Organization",
+      "name": "CalcForDIY Editorial Team",
+      "url": "https://calcfordiy.com/about/"
     },
     "publisher": {
       "@type": "Organization",
@@ -104,7 +104,7 @@ const article = {
       <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
-            GL
+            CD
           </div>
           <div>
             <div class="font-bold text-gray-900 text-sm">{article.author}</div>
@@ -118,7 +118,7 @@ const article = {
             <span class="font-mono text-gray-800">{article.publishDate}</span>
           </div>
           <div class="border-l border-gray-200 pl-4">
-            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Standards Cross-Check</span>
             <span class="font-semibold text-gray-800">{article.reviewer}</span>
             <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
           </div>
@@ -156,7 +156,7 @@ const article = {
         loading="eager"
       />
       <div class="bg-gray-50 px-4 py-2.5 text-xs text-gray-600 border-t border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-        <span><strong>Field Investigation:</strong> Licensed electrician Greg Larson verifying circuit breaker amperage and continuous EV charge load balancing.</span>
+        <span><strong>Field Investigation:</strong> Measuring service panel breaker amperage and continuous EV charge load balancing under NEC Article 220.</span>
         <span class="font-mono text-gray-400 text-[11px] shrink-0">Photo: CalcForDIY Field Unit</span>
       </div>
     </div>

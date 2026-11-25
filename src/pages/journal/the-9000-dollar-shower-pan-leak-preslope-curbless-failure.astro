@@ -6,10 +6,10 @@ const article = {
   title: 'The $9,000 Shower Pan Leak: Why Preslope Matters More Than Tile Choice',
   slug: 'the-9000-dollar-shower-pan-leak-preslope-curbless-failure',
   description: 'An investigative breakdown of a catastrophic curbless walk-in shower failure in a custom bathroom. Why a flat subfloor clamping ring caused toxic mold, rotted dimensional floor joists, and a complete subfloor rebuild 14 months after installation.',
-  author: 'Elena Rostova',
+  author: 'CalcForDIY Building Science Desk',
   authorRole: 'Historic Renovation Specialist & Tile Artisan',
-  reviewer: 'David Miller, PE',
-  reviewerRole: 'Senior Structural Reviewer',
+  reviewer: 'CalcForDIY Engineering Reference',
+  reviewerRole: 'Primary Building Code Audit',
   publishDate: 'September 16, 2026',
   readTime: '11 min read',
   category: 'Field Investigation',
@@ -44,9 +44,9 @@ const article = {
     "datePublished": "2026-09-16T08:00:00+00:00",
     "dateModified": "2026-09-16T08:00:00+00:00",
     "author": {
-      "@type": "Person",
-      "name": article.author,
-      "jobTitle": article.authorRole
+      "@type": "Organization",
+      "name": "CalcForDIY Editorial Team",
+      "url": "https://calcfordiy.com/about/"
     },
     "publisher": {
       "@type": "Organization",
@@ -104,7 +104,7 @@ const article = {
       <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
-            ER
+            CD
           </div>
           <div>
             <div class="font-bold text-gray-900 text-sm">{article.author}</div>
@@ -118,7 +118,7 @@ const article = {
             <span class="font-mono text-gray-800">{article.publishDate}</span>
           </div>
           <div class="border-l border-gray-200 pl-4">
-            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Standards Cross-Check</span>
             <span class="font-semibold text-gray-800">{article.reviewer}</span>
             <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
           </div>

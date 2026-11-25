@@ -223,18 +223,20 @@ Target: **78 Live Tools → 100 Flagship Calculators** (+22 New Tools)
 ---
 
 ## SITE FEATURES STATUS
-- `[x]` Print/PDF button on results (global via `window.print()`)
-- `[x]` Universal safety disclaimer banner on all calculator pages (Layout.astro)
-- `[x]` Calculator search bar on homepage
+- `[x]` Print/PDF button on results (global via `window.print()`, plus isolated Project List print mode)
+- `[x]` Universal safety disclaimer banner on all calculator pages (`Layout.astro`)
+- `[x]` Calculator search bar on homepage (both above-the-fold Hero Quick Finder `#heroCalcSearch` + full bottom directory `#calcSearch`)
 - `[x]` "Compare two options" mode (AC and Furnace Cost calculators)
-- `[x]` GA4 engagement event tracking (`calculator_used`, `calculate_button_click`)
-- `[x]` Live SVG cut diagram (Stair Stringer Calculator)
-- `[x]` One-click `📋 Copy Shopping List` button on result cards
-- `[x]` Dual "DIY Material Cost" vs "Contractor Installed Cost" toggle
-- `[x]` Project Workflow Hubs ("Yard Drainage Hub", "Deck Building Hub", "Basement Finishing Hub")
+- `[x]` GA4 engagement event tracking (`calculator_used`, `calculate_button_click`, `copy_shopping_list`, `page_helpful`, `save_project_estimate`, `share_estimate_link`)
+- `[x]` Live SVG cut diagram (55 calculators including Stair Stringers, Miter Saw, Retaining Wall, Paver Layers, Rebar Grid, Framing Studs)
+- `[x]` One-click `📋 Copy Shopping List`, `➕ Save to Project List`, and `🔗 Share Estimate Link` (URL `?c_*` hydration) on calculator results
+- `[x]` Cross-calculator saved `"My Project Shopping List"` drawer (`localStorage['calcfordiy_project_list']`) in `Layout.astro`
+- `[x]` Dual "DIY Material Cost" vs "Contractor Installed Cost" benchmark cards
+- `[x]` Project Workflow Hubs across `100` `/projects/` workflows
+- `[x]` Collapsible `Metric ⇄ Imperial` quick converter (`m, cm, m², m³, L ⇄ ft, in, sq ft, cu yd, gal`) inside calculator top strip
+- `[x]` Centralized monetization config (`src/config/monetization.ts`) + post-results `<AdSlot>` readiness (zero blank boxes pre-approval)
 - `[ ]` "Email my results"
 - `[ ]` Dark mode toggle
-- `[ ]` Unit switcher (metric/imperial)
 - `[ ]` IndexNow protocol for faster Bing/Google re-crawl signals
 
 ---
@@ -250,13 +252,13 @@ Path: `src/pages/guides/` — Use staggered publish dates when committing.
 
 ---
 
-## SEO & INDEXING STATUS (Nov 13, 2026)
-- **Crawl & Indexing Health (GSC Snapshot through Nov 10, 2026)**: 80 pages indexed (469 not indexed: 260 Discovered, 111 Redirect, 59 Alternate canonical, 27 Crawled - not indexed, 11 404s, 1 Redirect error); 654 requests/90d (84% Smartphone crawler, 96% Refresh vs 4% Discovery, 72% apex / 28% `www`).
-- **Nov 13, 2026 Visibility, CWV & Crawl-Efficiency Sweep (COMPLETE ✅)**:
-  - *Image Weight & Mobile CWV*: Lossless-visually compressed all 48 site JPEGs via `sharp` progressive `mozjpeg` (q78, >=1200px kept) cutting `43.98 MB -> 7.96 MB (-81.9%)`, added `max-image-preview:large`, dynamic `og:image`/`ogType`, and explicit `width`/`height` on all images (`0` missing).
-  - *Sitemap Discovery & Redirects*: Added git-derived per-route ISO `<lastmod>` timestamps across all 349 URLs in `sitemap-0.xml` (removing ignored `changefreq`/`priority`) and added `/sitemap.xml -> /sitemap-index.xml 301` in `public/_redirects`. Note: external Cloudflare `www -> apex` redirect without trailing slash remains in Cloudflare Dashboard rules (`www` took 28% of hits).
-  - *Schema, SearchAction & On-Page Architecture*: Fixed `BreadcrumbList` apex home URLs (`https://calcfordiy.com/`) across 285 pages, added `"image"` to all 17 `BlogPosting` schemas, fixed `/` `SearchAction` + `/calculators/?q=` query initialization, eliminated duplicate homepage `<h1>` (`CALCFORDIY WORKSHOP & JOURNAL`), trimmed `/` cards to slices `1..7`, and fixed `/journal/` filter `data-group` coverage across all 17 dispatches.
-  - *Thin Project Hubs & Link Equity*: Deepened all 16 thin flagship project hubs (`147–247` words -> `340+` words each) with IRC/NEC/TCNA/NWFA checklists & cross-links, eliminating all `13` single-inbound pages (`0` zero-inbound, `0` single-inbound across `350` built pages).
+## SEO & INDEXING STATUS (Nov 24, 2026)
+- **Crawl & Indexing Health**: Pre-deploy live audit on Nov 24, 2026 verified `350/350` URLs returning `HTTP 200`, `robots.txt` & `ads.txt` clean (`HTTP 200`), and `http://www.` / `https://www.` single-hop `301` trailing-slash redirects live.
+- **Nov 13–24, 2026 Technical SEO, UX & E-E-A-T Sprints (COMPLETE ✅ — Full Log in `CHANGELOG.md`)**:
+  - *Image Weight & Mobile CWV*: Compressed site JPEGs (`43.98 MB -> 7.96 MB` initial 48 files + compressed Dispatches #18–#19), added `max-image-preview:large`, dynamic `og:image`/`ogType`, and explicit `width`/`height` on all images (`0` missing).
+  - *Sitemap Discovery & Redirects*: Git-derived per-route ISO `<lastmod>` timestamps across all `351` sitemap URLs via `src/data/sitemap-lastmod.json`, `/sitemap.xml -> /sitemap-index.xml 301`, plus Cloudflare Order 1 `Redirect www missing trailing slash` collapsing `www` redirects into one `301` hop.
+  - *Thin Project Hubs & Link Equity*: Deepened all `16` thin flagship project hubs (`435–534` words each) and connected holiday + tankless Journal clusters (`18` & `19`), keeping `0` zero-inbound and `0` single-inbound routes across `352` pages.
+  - *Nov 24 E-E-A-T Trust Hardening & Session Depth*: Purged unverifiable personal credentials (`David Miller, PE`, `Elena Rostova, CBO`, `Marcus Vance`, `Viktor Taturevych`, `Antigravity Engineering Board`) across `src/components/`, `about.astro`, `71` guides, `19` dispatches (`Organization` schema + editorial desks), and `14` calculators; converted `CommunityReviews.astro` across `150` pages into `Reference Application Benchmarks`; removed fake `HelpfulFeedback` vote counts; fixed `28` empty `FieldNote` blocks; added above-the-fold Homepage Finder (`#heroCalcSearch`), cross-calculator Project Shopping List drawer, `?c_*` shareable links, `Metric ⇄ Imperial` converter, and centralized `src/config/monetization.ts`.
 - **Hardened AdSense Re-Submission Strategy**: Rather than mass-padding calculators with templated 500-word boilerplate (which risks Google's Scaled Content Abuse penalty), we are executing a 4-Phase Quality Plan:
   1. *Domain Trust (E-E-A-T - COMPLETE ✅)*: Explicit AdSense DART cookie privacy policy (`/privacy`), dedicated Calculation Methodology page (`/methodology`), 4-tier code maintenance schedule (triennial, annual, bi-annual, continuous), 2024–2026 code audit log, and localized AHJ disclaimers.
   2. *Tiered Flagship Enhancement (COMPLETE ✅)*: Deepened top 10 core calculators (`concrete-slab`, `wall-framing`, `shower-tile`, `asphalt-shingles`, `ev-charger-wiring`, `retaining-wall`, `deck-joist-span`, `french-drain`, `stair-stringer`, `mini-split-sizing`) with explicit math equations, transparent default constants, and tool-specific job-site FAQs.

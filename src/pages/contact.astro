@@ -51,6 +51,10 @@ import Layout from '../layouts/Layout.astro';
       Have a question, found a bug in one of our calculators, or want to suggest a new tool? We would love to hear from you.
     </p>
 
+    <div id="sentBanner" class="hidden bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-xl p-4 text-sm font-medium">
+      ✅ Thank you — your message was sent to the CalcForDIY team. We typically reply within 1–2 business days.
+    </div>
+
     <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
       <h2 class="text-xl font-semibold text-gray-900 mb-4">Send Us a Message</h2>
       
@@ -101,3 +105,22 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </div>
 </Layout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('sent') === 'true') {
+      var banner = document.getElementById('sentBanner');
+      if (banner) banner.classList.remove('hidden');
+    }
+    var page = params.get('page');
+    if (page) {
+      var subject = document.getElementById('subject');
+      var message = document.getElementById('message');
+      if (subject) subject.value = 'Bug Report';
+      if (message && !message.value) {
+        message.value = 'Page: https://calcfordiy.com' + page + '\n\nIssue or formula note:\n';
+      }
+    }
+  });
+</script>

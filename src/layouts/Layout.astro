@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import AdSlot from '../components/AdSlot.astro';
+import { ADSENSE_CONFIG } from '../config/monetization';
+
 const {
   title,
   description,
@@ -9,7 +12,7 @@ const {
   ogType = 'website',
 } = Astro.props;
 const pathname = Astro.url.pathname;
-const isCalculatorPage = pathname.startsWith('/calculators/') && pathname !== '/calculators/' && pathname !== '/calculators/';
+const isCalculatorPage = pathname.startsWith('/calculators/') && pathname !== '/calculators/';
 const navLinks = [
   { href: '/journal/', label: 'Journal', match: '/journal/' },
   { href: '/calculators/', label: 'Calculators', match: '/calculators/' },
@@ -83,10 +86,10 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
     </a>
 
     <header class="bg-white border-b border-gray-200 px-4 py-3 print:hidden">
-      <div class="max-w-5xl mx-auto flex items-center justify-between">
-        <a href="/" class="text-xl font-bold text-blue-600">CalcForDIY</a>
+      <div class="max-w-5xl mx-auto flex items-center justify-between gap-3">
+        <a href="/" class="text-xl font-bold text-blue-600 shrink-0">CalcForDIY</a>
         <!-- Desktop nav -->
-        <nav class="hidden sm:flex text-sm text-gray-600 gap-5 font-medium" aria-label="Main Navigation">
+        <nav class="hidden sm:flex text-sm text-gray-600 gap-5 font-medium items-center" aria-label="Main Navigation">
           {navLinks.map(link => (
             <a
               href={link.href}
@@ -94,18 +97,30 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
             >{link.label}</a>
           ))}
         </nav>
-        <!-- Mobile hamburger button -->
-        <button
-          id="mobileMenuBtn"
-          type="button"
-          class="sm:hidden flex flex-col justify-center items-center w-11 h-11 p-2 rounded-lg hover:bg-gray-100 transition-colors"
-          aria-label="Toggle navigation menu"
-          aria-expanded="false"
-        >
-          <span class="hamburger-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300"></span>
-          <span class="hamburger-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 mt-1"></span>
-          <span class="hamburger-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 mt-1"></span>
-        </button>
+        <div class="flex items-center gap-2 shrink-0">
+          <button
+            id="openProjectListBtn"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 bg-gray-50 hover:bg-blue-50 hover:border-blue-300 text-xs font-semibold text-gray-700 hover:text-blue-700 transition-colors cursor-pointer"
+            aria-label="Open saved Project List"
+          >
+            <span aria-hidden="true">🧰</span>
+            <span class="hidden md:inline">Project List</span>
+            <span id="projectListBadge" class="inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-gray-200 text-gray-700 text-[10px] font-bold">0</span>
+          </button>
+          <!-- Mobile hamburger button -->
+          <button
+            id="mobileMenuBtn"
+            type="button"
+            class="sm:hidden flex flex-col justify-center items-center w-11 h-11 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+          >
+            <span class="hamburger-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300"></span>
+            <span class="hamburger-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 mt-1"></span>
+            <span class="hamburger-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300 mt-1"></span>
+          </button>
+        </div>
       </div>
       <!-- Mobile slide-down menu -->
       <nav id="mobileMenu" class="hidden sm:hidden max-w-5xl mx-auto pt-3 pb-1 border-t border-gray-100 mt-3" aria-label="Mobile Navigation">
@@ -122,18 +137,58 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
     
     <main id="main-content" class="max-w-5xl mx-auto px-4 py-8">
       {isCalculatorPage && (
-        <div class="mb-6 flex flex-wrap items-center gap-3 text-xs text-gray-600 bg-white border border-gray-200 rounded-xl px-4 py-2.5 shadow-xs print:hidden">
-          <span class="flex items-center gap-1.5 font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Last Verified: September 2026
-          </span>
-          <span class="text-gray-300">•</span>
-          <span>Formulas Verified Against <strong>IRC, TCNA, NWFA &amp; IES Standards</strong></span>
-          <span class="text-gray-300">•</span>
-          <a href="/methodology/" class="text-blue-600 font-medium hover:underline">Read Our Methodology →</a>
+        <div class="mb-6 text-xs text-gray-600 bg-white border border-gray-200 rounded-xl px-4 py-2.5 shadow-xs print:hidden">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="flex items-center gap-1.5 font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Last Verified: November 2026
+            </span>
+            <span class="text-gray-300">•</span>
+            <span>Formulas Verified Against <strong>IRC, NEC, IFGC, TCNA, NWFA &amp; IES Standards</strong></span>
+            <span class="text-gray-300">•</span>
+            <a href="/methodology/" class="text-blue-600 font-medium hover:underline">Read Our Methodology →</a>
+          </div>
+          <details id="metricHelper" class="w-full pt-2 mt-2 border-t border-gray-100">
+            <summary class="cursor-pointer font-semibold text-gray-700 hover:text-blue-700 select-none inline-flex items-center gap-1.5">
+              <span>📏 Quick Metric ⇄ Imperial Converter (m, cm, m², L)</span>
+            </summary>
+            <div class="mt-2.5 flex flex-wrap items-center gap-2 bg-gray-50 p-2.5 rounded-lg border border-gray-200">
+              <input
+                type="number"
+                id="metricHelperVal"
+                value="10"
+                step="any"
+                aria-label="Value to convert between Metric and US Imperial"
+                class="w-24 border border-gray-300 rounded-md px-2.5 py-1 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <select
+                id="metricHelperMode"
+                aria-label="Conversion units"
+                class="border border-gray-300 rounded-md px-2.5 py-1 text-xs bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="m_ft">Meters → Feet</option>
+                <option value="ft_m">Feet → Meters</option>
+                <option value="cm_in">Centimeters → Inches</option>
+                <option value="in_cm">Inches → Centimeters</option>
+                <option value="sqm_sqft">Sq Meters → Sq Feet</option>
+                <option value="sqft_sqm">Sq Feet → Sq Meters</option>
+                <option value="m3_yd3">Cubic Meters → Cubic Yards</option>
+                <option value="l_gal">Liters → US Gallons</option>
+              </select>
+              <span class="text-gray-400 font-bold">=</span>
+              <strong id="metricHelperOut" class="font-mono text-xs text-blue-700 bg-blue-50 px-2.5 py-1 rounded border border-blue-200">32.81 ft</strong>
+            </div>
+          </details>
         </div>
       )}
       <slot />
+      {isCalculatorPage && (
+        <AdSlot
+          type="in-feed"
+          clientId={ADSENSE_CONFIG.clientId}
+          slotId={ADSENSE_CONFIG.calculatorBelowResultsSlot}
+        />
+      )}
     </main>
 
     {isCalculatorPage && (
@@ -234,6 +289,37 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
       </div>
     )}
 
+    <!-- Saved Project Shopping List Drawer -->
+    <div id="projectListDrawer" class="hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex justify-end print:hidden" role="dialog" aria-modal="true" aria-labelledby="projectDrawerTitle">
+      <div class="bg-white w-full max-w-md h-full flex flex-col shadow-2xl border-l border-gray-200">
+        <div class="px-5 py-4 border-b border-gray-200 flex items-center justify-between bg-slate-50">
+          <div>
+            <h3 id="projectDrawerTitle" class="text-base font-bold text-gray-900 flex items-center gap-2">
+              <span>🧰</span> My Project Shopping List
+            </h3>
+            <p class="text-[11px] text-gray-500">Combine estimates across calculators in this browser</p>
+          </div>
+          <button type="button" id="closeProjectListBtn" class="text-gray-500 hover:text-gray-800 text-2xl font-bold leading-none p-1 rounded-md cursor-pointer" aria-label="Close project list">&times;</button>
+        </div>
+
+        <div id="projectListItems" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
+
+        <div class="p-4 border-t border-gray-200 bg-gray-50 space-y-2">
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" id="copyProjectListBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-3 rounded-lg text-xs transition-colors cursor-pointer">
+              📋 Copy Combined List
+            </button>
+            <button type="button" id="printProjectListBtn" class="w-full bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2.5 px-3 rounded-lg border border-gray-300 text-xs transition-colors cursor-pointer">
+              🖨️ Print Checklist
+            </button>
+          </div>
+          <button type="button" id="clearProjectListBtn" class="w-full text-[11px] text-gray-500 hover:text-red-600 font-medium py-1 transition-colors cursor-pointer">
+            Clear All Saved Items
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Floating results button - added print:hidden so it doesn't print -->
     <div id="floatBtn" class="hidden fixed bottom-6 inset-x-0 flex justify-center z-50 pointer-events-none print:hidden">
       <button
@@ -243,12 +329,30 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
       </button>
     </div>
 
+    <!-- Printable Project Shopping List Container (hidden except during Project List print) -->
+    <div id="projectPrintArea" class="hidden p-8 bg-white text-gray-900"></div>
+
+    <style is:inline>
+      @media print {
+        body.print-project-mode > *:not(#projectPrintArea) {
+          display: none !important;
+        }
+        body.print-project-mode #projectPrintArea {
+          display: block !important;
+        }
+      }
+    </style>
+
     <script is:inline>
       document.addEventListener('DOMContentLoaded', function () {
-        var resultsEl = document.getElementById('results');
+        var STORAGE_KEY = 'calcfordiy_project_list';
+        var pathname = window.location.pathname;
+        var isCalcPage = pathname.indexOf('/calculators/') === 0 && pathname !== '/calculators/';
+        var mainContent = document.getElementById('main-content');
         var floatBtn = document.getElementById('floatBtn');
-        var calcBtn  = document.getElementById('calcBtn');
-        var gaFired  = false; // fire once per page load
+        var gaFired = false;
+        var isAutoRunning = false;
+        window.__calcSilent = false;
 
         // ── GA4 helper ──────────────────────────────────────────────────────
         function fireGA(eventName, params) {
@@ -257,65 +361,436 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
           }
         }
 
-        // ── Track "Calculate" button click ───────────────────────────────────
+        // ── Locate Results Container (#results, #resultCard, or fallback metric panel) ──
+        function getResultsContainer() {
+          var el = document.getElementById('results') || document.getElementById('resultCard');
+          if (el) return el;
+          if (!isCalcPage || !mainContent) return null;
+          var rMetric = mainContent.querySelector('[id^="r_"]');
+          if (!rMetric) return null;
+          var node = rMetric.parentElement;
+          while (node && node.parentElement && node.parentElement !== mainContent) {
+            node = node.parentElement;
+          }
+          if (node && node !== mainContent && !node.querySelector('#calcBtn, input[type="number"]')) {
+            return node;
+          }
+          return null;
+        }
+
+        // ── Locate Primary Calculate Button ──────────────────────────────────
+        function findCalcTrigger() {
+          var btn = document.getElementById('calcBtn');
+          if (btn) return btn;
+          if (!mainContent) return null;
+          var btns = mainContent.querySelectorAll('button');
+          for (var i = 0; i < btns.length; i++) {
+            var b = btns[i];
+            if (b.closest('.calc-utility-bar') || b.closest('#metricHelper')) continue;
+            var onclick = (b.getAttribute('onclick') || '').toLowerCase();
+            var label = (b.textContent || '').toLowerCase();
+            if (onclick.indexOf('calc') !== -1 || label.indexOf('calculate') !== -1) {
+              return b;
+            }
+          }
+          return null;
+        }
+
+        var resultsEl = getResultsContainer();
+        var calcBtn = findCalcTrigger();
+
+        // ── Track intentional human clicks on Calculate button ───────────────
         if (calcBtn) {
-          calcBtn.addEventListener('click', function () {
+          calcBtn.addEventListener('click', function (e) {
+            if (!e.isTrusted || isAutoRunning) return;
             fireGA('calculate_button_click', {
-              page_title:    document.title,
+              page_title: document.title,
               page_location: window.location.href
             });
           });
         }
 
-        if (!resultsEl || !floatBtn) return;
+        // ── Metric <-> Imperial Helper Converter ─────────────────────────────
+        (function initMetricHelper() {
+          var valEl = document.getElementById('metricHelperVal');
+          var modeEl = document.getElementById('metricHelperMode');
+          var outEl = document.getElementById('metricHelperOut');
+          if (!valEl || !modeEl || !outEl) return;
 
-        // ── Watch results div visibility in viewport ─────────────────────────
-        var intersectionObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (resultsEl.classList.contains('hidden')) {
-              floatBtn.classList.add('hidden');
-            } else if (entry.isIntersecting) {
-              floatBtn.classList.add('hidden');
-            } else {
-              floatBtn.classList.remove('hidden');
+          var rates = {
+            m_ft: { mult: 3.28084, unit: 'ft' },
+            ft_m: { mult: 0.3048, unit: 'm' },
+            cm_in: { mult: 0.393701, unit: 'in' },
+            in_cm: { mult: 2.54, unit: 'cm' },
+            sqm_sqft: { mult: 10.7639, unit: 'sq ft' },
+            sqft_sqm: { mult: 0.092903, unit: 'm²' },
+            m3_yd3: { mult: 1.30795, unit: 'cu yd' },
+            l_gal: { mult: 0.264172, unit: 'gal (US)' }
+          };
+
+          function convertMetric() {
+            var n = parseFloat(valEl.value);
+            var cfg = rates[modeEl.value];
+            if (isNaN(n) || !cfg) {
+              outEl.textContent = '—';
+              return;
+            }
+            var res = n * cfg.mult;
+            outEl.textContent = (Math.abs(res) >= 100 ? res.toFixed(1) : res.toFixed(2)) + ' ' + cfg.unit;
+          }
+
+          valEl.addEventListener('input', convertMetric);
+          modeEl.addEventListener('change', convertMetric);
+          convertMetric();
+        })();
+
+        // ── Build Shareable URL Encoding Primary Inputs ──────────────────────
+        function buildShareUrl() {
+          var baseUrl = window.location.href.split('?')[0].split('#')[0];
+          if (!mainContent) return baseUrl;
+          var params = new URLSearchParams();
+          var controls = mainContent.querySelectorAll('input, select');
+          controls.forEach(function (el) {
+            if (!el.id || el.type === 'hidden' || el.type === 'button' || el.type === 'submit') return;
+            if (el.closest('#metricHelper') || el.closest('#projectListDrawer') || el.closest('#embedModal')) return;
+            if (el.id === 'locMultSelect' || el.id === 'calcSearch' || el.id === 'heroCalcSearch') return;
+            if (el.type === 'checkbox' || el.type === 'radio') {
+              params.set('c_' + el.id, el.checked ? '1' : '0');
+            } else if (el.value !== '') {
+              params.set('c_' + el.id, el.value);
             }
           });
-        }, { threshold: 0.1 });
+          var qs = params.toString();
+          return qs ? baseUrl + '?' + qs : baseUrl;
+        }
 
-        intersectionObserver.observe(resultsEl);
+        // ── Scrape Clean Takeoff Items From Results Container ────────────────
+        function collectEstimateLines(resDiv) {
+          var title = document.title.split('—')[0].trim();
+          var lines = [];
+          var seenLabels = {};
 
-        // ── Ensure Action Buttons (Copy, Print, Embed) are present ────────────
-        function ensureCopyButton(resDiv) {
-          if (!resDiv) return;
+          if (!resDiv) return { title: title, items: lines, text: '' };
 
-          var existingCopy = resDiv.querySelector('.copy-list-btn');
-          if (existingCopy) return;
-
-          var printBtn = resDiv.querySelector('#printBtn, button[onclick*="window.print"]');
-          if (printBtn) {
-            var parent = printBtn.parentElement;
-            if (parent && parent.classList.contains('grid')) {
-              var btn = document.createElement('button');
-              btn.type = 'button';
-              btn.className = 'copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2';
-              btn.innerHTML = '📋 Copy Shopping List';
-              parent.insertBefore(btn, printBtn);
-
-              // Add Embed button if not present
-              var embedBtn = document.createElement('button');
-              embedBtn.type = 'button';
-              embedBtn.className = 'open-embed-modal-btn w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2 col-span-full mt-2';
-              embedBtn.innerHTML = '&lt;/&gt; Embed on Your Website (Free)';
-              parent.appendChild(embedBtn);
+          // Light #results metric boxes (.bg-white.rounded-lg / .rounded-xl) and dark #resultCard boxes (.bg-slate-800/80)
+          var cards = resDiv.querySelectorAll('.bg-white.rounded-lg, .bg-white.rounded-xl, .bg-slate-800\\/80');
+          cards.forEach(function (card) {
+            var valEl = card.querySelector('[id^="r_"], .text-2xl, .text-3xl, .text-xl, .font-black, .font-bold');
+            var labelEl = card.querySelector('.text-xs, .text-sm, .text-slate-400, .text-gray-500, .font-medium');
+            if (valEl && labelEl && valEl !== labelEl) {
+              var val = (valEl.textContent || '').replace(/\s+/g, ' ').trim();
+              var label = (labelEl.textContent || '').replace(/\s+/g, ' ').trim();
+              if (val && label && val !== '—' && !seenLabels[label] && !label.includes('On-Center') && !label.includes('Layout Summary')) {
+                seenLabels[label] = true;
+                lines.push(label + ': ' + val);
+              }
             }
+          });
+
+          // Fallback for inline <strong> metrics with id^="r_"
+          if (lines.length === 0) {
+            resDiv.querySelectorAll('[id^="r_"]').forEach(function (el) {
+              var val = (el.textContent || '').replace(/\s+/g, ' ').trim();
+              var parent = el.parentElement;
+              var labelSpan = parent ? parent.querySelector('span, div') : null;
+              var label = labelSpan && labelSpan !== el ? (labelSpan.textContent || '').replace(/[:\s]+$/g, '').trim() : el.id.replace(/^r_/, '');
+              if (val && val !== '—' && !seenLabels[label]) {
+                seenLabels[label] = true;
+                lines.push(label + ': ' + val);
+              }
+            });
+          }
+
+          var shareUrl = buildShareUrl();
+          var textLines = [];
+          textLines.push('📋 ' + title + ' — Material Takeoff');
+          textLines.push('CalcForDIY | ' + shareUrl);
+          textLines.push('----------------------------------------');
+          lines.forEach(function (item) {
+            textLines.push('• ' + item);
+          });
+          var summaryEl = document.getElementById('r_summary') || document.getElementById('r_buying') || document.getElementById('r_birdsMouth');
+          if (summaryEl && summaryEl.textContent.trim() !== '—') {
+            textLines.push('');
+            textLines.push('Details: ' + summaryEl.textContent.trim());
+          }
+          textLines.push('----------------------------------------');
+          textLines.push('Calculated at CalcForDIY.com — "Measure seven times, cut once."');
+
+          return {
+            title: title,
+            items: lines.slice(0, 8),
+            shareUrl: shareUrl,
+            text: textLines.join('\n')
+          };
+        }
+
+        // ── Cross-Calculator Saved Project List Store ────────────────────────
+        function loadProjectList() {
+          try {
+            var raw = localStorage.getItem(STORAGE_KEY);
+            var parsed = raw ? JSON.parse(raw) : [];
+            return Array.isArray(parsed) ? parsed : [];
+          } catch (e) {
+            return [];
           }
         }
 
-        // ── Ensure Cost Benchmarking Card is present (Moat 3) ───────────────────
-        function ensureCostBenchmarking(resDiv) {
+        function saveProjectList(list) {
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+          } catch (e) {}
+          renderProjectDrawer();
+        }
+
+        function renderProjectDrawer() {
+          var list = loadProjectList();
+          var badge = document.getElementById('projectListBadge');
+          var container = document.getElementById('projectListItems');
+          if (badge) {
+            badge.textContent = String(list.length);
+            if (list.length > 0) {
+              badge.classList.remove('bg-gray-200', 'text-gray-700');
+              badge.classList.add('bg-blue-600', 'text-white');
+            } else {
+              badge.classList.remove('bg-blue-600', 'text-white');
+              badge.classList.add('bg-gray-200', 'text-gray-700');
+            }
+          }
+          if (!container) return;
+
+          container.textContent = '';
+          if (list.length === 0) {
+            var empty = document.createElement('div');
+            empty.className = 'text-center py-10 px-4 text-gray-500 text-xs leading-relaxed border border-dashed border-gray-300 rounded-xl bg-gray-50';
+            empty.textContent = 'Your Project List is empty. Run any calculator and click "Save to Project List" to combine takeoffs into one hardware-store checklist.';
+            container.appendChild(empty);
+            return;
+          }
+
+          list.forEach(function (entry, idx) {
+            var card = document.createElement('div');
+            card.className = 'border border-gray-200 rounded-xl p-3.5 bg-white shadow-2xs';
+
+            var head = document.createElement('div');
+            head.className = 'flex items-start justify-between gap-2 mb-2';
+            var titleLink = document.createElement('a');
+            titleLink.href = entry.shareUrl || entry.path;
+            titleLink.className = 'font-bold text-xs text-blue-700 hover:underline';
+            titleLink.textContent = entry.title;
+
+            var rmBtn = document.createElement('button');
+            rmBtn.type = 'button';
+            rmBtn.className = 'remove-project-item text-gray-400 hover:text-red-600 text-sm font-bold leading-none px-1 cursor-pointer';
+            rmBtn.setAttribute('data-index', String(idx));
+            rmBtn.setAttribute('aria-label', 'Remove saved estimate');
+            rmBtn.textContent = '×';
+
+            head.appendChild(titleLink);
+            head.appendChild(rmBtn);
+            card.appendChild(head);
+
+            if (Array.isArray(entry.items) && entry.items.length > 0) {
+              var ul = document.createElement('ul');
+              ul.className = 'space-y-1 text-[11px] text-gray-700';
+              entry.items.forEach(function (it) {
+                var li = document.createElement('li');
+                li.textContent = '• ' + it;
+                ul.appendChild(li);
+              });
+              card.appendChild(ul);
+            }
+            container.appendChild(card);
+          });
+        }
+
+        function buildCombinedProjectText() {
+          var list = loadProjectList();
+          if (list.length === 0) return '';
+          var out = [];
+          out.push('🧰 CALCFORDIY — COMBINED PROJECT SHOPPING LIST');
+          out.push('========================================');
+          list.forEach(function (entry, idx) {
+            out.push('');
+            out.push((idx + 1) + '. ' + entry.title);
+            (entry.items || []).forEach(function (it) {
+              out.push('   • ' + it);
+            });
+            out.push('   Link: ' + (entry.shareUrl || ('https://calcfordiy.com' + entry.path)));
+          });
+          out.push('');
+          out.push('========================================');
+          out.push('Generated on CalcForDIY.com — "Measure seven times, cut once."');
+          return out.join('\n');
+        }
+
+        // Drawer controls
+        renderProjectDrawer();
+        var drawer = document.getElementById('projectListDrawer');
+        var openDrawerBtn = document.getElementById('openProjectListBtn');
+        var closeDrawerBtn = document.getElementById('closeProjectListBtn');
+        if (openDrawerBtn && drawer) {
+          openDrawerBtn.addEventListener('click', function () {
+            renderProjectDrawer();
+            drawer.classList.remove('hidden');
+          });
+        }
+        if (closeDrawerBtn && drawer) {
+          closeDrawerBtn.addEventListener('click', function () {
+            drawer.classList.add('hidden');
+          });
+        }
+        if (drawer) {
+          drawer.addEventListener('click', function (e) {
+            if (e.target === drawer) drawer.classList.add('hidden');
+          });
+        }
+
+        var copyProjBtn = document.getElementById('copyProjectListBtn');
+        if (copyProjBtn) {
+          copyProjBtn.addEventListener('click', function () {
+            var txt = buildCombinedProjectText();
+            if (!txt) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(txt).then(function () {
+                showCopyFeedback(copyProjBtn);
+              });
+            } else {
+              fallbackCopyText(txt, copyProjBtn);
+            }
+          });
+        }
+
+        var printProjBtn = document.getElementById('printProjectListBtn');
+        if (printProjBtn) {
+          printProjBtn.addEventListener('click', function () {
+            var list = loadProjectList();
+            if (list.length === 0) return;
+            var printArea = document.getElementById('projectPrintArea');
+            if (!printArea) return;
+            printArea.textContent = '';
+
+            var h1 = document.createElement('h1');
+            h1.className = 'text-2xl font-bold mb-1';
+            h1.textContent = 'CalcForDIY — Combined Project Shopping List';
+            var sub = document.createElement('p');
+            sub.className = 'text-xs text-gray-500 mb-6 pb-3 border-b border-gray-300';
+            sub.textContent = 'Generated from https://calcfordiy.com/ — Verify quantities and waste factors against local AHJ & product datasheets.';
+            printArea.appendChild(h1);
+            printArea.appendChild(sub);
+
+            list.forEach(function (entry, idx) {
+              var sec = document.createElement('div');
+              sec.className = 'mb-5 pb-4 border-b border-gray-200';
+              var h2 = document.createElement('h2');
+              h2.className = 'text-base font-bold mb-2';
+              h2.textContent = (idx + 1) + '. ' + entry.title;
+              sec.appendChild(h2);
+              var ul = document.createElement('ul');
+              ul.className = 'text-sm space-y-1 ml-4';
+              (entry.items || []).forEach(function (it) {
+                var li = document.createElement('li');
+                li.textContent = '□ ' + it;
+                ul.appendChild(li);
+              });
+              sec.appendChild(ul);
+              printArea.appendChild(sec);
+            });
+
+            document.body.classList.add('print-project-mode');
+            printArea.classList.remove('hidden');
+            var cleanupPrint = function () {
+              document.body.classList.remove('print-project-mode');
+              printArea.classList.add('hidden');
+            };
+            window.addEventListener('afterprint', cleanupPrint, { once: true });
+            window.print();
+            setTimeout(cleanupPrint, 1200);
+          });
+        }
+
+        var clearProjBtn = document.getElementById('clearProjectListBtn');
+        if (clearProjBtn) {
+          clearProjBtn.addEventListener('click', function () {
+            saveProjectList([]);
+          });
+        }
+
+        document.addEventListener('click', function (e) {
+          var rm = e.target.closest('.remove-project-item');
+          if (rm) {
+            var idx = parseInt(rm.getAttribute('data-index') || '-1', 10);
+            var list = loadProjectList();
+            if (idx >= 0 && idx < list.length) {
+              list.splice(idx, 1);
+              saveProjectList(list);
+            }
+          }
+        });
+
+        // ── Ensure Action Utility Bar (Copy, Save, Share, Embed) ─────────────
+        function ensureUtilityBar(resDiv) {
           if (!resDiv) return;
 
-          // If the page already has a dedicated custom RSMeans cost card, DO NOT inject the fallback!
+          // Inject primary Copy button next to Print button on legacy #results grids
+          var existingPrimaryCopy = resDiv.querySelector('.copy-list-btn, #copyBtn, #copyListBtn, #copyScheduleBtn');
+          if (!existingPrimaryCopy) {
+            var printBtn = resDiv.querySelector('#printBtn, button[onclick*="window.print"]');
+            if (printBtn && printBtn.parentElement && printBtn.parentElement.classList.contains('grid')) {
+              var pBtn = document.createElement('button');
+              pBtn.type = 'button';
+              pBtn.className = 'copy-list-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm flex justify-center items-center gap-2 cursor-pointer';
+              pBtn.innerHTML = '📋 Copy Shopping List';
+              printBtn.parentElement.insertBefore(pBtn, printBtn);
+            }
+          }
+
+          if (resDiv.querySelector('.calc-utility-bar')) return;
+
+          var bar = document.createElement('div');
+          var isDark = resDiv.id === 'resultCard' || resDiv.classList.contains('bg-slate-900');
+          bar.className = 'calc-utility-bar mt-4 pt-3 border-t flex flex-wrap gap-2 print:hidden ' + (isDark ? 'border-slate-700' : 'border-black/10');
+
+          var btnClass = isDark
+            ? 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-600 transition-colors cursor-pointer'
+            : 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white hover:bg-gray-50 text-gray-800 border border-gray-300 transition-colors shadow-2xs cursor-pointer';
+
+          // Add Copy button if no dedicated copy button already exists on this page
+          if (!resDiv.querySelector('.copy-list-btn, #copyBtn, #copyListBtn, #copyScheduleBtn')) {
+            var copyFallback = document.createElement('button');
+            copyFallback.type = 'button';
+            copyFallback.className = 'copy-list-btn ' + btnClass;
+            copyFallback.textContent = '📋 Copy Shopping List';
+            bar.appendChild(copyFallback);
+          }
+
+          var saveBtn = document.createElement('button');
+          saveBtn.type = 'button';
+          saveBtn.className = 'save-project-btn ' + btnClass;
+          saveBtn.textContent = '➕ Save to Project List';
+          bar.appendChild(saveBtn);
+
+          var shareBtn = document.createElement('button');
+          shareBtn.type = 'button';
+          shareBtn.className = 'share-link-btn ' + btnClass;
+          shareBtn.textContent = '🔗 Share Estimate Link';
+          bar.appendChild(shareBtn);
+
+          if (!resDiv.querySelector('.open-embed-modal-btn')) {
+            var embedBtn = document.createElement('button');
+            embedBtn.type = 'button';
+            embedBtn.className = 'open-embed-modal-btn ' + btnClass;
+            embedBtn.textContent = '</> Embed Tool';
+            bar.appendChild(embedBtn);
+          }
+
+          resDiv.appendChild(bar);
+        }
+
+        // ── Ensure Cost Benchmarking Card is present (Moat 3) ────────────────
+        function ensureCostBenchmarking(resDiv) {
+          if (!resDiv || resDiv.id !== 'results') return;
+
           if (document.getElementById('c_diyCost') || document.querySelector('[id^="c_diy"]') || document.querySelector('.rsmeans-benchmark') || resDiv.querySelector('#c_diyCost')) {
             var existingBox = document.getElementById('costBenchmarkBox');
             if (existingBox) existingBox.remove();
@@ -327,8 +802,6 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
             benchmarkBox = document.createElement('div');
             benchmarkBox.id = 'costBenchmarkBox';
             benchmarkBox.className = 'w-full bg-white rounded-xl p-5 shadow-xs mb-6 border border-emerald-200 mt-4 print:border-gray-300';
-            
-            // Place below results, never squished inside a grid
             if (resDiv.nextSibling) {
               resDiv.parentNode.insertBefore(benchmarkBox, resDiv.nextSibling);
             } else {
@@ -336,7 +809,6 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
             }
           }
 
-          // Trigger cost benchmarking calculation if available
           if (typeof window.updateCostBenchmark === 'function') {
             window.updateCostBenchmark();
           } else {
@@ -344,49 +816,42 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
           }
         }
 
-        // Generic auto-generator for cost benchmark based on results cards
         function autoGenerateCostBenchmark(resDiv, box) {
           var locationMultiplier = parseFloat(localStorage.getItem('calc_loc_mult')) || 1.0;
           var title = document.title.split('—')[0].trim();
-          
           var diyMin = 0, diyMax = 0, contMin = 0, contMax = 0;
 
           if (title.includes('French Drain')) {
             var gTons = parseFloat((document.getElementById('r_gravelTons')?.innerText || '').replace(/[^\d.]/g, '')) || 4;
             var pFeet = parseFloat((document.getElementById('r_pipeFeet')?.innerText || '').replace(/[^\d.]/g, '')) || 50;
             var fSqFt = parseFloat((document.getElementById('r_fabricSqFt')?.innerText || '').replace(/[^\d.]/g, '')) || 300;
-
             var matCost = (gTons * 48) + (pFeet * 1.35) + (fSqFt * 0.25);
             diyMin = Math.round(matCost * 0.90 * locationMultiplier);
             diyMax = Math.round(matCost * 1.15 * locationMultiplier);
             contMin = Math.round(diyMin * 4.6);
             contMax = Math.round(diyMax * 5.8);
-          }
-          else if (title.includes('Concrete')) {
+          } else if (title.includes('Concrete')) {
             var yds = parseFloat((document.getElementById('r_yards')?.innerText || document.getElementById('r_totalYards')?.innerText || '').replace(/[^\d.]/g, '')) || 3;
-            var matCost = (yds * 155) + 140; // concrete + forms/gravel
+            var matCost = (yds * 155) + 140;
             diyMin = Math.round(matCost * 0.90 * locationMultiplier);
             diyMax = Math.round(matCost * 1.15 * locationMultiplier);
             contMin = Math.round(diyMin * 3.6);
             contMax = Math.round(diyMax * 4.6);
-          }
-          else if (title.includes('Shingle') || title.includes('Roof')) {
+          } else if (title.includes('Shingle') || title.includes('Roof')) {
             var sqs = parseFloat((document.getElementById('r_squares')?.innerText || '').replace(/[^\d.]/g, '')) || 20;
             var matCost = Math.max(600, sqs * 140);
             diyMin = Math.round(matCost * 0.90 * locationMultiplier);
             diyMax = Math.round(matCost * 1.15 * locationMultiplier);
             contMin = Math.round(diyMin * 3.4);
             contMax = Math.round(diyMax * 4.4);
-          }
-          else if (title.includes('Retaining Wall')) {
+          } else if (title.includes('Retaining Wall')) {
             var blocks = parseFloat((document.getElementById('r_totalBlocks')?.innerText || '').replace(/[^\d.]/g, '')) || 100;
             var matCost = Math.max(400, (blocks * 5.80) + 180);
             diyMin = Math.round(matCost * 0.90 * locationMultiplier);
             diyMax = Math.round(matCost * 1.15 * locationMultiplier);
             contMin = Math.round(diyMin * 4.2);
             contMax = Math.round(diyMax * 5.2);
-          }
-          else if (title.includes('Fence')) {
+          } else if (title.includes('Fence')) {
             var pickets = parseFloat((document.getElementById('r_pickets')?.innerText || '').replace(/[^\d.]/g, '')) || 120;
             var posts = parseFloat((document.getElementById('r_posts')?.innerText || '').replace(/[^\d.]/g, '')) || 15;
             var matCost = Math.max(500, (pickets * 2.30) + (posts * 16) + 150);
@@ -394,58 +859,50 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
             diyMax = Math.round(matCost * 1.15 * locationMultiplier);
             contMin = Math.round(diyMin * 3.5);
             contMax = Math.round(diyMax * 4.2);
-          }
-          else if (title.includes('Deck')) {
+          } else if (title.includes('Deck')) {
             var lf = parseFloat((document.getElementById('r_linearFeet')?.innerText || '').replace(/[^\d.]/g, '')) || 300;
             var matCost = Math.max(600, (lf * 2.20) + 200);
             diyMin = Math.round(matCost * 0.90 * locationMultiplier);
             diyMax = Math.round(matCost * 1.15 * locationMultiplier);
             contMin = Math.round(diyMin * 3.4);
             contMax = Math.round(diyMax * 4.2);
-          }
-          else if (title.includes('EV Charger')) {
+          } else if (title.includes('EV Charger')) {
             diyMin = Math.round(180 * locationMultiplier);
             diyMax = Math.round(260 * locationMultiplier);
             contMin = Math.round(750 * locationMultiplier);
             contMax = Math.round(1450 * locationMultiplier);
-          }
-          else if (title.includes('Water Heater')) {
+          } else if (title.includes('Water Heater')) {
             diyMin = Math.round(680 * locationMultiplier);
             diyMax = Math.round(880 * locationMultiplier);
             contMin = Math.round(1650 * locationMultiplier);
             contMax = Math.round(2450 * locationMultiplier);
-          }
-          else if (title.includes('Mini-Split')) {
+          } else if (title.includes('Mini-Split')) {
             diyMin = Math.round(1350 * locationMultiplier);
             diyMax = Math.round(1850 * locationMultiplier);
             contMin = Math.round(4200 * locationMultiplier);
             contMax = Math.round(6800 * locationMultiplier);
-          }
-          else if (title.includes('Attic Insulation')) {
+          } else if (title.includes('Attic Insulation')) {
             var bags = parseFloat((document.getElementById('r_totalBags')?.innerText || '').replace(/[^\d.]/g, '')) || 15;
             var matCost = Math.max(200, bags * 18.50);
             diyMin = Math.round(matCost * 0.90 * locationMultiplier);
             diyMax = Math.round(matCost * 1.15 * locationMultiplier);
             contMin = Math.round(diyMin * 3.2);
             contMax = Math.round(diyMax * 4.2);
-          }
-          else if (title.includes('Sod')) {
+          } else if (title.includes('Sod')) {
             var pallets = parseFloat((document.getElementById('r_pallets')?.innerText || '').replace(/[^\d.]/g, '')) || 3;
             var matCost = Math.max(300, (pallets * 260) + 120);
             diyMin = Math.round(matCost * 0.90 * locationMultiplier);
             diyMax = Math.round(matCost * 1.15 * locationMultiplier);
             contMin = Math.round(diyMin * 3.4);
             contMax = Math.round(diyMax * 4.5);
-          }
-          else if (title.includes('Paint')) {
+          } else if (title.includes('Paint')) {
             var gals = parseFloat((document.getElementById('r_gallons')?.innerText || '').replace(/[^\d.]/g, '')) || 2;
             var matCost = Math.max(80, (gals * 52) + 35);
             diyMin = Math.round(matCost * 0.90 * locationMultiplier);
             diyMax = Math.round(matCost * 1.15 * locationMultiplier);
             contMin = Math.round(diyMin * 5.2);
             contMax = Math.round(diyMax * 6.5);
-          }
-          else {
+          } else {
             var areaVal = 100;
             var cards = resDiv.querySelectorAll('.bg-white.rounded-lg');
             cards.forEach(function(c) {
@@ -455,7 +912,6 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
                 areaVal = parseFloat(numMatch[1].replace(/,/g, ''));
               }
             });
-
             var matCost = Math.max(150, areaVal * 2.50);
             diyMin = Math.round(matCost * 0.85 * locationMultiplier);
             diyMax = Math.round(matCost * 1.15 * locationMultiplier);
@@ -531,189 +987,269 @@ const absoluteImageUrl = image.startsWith('http') ? image : `https://calcfordiy.
           if (resultsDiv) ensureCostBenchmarking(resultsDiv);
         };
 
-        // Run initially in case results is visible
-        ensureCopyButton(resultsEl);
-        ensureCostBenchmarking(resultsEl);
+        // ── URL Hydration & Safe Silent Initial Auto-Calculation ─────────────
+        function runTriggerSilently() {
+          var trigger = findCalcTrigger();
+          if (!trigger || isAutoRunning) return;
+          isAutoRunning = true;
+          window.__calcSilent = true;
+          try {
+            trigger.click();
+          } finally {
+            setTimeout(function () {
+              isAutoRunning = false;
+              window.__calcSilent = false;
+            }, 120);
+          }
+        }
 
-        // ── Watch for results div being shown — fire GA engagement event & ensure copy button ─────
-        var mutationObserver = new MutationObserver(function () {
-          var isHidden = resultsEl.classList.contains('hidden');
+        if (isCalcPage && mainContent) {
+          setTimeout(function () {
+            var searchParams = new URLSearchParams(window.location.search);
+            var hydrated = false;
+            searchParams.forEach(function (val, key) {
+              if (key.indexOf('c_') !== 0) return;
+              var field = document.getElementById(key.slice(2));
+              if (!field) return;
+              if (field.type === 'checkbox' || field.type === 'radio') {
+                field.checked = val === '1' || val === 'true';
+              } else {
+                field.value = val;
+              }
+              field.dispatchEvent(new Event('input', { bubbles: true }));
+              field.dispatchEvent(new Event('change', { bubbles: true }));
+              hydrated = true;
+            });
 
-          if (isHidden) {
-            floatBtn.classList.add('hidden');
-          } else {
-            ensureCopyButton(resultsEl);
+            if (hydrated) {
+              runTriggerSilently();
+            } else if (resultsEl && resultsEl.classList.contains('hidden')) {
+              var visibleNumInputs = [];
+              mainContent.querySelectorAll('input[type="number"]').forEach(function (inp) {
+                if (inp.closest('.hidden') || inp.closest('#metricHelper')) return;
+                if (inp.id && inp.id.indexOf('s2_') === 0) return;
+                visibleNumInputs.push(inp);
+              });
+              var allHaveValues = visibleNumInputs.length > 0 && visibleNumInputs.every(function (inp) {
+                return inp.value !== '';
+              });
+              if (allHaveValues) {
+                runTriggerSilently();
+                var errMsg = document.getElementById('errorMsg');
+                if (errMsg && resultsEl.classList.contains('hidden')) {
+                  errMsg.classList.add('hidden');
+                }
+              }
+            }
+          }, 80);
+
+          // Debounced live updates once results panel is visible
+          var recalcTimer = null;
+          var scheduleLiveRecalc = function (e) {
+            if (isAutoRunning) return;
+            var target = e.target;
+            if (!target || (target.tagName !== 'INPUT' && target.tagName !== 'SELECT')) return;
+            if (target.closest('#metricHelper') || target.closest('#projectListDrawer') || target.closest('#embedModal')) return;
+            if (target.id === 'locMultSelect' || target.id === 'calcSearch') return;
+            if (!resultsEl || resultsEl.classList.contains('hidden')) return;
+            clearTimeout(recalcTimer);
+            recalcTimer = setTimeout(function () {
+              runTriggerSilently();
+            }, 220);
+          };
+          mainContent.addEventListener('input', scheduleLiveRecalc);
+          mainContent.addEventListener('change', scheduleLiveRecalc);
+        }
+
+        // ── Results Panel Actions (Floating button, Utility Bar, Cost Card) ─
+        if (resultsEl) {
+          if (floatBtn && resultsEl.id === 'results') {
+            var intersectionObserver = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (resultsEl.classList.contains('hidden') || entry.isIntersecting) {
+                  floatBtn.classList.add('hidden');
+                } else {
+                  floatBtn.classList.remove('hidden');
+                }
+              });
+            }, { threshold: 0.1 });
+            intersectionObserver.observe(resultsEl);
+          }
+
+          ensureUtilityBar(resultsEl);
+          if (!resultsEl.classList.contains('hidden')) {
             ensureCostBenchmarking(resultsEl);
+          }
 
-            if (!gaFired) {
-              // Results just became visible → fire GA4 engagement event
-              gaFired = true;
-              fireGA('calculator_used', {
-                page_title:    document.title,
-                page_location: window.location.href,
-                engagement_time_msec: 1000 // tells GA4 this session is engaged
+          var mutationObserver = new MutationObserver(function () {
+            var isHidden = resultsEl.classList.contains('hidden');
+            if (isHidden) {
+              if (floatBtn) floatBtn.classList.add('hidden');
+            } else {
+              ensureUtilityBar(resultsEl);
+              ensureCostBenchmarking(resultsEl);
+              if (!gaFired && !window.__calcSilent) {
+                gaFired = true;
+                fireGA('calculator_used', {
+                  page_title: document.title,
+                  page_location: window.location.href,
+                  engagement_time_msec: 1000
+                });
+              }
+            }
+          });
+          mutationObserver.observe(resultsEl, {
+            attributes: true,
+            attributeFilter: ['class']
+          });
+        }
+
+        // ── Delegated Handlers: Save to Project List & Share Estimate Link ───
+        document.addEventListener('click', function (e) {
+          var saveBtn = e.target.closest('.save-project-btn');
+          if (saveBtn) {
+            var est = collectEstimateLines(getResultsContainer());
+            var list = loadProjectList().filter(function (item) {
+              return item.path !== window.location.pathname;
+            });
+            list.unshift({
+              path: window.location.pathname,
+              title: est.title,
+              shareUrl: est.shareUrl,
+              items: est.items,
+              savedAt: new Date().toISOString()
+            });
+            saveProjectList(list);
+            var orig = saveBtn.textContent;
+            saveBtn.textContent = '✓ Saved to Project List';
+            fireGA('save_project_estimate', { page_path: window.location.pathname });
+            setTimeout(function () { saveBtn.textContent = orig; }, 2200);
+          }
+
+          var shareBtn = e.target.closest('.share-link-btn');
+          if (shareBtn) {
+            var shareUrl = buildShareUrl();
+            if (window.history && window.history.replaceState) {
+              try { window.history.replaceState(null, '', shareUrl); } catch (err) {}
+            }
+            var origShare = shareBtn.textContent;
+            var doneShare = function () {
+              shareBtn.textContent = '✓ Link Copied!';
+              fireGA('share_estimate_link', { page_path: window.location.pathname });
+              setTimeout(function () { shareBtn.textContent = origShare; }, 2200);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(shareUrl).then(doneShare).catch(function () {
+                fallbackCopyText(shareUrl, shareBtn);
+              });
+            } else {
+              fallbackCopyText(shareUrl, shareBtn);
+            }
+          }
+        });
+
+        // ── Global Mobile Keypad Auto-Enhancer ──────────────────────────────
+        document.querySelectorAll('input[type="number"]').forEach(function (input) {
+          if (!input.hasAttribute('inputmode')) {
+            input.setAttribute('inputmode', 'decimal');
+          }
+        });
+
+        // ── Global "Copy Shopping List" Handler ─────────────────────────────
+        document.addEventListener('click', function (e) {
+          var btn = e.target.closest('.copy-list-btn, #copyBtn');
+          if (!btn) return;
+          var est = collectEstimateLines(getResultsContainer());
+          if (!est.text) return;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(est.text).then(function () {
+              showCopyFeedback(btn);
+            }).catch(function () {
+              fallbackCopyText(est.text, btn);
+            });
+          } else {
+            fallbackCopyText(est.text, btn);
+          }
+        });
+
+        function showCopyFeedback(btn) {
+          var origText = btn.innerHTML;
+          btn.innerHTML = '✓ Copied to Clipboard!';
+          btn.classList.add('bg-green-700', 'text-white', 'border-green-700');
+          fireGA('copy_shopping_list', {
+            page_location: window.location.href,
+            page_title: document.title
+          });
+          setTimeout(function () {
+            btn.innerHTML = origText;
+            btn.classList.remove('bg-green-700', 'text-white', 'border-green-700');
+          }, 2500);
+        }
+
+        function fallbackCopyText(text, btn) {
+          var textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.position = "fixed";
+          textArea.style.left = "-9999px";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+          try {
+            document.execCommand('copy');
+            showCopyFeedback(btn);
+          } catch (err) {
+            alert("Selected text copied.");
+          }
+          document.body.removeChild(textArea);
+        }
+
+        // ── Global Embed Modal Controller (Moat 5) ──────────────────────────
+        document.addEventListener('click', function (e) {
+          var openBtn = e.target.closest('.open-embed-modal-btn');
+          if (openBtn) {
+            var modal = document.getElementById('embedModal');
+            var area = document.getElementById('embedSnippetArea');
+            if (modal && area) {
+              var calcTitle = document.title.split('—')[0].trim();
+              var calcUrl = window.location.href.split('?')[0];
+              var snippet = '<iframe src="' + calcUrl + '" width="100%" height="680" frameborder="0" style="border:1px solid #e2e8f0;border-radius:12px;max-width:100%;"></iframe>\n<p style="font-size:11px;color:#64748b;margin-top:4px;text-align:right;">Powered by <a href="' + calcUrl + '" target="_blank" style="color:#2563eb;text-decoration:underline;">' + calcTitle + '</a></p>';
+              area.value = snippet;
+              modal.classList.remove('hidden');
+            }
+          }
+
+          var copyEmbedBtn = e.target.closest('#copyEmbedBtn');
+          if (copyEmbedBtn) {
+            var area = document.getElementById('embedSnippetArea');
+            if (area) {
+              navigator.clipboard.writeText(area.value).then(function () {
+                copyEmbedBtn.textContent = '✓ Embed Code Copied!';
+                setTimeout(function () {
+                  copyEmbedBtn.textContent = '📋 Copy HTML Embed Code';
+                }, 2500);
               });
             }
           }
         });
 
-        mutationObserver.observe(resultsEl, {
-          attributes: true,
-          attributeFilter: ['class']
-        });
-      });
-
-      // ── Global Mobile Keypad Auto-Enhancer ──────────────────────────
-      document.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('input[type="number"]').forEach(function(input) {
-          if (!input.hasAttribute('inputmode')) {
-            input.setAttribute('inputmode', 'decimal');
-          }
-        });
-      });
-
-      // ── Global "Copy Shopping List" Handler ─────────────────────────────────
-      document.addEventListener('click', function (e) {
-        var btn = e.target.closest('.copy-list-btn, #copyBtn');
-        if (!btn) return;
-
-        var resultsDiv = document.getElementById('results');
-        if (!resultsDiv) return;
-
-        var title = document.title.split('—')[0].trim();
-        var url = window.location.href;
-
-        var lines = [];
-        lines.push('📋 ' + title + ' — Material Takeoff');
-        lines.push('CalcForDIY | ' + url);
-        lines.push('----------------------------------------');
-
-        var cards = resultsDiv.querySelectorAll('.bg-white.rounded-lg');
-        cards.forEach(function (card) {
-          var valEl = card.querySelector('.text-2xl, .text-3xl, .text-xl, .font-bold, .font-black');
-          var labelEl = card.querySelector('.text-xs, .text-sm, .font-medium');
-          if (valEl && labelEl) {
-            var val = valEl.textContent.trim();
-            var label = labelEl.textContent.trim();
-            if (val && label && val !== '—' && !label.includes('On-Center') && !label.includes('Layout Summary')) {
-              lines.push('• ' + label + ': ' + val);
+        // ── Mobile Hamburger Menu Toggle ────────────────────────────────────
+        var mBtn = document.getElementById('mobileMenuBtn');
+        var mMenu = document.getElementById('mobileMenu');
+        if (mBtn && mMenu) {
+          mBtn.addEventListener('click', function () {
+            var isOpen = !mMenu.classList.contains('hidden');
+            if (isOpen) {
+              mMenu.classList.add('hidden');
+              mBtn.setAttribute('aria-expanded', 'false');
+              mBtn.classList.remove('is-open');
+            } else {
+              mMenu.classList.remove('hidden');
+              mBtn.setAttribute('aria-expanded', 'true');
+              mBtn.classList.add('is-open');
             }
-          }
-        });
-
-        var summaryEl = document.getElementById('r_summary') || document.getElementById('r_buying') || document.getElementById('r_birdsMouth');
-        if (summaryEl && summaryEl.textContent.trim() !== '—') {
-          lines.push('');
-          lines.push('Details: ' + summaryEl.textContent.trim());
-        }
-
-        lines.push('----------------------------------------');
-        lines.push('Calculated at CalcForDIY.com — "Measure seven times, cut once."');
-
-        var textToCopy = lines.join('\n');
-
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(textToCopy).then(function () {
-            showCopyFeedback(btn);
-          }).catch(function () {
-            fallbackCopyText(textToCopy, btn);
-          });
-        } else {
-          fallbackCopyText(textToCopy, btn);
-        }
-      });
-
-      function showCopyFeedback(btn) {
-        var origText = btn.innerHTML;
-        btn.innerHTML = '✓ Copied to Clipboard!';
-        btn.classList.add('bg-green-700', 'border-green-700');
-
-        // Fire GA4 Event for engagement tracking
-        if (typeof gtag === 'function') {
-          gtag('event', 'copy_shopping_list', {
-            page_location: window.location.href,
-            page_title: document.title
           });
         }
-
-        // Auto-enhance all numeric inputs with inputmode="decimal" for mobile keypads
-        document.querySelectorAll('input[type="number"]').forEach(function(input) {
-          if (!input.hasAttribute('inputmode')) {
-            input.setAttribute('inputmode', 'decimal');
-          }
-        });
-
-        setTimeout(function () {
-          btn.innerHTML = origText;
-          btn.classList.remove('bg-green-700', 'border-green-700');
-        }, 2500);
-      }
-
-      function fallbackCopyText(text, btn) {
-        var textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-9999px";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        try {
-          document.execCommand('copy');
-          showCopyFeedback(btn);
-        } catch (err) {
-          alert("Selected text copied.");
-        }
-        document.body.removeChild(textArea);
-      }
-
-      // ── Global Embed Modal Controller (Moat 5) ──────────────────────────
-      document.addEventListener('click', function(e) {
-        var openBtn = e.target.closest('.open-embed-modal-btn');
-        if (openBtn) {
-          var modal = document.getElementById('embedModal');
-          var area = document.getElementById('embedSnippetArea');
-          if (modal && area) {
-            var calcTitle = document.title.split('—')[0].trim();
-            var calcUrl = window.location.href.split('?')[0];
-            var snippet = '<iframe src="' + calcUrl + '" width="100%" height="680" frameborder="0" style="border:1px solid #e2e8f0;border-radius:12px;max-width:100%;"></iframe>\n<p style="font-size:11px;color:#64748b;margin-top:4px;text-align:right;">Powered by <a href="' + calcUrl + '" target="_blank" style="color:#2563eb;text-decoration:underline;">' + calcTitle + '</a></p>';
-            area.value = snippet;
-            modal.classList.remove('hidden');
-          }
-        }
-
-        var copyEmbedBtn = e.target.closest('#copyEmbedBtn');
-        if (copyEmbedBtn) {
-          var area = document.getElementById('embedSnippetArea');
-          if (area) {
-            navigator.clipboard.writeText(area.value).then(function() {
-              copyEmbedBtn.textContent = '✓ Embed Code Copied!';
-              setTimeout(function() {
-                copyEmbedBtn.textContent = '📋 Copy HTML Embed Code';
-              }, 2500);
-            });
-          }
-        }
       });
-
-      // ── Mobile Hamburger Menu Toggle ──────────────────────────────────
-      (function() {
-        var btn = document.getElementById('mobileMenuBtn');
-        var menu = document.getElementById('mobileMenu');
-        if (!btn || !menu) return;
-
-        btn.addEventListener('click', function() {
-          var isOpen = !menu.classList.contains('hidden');
-          if (isOpen) {
-            menu.classList.add('hidden');
-            btn.setAttribute('aria-expanded', 'false');
-            btn.classList.remove('is-open');
-          } else {
-            menu.classList.remove('hidden');
-            btn.setAttribute('aria-expanded', 'true');
-            btn.classList.add('is-open');
-          }
-        });
-      })();
     </script>
   </body>
 </html>

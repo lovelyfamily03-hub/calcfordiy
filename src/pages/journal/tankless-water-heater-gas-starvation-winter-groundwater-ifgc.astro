@@ -6,10 +6,10 @@ const article = {
   title: 'The Thanksgiving Cold Shower: Why a 199,000 BTU Tankless Water Heater Starved on a 1/2-Inch Gas Line (and Hit the 42°F Groundwater Wall)',
   slug: 'tankless-water-heater-gas-starvation-winter-groundwater-ifgc',
   description: 'A plumbing and fuel-gas forensics investigation of a brand-new 199,000 BTU condensing tankless water heater that locked out with low-gas-pressure faults and ran lukewarm during freezing November mornings. Covering IFGC Table 402.4(2) gas pipe capacities, winter 42°F groundwater temperature rise physics, IFGC 408.4 sediment traps, and IPC 803.1 condensate neutralization.',
-  author: 'Marcus Vance',
-  authorRole: 'Master Plumber & MEP Systems Specialist',
-  reviewer: 'David Miller, PE',
-  reviewerRole: 'Senior Structural & Mechanical Reviewer',
+  author: 'CalcForDIY Mechanical & Plumbing Desk',
+  authorRole: 'IPC, IFGC & Hydronic Systems Reference',
+  reviewer: 'CalcForDIY Engineering Reference',
+  reviewerRole: 'Primary Building Code Audit',
   publishDate: 'November 24, 2026',
   readTime: '11 min read',
   category: 'Field Investigation',
@@ -44,9 +44,9 @@ const article = {
     "datePublished": "2026-11-24T08:00:00+00:00",
     "dateModified": "2026-11-24T08:00:00+00:00",
     "author": {
-      "@type": "Person",
-      "name": article.author,
-      "jobTitle": article.authorRole
+      "@type": "Organization",
+      "name": "CalcForDIY Editorial Team",
+      "url": "https://calcfordiy.com/about/"
     },
     "publisher": {
       "@type": "Organization",
@@ -104,7 +104,7 @@ const article = {
       <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
-            MV
+            CD
           </div>
           <div>
             <div class="font-bold text-gray-900 text-sm">{article.author}</div>
@@ -118,7 +118,7 @@ const article = {
             <span class="font-mono text-gray-800">{article.publishDate}</span>
           </div>
           <div class="border-l border-gray-200 pl-4">
-            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Standards Cross-Check</span>
             <span class="font-semibold text-gray-800">{article.reviewer}</span>
             <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
           </div>

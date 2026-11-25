@@ -5,10 +5,10 @@ const article = {
   title: "Tearing Down an 80-Year-Old Plaster Ceiling: The Dust, the Framing Realities, and Why We Went with Level 5 Drywall",
   slug: "tearing-down-80-year-old-plaster-ceiling-level-5-drywall",
   description: "What happens when you tear down 3,200 lbs of horsehair plaster, discover joists bowed 1-1/4 inches out of plane, and choose a full Level 5 skim coat over an easy drywall overlay.",
-  author: "Elena Rostova",
-  authorRole: "Historic Renovation Specialist",
-  reviewer: "David Miller, PE",
-  reviewerRole: "Senior Structural Reviewer",
+  author: "CalcForDIY Building Science Desk",
+  authorRole: "Envelope, Coatings & Finish Standards",
+  reviewer: 'CalcForDIY Engineering Reference',
+  reviewerRole: 'Primary Building Code Audit',
   publishDate: "September 8, 2026",
   readTime: "11 min read",
   category: "Renovation Diary",
@@ -41,9 +41,9 @@ const article = {
     "datePublished": "2026-09-08T08:00:00+00:00",
     "dateModified": "2026-09-08T08:00:00+00:00",
     "author": {
-      "@type": "Person",
-      "name": article.author,
-      "jobTitle": article.authorRole
+      "@type": "Organization",
+      "name": "CalcForDIY Editorial Team",
+      "url": "https://calcfordiy.com/about/"
     },
     "publisher": {
       "@type": "Organization",
@@ -80,7 +80,7 @@ const article = {
     <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-gray-200 text-xs text-gray-600 mb-8">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-full bg-purple-100 text-purple-800 font-bold flex items-center justify-center font-serif">
-          ER
+          CD
         </div>
         <div>
           <span class="font-bold text-gray-900 block">{article.author}</span>
@@ -89,7 +89,7 @@ const article = {
       </div>
       <div class="text-right">
         <span class="block font-semibold text-gray-900">{article.publishDate} • {article.readTime}</span>
-        <span class="text-gray-500">Reviewed by {article.reviewer}</span>
+        <span class="text-gray-500">Standards Audit: {article.reviewer}</span>
       </div>
     </div>
 
@@ -235,17 +235,17 @@ const article = {
     <div class="mt-12 pt-8 border-t-2 border-gray-200 bg-gray-50 rounded-2xl p-6 sm:p-8">
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
         <div class="w-14 h-14 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center font-serif text-xl">
-          ER
+          CD
         </div>
         <div>
           <h4 class="text-base font-bold text-gray-950">{article.author}</h4>
           <p class="text-xs text-gray-600 leading-relaxed">
-            Elena Rostova specializes in historic preservation and modern plaster restoration across early 20th-century residential structures. She oversees finish carpentry and interior wall engineering for CalcForDIY.
+            Covers historic plaster demolition, substrate leveling tolerances, finish carpentry, and ASTM C840 gypsum wall standards for CalcForDIY.
           </p>
         </div>
       </div>
       <div class="text-xs text-gray-500 border-t border-gray-200 pt-3 flex items-center justify-between">
-        <span>Reviewed by David Miller, PE (ASTM C840 Standards)</span>
+        <span>Cross-checked against ASTM C840 &amp; IRC Wall Standards</span>
         <a href="/journal/" class="font-bold text-blue-700 hover:underline">Browse All Dispatches →</a>
       </div>
     </div>

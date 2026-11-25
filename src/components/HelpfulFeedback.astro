@@ -5,9 +5,10 @@ interface Props {
 }
 
 const {
-  calculatorName = "This Calculator",
-  initialYesCount = 142
+  calculatorName = "This Page",
 } = Astro.props;
+
+const contactHref = `/contact/?page=${encodeURIComponent(Astro.url.pathname)}`;
 ---
 
 <div class="bg-blue-50/50 border border-blue-200 rounded-xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 not-prose">
@@ -15,31 +16,59 @@ const {
     <span class="text-2xl shrink-0">📐</span>
     <div>
       <h4 class="text-sm font-bold text-gray-900">Did these calculations match your local project needs?</h4>
-      <p class="text-xs text-gray-600 mt-0.5">Help us keep our building code formulas and material factors 100% accurate.</p>
+      <p class="text-xs text-gray-600 mt-0.5">Help us keep our building code formulas and material factors accurate for {calculatorName}.</p>
     </div>
   </div>
 
-  <div class="flex items-center gap-2.5 shrink-0">
+  <div class="flex flex-wrap items-center justify-center sm:justify-end gap-2.5 shrink-0">
     <button
       type="button"
       id="feedbackYesBtn"
       onclick="submitPositiveFeedback()"
       class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white border border-gray-300 text-xs font-semibold text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 transition-all shadow-2xs cursor-pointer"
     >
-      <span>👍 Yes, accurate</span>
-      <span id="feedbackCounter" class="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded text-[10px] font-mono">{initialYesCount}</span>
+      <span>👍 Yes, helpful</span>
     </button>
+    <a
+      href={contactHref}
+      class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-xs font-medium text-blue-700 hover:border-blue-300 hover:bg-blue-50/60 transition-colors"
+    >
+      <span>Report a Formula or Code Issue →</span>
+    </a>
   </div>
 </div>
 
 <script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('feedbackYesBtn');
+    if (!btn) return;
+    var key = 'calcfordiy_helpful_' + window.location.pathname;
+    try {
+      if (localStorage.getItem(key) === '1') {
+        btn.innerHTML = '<span>✓ Thanks for the feedback!</span>';
+        btn.classList.remove('bg-white', 'hover:bg-emerald-50', 'text-gray-700');
+        btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+        btn.setAttribute('disabled', 'true');
+      }
+    } catch (e) {}
+  });
+
   function submitPositiveFeedback() {
     var btn = document.getElementById('feedbackYesBtn');
-    var counter = document.getElementById('feedbackCounter');
-    if (!btn || !counter) return;
+    if (!btn) return;
+    var key = 'calcfordiy_helpful_' + window.location.pathname;
+    try {
+      localStorage.setItem(key, '1');
+    } catch (e) {}
 
-    var current = parseInt(counter.textContent || '142', 10);
-    counter.textContent = (current + 1).toString();
+    if (typeof gtag === 'function') {
+      gtag('event', 'page_helpful', {
+        page_path: window.location.pathname,
+        page_title: document.title
+      });
+    }
+
+    btn.innerHTML = '<span>✓ Thanks for the feedback!</span>';
     btn.classList.remove('bg-white', 'hover:bg-emerald-50', 'text-gray-700');
     btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
     btn.setAttribute('disabled', 'true');

@@ -5,10 +5,10 @@ const article = {
   title: "The $4,800 Sump Pump Mistake: What Three Days of Relentless Rain Taught Me About Hydrostatic Pressure",
   slug: "the-4800-dollar-sump-pump-mistake-hydrostatic-pressure",
   description: "A first-person account of waking up to a flooded basement at 2:00 AM, the failure of a builder-grade pump against an 8-foot head, and the math required to install a flood-proof dual basin system.",
-  author: "Marcus Vance",
-  authorRole: "Master Plumber & Field Contributor",
-  reviewer: "David Miller, PE",
-  reviewerRole: "Senior Structural Reviewer",
+  author: "CalcForDIY Mechanical & Plumbing Desk",
+  authorRole: "IPC, IFGC & Hydronic Systems Reference",
+  reviewer: 'CalcForDIY Engineering Reference',
+  reviewerRole: 'Primary Building Code Audit',
   publishDate: "September 15, 2026",
   readTime: "9 min read",
   category: "Field Investigation",
@@ -41,9 +41,9 @@ const article = {
     "datePublished": "2026-09-15T08:00:00+00:00",
     "dateModified": "2026-09-15T08:00:00+00:00",
     "author": {
-      "@type": "Person",
-      "name": article.author,
-      "jobTitle": article.authorRole
+      "@type": "Organization",
+      "name": "CalcForDIY Editorial Team",
+      "url": "https://calcfordiy.com/about/"
     },
     "publisher": {
       "@type": "Organization",
@@ -82,7 +82,7 @@ const article = {
     <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-gray-200 text-xs text-gray-600 mb-8">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-800 font-bold flex items-center justify-center font-serif">
-          MV
+          CD
         </div>
         <div>
           <span class="font-bold text-gray-900 block">{article.author}</span>
@@ -91,7 +91,7 @@ const article = {
       </div>
       <div class="text-right">
         <span class="block font-semibold text-gray-900">{article.publishDate} • {article.readTime}</span>
-        <span class="text-gray-500">Peer Reviewed by {article.reviewer}</span>
+        <span class="text-gray-500">Peer Standards Audit: {article.reviewer}</span>
       </div>
     </div>
 
@@ -222,17 +222,17 @@ const article = {
     <div class="mt-12 pt-8 border-t-2 border-gray-200 bg-gray-50 rounded-2xl p-6 sm:p-8">
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
         <div class="w-14 h-14 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center font-serif text-xl">
-          MV
+          CD
         </div>
         <div>
           <h4 class="text-base font-bold text-gray-950">{article.author}</h4>
           <p class="text-xs text-gray-600 leading-relaxed">
-            Marcus Vance is a licensed Master Plumber with over 18 years of residential mechanical and hydronic drainage experience. He writes practical field narratives and plumbing diagnostics for CalcForDIY.
+            Covers residential plumbing, total dynamic head sizing, hydronics, and basement hydrostatic drainage diagnostics for CalcForDIY.
           </p>
         </div>
       </div>
       <div class="text-xs text-gray-500 border-t border-gray-200 pt-3 flex items-center justify-between">
-        <span>Technical verification by David Miller, PE (IRC/IPC Standards)</span>
+        <span>Cross-checked against IRC &amp; IPC Drainage Standards</span>
         <a href="/journal/" class="font-bold text-blue-700 hover:underline">Browse All Dispatches →</a>
       </div>
     </div>

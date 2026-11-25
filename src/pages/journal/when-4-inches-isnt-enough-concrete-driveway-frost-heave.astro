@@ -6,10 +6,10 @@ const article = {
   title: "When 4 Inches Isn't Enough: Concrete Driveway Spalling and the Frost Line Mistake",
   slug: 'when-4-inches-isnt-enough-concrete-driveway-frost-heave',
   description: 'An engineering post-mortem of a 2,400 sq ft concrete driveway failure after a single Midwest winter. Why 3,000 PSI builder mixes, missing air entrainment, and poorly compacted clay sub-base resulted in $16,000 of cracked and spalled slabs.',
-  author: 'David Miller, PE',
-  authorRole: 'Senior Structural Contributor',
-  reviewer: 'Marcus Vance',
-  reviewerRole: 'Master Plumber & Site Inspector',
+  author: 'CalcForDIY Structural Desk',
+  authorRole: 'IRC & Structural Engineering Reference',
+  reviewer: 'CalcForDIY Engineering Reference',
+  reviewerRole: 'Primary Building Code Audit',
   publishDate: 'September 16, 2026',
   readTime: '12 min read',
   category: 'Field Investigation',
@@ -44,9 +44,9 @@ const article = {
     "datePublished": "2026-09-16T08:00:00+00:00",
     "dateModified": "2026-09-16T08:00:00+00:00",
     "author": {
-      "@type": "Person",
-      "name": article.author,
-      "jobTitle": article.authorRole
+      "@type": "Organization",
+      "name": "CalcForDIY Editorial Team",
+      "url": "https://calcfordiy.com/about/"
     },
     "publisher": {
       "@type": "Organization",
@@ -104,7 +104,7 @@ const article = {
       <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
-            DMP
+            CD
           </div>
           <div>
             <div class="font-bold text-gray-900 text-sm">{article.author}</div>
@@ -118,7 +118,7 @@ const article = {
             <span class="font-mono text-gray-800">{article.publishDate}</span>
           </div>
           <div class="border-l border-gray-200 pl-4">
-            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Standards Cross-Check</span>
             <span class="font-semibold text-gray-800">{article.reviewer}</span>
             <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
           </div>
