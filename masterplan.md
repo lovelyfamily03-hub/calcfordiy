@@ -3,7 +3,7 @@
 **Attention All AI Agents:** Read this entire document to understand the context, architecture, rules, and roadmap for the `calcfordiy.com` project before making any changes.
 
 *Goal: Stable traffic, 100 calculators, and monetization within 2 months.*
-*Last updated: November 14, 2026*
+*Last updated: November 24, 2026*
 
 ---
 
@@ -26,11 +26,11 @@
 ## CURRENT STATUS & 100-CALCULATOR GOAL
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Total Pages Live:** 351 static pages built (350 URLs in `sitemap-0.xml` + `404.html`)
+- **Total Pages Live:** 352 static pages built (351 URLs in `sitemap-0.xml` + `404.html`)
 - **Calculators live:** 115 calculators live (Target of 100 Calculators ACHIEVED & SURPASSED ✅)
 - **SEO Guides live:** 107 guides (`src/pages/guides/`)
 - **Project Workflow Hubs live:** 100 hubs (`src/pages/projects/`)
-- **Field Journal Case Studies live:** 18 in-depth case studies with on-site photography (`src/pages/journal/`)
+- **Field Journal Case Studies live:** 19 in-depth case studies with on-site photography (`src/pages/journal/`)
 - **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. 0 broken links verified across all 167 HTML pages. AdSense crawl buffer elapsed. Site is 100% READY for dashboard resubmission ("Request Review").
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
 - **GSC Status:** As of Nov 10, 2026 GSC snapshot: 80 pages indexed, 469 not indexed (260 Discovered - not indexed, 111 Page with redirect, 59 Alternate canonical, 27 Crawled - not indexed, 11 404s, 1 Redirect error); Nov 13 technical SEO & CWV overhaul deployed to resolve crawl-budget & mobile weight bottlenecks.
@@ -39,7 +39,7 @@
 
 ## 🏆 COMPETITIVE MOATS & DIFFERENTIATORS
 
-- `[x]` **Status**: Wave 4 Expansion Complete (115 Live Interactive Calculators + 100 Project Workflow Hubs + 107 SEO Guides + 18 Journal Case Studies).
+- `[x]` **Status**: Wave 4 Expansion Complete (115 Live Interactive Calculators + 100 Project Workflow Hubs + 107 SEO Guides + 19 Journal Case Studies).
 - `[x]` **Moat 1: Dynamic SVG Visual Cut & Layout Diagrams** — 15 live interactive vector diagrams (Stair Stringers, Miter Saw Protractor, Retaining Wall, Paver Layers, Rebar Grid, Framing Studs).
 - `[x]` **Moat 2: One-Click `📋 Copy Shopping List` Button** — Global clipboard handler auto-injecting formatted material takeoffs into results cards.
 - `[x]` **Moat 3: Dual "DIY Material Cost" vs "Contractor Installed Cost" Toggle** — Light cost estimator benchmarking DIY material prices against turnkey contractor quotes with regional multipliers (COMPLETE ✅).

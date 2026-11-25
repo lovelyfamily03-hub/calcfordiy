@@ -1,0 +1,342 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdSlot from '../../components/AdSlot.astro';
+
+const article = {
+  title: 'The Thanksgiving Cold Shower: Why a 199,000 BTU Tankless Water Heater Starved on a 1/2-Inch Gas Line (and Hit the 42°F Groundwater Wall)',
+  slug: 'tankless-water-heater-gas-starvation-winter-groundwater-ifgc',
+  description: 'A plumbing and fuel-gas forensics investigation of a brand-new 199,000 BTU condensing tankless water heater that locked out with low-gas-pressure faults and ran lukewarm during freezing November mornings. Covering IFGC Table 402.4(2) gas pipe capacities, winter 42°F groundwater temperature rise physics, IFGC 408.4 sediment traps, and IPC 803.1 condensate neutralization.',
+  author: 'Marcus Vance',
+  authorRole: 'Master Plumber & MEP Systems Specialist',
+  reviewer: 'David Miller, PE',
+  reviewerRole: 'Senior Structural & Mechanical Reviewer',
+  publishDate: 'November 24, 2026',
+  readTime: '11 min read',
+  category: 'Field Investigation',
+  image: '/images/journal/tankless-gas-pipe-starvation.jpg',
+  tag: 'Plumbing & Drainage',
+  companionCalculator: {
+    name: 'Tankless Water Heater Sizing Calculator',
+    href: '/calculators/tankless-water-heater/',
+    desc: 'Calculate peak simultaneous GPM flow rates, winter groundwater temperature rise, gas BTU requirements, and electric panel sizing.'
+  },
+  companionHub: {
+    name: 'Tankless Water Heater Retrofit & Gas Hub',
+    href: '/projects/tankless-water-heater-retrofit-gas/',
+    desc: 'Step-by-step retrofit checklist covering NFPA 54 gas pipe sizing, Category IV concentric venting, isolation valve kits, and condensate neutralizers.'
+  }
+};
+---
+
+<Layout
+  title={`${article.title} — CalcForDIY Journal`}
+  description={article.description}
+  image="/images/journal/tankless-gas-pipe-starvation.jpg"
+  imageAlt={article.title}
+  ogType="article"
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": article.title,
+    "description": article.description,
+    "image": "https://calcfordiy.com/images/journal/tankless-gas-pipe-starvation.jpg",
+    "datePublished": "2026-11-24T08:00:00+00:00",
+    "dateModified": "2026-11-24T08:00:00+00:00",
+    "author": {
+      "@type": "Person",
+      "name": article.author,
+      "jobTitle": article.authorRole
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CalcForDIY",
+      "url": "https://calcfordiy.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://calcfordiy.com/journal/${article.slug}/`
+    }
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Journal", "item": "https://calcfordiy.com/journal/" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": `https://calcfordiy.com/journal/${article.slug}/` }
+    ]
+  })} />
+
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6 font-mono">
+      <a href="/" class="hover:text-blue-600 transition-colors">Home</a>
+      <span>/</span>
+      <a href="/journal/" class="hover:text-blue-600 transition-colors">Journal</a>
+      <span>/</span>
+      <span class="text-gray-900 truncate max-w-[280px] sm:max-w-md">{article.title}</span>
+    </nav>
+
+    <!-- Header Meta -->
+    <header class="border-b border-gray-900/10 pb-8 mb-8">
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="px-2.5 py-1 bg-gray-900 text-white text-xs font-bold uppercase tracking-wider rounded">
+          {article.category}
+        </span>
+        <span class="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-semibold rounded border border-blue-200">
+          {article.tag}
+        </span>
+        <span class="text-xs text-gray-500">•</span>
+        <span class="text-xs text-gray-500 font-mono">{article.readTime}</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-950 font-serif leading-tight tracking-tight mb-4">
+        {article.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-serif italic mb-6">
+        {article.description}
+      </p>
+
+      <!-- Contributor Card -->
+      <div class="flex flex-wrap items-center justify-between gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-inner">
+            MV
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">{article.author}</div>
+            <div class="text-gray-500">{article.authorRole}</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 text-gray-500 border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-200">
+          <div>
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Published</span>
+            <span class="font-mono text-gray-800">{article.publishDate}</span>
+          </div>
+          <div class="border-l border-gray-200 pl-4">
+            <span class="block text-[10px] uppercase font-bold text-gray-400">Peer Reviewed By</span>
+            <span class="font-semibold text-gray-800">{article.reviewer}</span>
+            <span class="block text-[10px] text-gray-400">{article.reviewerRole}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Companion Tool Callout (Top) -->
+    <div class="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-600 p-5 rounded-r-xl shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div>
+        <div class="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-0.5">Companion Engineering Tool</div>
+        <div class="font-bold text-gray-900 text-base">{article.companionCalculator.name}</div>
+        <div class="text-xs text-gray-600 mt-0.5">{article.companionCalculator.desc}</div>
+      </div>
+      <a
+        href={article.companionCalculator.href}
+        class="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow transition-colors flex items-center gap-1.5"
+      >
+        <span>Open Calculator</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Editorial Lead Photo -->
+    <figure class="mb-10 rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-gray-100">
+      <img
+        width="1200"
+        height="896"
+        fetchpriority="high"
+        src={article.image}
+        alt="Basement inspection of a 199,000 BTU condensing tankless water heater displaying a red lockout code next to an undersized 1/2-inch black iron gas line without a sediment trap and untreated condensate dripping toward a corroded floor drain"
+        class="w-full h-auto object-cover max-h-[500px]"
+        loading="eager"
+      />
+      <figcaption class="p-3 bg-gray-50 text-xs text-gray-600 border-t border-gray-200 font-mono">
+        Figure 1.1: Basement manifold inspection during a 199,000 BTU/hr tankless Error 11 lockout. An undersized 1/2-inch black iron drop (missing an IFGC 408.4 sediment trap) starved manifold gas pressure below 3.5 in. w.c. while the furnace fired, and raw pH 3.5 condensate drained un-neutralized onto the cast-iron floor strainer.
+      </figcaption>
+    </figure>
+
+    <!-- Article Body -->
+    <div class="prose prose-lg max-w-none text-gray-800 space-y-8 font-serif">
+      <section class="space-y-4">
+        <p class="text-xl sm:text-2xl leading-relaxed text-gray-900 font-serif font-medium first-letter:text-5xl first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:text-blue-900">
+          Every mid-July tankless swap looks like an effortless win until the first freezing morning before Thanksgiving. All summer long, this homeowner's brand-new 199,000 BTU condensing water heater fired silently without a hiccup—and then locked out mid-shower with a flashing Error 11 code and tepid water the moment two guest baths and the basement furnace kicked on together.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Back in July, the installer unthreaded an old 40,000 BTU/hr 50-gallon storage tank from an existing 1/2-inch black iron ceiling drop and threaded the new 199,000 BTU/hr (95% thermal efficiency) unit straight into the exact same gas pipe. During warm summer afternoons—when incoming groundwater measured 68&deg;F and the central furnace stood idle—the heater rarely needed full fire.
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          When November cold fronts dropped groundwater down to 42&deg;F and the homeowner's 80,000 BTU gas furnace started running alongside a full morning shower cycle, hooking a manometer onto the basement manifold exposed the truth within seconds: static line pressure sat at a healthy <strong>7.0 in. w.c.</strong>, then plummeted straight past <strong>3.5 in. w.c.</strong> the instant the tankless burner ramped toward high fire—starving ignition and triggering an automatic safety lockout.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Failure #1: Gas Pipe Starvation Under IFGC Table 402.4(2)</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Replacing a 40,000 BTU tank heater with a 199,000 BTU tankless unit does not add a modest incremental load—it multiplies instantaneous fuel demand nearly <strong>fivefold</strong> from roughly 39–40 cubic feet per hour (CFH) up to <strong>193–199 CFH</strong> (at ~1,000 to 1,030 BTU per cubic foot of natural gas).
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Under <strong>International Fuel Gas Code (IFGC) Table 402.4(2)</strong> (and NFPA 54 Schedule 40 Metallic Pipe, inlet pressure under 2 psi, 0.5 in. w.c. allowable pressure drop, 0.60 specific gravity), pipe capacity drops sharply with total equivalent run length from the gas meter:
+        </p>
+
+        <div class="overflow-x-auto not-prose my-6">
+          <table class="w-full text-left border border-gray-200 rounded-xl overflow-hidden text-xs sm:text-sm">
+            <thead class="bg-gray-900 text-white uppercase text-[11px] tracking-wider">
+              <tr>
+                <th class="py-3 px-4">Pipe Length (ft)</th>
+                <th class="py-3 px-4">1/2-Inch Sch. 40</th>
+                <th class="py-3 px-4">3/4-Inch Sch. 40</th>
+                <th class="py-3 px-4">1-Inch Sch. 40</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white font-mono">
+              <tr>
+                <td class="py-3 px-4 font-bold text-gray-900">10 ft</td>
+                <td class="py-3 px-4 text-amber-700">172 CFH</td>
+                <td class="py-3 px-4 text-emerald-700">360 CFH</td>
+                <td class="py-3 px-4 text-emerald-800">678 CFH</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-bold text-gray-900">20 ft</td>
+                <td class="py-3 px-4 text-red-700">118 CFH</td>
+                <td class="py-3 px-4 text-emerald-700">247 CFH</td>
+                <td class="py-3 px-4 text-emerald-800">466 CFH</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-bold text-gray-900">30 ft</td>
+                <td class="py-3 px-4 text-red-700">95 CFH</td>
+                <td class="py-3 px-4 text-amber-700">199 CFH</td>
+                <td class="py-3 px-4 text-emerald-800">374 CFH</td>
+              </tr>
+              <tr class="bg-red-50/70">
+                <td class="py-3 px-4 font-bold text-gray-900">40 ft (This House)</td>
+                <td class="py-3 px-4 font-bold text-red-700">81 CFH (Starved!)</td>
+                <td class="py-3 px-4 text-red-700">170 CFH</td>
+                <td class="py-3 px-4 font-bold text-emerald-800">320 CFH</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-4 font-bold text-gray-900">50 ft</td>
+                <td class="py-3 px-4 text-red-700">72 CFH</td>
+                <td class="py-3 px-4 text-red-700">151 CFH</td>
+                <td class="py-3 px-4 text-emerald-800">284 CFH</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Measure the longest run from the meter in this 1,900-square-foot basement and you get <strong>40 feet</strong> including elbows. On <strong>1/2-inch pipe at 40 feet, maximum code capacity is just 81 CFH</strong>—less than half of the 199 CFH required by the water heater alone (and even a dedicated 3/4-inch pipe at 40 feet tops out at 170 CFH!).
+        </p>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Worse yet, adding the <strong>80,000 BTU/hr</strong> furnace (~78–80 CFH) and a <strong>45,000 BTU/hr</strong> gas kitchen range (~44 CFH) pushed total connected household load to <strong>~315 CFH</strong> through an older <strong>AC-250 (250 CFH)</strong> utility gas meter. Every time the furnace kicked on while hot water ran, both appliances fought over the same starved low-pressure header. Review full Longest Length sizing tables in our{' '}
+          <a href="/guides/tankless-water-heater-gas-pipe-size-btu/" class="text-blue-700 font-semibold underline hover:text-blue-900">Tankless Gas Pipe Sizing Guide</a>{' '}
+          and{' '}
+          <a href="/guides/tankless-water-heater-gas-line-size/" class="text-blue-700 font-semibold underline hover:text-blue-900">Gas Line Upgrade Reference</a>.
+        </p>
+      </section>
+
+      <AdSlot type="in-feed" />
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Failure #2: The 42&deg;F Winter Groundwater Wall</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Even after restoring full gas pressure, November weather revealed a second thermodynamic limit homeowners frequently miss when shopping only by glossy summer GPM marketing brochures. Instantaneous water heating obeys one unforgiving equation:
+        </p>
+        <div class="bg-gray-50 border-l-4 border-blue-600 p-4 rounded-r-lg font-mono text-xs sm:text-sm text-gray-800 my-2">
+          Output GPM = (Input BTU/hr &times; Thermal Efficiency) &divide; (500 &times; &Delta;T)<br />
+          <em>(where 500 &approx; 8.33 lb/gal &times; 60 min/hr &times; 1 BTU/lb&middot;&deg;F)</em><br /><br />
+          Summer (68&deg;F &rarr; 120&deg;F, &Delta;T = 52&deg;F): (199,000 &times; 0.95) &divide; (500 &times; 52) = <strong>7.27 GPM</strong><br />
+          Winter (42&deg;F &rarr; 120&deg;F, &Delta;T = 78&deg;F): (199,000 &times; 0.95) &divide; (500 &times; 78) = <strong>4.85 GPM</strong> (<strong>4.34 GPM</strong> on 85% non-condensing)
+        </div>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          In July, 7.27 GPM easily handled two showers, a dishwasher, and a sink at once. When municipal supply pipes chilled to <strong>42&deg;F</strong> in late November, the required temperature rise (&Delta;T) jumped 50% from 52&deg;F to 78&deg;F—cutting maximum continuous 120&deg;F hot water output down to <strong>4.85 GPM</strong>. With two older 2.5 GPM showerheads and a 1.5 GPM kitchen faucet calling for <strong>6.5 GPM</strong> total during Thanksgiving prep, internal modulating flow valves throttled flow or water cooled off at every tap. Always run your local winter climate groundwater temperature in our{' '}
+          <a href="/calculators/tankless-water-heater/" class="text-blue-700 font-semibold underline hover:text-blue-900">Tankless Water Heater Sizing Calculator</a>{' '}
+          and compare fuel operating tradeoffs in our{' '}
+          <a href="/calculators/water-heater-cost/" class="text-blue-700 font-semibold underline hover:text-blue-900">Water Heater Cost Calculator</a>.
+        </p>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">Failure #3: Missing Sediment Trap (IFGC 408.4) &amp; Acidic Condensate (IPC 803.1)</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Beyond pipe starvation and &Delta;T physics, our basement inspection uncovered three common mechanical code shortcuts right around the unit manifold:
+        </p>
+        <div class="space-y-3">
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>No Gas Sediment Trap (IFGC Section 408.4):</strong> The installer threaded an elbow directly from the shutoff into the gas valve with zero tee. Under <strong>IFGC Section 408.4</strong>, automatically controlled gas appliances require a downstream tee with a vertically oriented, capped sediment trap nipple ahead of the inlet regulator to catch pipe scale and moisture (baseline national model IFGC specifies a capped nipple of any length, while many state and local amendments mandate at least a <strong>3-inch</strong> vertical pocket as standard trade practice).
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Necked-Down Flex Connectors:</strong> Reusing an old 1/2-inch corrugated appliance whip adds high turbulence drop right at the tankless solenoid inlet. Full-bore <strong>3/4-inch</strong> full-port ball valves and high-flow CSST/stainless connectors are critical for preserving dynamic pressure at 199,000 BTU/hr.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            • <strong>Untreated Acidic Condensate (IPC Section 803.1):</strong> High-efficiency condensing heat exchangers extract latent heat out of combustion flue vapor, generating mildly acidic condensate around <strong>pH 3.0 to 5.0</strong>. Discharging raw condensate across a basement floor toward an older cast-iron floor drain etches portland cement and corrodes cast iron or copper DWV lines—violating <strong>IPC Section 803.1</strong> unless piped through an inline <strong>calcium carbonate or magnesium oxide pH neutralizer cartridge</strong> (whose media requires annual inspection and replenishment).
+          </p>
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight pt-4 border-t border-gray-100">The Code-Compliant Fix: Meter Upgrade, 1-Inch Trunk &amp; Fixture Balance</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+          Fixing the installation cleanly did not require swapping the water heater. Instead, four mechanical upgrades brought the whole basement within code:
+        </p>
+        <div class="space-y-3">
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            1. <strong>Gas Utility Meter Upgrade:</strong> Coordinated with the local gas utility to swap the maxed-out 250 CFH meter for a <strong>400 / 425 CFH</strong> commercial-capacity residential meter ahead of the 315 CFH simultaneous peak demand.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            2. <strong>Dedicated 1-Inch Schedule 40 Black Iron Trunk:</strong> Replaced the starved 40-foot 1/2-inch ceiling branch with <strong>1-inch black iron</strong> (rated for <strong>320 CFH at 40 ft</strong> per IFGC Table 402.4(2)), reducing cleanly right at the heater to a <strong>3/4-inch full-port gas shutoff valve</strong> and a <strong>3-inch vertical capped sediment trap</strong>. Dynamic pressure held steady above 6.4 in. w.c. even with both tankless and furnace on high fire.
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            3. <strong>Calcite Neutralizer &amp; Brass Isolation Valve Kit:</strong> Piped the PVC condensate tubing through a clear refillable calcite pH neutralizer ahead of the floor drain, and verified brass service isolation valves with hose bibb ports for annual vinegar descaling (following the workflow in our{' '}
+            <a href="/projects/tankless-water-heater-installation/" class="text-blue-700 font-semibold underline hover:text-blue-900">Tankless Water Heater Installation Hub</a>).
+          </p>
+          <p class="text-base sm:text-lg leading-relaxed text-gray-800">
+            4. <strong>Balancing Winter Simultaneous GPM:</strong> Swapped both guest showerheads to modern <strong>1.75 GPM WaterSense</strong> heads so two simultaneous winter showers draw <strong>3.5 GPM</strong> combined—leaving a comfortable <strong>1.35 GPM reserve</strong> underneath the 42&deg;F 4.85 GPM burner ceiling.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Editorial Signoff & Methodology Note -->
+    <div class="mt-12 p-6 bg-gray-50 border border-gray-200 rounded-xl space-y-3 font-sans text-xs text-gray-600">
+      <div class="font-bold text-gray-900 uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+        <span>🛡️</span>
+        <span>CalcForDIY Editorial Standards &amp; Safety Disclaimer</span>
+      </div>
+      <p>
+        Field Investigations published in the CalcForDIY Journal examine residential plumbing, combustion, and fuel-gas installations under IFGC, NFPA 54, and IPC standards. Local municipal amendments to sediment trap length, gas pressure-test PSI/duration, and venting clearances vary by Authority Having Jurisdiction (AHJ).
+      </p>
+      <p>
+        Never alter black iron fuel-gas piping, regulator pressure settings, or Category IV exhaust venting without required municipal permits, calibrated manometer pressure testing, bubble leak verification, and licensed gas-fitter signoff.
+      </p>
+    </div>
+
+    <!-- Bottom Companion Hub Recommendation -->
+    <div class="mt-8 bg-gray-900 text-white p-6 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-sans shadow-md">
+      <div>
+        <div class="text-[11px] uppercase tracking-wider font-bold text-blue-400 mb-1">Related Project Workflow Hub</div>
+        <div class="text-lg font-bold text-white mb-1">{article.companionHub.name}</div>
+        <div class="text-xs text-gray-300 max-w-xl">{article.companionHub.desc}</div>
+      </div>
+      <a
+        href={article.companionHub.href}
+        class="shrink-0 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-2"
+      >
+        <span>Explore Full Hub</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- Back to Journal Hub Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between font-sans text-xs">
+      <a href="/journal/" class="text-blue-600 font-semibold hover:underline flex items-center gap-1">
+        <span>← Back to All Journal Stories</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-900">
+        Home
+      </a>
+    </div>
+  </article>
+</Layout>
