@@ -5,8 +5,8 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 ---
 
 <Layout
-  title="Cascadia Rainscreen Clip & Thermal Wall Isolation Calculator | CalcForDIY"
-  description="Calculate Cascadia Clips, thermal isolation shims, stud wall fastener spacing, and cladding shear capacity to eliminate Z-girt thermal bridging per ASHRAE 90.1 & ASTM C1363."
+  title="Cascadia Clip & Rainscreen Calculator | CalcForDIY"
+  description="Calculate Cascadia Clips, thermal isolation shims, sub-girt hat channels, stud fasteners, and effective assembly R-value for continuous insulation per ASHRAE 90.1 & IECC."
 >
   <script type="application/ld+json" is:inline>
   {
@@ -196,13 +196,39 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       </div>
     </div>
 
-    <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700/80">
+    <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700/80 mb-5">
       <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Job-Site Wall Assembly Notes &amp; Code Compliance</h3>
       <ul class="text-xs text-slate-300 space-y-1.5 list-disc pl-4" id="r_assemblyNotes">
         <li><strong>Net Rainscreen Coverage:</strong> 1,050 sq ft (1,200 gross - 150 openings).</li>
         <li><strong>Clip Depth:</strong> 4.0" fiberglass clip body engineered for 4.0" continuous rigid mineral wool or PIR insulation.</li>
         <li><strong>Fastener Requirement:</strong> Fasten through exterior gypsum sheathing into heavy 18ga / 16ga steel studs or 2x6 wood framing with min 1" thread penetration.</li>
       </ul>
+    </div>
+
+    <!-- Effective Thermal Performance & Live SVG Diagram -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs mb-5">
+      <div class="bg-slate-800/90 p-3 rounded-lg border border-slate-700">
+        <span class="text-slate-400 block">Nominal ci R-Value (~R-4.2/in)</span>
+        <strong id="r_nomR" class="text-sm text-white font-bold">R-16.8</strong>
+      </div>
+      <div class="bg-emerald-950/60 p-3 rounded-lg border border-emerald-500/30">
+        <span class="text-emerald-300 block">Cascadia Clip Effective R-Value</span>
+        <strong id="r_effR" class="text-sm text-emerald-400 font-bold">R-15.5 (92.5% Retained)</strong>
+      </div>
+      <div class="bg-red-950/40 p-3 rounded-lg border border-red-500/30">
+        <span class="text-red-300 block">Steel Z-Girt Effective R-Value</span>
+        <strong id="r_zGirtR" class="text-sm text-red-400 font-bold">R-7.6 (45% Retained)</strong>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-lg p-4 border border-slate-700">
+      <div class="flex items-center justify-between text-xs text-gray-600 font-semibold mb-2">
+        <span>📐 Rainscreen &amp; Continuous Insulation Cross-Section Diagram</span>
+        <span class="font-mono text-gray-500">Thermal Break Assembly</span>
+      </div>
+      <div class="overflow-x-auto bg-gray-50 rounded p-2 border border-gray-200 flex justify-center">
+        <svg id="wallSvg" viewBox="0 0 600 200" class="w-full max-w-xl h-auto font-sans" role="img" aria-label="Cascadia Clip continuous insulation wall cross-section diagram"></svg>
+      </div>
     </div>
   </div>
 
@@ -229,6 +255,26 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
     <p>
       Fiberglass Cascadia clips consist of pultruded glass-fiber-reinforced polymer (thermal conductivity k &approx; 0.3 W/mK). By replacing metal framing attachments with fiberglass clips, thermal bridging is reduced by over 85%, helping building envelopes achieve compliance with strict ASHRAE 90.1 and Passive House standards.
     </p>
+
+    <h3 class="text-xl font-bold text-gray-900 mt-6">Building Code Reference Table (IECC 2021/2024 &amp; ASHRAE 90.1)</h3>
+    <div class="overflow-x-auto not-prose my-4">
+      <table class="w-full text-left border-collapse border border-gray-200 text-xs">
+        <thead>
+          <tr class="bg-gray-100 border-b border-gray-200">
+            <th class="p-2.5 font-bold text-gray-900">Climate Zone</th>
+            <th class="p-2.5 font-bold text-gray-900">IECC 2024 Wood Frame Rule</th>
+            <th class="p-2.5 font-bold text-gray-900">Recommended ci Depth</th>
+            <th class="p-2.5 font-bold text-gray-900">Cascadia Clip Size</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr><td class="p-2.5 font-semibold">Zone 3 (South / Moderate)</td><td class="p-2.5">R-20 Cavity or R-13 + R-5 ci</td><td class="p-2.5">1.5" to 2.0"</td><td class="p-2.5 font-mono">2.0" Clip Standoff</td></tr>
+          <tr><td class="p-2.5 font-semibold">Zone 4 &amp; 5 (Mid-Atlantic / Midwest)</td><td class="p-2.5">R-20 + R-5 ci or R-13 + R-10 ci</td><td class="p-2.5">2.5" to 3.0"</td><td class="p-2.5 font-mono">3.0" Clip Standoff</td></tr>
+          <tr><td class="p-2.5 font-semibold">Zone 6 (Northern US / Canada)</td><td class="p-2.5">R-20 + R-8 ci or R-13 + R-12 ci</td><td class="p-2.5">3.5" to 4.0"</td><td class="p-2.5 font-mono">4.0" Clip Standoff</td></tr>
+          <tr><td class="p-2.5 font-semibold">Zone 7 &amp; 8 (Extreme Cold / Passive House)</td><td class="p-2.5">R-20 + R-15 ci or R-0 + R-25 ci</td><td class="p-2.5">5.0" to 6.0"+</td><td class="p-2.5 font-mono">6.0" Clip Standoff</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script is:inline>
@@ -262,6 +308,32 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
       var effText = insDepth >= 4.0 ? "92.4% Efficient" : "94.1% Efficient";
       document.getElementById('r_thermalEff').textContent = effText;
+
+      var nomR = insDepth * 4.2;
+      document.getElementById('r_nomR').textContent = 'R-' + nomR.toFixed(1);
+      document.getElementById('r_effR').textContent = 'R-' + (nomR * 0.925).toFixed(1) + ' (92.5% Retained)';
+      document.getElementById('r_zGirtR').textContent = 'R-' + (nomR * 0.45).toFixed(1) + ' (45% Retained)';
+
+      var svg = document.getElementById('wallSvg');
+      if (svg) {
+        var insulW = Math.min(180, Math.max(70, insDepth * 28));
+        svg.innerHTML = '<defs><pattern id="woolHatch" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="10" stroke="#F59E0B" stroke-width="1.5" /></pattern></defs>' +
+          '<rect x="20" y="20" width="30" height="160" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1.5" rx="2" />' +
+          '<text x="35" y="105" text-anchor="middle" font-size="9" fill="#475569" font-weight="bold" transform="rotate(-90 35 105)">Stud Wall</text>' +
+          '<rect x="52" y="20" width="12" height="160" fill="#B45309" stroke="#78350F" stroke-width="1.5" />' +
+          '<line x1="65" y1="20" x2="65" y2="180" stroke="#2563EB" stroke-width="3" stroke-dasharray="3,3" />' +
+          '<text x="60" y="15" text-anchor="middle" font-size="8" fill="#2563EB" font-weight="bold">WRB</text>' +
+          '<rect x="66" y="25" width="' + insulW + '" height="150" fill="url(#woolHatch)" opacity="0.6" stroke="#D97706" stroke-width="1" />' +
+          '<text x="' + (66 + insulW / 2) + '" y="105" text-anchor="middle" font-size="10" font-weight="bold" fill="#B45309">' + insDepth.toFixed(1) + '" Continuous Insulation</text>' +
+          '<path d="M 66 45 L ' + (66 + insulW) + ' 45 L ' + (66 + insulW + 8) + ' 52 L ' + (66 + insulW) + ' 60 L 66 60 Z" fill="#047857" stroke="#064E3B" stroke-width="1.5" />' +
+          '<path d="M 66 135 L ' + (66 + insulW) + ' 135 L ' + (66 + insulW + 8) + ' 142 L ' + (66 + insulW) + ' 150 L 66 150 Z" fill="#047857" stroke="#064E3B" stroke-width="1.5" />' +
+          '<text x="' + (66 + insulW / 2) + '" y="40" text-anchor="middle" font-size="8" font-weight="bold" fill="#047857">Cascadia Clip® (FRP)</text>' +
+          '<rect x="' + (66 + insulW + 4) + '" y="20" width="10" height="160" fill="#94A3B8" stroke="#475569" stroke-width="1.5" />' +
+          '<rect x="' + (66 + insulW + 15) + '" y="20" width="10" height="160" fill="#E0F2FE" opacity="0.7" />' +
+          '<text x="' + (66 + insulW + 20) + '" y="15" text-anchor="middle" font-size="7" fill="#0284C7" font-weight="bold">Air Gap</text>' +
+          '<rect x="' + (66 + insulW + 26) + '" y="15" width="14" height="170" fill="#475569" stroke="#1E293B" stroke-width="2" rx="1" />' +
+          '<text x="' + (66 + insulW + 33) + '" y="105" text-anchor="middle" font-size="9" fill="#F8FAFC" font-weight="bold" transform="rotate(-90 ' + (66 + insulW + 33) + ' 105)">Cladding</text>';
+      }
 
       var notesHtml = '<li><strong>Net Rainscreen Coverage:</strong> ' + netArea.toLocaleString() + ' sq ft (' + grossArea + ' gross - ' + windowArea + ' openings).</li>' +
         '<li><strong>Clip Specification:</strong> ' + insDepth.toFixed(1) + '" pultruded fiberglass thermal clip body for ' + insDepth.toFixed(1) + '" continuous insulation.</li>' +
@@ -303,8 +375,8 @@ Estimated via CalcForDIY (https://calcfordiy.com/calculators/cascadia-clip/)`;
     hubSlug="exterior-continuous-insulation-rainscreen"
     hubTitle="Exterior Continuous Insulation &amp; Rainscreen Hub →"
     hubDesc="Commercial &amp; residential envelope workflow: weather barriers, fiberglass thermal clips, and drainage cavities."
-    guideSlug="ice-and-water-shield-requirements"
-    guideTitle="Ice &amp; Water Shield Building Code Guide →"
-    guideDesc="IRC R905.1.2 requirements for eave membrane width and valley self-adhered flashings."
+    guideSlug="thermal-bridging-fiberglass-clips-vs-z-girts"
+    guideTitle="Thermal Bridging: Fiberglass Clips vs. Z-Girts Guide →"
+    guideDesc="2D heat transfer modeling, effective R-values, and passing IECC continuous insulation code audits."
   />
 </Layout>

@@ -4,6 +4,29 @@ Permanent change log tracking technical SEO, UX, E-E-A-T trust hardening, Field 
 
 ---
 
+## [2026-11-25] — GSC Query-Driven SEO Sweep, Duplicate Consolidation & IndexNow
+
+### 1. GSC Active Query Upgrades (`10` Calculators Enhanced + `11` Titles Trimmed `<= 60` Chars)
+- **`src/pages/calculators/attic-insulation.astro`**: Added **Owens Corning AttiCat® (29.5 lb)** fiberglass option + math branch (`~32.5` bags/1,000 sq ft @ R-38), AttiCat vs. Cellulose coverage table (`R-19` to `R-60`), FAQ, and trimmed `<title>` to `59` chars (`Attic Insulation & AttiCat Coverage Calculator | CalcForDIY`).
+- **`src/pages/calculators/moisture-vapor-barrier.astro`**: Added ASTM F1869 (MVER) & ASTM F2170 (RH) vs. 100%-solids epoxy coat mil-thickness & V-notch squeegee chart.
+- **`src/pages/calculators/subfloor.astro`**: Trimmed `<title>` to `59` chars, added APA Rated Sturd-I-Floor® span/thickness/fastener schedule table, and added DRIcore® Subfloor cross-link.
+- **`src/pages/calculators/self-leveling-underlayment.astro`**: Trimmed `<title>` to `55` chars, surfaced 60 lb Sand Topping Mix equivalents inside `deckmud` mode, and added TCNA B415 / IPC 421.5.2 Shower Pan Deck Mud & SLU yield table.
+- **`src/pages/calculators/countersink-depth.astro`**: Trimmed `<title>` from `96` to `58` chars highlighting `82°, 90°, 100°`.
+- **`src/pages/calculators/concrete-footing.astro`**: Trimmed `<title>` to `55` chars and added an Angle of Repose & Stepped Footing Influence Zone (`1:1 / 45°`) subsoil clearance table.
+- **`src/pages/calculators/exterior-christmas-lights.astro`**, **`trestlewood-siding-lumber.astro`**, **`tyvek-house-wrap.astro`**, **`hardwood-flooring.astro`**: Trimmed all `<title>` tags (`<= 59` rendered chars), scrubbed legacy reviewer prop on `trestlewood-siding-lumber.astro`, and added scannable pitch/exposure/roll-lap/box-coverage HTML lookup tables.
+
+### 2. Two New Zero-Competition GSC Demand Calculators
+- **Drywall Kerf Bending Calculator ([drywall-kerf-bending.astro](file:///Users/minastirith/Documents/calcfordiy/src/pages/calculators/drywall-kerf-bending.astro))**: Calculates relief kerf center-to-center spacing (`in` + nearest `1/16"`), total kerf cuts, saw plunge depth, curved wall area, dynamic `<svg id="kerfSvg">`, and Gypsum Association GA-226 minimum bend radius table. Registered in `index.astro` and `calculators/index.astro`.
+- **ICF Block & Concrete Cost Calculator ([icf-block.astro](file:///Users/minastirith/Documents/calcfordiy/src/pages/calculators/icf-block.astro))**: Calculates `48"×16"` / `48"×12"` straight and 90° corner ICF blocks, `4"`–`12"` concrete core cubic yards (+5% pump allowance), IRC R608 #4 rebar sticks, dynamic `<svg id="icfSvg">`, core yield chart, and editable cost estimator. Registered in `index.astro` and `calculators/index.astro`.
+
+### 3. Cannibalizing Duplicate Consolidation (`8` Pairs -> `16` `301` Rules in `public/_redirects`)
+- Merged `cascadia-clip-insulation` -> `/calculators/cascadia-clip/` (preserving live `#wallSvg`, effective R-value cards, IECC 2024 table, and `50`-char title) + `7` overlapping `/projects/` hub pairs (`curbless-walk-in-shower` -> `curbless-shower-linear-drain`, `coffered-ceiling-layout` -> `coffered-ceiling-box-beams`, `floating-vinyl-plank` -> `lvp-flooring-renovation`, `tankless-water-heater-retrofit-gas` -> `tankless-water-heater-installation`, `whole-home-generator` -> `home-generator-transfer-switch`, `soundproofing-theater-room` -> `soundproof-wall-green-glue`, `deep-well-submersible-pump` -> `well-pump-pressure-tank-replacement`). Updated all inbound links and preserved `0` single-inbound / `0` orphan pages.
+
+### 4. Silent Multi-Engine Indexing (`IndexNow`)
+- Added `public/bcc69aeaeb73878d6444700e094c23bf.txt` + [`scripts/indexnow-ping.mjs`](file:///Users/minastirith/Documents/calcfordiy/scripts/indexnow-ping.mjs) + `"indexnow"` npm script in [`package.json`](file:///Users/minastirith/Documents/calcfordiy/package.json).
+
+---
+
 ## [2026-11-24] — E-E-A-T Trust Hardening, UX Upgrades & Monetization Architecture
 
 ### 1. E-E-A-T & Zero-Deception Audit

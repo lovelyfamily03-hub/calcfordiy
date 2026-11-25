@@ -4,7 +4,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 ---
 
 <Layout
-  title="Concrete Footing Calculator — Trench, Strip & Spread Footings | CalcForDIY"
+  title="Concrete Footing Calculator — Yards & Bags | CalcForDIY"
   description="Calculate concrete cubic yards, 80 lb & 60 lb bags, rebar steel, and excavation volume for continuous strip footings and isolated spread pads."
 >
   <script type="application/ld+json" is:inline>
@@ -260,6 +260,28 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
           When concrete is cast against and permanently exposed to earth, rebar must have a minimum of <strong>3.0 inches of concrete cover</strong> on all sides and the bottom. Use plastic or concrete rebar chairs (dobies) rather than placing rebar directly on dirt.
         </p>
       </div>
+    </div>
+
+    <div class="mt-6 pt-5 border-t border-gray-200 overflow-x-auto">
+      <h3 class="text-base font-bold text-gray-900 mb-2">Angle of Repose &amp; Stepped Footing Influence Zone (1:1 / 45° Bearing Rule)</h3>
+      <p class="text-xs text-gray-600 mb-3">
+        Per IRC Section R403.1.5 and standard geotechnical bearing design, a new footing or trench adjacent to an existing shallow footing must stay outside the soil's <strong>angle of repose</strong> cone (typically 45° / 1H:1V in undisturbed cohesive soils, flatter in loose sand) so lateral earth pressure does not undermine upper foundations.
+      </p>
+      <table class="w-full text-left border-collapse text-xs">
+        <thead>
+          <tr class="border-b-2 border-gray-200 uppercase text-gray-500 bg-gray-50">
+            <th class="py-2 px-3">Subsoil Classification</th>
+            <th class="py-2 px-3">Typical Angle of Repose</th>
+            <th class="py-2 px-3">Horizontal Slope Ratio (H:V)</th>
+            <th class="py-2 px-3">Min. Horizontal Offset per 2 ft Elevation Drop</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-gray-700">
+          <tr><td class="py-2 px-3 font-semibold text-gray-900">Loose Dry Sand / Uncompacted Fill</td><td class="py-2 px-3">30° – 33°</td><td class="py-2 px-3">1.7 : 1</td><td class="py-2 px-3">3.5 ft horizontal clearance</td></tr>
+          <tr><td class="py-2 px-3 font-semibold text-gray-900">Dense Gravelly Sand / Sandy Loam</td><td class="py-2 px-3">35° – 40°</td><td class="py-2 px-3">1.3 : 1</td><td class="py-2 px-3">2.7 ft horizontal clearance</td></tr>
+          <tr><td class="py-2 px-3 font-semibold text-gray-900">Stiff Undisturbed Clay / Cohesive Soil</td><td class="py-2 px-3">45° (Conservative 1:1)</td><td class="py-2 px-3">1.0 : 1</td><td class="py-2 px-3">2.0 ft horizontal clearance</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 

@@ -1,0 +1,369 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="ICF Block & Concrete Cost Calculator | CalcForDIY"
+  description="Calculate ICF (Insulated Concrete Form) straight and corner blocks, concrete core cubic yards, #4/#5 rebar sticks per IRC R608, and total ICF wall material cost."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ICF Block and Concrete Cost Calculator",
+    "description": "Free ICF estimator to calculate Insulated Concrete Form straight and corner blocks, monolithic concrete core yards, rebar lengths, and total wall material costs.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many ICF blocks do I need per 100 sq ft of wall?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A standard 48-inch long × 16-inch tall ICF block covers 5.33 square feet of wall area, requiring 18.75 blocks per 100 sq ft net (or 20 blocks with a 5% corner and cut allowance). Compact 48×12-inch blocks cover 4.0 sq ft each and require 25 blocks per 100 sq ft."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much concrete does a 6-inch vs 8-inch ICF wall take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 6-inch concrete core requires 1.85 cubic yards per 100 sq ft of wall (roughly 1.94 cu yd including 5% boom-pump waste). An 8-inch concrete core requires 2.47 cubic yards per 100 sq ft net (approx. 2.59 cu yd with waste)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much do ICF blocks and concrete cost per square foot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Material costs for DIY insulated concrete form walls typically run $6 to $9 per sq ft for ICF blocks plus $3 to $5 per sq ft for ready-mix concrete, rebar, and bracing, depending on local concrete yard pricing and core thickness."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "ICF Block & Cost Calculator", "item": "https://calcfordiy.com/calculators/icf-block/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>ICF Block &amp; Cost Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 border border-indigo-200 rounded-full text-indigo-800 text-xs font-semibold mb-2">
+      <span>🧱 IRC Section R608 Insulated Concrete Form (ICF) Core &amp; Rebar Compliance</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">ICF Block &amp; Concrete Core Calculator (Cost Estimator)</h1>
+    <p class="text-gray-600 text-base">
+      Estimate straight and 90° corner ICF blocks, monolithic concrete core yards, horizontal/vertical #4 rebar sticks, and full ICF wall material costs.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+      <div>
+        <label for="wallPerim" class="block text-xs font-medium text-gray-600 mb-1">Wall Perimeter (Linear Ft)</label>
+        <input type="number" id="wallPerim" value="120" min="8" step="2" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="wallHeight" class="block text-xs font-medium text-gray-600 mb-1">Wall Height (Ft)</label>
+        <input type="number" id="wallHeight" value="9" min="2" max="24" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="cornerCount" class="block text-xs font-medium text-gray-600 mb-1">90° Wall Corners</label>
+        <input type="number" id="cornerCount" value="4" min="0" max="40" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="openingsSqFt" class="block text-xs font-medium text-gray-600 mb-1">Window &amp; Door Openings (sq ft)</label>
+        <input type="number" id="openingsSqFt" value="80" min="0" step="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+
+      <div>
+        <label for="coreWidth" class="block text-xs font-medium text-gray-600 mb-1">Concrete Core Thickness</label>
+        <select id="coreWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="4">4" Core (Interior / Low-Height)</option>
+          <option value="6" selected>6" Core (Standard Residential Basement / Wall)</option>
+          <option value="8">8" Core (Tall Wall / Heavy Backfill)</option>
+          <option value="10">10" Core (Deep Commercial / Seismic)</option>
+          <option value="12">12" Core (Structural Retaining / Slab-Edge)</option>
+        </select>
+      </div>
+      <div>
+        <label for="blockFormat" class="block text-xs font-medium text-gray-600 mb-1">ICF Block Dimensions</label>
+        <select id="blockFormat" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="16" selected>48" × 16" Standard (5.33 sq ft / block)</option>
+          <option value="12">48" × 12" Low-Profile (4.00 sq ft / block)</option>
+        </select>
+      </div>
+      <div>
+        <label for="rebarOc" class="block text-xs font-medium text-gray-600 mb-1">Vertical Rebar Spacing (IRC R608)</label>
+        <select id="rebarOc" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="16">16" OC (High Lateral / Wind Zone)</option>
+          <option value="24" selected>24" OC (Standard Foundation Wall)</option>
+          <option value="48">48" OC (Minimum Single-Story)</option>
+        </select>
+      </div>
+      <div>
+        <label for="wasteFactor" class="block text-xs font-medium text-gray-600 mb-1">Block &amp; Pump Waste</label>
+        <select id="wasteFactor" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="5" selected>5% (Standard Rectangular Layout)</option>
+          <option value="10">10% (Complex Gables / Angles)</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="blockPrice" class="block text-xs font-medium text-gray-600 mb-1">Unit Cost: ICF Block ($ / block)</label>
+        <input type="number" id="blockPrice" value="32" min="5" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="concretePrice" class="block text-xs font-medium text-gray-600 mb-1">Unit Cost: Ready-Mix ($ / cu yd)</label>
+        <input type="number" id="concretePrice" value="165" min="50" step="5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="rebarPrice" class="block text-xs font-medium text-gray-600 mb-1">Unit Cost: #4 Rebar ($ / 20 ft stick)</label>
+        <input type="number" id="rebarPrice" value="14" min="3" step="1" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div class="flex items-end">
+        <button type="button" id="calcBtn" class="w-full px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+          Calculate ICF Takeoff
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Monolithic ICF Wall Schedule</span>
+        <h2 class="text-lg font-bold text-white">Calculated ICF Blocks, Core Concrete &amp; Wall Cost</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Material List
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Total ICF Forms Needed</div>
+        <div class="text-2xl font-black text-amber-300" id="r_totalBlocks">197 Blocks</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_blockBreakdown">169 Straight + 28 Corner (7 courses)</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Concrete Core Volume (+5% Pump)</div>
+        <div class="text-2xl font-black text-white" id="r_concreteYds">19.4 cu yd</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_netWallArea">Net wall area: 1,000 sq ft</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">#4 Rebar (20 ft Sticks, 10% Lap)</div>
+        <div class="text-2xl font-black text-sky-300" id="r_rebarSticks">77 Sticks</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_rebarDetail">47 horiz + 30 vert bars</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Estimated Wall Material Cost</div>
+        <div class="text-2xl font-black text-emerald-400" id="r_totalCost">$10,583</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_costPerSqFt">~$10.58 / sq ft (Materials only)</div>
+      </div>
+    </div>
+
+    <!-- Live SVG Schematic -->
+    <div class="bg-white rounded-lg p-4 border border-slate-700">
+      <div class="flex items-center justify-between text-xs text-gray-600 font-semibold mb-2">
+        <span>📐 ICF Cross-Section: Dual EPS Foam Panels &amp; Reinforced Core</span>
+        <span id="r_svgLabel">6" Core · R-23+ Continuous Assembly</span>
+      </div>
+      <svg id="icfSvg" viewBox="0 0 640 165" class="w-full h-auto max-h-44" role="img" aria-label="Insulated Concrete Form ICF cross-section schematic"></svg>
+    </div>
+  </div>
+
+  <AuthorReviewer
+    codeStandard="IRC Section R608 Exterior Concrete Wall & ACI 318 Reinforcement"
+    lastUpdated="November 2026"
+  />
+
+  <!-- ICF Reference Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 overflow-x-auto">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">ICF Concrete Core Yield &amp; Block Quick-Reference Table (Per 100 Sq Ft)</h2>
+    <p class="text-sm text-gray-600 mb-4">Compare poured core volumes, boom-pump allowance (+5%), and typical vertical rebar grids across common ICF wall thicknesses.</p>
+    <table class="w-full text-left border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-gray-200 text-xs uppercase text-gray-500 bg-gray-50">
+          <th class="py-2.5 px-3">ICF Core Width</th>
+          <th class="py-2.5 px-3">Net Concrete per 100 Sq Ft</th>
+          <th class="py-2.5 px-3">With 5% Pump Allowance</th>
+          <th class="py-2.5 px-3">48"×16" Blocks / 100 Sq Ft</th>
+          <th class="py-2.5 px-3">Typical Application</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 text-gray-700">
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">4" Concrete Core</td><td class="py-2.5 px-3">1.23 cu yd</td><td class="py-2.5 px-3">1.30 cu yd</td><td class="py-2.5 px-3">19.7 blocks</td><td class="py-2.5 px-3">Above-grade walls / interior partitions</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">6" Concrete Core</td><td class="py-2.5 px-3">1.85 cu yd</td><td class="py-2.5 px-3">1.94 cu yd</td><td class="py-2.5 px-3">19.7 blocks</td><td class="py-2.5 px-3">Standard residential basements &amp; walls</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">8" Concrete Core</td><td class="py-2.5 px-3">2.47 cu yd</td><td class="py-2.5 px-3">2.59 cu yd</td><td class="py-2.5 px-3">19.7 blocks</td><td class="py-2.5 px-3">Tall basement walls / multi-story</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">10" Concrete Core</td><td class="py-2.5 px-3">3.09 cu yd</td><td class="py-2.5 px-3">3.24 cu yd</td><td class="py-2.5 px-3">19.7 blocks</td><td class="py-2.5 px-3">High soil surcharge / commercial</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">12" Concrete Core</td><td class="py-2.5 px-3">3.70 cu yd</td><td class="py-2.5 px-3">3.89 cu yd</td><td class="py-2.5 px-3">19.7 blocks</td><td class="py-2.5 px-3">Heavy retaining &amp; frost-protected stem walls</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Enter Perimeter, Height &amp; Openings:</strong> Input total exterior wall length, wall height, 90° corners, and combined window/door opening area to subtract from concrete core volume.</li>
+      <li><strong>Select Core Width, Form Size &amp; Rebar Grid:</strong> Choose your engineered ICF core (`4"` to `12"`), `16"` or `12"` tall form height, and IRC R608 vertical rebar spacing.</li>
+      <li><strong>Adjust Local Material Pricing:</strong> Update the per-block, per-yard ready-mix, and rebar stick prices to get a tailored material cost takeoff alongside your shopping list.</li>
+    </ol>
+  </div>
+
+  <RelatedGuidesProjects
+    hubSlug="basement-waterproofing"
+    hubTitle="Foundation &amp; Basement Waterproofing Hub →"
+    hubDesc="Plan footings, waterproofing membranes, weeping tile drains, and sump protection."
+    guideSlug="concrete-mix-ratios-psi-curing"
+    guideTitle="Concrete PSI, Slump &amp; Pour Guide →"
+    guideDesc="Understand concrete strength, air entrainment, and consolidation rules for structural pours."
+  />
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mt-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Concrete &amp; Foundation Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/concrete-footing/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Footing Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Size continuous strip footings underneath ICF walls.</div>
+      </a>
+      <a href="/calculators/concrete-block-cmu/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Concrete Block (CMU) Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Compare traditional cinder block and mortar quantities.</div>
+      </a>
+      <a href="/calculators/rebar/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Rebar Grid Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate slab rebar mats and tie wire for floors.</div>
+      </a>
+    </div>
+  </div>
+
+  <script is:inline>
+  (function() {
+    function renderIcfSvg(coreIn, vertOcIn) {
+      var svg = document.getElementById('icfSvg');
+      if (!svg) return;
+      var epsW = 54;
+      var coreW = Math.min(220, Math.max(70, coreIn * 16));
+      var totalW = epsW * 2 + coreW;
+      var startX = Math.round((640 - totalW) / 2);
+      var out = [];
+      // Left EPS foam
+      out.push('<rect x="' + startX + '" y="22" width="' + epsW + '" height="110" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>');
+      out.push('<text x="' + (startX + epsW / 2) + '" y="82" text-anchor="middle" font-size="10" font-weight="700" fill="#92400e">EPS 2.6"</text>');
+      // Concrete core
+      out.push('<rect x="' + (startX + epsW) + '" y="22" width="' + coreW + '" height="110" fill="#cbd5e1" stroke="#475569" stroke-width="2"/>');
+      // Right EPS foam
+      out.push('<rect x="' + (startX + epsW + coreW) + '" y="22" width="' + epsW + '" height="110" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>');
+      out.push('<text x="' + (startX + epsW + coreW + epsW / 2) + '" y="82" text-anchor="middle" font-size="10" font-weight="700" fill="#92400e">EPS 2.6"</text>');
+      // Web ties
+      out.push('<rect x="' + (startX + 14) + '" y="46" width="' + (totalW - 28) + '" height="6" fill="#334155"/>');
+      out.push('<rect x="' + (startX + 14) + '" y="102" width="' + (totalW - 28) + '" height="6" fill="#334155"/>');
+      // Rebar dots
+      var cx = startX + epsW + coreW / 2;
+      out.push('<circle cx="' + cx + '" cy="66" r="5" fill="#dc2626"/>');
+      out.push('<circle cx="' + cx + '" cy="88" r="5" fill="#dc2626"/>');
+      out.push('<text x="320" y="152" text-anchor="middle" font-size="11" font-weight="700" fill="#1e293b">' + coreIn + '" Poured Concrete Core · Vertical #4 Rebar @ ' + vertOcIn + '" OC · Dual Continuous EPS Insulation</text>');
+      svg.innerHTML = out.join('');
+    }
+
+    function calc() {
+      var perim = Math.max(8, parseFloat(document.getElementById('wallPerim').value) || 120);
+      var height = Math.max(2, parseFloat(document.getElementById('wallHeight').value) || 9);
+      var corners = Math.max(0, parseInt(document.getElementById('cornerCount').value, 10) || 0);
+      var openings = Math.max(0, parseFloat(document.getElementById('openingsSqFt').value) || 0);
+      var coreIn = parseFloat(document.getElementById('coreWidth').value) || 6;
+      var blockHeightIn = parseFloat(document.getElementById('blockFormat').value) || 16;
+      var vertOcIn = parseFloat(document.getElementById('rebarOc').value) || 24;
+      var wastePct = parseFloat(document.getElementById('wasteFactor').value) || 5;
+      var blockPrice = Math.max(0, parseFloat(document.getElementById('blockPrice').value) || 32);
+      var concretePrice = Math.max(0, parseFloat(document.getElementById('concretePrice').value) || 165);
+      var rebarPrice = Math.max(0, parseFloat(document.getElementById('rebarPrice').value) || 14);
+
+      var grossArea = perim * height;
+      var netArea = Math.max(10, grossArea - openings);
+      var blockSqFt = (48 * blockHeightIn) / 144;
+      var courses = Math.ceil((height * 12) / blockHeightIn);
+      var cornerBlocks = corners * courses;
+      var totalBlocks = Math.ceil((netArea / blockSqFt) * (1 + wastePct / 100));
+      totalBlocks = Math.max(totalBlocks, cornerBlocks);
+      var straightBlocks = Math.max(0, totalBlocks - cornerBlocks);
+
+      var concreteYds = ((netArea * (coreIn / 12)) / 27) * 1.05;
+
+      // Rebar: 1 continuous horizontal bar per course + vertical bar @ vertOcIn OC (with 10% overlap)
+      var horizLF = courses * perim * 1.10;
+      var vertBars = Math.ceil((perim * 12) / vertOcIn);
+      var vertLF = vertBars * height * 1.10;
+      var horizSticks = Math.ceil(horizLF / 20);
+      var vertSticks = Math.ceil(vertLF / 20);
+      var totalSticks = horizSticks + vertSticks;
+
+      var costTotal = (totalBlocks * blockPrice) + (concreteYds * concretePrice) + (totalSticks * rebarPrice);
+      var costSqFt = costTotal / netArea;
+
+      document.getElementById('r_totalBlocks').textContent = totalBlocks + ' Blocks';
+      document.getElementById('r_blockBreakdown').textContent = straightBlocks + ' Straight + ' + cornerBlocks + ' Corner (' + courses + ' courses)';
+      document.getElementById('r_concreteYds').textContent = concreteYds.toFixed(1) + ' cu yd';
+      document.getElementById('r_netWallArea').textContent = 'Net wall area: ' + Math.round(netArea).toLocaleString() + ' sq ft';
+      document.getElementById('r_rebarSticks').textContent = totalSticks + ' Sticks';
+      document.getElementById('r_rebarDetail').textContent = horizSticks + ' horiz + ' + vertSticks + ' vert (#4 × 20ft)';
+      document.getElementById('r_totalCost').textContent = '$' + Math.round(costTotal).toLocaleString();
+      document.getElementById('r_costPerSqFt').textContent = '~$' + costSqFt.toFixed(2) + ' / sq ft (Materials only)';
+      document.getElementById('r_svgLabel').textContent = coreIn + '" Core · Continuous EPS Insulation';
+
+      renderIcfSvg(coreIn, vertOcIn);
+    }
+
+    ['wallPerim', 'wallHeight', 'cornerCount', 'openingsSqFt', 'coreWidth', 'blockFormat', 'rebarOc', 'wasteFactor', 'blockPrice', 'concretePrice', 'rebarPrice'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', calc);
+    });
+    document.getElementById('calcBtn').addEventListener('click', calc);
+    calc();
+
+    document.getElementById('copyListBtn').addEventListener('click', function() {
+      var blocks = document.getElementById('r_totalBlocks').textContent;
+      var detail = document.getElementById('r_blockBreakdown').textContent;
+      var yds = document.getElementById('r_concreteYds').textContent;
+      var rebar = document.getElementById('r_rebarSticks').textContent;
+      var cost = document.getElementById('r_totalCost').textContent;
+      var text = '=== ICF Wall Material & Cost Schedule ===\nICF Forms: ' + blocks + ' (' + detail + ')\nReady-Mix Concrete Core: ' + yds + '\n#4 Rebar Sticks (20ft): ' + rebar + '\nEst. Wall Material Total: ' + cost + '\nEstimated via CalcForDIY (https://calcfordiy.com/calculators/icf-block/)';
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyListBtn');
+        btn.textContent = '✓ Copied List!';
+        setTimeout(function() { btn.textContent = '📋 Copy Material List'; }, 2500);
+      });
+    });
+  })();
+  </script>
+</Layout>

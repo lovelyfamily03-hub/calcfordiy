@@ -5,7 +5,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 ---
 
 <Layout
-  title="Trestlewood & Reclaimed Siding Calculator (Linear Feet, Sq Ft & Board Feet) | CalcForDIY"
+  title="Trestlewood & Reclaimed Siding Calculator | CalcForDIY"
   description="Convert square feet of exterior wall coverage into linear feet and board feet (BDFT) for Trestlewood, reclaimed barnwood, wedgelap, shiplap, and timber planks."
 >
   <script type="application/ld+json" is:inline>
@@ -297,10 +297,8 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 
   <!-- Author Reviewer Box -->
   <AuthorReviewer
-    reviewerName="Garrison Cole, Timberwright"
-    reviewerRole="Reclaimed Wood Specialist & Architectural Timber Framer"
     codeStandard="AWPA Timber Standards, AWI Siding Specs & IRC Chapter 7 Cladding"
-    lastUpdated="September 2026"
+    lastUpdated="November 2026"
   />
 
   <!-- Deep Editorial & Technical Documentation -->
@@ -345,6 +343,28 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
         <strong>Board &amp; Batten:</strong> Vertical wide face planks (typically 1x8 or 1x10) spaced 1/2" apart, with seams bridged by 1x2 or 1x3 narrow batten strips. Requires 1 nail in the batten centered between the two boards to prevent splitting as the planks expand and contract.
       </li>
     </ul>
+
+    <div class="bg-white border border-gray-200 rounded-xl p-5 not-prose my-6 overflow-x-auto">
+      <h3 class="text-lg font-bold text-gray-900 mb-2">Reclaimed Siding Face-Width to Linear Feet &amp; Board Feet Table</h3>
+      <p class="text-xs text-gray-600 mb-3">Quick conversion benchmarks per 100 sq ft of net wall coverage (multiply by waste factor, e.g., 1.15× for historic reclaimed sorting).</p>
+      <table class="w-full text-left border-collapse text-sm">
+        <thead>
+          <tr class="border-b-2 border-gray-200 text-xs uppercase text-gray-500 bg-gray-50">
+            <th class="py-2 px-3">Nominal Size &amp; Milled Profile</th>
+            <th class="py-2 px-3">Net Face Exposure</th>
+            <th class="py-2 px-3">Linear Feet per 100 Sq Ft (Net)</th>
+            <th class="py-2 px-3">Board Feet Factor (1" Nominal)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 text-gray-700">
+          <tr><td class="py-2 px-3 font-semibold text-gray-900">1×4 Square Edge</td><td class="py-2 px-3">3.50 in</td><td class="py-2 px-3">342.9 LF</td><td class="py-2 px-3">0.33 BDFT / LF</td></tr>
+          <tr><td class="py-2 px-3 font-semibold text-gray-900">1×6 Shiplap / Wedgelap</td><td class="py-2 px-3">5.00 in</td><td class="py-2 px-3">240.0 LF</td><td class="py-2 px-3">0.50 BDFT / LF</td></tr>
+          <tr><td class="py-2 px-3 font-semibold text-gray-900">1×6 Square Edge / T&amp;G Butt</td><td class="py-2 px-3">5.50 in</td><td class="py-2 px-3">218.2 LF</td><td class="py-2 px-3">0.50 BDFT / LF</td></tr>
+          <tr><td class="py-2 px-3 font-semibold text-gray-900">1×8 Square Edge</td><td class="py-2 px-3">7.25 in</td><td class="py-2 px-3">165.5 LF</td><td class="py-2 px-3">0.67 BDFT / LF</td></tr>
+          <tr><td class="py-2 px-3 font-semibold text-gray-900">1×10 Barnwood / Board &amp; Batten</td><td class="py-2 px-3">9.25 in</td><td class="py-2 px-3">129.7 LF</td><td class="py-2 px-3">0.83 BDFT / LF</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script is:inline>

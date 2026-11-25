@@ -4,7 +4,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 ---
 
 <Layout
-  title="Subfloor Calculator — How Many Sheets of Plywood or OSB Do I Need? | CalcForDIY"
+  title="Subfloor Calculator — 4×8 Plywood & OSB Sheets | CalcForDIY"
   description="Calculate how many sheets of plywood or OSB subfloor you need. Enter room dimensions and get sheet count and waste factor instantly. Free, no signup."
 >
 
@@ -292,6 +292,29 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     </div>
   </div>
 
+  <!-- APA Subfloor Span & Fastener Schedule -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 overflow-x-auto">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">APA Rated Sturd-I-Floor® 4×8 T&amp;G Subfloor Span, Thickness &amp; Fastener Schedule</h2>
+    <p class="text-sm text-gray-600 mb-4">Minimum structural panel thickness and fastener spacing per IRC Section R503.2 and APA - The Engineered Wood Association guidelines.</p>
+    <table class="w-full text-left border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-gray-200 text-xs uppercase text-gray-500 bg-gray-50">
+          <th class="py-2.5 px-3">Nominal Panel Thickness</th>
+          <th class="py-2.5 px-3">Max Joist Spacing</th>
+          <th class="py-2.5 px-3">Span Rating Stamp</th>
+          <th class="py-2.5 px-3">Subfloor Screws (#8 × 2")</th>
+          <th class="py-2.5 px-3">Adhesive (28 oz Tubes)</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 text-gray-700">
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">19/32" or 5/8" T&amp;G</td><td class="py-2.5 px-3">16" OC</td><td class="py-2.5 px-3">20 oc</td><td class="py-2.5 px-3">~45 screws / sheet</td><td class="py-2.5 px-3">~1 tube per 3 sheets</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">23/32" or 3/4" T&amp;G</td><td class="py-2.5 px-3">19.2" – 24" OC (Tile Ready)</td><td class="py-2.5 px-3">24 oc</td><td class="py-2.5 px-3">~35 screws / sheet (at 24" OC)</td><td class="py-2.5 px-3">~1 tube per 3–4 sheets</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">7/8" Heavy T&amp;G</td><td class="py-2.5 px-3">24" OC (Natural Stone)</td><td class="py-2.5 px-3">32 oc</td><td class="py-2.5 px-3">~35 screws / sheet</td><td class="py-2.5 px-3">~1 tube per 4 sheets</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">1-1/8" Structural 2-4-1</td><td class="py-2.5 px-3">48" OC Beams</td><td class="py-2.5 px-3">48 oc</td><td class="py-2.5 px-3">~24 ring-shank / screws</td><td class="py-2.5 px-3">~1 tube per 5 sheets</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
     <p class="text-gray-700 mb-4">Using this subfloor calculator ensures you buy the exact amount of OSB or plywood for your flooring project. Follow these five simple steps:</p>
@@ -372,7 +395,11 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 
   <div class="bg-gray-50 border border-gray-200 rounded-xl p-6">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Calculators</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+      <a href="/calculators/dricore-subfloor/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">DRIcore® Subfloor Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate 2×2 insulated basement subfloor panels and shims.</div>
+      </a>
       <a href="/calculators/laminate-flooring/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
         <div class="font-medium text-gray-900 text-sm">Laminate Flooring Calculator</div>
         <div class="text-xs text-gray-500 mt-1">Figure out exactly how many boxes of laminate flooring you need to order.</div>

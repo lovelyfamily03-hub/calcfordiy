@@ -1,0 +1,369 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthorReviewer from '../../components/AuthorReviewer.astro';
+import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro';
+---
+
+<Layout
+  title="Drywall Kerf Calculator — Curved Wall Spacing | CalcForDIY"
+  description="Calculate drywall kerf spacing, number of relief kerf cuts, arc length, and Gypsum Association GA-226 minimum bend radii for curved walls and archways."
+>
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Drywall Kerf Bending Calculator",
+    "description": "Free drywall kerf calculator to compute kerf cut count, exact center-to-center spacing, arc length, and blade depth for curved gypsum walls and arches.",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "Web Browser",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do you calculate drywall kerf spacing for a curved wall?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "First calculate the arc length along the curved surface: Arc Length = Radius × (Angle in Degrees × pi / 180). Next find the gypsum compression allowance closed by the kerf cuts: Compression Allowance = (Board Thickness − 0.0625 in uncut face paper) × Arc Radians. Divide that allowance by your blade kerf width to get the number of kerfs, then divide the arc length by the kerf count for exact spacing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How deep should you cut kerfs in 1/2-inch drywall?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cut through the back paper and gypsum core until roughly 1/16 inch (0.0625 in) of gypsum plus the unbroken face paper remains intact. That leaves a target saw plunge depth of 7/16 inch (0.438 in) for 1/2-inch sheetrock and 9/16 inch (0.563 in) for 5/8-inch Type X."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When can drywall bend without kerfing under Gypsum Association GA-226?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per Gypsum Association GA-226 (Application of Gypsum Board to Form Curved Surfaces), 1/4-inch board bends dry down to a 5 ft radius (2 ft wet), 3/8-inch bends dry to 7.5 ft (4 ft wet), 1/2-inch bends dry to 20 ft (10 ft wet), and 5/8-inch bends dry to 28 ft (14 ft wet). Tighter radii require either double-layer 1/4-inch drywall or kerf relief cuts on the back."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" is:inline>
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcfordiy.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://calcfordiy.com/calculators/" },
+      { "@type": "ListItem", "position": 3, "name": "Drywall Kerf Calculator", "item": "https://calcfordiy.com/calculators/drywall-kerf-bending/" }
+    ]
+  }
+  </script>
+
+  <div class="flex items-center gap-2 text-sm text-gray-500 mb-4 print:hidden">
+    <a href="/" class="hover:text-blue-600">Home</a>
+    <span>/</span>
+    <a href="/calculators/" class="hover:text-blue-600">Calculators</a>
+    <span>/</span>
+    <span>Drywall Kerf Calculator</span>
+  </div>
+
+  <div class="mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-blue-800 text-xs font-semibold mb-2">
+      <span>📐 Gypsum Association GA-226 Curved Wall &amp; Archway Geometry</span>
+    </div>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Drywall Kerf Bending Calculator</h1>
+    <p class="text-gray-600 text-base">
+      Calculate relief kerf spacing, cut count, saw plunge depth, and curved arc length for tight inside/outside radius walls, barrel vaults, and bullnose arches.
+    </p>
+  </div>
+
+  <!-- Calculator Form -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-xs">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
+      <div>
+        <label for="curveRadius" class="block text-xs font-medium text-gray-600 mb-1">Curve Radius (Inches)</label>
+        <input type="number" id="curveRadius" value="24" min="4" max="360" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <label for="arcAngle" class="block text-xs font-medium text-gray-600 mb-1">Curve Arc Angle (Degrees)</label>
+        <select id="arcAngle" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="45">45° Gentle Sweep / Corner</option>
+          <option value="90" selected>90° Quarter-Circle Radius</option>
+          <option value="180">180° Full Arch / Semicircle</option>
+          <option value="270">270° Rounded Wrap Column</option>
+          <option value="360">360° Full Round Column</option>
+        </select>
+      </div>
+      <div>
+        <label for="boardThickness" class="block text-xs font-medium text-gray-600 mb-1">Drywall Thickness</label>
+        <select id="boardThickness" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0.25">1/4" Flexible Radius Board (0.250")</option>
+          <option value="0.375">3/8" Gypsum Board (0.375")</option>
+          <option value="0.5" selected>1/2" Standard Drywall (0.500")</option>
+          <option value="0.625">5/8" Type X Fire-Rated (0.625")</option>
+        </select>
+      </div>
+      <div>
+        <label for="kerfWidth" class="block text-xs font-medium text-gray-600 mb-1">Kerf Cut / Blade Width</label>
+        <select id="kerfWidth" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="0.0625">1/16" (0.0625") Utility Score / Fine Blade</option>
+          <option value="0.09375">3/32" (0.0938") Thin-Kerf Track Saw</option>
+          <option value="0.125" selected>1/8" (0.1250") Standard Saw Blade</option>
+        </select>
+      </div>
+      <div>
+        <label for="bendDirection" class="block text-xs font-medium text-gray-600 mb-1">Curve Type (Kerf Placement)</label>
+        <select id="bendDirection" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="inside" selected>Concave / Inside Curve (Kerfs Close on Back)</option>
+          <option value="outside">Convex / Outside Arch (Kerfs Open on Back)</option>
+        </select>
+      </div>
+      <div>
+        <label for="wallHeightFt" class="block text-xs font-medium text-gray-600 mb-1">Curved Section Height / Width (ft)</label>
+        <input type="number" id="wallHeightFt" value="8" min="1" max="20" step="0.5" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+      <div class="text-xs text-gray-500">
+        ⚡ Leaves 1/16" (0.0625") intact gypsum + face paper hinge to prevent snapping during fastening.
+      </div>
+      <button type="button" id="calcBtn" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors shadow-xs">
+        Calculate Kerf Spacing
+      </button>
+    </div>
+  </div>
+
+  <!-- Result Card -->
+  <div class="bg-slate-900 text-white rounded-xl p-6 mb-6 shadow-md" id="resultCard">
+    <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+      <div>
+        <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">GA-226 Curved Drywall Schedule</span>
+        <h2 class="text-lg font-bold text-white">Calculated Kerf Spacing &amp; Saw Depth</h2>
+      </div>
+      <button type="button" id="copyListBtn" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-md transition-colors flex items-center gap-1">
+        📋 Copy Material List
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5">
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Kerf Center-to-Center Spacing</div>
+        <div class="text-2xl font-black text-amber-300" id="r_kerfSpacing">6.3 in</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_kerfFraction">Nearest 1/16": ~6-5/16"</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Total Relief Kerf Cuts</div>
+        <div class="text-2xl font-black text-white" id="r_numKerfs">6 Cuts</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_arcLength">Arc length: 37.7 in</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Saw Plunge Depth</div>
+        <div class="text-2xl font-black text-sky-300" id="r_plungeDepth">0.438 in</div>
+        <div class="text-[11px] text-slate-400 mt-1">Leaves 1/16" face hinge intact</div>
+      </div>
+      <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+        <div class="text-xs text-slate-400 mb-1">Drywall Surface &amp; Framing</div>
+        <div class="text-2xl font-black text-emerald-400" id="r_sheetArea">25.1 sq ft</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="r_studSpacing">Recommended stud OC: 6"–8"</div>
+      </div>
+    </div>
+
+    <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-3 text-xs text-slate-200 mb-4" id="r_gaAdvisory">
+      GA-226 Note: 24" radius is tighter than the 20 ft dry bend limit for 1/2" board — back-kerfing or dual-layer 1/4" drywall is required.
+    </div>
+
+    <!-- Live SVG Schematic -->
+    <div class="bg-white rounded-lg p-4 border border-slate-700">
+      <div class="flex items-center justify-between text-xs text-gray-600 font-semibold mb-2">
+        <span>📐 Kerf Slot Relief Profile (Back-Side Cuts)</span>
+        <span id="r_svgMeta">R = 24" · 90° Arc</span>
+      </div>
+      <svg id="kerfSvg" viewBox="0 0 640 165" class="w-full h-auto max-h-44" role="img" aria-label="Curved drywall kerf spacing diagram"></svg>
+    </div>
+  </div>
+
+  <AuthorReviewer
+    codeStandard="Gypsum Association GA-226 & ASTM C840 Curved Gypsum Application"
+    lastUpdated="November 2026"
+  />
+
+  <!-- GA-226 Reference Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 overflow-x-auto">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">Gypsum Association GA-226 Minimum Unkerfed Bending Radius &amp; Stud Spacing</h2>
+    <p class="text-sm text-gray-600 mb-4">If your radius is tighter than the wet/dry GA-226 unkerfed limits below, back-kerfing or hanging two layers of 1/4" flexible drywall is required.</p>
+    <table class="w-full text-left border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-gray-200 text-xs uppercase text-gray-500 bg-gray-50">
+          <th class="py-2.5 px-3">Drywall Thickness</th>
+          <th class="py-2.5 px-3">Min. Dry Bend Radius</th>
+          <th class="py-2.5 px-3">Min. Wet Bend Radius</th>
+          <th class="py-2.5 px-3">Recommended Max Stud Spacing</th>
+          <th class="py-2.5 px-3">Typical Kerf Cut Depth</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 text-gray-700">
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">1/4" Flexible Board</td><td class="py-2.5 px-3">5 ft (60")</td><td class="py-2.5 px-3">2 ft (24")</td><td class="py-2.5 px-3">6" to 8" OC</td><td class="py-2.5 px-3">3/16" (0.188")</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">3/8" Gypsum Board</td><td class="py-2.5 px-3">7.5 ft (90")</td><td class="py-2.5 px-3">4 ft (48")</td><td class="py-2.5 px-3">8" to 12" OC</td><td class="py-2.5 px-3">5/16" (0.313")</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">1/2" Standard Wallboard</td><td class="py-2.5 px-3">20 ft (240")</td><td class="py-2.5 px-3">10 ft (120")</td><td class="py-2.5 px-3">12" to 16" OC</td><td class="py-2.5 px-3">7/16" (0.438")</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">5/8" Type X Fire-Rated</td><td class="py-2.5 px-3">28 ft (336")</td><td class="py-2.5 px-3">14 ft (168")</td><td class="py-2.5 px-3">16" OC max</td><td class="py-2.5 px-3">9/16" (0.563")</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- How to Use This Calculator -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>
+    <ol class="space-y-3 text-sm text-gray-700 list-decimal pl-5">
+      <li><strong>Measure Curve Radius &amp; Arc Angle:</strong> Measure the radius in inches from the curve center point to the finished drywall face, and choose the sweep angle (e.g., 90° corner or 180° doorway arch).</li>
+      <li><strong>Select Board Thickness &amp; Blade Kerf:</strong> Choose your drywall thickness (`1/4"` through `5/8"`) and the exact kerf width of your saw blade or track saw.</li>
+      <li><strong>Mark &amp; Plunge Kerfs Evenly:</strong> Lay out the calculated center-to-center spacing along the back paper, set your circular saw depth stop to leave `1/16"` of unbroken paper face, and secure with fine-thread drywall screws starting from one end.</li>
+    </ol>
+  </div>
+
+  <RelatedGuidesProjects
+    hubSlug="level-5-drywall-finish"
+    hubTitle="Level 5 Drywall Finish &amp; Curved Framing Hub →"
+    hubDesc="Skim coating, joint compound selection, seam taping, and curved drywall finishing."
+    guideSlug="drywall-sheet-size-8-vs-12-ft"
+    guideTitle="Drywall Sheet Sizing &amp; Hanging Trade Guide →"
+    guideDesc="Compare 8-foot, 10-foot, and 12-foot sheetrock orientations to minimize butt joints."
+  />
+
+  <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 mt-6">
+    <h2 class="text-lg font-semibold text-gray-900 mb-4">Related Drywall &amp; Framing Calculators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="/calculators/drywall/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Drywall Sheet Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate 4×8 and 4×12 sheet counts and screws.</div>
+      </a>
+      <a href="/calculators/drywall-mud/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Drywall Mud &amp; Tape Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Calculate joint compound buckets for Level 3–5 curves.</div>
+      </a>
+      <a href="/calculators/wall-framing/" class="block bg-white p-4 rounded-lg border border-gray-200 hover:border-blue-400 hover:shadow-sm transition-all">
+        <div class="font-medium text-gray-900 text-sm">Wall Framing Stud Calculator</div>
+        <div class="text-xs text-gray-500 mt-1">Estimate tight 6"–12" OC curved wall studs and plates.</div>
+      </a>
+    </div>
+  </div>
+
+  <script is:inline>
+  (function() {
+    var gaLimitsIn = {
+      '0.25': { dry: 60, wet: 24, label: '1/4"' },
+      '0.375': { dry: 90, wet: 48, label: '3/8"' },
+      '0.5': { dry: 240, wet: 120, label: '1/2"' },
+      '0.625': { dry: 336, wet: 168, label: '5/8"' }
+    };
+
+    function toSixteenth(val) {
+      var whole = Math.floor(val);
+      var rem16 = Math.round((val - whole) * 16);
+      if (rem16 === 16) { whole += 1; rem16 = 0; }
+      if (rem16 === 0) return whole + '"';
+      var num = rem16, den = 16;
+      while (num % 2 === 0 && den > 1) { num /= 2; den /= 2; }
+      return (whole > 0 ? whole + '-' : '') + num + '/' + den + '"';
+    }
+
+    function renderSvg(numKerfs, spacingIn, plungeIn, thickIn, radiusIn, angleDeg) {
+      var svg = document.getElementById('kerfSvg');
+      if (!svg) return;
+      var shown = Math.min(12, Math.max(2, numKerfs));
+      var boardY = 48;
+      var boardH = 54;
+      var notchH = Math.round((Math.max(0.1, plungeIn) / thickIn) * boardH);
+      var startX = 65;
+      var endX = 575;
+      var step = (endX - startX) / (shown + 1);
+      var out = [];
+      out.push('<rect x="45" y="' + boardY + '" width="550" height="' + boardH + '" rx="3" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>');
+      out.push('<rect x="45" y="' + (boardY + boardH - 6) + '" width="550" height="6" fill="#3b82f6"/>');
+      for (var i = 1; i <= shown; i++) {
+        var cx = Math.round(startX + step * i);
+        out.push('<rect x="' + (cx - 4) + '" y="' + boardY + '" width="8" height="' + notchH + '" fill="#0f172a"/>');
+      }
+      var x1 = Math.round(startX + step);
+      var x2 = Math.round(startX + step * 2);
+      out.push('<line x1="' + x1 + '" y1="28" x2="' + x2 + '" y2="28" stroke="#d97706" stroke-width="2"/>');
+      out.push('<line x1="' + x1 + '" y1="22" x2="' + x1 + '" y2="34" stroke="#d97706" stroke-width="2"/>');
+      out.push('<line x1="' + x2 + '" y1="22" x2="' + x2 + '" y2="34" stroke="#d97706" stroke-width="2"/>');
+      out.push('<text x="' + Math.round((x1 + x2) / 2) + '" y="19" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">Spacing: ' + spacingIn.toFixed(2) + '"</text>');
+      out.push('<text x="320" y="128" text-anchor="middle" font-size="11" font-weight="600" fill="#1e3a8a">Unbroken Face Paper Hinge (1/16" margin remaining) · Plunge Depth: ' + plungeIn.toFixed(3) + '"</text>');
+      out.push('<text x="320" y="148" text-anchor="middle" font-size="11" fill="#475569">Showing ' + shown + ' of ' + numKerfs + ' total kerfs for R=' + radiusIn + '" (' + angleDeg + '° arc)</text>');
+      svg.innerHTML = out.join('');
+    }
+
+    function calc() {
+      var radiusIn = Math.max(4, parseFloat(document.getElementById('curveRadius').value) || 24);
+      var angleDeg = parseFloat(document.getElementById('arcAngle').value) || 90;
+      var thickStr = document.getElementById('boardThickness').value;
+      var thickIn = parseFloat(thickStr) || 0.5;
+      var kerfIn = parseFloat(document.getElementById('kerfWidth').value) || 0.125;
+      var heightFt = Math.max(1, parseFloat(document.getElementById('wallHeightFt').value) || 8);
+
+      var faceMargin = 0.0625;
+      var arcRad = (angleDeg * Math.PI) / 180;
+      var arcLengthIn = radiusIn * arcRad;
+      var bendAllowanceIn = Math.max(0.01, (thickIn - faceMargin) * arcRad);
+      var numKerfs = Math.max(2, Math.ceil(bendAllowanceIn / kerfIn));
+      var spacingIn = arcLengthIn / numKerfs;
+      var plungeIn = Math.max(0.125, thickIn - faceMargin);
+      var surfaceSqFt = (arcLengthIn / 12) * heightFt;
+
+      var studText = radiusIn <= 24 ? 'Recommended stud OC: 6" (max 8")'
+        : radiusIn <= 48 ? 'Recommended stud OC: 8" – 12"'
+        : 'Recommended stud OC: 12" – 16"';
+
+      var spec = gaLimitsIn[thickStr] || gaLimitsIn['0.5'];
+      var advisory = '';
+      if (radiusIn >= spec.dry) {
+        advisory = 'GA-226 Note: R=' + radiusIn + '" meets the ' + spec.dry + '" (' + (spec.dry / 12).toFixed(1) + ' ft) unkerfed DRY bend limit for ' + spec.label + ' drywall — kerfs optional.';
+      } else if (radiusIn >= spec.wet) {
+        advisory = 'GA-226 Note: R=' + radiusIn + '" exceeds the dry limit but is within the ' + spec.wet + '" (' + (spec.wet / 12).toFixed(1) + ' ft) WET bend range, or kerf dry every ' + spacingIn.toFixed(2) + '".';
+      } else {
+        advisory = 'GA-226 Note: R=' + radiusIn + '" is tighter than the ' + spec.wet + '" wet limit for ' + spec.label + ' board — back-kerfing every ' + spacingIn.toFixed(2) + '" or dual 1/4" layers is required.';
+      }
+
+      document.getElementById('r_kerfSpacing').textContent = spacingIn.toFixed(2) + ' in';
+      document.getElementById('r_kerfFraction').textContent = 'Nearest 1/16": ' + toSixteenth(spacingIn);
+      document.getElementById('r_numKerfs').textContent = numKerfs + ' Cuts';
+      document.getElementById('r_arcLength').textContent = 'Arc length: ' + arcLengthIn.toFixed(1) + ' in (' + (arcLengthIn / 12).toFixed(2) + ' ft)';
+      document.getElementById('r_plungeDepth').textContent = plungeIn.toFixed(3) + ' in';
+      document.getElementById('r_sheetArea').textContent = surfaceSqFt.toFixed(1) + ' sq ft';
+      document.getElementById('r_studSpacing').textContent = studText;
+      document.getElementById('r_gaAdvisory').textContent = advisory;
+      document.getElementById('r_svgMeta').textContent = 'R = ' + radiusIn + '" · ' + angleDeg + '° Arc';
+
+      renderSvg(numKerfs, spacingIn, plungeIn, thickIn, radiusIn, angleDeg);
+    }
+
+    ['curveRadius', 'arcAngle', 'boardThickness', 'kerfWidth', 'bendDirection', 'wallHeightFt'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', calc);
+    });
+    document.getElementById('calcBtn').addEventListener('click', calc);
+    calc();
+
+    document.getElementById('copyListBtn').addEventListener('click', function() {
+      var sp = document.getElementById('r_kerfSpacing').textContent;
+      var cuts = document.getElementById('r_numKerfs').textContent;
+      var depth = document.getElementById('r_plungeDepth').textContent;
+      var area = document.getElementById('r_sheetArea').textContent;
+      var text = '=== Drywall Kerf Bending Cut Schedule ===\nKerf Spacing: ' + sp + '\nTotal Kerf Cuts: ' + cuts + '\nSaw Plunge Depth: ' + depth + '\nCurved Wall Area: ' + area + '\nEstimated via CalcForDIY (https://calcfordiy.com/calculators/drywall-kerf-bending/)';
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyListBtn');
+        btn.textContent = '✓ Copied List!';
+        setTimeout(function() { btn.textContent = '📋 Copy Material List'; }, 2500);
+      });
+    });
+  })();
+  </script>
+</Layout>

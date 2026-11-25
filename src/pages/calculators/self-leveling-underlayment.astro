@@ -5,7 +5,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 ---
 
 <Layout
-  title="Self-Leveling Underlayment (SLU) & Deck Mud Calculator | CalcForDIY"
+  title="Self-Leveling & Shower Deck Mud Calculator | CalcForDIY"
   description="Calculate 50 lb bags of self-leveling compound, acrylic primer, expansion foam, and 4:1 sand-cement deck mud for shower pans per TCNA F185 & ASTM C1708."
 >
   <script type="application/ld+json" is:inline>
@@ -204,9 +204,10 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
         var sandBags = Math.ceil(totalSandLbs / 50.0); // 50lb bags masonry sand
         var cementBags94 = Math.ceil(totalCementLbs / 94.0); // 94lb bags Portland cement
 
+        var bags60 = Math.ceil(grossCuFt / 0.45);
         document.getElementById('r_bagLabel').textContent = "Masonry Sand & Cement";
         document.getElementById('r_bagCount').textContent = sandBags + " Sand / " + cementBags94 + " Cement";
-        document.getElementById('r_volumeText').textContent = grossCuFt.toFixed(1) + " cu ft packable dry mud";
+        document.getElementById('r_volumeText').textContent = grossCuFt.toFixed(1) + " cu ft (~" + bags60 + " bags of 60 lb Sand Mix)";
         document.getElementById('r_primerGallons').textContent = "Slurry Bond Coat";
         document.getElementById('r_foamFeet').textContent = "Expansion Strip";
         document.getElementById('r_waterQuarts').textContent = "Damp Touch Mix";
@@ -241,6 +242,30 @@ Estimated via CalcForDIY (https://calcfordiy.com/calculators/self-leveling-under
   </script>
 
   
+  <!-- Shower Deck Mud & SLU Yield Chart -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 overflow-x-auto">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">TCNA B415 / IPC 421.5.2 Shower Pan Deck Mud &amp; SLU Yield Chart</h2>
+    <p class="text-sm text-gray-600 mb-4">Quick-reference quantities for sloped shower mud beds (minimum 1/4" per foot pitch toward the drain) and flat 50 lb self-leveling underlayment pours (includes ~10% mixing waste).</p>
+    <table class="w-full text-left border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-gray-200 text-xs uppercase text-gray-500 bg-gray-50">
+          <th class="py-2.5 px-3">Shower Size / Application</th>
+          <th class="py-2.5 px-3">Average Bed / Pour Depth</th>
+          <th class="py-2.5 px-3">Volume Needed (+10%)</th>
+          <th class="py-2.5 px-3">Pre-Blended 60 lb Sand Mix</th>
+          <th class="py-2.5 px-3">4:1 Site Mix (50 lb Sand / 94 lb Cement)</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 text-gray-700">
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">3' × 3' Standard Shower Pan</td><td class="py-2.5 px-3">1.25 in avg (3/4" to 1-1/2")</td><td class="py-2.5 px-3">1.1 cu ft</td><td class="py-2.5 px-3">3 bags (60 lb)</td><td class="py-2.5 px-3">2 Sand / 1 Cement</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">3' × 5' Alcove Tub Replacement</td><td class="py-2.5 px-3">1.50 in avg (3/4" to 2")</td><td class="py-2.5 px-3">2.1 cu ft</td><td class="py-2.5 px-3">5 bags (60 lb)</td><td class="py-2.5 px-3">4 Sand / 1 Cement</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">4' × 4' Corner Shower Pan</td><td class="py-2.5 px-3">1.50 in avg</td><td class="py-2.5 px-3">2.2 cu ft</td><td class="py-2.5 px-3">5 bags (60 lb)</td><td class="py-2.5 px-3">4 Sand / 1 Cement</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">4' × 6' Walk-In Curbless Mud Bed</td><td class="py-2.5 px-3">1.75 in avg</td><td class="py-2.5 px-3">3.9 cu ft</td><td class="py-2.5 px-3">9 bags (60 lb)</td><td class="py-2.5 px-3">7 Sand / 1 Cement</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">SLU Flat Floor Pour (per 100 sq ft)</td><td class="py-2.5 px-3">1/8" | 1/4" | 1/2"</td><td class="py-2.5 px-3">1.1 | 2.3 | 4.6 cu ft</td><td class="py-2.5 px-3" colspan="2">50 lb SLU Bags: 3 bags (@ 1/8") · 5 bags (@ 1/4") · 11 bags (@ 1/2")</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- How to Use This Calculator -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>

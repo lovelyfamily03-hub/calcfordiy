@@ -5,8 +5,8 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
 ---
 
 <Layout
-  title="Blown-In Attic Insulation Bag Estimator | CalcForDIY"
-  description="Calculate loose-fill cellulose and blown fiberglass bags for attic R-30 to R-60 insulation upgrades per IECC & IRC Section R402 climate zones."
+  title="Attic Insulation & AttiCat Coverage Calculator | CalcForDIY"
+  description="Calculate Owens Corning AttiCat blown fiberglass bags, Greenfiber loose-fill cellulose bags, settled depth, and soffit baffles for attic R-19 to R-60 per IECC & IRC R402."
 >
   <script type="application/ld+json" is:inline>
   {
@@ -38,6 +38,14 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "For loose-fill cellulose (e.g., Greenfiber Sanctuary), achieving R-38 requires an initial settled depth of approximately 10.25 inches. One 25 lb bag covers 37.7 square feet at R-38, requiring about 27 bags per 1,000 square feet."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many Owens Corning AttiCat bags do I need per 1,000 sq ft?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Per Owens Corning AttiCat (L77) published coverage charts for 29.5 lb expanding blown fiberglass bags, R-30 requires roughly 25.2 bags per 1,000 sq ft (39.7 sq ft/bag at 10.75 in), R-38 requires 32.5 bags (30.8 sq ft/bag at 13.75 in), and R-49 requires 42.4 bags (23.6 sq ft/bag at 17.75 in)."
         }
       },
       {
@@ -92,6 +100,7 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       <div>
         <label for="insulationType" class="block text-xs font-medium text-gray-600 mb-1">Insulation Material Type</label>
         <select id="insulationType" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+          <option value="atticat">Owens Corning AttiCat® Blown Fiberglass (29.5 lb)</option>
           <option value="cellulose" selected>Loose-Fill Cellulose (Greenfiber Sanctuary 25lb)</option>
           <option value="fiberglass">Blown Fiberglass (Owens Corning ProPink L77)</option>
         </select>
@@ -187,6 +196,11 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
         settledInches = deltaR / 3.7;
         var bagsPer1000AtR38 = 27.0;
         bagsNeeded = Math.ceil((area / 1000.0) * (deltaR / 38.0) * bagsPer1000AtR38 * 1.05);
+      } else if (type === 'atticat') {
+        // Owens Corning AttiCat 29.5 lb expanding blown fiberglass (~2.67 R/in, ~32.5 bags/1,000 sq ft @ R-38)
+        settledInches = deltaR / 2.67;
+        var bagsPer1000AtR38Atticat = 32.5;
+        bagsNeeded = Math.ceil((area / 1000.0) * (deltaR / 38.0) * bagsPer1000AtR38Atticat * 1.05);
       } else {
         // Blown fiberglass ~2.6 R per inch
         settledInches = deltaR / 2.6;
@@ -197,8 +211,12 @@ import RelatedGuidesProjects from '../../components/RelatedGuidesProjects.astro'
       var initialInches = settledInches * 1.15; // 15% initial blow fluffing height
       var baffles = Math.ceil(Math.sqrt(area) * 2 / 1.33); // Soffit bay count
 
+      var bagDetailText = '30 lb Blown Fiberglass';
+      if (type === 'cellulose') bagDetailText = '25 lb Greenfiber Cellulose';
+      else if (type === 'atticat') bagDetailText = '29.5 lb Owens Corning AttiCat';
+
       document.getElementById('r_bagCount').textContent = bagsNeeded + " Bags";
-      document.getElementById('r_bagDetail').textContent = type === 'cellulose' ? '25 lb Greenfiber Cellulose' : '30 lb Blown Fiberglass';
+      document.getElementById('r_bagDetail').textContent = bagDetailText;
       document.getElementById('r_settledDepth').textContent = settledInches.toFixed(1) + " Inches";
       document.getElementById('r_initialDepth').textContent = "Initial blow: " + initialInches.toFixed(1) + " in";
       document.getElementById('r_baffleCount').textContent = baffles + " Baffles";
@@ -233,6 +251,31 @@ Estimated via CalcForDIY (https://calcfordiy.com/calculators/attic-insulation/)`
   </script>
 
   
+  <!-- Owens Corning AttiCat vs Cellulose Reference Table -->
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 overflow-x-auto">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">Owens Corning AttiCat® vs. Loose-Fill Cellulose Coverage Chart (R-19 to R-60)</h2>
+    <p class="text-sm text-gray-600 mb-4">Published bag coverage benchmarks for open-attic blown insulation per IECC / IRC Table R402.1.2 (29.5 lb AttiCat® fiberglass bags vs. 25 lb Greenfiber cellulose bags).</p>
+    <table class="w-full text-left border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-gray-200 text-xs uppercase text-gray-500 bg-gray-50">
+          <th class="py-2.5 px-3">Target R-Value</th>
+          <th class="py-2.5 px-3">IECC Climate Zones</th>
+          <th class="py-2.5 px-3">AttiCat® Sq Ft / Bag</th>
+          <th class="py-2.5 px-3">AttiCat® Settled Depth</th>
+          <th class="py-2.5 px-3">Cellulose Sq Ft / Bag</th>
+          <th class="py-2.5 px-3">Cellulose Settled Depth</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 text-gray-700">
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">R-19</td><td class="py-2.5 px-3">Top-Up Over Old Batts</td><td class="py-2.5 px-3">65.1 sq ft</td><td class="py-2.5 px-3">7.25 in</td><td class="py-2.5 px-3">76.9 sq ft</td><td class="py-2.5 px-3">5.25 in</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">R-30</td><td class="py-2.5 px-3">Zones 1 – 2</td><td class="py-2.5 px-3">39.7 sq ft</td><td class="py-2.5 px-3">10.75 in</td><td class="py-2.5 px-3">47.6 sq ft</td><td class="py-2.5 px-3">8.25 in</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">R-38</td><td class="py-2.5 px-3">Zones 2 – 3</td><td class="py-2.5 px-3">30.8 sq ft</td><td class="py-2.5 px-3">13.75 in</td><td class="py-2.5 px-3">37.7 sq ft</td><td class="py-2.5 px-3">10.25 in</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">R-49</td><td class="py-2.5 px-3">Zones 4 – 5 (2021 IECC)</td><td class="py-2.5 px-3">23.6 sq ft</td><td class="py-2.5 px-3">17.75 in</td><td class="py-2.5 px-3">28.9 sq ft</td><td class="py-2.5 px-3">13.25 in</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">R-60</td><td class="py-2.5 px-3">Zones 6 – 8 (Northern US)</td><td class="py-2.5 px-3">18.9 sq ft</td><td class="py-2.5 px-3">21.75 in</td><td class="py-2.5 px-3">23.3 sq ft</td><td class="py-2.5 px-3">16.25 in</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- How to Use This Calculator -->
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6">
     <h2 class="text-xl font-semibold text-gray-900 mb-4">How to Use This Calculator</h2>

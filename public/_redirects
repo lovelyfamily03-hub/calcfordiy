@@ -35,5 +35,23 @@
 /day / 301
 /day/ / 301
 
-# 9. Standard sitemap alias
+# 9. Consolidated Duplicate Calculator & Project Hub Redirects (Nov 25, 2026)
+/calculators/cascadia-clip-insulation /calculators/cascadia-clip/ 301
+/calculators/cascadia-clip-insulation/ /calculators/cascadia-clip/ 301
+/projects/curbless-walk-in-shower /projects/curbless-shower-linear-drain/ 301
+/projects/curbless-walk-in-shower/ /projects/curbless-shower-linear-drain/ 301
+/projects/coffered-ceiling-layout /projects/coffered-ceiling-box-beams/ 301
+/projects/coffered-ceiling-layout/ /projects/coffered-ceiling-box-beams/ 301
+/projects/floating-vinyl-plank /projects/lvp-flooring-renovation/ 301
+/projects/floating-vinyl-plank/ /projects/lvp-flooring-renovation/ 301
+/projects/tankless-water-heater-retrofit-gas /projects/tankless-water-heater-installation/ 301
+/projects/tankless-water-heater-retrofit-gas/ /projects/tankless-water-heater-installation/ 301
+/projects/whole-home-generator /projects/home-generator-transfer-switch/ 301
+/projects/whole-home-generator/ /projects/home-generator-transfer-switch/ 301
+/projects/soundproofing-theater-room /projects/soundproof-wall-green-glue/ 301
+/projects/soundproofing-theater-room/ /projects/soundproof-wall-green-glue/ 301
+/projects/deep-well-submersible-pump /projects/well-pump-pressure-tank-replacement/ 301
+/projects/deep-well-submersible-pump/ /projects/well-pump-pressure-tank-replacement/ 301
+
+# 10. Standard sitemap alias
 /sitemap.xml /sitemap-index.xml 301

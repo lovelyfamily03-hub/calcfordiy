@@ -5,7 +5,7 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
 ---
 
 <Layout
-  title="Exterior House Christmas Lights Calculator — Roofline & Clips | CalcForDIY"
+  title="Christmas Lights Calculator — Roofline & Clips | CalcForDIY"
   description="Calculate how many feet of Christmas lights, strand counts, mounting clips, and total power draw you need for your house roofline, gutters, and gables."
 >
 
@@ -163,6 +163,28 @@ import AuthorReviewer from '../../components/AuthorReviewer.astro';
     <button onclick="window.print()" class="w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-6 rounded-lg transition-colors print:hidden text-base flex justify-center items-center gap-2">
       🖨️ Print Exterior Shopping List
     </button>
+  </div>
+
+  <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden overflow-x-auto">
+    <h2 class="text-xl font-semibold text-gray-900 mb-3">How to Measure a House for Christmas Lights — Pitch &amp; Clip Chart</h2>
+    <p class="text-sm text-gray-600 mb-4">Estimate diagonal gable rakes from the ground by multiplying horizontal span × roof pitch factor, then match bulb spacing to clip counts.</p>
+    <table class="w-full text-left border-collapse text-sm">
+      <thead>
+        <tr class="border-b-2 border-gray-200 text-xs uppercase text-gray-500 bg-gray-50">
+          <th class="py-2.5 px-3">Roof Pitch</th>
+          <th class="py-2.5 px-3">Gable Slope Factor</th>
+          <th class="py-2.5 px-3">Example: 24 ft Gable Width</th>
+          <th class="py-2.5 px-3">Bulb Style &amp; Spacing</th>
+          <th class="py-2.5 px-3">Clips Needed per 100 ft</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 text-gray-700">
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">4/12 Low Pitch</td><td class="py-2.5 px-3">1.05×</td><td class="py-2.5 px-3">~25.2 ft total rake</td><td class="py-2.5 px-3">C9 LED (12" spacing)</td><td class="py-2.5 px-3">100 shingle / gutter clips</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">6/12 Standard Ranch</td><td class="py-2.5 px-3">1.12×</td><td class="py-2.5 px-3">~26.9 ft total rake</td><td class="py-2.5 px-3">C9 Commercial (15" spacing)</td><td class="py-2.5 px-3">80 shingle / gutter clips</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">8/12 Two-Story Gable</td><td class="py-2.5 px-3">1.20×</td><td class="py-2.5 px-3">~28.8 ft total rake</td><td class="py-2.5 px-3">C7 LED (6" dense outline)</td><td class="py-2.5 px-3">200 clips (or every 12")</td></tr>
+        <tr><td class="py-2.5 px-3 font-semibold text-gray-900">10/12 – 12/12 Steep</td><td class="py-2.5 px-3">1.30× – 1.41×</td><td class="py-2.5 px-3">31.2 – 33.8 ft total rake</td><td class="py-2.5 px-3">5mm Mini LED (4"–6")</td><td class="py-2.5 px-3">~100 mini-clips (every 12")</td></tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 print:hidden">

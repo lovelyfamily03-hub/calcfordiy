@@ -3,7 +3,7 @@
 **Attention All AI Agents:** Read this entire document to understand the context, architecture, rules, and roadmap for the `calcfordiy.com` project before making any changes.
 
 *Goal: Stable traffic, 100 calculators, and monetization within 2 months.*
-*Last updated: November 24, 2026*
+*Last updated: November 25, 2026*
 
 ---
 
@@ -26,10 +26,10 @@
 ## CURRENT STATUS & 100-CALCULATOR GOAL
 - **Live site:** calcfordiy.com
 - **Stack:** Astro + Tailwind, Cloudflare Pages, GitHub
-- **Total Pages Live:** 352 static pages built (351 URLs in `sitemap-0.xml` + `404.html`)
-- **Calculators live:** 115 calculators live (Target of 100 Calculators ACHIEVED & SURPASSED ✅)
+- **Total Pages Live:** 346 static pages built (345 URLs in `sitemap-0.xml` + `404.html`)
+- **Calculators live:** 116 calculators live (Target of 100 Calculators ACHIEVED & SURPASSED ✅)
 - **SEO Guides live:** 107 guides (`src/pages/guides/`)
-- **Project Workflow Hubs live:** 100 hubs (`src/pages/projects/`)
+- **Project Workflow Hubs live:** 93 consolidated hubs (`src/pages/projects/`, after merging 7 overlapping pairs on Nov 25)
 - **Field Journal Case Studies live:** 19 in-depth case studies with on-site photography (`src/pages/journal/`)
 - **AdSense Status:** All 4 phases of Hardened E-E-A-T Quality Plan deployed. 0 broken links verified across all 167 HTML pages. AdSense crawl buffer elapsed. Site is 100% READY for dashboard resubmission ("Request Review").
 - **robots.txt:** Cloudflare Managed robots.txt is OFF. Origin `public/robots.txt` handles all crawl rules — allows search engines, blocks AI training bots (GPTBot, ClaudeBot, Google-Extended, CCBot, Bytespider, Amazonbot, meta-externalagent).
@@ -232,12 +232,12 @@ Target: **78 Live Tools → 100 Flagship Calculators** (+22 New Tools)
 - `[x]` One-click `📋 Copy Shopping List`, `➕ Save to Project List`, and `🔗 Share Estimate Link` (URL `?c_*` hydration) on calculator results
 - `[x]` Cross-calculator saved `"My Project Shopping List"` drawer (`localStorage['calcfordiy_project_list']`) in `Layout.astro`
 - `[x]` Dual "DIY Material Cost" vs "Contractor Installed Cost" benchmark cards
-- `[x]` Project Workflow Hubs across `100` `/projects/` workflows
+- `[x]` Project Workflow Hubs across `93` consolidated `/projects/` workflows
 - `[x]` Collapsible `Metric ⇄ Imperial` quick converter (`m, cm, m², m³, L ⇄ ft, in, sq ft, cu yd, gal`) inside calculator top strip
 - `[x]` Centralized monetization config (`src/config/monetization.ts`) + post-results `<AdSlot>` readiness (zero blank boxes pre-approval)
 - `[ ]` "Email my results"
 - `[ ]` Dark mode toggle
-- `[ ]` IndexNow protocol for faster Bing/Google re-crawl signals
+- `[x]` IndexNow protocol (`public/bcc69aeaeb73878d6444700e094c23bf.txt` + `scripts/indexnow-ping.mjs`) for automated Bing/DuckDuckGo/IndexNow pings
 
 ---
 
